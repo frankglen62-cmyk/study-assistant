@@ -73,7 +73,7 @@ function useOnboardingState() {
 export function OnboardingApp() {
   const state = useOnboardingState();
   const extensionVersion = useMemo(() => getExtensionVersion(), []);
-  const [appBaseUrl, setAppBaseUrl] = useState('http://localhost:3000');
+  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
   const [statusMessage, setStatusMessage] = useState('Enter your app URL and pairing code to continue.');
