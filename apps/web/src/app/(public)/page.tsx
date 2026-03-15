@@ -8,6 +8,7 @@ import { featureCards, faqItems, heroHighlights, howItWorks, pricingTeaser } fro
 export default function HomePage() {
   return (
     <div className="space-y-20 pb-20 pt-10 lg:pt-16">
+      {/* Deploy marker: keep a tracked app change so Vercel creates a fresh web deployment from apps/web. */}
       <section className="page-shell">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div className="space-y-8">
