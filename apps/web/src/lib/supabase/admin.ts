@@ -1,0 +1,629 @@
+import { z } from 'zod';
+
+import { RouteError } from '@/lib/http/route';
+
+import {
+  categoryRecordSchema,
+  folderRecordSchema,
+  paymentRecordSchema,
+  profileRecordSchema,
+  questionAttemptSummarySchema,
+  sessionRecordSchema,
+  sourceFileRecordSchema,
+  subjectRecordSchema,
+  walletRecordSchema,
+  type CategoryRecord,
+  type FolderRecord,
+  type PaymentRecord,
+  type ProfileRecord,
+  type QuestionAttemptSummaryRecord,
+  type SessionRecord,
+  type SourceFileRecord,
+  type SubjectRecord,
+  type WalletRecord,
+} from './schemas';
+import { getSupabaseAdmin } from './server';
+import { assertSupabaseResult, parseArray } from './utils';
+
+const adminPaymentSummarySchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  provider: z.enum(['stripe', 'paymongo']),
+  provider_payment_id: z.string(),
+  amount_minor: z.number().int().nonnegative(),
+  currency: z.string(),
+  status: z.enum(['pending', 'paid', 'failed', 'canceled', 'refunded']),
+  payment_type: z.enum(['topup', 'subscription']),
+  created_at: z.string(),
+  paid_at: z.string().nullable(),
+  payment_packages: z
+    .object({
+      code: z.string(),
+      name: z.string(),
+    })
+    .nullable()
+    .optional(),
+  profiles: z
+    .object({
+      full_name: z.string(),
+      email: z.string().email(),
+    })
+    .nullable()
+    .optional(),
+});
+
+const adminSessionSummarySchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  status: z.enum(['active', 'paused', 'ended', 'timed_out', 'no_credit', 'no_match', 'failed']),
+  detection_mode: z.enum(['auto', 'manual']),
+  current_subject_id: z.string().uuid().nullable(),
+  current_category_id: z.string().uuid().nullable(),
+  used_seconds: z.number().int().nonnegative(),
+  start_time: z.string(),
+  end_time: z.string().nullable(),
+  page_url: z.string().nullable().optional(),
+  page_domain: z.string().nullable().optional(),
+  page_title: z.string().nullable().optional(),
+  profiles: z
+    .object({
+      full_name: z.string(),
+      email: z.string().email(),
+    })
+    .nullable()
+    .optional(),
+  subjects: z
+    .object({
+      name: z.string(),
+    })
+    .nullable()
+    .optional(),
+  categories: z
+    .object({
+      name: z.string(),
+    })
+    .nullable()
+    .optional(),
+});
+
+const adminSessionAttemptSignalSchema = z.object({
+  id: z.string().uuid(),
+  session_id: z.string().uuid().nullable().optional(),
+  created_at: z.string(),
+  page_url: z.string().nullable().optional(),
+  page_title: z.string().nullable().optional(),
+  no_match_reason: z.string().nullable().optional(),
+  subjects: z
+    .object({
+      name: z.string(),
+    })
+    .nullable()
+    .optional(),
+  categories: z
+    .object({
+      name: z.string(),
+    })
+    .nullable()
+    .optional(),
+});
+
+const adminAuditLogSchema = z.object({
+  id: z.string().uuid(),
+  actor_user_id: z.string().uuid().nullable().optional(),
+  actor_role: z.enum(['super_admin', 'admin', 'client']).nullable().optional(),
+  event_type: z.string(),
+  entity_type: z.string(),
+  entity_id: z.string().nullable().optional(),
+  event_summary: z.string(),
+  created_at: z.string(),
+  profiles: z
+    .object({
+      full_name: z.string(),
+      email: z.string().email(),
+    })
+    .nullable()
+    .optional(),
+});
+
+const adminSessionDetailSchema = adminSessionSummarySchema.extend({
+  extension_installation_id: z.string().uuid().nullable().optional(),
+  last_activity_at: z.string().nullable().optional(),
+  created_at: z.string().optional(),
+  updated_at: z.string().optional(),
+});
+
+const adminCreditTransactionSchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  wallet_id: z.string().uuid(),
+  transaction_type: z.enum([
+    'purchase',
+    'usage_debit',
+    'admin_adjustment_add',
+    'admin_adjustment_subtract',
+    'refund',
+    'promo',
+    'expiration',
+    'restoration',
+  ]),
+  delta_seconds: z.number().int(),
+  balance_after_seconds: z.number().int(),
+  related_payment_id: z.string().uuid().nullable().optional(),
+  related_session_id: z.string().uuid().nullable().optional(),
+  description: z.string().nullable().optional(),
+  metadata: z.record(z.string(), z.unknown()).nullable().optional(),
+  created_by: z.string().uuid().nullable().optional(),
+  created_at: z.string(),
+});
+
+export type AdminPaymentSummaryRecord = z.infer<typeof adminPaymentSummarySchema>;
+export type AdminSessionSummaryRecord = z.infer<typeof adminSessionSummarySchema>;
+export type AdminSessionAttemptSignalRecord = z.infer<typeof adminSessionAttemptSignalSchema>;
+export type AdminAuditLogRecord = z.infer<typeof adminAuditLogSchema>;
+export type AdminSessionDetailRecord = z.infer<typeof adminSessionDetailSchema>;
+export type AdminCreditTransactionRecord = z.infer<typeof adminCreditTransactionSchema>;
+
+export async function listAdminSubjects(): Promise<SubjectRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('subjects')
+    .select('id, name, slug, course_code, department, description, keywords, url_patterns, is_active')
+    .order('name', { ascending: true });
+
+  assertSupabaseResult(error, 'Failed to load subjects.');
+  return parseArray(data ?? [], subjectRecordSchema, 'Subject rows are invalid.');
+}
+
+export async function listAdminCategories(): Promise<CategoryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('categories')
+    .select('id, subject_id, name, slug, default_keywords, is_active')
+    .order('sort_order', { ascending: true });
+
+  assertSupabaseResult(error, 'Failed to load categories.');
+  return parseArray(data ?? [], categoryRecordSchema, 'Category rows are invalid.');
+}
+
+export async function listAdminFolders(): Promise<FolderRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('folders')
+    .select('id, parent_id, subject_id, folder_type, name, slug, sort_order, is_active, archived_at, deleted_at')
+    .is('deleted_at', null)
+    .order('sort_order', { ascending: true });
+
+  assertSupabaseResult(error, 'Failed to load folders.');
+  return parseArray(data ?? [], folderRecordSchema, 'Folder rows are invalid.');
+}
+
+export async function listAdminSourceFiles(): Promise<SourceFileRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const pageSize = 1000;
+  const rows: unknown[] = [];
+  let offset = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('source_files')
+      .select(`
+        id,
+        folder_id,
+        subject_id,
+        category_id,
+        title,
+        source_status,
+        version_number,
+        processing_error,
+        source_priority,
+        created_at,
+        updated_at,
+        activated_at,
+        profiles:uploaded_by (
+          full_name
+        ),
+        subjects:subject_id (
+          name
+        ),
+        categories:category_id (
+          name
+        )
+      `)
+      .is('deleted_at', null)
+      .order('updated_at', { ascending: false })
+      .range(offset, offset + pageSize - 1);
+
+    assertSupabaseResult(error, 'Failed to load source files.');
+
+    const batch = data ?? [];
+    rows.push(...batch);
+
+    if (batch.length < pageSize) {
+      break;
+    }
+
+    offset += pageSize;
+  }
+
+  return parseArray(rows, sourceFileRecordSchema, 'Source file rows are invalid.');
+}
+
+export async function listAdminUsers(): Promise<ProfileRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id, email, full_name, role, account_status, created_at')
+    .order('created_at', { ascending: false });
+
+  assertSupabaseResult(error, 'Failed to load users.');
+  return parseArray(data ?? [], profileRecordSchema, 'User rows are invalid.');
+}
+
+export async function listAdminWallets(): Promise<WalletRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('wallets')
+    .select('id, user_id, remaining_seconds, lifetime_seconds_purchased, lifetime_seconds_used, status')
+    .order('updated_at', { ascending: false });
+
+  assertSupabaseResult(error, 'Failed to load wallets.');
+  return parseArray(data ?? [], walletRecordSchema, 'Wallet rows are invalid.');
+}
+
+export async function listAdminPayments(): Promise<PaymentRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payments')
+    .select(`
+      id,
+      provider,
+      provider_payment_id,
+      amount_minor,
+      currency,
+      status,
+      payment_type,
+      created_at,
+      paid_at,
+      package_id,
+      payment_packages (
+        code,
+        name
+      )
+    `)
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  assertSupabaseResult(error, 'Failed to load payments.');
+  return parseArray(data ?? [], paymentRecordSchema, 'Payment rows are invalid.');
+}
+
+export async function listAdminPaymentSummaries(): Promise<AdminPaymentSummaryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payments')
+    .select(`
+      id,
+      user_id,
+      provider,
+      provider_payment_id,
+      amount_minor,
+      currency,
+      status,
+      payment_type,
+      created_at,
+      paid_at,
+      payment_packages (
+        code,
+        name
+      ),
+      profiles:user_id (
+        full_name,
+        email
+      )
+    `)
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  assertSupabaseResult(error, 'Failed to load payment summaries.');
+  return parseArray(data ?? [], adminPaymentSummarySchema, 'Admin payment rows are invalid.');
+}
+
+export async function listAdminSessions(): Promise<SessionRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('sessions')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, end_time')
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  assertSupabaseResult(error, 'Failed to load sessions.');
+  return parseArray(data ?? [], sessionRecordSchema, 'Session rows are invalid.');
+}
+
+export async function listAdminSessionSummaries(options?: {
+  userId?: string;
+  limit?: number;
+}): Promise<AdminSessionSummaryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  let query = supabase
+    .from('sessions')
+    .select(`
+      id,
+      user_id,
+      status,
+      detection_mode,
+      current_subject_id,
+      current_category_id,
+      used_seconds,
+      start_time,
+      end_time,
+      page_url,
+      page_domain,
+      page_title,
+      profiles:user_id (
+        full_name,
+        email
+      ),
+      subjects:current_subject_id (
+        name
+      ),
+      categories:current_category_id (
+        name
+      )
+    `)
+    .order('created_at', { ascending: false });
+
+  if (options?.userId) {
+    query = query.eq('user_id', options.userId);
+  }
+
+  if (typeof options?.limit === 'number') {
+    query = query.limit(options.limit);
+  }
+
+  const { data, error } = await query;
+
+  assertSupabaseResult(error, 'Failed to load session summaries.');
+  return parseArray(data ?? [], adminSessionSummarySchema, 'Admin session rows are invalid.');
+}
+
+export async function listAdminSessionAttemptSignals(sessionIds: string[]): Promise<AdminSessionAttemptSignalRecord[]> {
+  if (sessionIds.length === 0) {
+    return [];
+  }
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('question_attempts')
+    .select(`
+      id,
+      session_id,
+      created_at,
+      page_url,
+      page_title,
+      no_match_reason,
+      subjects:detected_subject_id (
+        name
+      ),
+      categories:detected_category_id (
+        name
+      )
+    `)
+    .in('session_id', sessionIds)
+    .order('created_at', { ascending: false });
+
+  assertSupabaseResult(error, 'Failed to load session attempt signals.');
+  return parseArray(data ?? [], adminSessionAttemptSignalSchema, 'Admin session attempt rows are invalid.');
+}
+
+export async function getAdminSessionDetail(sessionId: string): Promise<AdminSessionDetailRecord> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('sessions')
+    .select(`
+      id,
+      user_id,
+      status,
+      detection_mode,
+      current_subject_id,
+      current_category_id,
+      used_seconds,
+      start_time,
+      end_time,
+      page_url,
+      page_domain,
+      page_title,
+      extension_installation_id,
+      last_activity_at,
+      created_at,
+      updated_at,
+      profiles:user_id (
+        full_name,
+        email
+      ),
+      subjects:current_subject_id (
+        name
+      ),
+      categories:current_category_id (
+        name
+      )
+    `)
+    .eq('id', sessionId)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load session detail.');
+
+  if (!data) {
+    throw new RouteError(404, 'session_not_found', 'Session not found.');
+  }
+
+  return adminSessionDetailSchema.parse(data);
+}
+
+export async function listAdminQuestionAttemptsForSession(sessionId: string): Promise<QuestionAttemptSummaryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('question_attempts')
+    .select(`
+      id,
+      created_at,
+      page_url,
+      page_title,
+      final_confidence,
+      no_match_reason,
+      answer_text,
+      short_explanation,
+      subjects:detected_subject_id (
+        name
+      ),
+      categories:detected_category_id (
+        name
+      )
+    `)
+    .eq('session_id', sessionId)
+    .order('created_at', { ascending: true });
+
+  assertSupabaseResult(error, 'Failed to load session question attempts.');
+  return parseArray(data ?? [], questionAttemptSummarySchema, 'Session question attempts are invalid.');
+}
+
+export async function listAdminCreditTransactionsForSession(sessionId: string): Promise<AdminCreditTransactionRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('credit_transactions')
+    .select(`
+      id,
+      user_id,
+      wallet_id,
+      transaction_type,
+      delta_seconds,
+      balance_after_seconds,
+      related_payment_id,
+      related_session_id,
+      description,
+      metadata,
+      created_by,
+      created_at
+    `)
+    .eq('related_session_id', sessionId)
+    .order('created_at', { ascending: true });
+
+  assertSupabaseResult(error, 'Failed to load session credit transactions.');
+  return parseArray(data ?? [], adminCreditTransactionSchema, 'Session credit transactions are invalid.');
+}
+
+export async function listRecentQuestionAttempts(userId: string, limit = 10): Promise<QuestionAttemptSummaryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('question_attempts')
+    .select(`
+      id,
+      created_at,
+      page_url,
+      page_title,
+      final_confidence,
+      no_match_reason,
+      answer_text,
+      short_explanation,
+      subjects:detected_subject_id (
+        name
+      ),
+      categories:detected_category_id (
+        name
+      )
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load question attempts.');
+  return parseArray(data ?? [], questionAttemptSummarySchema, 'Question attempt rows are invalid.');
+}
+
+export async function listAdminAuditLogs(limit = 50): Promise<AdminAuditLogRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('audit_logs')
+    .select(`
+      id,
+      actor_user_id,
+      actor_role,
+      event_type,
+      entity_type,
+      entity_id,
+      event_summary,
+      created_at,
+      profiles:actor_user_id (
+        full_name,
+        email
+      )
+    `)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load audit logs.');
+  return parseArray(data ?? [], adminAuditLogSchema, 'Audit log rows are invalid.');
+}
+
+export async function getAdminDashboardSummary() {
+  const supabase = getSupabaseAdmin();
+  const [profiles, sessionsToday, purchases, lowConfidence, sourceFailures, questionAttempts] = await Promise.all([
+    supabase.from('profiles').select('*', { head: true, count: 'exact' }),
+    supabase
+      .from('sessions')
+      .select('*', { head: true, count: 'exact' })
+      .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()),
+    supabase.from('credit_transactions').select('delta_seconds').eq('transaction_type', 'purchase'),
+    supabase.from('question_attempts').select('final_confidence').not('final_confidence', 'is', null),
+    supabase.from('source_files').select('*', { head: true, count: 'exact' }).eq('source_status', 'failed').is('deleted_at', null),
+    supabase
+      .from('question_attempts')
+      .select(`
+        id,
+        created_at,
+        page_url,
+        page_title,
+        final_confidence,
+        no_match_reason,
+        answer_text,
+        short_explanation,
+        subjects:detected_subject_id (
+          name
+        ),
+        categories:detected_category_id (
+          name
+        )
+      `)
+      .order('created_at', { ascending: false })
+      .limit(6),
+  ]);
+
+  assertSupabaseResult(profiles.error, 'Failed to count profiles.');
+  assertSupabaseResult(sessionsToday.error, 'Failed to count sessions.');
+  assertSupabaseResult(purchases.error, 'Failed to load purchases.');
+  assertSupabaseResult(lowConfidence.error, 'Failed to load confidence metrics.');
+  assertSupabaseResult(sourceFailures.error, 'Failed to load source failure metrics.');
+  assertSupabaseResult(questionAttempts.error, 'Failed to load question attempts.');
+
+  const creditsSoldSeconds = (purchases.data ?? []).reduce((sum, row) => sum + (row.delta_seconds ?? 0), 0);
+  const lowConfidenceRows = (lowConfidence.data ?? []).filter(
+    (row) => typeof row.final_confidence === 'number' && row.final_confidence < 0.65,
+  );
+  const lowConfidenceRate =
+    (lowConfidence.data?.length ?? 0) > 0 ? lowConfidenceRows.length / (lowConfidence.data?.length ?? 1) : 0;
+
+  const recentAttempts = parseArray(
+    questionAttempts.data ?? [],
+    questionAttemptSummarySchema,
+    'Recent question attempts are invalid.',
+  );
+
+  return {
+    totalUsers: profiles.count ?? 0,
+    sessionsToday: sessionsToday.count ?? 0,
+    creditsSoldSeconds,
+    lowConfidenceRate,
+    sourceFailures: sourceFailures.count ?? 0,
+    recentAttempts,
+  };
+}

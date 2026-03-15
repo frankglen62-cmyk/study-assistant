@@ -1,0 +1,366 @@
+﻿No.,Question,Correct Answer
+1,____ are excellent tools for building both the data and the models that decision support systems need.,Spreadsheets
+2,____ are the main reasons behind the slow adoption of new forms of electronic payments.,Security concerns
+3,"____ includes cookies and other, more sophisticated applications that are installed on your computer unbeknownst to you and transmit information about you while you are online.",Spyware
+4,____ is a methodology of solving a new problem established on the solutions of similar problems.,Case-based reasoning
+5,____ is a security measure in which users are required to identify themselves only once before accessing several different systems which are linked through a network.,SSO (single sign-on)
+6,____ is a tool used to translate MS-Word documents to multiple languages.,Wordfast
+7,____ is meant to guarantee that the experts have passed tests that ensure their skills.,Certification
+8,____ often help ensure that a user does not receive the same unsolicited information multiple times.,Cookies
+9,____ service is usually the most expensive of hosting options.,Co-location
+10,"____ software closely conforms to an individual unit's subculture, which makes the transition to a new system easier for employees.",User-developed
+11,_____ are applications that combine features of two or more online applications.,Mashups
+12,"_____ are entered to manipulate data, including adding, deleting, and updating data.",Queries
+13,_____ enables business partners to set standards for data formats in Web pages.,XML
+14,_____ enables managers to see summaries and ratios of the intersection of any two dimensions in a database.,OLAP
+15,"_____ encryption is defined as encryption that comprises two keys: a public key, and a private key.",Asymmetric
+16,"_____ has fewer restrictions on storage space and transactions, and since only one site resides on the disks, no other site can affect its functionality.",Dedicated hosting
+17,_____ helps the users know what they can find and analyze in the data warehouse.,Metadata
+18,"_____ include ERP, SCM, and CRM applications and typically cost millions of dollars.",Enterprise software applications
+19,"_____ involves high volumes of data compiled from traditional, ordinary business activities, as well as newer, nontraditional sources.",Big Data
+20,_____ is a set of processes and methods used by project managers to determine which projects will meet the organization's operational and financial goals in relation to its strategic objectives as well as the needs of its customers.,Project portfolio management
+21,_____ is a traditional approach to systems development.,SDLC
+22,"_____ is independent of particular programming languages, but it does provide standard visual symbols and notations for specifying object-oriented elements, such as classes and procedures.",Unified Modeling Language (UML)
+23,_____ is one of the primary languages used to compose and retrieve web pages and support the presentation of pictures with marked areas.,XML
+24,_____ is the term for any unsolicited commercial email.,Spam
+25,_____ should first be done to decide which data should be collected and how it should be organized.,Data modeling
+26,_____ software records individual keystrokes.,Keylogging
+27,_____ transfers visitor inquiries from a busy server to a less busy server for identical information and services.,Load balancing
+28,"______ allow Internet access to anyone within range who uses a wireless-equipped device, provided logging in is not limited by controlled access codes.",Hotspots
+29,______ is a secured protocol used for confidential transactions.,HTTPS
+30,"______ is a standard method of wireless communications, specifically for high-speed data transmission for mobile phones.",Long-Term Evolution
+31,"______ is a structured, disciplined approach that facilitates the adoption of new or modified systems by various groups and individuals within an organization.",Change management
+32,"______ make extensive use of iterative programming, involving users often, and keeping programmers open to modifications while the development is still under way.",Agile methods
+33,"_______ is a process for outsourcing a variety of tasks to a distributed group of people, both online or offline.",Crowdsourcing
+34,"_______ is a software application that is used to create and manage databases, and can take the form of a personal DBMS, used by one person, or an enterprise DBMS that can be used by multiple users",DBMS
+35,_______ is a standard for software that digitizes and compresses voice signals and transmits the bits via the Internet link.,VoIP
+36,"_______ made programming somewhat easier because they aggregated common commands into ""words,"" although many of those ""words"" are not English=C2=ADlike.",Assembly languages
+37,________ is a feature that enables a user to access additional information by clicking on selected text or graphics.,Hypermedia
+38,"_________ is a popular medium for connecting computers and networking devices because it is relatively flexible, reliable, and low cost.",Twisted pair cable
+39,_________ is used to try to interpret handwritten and printed texts not originally designed for source data entry.,Optical character recognition technology
+40,"_________ keyboards are split in the middle, and the two parts are twisted outward to better fit the natural position of the forearms.",Ergonomic
+41,______is the attempt by organizations to put procedures and technologies in place to transfer individual knowledge into databases.,Knowledge management
+42,"_____, those without which the business cannot conduct its operations, are given the highest priority by the disaster recovery coordinator.",Mission-critical applications
+43,"_____, which is any form of advertising through an online search site, is regarded by businesses as highly effective.",Search advertising
+44,"“Information plays a vital role in organizations, andin recent years companies have recognized the significance of corporate data asan organizational asset”.",FALSE
+45,A ____ is a bogus record in a networked database that neither employees nor business partners would ever access for legitimate purposes.,honeytoken
+46,A ____ is a server with invalid records set up to make intruders think they have accessed a production database.,honeypot
+47,A ____ is a specific area of knowledge.,domain
+48,A ____ is an activity that the system executes in response to a user.,use case
+49,A ____ is required when it is not possible to exploit expertise by coupling quantitative data from a database with decision models.,expert system
+50,"A _____ can be thought of as a ""tunnel"" through the Internet or other public network that allows only authorized users to access company resources.",VPN
+51,A _____ can connect dissimilar networks and can be programmed to also act as a firewall to filter communications.,router
+52,"A _____ includes a description of a database's structure, the names and sizes of the fields, and details such as which field is a primary key.",schema
+53,"A _____ is a device that connects two networks, such as a LAN, to the Internet.",bridge
+54,"A _____ is created ""on the fly"" as a result of a query and exists only for the duration the user wishes to view it or to create a paper report from it.",join table
+55,A _____ is the field by which records in a table are uniquely identified.,primary key
+56,A _____ is the general logical structure in which records are stored within a database and the method used to establish relationships among the records.,database model
+57,A _____ is unique if the value (content) in that field appears only in one record.,key
+58,A _____ line is made of 24 channels (groups of wires) of 64 Kbps each.,T1
+59,A _____ model is one that is automatically adjusted based on changing relationships among variables.,dynamically modified
+60,A ______ is a network used only by the employees of an organization.,intranet
+61,A _______ is a socket used to connect a computer to external devices.,port
+62,A _______ is an independent memory device and is also known as a thumb drive.,USB drive
+63,A _______ is one for which there is no algorithm to follow to reach an optimal solution.,unstructured problem
+64,"A __________ system is used at all levels of an organization, and often by non-managerial staff.",decision support
+65,"A carefully drawn can provide a useful representation of a system, whether existing or planned.",data flow diagram
+66,A challenge with traditional file storage is _____.,high data integrity
+67,"A collection of related records, such as all the records of a college's students, is called a _____.",file
+68,"A computer network within a building, or a campus of adjacent buildings, is called a ______.",LAN (local area network)
+69,"A con artist telephones an employee, pretends to be from his own organization's IT unit, and says he must have the employee's password to fix a problem. This is an example of ____.",social engineering
+70,A database is an organized collection of related information.,True
+71,A device that receives and analyzes packets and then routes them towards their destination.,Router
+72,"A major effort of most businesses, especially retail businesses, in using customer relationship management (CRM) systems is to collect ____ about customers.",business intelligence
+73,"A network allows you to share internet connections, data and resourceswithin your business, improving both efficiency and speed of working.",TRUE
+74,A network device that connects multiple devices together and filters packets based on their destination within the connected devices,Switch
+75,A network device that connects two networks together and only allows packets through that are needed,bridge
+76,A new buzzword that has been capturing the attention of businesses lately is big data.,True
+77,"A repeated field that links records between two tables, is a primary key in one table, and a ____ in the other field.",foreign key
+78,A simple network device that connects other devices to the network and sends packets to all the devices connected to it.,hub
+79,A special form of the number data type that formats all values with a currency indicator and two decimal places.,Currency
+80,"A switch will send a packet to another router; in other cases, it will send it directly to its destination.",False
+81,A system analyst is defined as an interactive and reliable computer-based decision-making system which uses both facts and heuristics to solve complex decision-making problems.,False
+82,A technological challenge to information systems is the way characters are usually represented by _____ in computers.,bytes
+83,A Web site that allows users to add and update content on the site using their own Web browser.,Wiki
+84,"According to the ____, all legal matters are confined to the country from which a site operates.",country-of-origin principle
+85,"According to the European Union, people ____.",have the right to object to the processing of personal data
+86,"After the planning phase, the SDLC includes four major phases: analysis, design, implementation, and ____.",support
+87,"Agile methods are an efficient approach to development when a system is ____, when it deals with unstructured problems, and when the users cannot specify all the requirements at the start of the project.",small
+88,All of these are advantages of Business Intelligence except one:,To improve invisibility
+89,"Although ________ systems vary in sophistication, all receive voice input from a microphone or telephone and process it with software.",speech recognition
+90,"Although ____, part of the support phase of a system's lifecycle, is viewed by IS professionals as lacking in glamour, it should not be taken lightly or left to less-experienced professionals.",maintenance
+91,"Among the general statistical models, a ______ model is the best-fit straight-line relationship between two variables, such as sales and the money spent on marketing.",linear regression
+92,"Among the methods for system development, ____ is clearly the best option for many small companies.",software on demand
+93,An advantage of outsourcing IT services is that it ____.,reduces license and maintenance fee
+94,An alternative for households that cannot obtain cable or DSL connections to the Internet is _____.,fixed wireless
+95,An extranet might be viewed as connecting ____ of business partners.,intranets
+96,An increasing amount of ____ in the financial services and many other industries are made in real time using DSSs.,decision making
+97,"Anis a set of interrelated components that collect,manipulate, store, and disseminate data and information and provide a feedbackmechanism to meet an objective",Information System
+98,Applications that can be integrated with other software to create new useful applications are called ______.,mashups
+99,are now rarely used except for special purposes.,impact printers
+100,are used by senior management to make non-routine decisions.,Decision support systems
+101,"As a consumer, you regularly encounter information systems that support the business processes and operations at the many retail stores where you shop.",Support of Business Processes and Operations
+102,"As an independent memory device, flash memory takes two main forms: as a memory card, and as a ______.",USB drive
+103,"As computers convert to operating systems that support _____, displaying different character sets should be less of a problem.",Unicode
+104,As whole the term ______ means for this purpose only.,Ad hoc
+105,Assumptions and constraints should also be documented.,True
+106,Astrategic information system is not developed to respond to the corporateworld and many business initiatives.,FALSE
+107,"At this stage, business needs are studied with the intention of making business processes more efficient.",Analysis
+108,Audio Modeling helps us understand and organize complex endeavors.,False
+109,BI also helps to improve the visibility of these processes and make it possible to identify any areas which need attention.,True
+110,"BI software has become so popular in large companies that Microsoft decided to integrate such software into its popular database management system, _____.",SQL Server
+111,BI system also helps organizations as decision makers get an overall bird's eye view through typical BI features like dashboards and scorecards,True
+112,BI system assigns accountability in the organization as there must be someone who should own accountability and ownership for the organization's performance against its set goals,True
+113,BI system helps them to get fresh insights to develop unique business strategies.,True
+114,"BI takes out all complexity associated with business processes. It also automates analytics by offering predictive analysis, computer modeling, bench marking and other methodologies",True
+115,"Bluetooth was created in ________by______________, it was intended to replace wired connections between devices.",1994; Ericsson
+116,Both data-mining and OLAP software are often integrated into ____ for the purpose of collecting business intelligence about customers.,CRM systems
+117,Building several technologies into a single piece of hardware is called _________.,technology convergence
+118,Businesses use ______ to analyze data.,models
+119,"Businesses use _______ to save on travel costs and lodging, car fleets, and the time of highly salaried employees incurred on bringing together employees working in different organizations or at different sites in the same organization.",videoconferencing
+120,"By using cookies and recording shoppers' movements, ____ software can create electronic consumer profiles for each shopper and buyer.",CRM
+121,CIOs often cite ____ as an effective way to bring down the amount of work their subordinates must do.,single sign-on (SSO)
+122,"Clicking different areas of a map can zoom in and out as well as bring up related information in the form of other maps or text, utilizing the ____ capabilities of the web to the fullest.",multimedia
+123,CMR is a softwareallows for more efficient communication with your prospects and clients.,FALSE
+124,"Companies might offer two versions of their sites, one for wide bandwidth and another for ____.",narrow bandwidth
+125,Companies should not rely on end users to develop applications that ____.,are vital for the organization's survival
+126,"Companies such as Razorfish, DoubleClick, and Engage Software use ____ to collect consumer data.",spyware
+127,Companies that provide IT services are commonly called ____.,vendors
+128,"Companies that sell online maintain large warehouses and pay for picking, packing, and shipping, three activities known as _____.",fulfillment
+129,"Compared to the Universal Product Code (UPC), the additional bar in the _____ identifies a product's country of origin.",EAN bar code
+130,"Computer networks are systems ofinformation processing components that use a variety of hardware, software,data management, and telecommunications network technologies.",TRUE
+131,"consists of raw facts, such as an employeenumber, total hours worked in a week, inventory part numbers, or sales orders.",Data
+132,Contracts for ____ software development might be incompatible with agile development methods.,outsourced
+133,Current microcomputers have words of _____ and 64 bits.,32
+134,"Data mining is the process of analyzing data to find previously unknown trends, patterns, and associations in order to make decisions",True
+135,"Data warehouses could be regarded as a type of ____, where new useful information is the precious find.",mine
+136,DBMS is stands for,Database Management System
+137,Deliverable then need to be documented along with the project scope.,True
+138,Different ____ can significantly impact what a company may or may not display from its servers.,laws regarding free speech
+139,DNS which acts as the directory on the Internet.,True
+140,"Domain name is used if you had to try to remember the IP address of every web server you wanted to access, the Internet would not be nearly as easy to use.",False
+141,Duplication of applications is one of the major drawbacks of ____.,user development
+142,"During this phase of SDLC, the security architecture is designed.",Design
+143,E-business and e-commerceapplications involve interconnected business information systems under applications.,TRUE
+144,"Even if storage cost is not as attractive as that of CDs, portability and the fact that their ports are ubiquitous in PCs might push one toward selecting a ______.",USB flash drive
+145,"Every time you download a file from a Web site or attach files to e-mail, you are using a ______ application.",FTP
+146,"Experience in ____ certain systems, such as ERP and SCM systems, can teach the IT staff for how many minutes or seconds per year the system is likely to fail.",operating
+147,Expert systems (ESs) use data from a ___.,knowledge base
+148,Facts on their own are of unlimited use.,False
+149,First developed by Tim Berners-Lee in 1990.,HTML
+150,Gaining a strategic advantage over competitors requires the innovative application of information technologies.,Support of Strategies for Competitive Advantage
+151,"Hardware diagnostics, file comparison, and file sorting are __________ performed by an operating system.",utilities
+152,"Higher-level _______ enable the use of English-like statements to accomplish a goal, and these statements are translated by special software into the machine language.",programming languages
+153,Hijacking is carried out by surreptitiously installing a small program called a ____ on a computer.,bot
+154,HTML is short for,Hypertext Markup Language
+155,Identify a principle of the Directive on Data Privacy that conflicts with U.S. practices.,Organizations can purchase personal data from third parties and never notify the subject
+156,Identify an advantage of certifications.,Protects potential employers against charlatans
+157,Identify the risk factor in decision support systems that lead to ethical issues.,Errors in personal data
+158,"If ______ need to be used as one large data warehouse, special software tools can unify them and make them appear as one large data warehouse.",data marts
+159,"If the cost-accounting procedures of a particular company are so specific that no commercially available software can perform them, the company must develop ____ software.",custom-designed
+160,Images on a monitor are made up of small dots called _______.,pixels
+161,Impact printers are more expensive than other types ofprinters but are more economical if you do lots of printing and are relativelyfast.,FALSE
+162,Implementing ways to use information technology in business includes designing the basiccomponents of information systems.,FALSE
+163,"In ____, criminals use personal information to attack organizational systems.",spear phishing
+164,"In ____, the old system is used along with the new system for a predetermined period of time.",parallel conversion
+165,"In banking, ____ is employed to find profitable customers and patterns of fraud.",data mining
+166,"In caseof returns management, synchronizing material movements is a common issue thatneeds to be handled is called control.",TRUE
+167,"In Japan, many people who order merchandise online prefer to pick it up at ____ called ""konbini,"" and pay there for what they purchased.",convenience stores
+168,"In relational database, a record or row is called a _____.",tuple
+169,"In the ___ phase of transferring data from a transactional database to a data warehouse, the builders create the files from transactional databases and save them on the server that will hold the data warehouse.",extraction
+170,"In the ____ phase, specialists ensure that all data is consistent.",transformation
+171,"In the ______ phase of data warehousing, specialists compare the data in the data warehouses with the original data to confirm completeness.",loading
+172,"In the context of data management, _____ refers to all the occurrences sharing the same types of data.",entity
+173,"In the field of engineering, DSS models might simulate the ____ environment.",physical
+174,"In the IT arena, hiring the services of another company to manage all or parts of the services that otherwise would be rendered by an IT unit of the organization is known as ____.",outsourcing
+175,"In the permissive model of software ________, anyone can use modify, and make the software into a product that can be sold for profit.",licensing
+176,"In this phase, systems are in place and operating, enhancements and/or modifications to the system are developed and tested, and hardware and/or software is added or replaced.",Maintenance/Support
+177,Inference engine contains rules to solve a specific problem.,True
+178,Information systems also help store managers and other business professionals make better decisions.,Support of Business Decision Making
+179,Information Systems are used by tactical managers to monitor theorganization's current performance status.,FALSE
+180,Information that can be gleaned from stored data is ____.,knowledge
+181,Inkjet printers are also slower than comparable laser printers.,True
+182,"Inthe stage, defective or damaged goods are returned to the supplier by thecustomer.",Return
+183,"Inthis stage, mainly concentrate on building a strong relationship with suppliersof the raw materials required for production.",Develop
+184,"Inthis stage, the planning should mainly focus on designing a strategy thatyields maximum profit.",Plan
+185,"Inthis stage, the products are designed, produced, tested, packaged, andsynchronized for delivery.",Make
+186,IP is stands for,Internet Protocol
+187,is a collection of facts organizedand processed so that they have additional value beyond the value of theindividual facts.,Information
+188,is can be described as: “an awareness and understanding of a set of information and the ways that information can be used to support a specific task or reach a decision”.,Knowledge
+189,is can be described as: “an awareness andunderstanding of a set of information and the ways that information can be usedto support a specific task or reach a decision”.,Knowlwdge
+190,is collected in order to create informationand knowledge about particular subjects that interest any given organization inorder for that organization to make better management decisions.,Data
+191,is often called the lead time.,cycle time
+192,is the process of building a model of a system,prototyping
+193,It also plays a dominant role in maintaining the BI infrastructure.,The IT user
+194,"It can be defined as themanagement of flow of products and services, which begins from the origin ofproducts and ends at the product’s consumption.",SCM
+195,IT companies that provide both hardware and software have seen revenue from ____ service portion of their business grow faster than from the sale of hardware and software.,outsourcing
+196,"It involves monitoring and evaluatingfeedback to determine whether a system is moving toward the achievement of itsgoal, it is called the  .",Control
+197,It is a ___ which solves the most complex issues in a specific domain.,computer application
+198,"It is a form of transaction between businesses, such as one involving a manufacturer and wholesaler, or a wholesaler and a retailer",B2B
+199,It is a human-friendly name for a device on the Internet.,Domain Name
+200,It is a program that connects users to the Internet or network to send text messages.,Instant Messenger
+201,"It is a set of processes, architectures, and technologies that convert raw data into meaningful information that drives profitable business actions.",Business Intelligence
+202,It is a set of rules that allow two (or more) devices to exchange information back and forth across the network.,protocol
+203,It is a suite of software and services to transform data into actionable intelligence and knowledge.,Business Intelligence
+204,It is a technology that takes an Internet signal and converts it into radio waves.,Wi-Fi
+205,It is a way of distributing audio files via the Internet.,Podcasting
+206,"It is a way to easily distribute a list of headlines, update notices, and sometimes content to a wide number of people.",RSS
+207,"It is an organized collection, because in a database, all data is described and associated with other data.",database
+208,"It is as an umbrella term that encompasses e-commerce, e-sales, e-banking, e-learningand online communication.",e-business
+209,It is considered at the highest level of human intelligence and expertise.,Expert System
+210,"It is data about the performance of asystem, it is the .",Feedback
+211,"It is for storing non-numeric data that is brief, generally under 256 characters. The database designer can identify the maximum length of the text.",Text
+212,It is for storing numbers.,Number
+213,It is full of some very technical concepts based on some simple principles.,Networking Communication
+214,"It is not important that the proposed design be tested for performance, and to ensure that it meets the requirements outlined during the analysis phase.",False
+215,It is the unique address of a network.,IP address
+216,It is used to query and analyze multi-dimensional data and produce information that can be viewed in different ways using multiple dimensions.,Online analytical processing
+217,It isused to query and analyze multi-dimensional data and produce information thatcan be viewed in different ways using multiple dimensions.,OLAP
+218,It refers the knowledge from the Knowledge Base,Inference Engine
+219,It refers to any business conductedonline using the internet and related digital technologies called .,E-business
+220,It selects facts and rules to apply when trying to answer the user's query.,Inference Engine
+221,It was first used by IBM in 1996.,e-business
+222,"Italso comprises movement and storage of raw materials that are involved in workin progress, inventory and fully furnished goods.",SCM
+223,Itis the reverse of order fill rate and marks the portion of orders lost becauseof a stock out.,Stock out
+224,"Knowledge management systems refer to any kind of IT system that stores and retrieves knowledge, improves collaboration, locates knowledge sources, mines repositories for hidden knowledge, captures and uses knowledge, or in some other way enhances the KM process.",True
+225,level is concerned with performing day to day business transactions of the organization.,operational
+226,level managers are concerned with thelong-term planning of the organization.,Senior
+227,Locating and fixing programming errors is called _______.,debugging
+228,Management systems mimic humanexpertise to identify patterns in large data sets.,FALSE
+229,"Managinginformation technology emphasizes the quality, strategic business value, andsecurity of an organization’s information systems.",TRUE
+230,"Many organizations have found that if they accumulate _____, they can use it for important management decisions, such as researching market trends or tracking down fraud.",transaction data
+231,Match the Column A that is corresponding to Column B.,"Asa consumer, you regularly encounter information systems that support thebusiness processes and operations at the many retail stores where you shop. → Support of Business Processes and Operations, Gaining a strategic advantage over competitors requires the innovativeapplication of information technologies. → Support of Strategies for Competitive Advantage, Informationsystems also help store managers and other business professionals make betterdecisions. → Support of Business Decision Making"
+232,Match the Column A that is corresponding to Column B. Transaction processing systems are used to record day to day business transactions of the organization,Match the Column A that is corresponding to Column B. Transaction processing systems are used to record day to day business transactions of the organization
+233,Medical ____ help diagnose patients and suggest treatments.,expert systems
+234,MIS is stands for,Management Information System
+235,"Most IT experts agree that no single, best system development strategy exists.",True
+236,OLAP applications are usually installed on a special server that communicates with both the user's computer and theserver or servers that contain a data warehouse or ____.,dimensional databases
+237,OLAP applications can process ____ records per second.,"20,000"
+238,OLAP is stands for .,Online Analytical Processing
+239,OLAP might process data from a ___.,transactional database
+240,OLTP is stands for Online Transaction Processing.,True
+241,"On the Web, _____ includes identifying the sites your audience frequently visits.",targeting
+242,"One objective of data mining is _____, the discovering of patterns in data that can lead to reasonable predictions.",forecasting
+243,One of the advantage of business intelligence is allows employees to be more productive on their tasks.,True
+244,One of the drawbacks of the software on demand approach is that it ____.,reduces the control clients have over their systems
+245,One of the risks of software licensing is the ____.,difficulty in modifications to meet specific needs
+246,Organizations can leverage _____ to communicate with consumers immediately.,social media
+247,"Outcomes rarely respond in equal measure to changes in ____, which are categories of data considered when following a sequence of steps.",parameters
+248,Probabilityof on-time deliveryis the portion of customer orders that are completed on-time.,TRUE
+249,"Process modeling identifies the data flowing into a process, the business rules that transform the data, and the resulting output data flow.",True
+250,"Programs designed to perform specific jobs, such as calculating and executing a company's payroll, are collectively called ______.",application-specific software
+251,Programs that can handle many different types of data are called _______.,multimedia software
+252,"Propetary technology is any combination of processes, tools, or systems of interrelated connections that are the property of a business or individual.",false
+253,"Question text In this stage, mainly concentrate on building a strong relationship with suppliers of the raw materials required for production",Develop
+254,Rapid Application Development makes use of tools to facilitate the development of systems to meet aggressive time lines.,True
+255,"Rather than containing a set of IF-THEN rules, more sophisticated ESs use ____, which are designed to mimic the way a human brain learns.",neural networks
+256,"RSS stands for ""Really Simple Syndication"".",true
+257,s the portion of customer demands that can be easily satisfied from the stock available.,order fill rate
+258,Scope can be refined during the implementation is the initialization process.,True
+259,SDLC is stands for,Systems Development Life Cycle
+260,"Several diagramming sets were developed by the 1970s, but in the late-1990s, a de facto standard emerged: ___.",unified modeling language
+261,"Since OLAP applications are designed to process large amounts of records and produce summaries, they are usually significantly faster than relational applications such as those using ___.",SQL queries
+262,"Software vendors often promote fast ____ as a selling point, and express it in terms of the short period of time over which the adopting organization can recoup the investment.",ROI
+263,"Some companies offer specifically designed ______ to analyze shoppers' behavior at their sites based on captured data such as pages viewed, options clicked, and the sequence of pages shoppers viewed.",decision support systems (DSSs)
+264,Some companies require workers to create reports of their finding to transfer knowledge into manageable ___.,online resources
+265,Some companies use ____ techniques to try to predict what customers are likely to purchase in the future.,data-mining
+266,"Some hosting companies charge extra fees for shared hosting if the site experiences activity above a predetermined amount of data that is transferred, or number of visits from Web surfers, known as _____.",hits
+267,"Sometimes a _____ is automatically created using data, such as the date and time of a transaction or the name or password of the user updating the file.",audit trail
+268,Spreadsheets and word processors are _____.,general-purpose applications
+269,"Storage area network (SAN) identifies large quantities of data, called _______, and therefore can transfer and back up large amounts of data at a time.",data blocks
+270,Strategic Systems are used for giving the lower advantage of competition to the organization.,False
+271,Structured analysis is a traditional systems development technique that is time-tested and easy to understand,True
+272,"Structured analysis uses a series of phases, to plan, analyze, design, implement, and support an information system.",True
+273,System Analysts arepeople who use an information system or the information it produces.,FALSE
+274,Tactical users are the decisions that partly based on set guidelines and judgmental calls.,False
+275,Tacticalusers make final structured decisions.,FALSE
+276,The	enforces a privacy law called the Directive on Data Privacy.,European Union (EU)
+277,The	is the most important part of any computer.,central processing unit
+278,The ___ e is the most crucial part of the expert system,user interface
+279,The ____ is one of the newer adaptive approaches to the SDLC.,spiral model
+280,The ____ part of the DSS that allows the user to interact with it is called the .,dialog module
+281,The _____ available in some countries is too narrow for high-volume transmission of graphically and animation-rich webpages.,bandwidth
+282,"The _______ mediates applications and the computer, and controls peripheral devices.",operating system
+283,The ________ is the maximum number of bits that the control unit can fetch from primary memory in one machine cycle.,data word
+284,The ability to scramble and code messages through  keys that are shared only between the sender and receiver is referred to as _____.,encryption
+285,The American Stock Exchange (AMEX) has a special department to prevent _____ of the securities under its supervision.,insider trading
+286,The amount of support required may be determined based on the system.,True
+287,The bandwidth of a communication medium is measured as _______.,bits per second
+288,The Business users can increase the profit of their business by improving operational efficiency in their business.,False
+289,The combined storage of both data and the procedures that manipulate the data within an object is referred to as _____.,encapsulation
+290,The country-of-origin and country-of-destination principles deal with the issue of ____.,e-commerce jurisdiction
+291,The customer's ability to determine the timing and services of their needs from a business organization through a website is referred to as _____.,self-service
+292,The data analyst is a statistician who always needs to drill deep down into data.,The Professional Data Analyst
+293,"The data is time-variant this means that whenever data is loaded into the data warehouse, it receives a time stamp, which allows for comparisons between different time periods.",True
+294,"The design phase is concerned with the physical construction of the system. Included are the design or configuration of the network ,design of user interfaces,design of system interfaces and security issues.",True
+295,"The developers of ______ can obtain the source code free of charge, usually on the web.",open source software
+296,The development of a new information system is economically justified if the ____.,benefits outweigh the costs
+297,The disadvantage of waterfall development is that it allows for departmentalization and managerial control.,False
+298,"The first step in systems analysis is ____, which determines whether there is a real need for a system and whether the system as conceived is feasible.",investigation
+299,The fundamental unit of data transmitted over the Internet.,Packet
+300,"The Greek word tele, which means ""______,"" is part of such words as ""telephone,"" ""teleconference,"" and other words referring to technologies that allow communications over large distances.",distance
+301,The inference engine is the brain of the expert system.,True
+302,The is the portion of customerdemands that can be easily satisfied from the stock available.,order fill rate
+303,The IT users can be found from across the organization.,False
+304,The lack of a ____ in Big Data can make data collected from nontraditional sources a challenge to analyze.,traditional data structure
+305,The level is concerned withperforming day to day business transactions of the organization.,operational
+306,The major advantage of mobile phone is that _______.,they are attached to people
+307,The major downside of internet service provided by television cable firms is that cable _____.,nodes are shared by all the subscribers connected to the cable
+308,The most common computer-related type of repetitive-stress injury is _______.,carpal tunnel syndrome
+309,The most important and pervasive set of protocols for telecommunications and networks today is called _____.,TCP/IP
+310,"The most popular OOP languages are Java, Visual Basic, and ______.",C++/C
+311,"The motive for developing and improving _________ is not monetary, but rather the satisfaction of solving programming problems and the recognition of one's contribution.",open source software
+312,"The number next to ______ refers to data speed in multiples of 51.84 Mbps, considered the base rate bandwidth of a very high connection speed service.",OC
+313,The part of the BI software application that parses the questions entered by employees is known as the ____.,semantic layer
+314,The popular name of an interface for business intelligence tools is ____.,dashboard
+315,The process of _____ enables organizations to plan and carefully design their global sites to cater to local needs and preferences.,glocalization
+316,The purpose of ____ is mainly to learn where to find information about a given subject.,knowledge management
+317,The purpose of _______ is to manage computer resources and perform routine tasks that are not specific to any application.,system software
+318,The purpose of a _____ is to create the impression that the client maintains its own server.,virtual private server
+319,The recent trend in less rich countries is to adopt ____ to avoid high costs.,free open source software
+320,"The spiral life cycle is shown as a spiral model that begins with the planning phase first from the center (inward) of the spiral, eventually working its way outward, over and over again, until completion of the project.",True
+321,"The standard ______ was developed for devices that communicate with each other within a short range of up to 10 meters (33 feet) in the office, at home, and in motor vehicles.",Bluetooth
+322,"The system analysis phase focuses on what the system will do in an effort that views all stakeholders, as viable sources of information.",True
+323,The term betadata can be understood as “data about data.”,False
+324,The term business-to-business refers to the process of selling products and services directly between consumers who are the end-users of its products or services.,false
+325,The term knowledge acquisition means how to get required domain knowledge by the expert system.,True
+326,The term refers to such massively large data sets that conventional database tools do not have the processing power to analyze them.,new buzzword
+327,"The three major components of a DSS are a data management module, a model management module, and a _____ module.",dialog
+328,There are two basic types of access modes for data storage:	and direct (random) access.,sequential
+329,"There are two overall approaches to maintaining data: the traditional file approach—which has no mechanism for tagging, retrieving, and manipulating data—and the _____, which does have this mechanism.",database approach
+330,These are suitable for most office printing needs.,Laser printers
+331,"These are usually small text files, given ID tags that are stored on your computer's browser directory or program data subfolders.",cookies
+332,These radio waves can be picked up within a radius of approximately ________ by devices with a wireless adapter,65 feet
+333,This component takes the user's query in a readable form and passes it to the inference engine.,User interface
+334,This data type allows for text longer than 256 characters,Paragraph Text
+335,"This first phase of the development life cycle, security considerations are key to diligent and early integration, thereby ensuring that threats, requirements, and potential constraints in functionality and integration are considered.",Planning
+336,This internal set of web pages is called an extranet.,False
+337,This section addresses security considerations unique to the second SDLC phase.,Analysis
+338,"Thisstage is basically the logistics phase, where customer orders are accepted anddelivery of the goods is planned.",Deliver
+339,"To ensure compatibility with other applications within an organization, the organization's IT professionals should adopt and supply_________tools to interested users.",standard development
+340,"To find the ____, the net present value of the system is calculated by combining the net present value of the costs of the system with the net present value of the benefits of the system.",return on investment (ROI)
+341,"To link records from one table with records of another table, the tables must have at least one field in common, and that field must be a ____ field for one of the tables.",primary key
+342,Transaction processing systems are used torecord day to day business transactions of the organization.,TRUE
+343,"Transactional data is copied into a ______, which is a separate data repository.",data warehouse
+344,"Two qualities to check when purchasing a laser or ink-jet printer are speed, measured in ______, and density, measured in dots per inch (DPI).",pages per minute (PPM)
+345,"Typically, ____ is fairly simple and limited in scope.",user-developed software
+346,VoIP is stands for,voice over internet protocol
+347,"Web enabled refers to a product or service that can be used through, or in conjunction with, the World Wide Web.",true
+348,"When ______ a software package, the buyer gains several benefits such as immediate system availability, high quality, low price, and available support.",licensing
+349,"When a device intends to send a message to another device,it breaks the message down into smaller pieces, called packets.",True
+350,"When a packet is sent from one device out over the Internet, it does follow a straight path to its destination.",False
+351,"When a system is developed by a software vendor for a wide market rather than for a specific client, conversion often takes place at ___.",beta sites
+352,"When building a new database, users must first build a _____.",schema
+353,"When executives talk about productivity tools, they really mean computer programs, commonly known as software _____.",applications
+354,"When requesting vendor bids, the project management team prepares a ___, a document specifying all the system requirements and soliciting a formal plan from each vendor contacted.",request for proposal (RFP)
+355,"When soliciting vendor details, the project manager sends a ____ to the vendors identified, requesting general, somewhat informal information about a product.",request for information (RFI)
+356,Which of the following is a good practice to consider when designing websites for an international audience?,Plan the site before developing
+357,Which of the following is true of objective-oriented programming languages?,Operations are linked to the data that they run on
+358,Which of the following is true of operating systems?,Stable operating systems do not cause a computer to freeze or produce error messages
+359,Which of the following statements is true about radio frequency identification tags?,They are not always flat
+360,"While ____ might sound benign, many privacy advocates claim that it violates privacy rights.",consumer profiling
+361,"While blogging is publishing text and other visual material, _____ is publishing sound and video.",podcasting
+362,"While the SDLC or any other waterfall approach requires users to sign off on their requirements and then wait for the system to be completed, ____ encourage users' involvement throughout the process.",agile methods
+363,Wi-fi is an important wireless technology that has enabled many functionalities that are used every day.,False
+364,Wi-Fi is stands for,Wireless Fidelity
+365,"With _____, data transmitted to computers from a telephone company's switching center remains digital throughout the entire transmission.",digital subscriber line

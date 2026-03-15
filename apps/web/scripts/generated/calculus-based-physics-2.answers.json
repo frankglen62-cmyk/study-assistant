@@ -1,0 +1,1550 @@
+﻿[
+    {
+        "number":  "1",
+        "questionText":  "_____________ has a positive charge.",
+        "answerText":  "Proton",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "2",
+        "questionText":  "_____________ is the maintainer of a constant potential difference.",
+        "answerText":  "EMF",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "3",
+        "questionText":  "_______________ has a zero charge.",
+        "answerText":  "Neutron",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "4",
+        "questionText":  "________________ is a wire that has a metal tipped wand.",
+        "answerText":  "Probe",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "5",
+        "questionText":  "_________________ is a rate at which work is done and it is the rate at which energy is transferred.",
+        "answerText":  "Power",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "6",
+        "questionText":  "___________________ has a Negative charge.",
+        "answerText":  "Negative",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "7",
+        "questionText":  "___________________ IS ALSO CALLED A LOWER POTENTIAL TERMINAL.",
+        "answerText":  "NEGATIVE",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "8",
+        "questionText":  "___________________ may also referred to as the specific electrical resistance.",
+        "answerText":  "Resistivity",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "9",
+        "questionText":  "____________________ Is an electronic device for temporary storage of electrical energy.",
+        "answerText":  "Capacitor",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "10",
+        "questionText":  "______________________ can be created by accelerating charges and moving charges.",
+        "answerText":  "Electromagnetic waves",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "11",
+        "questionText":  "\u0027n\u0027 is the index of refraction of a transparent medium.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "12",
+        "questionText":  "\"F\" stands for Electric Force ?",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "13",
+        "questionText":  "\"R\" stands for ?",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "14",
+        "questionText":  "\"V\" symbol is for ?",
+        "answerText":  "Voltage",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "15",
+        "questionText":  "3.00 x 10 raise to 8 m/s is the speed of light in vacuum.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "16",
+        "questionText":  "400-700 nm is the wavelength of ultraviolet .",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "17",
+        "questionText":  "A circuit can\u0027t be function without capacitor.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "18",
+        "questionText":  "A circuit can\"t function without a resistors ?",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "19",
+        "questionText":  "A circuit cannot be function without a source or power.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "20",
+        "questionText":  "A circuit cannot functions without a source.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "21",
+        "questionText":  "A circuit has always a Ground.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "22",
+        "questionText":  "A close conducting Path through which charge flows.",
+        "answerText":  "Circui",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "23",
+        "questionText":  "A function of space whose value at each point is a vector quantity called?",
+        "answerText":  "Vector Field",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "24",
+        "questionText":  "A law stating that Electric current is Proportional to voltage and inversely Proportional to resistance.",
+        "answerText":  "Ohm\u0027s Law",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "25",
+        "questionText":  "A perfect secret has composed of resistors and no source.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "26",
+        "questionText":  "A Resistor is a poor conductor ?",
+        "answerText":  "yes",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "27",
+        "questionText":  "A voltmeter is connected Series in a resistors to measure voltage.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "28",
+        "questionText":  "A voltmeter is consist of a box with two wires a positive and a negative.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "29",
+        "questionText":  "Ammeter and Voltmeter are considered device used in a circuit.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "30",
+        "questionText":  "Ammeter and Voltmeter that measures charges.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "31",
+        "questionText":  "Ammeter device used to measure Current.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "32",
+        "questionText":  "Ammeter is connected in parallel with a device to measure it\u0027s current.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "33",
+        "questionText":  "Ammeter is connected in series with a device to measure it\u0027s voltage.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "34",
+        "questionText":  "Ammeter is connected parallel in a device.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "35",
+        "questionText":  "Ammeter is used to measure Current.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "36",
+        "questionText":  "Ammeter is used to measure Voltage.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "37",
+        "questionText":  "Ampere is the unit of Voltage in a certain current.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "38",
+        "questionText":  "An object can have positive and Negative charge.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "39",
+        "questionText":  "Capacitor is a device used to store an Electric charge.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "40",
+        "questionText":  "Capacitor is also called Positive charges.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "41",
+        "questionText":  "Capacitor is an electronic circuit device for temporary storage of electrical energy.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "42",
+        "questionText":  "Capacitor is for Ohm and Resistance is for Capacitance.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "43",
+        "questionText":  "Capacitor is store energy between the spaces of the plates and they energy is used to generate high form of electric current.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "44",
+        "questionText":  "Capacitors in parallel is the same as Resistors in series.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "45",
+        "questionText":  "Capacitors is the opposition to current flow in an electrical circuit.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "46",
+        "questionText":  "Circuit is a closed conducting path through with charge flow.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "47",
+        "questionText":  "Circuits consists of circuit element and wires, the wires are called conductors.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "48",
+        "questionText":  "Circuits consists of circuit element and wires, the wires are called?",
+        "answerText":  "Conductors",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "49",
+        "questionText":  "Circuits is a open conducting path through charge flows.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "50",
+        "questionText":  "Circuits is consists of circuit elements and wires, the wires is called _________ ?",
+        "answerText":  "Conductors",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "51",
+        "questionText":  "Closed loop is also Called a circuit.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "52",
+        "questionText":  "Conductors consists of a ___________ amount of positive charge.",
+        "answerText":  "huge",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "53",
+        "questionText":  "Conductors is a material that permits an _____________ to flow easily.",
+        "answerText":  "electric current",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "54",
+        "questionText":  "Conductors is a material that permits an electric current to flow easily.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "55",
+        "questionText":  "Conductors is made of two close conductors that are separated by a dieletric material.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "56",
+        "questionText":  "Coulomb\u0027s Law stating that charges repel and opposite charges attract.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "57",
+        "questionText":  "Current : AMPERE ; Resistance : ___________.",
+        "answerText":  "OHM",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "58",
+        "questionText":  "Current is measured in ?",
+        "answerText":  "Ampere",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "59",
+        "questionText":  "Current is measured in Amperes.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "60",
+        "questionText":  "Current is not the flow of charges, it is the rate of flow of charges.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "61",
+        "questionText":  "Electric charge is composed of ?",
+        "answerText":  "Positive , Negative",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "62",
+        "questionText":  "Electrowaves is an example of Conductors.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "63",
+        "questionText":  "EMF is also called a power source.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "64",
+        "questionText":  "EMF stands for ?",
+        "answerText":  "Electromotive Force",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "65",
+        "questionText":  "EMF stands for electromotive force",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "66",
+        "questionText":  "Energy is a rate at which work is done and it is the rate at which Energy transferred.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "67",
+        "questionText":  "FIND C TOTAL IF c1=5 AND c2=10. (CONNECTED PARALLEL)",
+        "answerText":  "15",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "68",
+        "questionText":  "Find I if P=6 and V=1.",
+        "answerText":  "6",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "69",
+        "questionText":  "Find I if R= 3 ohms, V= 6 volts.",
+        "answerText":  "2 Amperes",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "70",
+        "questionText":  "Find I if V= 3, and R=4.",
+        "answerText":  "0.75",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "71",
+        "questionText":  "Find I if V=5 volts, R = 2.",
+        "answerText":  "2.5",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "72",
+        "questionText":  "Find P if I= 3A and V=3V.",
+        "answerText":  "9",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "73",
+        "questionText":  "Find P if I=1 and V= 2.",
+        "answerText":  "2",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "74",
+        "questionText":  "Find P if I=6A and V=3V.",
+        "answerText":  "18Watts",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "75",
+        "questionText":  "Find R if I= 16, V=4.",
+        "answerText":  "0.25",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci"
+    },
+    {
+        "number":  "76",
+        "questionText":  "Find R if V= 4 volts, I= 10 amperes.",
+        "answerText":  "0.4",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "77",
+        "questionText":  "Find R if V= 6 volts, I= 1 ampere.",
+        "answerText":  "6",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "78",
+        "questionText":  "Find R if V=10 and I=2.",
+        "answerText":  "5ohm",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "79",
+        "questionText":  "Find R is V=10, I=0.5.",
+        "answerText":  "20",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "80",
+        "questionText":  "Find R total if the resistors are connected in series. Given 4 ohm,9 ohm, 10 ohm, 12 ohm, 16 ohm ,15 ohm.",
+        "answerText":  "66",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "81",
+        "questionText":  "Find R total if the resistors are in Parallel. Given : 2 ohm, 3 ohm, 4 ohm.",
+        "answerText":  "0.923",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "82",
+        "questionText":  "Find R total if the resistors connected in a series, The value of R1= 6, R2= 3, R4=5, R5=5, R6=6.",
+        "answerText":  "25",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "83",
+        "questionText":  "Find the total capacitance if they are connected in parallel (C1=3 , C2 =5 , C3=6.",
+        "answerText":  "14",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "84",
+        "questionText":  "Find the total capacitance,which they are in parallel connections the values are C1=1, C2=2, C3=3.",
+        "answerText":  "6",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "85",
+        "questionText":  "Find the total resistor if R1, R2, R3 and R4 is connected in series and there value is 2 ,4 ,6 ,8 respectively.",
+        "answerText":  "20",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "86",
+        "questionText":  "Find V if I=2 and P=22",
+        "answerText":  "11",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "87",
+        "questionText":  "Find V if I=3 and R=5.",
+        "answerText":  "15",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "88",
+        "questionText":  "Find V if I=4 and R= 3",
+        "answerText":  "12",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "89",
+        "questionText":  "Find V if I=5 and P=4.",
+        "answerText":  "0.8",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "90",
+        "questionText":  "Find V if P=3 and I=2.",
+        "answerText":  "1.5",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "91",
+        "questionText":  "Find V if R= 3 ohm, and I=6 ampere.",
+        "answerText":  "18",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "92",
+        "questionText":  "Find V is R=3, and I= 2.",
+        "answerText":  "6",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "93",
+        "questionText":  "Frequency can be measured through the used of Voltmeter.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "94",
+        "questionText":  "Gamma rays has the frequency of \u003c 50 000 000 THz.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "95",
+        "questionText":  "If the current flow is counter clockwise the current is considered __________ ?",
+        "answerText":  "negativ",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "96",
+        "questionText":  "If the flow of current is downward the current is considered __________________.",
+        "answerText":  "negative",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "97",
+        "questionText":  "If the power is constant, is simply the Formula of it is ?",
+        "answerText":  "E = Pt",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "98",
+        "questionText":  "In circuits, Charge goes around in loops.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "99",
+        "questionText":  "Infrared is a kind of Light,",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "100",
+        "questionText":  "Insulator is used to store energy and electric charge.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "101",
+        "questionText":  "Insulators is used to store energy and electric charge.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "102",
+        "questionText":  "Is a device connected in parallel with a device to measure it\u0027s current.",
+        "answerText":  "Ammeter",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "103",
+        "questionText":  "Is a device connected in parallel with a device to measure it\u0027s voltage.",
+        "answerText":  "Voltmeter",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "104",
+        "questionText":  "Is a device used for measuring the potential difference between 2 different points in space.",
+        "answerText":  "Voltmeter",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "105",
+        "questionText":  "It is a measure of resistance of a given size of specific material to electrical conduction.",
+        "answerText":  "Resistivity",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "106",
+        "questionText":  "It is also called a higher potential terminal.",
+        "answerText":  "Positive",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "107",
+        "questionText":  "it is an electronic circuit device for temporary storage of electrical energy.",
+        "answerText":  "Capacitors",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "108",
+        "questionText":  "It is the material that permits an electric current to flow",
+        "answerText":  "Conductors",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "109",
+        "questionText":  "It is the opposition to current flow in an electric circuit.",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "110",
+        "questionText":  "It is the rate of flow of charges.",
+        "answerText":  "Current",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "111",
+        "questionText":  "KCL : CURRENT ; KVL : VOLTAGE.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "112",
+        "questionText":  "KCL is also called 2nd Law of motion ?",
+        "answerText":  "FALSE",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "113",
+        "questionText":  "KCL is for Voltage while KVL is for current.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "114",
+        "questionText":  "KCL stands for kirchhoff\u0027s current law.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "115",
+        "questionText":  "KCl stands for?",
+        "answerText":  "Kirchhoff\u0027s Current Law",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "116",
+        "questionText":  "KCL states that,in a closed circuit the entering current at node is equal to the current leaving at the node.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "117",
+        "questionText":  "Kirchhoff\u0027s Current Law is also Known as 2nd Law of motion.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "118",
+        "questionText":  "KVL stands for ?",
+        "answerText":  "Kirchhoff\u0027s Voltage Law",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "119",
+        "questionText":  "KVL stands for kirchhoff\u0027s voltage lane.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "120",
+        "questionText":  "KVL states that the algebraic sum of the voltage at node in a closed circuit s equal to zero.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "121",
+        "questionText":  "KVL states that the total ____________ around a closed loop must be Zero.",
+        "answerText":  "Voltage",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "122",
+        "questionText":  "Light cannot be travel if there is no medium.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "123",
+        "questionText":  "Light is faster than Sound.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "124",
+        "questionText":  "Magnetic Field is an invisible entity which exists in the region around a charged particle.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "125",
+        "questionText":  "Microwaves is an example of Light.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "126",
+        "questionText":  "n is the Index of refraction of a transparent medum.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "127",
+        "questionText":  "Ohm\u0027s Law is a law stating that electric current is proportional to voltage and inversely proportional to resistance.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "128",
+        "questionText":  "OHM\u0027s Law stating that electric current is proportional to voltage and inversely proportional to ___________.",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "129",
+        "questionText":  "Paperis one of the example of conductors.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "130",
+        "questionText":  "Positive : Negative ; Conductors : Rubber",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "131",
+        "questionText":  "Positive and negative charge is very important in a circuit.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "132",
+        "questionText":  "Positive charge can be found also in a Proton.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "133",
+        "questionText":  "Power is a rate at which work is done and it is the rate at which energy transferred.",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "134",
+        "questionText":  "Power is equal to current multiply by_________________ ?",
+        "answerText":  "Voltage",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "135",
+        "questionText":  "Power is measured through the used of a device called Circuit breaker.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "136",
+        "questionText":  "R represents rate of change.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "137",
+        "questionText":  "Radio is an example of a light.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "138",
+        "questionText":  "Radio waves is a kind of light.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "139",
+        "questionText":  "Radiowaves is not an example of light.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "140",
+        "questionText":  "Radiowaves is one of the example of Electromagnetic waves.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "141",
+        "questionText":  "Resistance is measured in Ohm\u0027s.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "142",
+        "questionText":  "Resistance is the unit of Resistors.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "143",
+        "questionText":  "Resistivity is a measure of the resistance of a given size of a specific material to electrical conduction.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "144",
+        "questionText":  "Resistors : _________ ; Capacitors : Capacitance.",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "145",
+        "questionText":  "Resistors are measured in ?",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "146",
+        "questionText":  "Source Charge a charged particle that is causing the electric field to exist.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "147",
+        "questionText":  "States that in a closed circuit that the entering current at node is equal to the current leaving at the node is?",
+        "answerText":  "KCL",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "148",
+        "questionText":  "States that the algebraic sum of the voltage at node in a closed circuit is equal to zero.",
+        "answerText":  "Ohm\u0027s",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "149",
+        "questionText":  "Steel is one of the example of a good _________ ?",
+        "answerText":  "Conductors",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "150",
+        "questionText":  "Symbol \u0027A\u0027 stands for Length of ammeter ?",
+        "answerText":  "FALSE",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=2"
+    },
+    {
+        "number":  "151",
+        "questionText":  "Symbol \u0027C\u0027 stands for Circuits ?",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "152",
+        "questionText":  "Symbol \u0027V\u0027 stands for current circuit.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "153",
+        "questionText":  "Symbol \u0027V\u0027 stands for EMF also ?",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "154",
+        "questionText":  "Symbol C stands for Circuit.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "155",
+        "questionText":  "Symbol V can be used also as a substitute of EMF symbol.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "156",
+        "questionText":  "The \"n\" symbol is for the index of refraction of a transparent medium.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "157",
+        "questionText":  "The \"P\" symbol stands for ?",
+        "answerText":  "Power",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "158",
+        "questionText":  "The 2 kinds of charge are ?",
+        "answerText":  "Positive, Negative",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "159",
+        "questionText":  "The ammeter and a voltmeter is very useful in a circuit.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "160",
+        "questionText":  "The Ammeter is a device used to measure ?",
+        "answerText":  "Current",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "161",
+        "questionText":  "The best way to Survive the Calculus based- Physics 2 subject is /are ?",
+        "answerText":  "all of the above",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "162",
+        "questionText":  "The charge flow rate is called ?",
+        "answerText":  "Electric current",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "163",
+        "questionText":  "The charge flow rate is called Electric current.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "164",
+        "questionText":  "The charge particle causing the electric field to exist is called?",
+        "answerText":  "Source charg",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "165",
+        "questionText":  "The charged particle causing the electric field to exist is called the Electric force",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "166",
+        "questionText":  "The circuit can be function without wires.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "167",
+        "questionText":  "The circuit cannot function if there is no ________________ ?",
+        "answerText":  "Power source",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "168",
+        "questionText":  "The current can passed through the used of resistors.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "169",
+        "questionText":  "The example of a good Conductor is Aluminum.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "170",
+        "questionText":  "The following are examples of Conductors EXCEPT ONE.",
+        "answerText":  "Rubber",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "171",
+        "questionText":  "The following are examples of Conductors, EXCEPT ONE.",
+        "answerText":  "Papers",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "172",
+        "questionText":  "The following are examples of light EXCEPT ONE.",
+        "answerText":  "Radio",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "173",
+        "questionText":  "The following are kinds of Charge, EXCEPT ONE.",
+        "answerText":  "Electrons",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "174",
+        "questionText":  "The following are medium of light EXCEPT ONE.",
+        "answerText":  "Seeds",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "175",
+        "questionText":  "The following are not Example of Conductors EXCEPT ONE.",
+        "answerText":  "Metal",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "176",
+        "questionText":  "The formula of OHM\u0027s LAW is composed of Voltage, Current and Resistance.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "177",
+        "questionText":  "The frequency of Infrared is ?",
+        "answerText":  "750GHz-430 GHz",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "178",
+        "questionText":  "The frequency of Microwaves is ?",
+        "answerText":  "300-750000 MHz",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "179",
+        "questionText":  "The frequency of Ultraviolet is around 750-6000 THz.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "180",
+        "questionText":  "The Frequency of ultraviolet rays is ?",
+        "answerText":  "750-6000 THz",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "181",
+        "questionText":  "The index of refraction of air is 100.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "182",
+        "questionText":  "The index of refraction of light in a glass is ?",
+        "answerText":  "1.5",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "183",
+        "questionText":  "The index of refraction of light in air is ?",
+        "answerText":  "1.00",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "184",
+        "questionText":  "The index of refraction of light in VACUUM is ?",
+        "answerText":  "1",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "185",
+        "questionText":  "The index of refraction of light in water is ?",
+        "answerText":  "1.33",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "186",
+        "questionText":  "The index of refraction of vacuum is ?",
+        "answerText":  "1",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "187",
+        "questionText":  "The index of refraction of vacuum is 2.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "188",
+        "questionText":  "The index of refraction of water is ?",
+        "answerText":  "1.33",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "189",
+        "questionText":  "The index of refraction of water is 1.33.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "190",
+        "questionText":  "The index of refraction of Water is 1.5 ?",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "191",
+        "questionText":  "The most common used for capacitors is ?",
+        "answerText":  "Energy storage",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "192",
+        "questionText":  "The most common used for capacitors is energy storage.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "193",
+        "questionText":  "The negative sign can be found also in an electron,",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "194",
+        "questionText":  "The phenomenon of charging by rubbing is called ?",
+        "answerText":  "Triboelectrification",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "195",
+        "questionText":  "The positive ad negative signs on the resistors can be neglected and it doesn\u0027t affect the result,",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "196",
+        "questionText":  "The positive and Negative charges can be _____________?",
+        "answerText":  "Attract",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "197",
+        "questionText":  "The positive and Negative charges cannot attract each other",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "198",
+        "questionText":  "The positive charge has the sign ( - ).",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "199",
+        "questionText":  "The power source is also called EMf.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "200",
+        "questionText":  "The purpose of capacitor in a circuit is to charges and energy.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "201",
+        "questionText":  "The resistance R, in the expression V = IR is a ____________.",
+        "answerText":  "Constant",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "202",
+        "questionText":  "The some example of a good Conductor is a Copper.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "203",
+        "questionText":  "The speed of light in a vacuum is ?",
+        "answerText":  "3.00 x 10 ^ 8 m/s",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "204",
+        "questionText":  "The symbol \"c\" stands for ?",
+        "answerText":  "speed of Light in vacuum",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "205",
+        "questionText":  "the symbol \"C\" stands for Charges",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "206",
+        "questionText":  "The symbol \"f\" stands for Frequency.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "207",
+        "questionText":  "The symbol \"k\" in Coulomb\u0027s Law is called ?",
+        "answerText":  "Coulomb constant",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "208",
+        "questionText":  "The symbol \"k\" stands for Kirchoff\u0027s.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "209",
+        "questionText":  "The symbol \"q1\" stands for charge of particle 1.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "210",
+        "questionText":  "The symbol \"r\" stands for Distance between the two particles.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "211",
+        "questionText":  "The symbol \"v\" stands for ?",
+        "answerText":  "speed of light in a transparent medium",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "212",
+        "questionText":  "The symbol \"V\" stands for Voltage.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "213",
+        "questionText":  "The symbol are usually use for Capacitors.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "214",
+        "questionText":  "The symbol for a Source is \"S\".",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "215",
+        "questionText":  "The symbol R stands For ?",
+        "answerText":  "Resistance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "216",
+        "questionText":  "The unit for resistance is OHM.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "217",
+        "questionText":  "The unit JOULEs is also called OHM.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "218",
+        "questionText":  "The unit of Ampere is current.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "219",
+        "questionText":  "The unit of Capacitor is called ?",
+        "answerText":  "Capacitance",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "220",
+        "questionText":  "The unit of Capacitor is Capacitance.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "221",
+        "questionText":  "The unit of current is always volts.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "222",
+        "questionText":  "The unit of current is OHM.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "223",
+        "questionText":  "The Unit of current is What ?",
+        "answerText":  "Ampere",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "224",
+        "questionText":  "The unit of POWER is __________?",
+        "answerText":  "all of the above",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "225",
+        "questionText":  "The unit of Power is ?",
+        "answerText":  "Watt",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=3"
+    },
+    {
+        "number":  "226",
+        "questionText":  "The unit of POWER is WATT.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "227",
+        "questionText":  "The unit of Power is WATT(W).",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "228",
+        "questionText":  "The unit of Power is WATTs.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "229",
+        "questionText":  "The unit of resistance is Ohm\u0027s.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "230",
+        "questionText":  "The unit of RESISTANCE IS RESISTOR.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "231",
+        "questionText":  "The unit of Resistance is what ?",
+        "answerText":  "Ohm",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "232",
+        "questionText":  "The unit of Voltage is ?",
+        "answerText":  "Volts",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "233",
+        "questionText":  "The unit of Voltmeter is Ammeter.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "234",
+        "questionText":  "The unit of Volts is called Voltmeter.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "235",
+        "questionText":  "The unit of Volts is Voltage.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "236",
+        "questionText":  "The wavelength of Radiowaves is ?",
+        "answerText":  "\u003e1m",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "237",
+        "questionText":  "The wavelength of Ultraviolet is ?",
+        "answerText":  "5-400m",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "238",
+        "questionText":  "The wavelength of X rays are ?",
+        "answerText":  ".006-5 nm",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "239",
+        "questionText":  "The wavelength of X-rays is around 400-700mm.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "240",
+        "questionText":  "The wires of ammeter is both Positive respectively.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "241",
+        "questionText":  "To get the total Capacitance of a circuit we used a device called capacitor.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "242",
+        "questionText":  "V is the speed of light in the transparent medium.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "243",
+        "questionText":  "V stands for voltage.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "244",
+        "questionText":  "Vector fieldis a function of space whose value at each point is a vector quantity.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "245",
+        "questionText":  "Voltage is measured through the used of _______________?",
+        "answerText":  "Voltmeter",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "246",
+        "questionText":  "Voltmeter : Voltage ; Ammeter : ____________ ?",
+        "answerText":  "Current",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "247",
+        "questionText":  "Voltmeter device used to measure Voltage",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "248",
+        "questionText":  "Voltmeter is a device used for measuring the potential difference between 2 different points in space.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "249",
+        "questionText":  "Voltmeter is a device used to measure ?",
+        "answerText":  "Voltage",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "250",
+        "questionText":  "Voltmeter is connected in parallel with a device to measure it\u0027s voltage.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "251",
+        "questionText":  "Voltmeter is measured through the used of Volts.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "252",
+        "questionText":  "Volts is the unit for current.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "253",
+        "questionText":  "Volts is the unit of power.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "254",
+        "questionText":  "We used the symbol \"EF\" to represent electric field.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "255",
+        "questionText":  "We used the symbol \"q\" for the charge victim.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "256",
+        "questionText":  "Wire ends in a metal-tipped wand called circuits.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "257",
+        "questionText":  "Wires are good conductors of Electric charges.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    },
+    {
+        "number":  "258",
+        "questionText":  "X-rays are not kind of light instead it is a kind of Device.",
+        "answerText":  "False",
+        "sourceUrl":  "https://amauoed.com/courses/nsci/calculus-based-physics-2-6101-nsci?page=4"
+    }
+]

@@ -1,0 +1,317 @@
+﻿No.,Question,Correct Answer
+1,___________ is probably the most important phase forlong-term support as well as for the reputation of the company.,Testing
+2,______________ measures the ability of a regression test selection technique to handle realistic applications.,Generality
+3,"________________ is the ability to encourage by ""push or pull"" technical people to produce to their best ability.",Motivation
+4,__________________ documents show the behavior or functionality of a software product on an abstract level.,Functional specification
+5,.NET are specific to which platform?,Microsoft
+6,“An ordering system may be adapted to cope with a centralized ordering process in one company and a distributed process in another.” Which category the example belong to?,Process specialization
+7,“Software engineers should not use their technical skills to  other people’s computers.”Here the term  refers to:,All of the mentioned
+8,“Software engineers should not use their technical skills tomisuseother people’s computers.” Here the termmisuserefers to:,All of the mentioned
+9,A ___________is an executable instruction. It may have one ormore parameters.,"Command Prompt , Command"
+10,A 66.6% risk is considered as,high
+11,"A company is developing an advance version of their current software available in the market, what model approach would they prefer ?",Both RAD & Iterative Enhancement
+12,"A field studying computers and algorithmic processes, including their principles, their software and hardware designs, their applications, and their impact on society, whereas IS emphasizes functionality over design.",Computer information system
+13,A good decomposition of a problem shouldinteractions among various components.,FALSE
+14,"A project’s duration might be just one week or it might go on for years, but every project has an end date.",A project is temporary
+15,"A research title must not come from personal experience, an article read, a scene witnessed or news heard for it will invalidate the study.",False
+16,"A temporary endeavor undertaken to create a unique product, service, or result.",Project
+17,Acceptance testing is also known as,Beta testing
+18,"Acknowledgement sheet should be placed immediately after the title page. Generally, it contains statements of recommendation and acceptance.",False
+19,"After defining architecture, software components and their interfaces, the next phase of development is the creation of __________________.",design documents
+20,Age is considered as what type of research question.,Factor-Isolating Questions
+21,"Allentities involved in the solution design are known as __________.For example, person, banks, company,and customers are treated as objects.",Objects
+22,Alpha testing is done at,Developer’s end
+23,"An ________________ process simplifies verification. If you develop software by adding small increments of functionality, then, for verification, you only need to deal with the added portion",Incremental Development
+24,An independent relationship must exist between the attribute that can be measured and the external quality attribute,False
+25,areabsolutely necessary to achieve a good quality software cost effectively.,FALSE
+26,Arrange the given sequence to form a SRS Prototype outline as per IEEE SRS Standard.,"ii, i, v, iv, iii"
+27,Arrange the given sequence to form a SRS Prototype outline as per IEEE SRS Standard.  i. General description ii. Introduction iii. Index iv. Appendices v. Specific Requirements,"ii, i, v, iv, iii"
+28,"As per an IBM report, “31%of the project get cancelled before they are completed, 53% overrun their cost estimates by an average of 189% and for every 100 projects, there are 94 restarts”.What is the reason for these statistics ?",Lack of adequate training in software engineering
+29,Asking the level of performance is considered as?,Factor-relating questions
+30,Asoftware is always made to perform some rationalwork. This rational work is known as problem in the softwareparlance.,Top-down analysis
+31,"Before you start selling any software product,it is officially released. This means that you create a state of the softwarein your repository, make sure that it has been tested for functionality andfreeze the code.",Software Releases
+32,Behavioral testing is,Black box testing
+33,Beta testing is done at,User’s end
+34,Boundary value analysis belong to?,Black Box Testing
+35,Build & Fix Model is suitable for programming exercises of ___________ LOC (Line of Code).,100-200
+36,Characteristics of a good software: (select all correct answers),"Operational, Maintenance, Transitional"
+37,"Choice of a particularoperating system may be made depending upon, except:",Development type
+38,Choose the correct option from given below:,Both RAD & Prototyping Model facilitates reusability of components
+39,Choose the correct option in terms of Issues related to professional responsibility,Both Confidentiality & Intellectual property rights
+40,"Company has latest computers and state-of the- art software tools, so we shouldn’t worry about the quality of the product.",False
+41,"Consider the example and categorize it accordingly, “A pattern-matching system developed as part of a text-processing system may be reused in a database management system”.",Component reuse
+42,Consider the following Statement: “The data set will contain an end of file character.”What characteristic of SRS is being depicted here ?,Non-verifiable
+43,Consider the following Statement: “The output of a program shall be given within 10 secs of event X 10% of the time.”What characteristic of SRS is being depicted here ?,Verifiable
+44,Consider the following Statement: “The product should have a good human interface.”What characteristic of SRS is being depicted here ?,Non-Verifiable
+45,"considered to be a collection of executable programming code,associated libraries and documentations.",software
+46,COTS product reuse means,Systems are developed by configuring and integrating existing application systems
+47,COTS stands for,Commercial Off-The-Shelf systems
+48,During the Defense which of the following must be done last?,Evaluation
+49,During the Defense which of the following the researchers must do first?,Orientation from the chairman of the panel
+50,"During the implementation process, developers must write enough comments inside the code so that if anybody starts working on the code later on, he/she is able to understand what has already been written.",True
+51,"Duringthis stage, the software design is realized as a set of programs or programunits",Implementation and unit testing
+52,Editors are the core development tools because they convert source code to executable form.,False
+53,Efficiency in a software product does not include ________,licensing
+54,"Every project should have awell-defined objective. For example, many people hire firms to design and build a new house, but each house, like each person, is unique.",A project has a unique purpose.
+55,"Every time a new software is issued to the customer, developers have to maintain version and configuration related documentation.",Version Management
+56,Exhaustive testing is,impractical but possible
+57,Explain what is meant by  with reference to one of the eight principles as per the ACM/IEEE Code of Ethics ?,Software engineers shall ensure that their products and related modifications meet the highest professional standards possible
+58,Explain what is meant byPRODUCTwith reference to one of the eight principles as per the ACM/IEEE Code of Ethics,software engineers shall ensure that their products and related modifications meet the highest professional standards possible
+59,he most significant factorin determining which software engineering methods and techniques are mostimportant is the that is being developed.,TRUE
+60,How is Incremental Model different from Spiral Model?,Progress can be measured for Incremental Model
+61,How is WINWIN Spiral Model different from Spiral Model?,It defines a set of negotiation activities at the beginning of each pass around the spiral
+62,Identify an ethical dilemma from the situations mentioned below:,Your employer releases a safety-critical system without finishing the testing of the system
+63,Identify the correct statement with respect to Evolutionary development:,"Evolutionary development usually has two flavors; exploratory development, and throw-away prototyping"
+64,Identify the correct statement: “Software engineers shall,act consistently with the public interest.”
+65,Identify the disadvantage of Spiral Model.,Doesn’t work well for smaller projects
+66,Identify the sub-process of process improvement,Process analysis
+67,"If the different sub components are interrelated, thenthe different components cannot be solved separately and the desiredin complexity will not be realized.",TRUE
+68,"If the were not based onscientific and engineering concepts, it would be easier to re-create newsoftware than to scale an existing one.",TRUE
+69,"If you were a lead developer of a software company and you are asked to submit a project/product within a stipulated time-frame with no cost barriers, which model would you select?",RAD
+70,"If you were to create client/server applications, which model would you go for?",Concurrent Model
+71,"If you were to create client/server applications, which model would you go for? a) WINWIN Spiral Model",Concurrent Model
+72,"Ifany of the hardware and/or platform (such asoperating system) of the target host changes, software changes areneeded to keep adaptability.",Host Modifications
+73,"Ifthere is any business level change at clientend, such as reduction of organization strength, acquiring anothercompany, organization venturing into new business, need to modify in the originalsoftware may arise.",Organization Changes
+74,implies that a problem can be simplified by omitting irrelevant details.,abstraction
+75,"In ________________, the system comprises of many smaller sub-systems known as functions.",function-oriented design
+76,"In almost all serious software development projects, a revision or version control system is used. This version control system keeps a record of changes in source code files and is usually built in a tree-like structure.",Branches
+77,"In industry, software engineering is usually needed todevelop large programs to accommodate functions.",FALSE
+78,"In OOD, the attributes (data variables) and methods(operation on the data) are bundled together is called _________________.",Encapsulation
+79,"In this part of thesis writing, important terms used in the study must be defined clearly. Some of these terms appear in the thesis title, statement of the problem, paradigm of the study, and in the scope and delimitation.",Definition of Terms
+80,"Inreference with top-down analysis, _________________ sub-divides the modules into further smaller units of code.",Structured Coding
+81,Inspections and testing are what kinds of Quality Costs?,Prevention
+82,is a tentative prediction about the relationship between two or more variables in a population under the study.,Hypothesis
+83,"It  is anexecutable code, which serves some computational purpose.",program
+84,It implies separating software into components according to functionality and responsibility.,Modularity
+85,It is a conceptualization of problem into several well-organized elementsof solution,Structured design
+86,It is a process done in some projects to carry outa test for a longer period of time. This type of testing is used to determinebehavior of a product when used continuously over a period of time,Regression or Stress Testing
+87,It is a process to conceptualize the software requirements into softwareimplementation.,Software Design
+88,"It is a simplified representation of asoftware process. Each process represents a process from a particular perspective,and thus provides only partial information about that process.",Software process models
+89,It is a system composed of people and computers that processes or interprets information.,Information System
+90,"It is a systematic approach to the production ofsoftware that takes into account practical cost, schedule, and dependabilityissues, as well as the needs of software customers and producers.",Software Engineering
+91,It is a traditional practice that the review of related literature is divided into foreign and local.,True
+92,It is a very basic check to see if all softwarecomponents compile with each other without a problem.,Sanity Testing
+93,"It is also known as a bug, is a result of an error which can cause system to fail.",Fault
+94,It is carried out to test functionality of the program and also called ‘Behavioral’ testing.,Black-box Testing
+95,"It is conducted to test program and its implementation, in order to improvecode efficiency or structure. It is also known as ‘Structural’ testing.",White-box Testing
+96,"It is considered to be a collection of executable programming code, associated libraries and documentations made for a specific purpose.",software product
+97,It is grouping of all functionally related elements,Cohesion
+98,It is important in designing software that is free from unnatural restrictions and limitations.,Generality
+99,It is often easier to use if these two concerns are divided as much as possible into separate sets of client functions.,data structure component
+100,It is said to be the inability of the system to perform thedesired task.,Failure
+101,It is testing one part or onecomponent of the product. The developer usually does this when he/she hascompleted writing code for that part of the product.,Unit Testing
+102,It is text-based notifier that is mostly shows thecontext in which the user is working. It is generated by thesoftware system.,Command Prompt
+103,"It is the ability of a set of inherent characteristics of a product, service,product component, or process to fulfill requirements of customers.",Quality
+104,"It is the sum of all planned systematic activities and processes forcreating, controlling and assuring quality indicates how qualitymanagement relates to the typical product development.",Quality Management
+105,It is very significant to note that the researcher must be totally aware of the purpose of the research problem.,True
+106,It isprocess of examining whether or not the software satisfies the userrequirements. It is carried out at the end of the SDLC.,Validation
+107,"It isthe process of confirming if the software is meeting the business requirements,and is developed adhering to the proper specifications and methodologies.",Verification
+108,It refers to computer programs and the manuals (ifany) that support them.,Software
+109,It refers to the amount of time available to complete a project,Timeconstraints
+110,It refers to the budgeted amount available for the project.,Cost constraints
+111,It refersto the amount of time available to complete a project,Time constraints
+112,It refersto what must be done to produce the project's end result,Scope constraints
+113,It takesthe whole software system as one entity and then decomposes it to achieve morethan one sub-system or component based on some characteristics.,Top Down Design
+114,It worksaround the entities and their characteristics instead of functions involved inthe software system. This design strategies focuses on entities and itscharacteristics.,Object Oriented Design
+115,Itinvolves activities pertaining to identificationof requirement of modification or maintenance,Identification & Tracing
+116,Itis a method of evaluating the expression passed toa function as an argument.,Strict evaluation
+117,Itis often easier to use if these two concerns are dividedas much as possible into separate sets of client functions.,data structurecomponent
+118,Lower and upper limits are present in which chart?,Run chart
+119,Maintenance is classified into how many categories ?,four
+120,Maintenance testing is performed using which methodology?,Breadth test and depth test
+121,Model preferred to create client/server applications is,Concurrent Model
+122,"Most projects have many interested parties or stakeholders, but someone must take the primary role of sponsorship.",A project should have a primary customer or sponsor
+123,Mostfunctional programming languages use ______________  astheir type systems. λ-expressions are executed by evaluating themas they occur.,λ-calculus
+124,Narrative essay is one of the best types of specification document ?,False
+125,needs to be written usingsoftware engineering principles.,FALSE
+126,One can choose Waterfall Model if the project development schedule is tight.,False
+127,"OODallows similar classes to stack up in hierarchicalmanner where the lower or sub-classes can import, implement andre-use allowed variables and methods from their immediate super classes.",Inheritance
+128,"OODlanguages provide a mechanism where methodsperforming similar tasks but vary in arguments, can be assigned same name.",Polymorphism
+129,"Over the time, customer may ask for new featuresor functions in the software.",Client Requirements
+130,"Policies,which changes over the time, such astaxationand newly introduced constraints like, how to maintain bookkeeping, may triggerneed for modification.",Market Conditions
+131,problemhas to be decomposed such that each component of the decomposed problem can besolved and then the solution of the different components canbe combined to get the full solution.,FALSE
+132,Processes for evolving a software product depend on:,All of the mentioned
+133,Program modularization and Source code translation are the activities of_____________,Reengineering
+134,Programming interfaces of present-day languages are verysophisticated and are equipped huge library functions.,Code-reuse
+135,Project managers have to assess the risks that may affect a project.,False
+136,"Projects are often defined broadly when they begin, and as time passes, the specific details of the project become clearer",A project is developed using progressive elaboration or in an iterative fashion
+137,"Projects are often defined broadly when they begin, and as time passes, the specific details of the project become clearer.",A project is developed using progressive elaboration or in an iterative fashion.
+138,Quality planning is the process of developing a quality plan for,project
+139,"Question text If you were a lead developer of a software company and you are asked to submit a project/product within a stipulated time-frame with no cost barriers, which model would you select?",RAD
+140,RAD Model has,5 phases
+141,RAD Model has high reliability requirements.,False
+142,RAD stands for,Rapid Application Development
+143,"ranch of discipline associated with the development of softwareproduct using well-defined scientific principles, methods and procedures.",Software Engineering
+144,Release notes show what happened in this software version. Typically the information includes:,All of the above
+145,Release notes show what happened in this software version. Typically the information includes: A. Bug fixes B. New functionality C. Detail of new features added to the software D.Any bugs that are not yet fixed,All of the above
+146,"Resources include people, hardware, software, or other assets. Many different types of people, skill sets, and resources are needed to build a home.","A project requires resources, often from various areas"
+147,"Resources, such as people and equipment, need to do work.",A project is an endeavor
+148,SDLC stands for,Software Development Life Cycle
+149,Select the incorrect statement: “Software engineers should,be dependent on their colleagues.”
+150,Selection of a model is based on,All of the mentioned
+151,Selective retest techniques may be more economical than the “retest-all”technique.How many selective retest techniques are there?,three
+152,"Situation-producing question answers the ""How can I make it happen"" questions.",True
+153,Software Design documentation contains the following except for:,Database management
+154,Software documentation does not provides information about how to use the product. It only provides the functionality of the system.,False
+155,Software Engineering ethics includes: (select all correct answers),"Confidentiality, Competence, Intellectual Property Rights, Computer misuse, Security"
+156,Software engineering helps to thisprogramming complexity.,FALSE
+157,"Software engineering is a branch of , which uses well-defined engineering concepts required to produceefficient, durable, scalable, in-budget and on-time software products.",TRUE
+158,Software engineering principle whose main purpose is to consider only those aspects of the problem that are relevant for certain purpose and suppress other aspects that are not relevant for the given purpose,abstraction
+159,Software evolution does not comprises:,Negotiating with client
+160,Software Maintenance includes,All of the mentioned
+161,software process,"Large Software, Scalability, Cost, Dynamic Nature, Quality Management"
+162,SPICE stands for,Software Process Improvement and Capability Determination
+163,Spiral Model has high reliability requirements.,True
+164,Spiral Model has user involvement in all its phases.,False
+165,Spiral model was developed by,Berry Boehm
+166,Testing done without planning and Documentation is called,Adhoc testing
+167,The ___________________ model starts with most specific and basic components. It proceeds with composing higher level of components by using basic or lower level components.,Bottom-up Design
+168,"The application of a systematic, disciplined,quantifiable approach to the development, operation and maintenance ofsoftware.",Software Engineering
+169,"The basic form of a research questions involves the use of question words such as who, what, where, when, why, and how",True
+170,"The following are elements of the Problem and Its Background except,",Statistical Treatment
+171,The following are Quality management along the product life-cycle except for:,Deployment
+172,The functionality of the software and constraints on itsoperation must be defined.,Software specification
+173,The fundamental notions of software engineering does not account for ?,Software Validation
+174,The Incremental Model is a result of combination of elements of which two models?,Linear Model & Prototyping Model
+175,The Incremental Model is combination of elements of,Linear Model & Prototyping Model
+176,"The input is divided into higher and lower end values.If these values pass the test, it is assumed that all values in between may pass too.",Boundary values
+177,"The input is divided into similar classes. If oneelement of a class passes the test, it is assumed that all the class is passed.",Equivalence class
+178,The introduction is very important in establishing the affective setting of the research.,False
+179,"The modification of the software to match changes in the ever changing environment, falls under which category of software maintenance?",Adaptive
+180,The need of software engineering arises because of of change in user requirements and environment on which the softwareis working.,FALSE
+181,The open source movement has meant that there is a huge reusable code base available at,low cost
+182,The outcome of is anefficient and reliable software product.,TRUE
+183,The process each manager follows during the life of a project is known as,Project Management Life Cycle
+184,The process mapping is a ______ diagram,Workflow
+185,"The question ""What relationships and interrelationships are observed between and among the following variables?"" is what kind of research question?",Factor Relating question
+186,The reason for software bugs and failures is due to,Both Software companies and Developers
+187,The related literature is different from conceptual literature.,False
+188,The result of the clearer understanding of the theoretical or conceptual framework is a diagrammatic presentation of the study called,Paradigm
+189,The software must be validated to ensure that it does whatthe customer wants.,Software validation
+190,The software must evolve to meet changing customer needs.,Software evolution
+191,The software to meet the specificationmust be produced.,Software design and implementation
+192,The sources of stress are related to the different coping mechanisms among businessmen. This statement is an example of what kind of hypothesis?,non directional
+193,The spiral model has two dimensions namely _____________ and ____________,"radial, angular"
+194,The spiral model was originally proposed by,Barry Boehm
+195,The SRS document is also known as _____________ specification.,black-box
+196,The SRS is said to be  if and only if,no subset of individual requirements described in it conflict with each other
+197,The SRS is said to be consistent if and only if,no subset of individual requirements described in it conflict with each other
+198,"The studies can be in the form of theses, dissertations, or journal articles, among others. These are not considered as research literature.",False
+199,The testing in which code is checked,White box testing
+200,"The Title page should be center-justified and in all capital letters, follows the inverted pyramid style, and is single-spaced.",True
+201,The traits of middle level managers do not significantly affect the productivity level of crews in food chains. This is an example of alternative hypothesis,False
+202,The two dimensions of spiral model are,"radial, angular"
+203,"The word theory is derived from the Latin word, theoria, which means “vision.”",False
+204,Thenew modules are coded with the help of structureddesign created in the design step.,Analysis
+205,There is no significant relationship between the reasons for using alternative medicine and the level of comfort of the patients. This is an example of null hypothesis,True
+206,"These are actual coding mistakes made by developers. In addition, there is a difference in output of software and desired output is considered as ______.",Error
+207,"These are application systems that run on alocal computer, such as a PC.",Stand-alone applications.
+208,These are applications that executeon a remote computer and that are accessed byusers from their own PCs or terminals.,Interactive transaction-based applications
+209,These are business systems that are designed toprocess data in large batches.,Batch processing systems
+210,These are questions that are answerable by yes or no. This is?,Non-re searchable questions
+211,These are software control systems that control andmanage hardware devices,Embedded control systems
+212,These are software control systems that control andmanage hardware devices.,Embedded control systems
+213,These are systems that are composed of a numberof othersoftwaresystems.,Systems of systems
+214,"These are systems that are developed byscientists and engineers to model physical processes or situations, which include many, separate, interacting objects.",Systems for modeling and simulation
+215,These are systems that are primarily for personal use andwhich are intended to entertain the user.,Entertainment system
+216,These are systems that collect data from their environment using a set of sensors and send that data to other systems for processing,Data collection systems
+217,These are systems that collect data from their environment using a set of sensors and send that data to other systems for processing.,Data collection systems
+218,These are the policies that govern the operation of a computer system.,Procedures
+219,These aspects are important when the software ismoved from one platform to another: (select all correct answers),"Portability, Interoperability, Reusability, Adaptability, Maintenance"
+220,These aspects briefs about how well software hasthe capabilities to maintain itself in the ever-changing environment: (selectall correct answers),"Modularity, Maintainability, Flexibility, Scalability"
+221,"These documentation explains how the software product should work and how it should be used to get the desired results. It may include software installation procedures, how-to guides, user-guides, uninstallation method and special references to get more information like license updation etc.",User documentation
+222,"These documentations contain all the necessary information, which are needed to build the software",Software Design documentation
+223,"These functions do not include destructive updates, thatis, they do not affect any I/O or memory and if they are not inuse, they can easily be removed without hampering the rest of the program.",Pure functions
+224,"Theseare systems that are developed byscientistsand engineers to model physical processes or situations, which include many,separate, interacting objects.",Systems for modeling and simulation.
+225,"Thesedocumentations are maintained by thedevelopersand actual coders. These documents, as a whole, represent information about thecode.",Technical documentation
+226,"Thesedocumentations contain all thenecessaryinformation, which are needed to build the software",Requirement documentation
+227,"Thesoftware program, which is being developed in theorganization, needs to be designed for host machines at thecustomers end.",Target-Host
+228,"Thesystem’s services, constraints, andgoals are established by consultation with system users.They are then defined in detail and serve as a system specification.",Requirements analysis and definition
+229,They deal with structures and algorithms without regard for the meaning or importance of the data that is involved.,Software developers
+230,"This approach interleavesthe activities of specification, development, and validation. The system isdeveloped as a series of versions (increments), with each version addingfunctionality to the previous version.",Incremental development
+231,This approachis based on the existence ofa significantnumber of reusable components. The system development process focuses onintegrating these components into a system rather than developing them fromscratch,Reuse-oriented software engineering
+232,"This category includes the computer itself, which is often referred to as the central processing unit (CPU), and all of its support equipment.",Hardware
+233,"This includes modifications and updations donein order to correct or fix problems, which are either discovered by user or concluded by user error reports.",Corrective Maintenance
+234,This includes modifications and updationsapplied to keep the software product up-to date and tuned to the ever changing world of technology and business environment.,Adaptive Maintenance
+235,This is a programming technique where a function callsitself and repeats the program code in it unless some pre-definedcondition matches.,Recursion
+236,This is carried out to make sure that the software is doing exactly what it is supposed to do. This type of testing is a must before any software is released to customers,Functional Testing
+237,This is carried out to make sure that the software is doing exactly what it is supposed to do. This type of testing is a must before any software is released to customers.,Functional Testing
+238,This is set of coding rules followed by all the programmers to write the code.,Programming style
+239,"This is style of programming language, which uses the concepts of mathematical functions.",Functional Programming
+240,This is the tangible part of the development system.,Hardware platform
+241,This is used when relating and assessing the effects of two or more variables. What type of paradigm is this?,CP (criterion-predictor) model
+242,"This is usually the first part of any softwareproduct. This stage starts when you are thinking about developing software. Inthis phase, you meet customers or prospective customers, analyzing marketrequirements and features that are in demand.",Requirement Gathering
+243,This is usually the longest phase in the product life cycle. Each developer has to write his/her own code and collaborate with other developers to make sure that different components can interoperate with each other.,Implementation and Coding
+244,This is usually the longest phase in the productlife cycle. Each developer has to write his/her own code and collaborate withother developers to make sure that different components can interoperate witheach other.,Implementation and Coding
+245,This paradigm is used when the researcher is presenting an original paradigm. The requirement is that it must be scientific.,POM (proposed original model)
+246,"This takes the fundamental process activities ofspecification, development, validation, and evolution and represents them asseparate process phases such as requirements specification, software design,implementation, testing, and so on.",The waterfall model
+247,"Thisincludes modifications and updates doneinorder to keep the software usable over long period of time. It includes newfeatures, new user requirements for refining the software and improve itsreliability and performance.",Perfective Maintenance
+248,"Thisincludes modifications and updations topreventfuture problems of the software. It aims to attend problems, which are notsignificant at this moment but may cause serious issues in future.",Preventive Maintenance
+249,"Thissection defines how to name functions,variables,constants and global variables.",Naming conventions
+250,"Typicallyeach development platform consists of the following components, except:",System software
+251,"Under__________________, the problem is broken down into small pieces where each onehas some significance. Each problem is individually solved and steps areclearly stated about how to solve the problem.",Top-down analysis
+252,Unit testing is done by,Developers
+253,What are attributes of good software ?,Software maintainability & functionality
+254,"What are generic application systems that may be designed to support a particular business type, activity, or sometimes a complete enterprise?",COTS-solution systems
+255,What are the Mandatory Quality Procedures?,All of these
+256,What are the various Testing Levels?,All of the mentioned
+257,What do you call the propositions taken to be true based upon the presupposition without preponderance of the facts,Assumptions of the Study
+258,What is a Software ?,"Software is set of programs, documentation & configuration of data"
+259,What is Cyclomatic complexity?,White box testing
+260,What is the hypothesis that always expressed affirmatively and is called substantive or scientific hypothesis?,Research hypothesis
+261,What is the major advantage of using Incremental Model?,Easier to test and debug & It is used when there is a need to get a product to the market early
+262,What is the major drawback of using RAD Model?,"Increases reusability of components, Highly specialized & skilled developers/designers are required"
+263,What is the one-page diagrammatic presentation of the variables of the thesis for easy understanding?,Abstract
+264,What is this kind of hypothesis that is always expressed as a negative statement?,Null
+265,What kind of hypothesis is formulated when predicting relationship between an independent variable and a dependent variable?,simple hypothesis
+266,What should a project manager do or follow to ensure clear boundaries for project completion?,Completing a scope statement
+267,What type of software testing is generally used in Software Maintenance?,Regression Testing
+268,"When a term is defined according to how it is used in the study, then it is operationally defined.",True
+269,Which is not one of the types of prototype of Prototyping Model?,Diagonal Prototype
+270,Which metric is related to the software maintenance,Software
+271,Which model can be selected if user is involved in all the phases of SDLC?,RAD Model
+272,Which of the following is a generic structure that is extended to create a more specific subsystem or application?,Framework
+273,Which of the following is black box testing,Boundary value analysis
+274,Which of the following is included in SRS ?,Design Constraints
+275,Which of the following is incorrect activity for the configuration management of a software system?,Internship management
+276,Which of the following is non-functional testing?,Performance testing
+277,Which of the following is not an advantages of software reuse?,high effectiveness
+278,Which of the following is not considered as a risk in project management?,Testing
+279,Which of the following is not included in SRS ?,Design solutions
+280,Which of the following is not project management goal?,Avoiding customer complaints
+281,Which of the following is not true about Research title?,None of the choices
+282,Which of the following is not used in measuring the size of the software,Size of module
+283,Which of the following is responsible for the quality objective?,Top level management
+284,Which of the following is the External criteria in formulating research problem?,Ethical considerations
+285,Which of the following is/are main parameters that you should use when computing the costs of a software development project?,all of the mentioned
+286,Which of the following is/are White box technique?,All of the mentioned
+287,Which of the following life cycle model can be chosen if the development team has less experience on similar projects?,Spiral
+288,Which of the following property does not correspond to a good Software Requirements Specification (SRS) ?,Ambiguous
+289,Which of the following property of SRS is depicted by the statement : “Conformity to a standard is maintained” ?,Complete
+290,Which of the following statements about SRS is/are true ?,All are true
+291,Which of the following statements about SRS is/are true ?  i. SRS is written by customer ii. SRS is written by a developer iii. SRS serves as a contract between customer and developer,All are true
+292,Which of the following statements regarding Build & Fix Model is wrong?,It scales up well to large projects
+293,Which of the following term describes testing?,Evaluating deliverable to find errors
+294,Which of these are not among the eight principles followed by Software Engineering Code of Ethics and Professional Practice ?,ENVIRONMENT
+295,Which of these does not account for software failure ?,Increasing Supply
+296,Which of these does not affect different types of software as a whole?,Flexibility
+297,Which of these is incorrect ?,Computer science belongs to Software engineering
+298,Which of these is not true ?,Web based systems have led to degradation of programming languages
+299,Which of these is true ?,All of the mentioned
+300,Which of these software engineering activities are not a part of software processes ?,Software dependence
+301,Which one of the following is not a phase of Prototyping Model?,Coding
+302,Which one of the following is not an Evolutionary Process Model?,All of the mentioned
+303,Which one of the following is not an Evolutionary Process Model? a) WINWIN Spiral Model,All of the mentioned
+304,Which one of the following models is not suitable for accommodating any change?,Waterfall Model
+305,Which regression test selection technique exposes faults caused by modifications?,Inclusiveness
+306,Which selective retest technique selects every test case that causes a modified program to produce a different output than its original version?,Safe
+307,Which technique is applied to ensure the continued evolution of legacy systems ?,Reverse Engineering and Reengineering
+308,Which two models doesn’t allow defining requirements early in the cycle?,Prototyping & Spiral
+309,Which two of the following models will not be able to give the desired outcome if user’s participation is not involved?,RAD & Prototyping
+310,"Whileprogramming, the code is broken downintosmaller group of instructions. These groups are known as modules, subprograms,or subroutines.",Modular Programming
+311,White Box techniques are also classified as,Structural testing
+312,You should be aware of local laws governing the useof intellectual property such as patents and copyright.,Intellectual property rights
+313,You should be aware of local laws governing theuseof intellectual property such as patents andcopyright.,Intellectual property rights.
+314,You should normally respect the confidentiality of your employers or clients irrespective of whether or not a formal confidentiality agreement has been signed.,Confidentiality
+315,You should not misrepresent your level of competence. You shouldnot knowingly accept work that is outside your competence.,Competence
+316,You should not use your technical skills to misuse otherpeople’s computers.,Computer misuse

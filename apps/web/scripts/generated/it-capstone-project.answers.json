@@ -1,0 +1,822 @@
+[
+    {
+        "questionText":  "_________________________________. It is purely qualitative in nature and we are focusing on the vision of others on the content of research.",
+        "answerText":  "Philosophical Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A computer program that can be used to automate procedures in applications such as word-processing software.",
+        "answerText":  "Macro",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A document that argues the case for the importance of your idea, to encourage a publisher to contract you to develop your idea into a book.",
+        "answerText":  "Book Proposal",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A sequential listing of all major parts of a thesis with corresponding page numbers. Included in the table of contents are the titles of chapters, sections and subsections, bibliography and appendices",
+        "answerText":  "table of contents",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A space character that prevents a line break being automatically inserted at its position.",
+        "answerText":  "Non-breaking space",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A specialist editor in the field of academic editing.",
+        "answerText":  "Academic Editor",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A symbol added to a letter that affects its pronunciation, such as the various accents in foreign words.",
+        "answerText":  "Diacritic",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A vague, disorganized, or error-filled introduction will create a _____ impression",
+        "answerText":  "negative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A vague, disorganized, or error-filled introduction will create a positive impression.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A well-written introduction is important because, quite simply, you never get a second chance to make a good first impression.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Adjusting the spacing between (characters) in a piece of text to be printed.",
+        "answerText":  "Kerning",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "All of the following are characteristics of research, EXCEPT:",
+        "answerText":  "Research not requires expertise.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "All the following are definitions of research, EXCEPT:",
+        "answerText":  "Research is considered to be the more informal process of carrying on the scientific method of analysis.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "All the following are examples of longitudinal research, EXCEPT:",
+        "answerText":  "Survey Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Basic/ Fundamental /pure or Theoretical Research: Its utility is universal.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capstone Editing’s guarantee to our clients that they will be satisfied with the quality of our work.",
+        "answerText":  "Quality Guarantee",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Closed-ended questions",
+        "answerText":  "Gove options that the respondent must choose",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Consistent use of a grammatical form for equal clauses within a sentence or for items in a list.",
+        "answerText":  "Parallel Structure",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Data collection method entails using tests.",
+        "answerText":  "Testing Method",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Examples of this category are Experimental and Survey Research.",
+        "answerText":  "Cross-Sectional Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Experimental or Applied Research: Its utility is limited.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "For format on the writing of references, research papers in IT, Computer Science, and Engineering must use the ______ citation and referencing style.",
+        "answerText":  "IEEE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If at first glance of a non-expert judge, the test seems to measure what it intends to measure",
+        "answerText":  "Face Validity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the test contains all of the pertinent components of the variable it wants to measure",
+        "answerText":  "Content validity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In order for field research to be successful, the researcher must be _________________________.",
+        "answerText":  "creative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Included in the thesis abstract are the ff., EXCEPT:",
+        "answerText":  "introduction",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Introduction is composed of _______ paragraphs with three to five pages.",
+        "answerText":  "narrative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Introduction provides a brief background or the ___ of the study.",
+        "answerText":  "rationale",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is a questionnaire asked in a one-on one situation.",
+        "answerText":  "Interview Method",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is a self-report data collection instrument.",
+        "answerText":  "Questionnaire",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is an activity of a sentient living being (e.g. humans), which senses and assimilates the knowledge of a phenomenon in its framework of previous knowledge and ideas.",
+        "answerText":  "Observation Method",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is an in-depth, longitudinal examination of a single instance or event, called a case.",
+        "answerText":  "Case Study Method",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "is as a works cited or reference list.",
+        "answerText":  "Bibliography",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is used to prove causality.",
+        "answerText":  "Experiment Method",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It deals with unusual events. It may be qualitative as well as quantitative in nature depending upon the content.",
+        "answerText":  "Case-Study Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is both qualitative as well as quantitative in nature and deals with past events.",
+        "answerText":  "Historical Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "List of Abbreviations and Symbols are list of charts, graphs, maps and other illustrations used in the thesis.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Open-ended questions",
+        "answerText":  "Do not give options that the respondent must choose",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "pertains to articles and books written by authorities giving their opinions, experiences, theories or ideas.",
+        "answerText":  "Conceptual Literature",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "pertains to published reports of actual research studies done previously.",
+        "answerText":  "Research Literature",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Qualitative Research is used to quantify the problem by way of generating numerical data or data that can be transformed into usable statistics.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Quantitative Research. It is used to gain an understanding of underlying reasons, opinions, and motivations.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Refers to how much it measures what it is designed to measure.",
+        "answerText":  "Construct validity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "refers to the consistency of a measure",
+        "answerText":  "reliability",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Research is ______________.",
+        "answerText":  "Working in a scientific way to search for truth of any problem",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Research papers in Business, Accountancy, Education, Arts and Sciences must use the ______ citation and referencing style.",
+        "answerText":  "APA",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Research strategies should not be combined.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Scope and Limitation section sets _________ of the study",
+        "answerText":  "parameters",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Select the following questions that will be answered if you have good introduction in your research. Select whichever applies.",
+        "answerText":  "What did we know about this research before I did this study?",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "showcases previous studies and publications relevant to the thesis.",
+        "answerText":  "Review of related literature",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "sources are best and purest; they are the closest from the point of origin",
+        "answerText":  "primary",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "sources, are reports of a person who relates the testimony of an actual witness or participant.",
+        "answerText":  "secondary",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Tables should be numbered in sequence, using Roman numerals.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The ______ sources are compiled from or based on secondary sources.",
+        "answerText":  "Tertiary",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The abstract should not be less than ________ words but not to exceed 500 words, and should be typed single-spaced.",
+        "answerText":  "200",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The essential qualities of a researcher are ____________.",
+        "answerText":  "All the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The ff. are the contributors of the definition of research, Except.",
+        "answerText":  "John W. Woody",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The introduction is the second chapter of the thesis and must include the objective/s and justification of the study as well as the limitations set by the proponent.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The main aim of research is to find out the truth which is hidden and which has not been discovered as yet.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The observer is part of the scene being observed.",
+        "answerText":  "Participant Observation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The opening paragraph of your paper will provide your readers with their initial impressions about the:",
+        "answerText":  "all of the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The quality of writing that allows it to sound natural, with a rhythm that is easy to read or listen to.",
+        "answerText":  "Flow",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The questionnaire should not be bulky, too long or too thick.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The space between lines of type.",
+        "answerText":  "Leading",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The statement of the problem is the ______ of the proposal/paper.",
+        "answerText":  "backbone",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The test is compared to another, valid, test to see if it measures the same thing",
+        "answerText":  "Criterion-related validity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These sections recognize persons and organizations who/which assisted the proponents in the completion of the thesis.",
+        "answerText":  "dedications and acknow ledgements",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is a presentation of the thesis summary",
+        "answerText":  "abstract",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is purely quantitative in nature and deals with future events.",
+        "answerText":  "Experimental Research",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This means watching and recording behavior in its natural setting.",
+        "answerText":  "Naturalistic Observation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This page bears the name of the proponent/s and title of the thesis, together with the signature of the adviser, college dean and members of the oral defense panel.",
+        "answerText":  "Approval Sheet",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This page contains the title of the research, name of proponents and a statement regarding the qualification for which the research is submitted.",
+        "answerText":  "title page",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This part provides a brief background or the rationale of the study.",
+        "answerText":  "introduction",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This section is optional. All abbreviations used in the thesis are listed for easy reference of the reader.",
+        "answerText":  "List of Abbreviations and Symbols",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "this section sets parameters of the study",
+        "answerText":  "Scope and limitation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "this section summarizes what is to be achieved by the study.",
+        "answerText":  "Objectives of the study",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Used to assess the consistency of a measure from one time to another.",
+        "answerText":  "Test retest reliability",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Used to assess the consistency of results across items within a test.",
+        "answerText":  "Internal consistency reliability",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Used to assess the degree to which different raters/observers give consistent estimates of the same phenomenon.",
+        "answerText":  "Inter-rater reliability",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which statementis true?",
+        "answerText":  "The Interviewer should record interviews.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Word ‘Research’ is comprises of two words = Re+Search. It means to ____________",
+        "answerText":  "search again",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Your own beliefs and feelings will never impact upon your research.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    }
+]

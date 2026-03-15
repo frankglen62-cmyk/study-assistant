@@ -1,0 +1,33 @@
+import 'server-only';
+
+import { redirect } from 'next/navigation';
+
+import type { UserRole } from '@study-assistant/shared-types';
+
+import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
+import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
+
+export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
+  const supabase = await getSupabaseServerSessionClient();
+  const { data } = await supabase.auth.getUser();
+
+  if (!data.user) {
+    redirect('/login');
+  }
+
+  const context = await getProfileWithWalletByUserId(data.user.id);
+
+  if (!allowedRoles.includes(context.profile.role)) {
+    redirect(context.profile.role === 'client' ? '/dashboard' : '/admin/dashboard');
+  }
+
+  if (context.profile.account_status !== 'active') {
+    redirect('/login');
+  }
+
+  return {
+    userId: data.user.id,
+    profile: context.profile,
+    wallet: context.wallet,
+  };
+}

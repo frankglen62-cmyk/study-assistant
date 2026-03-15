@@ -1,0 +1,3162 @@
+[
+    {
+        "questionText":  "___________ is probably the most important phase forlong-term support as well as for the reputation of the company.",
+        "answerText":  "Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "______________ measures the ability of a regression test selection technique to handle realistic applications.",
+        "answerText":  "Generality",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "________________ is the ability to encourage by \"push or pull\" technical people to produce to their best ability.",
+        "answerText":  "Motivation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "__________________ documents show the behavior or functionality of a software product on an abstract level.",
+        "answerText":  "Functional specification",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  ".NET are specific to which platform?",
+        "answerText":  "Microsoft",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "“An ordering system may be adapted to cope with a centralized ordering process in one company and a distributed process in another.” Which category the example belong to?",
+        "answerText":  "Process specialization",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "“Software engineers should not use their technical skills to  other people’s computers.”Here the term  refers to:",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "“Software engineers should not use their technical skills tomisuseother people’s computers.” Here the termmisuserefers to:",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A ___________is an executable instruction. It may have one ormore parameters.",
+        "answerText":  "Command Prompt , Command",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A 66.6% risk is considered as",
+        "answerText":  "high",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A company is developing an advance version of their current software available in the market, what model approach would they prefer ?",
+        "answerText":  "Both RAD \u0026 Iterative Enhancement",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A field studying computers and algorithmic processes, including their principles, their software and hardware designs, their applications, and their impact on society, whereas IS emphasizes functionality over design.",
+        "answerText":  "Computer information system",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A good decomposition of a problem shouldinteractions among various components.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A project’s duration might be just one week or it might go on for years, but every project has an end date.",
+        "answerText":  "A project is temporary",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A research title must not come from personal experience, an article read, a scene witnessed or news heard for it will invalidate the study.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A temporary endeavor undertaken to create a unique product, service, or result.",
+        "answerText":  "Project",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Acceptance testing is also known as",
+        "answerText":  "Beta testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Acknowledgement sheet should be placed immediately after the title page. Generally, it contains statements of recommendation and acceptance.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "After defining architecture, software components and their interfaces, the next phase of development is the creation of __________________.",
+        "answerText":  "design documents",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Age is considered as what type of research question.",
+        "answerText":  "Factor-Isolating Questions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Allentities involved in the solution design are known as __________.For example, person, banks, company,and customers are treated as objects.",
+        "answerText":  "Objects",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Alpha testing is done at",
+        "answerText":  "Developer’s end",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "An ________________ process simplifies verification. If you develop software by adding small increments of functionality, then, for verification, you only need to deal with the added portion",
+        "answerText":  "Incremental Development",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "An independent relationship must exist between the attribute that can be measured and the external quality attribute",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "areabsolutely necessary to achieve a good quality software cost effectively.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Arrange the given sequence to form a SRS Prototype outline as per IEEE SRS Standard.",
+        "answerText":  "ii, i, v, iv, iii",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Arrange the given sequence to form a SRS Prototype outline as per IEEE SRS Standard.  i. General description ii. Introduction iii. Index iv. Appendices v. Specific Requirements",
+        "answerText":  "ii, i, v, iv, iii",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "As per an IBM report, “31%of the project get cancelled before they are completed, 53% overrun their cost estimates by an average of 189% and for every 100 projects, there are 94 restarts”.What is the reason for these statistics ?",
+        "answerText":  "Lack of adequate training in software engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Asking the level of performance is considered as?",
+        "answerText":  "Factor-relating questions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Asoftware is always made to perform some rationalwork. This rational work is known as problem in the softwareparlance.",
+        "answerText":  "Top-down analysis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Before you start selling any software product,it is officially released. This means that you create a state of the softwarein your repository, make sure that it has been tested for functionality andfreeze the code.",
+        "answerText":  "Software Releases",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Behavioral testing is",
+        "answerText":  "Black box testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Beta testing is done at",
+        "answerText":  "User’s end",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Boundary value analysis belong to?",
+        "answerText":  "Black Box Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Build \u0026 Fix Model is suitable for programming exercises of ___________ LOC (Line of Code).",
+        "answerText":  "100-200",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Characteristics of a good software: (select all correct answers)",
+        "answerText":  "Operational, Maintenance, Transitional",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Choice of a particularoperating system may be made depending upon, except:",
+        "answerText":  "Development type",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Choose the correct option from given below:",
+        "answerText":  "Both RAD \u0026 Prototyping Model facilitates reusability of components",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Choose the correct option in terms of Issues related to professional responsibility",
+        "answerText":  "Both Confidentiality \u0026 Intellectual property rights",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Company has latest computers and state-of the- art software tools, so we shouldn’t worry about the quality of the product.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Consider the example and categorize it accordingly, “A pattern-matching system developed as part of a text-processing system may be reused in a database management system”.",
+        "answerText":  "Component reuse",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Consider the following Statement: “The data set will contain an end of file character.”What characteristic of SRS is being depicted here ?",
+        "answerText":  "Non-verifiable",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Consider the following Statement: “The output of a program shall be given within 10 secs of event X 10% of the time.”What characteristic of SRS is being depicted here ?",
+        "answerText":  "Verifiable",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Consider the following Statement: “The product should have a good human interface.”What characteristic of SRS is being depicted here ?",
+        "answerText":  "Non-Verifiable",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "considered to be a collection of executable programming code,associated libraries and documentations.",
+        "answerText":  "software",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "COTS product reuse means",
+        "answerText":  "Systems are developed by configuring and integrating existing application systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "COTS stands for",
+        "answerText":  "Commercial Off-The-Shelf systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "During the Defense which of the following must be done last?",
+        "answerText":  "Evaluation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "During the Defense which of the following the researchers must do first?",
+        "answerText":  "Orientation from the chairman of the panel",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "During the implementation process, developers must write enough comments inside the code so that if anybody starts working on the code later on, he/she is able to understand what has already been written.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Duringthis stage, the software design is realized as a set of programs or programunits",
+        "answerText":  "Implementation and unit testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Editors are the core development tools because they convert source code to executable form.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Efficiency in a software product does not include ________",
+        "answerText":  "licensing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Every project should have awell-defined objective. For example, many people hire firms to design and build a new house, but each house, like each person, is unique.",
+        "answerText":  "A project has a unique purpose.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Every time a new software is issued to the customer, developers have to maintain version and configuration related documentation.",
+        "answerText":  "Version Management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Exhaustive testing is",
+        "answerText":  "impractical but possible",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Explain what is meant by  with reference to one of the eight principles as per the ACM/IEEE Code of Ethics ?",
+        "answerText":  "Software engineers shall ensure that their products and related modifications meet the highest professional standards possible",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Explain what is meant byPRODUCTwith reference to one of the eight principles as per the ACM/IEEE Code of Ethics",
+        "answerText":  "software engineers shall ensure that their products and related modifications meet the highest professional standards possible",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "he most significant factorin determining which software engineering methods and techniques are mostimportant is the that is being developed.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "How is Incremental Model different from Spiral Model?",
+        "answerText":  "Progress can be measured for Incremental Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "How is WINWIN Spiral Model different from Spiral Model?",
+        "answerText":  "It defines a set of negotiation activities at the beginning of each pass around the spiral",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Identify an ethical dilemma from the situations mentioned below:",
+        "answerText":  "Your employer releases a safety-critical system without finishing the testing of the system",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Identify the correct statement with respect to Evolutionary development:",
+        "answerText":  "Evolutionary development usually has two flavors; exploratory development, and throw-away prototyping",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Identify the correct statement: “Software engineers shall",
+        "answerText":  "act consistently with the public interest.”",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Identify the disadvantage of Spiral Model.",
+        "answerText":  "Doesn’t work well for smaller projects",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Identify the sub-process of process improvement",
+        "answerText":  "Process analysis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the different sub components are interrelated, thenthe different components cannot be solved separately and the desiredin complexity will not be realized.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the were not based onscientific and engineering concepts, it would be easier to re-create newsoftware than to scale an existing one.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If you were a lead developer of a software company and you are asked to submit a project/product within a stipulated time-frame with no cost barriers, which model would you select?",
+        "answerText":  "RAD",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If you were to create client/server applications, which model would you go for?",
+        "answerText":  "Concurrent Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If you were to create client/server applications, which model would you go for? a) WINWIN Spiral Model",
+        "answerText":  "Concurrent Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ifany of the hardware and/or platform (such asoperating system) of the target host changes, software changes areneeded to keep adaptability.",
+        "answerText":  "Host Modifications",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ifthere is any business level change at clientend, such as reduction of organization strength, acquiring anothercompany, organization venturing into new business, need to modify in the originalsoftware may arise.",
+        "answerText":  "Organization Changes",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "implies that a problem can be simplified by omitting irrelevant details.",
+        "answerText":  "abstraction",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In ________________, the system comprises of many smaller sub-systems known as functions.",
+        "answerText":  "function-oriented design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In almost all serious software development projects, a revision or version control system is used. This version control system keeps a record of changes in source code files and is usually built in a tree-like structure.",
+        "answerText":  "Branches",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In industry, software engineering is usually needed todevelop large programs to accommodate functions.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In OOD, the attributes (data variables) and methods(operation on the data) are bundled together is called _________________.",
+        "answerText":  "Encapsulation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In this part of thesis writing, important terms used in the study must be defined clearly. Some of these terms appear in the thesis title, statement of the problem, paradigm of the study, and in the scope and delimitation.",
+        "answerText":  "Definition of Terms",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Inreference with top-down analysis, _________________ sub-divides the modules into further smaller units of code.",
+        "answerText":  "Structured Coding",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Inspections and testing are what kinds of Quality Costs?",
+        "answerText":  "Prevention",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "is a tentative prediction about the relationship between two or more variables in a population under the study.",
+        "answerText":  "Hypothesis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It  is anexecutable code, which serves some computational purpose.",
+        "answerText":  "program",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It implies separating software into components according to functionality and responsibility.",
+        "answerText":  "Modularity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a conceptualization of problem into several well-organized elementsof solution",
+        "answerText":  "Structured design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a process done in some projects to carry outa test for a longer period of time. This type of testing is used to determinebehavior of a product when used continuously over a period of time",
+        "answerText":  "Regression or Stress Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a process to conceptualize the software requirements into softwareimplementation.",
+        "answerText":  "Software Design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a simplified representation of asoftware process. Each process represents a process from a particular perspective,and thus provides only partial information about that process.",
+        "answerText":  "Software process models",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a system composed of people and computers that processes or interprets information.",
+        "answerText":  "Information System",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a systematic approach to the production ofsoftware that takes into account practical cost, schedule, and dependabilityissues, as well as the needs of software customers and producers.",
+        "answerText":  "Software Engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a traditional practice that the review of related literature is divided into foreign and local.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a very basic check to see if all softwarecomponents compile with each other without a problem.",
+        "answerText":  "Sanity Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is also known as a bug, is a result of an error which can cause system to fail.",
+        "answerText":  "Fault",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is carried out to test functionality of the program and also called ‘Behavioral’ testing.",
+        "answerText":  "Black-box Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is conducted to test program and its implementation, in order to improvecode efficiency or structure. It is also known as ‘Structural’ testing.",
+        "answerText":  "White-box Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is considered to be a collection of executable programming code, associated libraries and documentations made for a specific purpose.",
+        "answerText":  "software product",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is grouping of all functionally related elements",
+        "answerText":  "Cohesion",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is important in designing software that is free from unnatural restrictions and limitations.",
+        "answerText":  "Generality",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is often easier to use if these two concerns are divided as much as possible into separate sets of client functions.",
+        "answerText":  "data structure component",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is said to be the inability of the system to perform thedesired task.",
+        "answerText":  "Failure",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is testing one part or onecomponent of the product. The developer usually does this when he/she hascompleted writing code for that part of the product.",
+        "answerText":  "Unit Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is text-based notifier that is mostly shows thecontext in which the user is working. It is generated by thesoftware system.",
+        "answerText":  "Command Prompt",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is the ability of a set of inherent characteristics of a product, service,product component, or process to fulfill requirements of customers.",
+        "answerText":  "Quality",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is the sum of all planned systematic activities and processes forcreating, controlling and assuring quality indicates how qualitymanagement relates to the typical product development.",
+        "answerText":  "Quality Management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is very significant to note that the researcher must be totally aware of the purpose of the research problem.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It isprocess of examining whether or not the software satisfies the userrequirements. It is carried out at the end of the SDLC.",
+        "answerText":  "Validation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It isthe process of confirming if the software is meeting the business requirements,and is developed adhering to the proper specifications and methodologies.",
+        "answerText":  "Verification",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It refers to computer programs and the manuals (ifany) that support them.",
+        "answerText":  "Software",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It refers to the amount of time available to complete a project",
+        "answerText":  "Timeconstraints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It refers to the budgeted amount available for the project.",
+        "answerText":  "Cost constraints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It refersto the amount of time available to complete a project",
+        "answerText":  "Time constraints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It refersto what must be done to produce the project\u0027s end result",
+        "answerText":  "Scope constraints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It takesthe whole software system as one entity and then decomposes it to achieve morethan one sub-system or component based on some characteristics.",
+        "answerText":  "Top Down Design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It worksaround the entities and their characteristics instead of functions involved inthe software system. This design strategies focuses on entities and itscharacteristics.",
+        "answerText":  "Object Oriented Design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Itinvolves activities pertaining to identificationof requirement of modification or maintenance",
+        "answerText":  "Identification \u0026 Tracing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Itis a method of evaluating the expression passed toa function as an argument.",
+        "answerText":  "Strict evaluation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Itis often easier to use if these two concerns are dividedas much as possible into separate sets of client functions.",
+        "answerText":  "data structurecomponent",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Lower and upper limits are present in which chart?",
+        "answerText":  "Run chart",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Maintenance is classified into how many categories ?",
+        "answerText":  "four",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Maintenance testing is performed using which methodology?",
+        "answerText":  "Breadth test and depth test",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Model preferred to create client/server applications is",
+        "answerText":  "Concurrent Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Most projects have many interested parties or stakeholders, but someone must take the primary role of sponsorship.",
+        "answerText":  "A project should have a primary customer or sponsor",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Mostfunctional programming languages use ______________  astheir type systems. ?-expressions are executed by evaluating themas they occur.",
+        "answerText":  "?-calculus",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Narrative essay is one of the best types of specification document ?",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "needs to be written usingsoftware engineering principles.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "One can choose Waterfall Model if the project development schedule is tight.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "OODallows similar classes to stack up in hierarchicalmanner where the lower or sub-classes can import, implement andre-use allowed variables and methods from their immediate super classes.",
+        "answerText":  "Inheritance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "OODlanguages provide a mechanism where methodsperforming similar tasks but vary in arguments, can be assigned same name.",
+        "answerText":  "Polymorphism",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Over the time, customer may ask for new featuresor functions in the software.",
+        "answerText":  "Client Requirements",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Policies,which changes over the time, such astaxationand newly introduced constraints like, how to maintain bookkeeping, may triggerneed for modification.",
+        "answerText":  "Market Conditions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "problemhas to be decomposed such that each component of the decomposed problem can besolved and then the solution of the different components canbe combined to get the full solution.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Processes for evolving a software product depend on:",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Program modularization and Source code translation are the activities of_____________",
+        "answerText":  "Reengineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Programming interfaces of present-day languages are verysophisticated and are equipped huge library functions.",
+        "answerText":  "Code-reuse",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Project managers have to assess the risks that may affect a project.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Projects are often defined broadly when they begin, and as time passes, the specific details of the project become clearer",
+        "answerText":  "A project is developed using progressive elaboration or in an iterative fashion",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Projects are often defined broadly when they begin, and as time passes, the specific details of the project become clearer.",
+        "answerText":  "A project is developed using progressive elaboration or in an iterative fashion.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Quality planning is the process of developing a quality plan for",
+        "answerText":  "project",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Question text If you were a lead developer of a software company and you are asked to submit a project/product within a stipulated time-frame with no cost barriers, which model would you select?",
+        "answerText":  "RAD",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "RAD Model has",
+        "answerText":  "5 phases",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "RAD Model has high reliability requirements.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "RAD stands for",
+        "answerText":  "Rapid Application Development",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "ranch of discipline associated with the development of softwareproduct using well-defined scientific principles, methods and procedures.",
+        "answerText":  "Software Engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Release notes show what happened in this software version. Typically the information includes:",
+        "answerText":  "All of the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Release notes show what happened in this software version. Typically the information includes: A. Bug fixes B. New functionality C. Detail of new features added to the software D.Any bugs that are not yet fixed",
+        "answerText":  "All of the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resources include people, hardware, software, or other assets. Many different types of people, skill sets, and resources are needed to build a home.",
+        "answerText":  "A project requires resources, often from various areas",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resources, such as people and equipment, need to do work.",
+        "answerText":  "A project is an endeavor",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "SDLC stands for",
+        "answerText":  "Software Development Life Cycle",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Select the incorrect statement: “Software engineers should",
+        "answerText":  "be dependent on their colleagues.”",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Selection of a model is based on",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Selective retest techniques may be more economical than the “retest-all”technique.How many selective retest techniques are there?",
+        "answerText":  "three",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Situation-producing question answers the \"How can I make it happen\" questions.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software Design documentation contains the following except for:",
+        "answerText":  "Database management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software documentation does not provides information about how to use the product. It only provides the functionality of the system.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software Engineering ethics includes: (select all correct answers)",
+        "answerText":  "Confidentiality, Competence, Intellectual Property Rights, Computer misuse, Security",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software engineering helps to thisprogramming complexity.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software engineering is a branch of , which uses well-defined engineering concepts required to produceefficient, durable, scalable, in-budget and on-time software products.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software engineering principle whose main purpose is to consider only those aspects of the problem that are relevant for certain purpose and suppress other aspects that are not relevant for the given purpose",
+        "answerText":  "abstraction",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software evolution does not comprises:",
+        "answerText":  "Negotiating with client",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Software Maintenance includes",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "software process",
+        "answerText":  "Large Software, Scalability, Cost, Dynamic Nature, Quality Management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "SPICE stands for",
+        "answerText":  "Software Process Improvement and Capability Determination",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Spiral Model has high reliability requirements.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Spiral Model has user involvement in all its phases.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Spiral model was developed by",
+        "answerText":  "Berry Boehm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Testing done without planning and Documentation is called",
+        "answerText":  "Adhoc testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The ___________________ model starts with most specific and basic components. It proceeds with composing higher level of components by using basic or lower level components.",
+        "answerText":  "Bottom-up Design",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The application of a systematic, disciplined,quantifiable approach to the development, operation and maintenance ofsoftware.",
+        "answerText":  "Software Engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The basic form of a research questions involves the use of question words such as who, what, where, when, why, and how",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are elements of the Problem and Its Background except,",
+        "answerText":  "Statistical Treatment",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are Quality management along the product life-cycle except for:",
+        "answerText":  "Deployment",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The functionality of the software and constraints on itsoperation must be defined.",
+        "answerText":  "Software specification",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The fundamental notions of software engineering does not account for ?",
+        "answerText":  "Software Validation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Incremental Model is a result of combination of elements of which two models?",
+        "answerText":  "Linear Model \u0026 Prototyping Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Incremental Model is combination of elements of",
+        "answerText":  "Linear Model \u0026 Prototyping Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The input is divided into higher and lower end values.If these values pass the test, it is assumed that all values in between may pass too.",
+        "answerText":  "Boundary values",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The input is divided into similar classes. If oneelement of a class passes the test, it is assumed that all the class is passed.",
+        "answerText":  "Equivalence class",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The introduction is very important in establishing the affective setting of the research.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The modification of the software to match changes in the ever changing environment, falls under which category of software maintenance?",
+        "answerText":  "Adaptive",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The need of software engineering arises because of of change in user requirements and environment on which the softwareis working.",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The open source movement has meant that there is a huge reusable code base available at",
+        "answerText":  "low cost",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The outcome of is anefficient and reliable software product.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The process each manager follows during the life of a project is known as",
+        "answerText":  "Project Management Life Cycle",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The process mapping is a ______ diagram",
+        "answerText":  "Workflow",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The question \"What relationships and interrelationships are observed between and among the following variables?\" is what kind of research question?",
+        "answerText":  "Factor Relating question",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The reason for software bugs and failures is due to",
+        "answerText":  "Both Software companies and Developers",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The related literature is different from conceptual literature.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The result of the clearer understanding of the theoretical or conceptual framework is a diagrammatic presentation of the study called",
+        "answerText":  "Paradigm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The software must be validated to ensure that it does whatthe customer wants.",
+        "answerText":  "Software validation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The software must evolve to meet changing customer needs.",
+        "answerText":  "Software evolution",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The software to meet the specificationmust be produced.",
+        "answerText":  "Software design and implementation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The sources of stress are related to the different coping mechanisms among businessmen. This statement is an example of what kind of hypothesis?",
+        "answerText":  "non directional",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The spiral model has two dimensions namely _____________ and ____________",
+        "answerText":  "radial, angular",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The spiral model was originally proposed by",
+        "answerText":  "Barry Boehm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The SRS document is also known as _____________ specification.",
+        "answerText":  "black-box",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The SRS is said to be  if and only if",
+        "answerText":  "no subset of individual requirements described in it conflict with each other",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The SRS is said to be consistent if and only if",
+        "answerText":  "no subset of individual requirements described in it conflict with each other",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The studies can be in the form of theses, dissertations, or journal articles, among others. These are not considered as research literature.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The testing in which code is checked",
+        "answerText":  "White box testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Title page should be center-justified and in all capital letters, follows the inverted pyramid style, and is single-spaced.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The traits of middle level managers do not significantly affect the productivity level of crews in food chains. This is an example of alternative hypothesis",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The two dimensions of spiral model are",
+        "answerText":  "radial, angular",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The word theory is derived from the Latin word, theoria, which means “vision.”",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thenew modules are coded with the help of structureddesign created in the design step.",
+        "answerText":  "Analysis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "There is no significant relationship between the reasons for using alternative medicine and the level of comfort of the patients. This is an example of null hypothesis",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are actual coding mistakes made by developers. In addition, there is a difference in output of software and desired output is considered as ______.",
+        "answerText":  "Error",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are application systems that run on alocal computer, such as a PC.",
+        "answerText":  "Stand-alone applications.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are applications that executeon a remote computer and that are accessed byusers from their own PCs or terminals.",
+        "answerText":  "Interactive transaction-based applications",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are business systems that are designed toprocess data in large batches.",
+        "answerText":  "Batch processing systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are questions that are answerable by yes or no. This is?",
+        "answerText":  "Non-re searchable questions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are software control systems that control andmanage hardware devices",
+        "answerText":  "Embedded control systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are software control systems that control andmanage hardware devices.",
+        "answerText":  "Embedded control systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are systems that are composed of a numberof othersoftwaresystems.",
+        "answerText":  "Systems of systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are systems that are developed byscientists and engineers to model physical processes or situations, which include many, separate, interacting objects.",
+        "answerText":  "Systems for modeling and simulation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are systems that are primarily for personal use andwhich are intended to entertain the user.",
+        "answerText":  "Entertainment system",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are systems that collect data from their environment using a set of sensors and send that data to other systems for processing",
+        "answerText":  "Data collection systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are systems that collect data from their environment using a set of sensors and send that data to other systems for processing.",
+        "answerText":  "Data collection systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These are the policies that govern the operation of a computer system.",
+        "answerText":  "Procedures",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These aspects are important when the software ismoved from one platform to another: (select all correct answers)",
+        "answerText":  "Portability, Interoperability, Reusability, Adaptability, Maintenance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These aspects briefs about how well software hasthe capabilities to maintain itself in the ever-changing environment: (selectall correct answers)",
+        "answerText":  "Modularity, Maintainability, Flexibility, Scalability",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These documentation explains how the software product should work and how it should be used to get the desired results. It may include software installation procedures, how-to guides, user-guides, uninstallation method and special references to get more information like license updation etc.",
+        "answerText":  "User documentation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These documentations contain all the necessary information, which are needed to build the software",
+        "answerText":  "Software Design documentation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "These functions do not include destructive updates, thatis, they do not affect any I/O or memory and if they are not inuse, they can easily be removed without hampering the rest of the program.",
+        "answerText":  "Pure functions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Theseare systems that are developed byscientistsand engineers to model physical processes or situations, which include many,separate, interacting objects.",
+        "answerText":  "Systems for modeling and simulation.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thesedocumentations are maintained by thedevelopersand actual coders. These documents, as a whole, represent information about thecode.",
+        "answerText":  "Technical documentation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thesedocumentations contain all thenecessaryinformation, which are needed to build the software",
+        "answerText":  "Requirement documentation",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thesoftware program, which is being developed in theorganization, needs to be designed for host machines at thecustomers end.",
+        "answerText":  "Target-Host",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thesystem’s services, constraints, andgoals are established by consultation with system users.They are then defined in detail and serve as a system specification.",
+        "answerText":  "Requirements analysis and definition",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "They deal with structures and algorithms without regard for the meaning or importance of the data that is involved.",
+        "answerText":  "Software developers",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This approach interleavesthe activities of specification, development, and validation. The system isdeveloped as a series of versions (increments), with each version addingfunctionality to the previous version.",
+        "answerText":  "Incremental development",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This approachis based on the existence ofa significantnumber of reusable components. The system development process focuses onintegrating these components into a system rather than developing them fromscratch",
+        "answerText":  "Reuse-oriented software engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This category includes the computer itself, which is often referred to as the central processing unit (CPU), and all of its support equipment.",
+        "answerText":  "Hardware",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This includes modifications and updations donein order to correct or fix problems, which are either discovered by user or concluded by user error reports.",
+        "answerText":  "Corrective Maintenance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This includes modifications and updationsapplied to keep the software product up-to date and tuned to the ever changing world of technology and business environment.",
+        "answerText":  "Adaptive Maintenance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is a programming technique where a function callsitself and repeats the program code in it unless some pre-definedcondition matches.",
+        "answerText":  "Recursion",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is carried out to make sure that the software is doing exactly what it is supposed to do. This type of testing is a must before any software is released to customers",
+        "answerText":  "Functional Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is carried out to make sure that the software is doing exactly what it is supposed to do. This type of testing is a must before any software is released to customers.",
+        "answerText":  "Functional Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is set of coding rules followed by all the programmers to write the code.",
+        "answerText":  "Programming style",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is style of programming language, which uses the concepts of mathematical functions.",
+        "answerText":  "Functional Programming",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is the tangible part of the development system.",
+        "answerText":  "Hardware platform",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is used when relating and assessing the effects of two or more variables. What type of paradigm is this?",
+        "answerText":  "CP (criterion-predictor) model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is usually the first part of any softwareproduct. This stage starts when you are thinking about developing software. Inthis phase, you meet customers or prospective customers, analyzing marketrequirements and features that are in demand.",
+        "answerText":  "Requirement Gathering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is usually the longest phase in the product life cycle. Each developer has to write his/her own code and collaborate with other developers to make sure that different components can interoperate with each other.",
+        "answerText":  "Implementation and Coding",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This is usually the longest phase in the productlife cycle. Each developer has to write his/her own code and collaborate withother developers to make sure that different components can interoperate witheach other.",
+        "answerText":  "Implementation and Coding",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This paradigm is used when the researcher is presenting an original paradigm. The requirement is that it must be scientific.",
+        "answerText":  "POM (proposed original model)",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "This takes the fundamental process activities ofspecification, development, validation, and evolution and represents them asseparate process phases such as requirements specification, software design,implementation, testing, and so on.",
+        "answerText":  "The waterfall model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thisincludes modifications and updates doneinorder to keep the software usable over long period of time. It includes newfeatures, new user requirements for refining the software and improve itsreliability and performance.",
+        "answerText":  "Perfective Maintenance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thisincludes modifications and updations topreventfuture problems of the software. It aims to attend problems, which are notsignificant at this moment but may cause serious issues in future.",
+        "answerText":  "Preventive Maintenance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Thissection defines how to name functions,variables,constants and global variables.",
+        "answerText":  "Naming conventions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Typicallyeach development platform consists of the following components, except:",
+        "answerText":  "System software",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Under__________________, the problem is broken down into small pieces where each onehas some significance. Each problem is individually solved and steps areclearly stated about how to solve the problem.",
+        "answerText":  "Top-down analysis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Unit testing is done by",
+        "answerText":  "Developers",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What are attributes of good software ?",
+        "answerText":  "Software maintainability \u0026 functionality",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What are generic application systems that may be designed to support a particular business type, activity, or sometimes a complete enterprise?",
+        "answerText":  "COTS-solution systems",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What are the Mandatory Quality Procedures?",
+        "answerText":  "All of these",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What are the various Testing Levels?",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What do you call the propositions taken to be true based upon the presupposition without preponderance of the facts",
+        "answerText":  "Assumptions of the Study",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is a Software ?",
+        "answerText":  "Software is set of programs, documentation \u0026 configuration of data",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is Cyclomatic complexity?",
+        "answerText":  "White box testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is the hypothesis that always expressed affirmatively and is called substantive or scientific hypothesis?",
+        "answerText":  "Research hypothesis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is the major advantage of using Incremental Model?",
+        "answerText":  "Easier to test and debug \u0026 It is used when there is a need to get a product to the market early",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is the major drawback of using RAD Model?",
+        "answerText":  "Increases reusability of components, Highly specialized \u0026 skilled developers/designers are required",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is the one-page diagrammatic presentation of the variables of the thesis for easy understanding?",
+        "answerText":  "Abstract",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What is this kind of hypothesis that is always expressed as a negative statement?",
+        "answerText":  "Null",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What kind of hypothesis is formulated when predicting relationship between an independent variable and a dependent variable?",
+        "answerText":  "simple hypothesis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What should a project manager do or follow to ensure clear boundaries for project completion?",
+        "answerText":  "Completing a scope statement",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "What type of software testing is generally used in Software Maintenance?",
+        "answerText":  "Regression Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "When a term is defined according to how it is used in the study, then it is operationally defined.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which is not one of the types of prototype of Prototyping Model?",
+        "answerText":  "Diagonal Prototype",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which metric is related to the software maintenance",
+        "answerText":  "Software",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which model can be selected if user is involved in all the phases of SDLC?",
+        "answerText":  "RAD Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is a generic structure that is extended to create a more specific subsystem or application?",
+        "answerText":  "Framework",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is black box testing",
+        "answerText":  "Boundary value analysis",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is included in SRS ?",
+        "answerText":  "Design Constraints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is incorrect activity for the configuration management of a software system?",
+        "answerText":  "Internship management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is non-functional testing?",
+        "answerText":  "Performance testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not an advantages of software reuse?",
+        "answerText":  "high effectiveness",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not considered as a risk in project management?",
+        "answerText":  "Testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not included in SRS ?",
+        "answerText":  "Design solutions",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not project management goal?",
+        "answerText":  "Avoiding customer complaints",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not true about Research title?",
+        "answerText":  "None of the choices",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is not used in measuring the size of the software",
+        "answerText":  "Size of module",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is responsible for the quality objective?",
+        "answerText":  "Top level management",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is the External criteria in formulating research problem?",
+        "answerText":  "Ethical considerations",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is/are main parameters that you should use when computing the costs of a software development project?",
+        "answerText":  "all of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following is/are White box technique?",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following life cycle model can be chosen if the development team has less experience on similar projects?",
+        "answerText":  "Spiral",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following property does not correspond to a good Software Requirements Specification (SRS) ?",
+        "answerText":  "Ambiguous",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following property of SRS is depicted by the statement : “Conformity to a standard is maintained” ?",
+        "answerText":  "Complete",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following statements about SRS is/are true ?",
+        "answerText":  "All are true",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following statements about SRS is/are true ?  i. SRS is written by customer ii. SRS is written by a developer iii. SRS serves as a contract between customer and developer",
+        "answerText":  "All are true",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following statements regarding Build \u0026 Fix Model is wrong?",
+        "answerText":  "It scales up well to large projects",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of the following term describes testing?",
+        "answerText":  "Evaluating deliverable to find errors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these are not among the eight principles followed by Software Engineering Code of Ethics and Professional Practice ?",
+        "answerText":  "ENVIRONMENT",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these does not account for software failure ?",
+        "answerText":  "Increasing Supply",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these does not affect different types of software as a whole?",
+        "answerText":  "Flexibility",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these is incorrect ?",
+        "answerText":  "Computer science belongs to Software engineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these is not true ?",
+        "answerText":  "Web based systems have led to degradation of programming languages",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these is true ?",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which of these software engineering activities are not a part of software processes ?",
+        "answerText":  "Software dependence",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which one of the following is not a phase of Prototyping Model?",
+        "answerText":  "Coding",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which one of the following is not an Evolutionary Process Model?",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which one of the following is not an Evolutionary Process Model? a) WINWIN Spiral Model",
+        "answerText":  "All of the mentioned",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which one of the following models is not suitable for accommodating any change?",
+        "answerText":  "Waterfall Model",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which regression test selection technique exposes faults caused by modifications?",
+        "answerText":  "Inclusiveness",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which selective retest technique selects every test case that causes a modified program to produce a different output than its original version?",
+        "answerText":  "Safe",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which technique is applied to ensure the continued evolution of legacy systems ?",
+        "answerText":  "Reverse Engineering and Reengineering",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which two models doesn’t allow defining requirements early in the cycle?",
+        "answerText":  "Prototyping \u0026 Spiral",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Which two of the following models will not be able to give the desired outcome if user’s participation is not involved?",
+        "answerText":  "RAD \u0026 Prototyping",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Whileprogramming, the code is broken downintosmaller group of instructions. These groups are known as modules, subprograms,or subroutines.",
+        "answerText":  "Modular Programming",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "White Box techniques are also classified as",
+        "answerText":  "Structural testing",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "You should be aware of local laws governing the useof intellectual property such as patents and copyright.",
+        "answerText":  "Intellectual property rights",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "You should be aware of local laws governing theuseof intellectual property such as patents andcopyright.",
+        "answerText":  "Intellectual property rights.",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "You should normally respect the confidentiality of your employers or clients irrespective of whether or not a formal confidentiality agreement has been signed.",
+        "answerText":  "Confidentiality",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "You should not misrepresent your level of competence. You shouldnot knowingly accept work that is outside your competence.",
+        "answerText":  "Competence",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "You should not use your technical skills to misuse otherpeople’s computers.",
+        "answerText":  "Computer misuse",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    }
+]

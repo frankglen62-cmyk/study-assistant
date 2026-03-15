@@ -1,0 +1,259 @@
+﻿No.,Question,Correct Answer
+1,_____________ has a positive charge.,Proton
+2,_____________ is the maintainer of a constant potential difference.,EMF
+3,_______________ has a zero charge.,Neutron
+4,________________ is a wire that has a metal tipped wand.,Probe
+5,_________________ is a rate at which work is done and it is the rate at which energy is transferred.,Power
+6,___________________ has a Negative charge.,Negative
+7,___________________ IS ALSO CALLED A LOWER POTENTIAL TERMINAL.,NEGATIVE
+8,___________________ may also referred to as the specific electrical resistance.,Resistivity
+9,____________________ Is an electronic device for temporary storage of electrical energy.,Capacitor
+10,______________________ can be created by accelerating charges and moving charges.,Electromagnetic waves
+11,'n' is the index of refraction of a transparent medium.,True
+12,"""F"" stands for Electric Force ?",False
+13,"""R"" stands for ?",Resistance
+14,"""V"" symbol is for ?",Voltage
+15,3.00 x 10 raise to 8 m/s is the speed of light in vacuum.,True
+16,400-700 nm is the wavelength of ultraviolet .,False
+17,A circuit can't be function without capacitor.,False
+18,"A circuit can""t function without a resistors ?",False
+19,A circuit cannot be function without a source or power.,True
+20,A circuit cannot functions without a source.,True
+21,A circuit has always a Ground.,True
+22,A close conducting Path through which charge flows.,Circui
+23,A function of space whose value at each point is a vector quantity called?,Vector Field
+24,A law stating that Electric current is Proportional to voltage and inversely Proportional to resistance.,Ohm's Law
+25,A perfect secret has composed of resistors and no source.,False
+26,A Resistor is a poor conductor ?,yes
+27,A voltmeter is connected Series in a resistors to measure voltage.,False
+28,A voltmeter is consist of a box with two wires a positive and a negative.,True
+29,Ammeter and Voltmeter are considered device used in a circuit.,True
+30,Ammeter and Voltmeter that measures charges.,False
+31,Ammeter device used to measure Current.,True
+32,Ammeter is connected in parallel with a device to measure it's current.,False
+33,Ammeter is connected in series with a device to measure it's voltage.,False
+34,Ammeter is connected parallel in a device.,True
+35,Ammeter is used to measure Current.,True
+36,Ammeter is used to measure Voltage.,False
+37,Ampere is the unit of Voltage in a certain current.,False
+38,An object can have positive and Negative charge.,True
+39,Capacitor is a device used to store an Electric charge.,True
+40,Capacitor is also called Positive charges.,False
+41,Capacitor is an electronic circuit device for temporary storage of electrical energy.,True
+42,Capacitor is for Ohm and Resistance is for Capacitance.,False
+43,Capacitor is store energy between the spaces of the plates and they energy is used to generate high form of electric current.,True
+44,Capacitors in parallel is the same as Resistors in series.,True
+45,Capacitors is the opposition to current flow in an electrical circuit.,False
+46,Circuit is a closed conducting path through with charge flow.,True
+47,"Circuits consists of circuit element and wires, the wires are called conductors.",True
+48,"Circuits consists of circuit element and wires, the wires are called?",Conductors
+49,Circuits is a open conducting path through charge flows.,False
+50,"Circuits is consists of circuit elements and wires, the wires is called _________ ?",Conductors
+51,Closed loop is also Called a circuit.,True
+52,Conductors consists of a ___________ amount of positive charge.,huge
+53,Conductors is a material that permits an _____________ to flow easily.,electric current
+54,Conductors is a material that permits an electric current to flow easily.,True
+55,Conductors is made of two close conductors that are separated by a dieletric material.,False
+56,Coulomb's Law stating that charges repel and opposite charges attract.,True
+57,Current : AMPERE ; Resistance : ___________.,OHM
+58,Current is measured in ?,Ampere
+59,Current is measured in Amperes.,True
+60,"Current is not the flow of charges, it is the rate of flow of charges.",True
+61,Electric charge is composed of ?,"Positive , Negative"
+62,Electrowaves is an example of Conductors.,False
+63,EMF is also called a power source.,True
+64,EMF stands for ?,Electromotive Force
+65,EMF stands for electromotive force,True
+66,Energy is a rate at which work is done and it is the rate at which Energy transferred.,False
+67,FIND C TOTAL IF c1=5 AND c2=10. (CONNECTED PARALLEL),15
+68,Find I if P=6 and V=1.,6
+69,"Find I if R= 3 ohms, V= 6 volts.",2 Amperes
+70,"Find I if V= 3, and R=4.",0.75
+71,"Find I if V=5 volts, R = 2.",2.5
+72,Find P if I= 3A and V=3V.,9
+73,Find P if I=1 and V= 2.,2
+74,Find P if I=6A and V=3V.,18Watts
+75,"Find R if I= 16, V=4.",0.25
+76,"Find R if V= 4 volts, I= 10 amperes.",0.4
+77,"Find R if V= 6 volts, I= 1 ampere.",6
+78,Find R if V=10 and I=2.,5ohm
+79,"Find R is V=10, I=0.5.",20
+80,"Find R total if the resistors are connected in series. Given 4 ohm,9 ohm, 10 ohm, 12 ohm, 16 ohm ,15 ohm.",66
+81,"Find R total if the resistors are in Parallel. Given : 2 ohm, 3 ohm, 4 ohm.",0.923
+82,"Find R total if the resistors connected in a series, The value of R1= 6, R2= 3, R4=5, R5=5, R6=6.",25
+83,"Find the total capacitance if they are connected in parallel (C1=3 , C2 =5 , C3=6.",14
+84,"Find the total capacitance,which they are in parallel connections the values are C1=1, C2=2, C3=3.",6
+85,"Find the total resistor if R1, R2, R3 and R4 is connected in series and there value is 2 ,4 ,6 ,8 respectively.",20
+86,Find V if I=2 and P=22,11
+87,Find V if I=3 and R=5.,15
+88,Find V if I=4 and R= 3,12
+89,Find V if I=5 and P=4.,0.8
+90,Find V if P=3 and I=2.,1.5
+91,"Find V if R= 3 ohm, and I=6 ampere.",18
+92,"Find V is R=3, and I= 2.",6
+93,Frequency can be measured through the used of Voltmeter.,False
+94,Gamma rays has the frequency of < 50 000 000 THz.,False
+95,If the current flow is counter clockwise the current is considered __________ ?,negativ
+96,If the flow of current is downward the current is considered __________________.,negative
+97,"If the power is constant, is simply the Formula of it is ?",E = Pt
+98,"In circuits, Charge goes around in loops.",True
+99,"Infrared is a kind of Light,",True
+100,Insulator is used to store energy and electric charge.,False
+101,Insulators is used to store energy and electric charge.,False
+102,Is a device connected in parallel with a device to measure it's current.,Ammeter
+103,Is a device connected in parallel with a device to measure it's voltage.,Voltmeter
+104,Is a device used for measuring the potential difference between 2 different points in space.,Voltmeter
+105,It is a measure of resistance of a given size of specific material to electrical conduction.,Resistivity
+106,It is also called a higher potential terminal.,Positive
+107,it is an electronic circuit device for temporary storage of electrical energy.,Capacitors
+108,It is the material that permits an electric current to flow,Conductors
+109,It is the opposition to current flow in an electric circuit.,Resistance
+110,It is the rate of flow of charges.,Current
+111,KCL : CURRENT ; KVL : VOLTAGE.,True
+112,KCL is also called 2nd Law of motion ?,FALSE
+113,KCL is for Voltage while KVL is for current.,False
+114,KCL stands for kirchhoff's current law.,True
+115,KCl stands for?,Kirchhoff's Current Law
+116,"KCL states that,in a closed circuit the entering current at node is equal to the current leaving at the node.",True
+117,Kirchhoff's Current Law is also Known as 2nd Law of motion.,False
+118,KVL stands for ?,Kirchhoff's Voltage Law
+119,KVL stands for kirchhoff's voltage lane.,False
+120,KVL states that the algebraic sum of the voltage at node in a closed circuit s equal to zero.,True
+121,KVL states that the total ____________ around a closed loop must be Zero.,Voltage
+122,Light cannot be travel if there is no medium.,True
+123,Light is faster than Sound.,True
+124,Magnetic Field is an invisible entity which exists in the region around a charged particle.,False
+125,Microwaves is an example of Light.,True
+126,n is the Index of refraction of a transparent medum.,True
+127,Ohm's Law is a law stating that electric current is proportional to voltage and inversely proportional to resistance.,True
+128,OHM's Law stating that electric current is proportional to voltage and inversely proportional to ___________.,Resistance
+129,Paperis one of the example of conductors.,False
+130,Positive : Negative ; Conductors : Rubber,False
+131,Positive and negative charge is very important in a circuit.,True
+132,Positive charge can be found also in a Proton.,True
+133,Power is a rate at which work is done and it is the rate at which energy transferred.,TRUE
+134,Power is equal to current multiply by_________________ ?,Voltage
+135,Power is measured through the used of a device called Circuit breaker.,False
+136,R represents rate of change.,False
+137,Radio is an example of a light.,False
+138,Radio waves is a kind of light.,True
+139,Radiowaves is not an example of light.,False
+140,Radiowaves is one of the example of Electromagnetic waves.,True
+141,Resistance is measured in Ohm's.,True
+142,Resistance is the unit of Resistors.,False
+143,Resistivity is a measure of the resistance of a given size of a specific material to electrical conduction.,True
+144,Resistors : _________ ; Capacitors : Capacitance.,Resistance
+145,Resistors are measured in ?,Resistance
+146,Source Charge a charged particle that is causing the electric field to exist.,True
+147,States that in a closed circuit that the entering current at node is equal to the current leaving at the node is?,KCL
+148,States that the algebraic sum of the voltage at node in a closed circuit is equal to zero.,Ohm's
+149,Steel is one of the example of a good _________ ?,Conductors
+150,Symbol 'A' stands for Length of ammeter ?,FALSE
+151,Symbol 'C' stands for Circuits ?,False
+152,Symbol 'V' stands for current circuit.,False
+153,Symbol 'V' stands for EMF also ?,True
+154,Symbol C stands for Circuit.,False
+155,Symbol V can be used also as a substitute of EMF symbol.,True
+156,"The ""n"" symbol is for the index of refraction of a transparent medium.",True
+157,"The ""P"" symbol stands for ?",Power
+158,The 2 kinds of charge are ?,"Positive, Negative"
+159,The ammeter and a voltmeter is very useful in a circuit.,True
+160,The Ammeter is a device used to measure ?,Current
+161,The best way to Survive the Calculus based- Physics 2 subject is /are ?,all of the above
+162,The charge flow rate is called ?,Electric current
+163,The charge flow rate is called Electric current.,True
+164,The charge particle causing the electric field to exist is called?,Source charg
+165,The charged particle causing the electric field to exist is called the Electric force,False
+166,The circuit can be function without wires.,False
+167,The circuit cannot function if there is no ________________ ?,Power source
+168,The current can passed through the used of resistors.,True
+169,The example of a good Conductor is Aluminum.,True
+170,The following are examples of Conductors EXCEPT ONE.,Rubber
+171,"The following are examples of Conductors, EXCEPT ONE.",Papers
+172,The following are examples of light EXCEPT ONE.,Radio
+173,"The following are kinds of Charge, EXCEPT ONE.",Electrons
+174,The following are medium of light EXCEPT ONE.,Seeds
+175,The following are not Example of Conductors EXCEPT ONE.,Metal
+176,"The formula of OHM's LAW is composed of Voltage, Current and Resistance.",True
+177,The frequency of Infrared is ?,750GHz-430 GHz
+178,The frequency of Microwaves is ?,300-750000 MHz
+179,The frequency of Ultraviolet is around 750-6000 THz.,True
+180,The Frequency of ultraviolet rays is ?,750-6000 THz
+181,The index of refraction of air is 100.,False
+182,The index of refraction of light in a glass is ?,1.5
+183,The index of refraction of light in air is ?,1.00
+184,The index of refraction of light in VACUUM is ?,1
+185,The index of refraction of light in water is ?,1.33
+186,The index of refraction of vacuum is ?,1
+187,The index of refraction of vacuum is 2.,False
+188,The index of refraction of water is ?,1.33
+189,The index of refraction of water is 1.33.,True
+190,The index of refraction of Water is 1.5 ?,False
+191,The most common used for capacitors is ?,Energy storage
+192,The most common used for capacitors is energy storage.,True
+193,"The negative sign can be found also in an electron,",True
+194,The phenomenon of charging by rubbing is called ?,Triboelectrification
+195,"The positive ad negative signs on the resistors can be neglected and it doesn't affect the result,",False
+196,The positive and Negative charges can be _____________?,Attract
+197,The positive and Negative charges cannot attract each other,False
+198,The positive charge has the sign ( - ).,False
+199,The power source is also called EMf.,True
+200,The purpose of capacitor in a circuit is to charges and energy.,True
+201,"The resistance R, in the expression V = IR is a ____________.",Constant
+202,The some example of a good Conductor is a Copper.,True
+203,The speed of light in a vacuum is ?,3.00 x 10 ^ 8 m/s
+204,"The symbol ""c"" stands for ?",speed of Light in vacuum
+205,"the symbol ""C"" stands for Charges",False
+206,"The symbol ""f"" stands for Frequency.",True
+207,"The symbol ""k"" in Coulomb's Law is called ?",Coulomb constant
+208,"The symbol ""k"" stands for Kirchoff's.",False
+209,"The symbol ""q1"" stands for charge of particle 1.",True
+210,"The symbol ""r"" stands for Distance between the two particles.",True
+211,"The symbol ""v"" stands for ?",speed of light in a transparent medium
+212,"The symbol ""V"" stands for Voltage.",True
+213,The symbol are usually use for Capacitors.,False
+214,"The symbol for a Source is ""S"".",False
+215,The symbol R stands For ?,Resistance
+216,The unit for resistance is OHM.,True
+217,The unit JOULEs is also called OHM.,False
+218,The unit of Ampere is current.,False
+219,The unit of Capacitor is called ?,Capacitance
+220,The unit of Capacitor is Capacitance.,True
+221,The unit of current is always volts.,False
+222,The unit of current is OHM.,False
+223,The Unit of current is What ?,Ampere
+224,The unit of POWER is __________?,all of the above
+225,The unit of Power is ?,Watt
+226,The unit of POWER is WATT.,True
+227,The unit of Power is WATT(W).,True
+228,The unit of Power is WATTs.,True
+229,The unit of resistance is Ohm's.,True
+230,The unit of RESISTANCE IS RESISTOR.,False
+231,The unit of Resistance is what ?,Ohm
+232,The unit of Voltage is ?,Volts
+233,The unit of Voltmeter is Ammeter.,False
+234,The unit of Volts is called Voltmeter.,False
+235,The unit of Volts is Voltage.,False
+236,The wavelength of Radiowaves is ?,>1m
+237,The wavelength of Ultraviolet is ?,5-400m
+238,The wavelength of X rays are ?,.006-5 nm
+239,The wavelength of X-rays is around 400-700mm.,False
+240,The wires of ammeter is both Positive respectively.,False
+241,To get the total Capacitance of a circuit we used a device called capacitor.,False
+242,V is the speed of light in the transparent medium.,True
+243,V stands for voltage.,True
+244,Vector fieldis a function of space whose value at each point is a vector quantity.,True
+245,Voltage is measured through the used of _______________?,Voltmeter
+246,Voltmeter : Voltage ; Ammeter : ____________ ?,Current
+247,Voltmeter device used to measure Voltage,True
+248,Voltmeter is a device used for measuring the potential difference between 2 different points in space.,True
+249,Voltmeter is a device used to measure ?,Voltage
+250,Voltmeter is connected in parallel with a device to measure it's voltage.,True
+251,Voltmeter is measured through the used of Volts.,False
+252,Volts is the unit for current.,False
+253,Volts is the unit of power.,False
+254,"We used the symbol ""EF"" to represent electric field.",False
+255,"We used the symbol ""q"" for the charge victim.",True
+256,Wire ends in a metal-tipped wand called circuits.,False
+257,Wires are good conductors of Electric charges.,True
+258,X-rays are not kind of light instead it is a kind of Device.,False

@@ -1,0 +1,2582 @@
+[
+    {
+        "questionText":  "_____________ has a positive charge.",
+        "answerText":  "Proton",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "_____________ is the maintainer of a constant potential difference.",
+        "answerText":  "EMF",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "_______________ has a zero charge.",
+        "answerText":  "Neutron",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "________________ is a wire that has a metal tipped wand.",
+        "answerText":  "Probe",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "_________________ is a rate at which work is done and it is the rate at which energy is transferred.",
+        "answerText":  "Power",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "___________________ has a Negative charge.",
+        "answerText":  "Negative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "___________________ IS ALSO CALLED A LOWER POTENTIAL TERMINAL.",
+        "answerText":  "NEGATIVE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "___________________ may also referred to as the specific electrical resistance.",
+        "answerText":  "Resistivity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "____________________ Is an electronic device for temporary storage of electrical energy.",
+        "answerText":  "Capacitor",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "______________________ can be created by accelerating charges and moving charges.",
+        "answerText":  "Electromagnetic waves",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "\u0027n\u0027 is the index of refraction of a transparent medium.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "\"F\" stands for Electric Force ?",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "\"R\" stands for ?",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "\"V\" symbol is for ?",
+        "answerText":  "Voltage",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "3.00 x 10 raise to 8 m/s is the speed of light in vacuum.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "400-700 nm is the wavelength of ultraviolet .",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A circuit can\u0027t be function without capacitor.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A circuit can\"t function without a resistors ?",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A circuit cannot be function without a source or power.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A circuit cannot functions without a source.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A circuit has always a Ground.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A close conducting Path through which charge flows.",
+        "answerText":  "Circui",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A function of space whose value at each point is a vector quantity called?",
+        "answerText":  "Vector Field",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A law stating that Electric current is Proportional to voltage and inversely Proportional to resistance.",
+        "answerText":  "Ohm\u0027s Law",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A perfect secret has composed of resistors and no source.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A Resistor is a poor conductor ?",
+        "answerText":  "yes",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A voltmeter is connected Series in a resistors to measure voltage.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "A voltmeter is consist of a box with two wires a positive and a negative.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter and Voltmeter are considered device used in a circuit.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter and Voltmeter that measures charges.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter device used to measure Current.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter is connected in parallel with a device to measure it\u0027s current.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter is connected in series with a device to measure it\u0027s voltage.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter is connected parallel in a device.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter is used to measure Current.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ammeter is used to measure Voltage.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ampere is the unit of Voltage in a certain current.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "An object can have positive and Negative charge.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitor is a device used to store an Electric charge.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitor is also called Positive charges.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitor is an electronic circuit device for temporary storage of electrical energy.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitor is for Ohm and Resistance is for Capacitance.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitor is store energy between the spaces of the plates and they energy is used to generate high form of electric current.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitors in parallel is the same as Resistors in series.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Capacitors is the opposition to current flow in an electrical circuit.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Circuit is a closed conducting path through with charge flow.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Circuits consists of circuit element and wires, the wires are called conductors.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Circuits consists of circuit element and wires, the wires are called?",
+        "answerText":  "Conductors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Circuits is a open conducting path through charge flows.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Circuits is consists of circuit elements and wires, the wires is called _________ ?",
+        "answerText":  "Conductors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Closed loop is also Called a circuit.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Conductors consists of a ___________ amount of positive charge.",
+        "answerText":  "huge",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Conductors is a material that permits an _____________ to flow easily.",
+        "answerText":  "electric current",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Conductors is a material that permits an electric current to flow easily.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Conductors is made of two close conductors that are separated by a dieletric material.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Coulomb\u0027s Law stating that charges repel and opposite charges attract.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Current : AMPERE ; Resistance : ___________.",
+        "answerText":  "OHM",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Current is measured in ?",
+        "answerText":  "Ampere",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Current is measured in Amperes.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Current is not the flow of charges, it is the rate of flow of charges.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Electric charge is composed of ?",
+        "answerText":  "Positive , Negative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Electrowaves is an example of Conductors.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "EMF is also called a power source.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "EMF stands for ?",
+        "answerText":  "Electromotive Force",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "EMF stands for electromotive force",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Energy is a rate at which work is done and it is the rate at which Energy transferred.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "FIND C TOTAL IF c1=5 AND c2=10. (CONNECTED PARALLEL)",
+        "answerText":  "15",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find I if P=6 and V=1.",
+        "answerText":  "6",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find I if R= 3 ohms, V= 6 volts.",
+        "answerText":  "2 Amperes",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find I if V= 3, and R=4.",
+        "answerText":  "0.75",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find I if V=5 volts, R = 2.",
+        "answerText":  "2.5",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find P if I= 3A and V=3V.",
+        "answerText":  "9",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find P if I=1 and V= 2.",
+        "answerText":  "2",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find P if I=6A and V=3V.",
+        "answerText":  "18Watts",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R if I= 16, V=4.",
+        "answerText":  "0.25",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R if V= 4 volts, I= 10 amperes.",
+        "answerText":  "0.4",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R if V= 6 volts, I= 1 ampere.",
+        "answerText":  "6",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R if V=10 and I=2.",
+        "answerText":  "5ohm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R is V=10, I=0.5.",
+        "answerText":  "20",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R total if the resistors are connected in series. Given 4 ohm,9 ohm, 10 ohm, 12 ohm, 16 ohm ,15 ohm.",
+        "answerText":  "66",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R total if the resistors are in Parallel. Given : 2 ohm, 3 ohm, 4 ohm.",
+        "answerText":  "0.923",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find R total if the resistors connected in a series, The value of R1= 6, R2= 3, R4=5, R5=5, R6=6.",
+        "answerText":  "25",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find the total capacitance if they are connected in parallel (C1=3 , C2 =5 , C3=6.",
+        "answerText":  "14",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find the total capacitance,which they are in parallel connections the values are C1=1, C2=2, C3=3.",
+        "answerText":  "6",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find the total resistor if R1, R2, R3 and R4 is connected in series and there value is 2 ,4 ,6 ,8 respectively.",
+        "answerText":  "20",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if I=2 and P=22",
+        "answerText":  "11",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if I=3 and R=5.",
+        "answerText":  "15",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if I=4 and R= 3",
+        "answerText":  "12",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if I=5 and P=4.",
+        "answerText":  "0.8",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if P=3 and I=2.",
+        "answerText":  "1.5",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V if R= 3 ohm, and I=6 ampere.",
+        "answerText":  "18",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Find V is R=3, and I= 2.",
+        "answerText":  "6",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Frequency can be measured through the used of Voltmeter.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Gamma rays has the frequency of \u003c 50 000 000 THz.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the current flow is counter clockwise the current is considered __________ ?",
+        "answerText":  "negativ",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the flow of current is downward the current is considered __________________.",
+        "answerText":  "negative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "If the power is constant, is simply the Formula of it is ?",
+        "answerText":  "E = Pt",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "In circuits, Charge goes around in loops.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Infrared is a kind of Light,",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Insulator is used to store energy and electric charge.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Insulators is used to store energy and electric charge.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is a device connected in parallel with a device to measure it\u0027s current.",
+        "answerText":  "Ammeter",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is a device connected in parallel with a device to measure it\u0027s voltage.",
+        "answerText":  "Voltmeter",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Is a device used for measuring the potential difference between 2 different points in space.",
+        "answerText":  "Voltmeter",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is a measure of resistance of a given size of specific material to electrical conduction.",
+        "answerText":  "Resistivity",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is also called a higher potential terminal.",
+        "answerText":  "Positive",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "it is an electronic circuit device for temporary storage of electrical energy.",
+        "answerText":  "Capacitors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is the material that permits an electric current to flow",
+        "answerText":  "Conductors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is the opposition to current flow in an electric circuit.",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "It is the rate of flow of charges.",
+        "answerText":  "Current",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCL : CURRENT ; KVL : VOLTAGE.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCL is also called 2nd Law of motion ?",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCL is for Voltage while KVL is for current.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCL stands for kirchhoff\u0027s current law.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCl stands for?",
+        "answerText":  "Kirchhoff\u0027s Current Law",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KCL states that,in a closed circuit the entering current at node is equal to the current leaving at the node.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Kirchhoff\u0027s Current Law is also Known as 2nd Law of motion.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KVL stands for ?",
+        "answerText":  "Kirchhoff\u0027s Voltage Law",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KVL stands for kirchhoff\u0027s voltage lane.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KVL states that the algebraic sum of the voltage at node in a closed circuit s equal to zero.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "KVL states that the total ____________ around a closed loop must be Zero.",
+        "answerText":  "Voltage",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Light cannot be travel if there is no medium.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Light is faster than Sound.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Magnetic Field is an invisible entity which exists in the region around a charged particle.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Microwaves is an example of Light.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "n is the Index of refraction of a transparent medum.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Ohm\u0027s Law is a law stating that electric current is proportional to voltage and inversely proportional to resistance.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "OHM\u0027s Law stating that electric current is proportional to voltage and inversely proportional to ___________.",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Paperis one of the example of conductors.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Positive : Negative ; Conductors : Rubber",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Positive and negative charge is very important in a circuit.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Positive charge can be found also in a Proton.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Power is a rate at which work is done and it is the rate at which energy transferred.",
+        "answerText":  "TRUE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Power is equal to current multiply by_________________ ?",
+        "answerText":  "Voltage",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Power is measured through the used of a device called Circuit breaker.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "R represents rate of change.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Radio is an example of a light.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Radio waves is a kind of light.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Radiowaves is not an example of light.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Radiowaves is one of the example of Electromagnetic waves.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resistance is measured in Ohm\u0027s.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resistance is the unit of Resistors.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resistivity is a measure of the resistance of a given size of a specific material to electrical conduction.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resistors : _________ ; Capacitors : Capacitance.",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Resistors are measured in ?",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Source Charge a charged particle that is causing the electric field to exist.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "States that in a closed circuit that the entering current at node is equal to the current leaving at the node is?",
+        "answerText":  "KCL",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "States that the algebraic sum of the voltage at node in a closed circuit is equal to zero.",
+        "answerText":  "Ohm\u0027s",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Steel is one of the example of a good _________ ?",
+        "answerText":  "Conductors",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol \u0027A\u0027 stands for Length of ammeter ?",
+        "answerText":  "FALSE",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol \u0027C\u0027 stands for Circuits ?",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol \u0027V\u0027 stands for current circuit.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol \u0027V\u0027 stands for EMF also ?",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol C stands for Circuit.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Symbol V can be used also as a substitute of EMF symbol.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The \"n\" symbol is for the index of refraction of a transparent medium.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The \"P\" symbol stands for ?",
+        "answerText":  "Power",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The 2 kinds of charge are ?",
+        "answerText":  "Positive, Negative",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The ammeter and a voltmeter is very useful in a circuit.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Ammeter is a device used to measure ?",
+        "answerText":  "Current",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The best way to Survive the Calculus based- Physics 2 subject is /are ?",
+        "answerText":  "all of the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The charge flow rate is called ?",
+        "answerText":  "Electric current",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The charge flow rate is called Electric current.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The charge particle causing the electric field to exist is called?",
+        "answerText":  "Source charg",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The charged particle causing the electric field to exist is called the Electric force",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The circuit can be function without wires.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The circuit cannot function if there is no ________________ ?",
+        "answerText":  "Power source",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The current can passed through the used of resistors.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The example of a good Conductor is Aluminum.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are examples of Conductors EXCEPT ONE.",
+        "answerText":  "Rubber",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are examples of Conductors, EXCEPT ONE.",
+        "answerText":  "Papers",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are examples of light EXCEPT ONE.",
+        "answerText":  "Radio",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are kinds of Charge, EXCEPT ONE.",
+        "answerText":  "Electrons",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are medium of light EXCEPT ONE.",
+        "answerText":  "Seeds",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The following are not Example of Conductors EXCEPT ONE.",
+        "answerText":  "Metal",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The formula of OHM\u0027s LAW is composed of Voltage, Current and Resistance.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The frequency of Infrared is ?",
+        "answerText":  "750GHz-430 GHz",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The frequency of Microwaves is ?",
+        "answerText":  "300-750000 MHz",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The frequency of Ultraviolet is around 750-6000 THz.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Frequency of ultraviolet rays is ?",
+        "answerText":  "750-6000 THz",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of air is 100.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of light in a glass is ?",
+        "answerText":  "1.5",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of light in air is ?",
+        "answerText":  "1.00",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of light in VACUUM is ?",
+        "answerText":  "1",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of light in water is ?",
+        "answerText":  "1.33",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of vacuum is ?",
+        "answerText":  "1",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of vacuum is 2.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of water is ?",
+        "answerText":  "1.33",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of water is 1.33.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The index of refraction of Water is 1.5 ?",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The most common used for capacitors is ?",
+        "answerText":  "Energy storage",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The most common used for capacitors is energy storage.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The negative sign can be found also in an electron,",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The phenomenon of charging by rubbing is called ?",
+        "answerText":  "Triboelectrification",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The positive ad negative signs on the resistors can be neglected and it doesn\u0027t affect the result,",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The positive and Negative charges can be _____________?",
+        "answerText":  "Attract",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The positive and Negative charges cannot attract each other",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The positive charge has the sign ( - ).",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The power source is also called EMf.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The purpose of capacitor in a circuit is to charges and energy.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The resistance R, in the expression V = IR is a ____________.",
+        "answerText":  "Constant",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The some example of a good Conductor is a Copper.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The speed of light in a vacuum is ?",
+        "answerText":  "3.00 x 10 ^ 8 m/s",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"c\" stands for ?",
+        "answerText":  "speed of Light in vacuum",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "the symbol \"C\" stands for Charges",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"f\" stands for Frequency.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"k\" in Coulomb\u0027s Law is called ?",
+        "answerText":  "Coulomb constant",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"k\" stands for Kirchoff\u0027s.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"q1\" stands for charge of particle 1.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"r\" stands for Distance between the two particles.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"v\" stands for ?",
+        "answerText":  "speed of light in a transparent medium",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol \"V\" stands for Voltage.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol are usually use for Capacitors.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol for a Source is \"S\".",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The symbol R stands For ?",
+        "answerText":  "Resistance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit for resistance is OHM.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit JOULEs is also called OHM.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Ampere is current.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Capacitor is called ?",
+        "answerText":  "Capacitance",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Capacitor is Capacitance.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of current is always volts.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of current is OHM.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The Unit of current is What ?",
+        "answerText":  "Ampere",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of POWER is __________?",
+        "answerText":  "all of the above",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Power is ?",
+        "answerText":  "Watt",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of POWER is WATT.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Power is WATT(W).",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Power is WATTs.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of resistance is Ohm\u0027s.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of RESISTANCE IS RESISTOR.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Resistance is what ?",
+        "answerText":  "Ohm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Voltage is ?",
+        "answerText":  "Volts",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Voltmeter is Ammeter.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Volts is called Voltmeter.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The unit of Volts is Voltage.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The wavelength of Radiowaves is ?",
+        "answerText":  "\u003e1m",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The wavelength of Ultraviolet is ?",
+        "answerText":  "5-400m",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The wavelength of X rays are ?",
+        "answerText":  ".006-5 nm",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The wavelength of X-rays is around 400-700mm.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "The wires of ammeter is both Positive respectively.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "To get the total Capacitance of a circuit we used a device called capacitor.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "V is the speed of light in the transparent medium.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "V stands for voltage.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Vector fieldis a function of space whose value at each point is a vector quantity.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltage is measured through the used of _______________?",
+        "answerText":  "Voltmeter",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter : Voltage ; Ammeter : ____________ ?",
+        "answerText":  "Current",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter device used to measure Voltage",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter is a device used for measuring the potential difference between 2 different points in space.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter is a device used to measure ?",
+        "answerText":  "Voltage",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter is connected in parallel with a device to measure it\u0027s voltage.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Voltmeter is measured through the used of Volts.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Volts is the unit for current.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Volts is the unit of power.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "We used the symbol \"EF\" to represent electric field.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "We used the symbol \"q\" for the charge victim.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Wire ends in a metal-tipped wand called circuits.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "Wires are good conductors of Electric charges.",
+        "answerText":  "True",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    },
+    {
+        "questionText":  "X-rays are not kind of light instead it is a kind of Device.",
+        "answerText":  "False",
+        "shortExplanation":  null,
+        "sourceUrl":  null,
+        "keywords":  [
+
+                     ],
+        "isActive":  true
+    }
+]

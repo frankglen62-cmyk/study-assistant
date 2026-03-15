@@ -1,0 +1,94 @@
+﻿No.,Question,Correct Answer
+1,_______ : assuring that authorized users have continued access to information and resources,Availability
+2,_______ is a weakness or fault in a system that exposes information to attack.,Vulnerability
+3,________ :assuring that information and programs are changed only in a specified and authorized manner.,Integrity
+4,"_________ are the mechanisms and techniques—administrative, procedural, and technical—that are instituted to implement a security policy",Management controls
+5,___________________ or security ratings are the cyber equivalent of a credit score.,Cybersecurity ratings
+6,__________:controlling who gets to read information,Confidentiality
+7,20 different risk markers grouped under five main categories,"Security, Medical, Political, Environmental and Infrastructural Risks"
+8,"A ______ is a concise statement, by those responsible for a system (e.g., senior management), of information values, protection responsibilities, and organizational commitment.",security policy
+9,"A ______ that must be restored within an hour after disruption represents, and requires, a more demanding set of policies and controls than does a similar system that need not be restored for two to three days.",system
+10,a data endowed with relevance and purpose.,Information
+11,A major conclusion of this report is that the lack of a clear_____of security policy for general computing is a major impediment to improved security in computer systems.,articulation
+12,"a variety of ongoing measures taken to reduce the likelihood and severity of accidental and intentional alteration, destruction, misappropriation, misuse, misconfiguration, unauthorized distribution, and unavailability of an organization’s logical and physical assets, as the result of action or inaction by insiders and known outsiders, such as business partners.”",Personnel security
+13,"Accepted facts, principles, or rules of thumb that are useful for specific domains.",Knowledge
+14,"According to _____ , IA can be thought of as protecting information at three distinct levels.",Blyth and Kovacich
+15,According to _______ IA has four major categories: physical security personnel security IT security operational security.,Debra Herrmann
+16,"According to ______taxonomy of information security, a computing environment is made up of five continuously interacting components",Raggad’s
+17,Always closely guard their personal effects when it comes to identity theft.,True
+18,"An _____ must have administrative procedures in place to bring peculiar actions to the attention of someone who can legitimately inquire into the appropriateness of such actions, and that person must actually make the inquiry.",organization
+19,"An effective ________ controls is needed to cover all aspects of information security, including physical security, classification of information, the means of recovering from breaches of security, and above all training to instill awareness and acceptance by people.",program of management
+20,"As viruses have escalated from a hypothetical to a commonplace threat, it has become necessary to rethink such policies in regard to methods of distribution and acquisition of",software
+21,assurance that information is not disclosed to unauthorized persons.,Confidentiality
+22,"assurance that the sender is provided with proof of a data delivery and recipient is provided with proof of the sender’s identity, so that neither can later deny having processed the data.",Non-repudiation
+23,"Because ratings are easy to understand, they are a useful mechanism for ____________________ and vendor risk to a non-technical audience in the C-suite, boardroom, or with the vendor in question.",communicating internal
+24,Both individuals need to know what data is most critical to the organization so they can focus on placing the right ____________________ and monitoring controls on that data.,cyber risk management
+25,"Business partners and investors are increasingly aware of the importance of this topic, and companies are asked regularly about their effectiveness in securing data and managing both ___________________.",physical and cyber risk
+26,Carrying items makes you more vulnerable targets for criminals.,True
+27,Computer security and cybersecurity are both children of ______________________.,information security
+28,"Computer security and cybersecurity are completely ___________________, and require digital computer technology from 1946’s ENIAC to now.",interchangeable terms
+29,"Computers are ______ entities, and programs can be changed in a twinkling, so that past happiness is no predictor of future bliss.",active
+30,Criminals are constantly surveying the environment for an opportunity to commit crimes.,True
+31,"Cybersecurity professionals traditionally understand the technology, firewalls, and intrusion protection systems needed, but weren’t necessarily brought up in the ___________________.",data evaluation business
+32,Data and data processing activities in physical space.,physical
+33,Disruptions in their day-to-day business: Time is money.,True
+34,"Early disclosure may jeopardize______ advantage, but disclosure just before the intended announcement may be insignificant.",competitive
+35,"Ensuring proper HTTPS implementation for an ecommerce website or mobile app falls under cybersecurity and computer security, so it’s ___________________.",information security
+36,"Feeling confident about their organization's security level: When information security community members participated in the Cybersecurity Trends Report, they were asked how positive they felt about their security stance.",True
+37,Fifth Reason why investing in information security is significant,Regulatory compliance's
+38,First Reason why investing in information security is significant,Rising cost of breaches
+39,"For a ________ , the chief concern may be ensuring the confidentiality of classified information, whereas a funds transfer system may require strong integrity controls",national defense system
+40,for assets are one that has known threats,hostile environment
+41,Fourth Reason why investing in information security is significant,Funded hackers and wide availability of hacking tool
+42,If you feel vulnerable do not ask Police or Security to escort you to your car,False
+43,"If you have an intuitive feeling something is wrong, trust your instincts.",True
+44,"If your data is stored physically or digitally, you need to be sure you have all the right ____________________ in place to prevent unauthorized individuals from gaining access.",physical access controls
+45,"In any particular circumstance, some threats are more probable than others, and a______ must assess the threats, assign a level of concern to each, and state a policy in terms of which threats are to be resisted.",prudent policy setter
+46,"In some scenarios, an __________________ would help a cybersecurity professional prioritize data protection — and then the cybersecurity professional would determine the best course of action for the data protection.",information security professional
+47,Info security is concerned with making sure data in any form is kept secure and is a bit broader than,cybersecurity
+48,Information and data manipulation abilities in cyberspace.,information infrastructure
+49,Information is one of the most significant ______ resources.,non-substantial
+50,"involves the implementation of standard operational security procedures that define the nature and frequency of the interaction between users, systems, and system resources, the purpose.",Operational security
+51,"is a collection of computing environments connected by one or more internal networks under the control of a single authority and security policy, including personnel and physical security.",enclave
+52,"is a nonhostile environment that may be protected from external hostile elements by physical, personnel, and procedural countermeasures.",Benign environment
+53,is a requirement whose purpose is to keep sensitive information from being disclosed to unauthorized recipients.,Confidentiality
+54,"is all about protecting data that is found in electronic form (such as computers, servers, networks, mobile devices, etc.) from being compromised or attacked.",Cybersecurity
+55,is another way of saying “data security.”,Information security
+56,"is the study of how to protect your information assets from destruction, degradation, manipulation and exploitation. But also, how to recover should any of those happen.",Information Assurance
+57,"IT is the ___________________for practical purposes, largely for industry (mainframes, supercomputers, datacentres, servers, PCs and mobile devices as endpoints for worker interaction) and consumers (PCs, mobile devices, IoT devices, and video game console endpoints for enduser lifestyles.)",application of computer science
+58,"IT security can probably be used interchangeably with cybersecurity, computer security and information security if ___________________.",it pertains to business
+59,Keeping information___________________ electronic computers (such as ancient cryptography) to this very day falls under the banner of information security.,secure for the history of data predating
+60,Knowledge and understanding in human decision space.,perceptual
+61,Layer describes the notion that data ought to be secured while in motion.,data in motion
+62,"Layer describes the notion that the physical access to any system, server, computer, data center, or another physical object storing confidential information has to be constrained to business ought-to-know.",Physical Access
+63,may prevent people from doing unauthorized things but cannot prevent them from doing things that their job functions entitle them to do.,Technical measure
+64,Method of reducing criminal opportunity.,"Be alert and aware, Display confidence, Keep your hands free, Trust your instincts, Ask for help, Closely Guard your personal Effects"
+65,"One can implement that policy by taking specific actions guided by management control principles and utilizing specific security standards, procedures, and",mechanisms
+66,"Over the last decade, we’ve seen a _________________ between cybersecurity and information security, as these previously siloed positions have come together.",fusion
+67,protection against unauthorized modification or destruction of information,Integrity
+68,Raw facts with a known coding system,Data
+69,Raw facts with an unknown coding system,Noise
+70,"refers to the protection of hardware, software, and data against physical threats to reduce or prevent disruptions to operations and services and loss of assets.”.",Physical security
+71,Second Reason why investing in information security is significant,Increasingly sophisticated attacker
+72,"security measures to establish the validity of a transmission, message, or originator.",Authentication
+73,"sing this high-level, objectively-derived data can simplify the ______________________ around risk.",conversation
+74,"Some ____are explicitly concerned with protecting information and information systems, but the concept of management controls includes much more than a computer's specific role in enforcing security.",management controls
+75,The framework within which an organization strives to meet its needs for information security is codified as _____,Security policy
+76,"the inherent technical features and functions that collectively contribute to an IT infrastructure achieving and sustaining confidentiality, integrity, availability, accountability, authenticity, and reliability.”",IT security
+77,The need for skilled workers and allocation of funds for security within their budget: Companies are making the effort to allocate more funds in their budgets for security.,True
+78,The process to protect that data requires more advanced,IT security tool
+79,The requirements for applications that are connected to ________ will differ from those for applications without such interconnection.,external systems
+80,"The weight given to each of the three major requirements describing needs for information security—confidentiality, integrity, and availability—depends strongly on",circumstances
+81,"The_____must be managed by auditing, backup, and recovery procedures supported by general alertness and creative responses.",residual risk
+82,Theft of personal items such as pursues can result in more criminal opportunities such as:,"Identity Theft, Stolen Auto, Residential Burglary"
+83,Third Reason why investing in information security is significant,Proliferation of IoT devices
+84,"timely, reliable access to data and information services for authorized users.",Availability
+85,"To be useful, a ______ must not only state the security need (e.g., for confidentiality—that data shall be disclosed only to authorized individuals), but also address the range of circumstances under which that need must be met and the associated operating standards.",Security policy
+86,Types of private security.,"Technology, Private Alarm Response, Private Patrol Services, Private Security Guards"
+87,"Walk without purpose, scan the area around you and make casual eye contact with others to display confidence.",False
+88,"What jobs in information security is this?  Salary: $103,560 Responsibilities: Software developers can be tasked with a wide range of responsibilities that may include designing parts of computer programs and applications and designing how those pieces work together.",Software developer
+89,"What jobs in information security is this?  Salary: $104,000 Responsibilities: Create an in-office network for a small business or a cloud infrastructure for a business with corporate locations in cities on opposite coasts",Computer Network Architects
+90,"What jobs in information security is this?  Salary: $139,000 Responsibilities: Information systems managers work toward ensuring a company's tech is capable of meeting their IT goals.",Computer and Information Systems Managers
+91,"What jobs in information security is this?  Salary: $95,510 Responsibilities: Information security analysts monitor their companies' computer networks to combat hackers and compile reports of security breaches.",Information Security Analyst
+92,"While you are walking, keep your mind on what is going on around you.",True
+93,"With __________ attacks, for example, even legitimate and honest users of an owner mechanism can be tricked into disclosing secret data.",Trojan horse

@@ -1,0 +1,547 @@
+[
+    {
+        "questionText":  "________ programs are automatically loaded and operates as a part of browser.",
+        "answerText":  "Plug-ins",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "_______________ is the assembly language for an imaginary architecture.",
+        "answerText":  "Byte code",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A __________ is a device that forwards packets between networks by processing the routing information included in the packet.",
+        "answerText":  "router",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A client device designed so that most processing and data storage occurs on the client side describes",
+        "answerText":  "Fat Client",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A language supported by MS. Net platform.",
+        "answerText":  "C#",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A list of protocols used by a system, one protocol per layer, is called:",
+        "answerText":  "protocol stack",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A more complex approach for web service implementation, is referred to as",
+        "answerText":  "Big Web Services",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A NAS solution is most appropriate for what type of data environment",
+        "answerText":  "Shared access",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A program that can execute high-level language programs.",
+        "answerText":  "Interpreter",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A script is a:",
+        "answerText":  "Program or sequence of instruction that is interpreted or carried out by another program",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "A tape library does not contain:",
+        "answerText":  "RAID Array",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Animations and interactivity with user on web pages can be done by:",
+        "answerText":  "Java script",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Assembly Language requires less memory and execution time.",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Communication channel is shared by all the machines on the network in",
+        "answerText":  "broadcast network",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Disk controller driver in DAS architecture is replaced in SAN either with ——",
+        "answerText":  "Any one of the above",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Each byte of character is stored as its ASCII value in _______",
+        "answerText":  "Hexadecimal",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Each personal computer has a _________ that manages the computer\u0027s arithmetical, logical and control activities.",
+        "answerText":  "Microprocessor",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Effective Storage management includes",
+        "answerText":  "Securities, Backups, Reporting",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Executables might be called ________",
+        "answerText":  "native code",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "For long term storage (archival) of data which of the following storage devices is generally used:",
+        "answerText":  "Tape Cartridges",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "For the implementation of web services, the widely used approaches are of type",
+        "answerText":  "2 types",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "FORTRAN stands for:",
+        "answerText":  "Formula Translator",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "FORTRAN was developed by",
+        "answerText":  "IBM",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Higher-order functions are not built into the",
+        "answerText":  "structural language",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "How do Storage administrators ensure secure access to storage devices:",
+        "answerText":  "By using Zoning",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "How response is sent in XML-RPC?",
+        "answerText":  "XML responses are embedded in the body of the HTTP response.",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "I/O requests to disk storage on a SAN are called",
+        "answerText":  "Block I/Os",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Identify a network file protocol in the below mentioned set.",
+        "answerText":  "CIFS",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Identify the tasks involved in Storage Capacity management.",
+        "answerText":  "Identifying storage systems are approaching full capacity, monitoring trends for each resource and tracking total capacity, total used, total available",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "In computer network nodes are:",
+        "answerText":  "the computer that terminates, originates and routes the data",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "In SAN storage model, the operating system view storage resources as —— devices",
+        "answerText":  "SCSI",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "In the Client-Server architecture, the component that processes the request and sends the response is",
+        "answerText":  "Server",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "JVM stands for?",
+        "answerText":  "Java virtual machine",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Language in which single statements can be written to accomplish substantial task is named as:",
+        "answerText":  "high level language",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Language in which single statements can be written to accomplish substantial tasks is termed as",
+        "answerText":  "high level language",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Nested RAID provides better performance characteristics than the RAID levels that comprise them",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Nested RAID provides better performance characteristics than the RAID levels that comprise them (true/false)",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "NetBEUI is an enhanced version of ------ Protocol",
+        "answerText":  "NetBIOS",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Network congestion occurs when:",
+        "answerText":  "in case of traffic overloading",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Pick odd one out",
+        "answerText":  "Fault tolerance",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Pick the wrong statement about the hard disk?",
+        "answerText":  "Hard disk can only have IDE or USB interface",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Programming language which sometimes called \u0027write once, run any where is",
+        "answerText":  "Java",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Prolog comes under ___________",
+        "answerText":  "Logic Programming",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "RAID Level 6 has dual parity where as RAID Level 5 has single parity and both does block level striping",
+        "answerText":  "FALSE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "RAID Level 7 does Asynchronous cached striping with dedicated parity.",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Select the correct option regarding tape drive",
+        "answerText":  "Tape drives can stream data at a very fast rate",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Set of programs which consist of full documentation.",
+        "answerText":  "Software Package",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Simpler approach of implementing a web service is named as",
+        "answerText":  "Representation State Transfer",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Simply stated, these are large boxes that hold lots of hard disks.",
+        "answerText":  "Disk Array",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Software which allows user to view the webpage is called as __________.",
+        "answerText":  "Internet Browser",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Source program is compiled to an intermediate form called ___________",
+        "answerText":  "Byte Code",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Storage management comprises of",
+        "answerText":  "SAN Management, data protection, disk operation",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "TCP, FTP, Telnet, SMTP, POP etc. are examples of?",
+        "answerText":  "Protocol",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "The execution of the functions on a single server or across servers on the network is called:",
+        "answerText":  "All are roll backed regardless of whether they issue any one",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "The instructions that tell the assembler what to do.",
+        "answerText":  "Executable instructions",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "The principle of serial equivalence for distributed transactions says that:",
+        "answerText":  "When several transactions are executed concurrently, the result should be the same as if they had been executed in sequence",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "The software designed to perform a specific task:",
+        "answerText":  "Application Software",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "The URL Connection class can be used to read and write data to the specified resource referred by the URL.",
+        "answerText":  "True",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "They normally interact with the system via user interface provided by the application software.",
+        "answerText":  "Users",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "This is a repository for the storage, management, and dissemination of data in which the mechanical, lighting, electrical and computer systems are designed for maximum energy efficiency and minimum environmental impact.",
+        "answerText":  "Data Center",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "This is the practice of collecting computer files that have been packaged together for backup, to transport to some other location, for saving away from the computer so that more hard disks can be made available, or for some other purpose.",
+        "answerText":  "Archive",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "This is the process of assigning storage, usually in the form of server disk drive space, in order to optimize the performance of a .",
+        "answerText":  "Storage Provisioning",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "This is the process of assigning storage, usually in the form of server disk drive space, in order to optimize the performance of a storage area network.",
+        "answerText":  "Storage Provisioning",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "To speed up the processor operations, the processor includes some internal memory storage locations, called ___________",
+        "answerText":  "Registers",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Today\u0027s fastest growing mobile phone operating system is",
+        "answerText":  "Google\u0027s Android",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "TP monitor done its responsibilities with the help of which protocol?",
+        "answerText":  "Two-Phase Commit Protocol",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Translator which converts high-level language programs into machine language program is called",
+        "answerText":  "compiler",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Translator which is used to convert codes of assembly language into machine language is termed as",
+        "answerText":  "assembler",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Two devices are in network if:",
+        "answerText":  "a process in one device is able to exchange information with a process in another device",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Unit which retains processed information until it can be placed on output devices by output unit is",
+        "answerText":  "memory unit",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "URL means ________.",
+        "answerText":  "Address of the resource on the web",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "Web-applications were developed in order to interact _____________ .",
+        "answerText":  "Different platforms",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "What do you call a specific instruction designed to do a task?",
+        "answerText":  "Command",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "What does a VLAN do?",
+        "answerText":  "Provides multiple broadcast domains within a single collision domain",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "What HTTP stands for?",
+        "answerText":  "Hyper Text Transfer Protocol",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it"
+    },
+    {
+        "questionText":  "What is the most basic level of storage?",
+        "answerText":  "DAS",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "What protocol is used to find the hardware address of a local device?",
+        "answerText":  "ARP",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "What SOAP stands for?",
+        "answerText":  "Simple Access Object Protocol",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "What will be used by SAN to provide connectivity between hosts and storage?",
+        "answerText":  "FC or iSCSI",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "When collection of various computers seems a single coherent system to its client, then it is called:",
+        "answerText":  "distributed system",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "When compared to the compiled program, scripts run:",
+        "answerText":  "Slower",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the below is not a valid classification of design pattern?",
+        "answerText":  "Java patterns",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following Company manufactures RAID devices?",
+        "answerText":  "LSI",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following component of Web service describes interfaces to web services?",
+        "answerText":  "UDDI",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following does not refer to middleware?",
+        "answerText":  "(e) JAVA and C",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is a security issue with web services?",
+        "answerText":  "Confidentiality, Authentication and Network Security",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is correct about SOAP?",
+        "answerText":  "SOAP is an XML-based protocol for exchanging information between computers, communication protocol and communication between applications.",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is false about tape devices?",
+        "answerText":  "Tape drives allow random access of data",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is not a likely configuration of a Client-Server System?",
+        "answerText":  "Single Client- Multiple Server System",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is not a non volatile storage device?",
+        "answerText":  "Random Access Memory",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is not a way of acquiring software?",
+        "answerText":  "Duplicating the software",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the Following is not an off-line storage device?",
+        "answerText":  "Tape Library",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following is sequential access storage device?",
+        "answerText":  "Tape Cartridge",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following isn\u0027t a characteristic of High level languages?",
+        "answerText":  "machine code",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following layer in Web Service Protocol Stack is responsible for centralizing services into a common registry and providing easy publish/find functionality?",
+        "answerText":  "Service Description",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following layer in Web Service Protocol Stack is responsible for describing the public interface to a specific web service?",
+        "answerText":  "Service Description",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following layer in Web Service Protocol Stack is responsible for encoding messages in a common XML format so that messages can be understood at either end?",
+        "answerText":  "Service Description",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following provides byte level striping?",
+        "answerText":  "RAID 5",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following role of web service architecture implements the service and makes it available on the Internet?",
+        "answerText":  "Service Provider",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following role of web service architecture provides a central place where developers can publish new services or find existing ones?",
+        "answerText":  "Service Registry",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following statements about various hard disks is wrong?",
+        "answerText":  "USB Hard disks store data on flash memory",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following statements regarding Client-server computing are true?",
+        "answerText":  "The Client server environment is typically homogeneous and single-vendor. The hardware flat form and operating system of Client and Server are usually the same",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which of the following website is used to search other website by typing a keyword ?",
+        "answerText":  "Search Engine",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which one of the following computer network is built on the top of another network?",
+        "answerText":  "overlay network",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which one of the following extends a private network across public networks?",
+        "answerText":  "Both IP address of Server \u0026 Port number",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which storage technology requires downtime to add new hard disk capacity",
+        "answerText":  "DAS",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which three statements describe differences between Storage Area Network (SAN) and Network Attached Storage (NAS) solutions? Choose three.",
+        "answerText":  "A, B, D",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Which topology is best suited for medium sized enterprise.",
+        "answerText":  "NAS",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    },
+    {
+        "questionText":  "Word processing software is a type of application software.",
+        "answerText":  "TRUE",
+        "sourceUrl":  "https://amauoed.com/courses/it/integrative-programming-and-technology-1-6302-it?page=2"
+    }
+]

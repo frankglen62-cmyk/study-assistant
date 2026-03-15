@@ -1,0 +1,78 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="crest-border" x1="30" y1="22" x2="226" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7D0D10"/>
+      <stop offset="1" stop-color="#B11C1C"/>
+    </linearGradient>
+    <linearGradient id="crest-gold" x1="44" y1="38" x2="152" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8E58C"/>
+      <stop offset="0.55" stop-color="#E7C867"/>
+      <stop offset="1" stop-color="#B98A2D"/>
+    </linearGradient>
+    <linearGradient id="crest-blue" x1="102" y1="42" x2="226" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#183C83"/>
+      <stop offset="1" stop-color="#0A1F57"/>
+    </linearGradient>
+    <filter id="crest-shadow" x="12" y="10" width="232" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#020812" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#crest-shadow)">
+    <path d="M128 22L228 22V124C228 184.672 187.375 223.235 128 238C68.6255 223.235 28 184.672 28 124V22H128Z" fill="url(#crest-border)"/>
+    <path d="M128 34L216 34V123.4C216 176.237 181.052 210.462 128 224.418C74.9477 210.462 40 176.237 40 123.4V34H128Z" fill="#E2BB58"/>
+    <path d="M128 40L210 40V122.377C210 170.748 178.635 202.248 128 216.192C77.3651 202.248 46 170.748 46 122.377V40H128Z" fill="#10295F"/>
+
+    <path d="M46 40H140L46 126V40Z" fill="url(#crest-gold)"/>
+    <path d="M70 63C80.8 54.6 94.8 52.6 110 54.8C102.4 58.2 94.2 62.6 88.4 69C100.4 67.8 112.8 69.4 122.4 75.2C112.2 76.2 104 82.2 97.2 89.2C103.6 90.2 110.4 90.6 116.2 94.2C101.8 95.2 90.6 102.6 80.4 112.4C77.4 103.8 71.8 96.6 64.4 91.2C70 87.6 75 83 79 77.2C70.8 78.8 62.4 80.2 54.8 84C57.8 75.6 63.2 68.6 70 63Z" fill="#C99734" fill-opacity="0.42"/>
+    <path d="M46 126L140 40" stroke="#F5DC7C" stroke-width="3" stroke-opacity="0.55"/>
+    <path d="M50 126L144 40" stroke="#F5DC7C" stroke-width="1.5" stroke-opacity="0.28"/>
+
+    <g opacity="0.98">
+      <circle cx="162" cy="74" r="6" fill="#F2F4F8"/>
+      <circle cx="184" cy="68" r="5" fill="#F2F4F8"/>
+      <circle cx="199" cy="85" r="5" fill="#F2F4F8"/>
+      <circle cx="153" cy="97" r="8" fill="#F2F4F8"/>
+      <circle cx="176" cy="94" r="7" fill="#F2F4F8"/>
+      <circle cx="198" cy="107" r="7" fill="#F2F4F8"/>
+      <circle cx="214" cy="88" r="4" fill="#F2F4F8"/>
+      <circle cx="149" cy="122" r="9" fill="#F2F4F8"/>
+      <circle cx="171" cy="120" r="8" fill="#F2F4F8"/>
+      <circle cx="192" cy="122" r="8" fill="#F2F4F8"/>
+      <circle cx="212" cy="121" r="5" fill="#F2F4F8"/>
+      <circle cx="148" cy="147" r="8" fill="#F2F4F8"/>
+      <circle cx="167" cy="145" r="7" fill="#F2F4F8"/>
+      <circle cx="187" cy="145" r="7" fill="#F2F4F8"/>
+      <circle cx="204" cy="145" r="5" fill="#F2F4F8"/>
+      <circle cx="156" cy="170" r="7" fill="#F2F4F8"/>
+      <circle cx="176" cy="169" r="6" fill="#F2F4F8"/>
+      <circle cx="194" cy="167" r="6" fill="#F2F4F8"/>
+      <circle cx="170" cy="190" r="6" fill="#F2F4F8"/>
+      <circle cx="187" cy="187" r="5" fill="#F2F4F8"/>
+      <path d="M153 97L149 122L171 120L176 94L198 107L192 122L187 145L167 145L148 147L156 170L176 169L170 190M171 120L192 122M167 145L176 169M187 145L194 167M176 94L198 107M149 122L148 147M192 122L187 145" stroke="#E9F4FF" stroke-opacity="0.55" stroke-width="1.4"/>
+      <circle cx="149" cy="122" r="2.2" fill="#FFFFFF"/>
+      <circle cx="171" cy="120" r="2.2" fill="#FFFFFF"/>
+      <circle cx="192" cy="122" r="2.2" fill="#FFFFFF"/>
+      <circle cx="167" cy="145" r="2.2" fill="#FFFFFF"/>
+      <circle cx="187" cy="145" r="2.2" fill="#FFFFFF"/>
+      <circle cx="176" cy="169" r="2.2" fill="#FFFFFF"/>
+    </g>
+
+    <g>
+      <path d="M72 130L114 88L132 106L103 135L134 166L114 186L85 157L62 180L46 164L72 138V130Z" fill="url(#crest-gold)"/>
+      <path d="M99 74L110 63L124 77L136 65L146 75L129 92L99 74Z" fill="url(#crest-gold)"/>
+      <path d="M48 171L76 143" stroke="#E2BB58" stroke-width="5" stroke-linecap="round"/>
+      <path d="M45 183L63 165" stroke="#E2BB58" stroke-width="3" stroke-linecap="round"/>
+      <path d="M119 183L142 159" stroke="#E2BB58" stroke-width="5" stroke-linecap="round"/>
+      <path d="M132 193L151 174" stroke="#E2BB58" stroke-width="3" stroke-linecap="round"/>
+      <path d="M136 153L187 153" stroke="#E2BB58" stroke-width="5" stroke-linecap="round"/>
+      <path d="M143 164L198 164" stroke="#E2BB58" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="48" cy="171" r="4" fill="#E2BB58"/>
+      <circle cx="119" cy="183" r="4" fill="#E2BB58"/>
+      <circle cx="187" cy="153" r="4" fill="#E2BB58"/>
+      <circle cx="198" cy="164" r="4" fill="#E2BB58"/>
+      <circle cx="99" cy="74" r="3.5" fill="#E2BB58"/>
+      <circle cx="146" cy="75" r="3.5" fill="#E2BB58"/>
+    </g>
+  </g>
+</svg>
