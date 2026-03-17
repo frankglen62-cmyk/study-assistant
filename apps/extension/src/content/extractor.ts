@@ -661,10 +661,11 @@ export function installExtractorContentScript() {
 
       const containerId = container.id || container.dataset.questionId || `structured-${index + 1}`;
       structuredContainers.add(containerId);
+      container.dataset.studyAssistantId = containerId;
 
       pushCandidate(
         createQuestionCandidate({
-          id: container.dataset.questionId || containerId,
+          id: containerId,
           prompt,
           options: extractOptionsFromContainer(container),
           contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
@@ -678,9 +679,11 @@ export function installExtractorContentScript() {
 
     explicitQuestionBlocks.forEach((node, index) => {
         const element = node as HTMLElement;
+        const id = element.dataset.questionId || `block-${index + 1}`;
+        element.dataset.studyAssistantId = id;
         pushCandidate(
           createQuestionCandidate({
-            id: element.dataset.questionId || `block-${index + 1}`,
+            id,
             prompt: derivePromptFromContainer(element),
             options: extractOptionsFromContainer(element),
             contextLabel: element.dataset.questionLabel ?? null,
@@ -702,10 +705,19 @@ export function installExtractorContentScript() {
 
     Array.from(groupedInputs.entries()).forEach(([groupKey, inputs], index) => {
       const container = findQuestionContainerForInputs(inputs);
+      const id = groupKey || `group-${index + 1}`;
+
+      if (container instanceof HTMLElement) {
+        container.dataset.studyAssistantId = id;
+      } else {
+        inputs.forEach((input) => {
+          input.dataset.studyAssistantId = id;
+        });
+      }
 
       pushCandidate(
         createQuestionCandidate({
-          id: groupKey || `group-${index + 1}`,
+          id,
           prompt: derivePromptFromContainer(container) ?? derivePromptNearInputs(inputs),
           options: inputs.map((input) => extractOptionLabel(input)).filter(Boolean),
           contextLabel:
@@ -960,11 +972,24 @@ export function installExtractorContentScript() {
     const normalizedTarget = normalizeForMatch(targetText);
     const lowerTarget = targetText.trim().toLowerCase();
 
-    // Collect all clickable choice elements on the page
+    // Scope clickables to the specific question container
     const clickables: Array<{ element: HTMLElement; text: string; normalized: string; input: HTMLInputElement | null }> = [];
 
+    const scopedContainer = document.querySelector(`[data-study-assistant-id="${CSS.escape(payload.questionId)}"]`);
+    const searchRoot = scopedContainer ?? document;
+
     // Strategy 1: Radio buttons and checkboxes with labels
-    const inputs = document.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]');
+    let inputs = Array.from(searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'));
+    if (!scopedContainer && inputs.length === 0) {
+      inputs = Array.from(document.querySelectorAll<HTMLInputElement>(`input[data-study-assistant-id="${CSS.escape(payload.questionId)}"]`));
+    }
+    if (!scopedContainer && searchRoot === document) {
+      const namedInputs = inputs.filter(i => i.name === payload.questionId || i.id === payload.questionId);
+      if (namedInputs.length > 0) {
+        inputs = namedInputs;
+      }
+    }
+
     for (const input of inputs) {
       if (!isElementVisible(input)) continue;
 
@@ -1005,7 +1030,7 @@ export function installExtractorContentScript() {
     }
 
     // Strategy 2: Custom clickable choice containers (div/li/button with choice-like text)
-    const choiceContainers = document.querySelectorAll<HTMLElement>(
+    const choiceContainers = searchRoot.querySelectorAll<HTMLElement>(
       '.answer, .option, .choice, [role="option"], [role="radio"], [data-choice], [data-answer], .que .answer div, .formulation .answer div'
     );
     for (const container of choiceContainers) {

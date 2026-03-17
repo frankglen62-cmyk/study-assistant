@@ -1035,7 +1035,7 @@ async function performAutoClickAll(state: ExtensionState) {
     const suggestion = suggestions[i]!;
     const answer = suggestion.suggestedOption ?? suggestion.answerText;
 
-    if (!answer) {
+    if (!answer || suggestion.sourceScope === 'no_match') {
       updatedSuggestions.push({
         ...suggestion,
         answerText: suggestion.answerText ?? null,
