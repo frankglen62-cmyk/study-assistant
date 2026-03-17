@@ -106,7 +106,7 @@ function slugify(value) {
 }
 
 function normalizeQuestion(value) {
-  return value
+  return (value || '')
     .replace(/[_]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
