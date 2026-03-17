@@ -67,6 +67,7 @@ export function createDefaultState(browserName = 'Chrome', extensionVersion = '0
     lastError: null,
     permissionOrigin: '',
     autoClickEnabled: false,
+    autoPilotEnabled: false,
   };
 }
 

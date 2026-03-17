@@ -354,6 +354,15 @@ export function SidePanelApp() {
     });
   }
 
+  async function toggleAutoPilot(enabled: boolean) {
+    await runAction('EXTENSION/TOGGLE_AUTO_PILOT', async () => {
+      await sendExtensionMessage({
+        type: 'EXTENSION/TOGGLE_AUTO_PILOT',
+        payload: { enabled },
+      });
+    });
+  }
+
   async function triggerAutoClickAll() {
     await runAction('EXTENSION/AUTO_CLICK_ALL', async () => {
       await sendExtensionMessage({ type: 'EXTENSION/AUTO_CLICK_ALL' });
@@ -801,7 +810,20 @@ export function SidePanelApp() {
                 type="checkbox"
                 checked={state.session.liveAssistEnabled}
                 onChange={(event) => void toggleLiveAssist(event.target.checked)}
-                disabled={!siteAccessGranted}
+                disabled={!siteAccessGranted || state.autoPilotEnabled}
+              />
+            </label>
+
+            <label className="toggle-card toggle-card--danger mt-2">
+              <div>
+                <strong className="flex-center-gap" style={{ color: 'var(--sa-red)' }}><Zap size={12} /> Auto Pilot (BETA)</strong>
+                <p>Auto analyze, select answer, and click next page until finished.</p>
+              </div>
+              <input
+                type="checkbox"
+                checked={state.autoPilotEnabled}
+                onChange={(event) => void toggleAutoPilot(event.target.checked)}
+                disabled={!siteAccessGranted || state.session.status !== 'session_active'}
               />
             </label>
 

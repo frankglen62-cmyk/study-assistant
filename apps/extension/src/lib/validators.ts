@@ -148,6 +148,7 @@ export const extensionStateSchema = z.object({
   lastError: z.string().nullable(),
   permissionOrigin: z.string(),
   autoClickEnabled: z.boolean().default(false),
+  autoPilotEnabled: z.boolean().default(false),
 });
 
 export const pairingFormSchema = z.object({

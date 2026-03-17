@@ -160,6 +160,11 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
           sendResponse(success(await handleAutoClickAll()));
           return;
         }
+        case 'EXTENSION/TOGGLE_AUTO_PILOT': {
+          const enabled = Boolean(message.payload && (message.payload as { enabled: boolean }).enabled);
+          sendResponse(success(await handleToggleAutoPilot(enabled)));
+          return;
+        }
         default:
           sendResponse(failure('Unsupported extension action.'));
       }
@@ -1010,6 +1015,52 @@ async function handleToggleAutoClick(enabled: boolean) {
   return nextState;
 }
 
+async function handleToggleAutoPilot(enabled: boolean) {
+  const state = await readState(browserName, extensionVersion);
+  requirePairing(state);
+
+  const nextState = await updateState(
+    (current) =>
+      appendNotice(
+        appendRecentAction(
+          {
+            ...current,
+            autoPilotEnabled: enabled,
+            autoClickEnabled: enabled ? true : current.autoClickEnabled,
+            session: {
+              ...current.session,
+              liveAssistEnabled: enabled ? true : current.session.liveAssistEnabled,
+            },
+          },
+          enabled ? 'Enable Auto Pilot' : 'Disable Auto Pilot',
+        ),
+        {
+          tone: enabled ? 'success' : 'info',
+          title: enabled ? 'Auto Pilot engaged' : 'Auto Pilot stopped',
+          message: enabled
+            ? 'The extension will now automatically analyze, select answers, and jump to the next page until finished.'
+            : 'Auto Pilot cycle has standard control restored.',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
+
+  if (enabled) {
+    const tab = await getActiveTab();
+    if (tab?.id && tab.url) {
+      await ensureTabHostPermission(tab.url);
+      await injectExtractor(tab.id);
+      await chrome.tabs.sendMessage(tab.id, {
+        type: 'EXTENSION/SET_LIVE_ASSIST',
+        payload: { enabled: true },
+      }).catch(() => {});
+    }
+  }
+
+  return nextState;
+}
+
 async function handleAutoClickAll() {
   const state = await readState(browserName, extensionVersion);
   requirePairing(state);
@@ -1118,7 +1169,7 @@ async function performAutoClickAll(state: ExtensionState) {
     }
   }
 
-  const nextState = await updateState(
+  const finalState = await updateState(
     (current) =>
       appendNotice(
         appendRecentAction(
@@ -1144,7 +1195,24 @@ async function performAutoClickAll(state: ExtensionState) {
     extensionVersion,
   );
 
-  return nextState;
+  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active') {
+    // Wait briefly, then attempt to click Next Page
+    setTimeout(async () => {
+      try {
+        const response = (await chrome.tabs.sendMessage(tab.id!, {
+          type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
+        })) as ExtensionResponse<{ clicked: boolean }>;
+
+        if (!response?.ok || !response.data?.clicked) {
+          await handleToggleAutoPilot(false);
+        }
+      } catch (error) {
+        await handleToggleAutoPilot(false);
+      }
+    }, 1500);
+  }
+
+  return finalState;
 }
 
 async function handleToggleLiveAssist(enabled: boolean) {

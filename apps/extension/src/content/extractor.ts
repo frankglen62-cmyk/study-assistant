@@ -948,7 +948,36 @@ export function installExtractorContentScript() {
       sendResponse({ ok: true, data: result });
       return;
     }
+
+    if (message?.type === 'EXTENSION/AUTO_CLICK_NEXT_PAGE') {
+      const result = autoClickNextPage();
+      sendResponse({ ok: true, data: result });
+      return;
+    }
   });
+
+  function autoClickNextPage(): { clicked: boolean } {
+    const candidates = Array.from(document.querySelectorAll<HTMLElement>('button, input[type="submit"], input[type="button"], a.btn'));
+    
+    // Moodle specific IDs and classes first
+    const moodleNext = candidates.find(el => el.id === 'mod_quiz-next-nav' || el.getAttribute('name') === 'next');
+    if (moodleNext && isElementVisible(moodleNext)) {
+      moodleNext.click();
+      return { clicked: true };
+    }
+
+    for (const el of candidates) {
+      if (!isElementVisible(el)) continue;
+
+      const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
+      if (text === 'next' || text === 'next page' || text === 'forward' || text.includes('next page')) {
+        el.click();
+        return { clicked: true };
+      }
+    }
+
+    return { clicked: false };
+  }
 
   function normalizeForMatch(s: string): string {
     return s

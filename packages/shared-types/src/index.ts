@@ -212,6 +212,7 @@ export interface ExtensionState {
   lastError: string | null;
   permissionOrigin: string;
   autoClickEnabled: boolean;
+  autoPilotEnabled: boolean;
 }
 
 export type ExtensionActionType =
@@ -238,7 +239,9 @@ export type ExtensionActionType =
   | 'EXTENSION/CLEAR_RESULTS'
   | 'EXTENSION/TOGGLE_AUTO_CLICK'
   | 'EXTENSION/AUTO_CLICK_ANSWER'
-  | 'EXTENSION/AUTO_CLICK_ALL';
+  | 'EXTENSION/AUTO_CLICK_ALL'
+  | 'EXTENSION/TOGGLE_AUTO_PILOT'
+  | 'EXTENSION/AUTO_CLICK_NEXT_PAGE';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 

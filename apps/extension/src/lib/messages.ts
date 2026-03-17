@@ -60,5 +60,9 @@ export interface AutoClickResult {
   matchMethod: string;
 }
 
+export interface AutoClickNextPageResult {
+  clicked: boolean;
+}
+
 export type StateResponse = ExtensionResponse<ExtensionState>;
 export type PageSignalsResponse = ExtensionResponse<ExtensionPageSignals>;
