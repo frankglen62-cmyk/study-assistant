@@ -12,8 +12,7 @@ import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
 import { normalizeComparableText, overlapScore } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
-import { buildFallbackAnswerSuggestion } from '@/lib/ai/fallback';
-import { retrieveRelevantChunks, retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects } from '@/lib/ai/retrieval';
+import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects } from '@/lib/ai/retrieval';
 import { applyWalletSeconds } from '@/lib/billing/wallet';
 import { env } from '@/lib/env/server';
 import { logEvent } from '@/lib/observability/logger';
@@ -216,49 +215,7 @@ async function resolveQuestionSuggestion(params: {
     } satisfies ExtensionQuestionSuggestion;
   };
 
-  const buildChunkSuggestion = async () => {
-    const retrieval = await retrieveRelevantChunks({
-      subject: params.subject,
-      category: params.category,
-      queryText: chunkQueryText,
-    });
 
-    if (retrieval.chunks.length === 0) {
-      return null;
-    }
-
-    const fallback = buildFallbackAnswerSuggestion({
-      questionText: queryText,
-      options: optionText,
-      subjectName: params.subjectName,
-      categoryName: params.categoryName,
-      chunks: retrieval.chunks,
-    });
-
-    return {
-      suggestion: {
-        questionId: params.candidate.id,
-        questionText: params.candidate.prompt,
-        answerText: fallback.answerText,
-        suggestedOption: fallback.suggestedOption,
-        shortExplanation: fallback.shortExplanation,
-        confidence: clamp(
-          ((params.detectionConfidence ?? 0.5) + (retrieval.retrievalConfidence ?? 0.45) + fallback.confidence) / 3,
-          0,
-          1,
-        ),
-        warning: fallback.warning,
-        retrievalStatus: retrieval.retrievalStatus,
-        matchedSubject: params.subjectName,
-        matchedCategory: params.categoryName,
-        sourceScope: 'file_sources',
-        clickStatus: 'pending' as const,
-        clickedText: null,
-      } satisfies ExtensionQuestionSuggestion,
-      retrievalConfidence: retrieval.retrievalConfidence,
-      retrievalStatus: retrieval.retrievalStatus,
-    };
-  };
 
   if (params.searchScope === 'all_subjects') {
     const allSubjectQa = await retrieveRelevantQaPairsAcrossSubjects({
@@ -277,10 +234,7 @@ async function resolveQuestionSuggestion(params: {
       }
     }
 
-    const chunkSuggestion = await buildChunkSuggestion();
-    if (chunkSuggestion) {
-      return chunkSuggestion.suggestion;
-    }
+
 
     return buildNoMatchQuestionSuggestion({
       candidate: params.candidate,
@@ -308,32 +262,13 @@ async function resolveQuestionSuggestion(params: {
     }
   }
 
-  const allSubjectQa = await retrieveRelevantQaPairsAcrossSubjects({
-    queryText,
-    options: optionText,
-    excludeSubjectId: params.subject.id,
-  });
-  const topAllSubjectPair = allSubjectQa.pairs[0] ?? null;
-
-  if (topAllSubjectPair) {
-    const suggestion = buildQaSuggestion(topAllSubjectPair, allSubjectQa.retrievalStatus, 'all_subject_folders');
-    if (suggestion) {
-      return suggestion;
-    }
-  }
-
-  const chunkSuggestion = await buildChunkSuggestion();
-  if (chunkSuggestion) {
-    return chunkSuggestion.suggestion;
-  }
-
   return buildNoMatchQuestionSuggestion({
     candidate: params.candidate,
     subjectName: params.subjectName,
     categoryName: params.categoryName,
     detectionConfidence: params.detectionConfidence,
-    warning: 'No matching source material was found. You can retry with all subject folders if needed.',
-    retrievalStatus: `${subjectQa.retrievalStatus} ${allSubjectQa.retrievalStatus}`,
+    warning: 'No matching source material was found in this subject folder.',
+    retrievalStatus: subjectQa.retrievalStatus,
     searchScope: params.searchScope,
   });
 }
