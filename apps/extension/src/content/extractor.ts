@@ -16,9 +16,9 @@ export function installExtractorContentScript() {
   globalState.__studyAssistantLastDigest = '';
 
   const courseCodePattern = /\b[A-Z]{2,10}(?:-[A-Z]{2,10})?\s*-?\s*\d{3,5}[A-Z]?\b/g;
-  const MAX_VISIBLE_CONTEXT_ITEMS = 30;
-  const MAX_EXTRACTED_OPTIONS = 10;
-  const MAX_QUESTION_CANDIDATES = 200;
+  const MAX_VISIBLE_CONTEXT_ITEMS = 300;
+  const MAX_EXTRACTED_OPTIONS = 50;
+  const MAX_QUESTION_CANDIDATES = 5000;
 
   function isElementVisible(element: Element | null): boolean {
     if (!(element instanceof HTMLElement)) {
@@ -130,7 +130,7 @@ export function installExtractorContentScript() {
       results.push(text);
     }
 
-    return results.slice(0, 60);
+    return results.slice(0, 1000);
   }
 
   function scorePromptCandidate(value: string, optionLookup: Set<string>): number {
@@ -313,7 +313,7 @@ export function installExtractorContentScript() {
       results.push(text);
     }
 
-    return results.slice(0, 60);
+    return results.slice(0, 1000);
   }
 
   function derivePromptFromPrunedContainer(container: ParentNode | null): string | null {

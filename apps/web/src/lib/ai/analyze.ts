@@ -21,10 +21,10 @@ import { getActiveCatalog } from '@/lib/supabase/catalog';
 import { createQuestionAttempt, syncSessionAfterAnalysis } from '@/lib/supabase/sessions';
 import type { CategoryRecord, SubjectRecord } from '@/lib/supabase/schemas';
 
-const MAX_QUESTION_CANDIDATES = 200;
-const MAX_CONTEXT_ITEMS = 30;
-const MAX_OPTIONS_PER_QUESTION = 10;
-const BATCH_SIZE = 10;
+const MAX_QUESTION_CANDIDATES = 5000;
+const MAX_CONTEXT_ITEMS = 300;
+const MAX_OPTIONS_PER_QUESTION = 50;
+const BATCH_SIZE = 50;
 
 function isBooleanQuestionOptions(options: string[]) {
   if (options.length < 2) {

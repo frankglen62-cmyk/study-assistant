@@ -1,0 +1,1 @@
+import"./state--ssZ2yOw.js";function n(){const e=navigator.userAgent;return e.includes("Edg/")?"Microsoft Edge":e.includes("Chrome/")?"Google Chrome":"Chromium"}function i(){return chrome.runtime.getManifest().version}function o(e){if(e.pairingStatus!=="paired"||!e.accessToken||!e.appBaseUrl)throw new Error("Pair the extension before continuing.")}export{n as d,i as g,o as r};

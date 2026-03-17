@@ -229,7 +229,8 @@ export type ExtensionActionType =
   | 'EXTENSION/SET_LIVE_ASSIST'
   | 'EXTENSION/LIVE_ASSIST_SIGNAL'
   | 'EXTENSION/CHECK_SITE_ACCESS'
-  | 'EXTENSION/GRANT_SITE_PERMISSION';
+  | 'EXTENSION/GRANT_SITE_PERMISSION'
+  | 'EXTENSION/CLEAR_RESULTS';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 

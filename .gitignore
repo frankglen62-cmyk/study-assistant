@@ -17,6 +17,7 @@ web-runtime.log
 *.log
 tmp/
 tmp-extension-check/
+PROJECT_MASTER_HANDOFF_PRIVATE.md
 
 .DS_Store
 Thumbs.db

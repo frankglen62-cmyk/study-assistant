@@ -40,6 +40,7 @@ import {
   updateState,
   withCurrentPage,
   writeState,
+  clearResults,
 } from '../lib/state';
 import { installExtractorContentScript } from '../content/extractor';
 
@@ -141,6 +142,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
         case 'EXTENSION/LIVE_ASSIST_SIGNAL': {
           const payload = message.payload as unknown as LiveAssistSignalPayload;
           sendResponse(success(await handleLiveAssistSignal(sender.tab?.id, payload)));
+          return;
+        }
+        case 'EXTENSION/CLEAR_RESULTS': {
+          sendResponse(success(await handleClearResults()));
           return;
         }
         default:
@@ -928,6 +933,28 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
             ? 'Merge Suggestions'
             : 'Analyze Current Page',
       ),
+    browserName,
+    extensionVersion,
+  );
+
+  return nextState;
+}
+
+async function handleClearResults() {
+  const nextState = await updateState(
+    (current) => {
+      // Clear results logic will be to clear the active suggestions
+      // We need to import clearResults from state
+      // Actually, wait, the import must exist at the top. Let's add it.
+      return appendNotice(
+        appendRecentAction(clearResults(current), 'Clear Results'),
+        {
+          tone: 'info',
+          title: 'Results cleared',
+          message: 'The current study results and detected questions have been cleared.',
+        },
+      );
+    },
     browserName,
     extensionVersion,
   );

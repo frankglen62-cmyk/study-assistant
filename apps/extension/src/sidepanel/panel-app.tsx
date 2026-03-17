@@ -12,7 +12,7 @@ import {
   Activity, MonitorSmartphone, MousePointerClick, AlignLeft, RefreshCw,
   XCircle, LayoutDashboard, Copy, AlertTriangle, Lock, Unlock, Globe,
   ExternalLink, ChevronDown, ChevronRight, BookOpen, Hash, Clock,
-  Search, Loader2, CheckCircle2, AlertOctagon, Info,
+  Search, Loader2, CheckCircle2, AlertOctagon, Info, Target, Play,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -26,11 +26,6 @@ interface SiteAccessResult {
   origin: string;
   tabUrl: string;
 }
-
-/* ------------------------------------------------------------------ */
-/*  Constants                                                           */
-/* ------------------------------------------------------------------ */
-const PAGE_SIZE = 10;
 
 /* ------------------------------------------------------------------ */
 /*  Hooks                                                              */
@@ -132,16 +127,31 @@ function ConfidenceBadge({ confidence }: { confidence: number | null }) {
   return <span className={`confidence-badge confidence-badge--${level}`}>{label}</span>;
 }
 
-function QuestionResultCard({ suggestion, index, defaultExpanded }: {
+function AnalyzeProgressBar() {
+  return (
+    <div className="analyze-progress">
+      <div className="analyze-progress__bar">
+        <div className="analyze-progress__fill" />
+      </div>
+      <div className="analyze-progress__text">
+        <Loader2 size={14} className="animate-spin" />
+        <span>Analyzing questions & finding answers…</span>
+      </div>
+    </div>
+  );
+}
+
+function QuestionResultCard({ suggestion, index }: {
   suggestion: ExtensionQuestionSuggestion;
   index: number;
-  defaultExpanded: boolean;
 }) {
-  const [expanded, setExpanded] = useState(defaultExpanded);
+  const [expanded, setExpanded] = useState(false);
   const level = confidenceToLevel(suggestion.confidence);
+  const answer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match found';
 
   return (
-    <article className={`result-card result-card--${level}`}>
+    <article className={`result-card result-card--${level}`} style={{ animationDelay: `${index * 30}ms` }}>
+      {/* Header row with Q number and question preview */}
       <button
         className="result-card__header"
         onClick={() => setExpanded((v) => !v)}
@@ -150,29 +160,29 @@ function QuestionResultCard({ suggestion, index, defaultExpanded }: {
         <div className="result-card__header-left">
           <span className="result-card__number">Q{index + 1}</span>
           <span className="result-card__prompt-preview">
-            {suggestion.questionText.length > 80
-              ? suggestion.questionText.slice(0, 80) + '…'
+            {suggestion.questionText.length > 60
+              ? suggestion.questionText.slice(0, 60) + '…'
               : suggestion.questionText}
           </span>
         </div>
         <div className="result-card__header-right">
           <ConfidenceBadge confidence={suggestion.confidence} />
-          {expanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+          {expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
         </div>
       </button>
 
+      {/* Answer — ALWAYS visible, no need to expand */}
+      <div className="result-card__answer-highlight">
+        <CheckCircle2 size={14} style={{ color: 'var(--sa-green)', flexShrink: 0, marginTop: 2 }} />
+        <span className="result-card__answer-text">{answer}</span>
+      </div>
+
+      {/* Expanded details */}
       {expanded && (
         <div className="result-card__body">
           <div className="result-card__field">
             <span className="result-card__label">Full Question</span>
             <p className="result-card__value">{suggestion.questionText}</p>
-          </div>
-
-          <div className="result-card__field">
-            <span className="result-card__label">Suggested Choice</span>
-            <p className="result-card__value result-card__value--highlight">
-              {suggestion.suggestedOption ?? suggestion.answerText ?? 'No match found'}
-            </p>
           </div>
 
           {suggestion.shortExplanation && (
@@ -184,8 +194,8 @@ function QuestionResultCard({ suggestion, index, defaultExpanded }: {
 
           <div className="result-card__source-row">
             <div className="result-card__source-pill">
-              <BookOpen size={11} />
-              <span>{suggestion.matchedSubject ?? 'Unknown source'}</span>
+              <BookOpen size={10} />
+              <span>{suggestion.matchedSubject ?? 'Unknown'}</span>
             </div>
             <div className="result-card__source-pill">
               <span>
@@ -207,7 +217,7 @@ function QuestionResultCard({ suggestion, index, defaultExpanded }: {
 
           {suggestion.warning && (
             <div className="result-card__warning">
-              <AlertTriangle size={12} />
+              <AlertTriangle size={11} />
               <span>{suggestion.warning}</span>
             </div>
           )}
@@ -226,7 +236,6 @@ export function SidePanelApp() {
   const [editingOverride, setEditingOverride] = useState(false);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [siteAccessMessage, setSiteAccessMessage] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
@@ -244,11 +253,6 @@ export function SidePanelApp() {
       setSiteAccessMessage(null);
     }
   }, [access?.status]);
-
-  // Reset pagination when suggestions change
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [state?.lastSuggestion.questionSuggestions.length]);
 
   const detectedQuestionCount = state?.currentPage?.totalQuestionsDetected
     ?? state?.currentPage?.questionCandidates.length
@@ -270,12 +274,6 @@ export function SidePanelApp() {
 
   const confidenceLevel = confidenceToLevel(state?.lastSuggestion.confidence ?? null);
 
-  const visibleSuggestions = useMemo(
-    () => suggestions.slice(0, visibleCount),
-    [suggestions, visibleCount],
-  );
-  const hasMore = suggestions.length > visibleCount;
-
   async function runAction(action: string, operation: () => Promise<void>) {
     setPendingAction(action);
     try { await operation(); } finally { setPendingAction(null); }
@@ -289,7 +287,7 @@ export function SidePanelApp() {
     await runAction(`${mode}:${source}`, async () => {
       await sendExtensionMessage({
         type: 'EXTENSION/ANALYZE_CURRENT_PAGE',
-        payload: { mode, includeScreenshot: source === 'current', source, searchScope },
+        payload: { mode, includeScreenshot: false, source, searchScope },
       });
     });
   }
@@ -383,8 +381,8 @@ export function SidePanelApp() {
   if (!state) {
     return (
       <div className="panel-shell panel-loading">
-        <Loader2 size={28} className="animate-spin" style={{ color: 'var(--panel-accent)' }} />
-        <p style={{ color: 'var(--panel-muted)', marginTop: 12, fontSize: 13 }}>Loading extension state…</p>
+        <Loader2 size={28} className="animate-spin" style={{ color: 'var(--sa-accent)' }} />
+        <p style={{ color: 'var(--sa-muted)', fontSize: 12 }}>Loading extension…</p>
       </div>
     );
   }
@@ -406,7 +404,7 @@ export function SidePanelApp() {
       <header className="panel-hero">
         <div className="panel-hero__brand">
           <div className="panel-hero__logo">
-            <Sparkles size={20} strokeWidth={2.5} />
+            <Sparkles size={18} strokeWidth={2.5} />
           </div>
           <div>
             <p className="panel-hero__eyebrow">Study Assistant</p>
@@ -422,31 +420,31 @@ export function SidePanelApp() {
               <SessionStatusPill status={state.session.status} />
               {access && (
                 <span className={`status-pill ${siteAccessGranted ? 'status-pill--success' : 'status-pill--warning'}`}>
-                  {siteAccessGranted ? <Unlock size={10} /> : <Lock size={10} />}
+                  {siteAccessGranted ? <Unlock size={9} /> : <Lock size={9} />}
                   {siteAccessGranted ? 'Site Access' : 'Access Needed'}
                 </span>
               )}
             </div>
 
-            {/* Compact metrics row */}
+            {/* Metrics */}
             <div className="hero-metrics-row">
               <div className="hero-metric">
-                <Zap size={12} />
+                <Zap size={11} />
                 <span className={state.creditsRemainingSeconds < 1800 ? 'text-danger' : ''}>
                   {formatDurationDetailed(state.creditsRemainingSeconds)}
                 </span>
               </div>
               <div className="hero-metric">
-                <Globe size={12} />
+                <Globe size={11} />
                 <span className="truncate">{currentPageLabel}</span>
               </div>
             </div>
 
-            {/* Primary action buttons */}
+            {/* Primary CTA - Big beautiful button */}
             <div className="panel-hero__actions">
               {nextPrimaryAction === 'grant' ? (
                 <button
-                  className="action-button action-button--primary flex-center-gap justify-center"
+                  className="action-button action-button--primary"
                   onClick={() => void grantSitePermission()}
                   disabled={pendingAction !== null}
                 >
@@ -455,38 +453,40 @@ export function SidePanelApp() {
                 </button>
               ) : nextPrimaryAction === 'start' ? (
                 <button
-                  className="action-button action-button--primary flex-center-gap justify-center"
+                  className="action-button action-button--primary"
                   onClick={() => void sendSimple('EXTENSION/START_SESSION')}
                   disabled={pendingAction !== null || state.creditsRemainingSeconds === 0}
                 >
-                  <Activity size={16} /> Start Session
+                  <Play size={16} /> Start Session
                 </button>
               ) : (
                 <button
-                  className="action-button action-button--primary flex-center-gap justify-center"
+                  className="action-button action-button--primary"
                   onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
                   disabled={!canAnalyze || pendingAction !== null}
                 >
                   {isAnalyzing ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                  Analyze Current Tab
+                  {isAnalyzing ? 'Analyzing…' : 'Analyze Current Tab'}
                 </button>
               )}
-              <button
-                className="action-button flex-center-gap justify-center"
-                onClick={() => void sendAnalyze('detect', 'current')}
-                disabled={!canAnalyze || pendingAction !== null}
-              >
-                <FileSearch size={16} /> Detect Question
-              </button>
-              {nextPrimaryAction === 'analyze' && (
+
+              {/* Secondary actions in a row */}
+              <div className="action-grid">
                 <button
-                  className="action-button flex-center-gap justify-center"
+                  className="action-button action-button--sm"
+                  onClick={() => void sendAnalyze('detect', 'current')}
+                  disabled={!canAnalyze || pendingAction !== null}
+                >
+                  <FileSearch size={14} /> Detect
+                </button>
+                <button
+                  className="action-button action-button--sm"
                   onClick={() => void sendAnalyze('analyze', 'current', 'all_subjects')}
                   disabled={!canAnalyze || pendingAction !== null}
                 >
-                  <Search size={16} /> Search All Sources
+                  <Search size={14} /> All Sources
                 </button>
-              )}
+              </div>
             </div>
           </>
         ) : (
@@ -496,7 +496,7 @@ export function SidePanelApp() {
             </p>
             <div className="panel-hero__actions">
               <button
-                className="action-button action-button--primary flex-center-gap justify-center"
+                className="action-button action-button--primary"
                 onClick={() => {
                   void chrome.tabs.create({ url: chrome.runtime.getURL('src/onboarding/index.html') });
                 }}
@@ -504,15 +504,15 @@ export function SidePanelApp() {
                 <MonitorSmartphone size={16} /> Open Pairing Setup
               </button>
               <button
-                className="action-button flex-center-gap justify-center"
+                className="action-button"
                 onClick={() => void sendSimple('EXTENSION/OPEN_DASHBOARD')}
               >
                 <LayoutDashboard size={16} /> Web Portal
               </button>
             </div>
-            <div className="hero-metrics-row" style={{ marginTop: 12 }}>
+            <div className="hero-metrics-row" style={{ marginTop: 8 }}>
               <div className="hero-metric text-danger">
-                <WifiOff size={12} />
+                <WifiOff size={11} />
                 <span>Disconnected</span>
               </div>
             </div>
@@ -522,8 +522,8 @@ export function SidePanelApp() {
 
       {/* ======== PRIVACY STRIP ======== */}
       {isPaired && (
-        <section className="privacy-strip flex-center-gap">
-          <ShieldAlert size={14} className="shrink-0" style={{ color: 'var(--panel-accent)' }} />
+        <section className="privacy-strip">
+          <ShieldAlert size={13} className="shrink-0" style={{ color: 'var(--sa-accent)' }} />
           <p>AI reads the current tab only when you click Analyze or enable Live Assist.</p>
         </section>
       )}
@@ -542,7 +542,7 @@ export function SidePanelApp() {
           {access.status === 'not_granted' && (
             <div className="action-grid mt-3">
               <button
-                className="action-button action-button--primary flex-center-gap justify-center"
+                className="action-button action-button--primary"
                 onClick={() => void grantSitePermission()}
                 disabled={pendingAction !== null}
               >
@@ -550,7 +550,7 @@ export function SidePanelApp() {
                 {pendingAction === 'grant-site' ? 'Requesting…' : 'Grant Access'}
               </button>
               <button
-                className="action-button flex-center-gap justify-center"
+                className="action-button"
                 onClick={() => void refreshAccess()}
                 disabled={accessChecking}
               >
@@ -567,11 +567,91 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
-      {/* ======== DETECTION SUMMARY CARD ======== */}
-      {isPaired && siteAccessGranted && (
+      {/* ======== RESULTS SECTION (Answer-First Design) ======== */}
+      {isPaired && (
+        <SectionCard
+          title="Study Results"
+          subtitle={
+            isAnalyzing ? 'Analyzing page…'
+            : suggestions.length > 0
+              ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
+              : hasSuggestion
+                ? `${sourceSubject}`
+                : 'Click Analyze to get answers'
+          }
+          icon={Target}
+          className="panel-card--primary"
+          actions={
+            <div className="flex-center-gap" style={{ gap: 6 }}>
+              <button
+                className="link-button text-xs flex-center-gap"
+                onClick={() => void copyAnswer()}
+                disabled={!hasSuggestion}
+                title="Copy all results"
+              >
+                <Copy size={11} /> Copy
+              </button>
+              <button
+                className="link-button text-xs flex-center-gap"
+                onClick={() => void sendExtensionMessage({ type: 'EXTENSION/CLEAR_RESULTS' as any })}
+                disabled={!hasSuggestion}
+                title="Clear"
+              >
+                <XCircle size={11} /> Clear
+              </button>
+            </div>
+          }
+        >
+          {/* Animated progress bar during analysis */}
+          {isAnalyzing && <AnalyzeProgressBar />}
+
+          {/* Single answer mode (legacy/detect mode) */}
+          {!isAnalyzing && state.lastSuggestion.answerText && suggestions.length === 0 && (
+            <div className="answer-panel">
+              <p style={{ fontWeight: 600 }}>{state.lastSuggestion.answerText}</p>
+              {state.lastSuggestion.shortExplanation && (
+                <p className="mt-2" style={{ color: 'var(--sa-muted)', fontSize: 12 }}>
+                  {state.lastSuggestion.shortExplanation}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Multi-question results — ALL VISIBLE, answers shown immediately */}
+          {!isAnalyzing && suggestions.length > 0 && (
+            <div className="results-list">
+              {suggestions.map((suggestion, index) => (
+                <QuestionResultCard
+                  key={suggestion.questionId}
+                  suggestion={suggestion}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Empty state */}
+          {!isAnalyzing && !hasSuggestion && (
+            <div className="empty-state">
+              <Search size={24} style={{ color: 'var(--sa-muted)', opacity: 0.4 }} />
+              <p>No results yet. Click <strong>Analyze Current Tab</strong> to get started.</p>
+            </div>
+          )}
+
+          {/* Warning */}
+          {!isAnalyzing && state.lastSuggestion.warning && (
+            <div className={`notice ${confidenceLevel === 'low' ? 'notice--warning' : 'notice--info'} mt-2`}>
+              <p style={{ fontSize: 11 }}>{state.lastSuggestion.warning}</p>
+            </div>
+          )}
+        </SectionCard>
+      )}
+
+      {/* ======== DETECTION SUMMARY (compact) ======== */}
+      {isPaired && siteAccessGranted && hasSuggestion && (
         <div className="detection-summary-card">
           <div className="detection-summary__header">
-            <BookOpen size={16} style={{ color: 'var(--panel-accent)' }} />
+            <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
             <h2>Detection Summary</h2>
           </div>
           <div className="detection-summary__grid">
@@ -599,7 +679,7 @@ export function SidePanelApp() {
             </div>
           </div>
           {state.lastSuggestion.fallbackApplied && (
-            <div className="notice notice--warning mt-2" style={{ fontSize: 12 }}>
+            <div className="notice notice--warning mt-2" style={{ fontSize: 11 }}>
               <p>Fallback sources used — no direct match in detected subject folder.</p>
             </div>
           )}
@@ -608,39 +688,39 @@ export function SidePanelApp() {
 
       {/* ======== SESSION CONTROLS (collapsible) ======== */}
       {isPaired && (
-        <details className="panel-disclosure panel-disclosure--session" open={state.session.status !== 'session_active'}>
+        <details className="panel-disclosure" open={state.session.status !== 'session_active'}>
           <summary className="panel-disclosure__summary">
             <div>
               <strong>Session Controls</strong>
               <p>{state.session.status === 'session_active' ? 'Session is live' : 'Start a session to analyze'}</p>
             </div>
-            <ChevronDown size={16} />
+            <ChevronDown size={14} />
           </summary>
           <div className="panel-disclosure__content">
             <div className="action-grid">
               <button
-                className="action-button action-button--primary flex-center-gap justify-center"
+                className="action-button action-button--primary"
                 onClick={() => void sendSimple('EXTENSION/START_SESSION')}
                 disabled={pendingAction !== null || state.session.status === 'session_active' || state.creditsRemainingSeconds === 0}
               >
                 Start
               </button>
               <button
-                className="action-button flex-center-gap justify-center"
+                className="action-button"
                 onClick={() => void sendSimple('EXTENSION/PAUSE_SESSION')}
                 disabled={pendingAction !== null || state.session.status !== 'session_active'}
               >
                 Pause
               </button>
               <button
-                className="action-button flex-center-gap justify-center"
+                className="action-button"
                 onClick={() => void sendSimple('EXTENSION/RESUME_SESSION')}
                 disabled={pendingAction !== null || state.session.status !== 'session_paused' || state.creditsRemainingSeconds === 0}
               >
                 Resume
               </button>
               <button
-                className="action-button action-button--danger flex-center-gap justify-center"
+                className="action-button action-button--danger"
                 onClick={() => void sendSimple('EXTENSION/END_SESSION')}
                 disabled={pendingAction !== null || state.session.status === 'session_inactive'}
               >
@@ -649,16 +729,16 @@ export function SidePanelApp() {
             </div>
 
             {state.creditsRemainingSeconds === 0 && (
-              <div className="notice notice--danger mt-3">
+              <div className="notice notice--danger mt-2">
                 <strong>No credits remaining</strong>
                 <p>Top up your account in the web portal.</p>
               </div>
             )}
 
-            <label className="toggle-card mt-3">
+            <label className="toggle-card mt-2">
               <div>
-                <strong className="flex-center-gap"><MousePointerClick size={14} /> Live Assist</strong>
-                <p>Auto re-analyze when the page changes meaningfully.</p>
+                <strong className="flex-center-gap"><MousePointerClick size={12} /> Live Assist</strong>
+                <p>Auto re-analyze on page changes.</p>
               </div>
               <input
                 type="checkbox"
@@ -669,125 +749,25 @@ export function SidePanelApp() {
             </label>
 
             <button
-              className="link-button flex-center-gap mt-2"
+              className="link-button flex-center-gap mt-1"
               onClick={() => void sendSimple('EXTENSION/REFRESH_CREDITS')}
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 11 }}
             >
-              <RefreshCw size={12} /> Refresh Credits
+              <RefreshCw size={11} /> Refresh Credits
             </button>
           </div>
         </details>
       )}
 
-      {/* ======== RESULTS SECTION ======== */}
-      {isPaired && (
-        <SectionCard
-          title="Study Results"
-          subtitle={
-            isAnalyzing ? 'Analyzing page…'
-            : suggestions.length > 0
-              ? `${suggestions.length} question${suggestions.length > 1 ? 's' : ''} analyzed`
-              : hasSuggestion
-                ? `${sourceSubject}`
-                : 'Analyze a page to see results'
-          }
-          icon={AlignLeft}
-          className="panel-card--primary panel-card--answer"
-          actions={
-            <div className="flex-center-gap" style={{ gap: 8 }}>
-              <button
-                className="link-button text-xs flex-center-gap"
-                onClick={() => void copyAnswer()}
-                disabled={!hasSuggestion}
-                title="Copy all results"
-              >
-                <Copy size={12} /> Copy
-              </button>
-              <button
-                className="link-button text-xs flex-center-gap"
-                onClick={() => void sendSimple('EXTENSION/REPORT_WRONG_DETECTION')}
-                title="Report wrong detection"
-              >
-                <AlertTriangle size={12} /> Report
-              </button>
-            </div>
-          }
-        >
-          {/* Loading skeleton */}
-          {isAnalyzing && <LoadingSkeleton lines={4} />}
-
-          {/* Single answer mode (legacy/detect mode) */}
-          {!isAnalyzing && state.lastSuggestion.answerText && suggestions.length === 0 && (
-            <div className="answer-panel">
-              <p>{state.lastSuggestion.answerText}</p>
-              {state.lastSuggestion.shortExplanation && (
-                <p className="mt-2" style={{ color: 'var(--panel-muted)', fontSize: 13 }}>
-                  {state.lastSuggestion.shortExplanation}
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Multi-question results */}
-          {!isAnalyzing && visibleSuggestions.length > 0 && (
-            <div className="results-list">
-              {visibleSuggestions.map((suggestion, index) => (
-                <QuestionResultCard
-                  key={suggestion.questionId}
-                  suggestion={suggestion}
-                  index={index}
-                  defaultExpanded={suggestions.length <= 3}
-                />
-              ))}
-
-              {hasMore && (
-                <button
-                  className="action-button flex-center-gap justify-center"
-                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                >
-                  Show {Math.min(PAGE_SIZE, suggestions.length - visibleCount)} More
-                  ({suggestions.length - visibleCount} remaining)
-                </button>
-              )}
-
-              {!hasMore && suggestions.length > PAGE_SIZE && (
-                <button
-                  className="action-button flex-center-gap justify-center"
-                  onClick={() => setVisibleCount(PAGE_SIZE)}
-                  style={{ fontSize: 12 }}
-                >
-                  Collapse to first {PAGE_SIZE}
-                </button>
-              )}
-            </div>
-          )}
-
-          {/* Empty state */}
-          {!isAnalyzing && !hasSuggestion && (
-            <div className="empty-state">
-              <Search size={28} style={{ color: 'var(--panel-muted)', opacity: 0.5 }} />
-              <p>No results yet. Click <strong>Analyze Current Tab</strong> to get started.</p>
-            </div>
-          )}
-
-          {/* Warning */}
-          {!isAnalyzing && state.lastSuggestion.warning && (
-            <div className={`notice ${confidenceLevel === 'low' ? 'notice--warning' : 'notice--info'} mt-2`}>
-              <p style={{ fontSize: 12 }}>{state.lastSuggestion.warning}</p>
-            </div>
-          )}
-        </SectionCard>
-      )}
-
       {/* ======== DETECTION OVERRIDE (collapsible) ======== */}
       {isPaired && (
-        <details className="panel-disclosure panel-disclosure--override" open={confidenceLevel === 'low'}>
+        <details className="panel-disclosure" open={confidenceLevel === 'low'}>
           <summary className="panel-disclosure__summary">
             <div>
               <strong>Detection Override</strong>
-              <p>Manually set subject or category if detection is wrong.</p>
+              <p>Manually set subject or category.</p>
             </div>
-            <ChevronDown size={16} />
+            <ChevronDown size={14} />
           </summary>
           <div className="panel-disclosure__content">
             <div className="detection-grid">
@@ -833,30 +813,30 @@ export function SidePanelApp() {
 
       {/* ======== MANUAL CAPTURE (collapsible) ======== */}
       {isPaired && (
-        <details className="panel-disclosure panel-disclosure--advanced" open={capturedSectionCount > 0}>
+        <details className="panel-disclosure" open={capturedSectionCount > 0}>
           <summary className="panel-disclosure__summary">
             <div>
               <strong>Manual Capture</strong>
-              <p>For pages needing multiple manual section captures.</p>
+              <p>Capture sections for multi-page analysis.</p>
             </div>
-            <ChevronDown size={16} />
+            <ChevronDown size={14} />
           </summary>
           <div className="panel-disclosure__content">
             <div className="action-grid">
               <button
-                className="action-button action-button--primary flex-center-gap justify-center"
+                className="action-button action-button--primary"
                 onClick={() => void captureVisibleSection()}
                 disabled={!canCapture || pendingAction !== null}
               >
-                <ExternalLink size={16} />
+                <ExternalLink size={14} />
                 {capturedSectionCount > 0 ? 'Add Section' : 'Capture Section'}
               </button>
               <button
-                className="action-button flex-center-gap justify-center"
+                className="action-button"
                 onClick={() => void sendAnalyze('analyze', 'captured')}
                 disabled={!canMerge || pendingAction !== null}
               >
-                <Sparkles size={16} /> Merge & Analyze
+                <Sparkles size={14} /> Merge & Analyze
               </button>
             </div>
 
@@ -876,12 +856,12 @@ export function SidePanelApp() {
                   ))}
                 </div>
                 <button
-                  className="link-button flex-center-gap mt-2"
+                  className="link-button flex-center-gap mt-1"
                   onClick={() => void resetCapturedSections()}
                   disabled={pendingAction !== null}
-                  style={{ fontSize: 12 }}
+                  style={{ fontSize: 11 }}
                 >
-                  <XCircle size={12} /> Reset Captures
+                  <XCircle size={11} /> Reset Captures
                 </button>
               </>
             )}
@@ -894,9 +874,9 @@ export function SidePanelApp() {
         <summary className="panel-disclosure__summary">
           <div>
             <strong>Activity Log</strong>
-            <p>Notices, warnings, and recent actions.</p>
+            <p>Notices and recent actions.</p>
           </div>
-          <ChevronDown size={16} />
+          <ChevronDown size={14} />
         </summary>
         <div className="panel-disclosure__content">
           {state.notices.length > 0 && (
@@ -904,8 +884,8 @@ export function SidePanelApp() {
               {state.notices.slice(0, 5).map((notice) => (
                 <article key={notice.id} className={`notice notice--${notice.tone}`}>
                   <div className="flex-center-gap mb-1">
-                    {notice.tone === 'danger' ? <XCircle size={14} /> : notice.tone === 'success' ? <CheckCircle2 size={14} /> : <Info size={14} />}
-                    <strong>{notice.title}</strong>
+                    {notice.tone === 'danger' ? <XCircle size={12} /> : notice.tone === 'success' ? <CheckCircle2 size={12} /> : <Info size={12} />}
+                    <strong style={{ fontSize: 12 }}>{notice.title}</strong>
                   </div>
                   <p>{notice.message}</p>
                 </article>
@@ -913,11 +893,11 @@ export function SidePanelApp() {
             </div>
           )}
 
-          <div className="recent-list mb-4">
+          <div className="recent-list mb-3">
             {state.recentActions.length > 0 ? (
               state.recentActions.slice(0, 8).map((action) => (
                 <div key={action.id} className="recent-list__item">
-                  <strong className="truncate" style={{ maxWidth: 180 }}>{action.label}</strong>
+                  <strong className="truncate" style={{ maxWidth: 160, fontSize: 11 }}>{action.label}</strong>
                   <span>{new Date(action.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
               ))
@@ -926,7 +906,7 @@ export function SidePanelApp() {
             )}
             {pendingAction && (
               <div className="recent-list__item animate-pulse">
-                <strong>Running {pendingAction}…</strong>
+                <strong style={{ fontSize: 11 }}>Running {pendingAction}…</strong>
                 <span>Now</span>
               </div>
             )}
@@ -936,9 +916,9 @@ export function SidePanelApp() {
             className="link-button flex-center-gap"
             onClick={() => void sendSimple('EXTENSION/OPEN_DASHBOARD')}
             disabled={!isPaired}
-            style={{ fontSize: 12 }}
+            style={{ fontSize: 11 }}
           >
-            <LayoutDashboard size={12} /> Open Dashboard
+            <LayoutDashboard size={11} /> Open Dashboard
           </button>
         </div>
       </details>

@@ -152,6 +152,14 @@ export function clearCapturedSections(current: ExtensionState): ExtensionState {
   };
 }
 
+export function clearResults(current: ExtensionState): ExtensionState {
+  return {
+    ...current,
+    currentPage: null,
+    lastSuggestion: defaultSuggestion,
+  };
+}
+
 export function clearAuthState(current: ExtensionState): ExtensionState {
   return {
     ...current,
