@@ -11,6 +11,7 @@ const optionalSlugSchema = z
 const optionalNullableStringSchema = z
   .string()
   .trim()
+  .nullable()
   .optional()
   .transform((value) => (value && value.length > 0 ? value : null));
 
