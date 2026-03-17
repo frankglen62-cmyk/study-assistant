@@ -65,6 +65,36 @@ chrome.runtime.onStartup.addListener(async () => {
   await initializeRuntime();
 });
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab.url && !tab.url.startsWith('chrome://')) {
+    void (async () => {
+      try {
+        const state = await readState(browserName, extensionVersion);
+        if (state.autoPilotEnabled && state.session.status === 'session_active') {
+          // Make sure this tab is currently the active one to avoid background execution
+          const activeTab = await getActiveTab();
+          if (activeTab?.id !== tabId) return;
+
+          // Add a small delay to let SPA routers settle, then analyze
+          setTimeout(async () => {
+            try {
+              // Re-check active tab just before running
+              const currentActive = await getActiveTab();
+              if (currentActive?.id === tabId) {
+                await handleAnalyze({ mode: 'analyze', source: 'current', searchScope: 'subject_first' });
+              }
+            } catch (err) {
+              console.error('Auto Pilot analysis failed on new page load:', err);
+            }
+          }, 2500);
+        }
+      } catch (err) {
+        console.error('Auto Pilot tab update check error:', err);
+      }
+    })();
+  }
+});
+
 chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendResponse) => {
   void (async () => {
     try {
