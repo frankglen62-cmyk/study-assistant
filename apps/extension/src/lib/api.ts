@@ -45,6 +45,7 @@ async function fetchJson<T>(
       'Cache-Control': 'no-store',
       Pragma: 'no-cache',
     },
+    signal: typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(15000) : undefined,
   };
 
   if (options.body !== undefined) {
@@ -55,7 +56,14 @@ async function fetchJson<T>(
 
   try {
     response = await fetch(`${normalizeAppUrl(state.appBaseUrl)}${path}`, init);
-  } catch {
+  } catch (error) {
+    if ((error as Error).name === 'TimeoutError' || (error as Error).name === 'AbortError') {
+      throw new ApiError(
+        408,
+        'The analysis request timed out. The server took too long to respond.',
+        'timeout_error',
+      );
+    }
     throw new ApiError(
       0,
       `Could not reach ${normalizeAppUrl(

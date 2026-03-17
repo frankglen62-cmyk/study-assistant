@@ -223,6 +223,8 @@ export async function detectSubjectCategory(params: {
   pageSignals: ExtensionPageSignals;
   manualSubject: string;
   manualCategory: string;
+  sessionSubjectId?: string | null;
+  sessionCategoryId?: string | null;
   screenshotDataUrl: string | null;
 }) {
   if (params.manualSubject.trim()) {
@@ -240,6 +242,23 @@ export async function detectSubjectCategory(params: {
       warning: manualSubject ? null : 'The manual subject could not be matched. Review the selection.',
       reasoning: manualSubject ? 'Manual subject override was applied.' : 'Manual subject override did not match the catalog.',
     } satisfies DetectionResult;
+  }
+
+  // Fast-path: If the session already established a subject successfully in a previous request, reuse it instantly.
+  if (params.sessionSubjectId) {
+    const sessionSubject = params.subjects.find(s => s.id === params.sessionSubjectId);
+    if (sessionSubject) {
+      const sessionCategory = params.categories.find(c => c.id === params.sessionCategoryId) ?? null;
+      return {
+        subject: sessionSubject,
+        category: sessionCategory,
+        subjectConfidence: 1,
+        categoryConfidence: sessionCategory ? 1 : null,
+        detectionMode: 'auto' as const,
+        warning: null,
+        reasoning: 'Session context locked from earlier successful detection.',
+      };
+    }
   }
 
   const normalizedPage = [

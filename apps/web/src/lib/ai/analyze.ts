@@ -321,6 +321,8 @@ function isFallbackApplied(sourceScope: ExtensionSourceScope) {
 export async function analyzeStudyPage(params: {
   userId: string;
   sessionId: string;
+  sessionSubjectId?: string | null;
+  sessionCategoryId?: string | null;
   request: AnalyzeRequestPayload;
 }) {
   const startedAt = Date.now();
@@ -334,6 +336,8 @@ export async function analyzeStudyPage(params: {
     pageSignals,
     manualSubject: params.request.manualSubject,
     manualCategory: params.request.manualCategory,
+    sessionSubjectId: params.sessionSubjectId ?? null,
+    sessionCategoryId: params.sessionCategoryId ?? null,
     screenshotDataUrl: params.request.screenshotDataUrl,
   });
 

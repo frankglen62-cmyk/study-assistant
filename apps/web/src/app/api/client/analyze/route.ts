@@ -104,6 +104,8 @@ export async function POST(request: Request) {
     const response = await analyzeStudyPage({
       userId: context.userId,
       sessionId: session.id,
+      sessionSubjectId: session.current_subject_id,
+      sessionCategoryId: session.current_category_id,
       request: body,
     });
 
