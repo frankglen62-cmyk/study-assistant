@@ -46,5 +46,19 @@ export interface ExtractSignalsPayload {
   includeQuestionContext?: boolean;
 }
 
+export interface AutoClickAnswerPayload {
+  questionId: string;
+  answerText: string;
+  suggestedOption: string | null;
+  options: string[];
+}
+
+export interface AutoClickResult {
+  questionId: string;
+  clicked: boolean;
+  clickedText: string | null;
+  matchMethod: string;
+}
+
 export type StateResponse = ExtensionResponse<ExtensionState>;
 export type PageSignalsResponse = ExtensionResponse<ExtensionPageSignals>;

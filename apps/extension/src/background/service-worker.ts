@@ -2,6 +2,7 @@ import { confidenceToLevel, normalizeAppUrl } from '@study-assistant/shared-util
 import type {
   ExtensionCapturedSection,
   ExtensionPageSignals,
+  ExtensionQuestionSuggestion,
   ExtensionState,
   ExtensionUiStatus,
 } from '@study-assistant/shared-types';
@@ -22,6 +23,8 @@ import { captureVisibleScreenshot, checkSiteAccess, ensureTabHostPermission, get
 import type { SiteAccessResult } from '../lib/chrome';
 import type {
   AnalyzeCurrentPagePayload,
+  AutoClickAnswerPayload,
+  AutoClickResult,
   ExtensionMessage,
   ExtensionResponse,
   LiveAssistSignalPayload,
@@ -146,6 +149,15 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
         }
         case 'EXTENSION/CLEAR_RESULTS': {
           sendResponse(success(await handleClearResults()));
+          return;
+        }
+        case 'EXTENSION/TOGGLE_AUTO_CLICK': {
+          const enabled = Boolean(message.payload && (message.payload as { enabled: boolean }).enabled);
+          sendResponse(success(await handleToggleAutoClick(enabled)));
+          return;
+        }
+        case 'EXTENSION/AUTO_CLICK_ALL': {
+          sendResponse(success(await handleAutoClickAll()));
           return;
         }
         default:
@@ -937,6 +949,16 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     extensionVersion,
   );
 
+  // If auto-click is enabled, trigger auto-click for all high-confidence suggestions
+  if (nextState.autoClickEnabled && nextStatus === 'suggestion_ready') {
+    try {
+      const clickedState = await performAutoClickAll(nextState);
+      return clickedState;
+    } catch {
+      // Auto-click failure is non-fatal, return the analyze result anyway
+    }
+  }
+
   return nextState;
 }
 
@@ -955,6 +977,169 @@ async function handleClearResults() {
         },
       );
     },
+    browserName,
+    extensionVersion,
+  );
+
+  return nextState;
+}
+
+async function handleToggleAutoClick(enabled: boolean) {
+  const nextState = await updateState(
+    (current) =>
+      appendNotice(
+        appendRecentAction(
+          {
+            ...current,
+            autoClickEnabled: enabled,
+          },
+          enabled ? 'Enable Auto-Click' : 'Disable Auto-Click',
+        ),
+        {
+          tone: enabled ? 'success' : 'info',
+          title: enabled ? 'Auto-click enabled' : 'Auto-click disabled',
+          message: enabled
+            ? 'The extension will automatically click the correct answer for each detected question after analysis.'
+            : 'Auto-click is now disabled. Only suggestions will be shown.',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
+
+  return nextState;
+}
+
+async function handleAutoClickAll() {
+  const state = await readState(browserName, extensionVersion);
+  requirePairing(state);
+
+  if (state.lastSuggestion.questionSuggestions.length === 0) {
+    throw new Error('No suggestions available. Analyze the page first.');
+  }
+
+  return performAutoClickAll(state);
+}
+
+async function performAutoClickAll(state: ExtensionState) {
+  const tab = await getActiveTab();
+  await injectExtractor(tab.id!);
+
+  const suggestions = state.lastSuggestion.questionSuggestions;
+  let clickedCount = 0;
+  let failedCount = 0;
+
+  const updatedSuggestions: ExtensionQuestionSuggestion[] = [];
+
+  for (let i = 0; i < suggestions.length; i++) {
+    const suggestion = suggestions[i]!;
+    const answer = suggestion.suggestedOption ?? suggestion.answerText;
+
+    if (!answer) {
+      updatedSuggestions.push({
+        ...suggestion,
+        answerText: suggestion.answerText ?? null,
+        suggestedOption: suggestion.suggestedOption ?? null,
+        shortExplanation: suggestion.shortExplanation ?? null,
+        confidence: suggestion.confidence ?? null,
+        warning: suggestion.warning ?? null,
+        matchedSubject: suggestion.matchedSubject ?? null,
+        matchedCategory: suggestion.matchedCategory ?? null,
+        sourceScope: suggestion.sourceScope ?? 'no_match',
+        clickStatus: 'no_match' as const,
+        clickedText: null,
+      });
+      failedCount++;
+      continue;
+    }
+
+    try {
+      const response = (await chrome.tabs.sendMessage(tab.id!, {
+        type: 'EXTENSION/AUTO_CLICK_ANSWER',
+        payload: {
+          questionId: suggestion.questionId,
+          answerText: suggestion.answerText ?? '',
+          suggestedOption: suggestion.suggestedOption,
+          options: [],
+        } satisfies AutoClickAnswerPayload,
+      })) as ExtensionResponse<AutoClickResult>;
+
+      if (response?.ok && response.data?.clicked) {
+        updatedSuggestions.push({
+          ...suggestion,
+          answerText: suggestion.answerText ?? null,
+          suggestedOption: suggestion.suggestedOption ?? null,
+          shortExplanation: suggestion.shortExplanation ?? null,
+          confidence: suggestion.confidence ?? null,
+          warning: suggestion.warning ?? null,
+          matchedSubject: suggestion.matchedSubject ?? null,
+          matchedCategory: suggestion.matchedCategory ?? null,
+          sourceScope: suggestion.sourceScope ?? 'no_match',
+          clickStatus: 'clicked' as const,
+          clickedText: response.data.clickedText,
+        });
+        clickedCount++;
+      } else {
+        updatedSuggestions.push({
+          ...suggestion,
+          answerText: suggestion.answerText ?? null,
+          suggestedOption: suggestion.suggestedOption ?? null,
+          shortExplanation: suggestion.shortExplanation ?? null,
+          confidence: suggestion.confidence ?? null,
+          warning: suggestion.warning ?? null,
+          matchedSubject: suggestion.matchedSubject ?? null,
+          matchedCategory: suggestion.matchedCategory ?? null,
+          sourceScope: suggestion.sourceScope ?? 'no_match',
+          clickStatus: 'suggested_only' as const,
+          clickedText: null,
+        });
+        failedCount++;
+      }
+    } catch {
+      updatedSuggestions.push({
+        ...suggestion,
+        answerText: suggestion.answerText ?? null,
+        suggestedOption: suggestion.suggestedOption ?? null,
+        shortExplanation: suggestion.shortExplanation ?? null,
+        confidence: suggestion.confidence ?? null,
+        warning: suggestion.warning ?? null,
+        matchedSubject: suggestion.matchedSubject ?? null,
+        matchedCategory: suggestion.matchedCategory ?? null,
+        sourceScope: suggestion.sourceScope ?? 'no_match',
+        clickStatus: 'skipped' as const,
+        clickedText: null,
+      });
+      failedCount++;
+    }
+
+    // Small delay between clicks to avoid overwhelming the page
+    if (i < suggestions.length - 1) {
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    }
+  }
+
+  const nextState = await updateState(
+    (current) =>
+      appendNotice(
+        appendRecentAction(
+          {
+            ...current,
+            lastSuggestion: {
+              ...current.lastSuggestion,
+              questionSuggestions: updatedSuggestions,
+            },
+          },
+          `Auto-Click: ${clickedCount}/${suggestions.length}`,
+        ),
+        {
+          tone: clickedCount > 0 ? 'success' : 'warning',
+          title: 'Auto-click complete',
+          message:
+            clickedCount === suggestions.length
+              ? `All ${clickedCount} answers were automatically selected! ✅`
+              : `Clicked ${clickedCount} of ${suggestions.length} answers. ${failedCount} could not be matched on the page.`,
+        },
+      ),
     browserName,
     extensionVersion,
   );

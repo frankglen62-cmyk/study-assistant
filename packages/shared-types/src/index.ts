@@ -61,6 +61,8 @@ export interface ExtensionExtractionDiagnostics {
   courseCodeCount: number;
 }
 
+export type AutoClickStatus = 'pending' | 'clicked' | 'suggested_only' | 'no_match' | 'skipped';
+
 export interface ExtensionQuestionSuggestion {
   questionId: string;
   questionText: string;
@@ -73,6 +75,8 @@ export interface ExtensionQuestionSuggestion {
   matchedSubject: string | null;
   matchedCategory: string | null;
   sourceScope: ExtensionSourceScope;
+  clickStatus: AutoClickStatus;
+  clickedText: string | null;
 }
 
 export interface ExtensionCapturedSection {
@@ -207,6 +211,7 @@ export interface ExtensionState {
   recentActions: ExtensionRecentAction[];
   lastError: string | null;
   permissionOrigin: string;
+  autoClickEnabled: boolean;
 }
 
 export type ExtensionActionType =
@@ -230,7 +235,10 @@ export type ExtensionActionType =
   | 'EXTENSION/LIVE_ASSIST_SIGNAL'
   | 'EXTENSION/CHECK_SITE_ACCESS'
   | 'EXTENSION/GRANT_SITE_PERMISSION'
-  | 'EXTENSION/CLEAR_RESULTS';
+  | 'EXTENSION/CLEAR_RESULTS'
+  | 'EXTENSION/TOGGLE_AUTO_CLICK'
+  | 'EXTENSION/AUTO_CLICK_ANSWER'
+  | 'EXTENSION/AUTO_CLICK_ALL';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 

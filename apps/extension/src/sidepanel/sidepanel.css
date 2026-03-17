@@ -563,6 +563,25 @@ button, input, select, textarea { font: inherit; }
 .confidence-badge--low    { background: var(--sa-red-bg); color: var(--sa-red); }
 
 /* ================================================================
+   Auto-Click Status Badge
+   ================================================================ */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.status-badge--pending { background: rgba(139, 148, 158, 0.15); color: var(--sa-muted); }
+.status-badge--success { background: var(--sa-green-bg); color: var(--sa-green); }
+.status-badge--info    { background: var(--sa-accent-bg); color: var(--sa-accent); }
+.status-badge--warning { background: var(--sa-yellow-bg); color: var(--sa-yellow); }
+
+/* ================================================================
    Analyzing Progress Bar
    ================================================================ */
 .analyze-progress {

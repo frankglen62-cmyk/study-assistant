@@ -64,6 +64,8 @@ export const answerSuggestionSchema = z.object({
         matchedSubject: z.string().nullable().default(null),
         matchedCategory: z.string().nullable().default(null),
         sourceScope: z.enum(['subject_folder', 'all_subject_folders', 'file_sources', 'no_match']).default('no_match'),
+        clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
+        clickedText: z.string().nullable().default(null),
       }),
     )
     .default([]),
@@ -145,6 +147,7 @@ export const extensionStateSchema = z.object({
   recentActions: z.array(extensionActionSchema),
   lastError: z.string().nullable(),
   permissionOrigin: z.string(),
+  autoClickEnabled: z.boolean().default(false),
 });
 
 export const pairingFormSchema = z.object({
@@ -202,6 +205,8 @@ export const analyzeResponseSchema = z.object({
         matchedSubject: z.string().nullable().default(null),
         matchedCategory: z.string().nullable().default(null),
         sourceScope: z.enum(['subject_folder', 'all_subject_folders', 'file_sources', 'no_match']).default('no_match'),
+        clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
+        clickedText: z.string().nullable().default(null),
       }),
     )
     .default([]),

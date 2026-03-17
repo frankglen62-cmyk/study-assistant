@@ -921,6 +921,196 @@ export function installExtractorContentScript() {
       }
 
       sendResponse({ ok: true });
+      return;
+    }
+
+    if (message?.type === 'EXTENSION/AUTO_CLICK_ANSWER') {
+      const payload = message.payload as {
+        questionId: string;
+        answerText: string;
+        suggestedOption: string | null;
+        options: string[];
+      };
+
+      const result = autoClickAnswer(payload);
+      sendResponse({ ok: true, data: result });
+      return;
     }
   });
+
+  function normalizeForMatch(s: string): string {
+    return s
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '')
+      .trim()
+      .toLowerCase();
+  }
+
+  function autoClickAnswer(payload: {
+    questionId: string;
+    answerText: string;
+    suggestedOption: string | null;
+    options: string[];
+  }): { clicked: boolean; clickedText: string | null; matchMethod: string } {
+    const targetText = payload.suggestedOption ?? payload.answerText;
+    if (!targetText) {
+      return { clicked: false, clickedText: null, matchMethod: 'no_answer' };
+    }
+
+    const normalizedTarget = normalizeForMatch(targetText);
+    const lowerTarget = targetText.trim().toLowerCase();
+
+    // Collect all clickable choice elements on the page
+    const clickables: Array<{ element: HTMLElement; text: string; normalized: string; input: HTMLInputElement | null }> = [];
+
+    // Strategy 1: Radio buttons and checkboxes with labels
+    const inputs = document.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]');
+    for (const input of inputs) {
+      if (!isElementVisible(input)) continue;
+
+      // Find associated label
+      let label: HTMLElement | null = null;
+      if (input.id) {
+        label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(input.id)}"]`);
+      }
+      if (!label) {
+        label = input.closest('label');
+      }
+      if (!label) {
+        // Check next sibling text or parent
+        const parent = input.parentElement;
+        if (parent) {
+          const text = normalizeText(parent.textContent ?? '');
+          if (text.length > 0 && text.length < 500) {
+            clickables.push({
+              element: parent,
+              text,
+              normalized: normalizeForMatch(text),
+              input,
+            });
+            continue;
+          }
+        }
+      }
+
+      const labelText = normalizeText(label?.textContent ?? '');
+      if (labelText.length > 0) {
+        clickables.push({
+          element: label ?? input,
+          text: labelText,
+          normalized: normalizeForMatch(labelText),
+          input,
+        });
+      }
+    }
+
+    // Strategy 2: Custom clickable choice containers (div/li/button with choice-like text)
+    const choiceContainers = document.querySelectorAll<HTMLElement>(
+      '.answer, .option, .choice, [role="option"], [role="radio"], [data-choice], [data-answer], .que .answer div, .formulation .answer div'
+    );
+    for (const container of choiceContainers) {
+      if (!isElementVisible(container)) continue;
+      const text = normalizeText(container.textContent ?? '');
+      if (text.length > 0 && text.length < 500) {
+        const existing = clickables.find(c => c.normalized === normalizeForMatch(text));
+        if (!existing) {
+          clickables.push({
+            element: container,
+            text,
+            normalized: normalizeForMatch(text),
+            input: container.querySelector<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'),
+          });
+        }
+      }
+    }
+
+    if (clickables.length === 0) {
+      return { clicked: false, clickedText: null, matchMethod: 'no_clickables_found' };
+    }
+
+    // Match priority: exact → normalized exact → starts with → contains → fuzzy
+    let bestMatch: (typeof clickables)[number] | null = null;
+    let matchMethod = 'none';
+
+    // 1. Exact normalized match
+    for (const c of clickables) {
+      if (c.normalized === normalizedTarget) {
+        bestMatch = c;
+        matchMethod = 'exact';
+        break;
+      }
+    }
+
+    // 2. Lowercase trimmed match
+    if (!bestMatch) {
+      for (const c of clickables) {
+        if (c.text.trim().toLowerCase() === lowerTarget) {
+          bestMatch = c;
+          matchMethod = 'lowercase';
+          break;
+        }
+      }
+    }
+
+    // 3. Target starts with choice text or choice starts with target
+    if (!bestMatch) {
+      for (const c of clickables) {
+        if (normalizedTarget.startsWith(c.normalized) || c.normalized.startsWith(normalizedTarget)) {
+          bestMatch = c;
+          matchMethod = 'starts_with';
+          break;
+        }
+      }
+    }
+
+    // 4. Contains match
+    if (!bestMatch) {
+      for (const c of clickables) {
+        if (c.normalized.includes(normalizedTarget) || normalizedTarget.includes(c.normalized)) {
+          bestMatch = c;
+          matchMethod = 'contains';
+          break;
+        }
+      }
+    }
+
+    // 5. Word-level fuzzy: check if most words in target appear in choice
+    if (!bestMatch) {
+      const targetWords = normalizedTarget.split(/\s+/).filter(w => w.length > 2);
+      let bestScore = 0;
+
+      for (const c of clickables) {
+        const choiceWords = new Set(c.normalized.split(/\s+/));
+        const matchCount = targetWords.filter(w => choiceWords.has(w)).length;
+        const score = targetWords.length > 0 ? matchCount / targetWords.length : 0;
+
+        if (score > bestScore && score >= 0.6) {
+          bestScore = score;
+          bestMatch = c;
+          matchMethod = 'fuzzy';
+        }
+      }
+    }
+
+    if (!bestMatch) {
+      return { clicked: false, clickedText: null, matchMethod: 'no_match' };
+    }
+
+    // Perform the click
+    try {
+      if (bestMatch.input && !bestMatch.input.checked) {
+        bestMatch.input.focus();
+        bestMatch.input.click();
+        bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+        bestMatch.input.dispatchEvent(new Event('input', { bubbles: true }));
+      } else if (!bestMatch.input) {
+        bestMatch.element.click();
+      } else {
+        // Already checked, still report as clicked
+      }
+      return { clicked: true, clickedText: bestMatch.text, matchMethod };
+    } catch {
+      return { clicked: false, clickedText: bestMatch.text, matchMethod: 'click_error' };
+    }
+  }
 }

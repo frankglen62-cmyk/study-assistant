@@ -165,6 +165,8 @@ function buildNoMatchQuestionSuggestion(params: {
     matchedSubject: params.subjectName,
     matchedCategory: params.categoryName,
     sourceScope: 'no_match',
+    clickStatus: 'pending' as const,
+    clickedText: null,
   } satisfies ExtensionQuestionSuggestion;
 }
 
@@ -209,6 +211,8 @@ async function resolveQuestionSuggestion(params: {
       matchedSubject: pair.subject_name ?? params.subjectName,
       matchedCategory: pair.category_name ?? params.categoryName,
       sourceScope,
+      clickStatus: 'pending' as const,
+      clickedText: null,
     } satisfies ExtensionQuestionSuggestion;
   };
 
@@ -248,6 +252,8 @@ async function resolveQuestionSuggestion(params: {
         matchedSubject: params.subjectName,
         matchedCategory: params.categoryName,
         sourceScope: 'file_sources',
+        clickStatus: 'pending' as const,
+        clickedText: null,
       } satisfies ExtensionQuestionSuggestion,
       retrievalConfidence: retrieval.retrievalConfidence,
       retrievalStatus: retrieval.retrievalStatus,
@@ -647,7 +653,9 @@ async function persistNoMatch(params: {
       retrievalStatus: params.retrievalStatus,
       matchedSubject: params.detection.subject?.name ?? null,
       matchedCategory: params.detection.category?.name ?? null,
-      sourceScope: 'no_match',
+      sourceScope: 'no_match' as const,
+      clickStatus: 'pending' as const,
+      clickedText: null,
     }));
 
   const response: AnalyzeResponsePayload = {

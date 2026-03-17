@@ -127,6 +127,22 @@ function ConfidenceBadge({ confidence }: { confidence: number | null }) {
   return <span className={`confidence-badge confidence-badge--${level}`}>{label}</span>;
 }
 
+function AutoClickStatusBadge({ status }: { status: ExtensionQuestionSuggestion['clickStatus'] }) {
+  if (status === 'pending') {
+    return <span className="status-badge status-badge--pending"><Loader2 size={10} className="animate-spin" /> Pending</span>;
+  }
+  if (status === 'clicked') {
+    return <span className="status-badge status-badge--success"><MousePointerClick size={10} /> Clicked</span>;
+  }
+  if (status === 'suggested_only') {
+    return <span className="status-badge status-badge--info"><Target size={10} /> Suggested</span>;
+  }
+  if (status === 'no_match' || status === 'skipped') {
+    return <span className="status-badge status-badge--warning"><XCircle size={10} /> Not Clicked</span>;
+  }
+  return null;
+}
+
 function AnalyzeProgressBar() {
   return (
     <div className="analyze-progress">
@@ -174,7 +190,10 @@ function QuestionResultCard({ suggestion, index }: {
       {/* Answer — ALWAYS visible, no need to expand */}
       <div className="result-card__answer-highlight">
         <CheckCircle2 size={14} style={{ color: 'var(--sa-green)', flexShrink: 0, marginTop: 2 }} />
-        <span className="result-card__answer-text">{answer}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <span className="result-card__answer-text">{answer}</span>
+          {suggestion.clickStatus !== 'pending' && <AutoClickStatusBadge status={suggestion.clickStatus} />}
+        </div>
       </div>
 
       {/* Expanded details */}
@@ -323,6 +342,21 @@ export function SidePanelApp() {
         type: 'EXTENSION/TOGGLE_LIVE_ASSIST',
         payload: { enabled },
       });
+    });
+  }
+
+  async function toggleAutoClick(enabled: boolean) {
+    await runAction('EXTENSION/TOGGLE_AUTO_CLICK', async () => {
+      await sendExtensionMessage({
+        type: 'EXTENSION/TOGGLE_AUTO_CLICK',
+        payload: { enabled },
+      });
+    });
+  }
+
+  async function triggerAutoClickAll() {
+    await runAction('EXTENSION/AUTO_CLICK_ALL', async () => {
+      await sendExtensionMessage({ type: 'EXTENSION/AUTO_CLICK_ALL' });
     });
   }
 
@@ -583,6 +617,16 @@ export function SidePanelApp() {
           className="panel-card--primary"
           actions={
             <div className="flex-center-gap" style={{ gap: 6 }}>
+              {suggestions.length > 0 && !isAnalyzing && (
+                <button
+                  className="link-button text-xs flex-center-gap"
+                  onClick={() => void triggerAutoClickAll()}
+                  disabled={pendingAction !== null}
+                  title="Auto-select all matched answers on the page"
+                >
+                  <MousePointerClick size={11} /> Auto-Select
+                </button>
+              )}
               <button
                 className="link-button text-xs flex-center-gap"
                 onClick={() => void copyAnswer()}
@@ -737,7 +781,20 @@ export function SidePanelApp() {
 
             <label className="toggle-card mt-2">
               <div>
-                <strong className="flex-center-gap"><MousePointerClick size={12} /> Live Assist</strong>
+                <strong className="flex-center-gap"><MousePointerClick size={12} /> Auto-Click Answers</strong>
+                <p>Automatically select correct answers on the page.</p>
+              </div>
+              <input
+                type="checkbox"
+                checked={state.autoClickEnabled}
+                onChange={(event) => void toggleAutoClick(event.target.checked)}
+                disabled={!siteAccessGranted}
+              />
+            </label>
+
+            <label className="toggle-card mt-2">
+              <div>
+                <strong className="flex-center-gap"><RefreshCw size={12} /> Live Assist</strong>
                 <p>Auto re-analyze on page changes.</p>
               </div>
               <input
