@@ -1,5 +1,9 @@
 # AI Agent Complete Handoff
 
+> **IMPORTANT: ONLINE DEPLOYMENT (VERCEL + GITHUB)**
+> The user NO LONGER uses `localhost`. The application is deployed online via Vercel (`study-assistant-web.vercel.app`) connected to the GitHub repository (`https://github.com/frankglen62-cmyk/study-assistant.git`). 
+> Every time you make changes to the Web App or the Extension, you MUST commit and push them to GitHub so Vercel can automatically build and deploy them. Do not rely on localhost or local scripts unless explicitly building locally to test.
+
 This file is the full handoff and memory backup for the project in:
 
 - `C:\Users\glenn\Documents\NEW PROJECT`
