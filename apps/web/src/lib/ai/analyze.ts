@@ -222,16 +222,24 @@ async function resolveQuestionSuggestion(params: {
       queryText,
       options: optionText,
     });
-    const topAllSubjectPair = allSubjectQa.pairs[0] ?? null;
+    const topAllSubjectPairs = allSubjectQa.pairs.slice(0, 5);
+    let bestSuggestion = null;
 
-    if (topAllSubjectPair) {
+    for (const pair of topAllSubjectPairs) {
       const scope: ExtensionSourceScope =
-        topAllSubjectPair.subject_id === params.subject.id ? 'subject_folder' : 'all_subject_folders';
+        pair.subject_id === params.subject.id ? 'subject_folder' : 'all_subject_folders';
 
-      const suggestion = buildQaSuggestion(topAllSubjectPair, allSubjectQa.retrievalStatus, scope);
+      const suggestion = buildQaSuggestion(pair, allSubjectQa.retrievalStatus, scope);
       if (suggestion) {
-        return suggestion;
+        if (!bestSuggestion) bestSuggestion = suggestion;
+        if (suggestion.suggestedOption && optionText.includes(suggestion.suggestedOption)) {
+          return suggestion;
+        }
       }
+    }
+
+    if (bestSuggestion) {
+      return bestSuggestion;
     }
 
 
@@ -253,13 +261,21 @@ async function resolveQuestionSuggestion(params: {
     queryText,
     options: optionText,
   });
-  const topSubjectPair = subjectQa.pairs[0] ?? null;
+  const topSubjectPairs = subjectQa.pairs.slice(0, 5);
+  let bestSuggestion = null;
 
-  if (topSubjectPair) {
-    const suggestion = buildQaSuggestion(topSubjectPair, subjectQa.retrievalStatus, 'subject_folder');
+  for (const pair of topSubjectPairs) {
+    const suggestion = buildQaSuggestion(pair, subjectQa.retrievalStatus, 'subject_folder');
     if (suggestion) {
-      return suggestion;
+      if (!bestSuggestion) bestSuggestion = suggestion;
+      if (suggestion.suggestedOption && optionText.includes(suggestion.suggestedOption)) {
+        return suggestion;
+      }
     }
+  }
+
+  if (bestSuggestion) {
+    return bestSuggestion;
   }
 
   return buildNoMatchQuestionSuggestion({

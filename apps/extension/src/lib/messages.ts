@@ -22,6 +22,7 @@ export interface AnalyzeCurrentPagePayload {
   includeScreenshot?: boolean;
   source?: 'current' | 'captured';
   searchScope?: 'subject_first' | 'all_subjects';
+  forceRedetect?: boolean;
 }
 
 export interface ManualOverridePayload {

@@ -306,7 +306,7 @@ export function SidePanelApp() {
     await runAction(`${mode}:${source}`, async () => {
       await sendExtensionMessage({
         type: 'EXTENSION/ANALYZE_CURRENT_PAGE',
-        payload: { mode, includeScreenshot: false, source, searchScope },
+        payload: { mode, includeScreenshot: false, source, searchScope, forceRedetect: true },
       });
     });
   }

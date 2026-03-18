@@ -947,6 +947,19 @@ export async function updateSourceMetadata(
 export async function createSubjectQaPair(input: AdminSubjectQaPairCreateRequest & AuditContext) {
   const supabase = getSupabaseAdmin();
 
+  const { data: existingExactMatches } = await supabase
+    .from('subject_qa_pairs')
+    .select('id')
+    .eq('subject_id', input.subjectId)
+    .eq('question_text', input.questionText)
+    .eq('answer_text', input.answerText)
+    .is('deleted_at', null)
+    .limit(1);
+
+  if (existingExactMatches && existingExactMatches.length > 0) {
+    throw new RouteError(409, 'already_exists', 'A Q&A pair with the exact same question and answer already exists in this subject.');
+  }
+
   const inserted = await supabase
     .from('subject_qa_pairs')
     .insert({
@@ -997,6 +1010,20 @@ export async function updateSubjectQaPair(
   const existing = await getSubjectQaPairById(input.pairId);
 
   if (input.action === 'update') {
+    const { data: existingExactMatches } = await supabase
+      .from('subject_qa_pairs')
+      .select('id')
+      .eq('subject_id', input.subjectId)
+      .eq('question_text', input.questionText)
+      .eq('answer_text', input.answerText)
+      .neq('id', input.pairId)
+      .is('deleted_at', null)
+      .limit(1);
+
+    if (existingExactMatches && existingExactMatches.length > 0) {
+      throw new RouteError(409, 'already_exists', 'A Q&A pair with the exact same question and answer already exists in this subject.');
+    }
+
     const updated = await supabase
       .from('subject_qa_pairs')
       .update({

@@ -298,6 +298,7 @@ export interface AnalyzeRequestPayload {
   manualCategory: string;
   sessionId: string | null;
   liveAssist: boolean;
+  forceRedetect?: boolean;
 }
 
 export interface AnalyzeResponsePayload extends ExtensionAnswerSuggestion {

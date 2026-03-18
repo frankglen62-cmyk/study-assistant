@@ -911,6 +911,7 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
       searchScope: payload.searchScope ?? 'subject_first',
       sessionId: freshState.session.sessionId,
       liveAssist: freshState.session.liveAssistEnabled,
+      forceRedetect: payload.forceRedetect ?? false,
     }),
   );
 

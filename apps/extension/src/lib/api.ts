@@ -159,6 +159,7 @@ export async function analyzePage(
     searchScope: 'subject_first' | 'all_subjects';
     sessionId: string | null;
     liveAssist: boolean;
+    forceRedetect?: boolean;
   },
 ) {
   return fetchJson(state, '/api/client/analyze', (input) => analyzeResponseSchema.parse(input), {
