@@ -310,6 +310,7 @@ export async function retrieveRelevantQaPairs(params: {
         short_explanation,
         keywords,
         sort_order,
+        updated_at,
         subjects:subject_id (
           name
         ),
