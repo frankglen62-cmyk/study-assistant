@@ -182,6 +182,7 @@ function resolveQuestionSuggestionFromPreloaded(params: {
 }): ExtensionQuestionSuggestion {
   const queryText = params.candidate.prompt;
   const optionText = params.candidate.options;
+  const hasOptions = optionText.length > 0;
 
   const buildQaSuggestion = (pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number], retrievalStatus: string, sourceScope: ExtensionSourceScope) => {
     if (!isReliableQaPairMatch(params.candidate, pair)) {
@@ -229,21 +230,39 @@ function resolveQuestionSuggestionFromPreloaded(params: {
     ? `Matched ${rankedPairs.length} stored answer pair${rankedPairs.length === 1 ? '' : 's'} in ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`
     : `No matching subject answer pairs were found for ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`;
 
-  const topPairs = rankedPairs.slice(0, 5);
-  let bestSuggestion: ExtensionQuestionSuggestion | null = null;
+  // Check more candidates so we can skip wrong-option matches
+  const topPairs = rankedPairs.slice(0, 12);
+  let bestWithOption: ExtensionQuestionSuggestion | null = null;
+  let bestWithoutOption: ExtensionQuestionSuggestion | null = null;
 
   for (const pair of topPairs) {
     const suggestion = buildQaSuggestion(pair, retrievalStatus, 'subject_folder');
-    if (suggestion) {
-      if (!bestSuggestion) bestSuggestion = suggestion;
-      if (suggestion.suggestedOption && optionText.includes(suggestion.suggestedOption)) {
+    if (!suggestion) continue;
+
+    if (suggestion.suggestedOption) {
+      // This QA pair's answer maps to a real choice on the page — strong candidate
+      if (!bestWithOption) bestWithOption = suggestion;
+      // Exact match in the options list — use immediately
+      if (optionText.includes(suggestion.suggestedOption)) {
         return suggestion;
       }
+    } else if (hasOptions) {
+      // Answer doesn't map to any choice — keep as fallback only
+      if (!bestWithoutOption) bestWithoutOption = suggestion;
+    } else {
+      // No choices on the page — any answer is valid
+      if (!bestWithOption) bestWithOption = suggestion;
     }
   }
 
-  if (bestSuggestion) {
-    return bestSuggestion;
+  // Prefer suggestions that map to an actual choice
+  if (bestWithOption) {
+    return bestWithOption;
+  }
+
+  // Fallback: return the best no-option match if nothing else worked
+  if (bestWithoutOption) {
+    return bestWithoutOption;
   }
 
   return buildNoMatchQuestionSuggestion({

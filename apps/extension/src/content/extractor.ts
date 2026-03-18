@@ -248,27 +248,34 @@ export function installExtractorContentScript() {
       return [];
     }
 
+    // Filter out Moodle/LMS boilerplate that leaks into option text
+    const isBoilerplateOption = (text: string): boolean => {
+      const lower = text.trim().toLowerCase();
+      return /^(clear my choice|flag question|check|not yet answered|not answered|answered|finish review|finish attempt|marked out of|mark \d|marks?$|submit|save|cancel|next page|previous page|time left)$/i.test(lower)
+        || lower.length < 2;
+    };
+
     const fromInputs = Array.from(container.querySelectorAll('input[type="radio"], input[type="checkbox"]'))
       .map((input) => cleanOptionLabel(extractOptionLabel(input)))
-      .filter(Boolean);
+      .filter((text) => Boolean(text) && !isBoilerplateOption(text));
 
     const fromDataOptions = Array.from(container.querySelectorAll('[data-question-option], [role="option"], .option, .choice'))
       .filter((node) => isElementVisible(node))
       .map((node) => cleanOptionLabel(node.textContent ?? ''))
-      .filter((text) => text.length > 2 && text.length < 180);
+      .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
 
     const fromAnswerRows = Array.from(
       container.querySelectorAll('.answer label, .answer .r0, .answer .r1, .answer .r2, .answer .r3, .answer .flex-fill'),
     )
       .filter((node) => isElementVisible(node))
       .map((node) => cleanOptionLabel(node.textContent ?? ''))
-      .filter((text) => text.length > 2 && text.length < 180);
+      .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
 
     const fromListItems = Array.from(container.querySelectorAll('li'))
       .filter((node) => isElementVisible(node))
       .map((node) => cleanOptionLabel(node.textContent ?? ''))
       .filter((text) => /^[([]?[a-z0-9ivx]{1,5}[)\].:\s-]/i.test(text) || text.length < 180)
-      .filter((text) => text.length > 2);
+      .filter((text) => text.length > 2 && !isBoilerplateOption(text));
 
     return Array.from(new Set([...fromInputs, ...fromDataOptions, ...fromAnswerRows, ...fromListItems])).slice(0, limit);
   }

@@ -13,7 +13,9 @@ function stripLeadingChoiceMarker(value: string) {
 export function normalizeComparableText(value: string) {
   return collapseWhitespace(stripLeadingChoiceMarker(stripDiacritics(value)))
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s.,+\-%=]+/gu, ' ')
+    // Preserve fill-in-the-blank indicators: convert sequences of underscores/spaces to a single '_' token
+    .replace(/[_\s]*_{2,}[_\s]*/g, ' _ ')
+    .replace(/[^\p{L}\p{N}\s.,+\-%=_]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
