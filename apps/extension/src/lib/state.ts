@@ -50,6 +50,8 @@ export function createDefaultState(browserName = 'Chrome', extensionVersion = '0
       manualSubject: '',
       manualCategory: '',
       lastActivityAt: null,
+      cachedSubjectId: null,
+      cachedSubjectName: null,
     },
     currentPage: null,
     capturedSections: [],
@@ -159,6 +161,25 @@ export function clearResults(current: ExtensionState): ExtensionState {
     ...current,
     currentPage: null,
     lastSuggestion: defaultSuggestion,
+  };
+}
+
+export function resetExam(current: ExtensionState): ExtensionState {
+  return {
+    ...current,
+    currentPage: null,
+    capturedSections: [],
+    lastSuggestion: defaultSuggestion,
+    autoClickEnabled: false,
+    autoPilotEnabled: false,
+    session: {
+      ...current.session,
+      liveAssistEnabled: false,
+      cachedSubjectId: null,
+      cachedSubjectName: null,
+      manualSubject: '',
+      manualCategory: '',
+    },
   };
 }
 

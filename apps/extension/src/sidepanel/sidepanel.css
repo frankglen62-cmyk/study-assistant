@@ -1018,6 +1018,166 @@ button, input, select, textarea { font: inherit; }
 .gap-3 { gap: 12px; }
 
 /* ================================================================
+   Quick Action Bar — New Exam / Full Auto / Select All
+   ================================================================ */
+.quick-action-bar {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+}
+
+.quick-action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  border: 1px solid var(--sa-border);
+  border-radius: var(--sa-radius);
+  background: var(--sa-surface);
+  color: var(--sa-fg-2);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all var(--sa-transition);
+}
+
+.quick-action-btn:hover:not(:disabled) {
+  background: var(--sa-surface-2);
+  border-color: var(--sa-accent);
+  color: var(--sa-fg);
+  transform: translateY(-1px);
+}
+
+.quick-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quick-action-btn--reset {
+  border-color: var(--sa-yellow-border);
+  color: var(--sa-yellow);
+}
+.quick-action-btn--reset:hover:not(:disabled) {
+  background: var(--sa-yellow-bg);
+  border-color: var(--sa-yellow);
+}
+
+.quick-action-btn--auto {
+  border-color: var(--sa-border);
+}
+.quick-action-btn--auto:hover:not(:disabled) {
+  border-color: var(--sa-purple);
+  color: var(--sa-purple);
+  background: var(--sa-purple-bg);
+}
+
+.quick-action-btn--active {
+  border-color: var(--sa-green-border);
+  background: var(--sa-green-bg);
+  color: var(--sa-green);
+  box-shadow: 0 0 12px rgba(63, 185, 80, 0.2);
+}
+.quick-action-btn--active:hover:not(:disabled) {
+  background: rgba(63, 185, 80, 0.25);
+  border-color: var(--sa-green);
+}
+
+.quick-action-btn--select {
+  border-color: var(--sa-border);
+}
+.quick-action-btn--select:hover:not(:disabled) {
+  border-color: var(--sa-accent);
+  background: var(--sa-accent-bg);
+  color: var(--sa-accent);
+}
+
+/* ================================================================
+   Steps Section — Detect Subject + Find Answers
+   ================================================================ */
+.steps-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--sa-surface);
+  border: 1px solid var(--sa-border);
+  border-radius: var(--sa-radius-lg);
+  padding: 14px;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--sa-accent-bg);
+  color: var(--sa-accent);
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(56, 139, 253, 0.3);
+}
+
+.step-cached-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--sa-green);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.action-button--detect {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--sa-border);
+  border-radius: var(--sa-radius);
+  background: var(--sa-surface-2);
+  color: var(--sa-fg-2);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--sa-transition);
+}
+
+.action-button--detect:hover:not(:disabled) {
+  background: var(--sa-accent-bg);
+  border-color: var(--sa-accent);
+  color: var(--sa-accent);
+}
+
+.action-button--lg {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.result-card--skipped {
+  border-color: var(--sa-border);
+  opacity: 0.7;
+}
+
+.result-card__answer-highlight--skipped {
+  opacity: 0.6;
+}
+
+/* ================================================================
    Animations
    ================================================================ */
 .animate-spin {
@@ -1048,5 +1208,9 @@ button, input, select, textarea { font: inherit; }
   .detection-grid,
   .override-grid {
     grid-template-columns: 1fr;
+  }
+
+  .quick-action-bar {
+    flex-wrap: wrap;
   }
 }

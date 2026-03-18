@@ -91,6 +91,8 @@ export const extensionSessionSchema = z.object({
   manualSubject: z.string(),
   manualCategory: z.string(),
   lastActivityAt: z.string().nullable(),
+  cachedSubjectId: z.string().nullable().default(null),
+  cachedSubjectName: z.string().nullable().default(null),
 });
 
 export const extensionNoticeSchema = z.object({

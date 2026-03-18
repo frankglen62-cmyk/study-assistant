@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { confidenceToLevel, formatConfidence, formatDurationDetailed } from '@study-assistant/shared-utils';
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
@@ -8,11 +8,10 @@ import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionStat
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
 import {
-  ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, UserRoundPlus, Server,
-  Activity, MonitorSmartphone, MousePointerClick, AlignLeft, RefreshCw,
-  XCircle, LayoutDashboard, Copy, AlertTriangle, Lock, Unlock, Globe,
-  ExternalLink, ChevronDown, ChevronRight, BookOpen, Hash, Clock,
-  Search, Loader2, CheckCircle2, AlertOctagon, Info, Target, Play,
+  ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MonitorSmartphone, MousePointerClick,
+  RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
+  ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
+  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -111,16 +110,6 @@ function useSiteAccess(isPaired: boolean) {
 /* ------------------------------------------------------------------ */
 /*  Sub-components                                                      */
 /* ------------------------------------------------------------------ */
-function LoadingSkeleton({ lines = 3 }: { lines?: number }) {
-  return (
-    <div className="skeleton-group">
-      {Array.from({ length: lines }, (_, i) => (
-        <div key={i} className="skeleton-line" style={{ width: `${85 - i * 12}%` }} />
-      ))}
-    </div>
-  );
-}
-
 function ConfidenceBadge({ confidence }: { confidence: number | null }) {
   const level = confidenceToLevel(confidence);
   const label = confidence !== null ? formatConfidence(confidence) : 'N/A';
@@ -138,7 +127,7 @@ function AutoClickStatusBadge({ status }: { status: ExtensionQuestionSuggestion[
     return <span className="status-badge status-badge--info"><Target size={10} /> Suggested</span>;
   }
   if (status === 'no_match' || status === 'skipped') {
-    return <span className="status-badge status-badge--warning"><XCircle size={10} /> Not Clicked</span>;
+    return <span className="status-badge status-badge--warning"><XCircle size={10} /> Skipped</span>;
   }
   return null;
 }
@@ -151,7 +140,7 @@ function AnalyzeProgressBar() {
       </div>
       <div className="analyze-progress__text">
         <Loader2 size={14} className="animate-spin" />
-        <span>Analyzing questions & finding answers…</span>
+        <span>Searching sources & matching answers…</span>
       </div>
     </div>
   );
@@ -163,11 +152,11 @@ function QuestionResultCard({ suggestion, index }: {
 }) {
   const [expanded, setExpanded] = useState(false);
   const level = confidenceToLevel(suggestion.confidence);
-  const answer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match found';
+  const hasAnswer = suggestion.suggestedOption || suggestion.answerText;
+  const answer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match — skipped';
 
   return (
-    <article className={`result-card result-card--${level}`} style={{ animationDelay: `${index * 30}ms` }}>
-      {/* Header row with Q number and question preview */}
+    <article className={`result-card result-card--${hasAnswer ? level : 'skipped'}`} style={{ animationDelay: `${index * 20}ms` }}>
       <button
         className="result-card__header"
         onClick={() => setExpanded((v) => !v)}
@@ -176,8 +165,8 @@ function QuestionResultCard({ suggestion, index }: {
         <div className="result-card__header-left">
           <span className="result-card__number">Q{index + 1}</span>
           <span className="result-card__prompt-preview">
-            {suggestion.questionText.length > 60
-              ? suggestion.questionText.slice(0, 60) + '…'
+            {suggestion.questionText.length > 55
+              ? suggestion.questionText.slice(0, 55) + '…'
               : suggestion.questionText}
           </span>
         </div>
@@ -187,16 +176,17 @@ function QuestionResultCard({ suggestion, index }: {
         </div>
       </button>
 
-      {/* Answer — ALWAYS visible, no need to expand */}
-      <div className="result-card__answer-highlight">
-        <CheckCircle2 size={14} style={{ color: 'var(--sa-green)', flexShrink: 0, marginTop: 2 }} />
+      <div className={`result-card__answer-highlight ${!hasAnswer ? 'result-card__answer-highlight--skipped' : ''}`}>
+        {hasAnswer
+          ? <CheckCircle2 size={14} style={{ color: 'var(--sa-green)', flexShrink: 0, marginTop: 2 }} />
+          : <XCircle size={14} style={{ color: 'var(--sa-muted)', flexShrink: 0, marginTop: 2 }} />
+        }
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <span className="result-card__answer-text">{answer}</span>
           {suggestion.clickStatus !== 'pending' && <AutoClickStatusBadge status={suggestion.clickStatus} />}
         </div>
       </div>
 
-      {/* Expanded details */}
       {expanded && (
         <div className="result-card__body">
           <div className="result-card__field">
@@ -227,11 +217,6 @@ function QuestionResultCard({ suggestion, index }: {
                       : 'No match'}
               </span>
             </div>
-            {suggestion.matchedCategory && (
-              <div className="result-card__source-pill">
-                <span>{suggestion.matchedCategory}</span>
-              </div>
-            )}
           </div>
 
           {suggestion.warning && (
@@ -252,7 +237,6 @@ function QuestionResultCard({ suggestion, index }: {
 export function SidePanelApp() {
   const state = useExtensionState();
   const [overrideDraft, setOverrideDraft] = useState<ManualOverridePayload>({ subject: '', category: '' });
-  const [editingOverride, setEditingOverride] = useState(false);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [siteAccessMessage, setSiteAccessMessage] = useState<string | null>(null);
 
@@ -276,20 +260,19 @@ export function SidePanelApp() {
   const detectedQuestionCount = state?.currentPage?.totalQuestionsDetected
     ?? state?.currentPage?.questionCandidates.length
     ?? (state?.currentPage?.questionText ? 1 : 0);
-  const capturedSectionCount = state?.capturedSections.length ?? 0;
   const suggestions = state?.lastSuggestion.questionSuggestions ?? [];
   const hasSuggestion = Boolean(state?.lastSuggestion.answerText) || suggestions.length > 0;
   const isAnalyzing = state?.uiStatus === 'scanning_page' || state?.uiStatus === 'detecting_subject' || state?.uiStatus === 'searching_sources';
 
-  const currentSubject = state?.lastSuggestion.detectedSubject ?? state?.lastSuggestion.subject ?? state?.session.manualSubject ?? 'Auto';
+  const cachedSubject = state?.session.cachedSubjectName ?? null;
+  const currentSubject = state?.lastSuggestion.detectedSubject ?? state?.lastSuggestion.subject ?? cachedSubject ?? 'Auto';
   const sourceSubject = state?.lastSuggestion.sourceSubject ?? state?.lastSuggestion.detectedSubject ?? 'No source yet';
   const quizTitle = state?.currentPage?.quizTitle ?? null;
   const quizNumber = state?.currentPage?.quizNumber ?? null;
 
   const siteAccessGranted = access?.status === 'granted';
   const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
-  const canCapture = isPaired && siteAccessGranted;
-  const canMerge = isPaired && state?.session.status === 'session_active' && capturedSectionCount > 0;
+  const isFullAutoOn = state?.autoPilotEnabled ?? false;
 
   const confidenceLevel = confidenceToLevel(state?.lastSuggestion.confidence ?? null);
 
@@ -306,20 +289,8 @@ export function SidePanelApp() {
     await runAction(`${mode}:${source}`, async () => {
       await sendExtensionMessage({
         type: 'EXTENSION/ANALYZE_CURRENT_PAGE',
-        payload: { mode, includeScreenshot: false, source, searchScope, forceRedetect: true },
+        payload: { mode, includeScreenshot: false, source, searchScope, forceRedetect: mode === 'detect' },
       });
-    });
-  }
-
-  async function captureVisibleSection() {
-    await runAction('EXTENSION/CAPTURE_VISIBLE_SECTION', async () => {
-      await sendExtensionMessage({ type: 'EXTENSION/CAPTURE_VISIBLE_SECTION' });
-    });
-  }
-
-  async function resetCapturedSections() {
-    await runAction('EXTENSION/CLEAR_CAPTURED_SECTIONS', async () => {
-      await sendExtensionMessage({ type: 'EXTENSION/CLEAR_CAPTURED_SECTIONS' });
     });
   }
 
@@ -330,31 +301,14 @@ export function SidePanelApp() {
     | 'EXTENSION/END_SESSION'
     | 'EXTENSION/REFRESH_CREDITS'
     | 'EXTENSION/OPEN_DASHBOARD'
-    | 'EXTENSION/REPORT_WRONG_DETECTION') {
+    | 'EXTENSION/REPORT_WRONG_DETECTION'
+    | 'EXTENSION/RESET_EXAM') {
     await runAction(type, async () => {
       await sendExtensionMessage({ type });
     });
   }
 
-  async function toggleLiveAssist(enabled: boolean) {
-    await runAction('EXTENSION/TOGGLE_LIVE_ASSIST', async () => {
-      await sendExtensionMessage({
-        type: 'EXTENSION/TOGGLE_LIVE_ASSIST',
-        payload: { enabled },
-      });
-    });
-  }
-
-  async function toggleAutoClick(enabled: boolean) {
-    await runAction('EXTENSION/TOGGLE_AUTO_CLICK', async () => {
-      await sendExtensionMessage({
-        type: 'EXTENSION/TOGGLE_AUTO_CLICK',
-        payload: { enabled },
-      });
-    });
-  }
-
-  async function toggleAutoPilot(enabled: boolean) {
+  async function toggleFullAuto(enabled: boolean) {
     await runAction('EXTENSION/TOGGLE_AUTO_PILOT', async () => {
       await sendExtensionMessage({
         type: 'EXTENSION/TOGGLE_AUTO_PILOT',
@@ -375,7 +329,6 @@ export function SidePanelApp() {
         type: 'EXTENSION/SET_MANUAL_OVERRIDE',
         payload: overrideDraft,
       });
-      setEditingOverride(false);
     });
   }
 
@@ -388,7 +341,6 @@ export function SidePanelApp() {
             `Question ${i + 1}: ${s.questionText}`,
             `Suggested: ${s.suggestedOption ?? s.answerText ?? 'No match'}`,
             s.shortExplanation ? `Why: ${s.shortExplanation}` : null,
-            s.warning ? `Warning: ${s.warning}` : null,
           ].filter(Boolean).join('\n'),
         )
       : [];
@@ -434,7 +386,7 @@ export function SidePanelApp() {
     !isPaired ? 'pair'
     : !siteAccessGranted ? 'grant'
     : state.session.status === 'session_inactive' ? 'start'
-    : 'analyze';
+    : 'ready';
 
   const currentPageLabel = state.currentPage?.pageDomain ?? access?.host ?? 'No page analyzed';
 
@@ -451,7 +403,7 @@ export function SidePanelApp() {
           </div>
           <div>
             <p className="panel-hero__eyebrow">Study Assistant</p>
-            <h1>{isPaired ? 'Ready to Analyze' : 'Connect First'}</h1>
+            <h1>{isPaired ? (cachedSubject ? cachedSubject : 'Ready') : 'Connect First'}</h1>
           </div>
         </div>
 
@@ -483,9 +435,9 @@ export function SidePanelApp() {
               </div>
             </div>
 
-            {/* Primary CTA - Big beautiful button */}
-            <div className="panel-hero__actions">
-              {nextPrimaryAction === 'grant' ? (
+            {/* Grant / Start session buttons */}
+            {nextPrimaryAction === 'grant' && (
+              <div className="panel-hero__actions">
                 <button
                   className="action-button action-button--primary"
                   onClick={() => void grantSitePermission()}
@@ -494,7 +446,11 @@ export function SidePanelApp() {
                   <Unlock size={16} />
                   {pendingAction === 'grant-site' ? 'Requesting…' : 'Grant Site Access'}
                 </button>
-              ) : nextPrimaryAction === 'start' ? (
+              </div>
+            )}
+
+            {nextPrimaryAction === 'start' && (
+              <div className="panel-hero__actions">
                 <button
                   className="action-button action-button--primary"
                   onClick={() => void sendSimple('EXTENSION/START_SESSION')}
@@ -502,35 +458,8 @@ export function SidePanelApp() {
                 >
                   <Play size={16} /> Start Session
                 </button>
-              ) : (
-                <button
-                  className="action-button action-button--primary"
-                  onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
-                  disabled={!canAnalyze || pendingAction !== null}
-                >
-                  {isAnalyzing ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                  {isAnalyzing ? 'Analyzing…' : 'Analyze Current Tab'}
-                </button>
-              )}
-
-              {/* Secondary actions in a row */}
-              <div className="action-grid">
-                <button
-                  className="action-button action-button--sm"
-                  onClick={() => void sendAnalyze('detect', 'current')}
-                  disabled={!canAnalyze || pendingAction !== null}
-                >
-                  <FileSearch size={14} /> Detect
-                </button>
-                <button
-                  className="action-button action-button--sm"
-                  onClick={() => void sendAnalyze('analyze', 'current', 'all_subjects')}
-                  disabled={!canAnalyze || pendingAction !== null}
-                >
-                  <Search size={14} /> All Sources
-                </button>
               </div>
-            </div>
+            )}
           </>
         ) : (
           <>
@@ -563,11 +492,86 @@ export function SidePanelApp() {
         )}
       </header>
 
+      {/* ======== QUICK ACTION BAR ======== */}
+      {isPaired && nextPrimaryAction === 'ready' && (
+        <section className="quick-action-bar">
+          <button
+            className="quick-action-btn quick-action-btn--reset"
+            onClick={() => void sendSimple('EXTENSION/RESET_EXAM')}
+            disabled={pendingAction !== null}
+            title="Clear everything and start a new exam/subject"
+          >
+            <RotateCcw size={14} />
+            <span>New Exam</span>
+          </button>
+
+          <button
+            className={`quick-action-btn ${isFullAutoOn ? 'quick-action-btn--active' : 'quick-action-btn--auto'}`}
+            onClick={() => void toggleFullAuto(!isFullAutoOn)}
+            disabled={pendingAction !== null || !siteAccessGranted}
+            title="Auto Pilot: analyze → click answer → next page (repeat)"
+          >
+            <BotMessageSquare size={14} />
+            <span>{isFullAutoOn ? 'Auto: ON' : 'Full Auto'}</span>
+          </button>
+
+          <button
+            className="quick-action-btn quick-action-btn--select"
+            onClick={() => void triggerAutoClickAll()}
+            disabled={pendingAction !== null || suggestions.length === 0 || isAnalyzing}
+            title="Click all matched answers on the page at once"
+          >
+            <ListChecks size={14} />
+            <span>Select All</span>
+          </button>
+        </section>
+      )}
+
+      {/* ======== STEP 1 & 2: DETECT + ANALYZE ======== */}
+      {isPaired && nextPrimaryAction === 'ready' && (
+        <section className="steps-section">
+          {/* Step 1: Detect Subject */}
+          <div className="step-row">
+            <span className="step-badge">1</span>
+            <button
+              className="action-button action-button--detect"
+              onClick={() => void sendAnalyze('detect', 'current')}
+              disabled={!canAnalyze || pendingAction !== null}
+            >
+              {state.uiStatus === 'detecting_subject'
+                ? <><Loader2 size={15} className="animate-spin" /> Detecting…</>
+                : <><FileSearch size={15} /> {cachedSubject ? `Re-detect Subject` : `Detect Subject`}</>
+              }
+            </button>
+            {cachedSubject && (
+              <span className="step-cached-label" title="Cached subject — won't re-detect per question">
+                <CheckCircle2 size={11} /> {cachedSubject}
+              </span>
+            )}
+          </div>
+
+          {/* Step 2: Find Answers */}
+          <div className="step-row">
+            <span className="step-badge">2</span>
+            <button
+              className="action-button action-button--primary action-button--lg"
+              onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
+              disabled={!canAnalyze || pendingAction !== null}
+            >
+              {isAnalyzing && state.uiStatus !== 'detecting_subject'
+                ? <><Loader2 size={16} className="animate-spin" /> Finding Answers…</>
+                : <><Sparkles size={16} /> Find All Answers</>
+              }
+            </button>
+          </div>
+        </section>
+      )}
+
       {/* ======== PRIVACY STRIP ======== */}
       {isPaired && (
         <section className="privacy-strip">
           <ShieldAlert size={13} className="shrink-0" style={{ color: 'var(--sa-accent)' }} />
-          <p>AI reads the current tab only when you click Analyze or enable Live Assist.</p>
+          <p>AI reads the current tab only when you click Detect or Find Answers.</p>
         </section>
       )}
 
@@ -610,98 +614,8 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
-      {/* ======== RESULTS SECTION (Answer-First Design) ======== */}
-      {isPaired && (
-        <SectionCard
-          title="Study Results"
-          subtitle={
-            isAnalyzing ? 'Analyzing page…'
-            : suggestions.length > 0
-              ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
-              : hasSuggestion
-                ? `${sourceSubject}`
-                : 'Click Analyze to get answers'
-          }
-          icon={Target}
-          className="panel-card--primary"
-          actions={
-            <div className="flex-center-gap" style={{ gap: 6 }}>
-              {suggestions.length > 0 && !isAnalyzing && (
-                <button
-                  className="link-button text-xs flex-center-gap"
-                  onClick={() => void triggerAutoClickAll()}
-                  disabled={pendingAction !== null}
-                  title="Auto-select all matched answers on the page"
-                >
-                  <MousePointerClick size={11} /> Auto-Select
-                </button>
-              )}
-              <button
-                className="link-button text-xs flex-center-gap"
-                onClick={() => void copyAnswer()}
-                disabled={!hasSuggestion}
-                title="Copy all results"
-              >
-                <Copy size={11} /> Copy
-              </button>
-              <button
-                className="link-button text-xs flex-center-gap"
-                onClick={() => void sendExtensionMessage({ type: 'EXTENSION/CLEAR_RESULTS' as any })}
-                disabled={!hasSuggestion}
-                title="Clear"
-              >
-                <XCircle size={11} /> Clear
-              </button>
-            </div>
-          }
-        >
-          {/* Animated progress bar during analysis */}
-          {isAnalyzing && <AnalyzeProgressBar />}
-
-          {/* Single answer mode (legacy/detect mode) */}
-          {!isAnalyzing && state.lastSuggestion.answerText && suggestions.length === 0 && (
-            <div className="answer-panel">
-              <p style={{ fontWeight: 600 }}>{state.lastSuggestion.answerText}</p>
-              {state.lastSuggestion.shortExplanation && (
-                <p className="mt-2" style={{ color: 'var(--sa-muted)', fontSize: 12 }}>
-                  {state.lastSuggestion.shortExplanation}
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Multi-question results — ALL VISIBLE, answers shown immediately */}
-          {!isAnalyzing && suggestions.length > 0 && (
-            <div className="results-list">
-              {suggestions.map((suggestion, index) => (
-                <QuestionResultCard
-                  key={suggestion.questionId}
-                  suggestion={suggestion}
-                  index={index}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Empty state */}
-          {!isAnalyzing && !hasSuggestion && (
-            <div className="empty-state">
-              <Search size={24} style={{ color: 'var(--sa-muted)', opacity: 0.4 }} />
-              <p>No results yet. Click <strong>Analyze Current Tab</strong> to get started.</p>
-            </div>
-          )}
-
-          {/* Warning */}
-          {!isAnalyzing && state.lastSuggestion.warning && (
-            <div className={`notice ${confidenceLevel === 'low' ? 'notice--warning' : 'notice--info'} mt-2`}>
-              <p style={{ fontSize: 11 }}>{state.lastSuggestion.warning}</p>
-            </div>
-          )}
-        </SectionCard>
-      )}
-
-      {/* ======== DETECTION SUMMARY (compact) ======== */}
-      {isPaired && siteAccessGranted && hasSuggestion && (
+      {/* ======== DETECTION SUMMARY (always visible when available) ======== */}
+      {isPaired && siteAccessGranted && (hasSuggestion || cachedSubject) && (
         <div className="detection-summary-card">
           <div className="detection-summary__header">
             <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
@@ -737,6 +651,85 @@ export function SidePanelApp() {
             </div>
           )}
         </div>
+      )}
+
+      {/* ======== RESULTS SECTION ======== */}
+      {isPaired && (
+        <SectionCard
+          title="Study Results"
+          subtitle={
+            isAnalyzing ? 'Searching sources…'
+            : suggestions.length > 0
+              ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
+              : hasSuggestion
+                ? `${sourceSubject}`
+                : 'Click Find All Answers to get started'
+          }
+          icon={Target}
+          className="panel-card--primary"
+          actions={
+            <div className="flex-center-gap" style={{ gap: 6 }}>
+              <button
+                className="link-button text-xs flex-center-gap"
+                onClick={() => void copyAnswer()}
+                disabled={!hasSuggestion}
+                title="Copy all results"
+              >
+                <Copy size={11} /> Copy
+              </button>
+              <button
+                className="link-button text-xs flex-center-gap"
+                onClick={() => void sendExtensionMessage({ type: 'EXTENSION/CLEAR_RESULTS' as any })}
+                disabled={!hasSuggestion}
+                title="Clear"
+              >
+                <XCircle size={11} /> Clear
+              </button>
+            </div>
+          }
+        >
+          {isAnalyzing && <AnalyzeProgressBar />}
+
+          {/* Single answer mode (legacy/detect mode) */}
+          {!isAnalyzing && state.lastSuggestion.answerText && suggestions.length === 0 && (
+            <div className="answer-panel">
+              <p style={{ fontWeight: 600 }}>{state.lastSuggestion.answerText}</p>
+              {state.lastSuggestion.shortExplanation && (
+                <p className="mt-2" style={{ color: 'var(--sa-muted)', fontSize: 12 }}>
+                  {state.lastSuggestion.shortExplanation}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Multi-question results */}
+          {!isAnalyzing && suggestions.length > 0 && (
+            <div className="results-list">
+              {suggestions.map((suggestion, index) => (
+                <QuestionResultCard
+                  key={suggestion.questionId}
+                  suggestion={suggestion}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Empty state */}
+          {!isAnalyzing && !hasSuggestion && (
+            <div className="empty-state">
+              <Search size={24} style={{ color: 'var(--sa-muted)', opacity: 0.4 }} />
+              <p>No results yet. Click <strong>Find All Answers</strong> to get started.</p>
+            </div>
+          )}
+
+          {/* Warning */}
+          {!isAnalyzing && state.lastSuggestion.warning && (
+            <div className={`notice ${confidenceLevel === 'low' ? 'notice--warning' : 'notice--info'} mt-2`}>
+              <p style={{ fontSize: 11 }}>{state.lastSuggestion.warning}</p>
+            </div>
+          )}
+        </SectionCard>
       )}
 
       {/* ======== SESSION CONTROLS (collapsible) ======== */}
@@ -788,45 +781,6 @@ export function SidePanelApp() {
               </div>
             )}
 
-            <label className="toggle-card mt-2">
-              <div>
-                <strong className="flex-center-gap"><MousePointerClick size={12} /> Auto-Click Answers</strong>
-                <p>Automatically select correct answers on the page.</p>
-              </div>
-              <input
-                type="checkbox"
-                checked={state.autoClickEnabled}
-                onChange={(event) => void toggleAutoClick(event.target.checked)}
-                disabled={!siteAccessGranted}
-              />
-            </label>
-
-            <label className="toggle-card mt-2">
-              <div>
-                <strong className="flex-center-gap"><RefreshCw size={12} /> Live Assist</strong>
-                <p>Auto re-analyze on page changes.</p>
-              </div>
-              <input
-                type="checkbox"
-                checked={state.session.liveAssistEnabled}
-                onChange={(event) => void toggleLiveAssist(event.target.checked)}
-                disabled={!siteAccessGranted || state.autoPilotEnabled}
-              />
-            </label>
-
-            <label className="toggle-card toggle-card--danger mt-2">
-              <div>
-                <strong className="flex-center-gap" style={{ color: 'var(--sa-red)' }}><Zap size={12} /> Auto Pilot (BETA)</strong>
-                <p>Auto analyze, select answer, and click next page until finished.</p>
-              </div>
-              <input
-                type="checkbox"
-                checked={state.autoPilotEnabled}
-                onChange={(event) => void toggleAutoPilot(event.target.checked)}
-                disabled={!siteAccessGranted || state.session.status !== 'session_active'}
-              />
-            </label>
-
             <button
               className="link-button flex-center-gap mt-1"
               onClick={() => void sendSimple('EXTENSION/REFRESH_CREDITS')}
@@ -852,7 +806,7 @@ export function SidePanelApp() {
             <div className="detection-grid">
               <div className="metric-tile">
                 <span>Subject</span>
-                <strong>{state.lastSuggestion.subject ?? 'Auto'}</strong>
+                <strong>{state.lastSuggestion.subject ?? cachedSubject ?? 'Auto'}</strong>
               </div>
               <div className="metric-tile">
                 <span>Category</span>
@@ -886,64 +840,6 @@ export function SidePanelApp() {
             >
               Confirm Override
             </button>
-          </div>
-        </details>
-      )}
-
-      {/* ======== MANUAL CAPTURE (collapsible) ======== */}
-      {isPaired && (
-        <details className="panel-disclosure" open={capturedSectionCount > 0}>
-          <summary className="panel-disclosure__summary">
-            <div>
-              <strong>Manual Capture</strong>
-              <p>Capture sections for multi-page analysis.</p>
-            </div>
-            <ChevronDown size={14} />
-          </summary>
-          <div className="panel-disclosure__content">
-            <div className="action-grid">
-              <button
-                className="action-button action-button--primary"
-                onClick={() => void captureVisibleSection()}
-                disabled={!canCapture || pendingAction !== null}
-              >
-                <ExternalLink size={14} />
-                {capturedSectionCount > 0 ? 'Add Section' : 'Capture Section'}
-              </button>
-              <button
-                className="action-button"
-                onClick={() => void sendAnalyze('analyze', 'captured')}
-                disabled={!canMerge || pendingAction !== null}
-              >
-                <Sparkles size={14} /> Merge & Analyze
-              </button>
-            </div>
-
-            {capturedSectionCount > 0 && (
-              <>
-                <div className="captured-section-list mt-2">
-                  {state.capturedSections.map((section, i) => (
-                    <article key={section.id} className="captured-section-card">
-                      <div className="captured-section-card__header">
-                        <strong>Section {i + 1}</strong>
-                        <span>{section.questionCount} Q{section.questionCount !== 1 ? 's' : ''}</span>
-                      </div>
-                      <p className="captured-section-card__meta">
-                        {new Date(section.capturedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-                <button
-                  className="link-button flex-center-gap mt-1"
-                  onClick={() => void resetCapturedSections()}
-                  disabled={pendingAction !== null}
-                  style={{ fontSize: 11 }}
-                >
-                  <XCircle size={11} /> Reset Captures
-                </button>
-              </>
-            )}
           </div>
         </details>
       )}

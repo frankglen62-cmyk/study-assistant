@@ -44,6 +44,7 @@ import {
   withCurrentPage,
   writeState,
   clearResults,
+  resetExam,
 } from '../lib/state';
 import { installExtractorContentScript } from '../content/extractor';
 
@@ -193,6 +194,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
         case 'EXTENSION/TOGGLE_AUTO_PILOT': {
           const enabled = Boolean(message.payload && (message.payload as { enabled: boolean }).enabled);
           sendResponse(success(await handleToggleAutoPilot(enabled)));
+          return;
+        }
+        case 'EXTENSION/RESET_EXAM': {
+          sendResponse(success(await handleResetExam()));
           return;
         }
         default:
@@ -985,6 +990,22 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     extensionVersion,
   );
 
+  // Cache detected subject for future analyses (skip re-detection)
+  if (response.detectedSubject && response.subject) {
+    await updateState(
+      (current) => ({
+        ...current,
+        session: {
+          ...current.session,
+          cachedSubjectId: (response as any).detectedSubjectId ?? current.session.cachedSubjectId,
+          cachedSubjectName: response.detectedSubject ?? current.session.cachedSubjectName,
+        },
+      }),
+      browserName,
+      extensionVersion,
+    );
+  }
+
   // If auto-click is enabled, trigger auto-click for all high-confidence suggestions
   if (nextState.autoClickEnabled && nextStatus === 'suggestion_ready') {
     try {
@@ -998,12 +1019,41 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
   return nextState;
 }
 
+async function handleResetExam() {
+  // Disable live assist on the current tab if possible
+  try {
+    const tab = await getActiveTab();
+    if (tab?.id) {
+      await injectExtractor(tab.id);
+      await chrome.tabs.sendMessage(tab.id, {
+        type: 'EXTENSION/SET_LIVE_ASSIST',
+        payload: { enabled: false },
+      }).catch(() => {});
+    }
+  } catch {
+    // Non-fatal: tab may not be available
+  }
+
+  const nextState = await updateState(
+    (current) =>
+      appendNotice(
+        appendRecentAction(resetExam(current), 'New Exam'),
+        {
+          tone: 'success',
+          title: 'Ready for new exam',
+          message: 'All results, detected subject, and automation settings have been reset. Start fresh!',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
+
+  return nextState;
+}
+
 async function handleClearResults() {
   const nextState = await updateState(
     (current) => {
-      // Clear results logic will be to clear the active suggestions
-      // We need to import clearResults from state
-      // Actually, wait, the import must exist at the top. Let's add it.
       return appendNotice(
         appendRecentAction(clearResults(current), 'Clear Results'),
         {
@@ -1230,17 +1280,41 @@ async function performAutoClickAll(state: ExtensionState) {
     // Wait briefly, then attempt to click Next Page
     setTimeout(async () => {
       try {
+        // Re-check auto pilot is still enabled before proceeding
+        const currentState = await readState(browserName, extensionVersion);
+        if (!currentState.autoPilotEnabled || currentState.session.status !== 'session_active') {
+          return;
+        }
+
+        // Check if credits are still available
+        if (currentState.creditsRemainingSeconds <= 0) {
+          await handleToggleAutoPilot(false);
+          return;
+        }
+
         const response = (await chrome.tabs.sendMessage(tab.id!, {
           type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
         })) as ExtensionResponse<{ clicked: boolean }>;
 
         if (!response?.ok || !response.data?.clicked) {
-          await handleToggleAutoPilot(false);
+          // No next button found — this might be the last page or a multi-question page
+          // Don't disable auto pilot, just stop the cycle gracefully
+          await updateState(
+            (current) =>
+              appendNotice(current, {
+                tone: 'info',
+                title: 'Auto Pilot paused',
+                message: 'No next page button found. Auto Pilot will resume if the page changes.',
+              }),
+            browserName,
+            extensionVersion,
+          );
         }
       } catch (error) {
-        await handleToggleAutoPilot(false);
+        // Non-fatal: don't disable auto pilot on transient errors
+        console.error('Auto Pilot next page error:', error);
       }
-    }, 1500);
+    }, 1800);
   }
 
   return finalState;

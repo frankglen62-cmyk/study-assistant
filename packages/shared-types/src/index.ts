@@ -190,6 +190,8 @@ export interface ExtensionSessionSnapshot {
   manualSubject: string;
   manualCategory: string;
   lastActivityAt: string | null;
+  cachedSubjectId: string | null;
+  cachedSubjectName: string | null;
 }
 
 export interface ExtensionState {
@@ -241,7 +243,8 @@ export type ExtensionActionType =
   | 'EXTENSION/AUTO_CLICK_ANSWER'
   | 'EXTENSION/AUTO_CLICK_ALL'
   | 'EXTENSION/TOGGLE_AUTO_PILOT'
-  | 'EXTENSION/AUTO_CLICK_NEXT_PAGE';
+  | 'EXTENSION/AUTO_CLICK_NEXT_PAGE'
+  | 'EXTENSION/RESET_EXAM';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 
