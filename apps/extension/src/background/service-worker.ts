@@ -87,7 +87,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             } catch (err) {
               console.error('Auto Pilot analysis failed on new page load:', err);
             }
-          }, 2500);
+          }, 1500);
         }
       } catch (err) {
         console.error('Auto Pilot tab update check error:', err);
@@ -1006,8 +1006,8 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     );
   }
 
-  // If auto-click is enabled, trigger auto-click for all high-confidence suggestions
-  if (nextState.autoClickEnabled && nextStatus === 'suggestion_ready') {
+  // Always auto-click matched answers after successful analysis
+  if (nextStatus === 'suggestion_ready' && nextState.lastSuggestion.questionSuggestions.length > 0) {
     try {
       const clickedState = await performAutoClickAll(nextState);
       return clickedState;
@@ -1314,7 +1314,7 @@ async function performAutoClickAll(state: ExtensionState) {
         // Non-fatal: don't disable auto pilot on transient errors
         console.error('Auto Pilot next page error:', error);
       }
-    }, 1800);
+    }, 800);
   }
 
   return finalState;

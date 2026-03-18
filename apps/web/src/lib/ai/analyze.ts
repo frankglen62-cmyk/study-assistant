@@ -12,7 +12,8 @@ import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
 import { normalizeComparableText, overlapScore } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
-import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects } from '@/lib/ai/retrieval';
+import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
+import { rankQaPairRowsLocal } from '@/lib/ai/retrieval';
 import { applyWalletSeconds } from '@/lib/billing/wallet';
 import { env } from '@/lib/env/server';
 import { logEvent } from '@/lib/observability/logger';
@@ -169,7 +170,7 @@ function buildNoMatchQuestionSuggestion(params: {
   } satisfies ExtensionQuestionSuggestion;
 }
 
-async function resolveQuestionSuggestion(params: {
+function resolveQuestionSuggestionFromPreloaded(params: {
   candidate: ExtensionQuestionCandidate;
   searchScope: AnalyzeSearchScope;
   subjectName: string;
@@ -177,10 +178,10 @@ async function resolveQuestionSuggestion(params: {
   detectionConfidence: number | null;
   subject: SubjectRecord;
   category: CategoryRecord | null;
-}) {
+  preloadedRows: PreloadedQaPairRow[];
+}): ExtensionQuestionSuggestion {
   const queryText = params.candidate.prompt;
   const optionText = params.candidate.options;
-  const chunkQueryText = [queryText, ...optionText].join('\n');
 
   const buildQaSuggestion = (pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number], retrievalStatus: string, sourceScope: ExtensionSourceScope) => {
     if (!isReliableQaPairMatch(params.candidate, pair)) {
@@ -215,57 +216,24 @@ async function resolveQuestionSuggestion(params: {
     } satisfies ExtensionQuestionSuggestion;
   };
 
-
-
-  if (params.searchScope === 'all_subjects') {
-    const allSubjectQa = await retrieveRelevantQaPairsAcrossSubjects({
-      queryText,
-      options: optionText,
-    });
-    const topAllSubjectPairs = allSubjectQa.pairs.slice(0, 5);
-    let bestSuggestion = null;
-
-    for (const pair of topAllSubjectPairs) {
-      const scope: ExtensionSourceScope =
-        pair.subject_id === params.subject.id ? 'subject_folder' : 'all_subject_folders';
-
-      const suggestion = buildQaSuggestion(pair, allSubjectQa.retrievalStatus, scope);
-      if (suggestion) {
-        if (!bestSuggestion) bestSuggestion = suggestion;
-        if (suggestion.suggestedOption && optionText.includes(suggestion.suggestedOption)) {
-          return suggestion;
-        }
-      }
-    }
-
-    if (bestSuggestion) {
-      return bestSuggestion;
-    }
-
-
-
-    return buildNoMatchQuestionSuggestion({
-      candidate: params.candidate,
-      subjectName: params.subjectName,
-      categoryName: params.categoryName,
-      detectionConfidence: params.detectionConfidence,
-      warning: 'No matching answer was found across subject folders or file sources.',
-      retrievalStatus: `${allSubjectQa.retrievalStatus} No matching file source was found in the detected subject folder.`,
-      searchScope: params.searchScope,
-    });
-  }
-
-  const subjectQa = await retrieveRelevantQaPairs({
-    subject: params.subject,
-    category: params.category,
+  // Rank the pre-loaded rows for THIS specific question locally (no DB call)
+  const rankedPairs = rankQaPairRowsLocal({
+    rows: params.preloadedRows,
     queryText,
     options: optionText,
+    subjectNameFallback: params.subjectName,
+    categoryNameFallback: params.categoryName,
   });
-  const topSubjectPairs = subjectQa.pairs.slice(0, 5);
-  let bestSuggestion = null;
 
-  for (const pair of topSubjectPairs) {
-    const suggestion = buildQaSuggestion(pair, subjectQa.retrievalStatus, 'subject_folder');
+  const retrievalStatus = rankedPairs.length > 0
+    ? `Matched ${rankedPairs.length} stored answer pair${rankedPairs.length === 1 ? '' : 's'} in ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`
+    : `No matching subject answer pairs were found for ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`;
+
+  const topPairs = rankedPairs.slice(0, 5);
+  let bestSuggestion: ExtensionQuestionSuggestion | null = null;
+
+  for (const pair of topPairs) {
+    const suggestion = buildQaSuggestion(pair, retrievalStatus, 'subject_folder');
     if (suggestion) {
       if (!bestSuggestion) bestSuggestion = suggestion;
       if (suggestion.suggestedOption && optionText.includes(suggestion.suggestedOption)) {
@@ -284,7 +252,7 @@ async function resolveQuestionSuggestion(params: {
     categoryName: params.categoryName,
     detectionConfidence: params.detectionConfidence,
     warning: 'No matching source material was found in this subject folder.',
-    retrievalStatus: subjectQa.retrievalStatus,
+    retrievalStatus,
     searchScope: params.searchScope,
   });
 }
@@ -298,28 +266,25 @@ async function buildQuestionSuggestions(params: {
   subject: SubjectRecord;
   category: CategoryRecord | null;
 }): Promise<ExtensionQuestionSuggestion[]> {
-  const results: ExtensionQuestionSuggestion[] = [];
-  const candidates = params.questionCandidates;
+  // Pre-load ALL QA pairs for this subject in ONE database call
+  const preloadedRows = await preloadSubjectQaPairs({
+    subject: params.subject,
+    category: params.category,
+  });
 
-  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
-    const batch = candidates.slice(i, i + BATCH_SIZE);
-    const batchResults = await Promise.all(
-      batch.map((candidate) =>
-        resolveQuestionSuggestion({
-          candidate,
-          searchScope: params.searchScope,
-          subjectName: params.subjectName,
-          categoryName: params.categoryName,
-          detectionConfidence: params.detectionConfidence,
-          subject: params.subject,
-          category: params.category,
-        }),
-      ),
-    );
-    results.push(...batchResults);
-  }
-
-  return results;
+  // Now resolve each question locally — no more per-question DB calls
+  return params.questionCandidates.map((candidate) =>
+    resolveQuestionSuggestionFromPreloaded({
+      candidate,
+      searchScope: params.searchScope,
+      subjectName: params.subjectName,
+      categoryName: params.categoryName,
+      detectionConfidence: params.detectionConfidence,
+      subject: params.subject,
+      category: params.category,
+      preloadedRows,
+    }),
+  );
 }
 
 function selectPrimarySuggestion(questionSuggestions: ExtensionQuestionSuggestion[]) {

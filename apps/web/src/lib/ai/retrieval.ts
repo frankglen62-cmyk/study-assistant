@@ -53,6 +53,80 @@ interface QaPairRow {
   updated_at: string;
 }
 
+export type PreloadedQaPairRow = QaPairRow;
+
+export async function preloadSubjectQaPairs(params: {
+  subject: SubjectRecord;
+  category: CategoryRecord | null;
+}) {
+  const supabase = getSupabaseAdmin();
+  const pageSize = 1000;
+  const allRows: QaPairRow[] = [];
+  let offset = 0;
+
+  while (true) {
+    let query = supabase
+      .from('subject_qa_pairs')
+      .select(`
+        id,
+        subject_id,
+        category_id,
+        question_text,
+        answer_text,
+        short_explanation,
+        keywords,
+        sort_order,
+        updated_at,
+        subjects:subject_id (
+          name
+        ),
+        categories:category_id (
+          name
+        )
+      `)
+      .eq('subject_id', params.subject.id)
+      .eq('is_active', true)
+      .is('deleted_at', null)
+      .order('sort_order', { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (params.category) {
+      query = query.or(`category_id.eq.${params.category.id},category_id.is.null`);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
+      if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
+        return [];
+      }
+      throw new RouteError(500, 'qa_retrieval_failed', 'Q&A preload failed.', error.message);
+    }
+
+    const batch = (data ?? []) as QaPairRow[];
+    allRows.push(...batch);
+
+    if (batch.length < pageSize) {
+      break;
+    }
+
+    offset += pageSize;
+  }
+
+  return allRows;
+}
+
+export function rankQaPairRowsLocal(params: {
+  rows: QaPairRow[];
+  queryText: string;
+  options?: string[];
+  subjectNameFallback?: string | null;
+  categoryNameFallback?: string | null;
+}) {
+  return rankQaPairRows(params);
+}
+
 function isExactQuestionMatch(queryText: string, questionText: string) {
   const normalizedQuery = normalizeComparableText(queryText);
   const normalizedQuestion = normalizeComparableText(questionText);

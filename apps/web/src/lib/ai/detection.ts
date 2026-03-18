@@ -270,6 +270,8 @@ export async function detectSubjectCategory(params: {
     params.pageSignals.questionText ?? '',
     params.pageSignals.visibleTextExcerpt,
     params.pageSignals.courseCodes.join(' '),
+    // Include question prompts so subjects are scored against actual question content
+    ...params.pageSignals.questionCandidates.slice(0, 20).map(c => c.prompt),
   ]
     .join(' ');
 

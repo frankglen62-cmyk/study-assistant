@@ -982,6 +982,8 @@ export function installExtractorContentScript() {
   function normalizeForMatch(s: string): string {
     return s
       .toLowerCase()
+      .replace(/^[a-e]\.\s*/i, '') // strip choice prefix like "a. ", "b. "
+      .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
       .replace(/[^\p{L}\p{N}\s.,+\-%=]/gu, '')
       .replace(/\s+/g, ' ')
       .trim();
