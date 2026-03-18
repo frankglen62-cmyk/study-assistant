@@ -220,6 +220,7 @@ export const retrievalQaPairSchema = z.object({
   similarity: z.number(),
   subject_name: z.string().nullable().optional(),
   category_name: z.string().nullable().optional(),
+  updated_at: z.string(),
 });
 
 export const questionAttemptSummarySchema = z.object({

@@ -50,6 +50,7 @@ interface QaPairRow {
   sort_order: number;
   subjects?: { name: string } | { name: string }[] | null;
   categories?: { name: string } | { name: string }[] | null;
+  updated_at: string;
 }
 
 function isExactQuestionMatch(queryText: string, questionText: string) {
@@ -83,12 +84,12 @@ function rankQaPairRows(params: {
 
   const exactMatches = rankedRows
     .filter((row) => isExactQuestionMatch(params.queryText, row.question_text))
-    .sort((left, right) => left.sort_order - right.sort_order);
+    .sort((left, right) => new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime());
 
   const exactMatchIds = new Set(exactMatches.map((row) => row.id));
   const nonExactMatches = rankedRows
     .filter((row) => !exactMatchIds.has(row.id))
-    .sort((left, right) => right.similarity - left.similarity || left.sort_order - right.sort_order);
+    .sort((left, right) => right.similarity - left.similarity || new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime());
 
   return [...exactMatches, ...nonExactMatches].slice(0, 12);
 }
@@ -370,6 +371,7 @@ export async function retrieveRelevantQaPairs(params: {
           short_explanation,
           keywords,
           sort_order,
+          updated_at,
           subjects:subject_id (
             name
           ),
@@ -450,6 +452,7 @@ export async function retrieveRelevantQaPairsAcrossSubjects(params: {
         short_explanation,
         keywords,
         sort_order,
+        updated_at,
         subjects:subject_id (
           name
         ),
