@@ -13,7 +13,7 @@ function stripLeadingChoiceMarker(value: string) {
 export function normalizeComparableText(value: string) {
   return collapseWhitespace(stripLeadingChoiceMarker(stripDiacritics(value)))
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s]+/gu, ' ')
+    .replace(/[^\p{L}\p{N}\s.,+\-%=]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }

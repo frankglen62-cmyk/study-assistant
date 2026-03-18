@@ -981,10 +981,10 @@ export function installExtractorContentScript() {
 
   function normalizeForMatch(s: string): string {
     return s
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}\s.,+\-%=]/gu, '')
       .replace(/\s+/g, ' ')
-      .replace(/[^\w\s]/g, '')
-      .trim()
-      .toLowerCase();
+      .trim();
   }
 
   function autoClickAnswer(payload: {
