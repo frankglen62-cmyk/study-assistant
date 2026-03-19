@@ -91,25 +91,75 @@ function sanitizeText(value: string, limit: number) {
   return value.replace(/\s+/g, ' ').trim().slice(0, limit);
 }
 
+export function enrichShortFormPromptFromVisibleText(prompt: string, visibleTextExcerpt: string) {
+  const normalizedPrompt = sanitizeText(prompt, 600);
+  const normalizedVisibleText = sanitizeText(visibleTextExcerpt, 4000);
+  if (!normalizedPrompt || !normalizedVisibleText || normalizedVisibleText.length <= normalizedPrompt.length + 12) {
+    return normalizedPrompt;
+  }
+
+  const startIndex = normalizedVisibleText.toLowerCase().indexOf(normalizedPrompt.toLowerCase());
+  if (startIndex < 0) {
+    return normalizedPrompt;
+  }
+
+  const candidateWindow = normalizedVisibleText.slice(startIndex, Math.min(normalizedVisibleText.length, startIndex + 520));
+  const boundaryPattern =
+    /\b(?:answer:?|your answer:?|response:?|select one:?|select one or more:?|clear my choice|flag question|previous page|next page|jump to|quiz navigation|finish review|finish attempt|time left)\b/i;
+  const boundaryMatch = candidateWindow.match(boundaryPattern);
+  const clippedWindow =
+    boundaryMatch && typeof boundaryMatch.index === 'number'
+      ? candidateWindow.slice(0, boundaryMatch.index)
+      : candidateWindow;
+  const enrichedPrompt = sanitizeText(clippedWindow, 500);
+
+  const containsHighSignalContext =
+    /\bsalary\b/i.test(enrichedPrompt) ||
+    /\bresponsibilities\b/i.test(enrichedPrompt) ||
+    /[$€£₱]\s?\d/.test(enrichedPrompt) ||
+    /\b\d+(?:[.,]\d+)+\b/.test(enrichedPrompt);
+
+  if (!containsHighSignalContext || enrichedPrompt.length <= normalizedPrompt.length) {
+    return normalizedPrompt;
+  }
+
+  return enrichedPrompt;
+}
+
 function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
+  const visibleTextExcerpt = sanitizeText(payload.visibleTextExcerpt, 4000);
+  const sanitizedQuestionCandidates = payload.questionCandidates
+    .map((candidate, index) => {
+      const basePrompt = sanitizeText(candidate.prompt, 600);
+      const enrichedPrompt =
+        candidate.options.length === 0
+          ? enrichShortFormPromptFromVisibleText(basePrompt, visibleTextExcerpt)
+          : basePrompt;
+
+      return {
+        id: sanitizeText(candidate.id || `question-${index + 1}`, 80) || `question-${index + 1}`,
+        prompt: enrichedPrompt,
+        options: candidate.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
+        contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
+      };
+    })
+    .filter((candidate) => candidate.prompt.length >= 12)
+    .slice(0, MAX_QUESTION_CANDIDATES);
+
+  const questionText =
+    sanitizedQuestionCandidates[0]?.prompt ??
+    (payload.questionText ? enrichShortFormPromptFromVisibleText(payload.questionText, visibleTextExcerpt) : null);
+
   return {
     ...payload,
     pageTitle: sanitizeText(payload.pageTitle, 240),
     headings: payload.headings.map((heading) => sanitizeText(heading, 180)).filter(Boolean).slice(0, MAX_CONTEXT_ITEMS),
     breadcrumbs: payload.breadcrumbs.map((crumb) => sanitizeText(crumb, 120)).filter(Boolean).slice(0, MAX_CONTEXT_ITEMS),
     visibleLabels: payload.visibleLabels.map((label) => sanitizeText(label, 120)).filter(Boolean).slice(0, 12),
-    visibleTextExcerpt: sanitizeText(payload.visibleTextExcerpt, 4000),
-    questionText: payload.questionText ? sanitizeText(payload.questionText, 600) : null,
+    visibleTextExcerpt,
+    questionText,
     options: payload.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
-    questionCandidates: payload.questionCandidates
-      .map((candidate, index) => ({
-        id: sanitizeText(candidate.id || `question-${index + 1}`, 80) || `question-${index + 1}`,
-        prompt: sanitizeText(candidate.prompt, 600),
-        options: candidate.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
-        contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
-      }))
-      .filter((candidate) => candidate.prompt.length >= 12)
-      .slice(0, MAX_QUESTION_CANDIDATES),
+    questionCandidates: sanitizedQuestionCandidates,
     diagnostics: {
       explicitQuestionBlockCount: payload.diagnostics?.explicitQuestionBlockCount ?? 0,
       structuredQuestionBlockCount: payload.diagnostics?.structuredQuestionBlockCount ?? 0,

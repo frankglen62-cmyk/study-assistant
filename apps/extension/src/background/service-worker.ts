@@ -1024,6 +1024,7 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
       ...current,
       uiStatus: modeStatus[payload.mode],
       lastError: null,
+      lastSuggestion: createDefaultState(browserName, extensionVersion).lastSuggestion,
     }),
     browserName,
     extensionVersion,
