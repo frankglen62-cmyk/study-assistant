@@ -12,6 +12,7 @@ import {
 interface FetchOptions {
   method?: 'GET' | 'POST';
   body?: unknown;
+  signal?: AbortSignal;
 }
 
 export class ApiError extends Error {
@@ -45,7 +46,7 @@ async function fetchJson<T>(
       'Cache-Control': 'no-store',
       Pragma: 'no-cache',
     },
-    signal: typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(15000) : undefined,
+    signal: options.signal ?? (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(15000) : undefined),
   };
 
   if (options.body !== undefined) {
@@ -160,10 +161,12 @@ export async function analyzePage(
     sessionId: string | null;
     liveAssist: boolean;
     forceRedetect?: boolean;
+    signal?: AbortSignal;
   },
 ) {
   return fetchJson(state, '/api/client/analyze', (input) => analyzeResponseSchema.parse(input), {
     method: 'POST',
     body: payload,
+    signal: payload.signal,
   });
 }

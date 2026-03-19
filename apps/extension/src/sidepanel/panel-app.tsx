@@ -688,7 +688,24 @@ export function SidePanelApp() {
             </div>
           }
         >
-          {isAnalyzing && <AnalyzeProgressBar />}
+          {isAnalyzing && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <AnalyzeProgressBar />
+              <button
+                className="action-button action-button--sm"
+                style={{
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                  color: '#ef4444',
+                  border: '1px solid rgba(239, 68, 68, 0.2)',
+                  width: '100%',
+                  justifyContent: 'center'
+                }}
+                onClick={() => void sendSimple('EXTENSION/CANCEL_ANALYZE' as any)}
+              >
+                <XCircle size={14} /> Stop Search
+              </button>
+            </div>
+          )}
 
           {/* Single answer mode (legacy/detect mode) */}
           {!isAnalyzing && state.lastSuggestion.answerText && suggestions.length === 0 && (

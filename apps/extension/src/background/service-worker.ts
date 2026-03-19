@@ -51,6 +51,7 @@ import { installExtractorContentScript } from '../content/extractor';
 const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
 const liveAssistTimers = new Map<number, number>();
+let currentAnalyzeController: AbortController | null = null;
 
 void initializeRuntime();
 
@@ -198,6 +199,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
         }
         case 'EXTENSION/RESET_EXAM': {
           sendResponse(success(await handleResetExam()));
+          return;
+        }
+        case 'EXTENSION/CANCEL_ANALYZE': {
+          sendResponse(success(await handleCancelAnalyze()));
           return;
         }
         default:
@@ -859,12 +864,33 @@ async function handleClearCapturedSections() {
 
   return nextState;
 }
+async function handleCancelAnalyze() {
+  if (currentAnalyzeController) {
+    currentAnalyzeController.abort('User cancelled the search');
+    currentAnalyzeController = null;
+  }
+  
+  const currentState = await readState(browserName, extensionVersion);
+  if (['scanning_page', 'detecting_subject', 'searching_sources'].includes(currentState.uiStatus)) {
+    return updateState(
+      (current) => ({
+        ...current,
+        uiStatus: 'suggestion_ready', // Revert to ready state
+        lastError: 'Answer search was cancelled by user.',
+      }),
+      browserName,
+      extensionVersion,
+    );
+  }
+  return currentState;
+}
+
 /**
  * Wraps handleAnalyze with a timeout and auto-retry mechanism for Full Auto mode.
  * If analysis doesn't complete within timeoutMs, it retries up to maxAttempts times.
  * This prevents the Full Auto flow from freezing when the API is slow.
  */
-async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 7000) {
+async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 5000) {
   const TIMEOUT_SENTINEL = Symbol('TIMEOUT');
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -884,6 +910,13 @@ async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number =
 
       if (result === TIMEOUT_SENTINEL) {
         console.warn(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} timed out after ${timeoutMs}ms, ${attempt < maxAttempts ? 'retrying...' : 'giving up.'}`);
+        
+        // CRITICAL: Actively kill the underlying fetch request before proceeding
+        if (currentAnalyzeController) {
+          currentAnalyzeController.abort('Auto Pilot Timeout');
+          currentAnalyzeController = null;
+        }
+
         if (attempt < maxAttempts) {
           // Update state to show retrying
           await updateState(
@@ -967,19 +1000,47 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     extensionVersion,
   );
 
-  const response = await withAuthRetry((freshState) =>
-    analyzePage(freshState, {
-      mode: payload.mode,
-      pageSignals,
-      screenshotDataUrl,
-      manualSubject: freshState.session.manualSubject,
-      manualCategory: freshState.session.manualCategory,
-      searchScope: payload.searchScope ?? 'subject_first',
-      sessionId: freshState.session.sessionId,
-      liveAssist: freshState.session.liveAssistEnabled,
-      forceRedetect: payload.forceRedetect ?? false,
-    }),
-  );
+  if (currentAnalyzeController) {
+    currentAnalyzeController.abort(); // Cancel any existing search before starting a new one
+  }
+  currentAnalyzeController = new AbortController();
+
+  let response;
+  try {
+    response = await withAuthRetry((freshState) =>
+      analyzePage(freshState, {
+        mode: payload.mode,
+        pageSignals,
+        screenshotDataUrl,
+        manualSubject: freshState.session.manualSubject,
+        manualCategory: freshState.session.manualCategory,
+        searchScope: payload.searchScope ?? 'subject_first',
+        sessionId: freshState.session.sessionId,
+        liveAssist: freshState.session.liveAssistEnabled,
+        forceRedetect: payload.forceRedetect ?? false,
+        signal: currentAnalyzeController?.signal,
+      }),
+    );
+  } catch (err: unknown) {
+    const error = err as Error;
+    if (error.name === 'AbortError' || error.message.includes('cancelled') || error.message.includes('Timeout')) {
+      console.warn('handleAnalyze was aborted:', error);
+      // Cleanly revert state without saving any bad suggestions
+      return updateState(
+        (current) => ({
+          ...current,
+          uiStatus: current.lastSuggestion.questionSuggestions.length > 0 ? 'suggestion_ready' : 'ready', // best guess rollback
+        }),
+        browserName,
+        extensionVersion,
+      );
+    }
+    throw error;
+  } finally {
+    if (currentAnalyzeController && !currentAnalyzeController.signal.aborted) {
+      currentAnalyzeController = null; // Clean up
+    }
+  }
 
   const creditsRemainingSeconds = response.remainingSeconds ?? state.creditsRemainingSeconds;
   const nextStatus =

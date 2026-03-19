@@ -244,7 +244,8 @@ export type ExtensionActionType =
   | 'EXTENSION/AUTO_CLICK_ALL'
   | 'EXTENSION/TOGGLE_AUTO_PILOT'
   | 'EXTENSION/AUTO_CLICK_NEXT_PAGE'
-  | 'EXTENSION/RESET_EXAM';
+  | 'EXTENSION/RESET_EXAM'
+  | 'EXTENSION/CANCEL_ANALYZE';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 
