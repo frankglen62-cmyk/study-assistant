@@ -819,8 +819,18 @@ export function installExtractorContentScript() {
           // 1. Check for explicit <label for="...">
           if (sel.id) {
             const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
-            if (label) {
-              subPrompt = normalizeText(label.textContent ?? '');
+            if (label && !label.classList.contains('accesshide') && !label.classList.contains('sr-only')) {
+              const labelText = normalizeText(label.textContent ?? '');
+              const lowerLabel = labelText.toLowerCase();
+              // Ignore Moodle's boilerplate screen-reader labels
+              if (
+                !lowerLabel.startsWith('answer') &&
+                !lowerLabel.includes('choose') &&
+                !lowerLabel.includes('jump') &&
+                labelText.length >= 8
+              ) {
+                subPrompt = labelText;
+              }
             }
           }
 
