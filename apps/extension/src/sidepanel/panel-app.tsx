@@ -314,7 +314,8 @@ export function SidePanelApp() {
     | 'EXTENSION/REFRESH_CREDITS'
     | 'EXTENSION/OPEN_DASHBOARD'
     | 'EXTENSION/REPORT_WRONG_DETECTION'
-    | 'EXTENSION/RESET_EXAM') {
+    | 'EXTENSION/RESET_EXAM'
+    | 'EXTENSION/CANCEL_ANALYZE') {
     await runAction(type, async () => {
       await sendExtensionMessage({ type });
     });
@@ -712,7 +713,7 @@ export function SidePanelApp() {
                   width: '100%',
                   justifyContent: 'center'
                 }}
-                onClick={() => void sendSimple('EXTENSION/CANCEL_ANALYZE' as any)}
+                onClick={() => void sendSimple('EXTENSION/CANCEL_ANALYZE')}
               >
                 <XCircle size={14} /> Stop Search
               </button>

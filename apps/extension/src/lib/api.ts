@@ -14,6 +14,7 @@ interface FetchOptions {
   method?: 'GET' | 'POST';
   body?: unknown;
   signal?: AbortSignal;
+  timeoutMs?: number;
 }
 
 export class ApiError extends Error {
@@ -27,6 +28,55 @@ export class ApiError extends Error {
   }
 }
 
+function createRequestSignal(signal: AbortSignal | undefined, timeoutMs: number): AbortSignal | undefined {
+  if (typeof AbortController === 'undefined') {
+    return signal;
+  }
+
+  const controller = new AbortController();
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  const abort = (reason?: unknown) => {
+    if (!controller.signal.aborted) {
+      controller.abort(reason);
+    }
+  };
+
+  const onSourceAbort = () => {
+    abort(signal?.reason);
+  };
+
+  if (signal) {
+    if (signal.aborted) {
+      abort(signal.reason);
+    } else {
+      signal.addEventListener('abort', onSourceAbort, { once: true });
+    }
+  }
+
+  if (timeoutMs > 0) {
+    timeoutId = setTimeout(() => {
+      abort(new DOMException('The request timed out.', 'TimeoutError'));
+    }, timeoutMs);
+  }
+
+  controller.signal.addEventListener(
+    'abort',
+    () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      if (signal) {
+        signal.removeEventListener('abort', onSourceAbort);
+      }
+    },
+    { once: true },
+  );
+
+  return controller.signal;
+}
+
 async function fetchJson<T>(
   state: ExtensionState,
   path: string,
@@ -36,6 +86,8 @@ async function fetchJson<T>(
   if (!state.appBaseUrl) {
     throw new Error('App URL is not configured yet.');
   }
+
+  const mergedSignal = createRequestSignal(options.signal, options.timeoutMs ?? 10000);
 
   const init: RequestInit = {
     method: options.method ?? 'GET',
@@ -47,7 +99,7 @@ async function fetchJson<T>(
       'Cache-Control': 'no-store',
       Pragma: 'no-cache',
     },
-    signal: options.signal ?? (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(10000) : undefined),
+    signal: mergedSignal,
   };
 
   if (options.body !== undefined) {
@@ -169,6 +221,7 @@ export async function analyzePage(
     method: 'POST',
     body: payload,
     signal: payload.signal,
+    timeoutMs: 5500,
   });
 }
 

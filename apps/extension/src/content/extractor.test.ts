@@ -408,4 +408,75 @@ describe('extension extractor', () => {
     expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('Responsibilities: Create an in-office network');
     expect(response?.data?.questionText).toContain('Salary: $104,000');
   });
+
+  it('auto-fills short-answer inputs and overwrites stale values', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 28</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $104,000</p>
+              <p>Responsibilities: Create an in-office network for a small business or a cloud infrastructure for a business with corporate locations in cities on opposite coasts.</p>
+              <div class="ablock">
+                <label for="q28-answer">Answer:</label>
+                <input id="q28-answer" type="text" name="q28_answer" value="old answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let extractResponse: any = null;
+    listener?.({ type: 'EXTENSION/EXTRACT_PAGE_SIGNALS' }, null, (value) => {
+      extractResponse = value;
+    });
+
+    const questionId = extractResponse?.data?.questionCandidates?.[0]?.id;
+    expect(questionId).toBeTruthy();
+
+    let autoClickResponse: any = null;
+    listener?.(
+      {
+        type: 'EXTENSION/AUTO_CLICK_ANSWER',
+        payload: {
+          questionId,
+          answerText: 'Computer Network Architects',
+          suggestedOption: null,
+          options: [],
+        },
+      },
+      null,
+      (value) => {
+        autoClickResponse = value;
+      },
+    );
+
+    expect(autoClickResponse?.ok).toBe(true);
+    expect(autoClickResponse?.data?.clicked).toBe(true);
+    expect(autoClickResponse?.data?.matchMethod).toBe('fill_in_blank');
+    expect((document.getElementById('q28-answer') as HTMLInputElement).value).toBe('Computer Network Architects');
+  });
 });

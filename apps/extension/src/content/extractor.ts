@@ -930,7 +930,7 @@ export function installExtractorContentScript() {
 
           // 1. Check for explicit <label for="...">
           if (sel.id) {
-            const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
+            const label = document.querySelector<HTMLElement>(`label[for="${escapeSelectorValue(sel.id)}"]`);
             if (label && !label.classList.contains('accesshide') && !label.classList.contains('sr-only')) {
               const labelText = normalizeText(label.textContent ?? '');
               const lowerLabel = labelText.toLowerCase();
@@ -1299,12 +1299,42 @@ export function installExtractorContentScript() {
       .trim();
   }
 
+  function escapeSelectorValue(value: string): string {
+    if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
+      return CSS.escape(value);
+    }
+
+    return value.replace(/["\\]/g, '\\$&');
+  }
+
   function autoClickAnswer(payload: {
     questionId: string;
     answerText: string;
     suggestedOption: string | null;
     options: string[];
   }): { clicked: boolean; clickedText: string | null; matchMethod: string } {
+    function setControlValue(input: HTMLInputElement | HTMLTextAreaElement, value: string) {
+      input.focus();
+      input.dispatchEvent(new Event('focus', { bubbles: true }));
+
+      const nativeSetter = Object.getOwnPropertyDescriptor(
+        input instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
+        'value'
+      )?.set;
+
+      if (nativeSetter) {
+        nativeSetter.call(input, value);
+      } else {
+        input.value = value;
+      }
+
+      input.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'a' }));
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true, key: 'a' }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+      input.dispatchEvent(new Event('blur', { bubbles: true }));
+    }
+
     const targetText = payload.suggestedOption ?? payload.answerText;
     if (!targetText) {
       return { clicked: false, clickedText: null, matchMethod: 'no_answer' };
@@ -1314,7 +1344,7 @@ export function installExtractorContentScript() {
     const lowerTarget = targetText.trim().toLowerCase();
 
     // Scope to the specific question container if available
-    const scopedContainer = document.querySelector(`[data-study-assistant-id="${CSS.escape(payload.questionId)}"]`);
+    const scopedContainer = document.querySelector(`[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`);
     const searchRoot = scopedContainer ?? document;
 
     // ═══════════════════════════════════════════════════════════════
@@ -1354,23 +1384,28 @@ export function installExtractorContentScript() {
       });
 
       if (blankInputs.length > 0) {
+        const normalizedFillAnswer = normalizeForMatch(answerForFill);
         let filled = false;
         for (const input of blankInputs) {
-          // Only fill if empty or has default placeholder
-          if (input.value.trim() === '' || input.value.trim() === input.placeholder?.trim()) {
-            const nativeSetter = Object.getOwnPropertyDescriptor(
-              input instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
-              'value'
-            )?.set;
-            if (nativeSetter) {
-              nativeSetter.call(input, answerForFill);
-            } else {
-              input.value = answerForFill;
-            }
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-            input.dispatchEvent(new Event('change', { bubbles: true }));
-            input.dispatchEvent(new Event('blur', { bubbles: true }));
-            filled = true;
+          const normalizedCurrentValue = normalizeForMatch(input.value.trim());
+          const normalizedPlaceholder = normalizeForMatch(input.placeholder?.trim() ?? '');
+          const shouldFill =
+            normalizedCurrentValue.length === 0 ||
+            normalizedCurrentValue === normalizedPlaceholder ||
+            normalizedCurrentValue !== normalizedFillAnswer;
+
+          if (!shouldFill) {
+            continue;
+          }
+
+          setControlValue(input, answerForFill);
+          filled = normalizeForMatch(input.value.trim()) === normalizedFillAnswer;
+          if (!filled && input.value.trim() === '') {
+            setControlValue(input, answerForFill);
+            filled = normalizeForMatch(input.value.trim()) === normalizedFillAnswer;
+          }
+
+          if (filled) {
             break; // Fill one input per question
           }
         }
@@ -1388,7 +1423,7 @@ export function installExtractorContentScript() {
     // Try to find a specific dropdown tagged for this sub-question
     let targetSelects: HTMLSelectElement[] = [];
     const specificDropdown = document.querySelector<HTMLSelectElement>(
-      `select[data-study-assistant-dropdown-id="${CSS.escape(payload.questionId)}"]`
+      `select[data-study-assistant-dropdown-id="${escapeSelectorValue(payload.questionId)}"]`
     );
     if (specificDropdown && isElementVisible(specificDropdown) && !specificDropdown.disabled) {
       targetSelects = [specificDropdown];
@@ -1396,7 +1431,7 @@ export function installExtractorContentScript() {
 
     // Also try matching by select name/id
     if (targetSelects.length === 0) {
-      const byName = searchRoot.querySelector<HTMLSelectElement>(`select[name="${CSS.escape(payload.questionId)}"]`);
+      const byName = searchRoot.querySelector<HTMLSelectElement>(`select[name="${escapeSelectorValue(payload.questionId)}"]`);
       if (byName && isElementVisible(byName) && !byName.disabled) {
         targetSelects = [byName];
       }
@@ -1495,7 +1530,7 @@ export function installExtractorContentScript() {
     // Strategy 1: Radio buttons and checkboxes with labels
     let inputs = Array.from(searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'));
     if (!scopedContainer && inputs.length === 0) {
-      inputs = Array.from(document.querySelectorAll<HTMLInputElement>(`input[data-study-assistant-id="${CSS.escape(payload.questionId)}"]`));
+      inputs = Array.from(document.querySelectorAll<HTMLInputElement>(`input[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`));
     }
     if (!scopedContainer && searchRoot === document) {
       const namedInputs = inputs.filter(i => i.name === payload.questionId || i.id === payload.questionId);
@@ -1510,7 +1545,7 @@ export function installExtractorContentScript() {
       // Find associated label
       let label: HTMLElement | null = null;
       if (input.id) {
-        label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(input.id)}"]`);
+        label = document.querySelector<HTMLElement>(`label[for="${escapeSelectorValue(input.id)}"]`);
       }
       if (!label) {
         label = input.closest('label');

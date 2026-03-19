@@ -53,6 +53,7 @@ const extensionVersion = getExtensionVersion();
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
 let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
+let currentTokenRefreshPromise: Promise<ExtensionState> | null = null;
 
 void initializeRuntime();
 
@@ -79,17 +80,17 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           // If no tab stored yet, store whichever tab completed
           if (autoPilotTabId === null) autoPilotTabId = tabId;
 
-          // Add a small delay to let SPA routers settle, then analyze with auto-retry
+          // Add a small delay to let the next question render, then analyze with auto-retry.
           setTimeout(async () => {
             try {
               const currentState = await readState(browserName, extensionVersion);
               if (currentState.autoPilotEnabled && currentState.session.status === 'session_active') {
-                await analyzeWithAutoRetry(3, 7000);
+                await analyzeWithAutoRetry(2, 5000);
               }
             } catch (err) {
               console.error('Auto Pilot analysis failed on new page load:', err);
             }
-          }, 1500);
+          }, 900);
         }
       } catch (err) {
         console.error('Auto Pilot tab update check error:', err);
@@ -885,8 +886,13 @@ async function handleCancelAnalyze() {
     return updateState(
       (current) => ({
         ...current,
-        uiStatus: 'suggestion_ready', // Revert to ready state
+        autoPilotEnabled: false,
+        uiStatus: current.lastSuggestion.questionSuggestions.length > 0 ? 'suggestion_ready' : 'ready',
         lastError: 'Answer search was cancelled by user.',
+        session: {
+          ...current.session,
+          liveAssistEnabled: false,
+        },
       }),
       browserName,
       extensionVersion,
@@ -900,7 +906,7 @@ async function handleCancelAnalyze() {
  * If analysis doesn't complete within timeoutMs, it retries up to maxAttempts times.
  * This prevents the Full Auto flow from freezing when the API is slow.
  */
-async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 7000) {
+async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number = 5000) {
   const TIMEOUT_SENTINEL = Symbol('TIMEOUT');
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -1050,7 +1056,8 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
   if (currentAnalyzeController) {
     currentAnalyzeController.abort(); // Cancel any existing search before starting a new one
   }
-  currentAnalyzeController = new AbortController();
+  const analyzeController = new AbortController();
+  currentAnalyzeController = analyzeController;
 
   let response;
   try {
@@ -1065,7 +1072,7 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
         sessionId: freshState.session.sessionId,
         liveAssist: freshState.session.liveAssistEnabled,
         forceRedetect: payload.forceRedetect ?? false,
-        signal: currentAnalyzeController?.signal,
+        signal: analyzeController.signal,
       }),
     );
   } catch (err: unknown) {
@@ -1084,8 +1091,8 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     }
     throw error;
   } finally {
-    if (currentAnalyzeController && !currentAnalyzeController.signal.aborted) {
-      currentAnalyzeController = null; // Clean up
+    if (currentAnalyzeController === analyzeController) {
+      currentAnalyzeController = null;
     }
   }
 
@@ -1327,10 +1334,6 @@ async function handleToggleAutoPilot(enabled: boolean) {
             ...current,
             autoPilotEnabled: enabled,
             autoClickEnabled: enabled ? true : current.autoClickEnabled,
-            session: {
-              ...current.session,
-              liveAssistEnabled: enabled ? true : current.session.liveAssistEnabled,
-            },
           },
           enabled ? 'Enable Auto Pilot' : 'Disable Auto Pilot',
         ),
@@ -1376,6 +1379,43 @@ async function handleAutoClickAll() {
   return performAutoClickAll(state);
 }
 
+async function sendAutoClickAnswerMessage(tabId: number, suggestion: ExtensionQuestionSuggestion) {
+  return chrome.tabs.sendMessage(tabId, {
+    type: 'EXTENSION/AUTO_CLICK_ANSWER',
+    payload: {
+      questionId: suggestion.questionId,
+      answerText: suggestion.answerText ?? '',
+      suggestedOption: suggestion.suggestedOption,
+      options: [],
+    } satisfies AutoClickAnswerPayload,
+  }) as Promise<ExtensionResponse<AutoClickResult>>;
+}
+
+async function attemptAutoClickSuggestion(
+  tabId: number,
+  suggestion: ExtensionQuestionSuggestion,
+): Promise<ExtensionResponse<AutoClickResult> | null> {
+  try {
+    let response = await sendAutoClickAnswerMessage(tabId, suggestion);
+
+    if (!response?.ok || !response.data?.clicked) {
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      await injectExtractor(tabId);
+      response = await sendAutoClickAnswerMessage(tabId, suggestion);
+    }
+
+    return response;
+  } catch {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      await injectExtractor(tabId);
+      return await sendAutoClickAnswerMessage(tabId, suggestion);
+    } catch {
+      return null;
+    }
+  }
+}
+
 async function performAutoClickAll(state: ExtensionState) {
   // Use stored auto-pilot tab for background tab support, fallback to active tab
   let tabId: number;
@@ -1390,6 +1430,8 @@ async function performAutoClickAll(state: ExtensionState) {
   const suggestions = state.lastSuggestion.questionSuggestions;
   let clickedCount = 0;
   let failedCount = 0;
+  let blockingFailures = 0;
+  let usedTextEntry = false;
 
   const updatedSuggestions: ExtensionQuestionSuggestion[] = [];
 
@@ -1416,17 +1458,13 @@ async function performAutoClickAll(state: ExtensionState) {
     }
 
     try {
-      const response = (await chrome.tabs.sendMessage(tabId, {
-        type: 'EXTENSION/AUTO_CLICK_ANSWER',
-        payload: {
-          questionId: suggestion.questionId,
-          answerText: suggestion.answerText ?? '',
-          suggestedOption: suggestion.suggestedOption,
-          options: [],
-        } satisfies AutoClickAnswerPayload,
-      })) as ExtensionResponse<AutoClickResult>;
+      const response = await attemptAutoClickSuggestion(tabId, suggestion);
 
       if (response?.ok && response.data?.clicked) {
+        if (response.data.matchMethod === 'fill_in_blank' || response.data.matchMethod === 'dropdown_select') {
+          usedTextEntry = true;
+        }
+
         updatedSuggestions.push({
           ...suggestion,
           answerText: suggestion.answerText ?? null,
@@ -1442,6 +1480,7 @@ async function performAutoClickAll(state: ExtensionState) {
         });
         clickedCount++;
       } else {
+        blockingFailures++;
         updatedSuggestions.push({
           ...suggestion,
           answerText: suggestion.answerText ?? null,
@@ -1458,6 +1497,7 @@ async function performAutoClickAll(state: ExtensionState) {
         failedCount++;
       }
     } catch {
+      blockingFailures++;
       updatedSuggestions.push({
         ...suggestion,
         answerText: suggestion.answerText ?? null,
@@ -1506,6 +1546,26 @@ async function performAutoClickAll(state: ExtensionState) {
     extensionVersion,
   );
 
+  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && blockingFailures > 0) {
+    return updateState(
+      (current) =>
+        appendNotice(
+          {
+            ...current,
+            autoPilotEnabled: false,
+            uiStatus: 'suggestion_ready',
+          },
+          {
+            tone: 'warning',
+            title: 'Auto Pilot paused',
+            message: `${blockingFailures} detected answer${blockingFailures > 1 ? 's were' : ' was'} found but could not be inserted into the page. Review the current question before continuing.`,
+          },
+        ),
+      browserName,
+      extensionVersion,
+    );
+  }
+
   if (finalState.autoPilotEnabled && finalState.session.status === 'session_active') {
     // Wait briefly, then attempt to click Next Page
     setTimeout(async () => {
@@ -1544,7 +1604,7 @@ async function performAutoClickAll(state: ExtensionState) {
         // Non-fatal: don't disable auto pilot on transient errors
         console.error('Auto Pilot next page error:', error);
       }
-    }, 800);
+    }, usedTextEntry ? 1800 : 800);
   }
 
   return finalState;
@@ -1672,7 +1732,7 @@ async function handleLiveAssistSignal(tabId: number | undefined, payload: LiveAs
   }
 
   const state = await readState(browserName, extensionVersion);
-  if (!state.session.liveAssistEnabled || state.session.status !== 'session_active') {
+  if (!state.session.liveAssistEnabled || state.session.status !== 'session_active' || state.autoPilotEnabled || currentAnalyzeController) {
     return false;
   }
 
@@ -1705,18 +1765,33 @@ async function withAuthRetry<T>(operation: (state: ExtensionState) => Promise<T>
       throw error;
     }
 
-    const refreshed = await refreshExtensionToken(state);
-    await updateState(
-      (current) => ({
-        ...current,
-        accessToken: refreshed.accessToken,
-        refreshToken: refreshed.refreshToken ?? current.refreshToken,
-      }),
-      browserName,
-      extensionVersion,
-    );
-
-    state = await readState(browserName, extensionVersion);
+    state = await refreshAuthStateWithLock();
     return operation(state);
   }
+}
+
+async function refreshAuthStateWithLock(): Promise<ExtensionState> {
+  if (!currentTokenRefreshPromise) {
+    currentTokenRefreshPromise = (async () => {
+      const latestState = await readState(browserName, extensionVersion);
+      requirePairing(latestState);
+
+      const refreshed = await refreshExtensionToken(latestState);
+      await updateState(
+        (current) => ({
+          ...current,
+          accessToken: refreshed.accessToken,
+          refreshToken: refreshed.refreshToken ?? current.refreshToken,
+        }),
+        browserName,
+        extensionVersion,
+      );
+
+      return readState(browserName, extensionVersion);
+    })().finally(() => {
+      currentTokenRefreshPromise = null;
+    });
+  }
+
+  return currentTokenRefreshPromise;
 }
