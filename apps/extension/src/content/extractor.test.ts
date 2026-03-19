@@ -464,6 +464,177 @@ describe('extension extractor', () => {
     expect(response?.data?.questionCandidates?.[0]?.prompt).not.toContain('Answer:');
   });
 
+  it('keeps separate prompts for multiple repeated short-answer job questions on one page', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 1</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $103,560</p>
+              <p>Responsibilities: Software developers can be tasked with a wide range of responsibilities that may include designing parts of computer programs and applications and designing how those pieces work together.</p>
+              <div class="ablock">
+                <label for="q1-answer">Answer:</label>
+                <input id="q1-answer" type="text" name="q1_answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 2</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $104,000</p>
+              <p>Responsibilities: Create an in-office network for a small business or a cloud infrastructure for a business with corporate locations in cities on opposite coasts.</p>
+              <div class="ablock">
+                <label for="q2-answer">Answer:</label>
+                <input id="q2-answer" type="text" name="q2_answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 3</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $139,000</p>
+              <p>Responsibilities: Information systems managers work toward ensuring a company's tech is capable of meeting their IT goals.</p>
+              <div class="ablock">
+                <label for="q3-answer">Answer:</label>
+                <input id="q3-answer" type="text" name="q3_answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let response: any = null;
+    listener?.({ type: 'EXTENSION/EXTRACT_PAGE_SIGNALS' }, null, (value) => {
+      response = value;
+    });
+
+    expect(response?.ok).toBe(true);
+    expect(response?.data?.questionCandidates).toHaveLength(3);
+    expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('Salary: $103,560');
+    expect(response?.data?.questionCandidates?.[1]?.prompt).toContain('Salary: $104,000');
+    expect(response?.data?.questionCandidates?.[2]?.prompt).toContain('Salary: $139,000');
+  });
+
+  it('auto-fills the correct blank for each short-answer question on a multi-question page', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 1</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">Information is one of the most significant <input id="q1-answer" type="text" name="q1_answer" /> resources.</div>
+            </div>
+          </div>
+        </article>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 2</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">Info security is concerned with making sure data in transit is protected by <input id="q2-answer" type="text" name="q2_answer" />.</div>
+            </div>
+          </div>
+        </article>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 3</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $95,510</p>
+              <p>Responsibilities: Information security analysts monitor their companies' computer networks to combat hackers and compile reports of security breaches.</p>
+              <div class="ablock">
+                <label for="q3-answer">Answer:</label>
+                <input id="q3-answer" type="text" name="q3_answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let extractResponse: any = null;
+    listener?.({ type: 'EXTENSION/EXTRACT_PAGE_SIGNALS' }, null, (value) => {
+      extractResponse = value;
+    });
+
+    const questions = extractResponse?.data?.questionCandidates ?? [];
+    expect(questions).toHaveLength(3);
+
+    const answersBySalary = new Map<string, string>([
+      ['q1_answer', 'non-substantial'],
+      ['q2_answer', 'encryption'],
+      ['q3_answer', 'Information Security Analyst'],
+    ]);
+
+    for (const question of questions) {
+      listener?.(
+        {
+          type: 'EXTENSION/AUTO_CLICK_ANSWER',
+          payload: {
+            questionId: question.id,
+            answerText: answersBySalary.get(question.id) ?? '',
+            suggestedOption: null,
+            options: [],
+          },
+        },
+        null,
+        () => {},
+      );
+    }
+
+    expect((document.getElementById('q1-answer') as HTMLInputElement).value).toBe('non-substantial');
+    expect((document.getElementById('q2-answer') as HTMLInputElement).value).toBe('encryption');
+    expect((document.getElementById('q3-answer') as HTMLInputElement).value).toBe('Information Security Analyst');
+  });
+
   it('auto-fills short-answer inputs and overwrites stale values', () => {
     const chromeMock = createChromeMock();
     vi.stubGlobal('chrome', chromeMock);

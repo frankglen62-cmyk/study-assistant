@@ -604,6 +604,104 @@ export function installExtractorContentScript() {
     );
   }
 
+  function countVisibleQuestionMarkers(container: ParentNode | null): number {
+    if (!container) {
+      return 0;
+    }
+
+    return Array.from(
+      container.querySelectorAll(
+        '.info .no, .question-number, .questionnumber, [data-question-block], .que, .quiz-question, [data-region="question"]',
+      ),
+    ).filter((node) => isElementVisible(node)).length;
+  }
+
+  function findQuestionContainerForField(
+    field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement,
+  ): ParentNode | null {
+    let current: HTMLElement | null = field.parentElement;
+    let bestContainer: HTMLElement | null = null;
+    let bestScore = Number.NEGATIVE_INFINITY;
+    const isDropdownField = field instanceof HTMLSelectElement;
+
+    while (current && current !== document.body) {
+      if (isElementVisible(current) && current.contains(field)) {
+        const normalizedText = normalizeText(current.textContent ?? '');
+        const prompt = derivePromptFromContainer(current);
+        const questionLabel = deriveQuestionLabel(current);
+        const visibleTextInputs = Array.from(
+          current.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[type="text"], input[type="number"], input:not([type]), textarea'),
+        ).filter(
+          (node) =>
+            isElementVisible(node) &&
+            !node.disabled &&
+            !node.readOnly &&
+            (!(node instanceof HTMLInputElement) || !['hidden', 'submit', 'button', 'password', 'email'].includes(node.type)),
+        ).length;
+        const visibleSelects = Array.from(current.querySelectorAll<HTMLSelectElement>('select')).filter(
+          (node) => isElementVisible(node) && !node.disabled,
+        ).length;
+
+        let score = 0;
+
+        if (prompt) {
+          score += 6;
+        }
+
+        if (questionLabel) {
+          score += 2;
+        }
+
+        if (normalizedText.length >= 18 && normalizedText.length <= 1200) {
+          score += 2;
+        }
+
+        if (normalizedText.length > 1800) {
+          score -= 4;
+        }
+
+        if (current.matches('.que, .formulation, .content, [data-question-block], .question, .quiz-question, article, section, fieldset')) {
+          score += 4;
+        }
+
+        if (isDropdownField) {
+          if (visibleSelects === 1) {
+            score += 7;
+          } else if (visibleSelects <= 2) {
+            score += 3;
+          } else {
+            score -= 5;
+          }
+        } else if (visibleTextInputs === 1) {
+          score += 7;
+        } else if (visibleTextInputs <= 2) {
+          score += 3;
+        } else {
+          score -= 5;
+        }
+
+        const questionMarkerCount = countVisibleQuestionMarkers(current);
+        if (questionMarkerCount > 1) {
+          score -= 6;
+        }
+
+        if (score > bestScore) {
+          bestScore = score;
+          bestContainer = current;
+        }
+      }
+
+      current = current.parentElement;
+    }
+
+    return (
+      bestContainer ??
+      field.closest(
+        '.que, .formulation, .content, [data-question-block], .question, .quiz-question, article, section, fieldset, div',
+      )
+    );
+  }
+
   function derivePromptNearInputs(inputs: HTMLInputElement[]): string | null {
     const firstInput = inputs[0];
     if (!firstInput) {
@@ -747,6 +845,15 @@ export function installExtractorContentScript() {
         return;
       }
 
+      const hasInlineFreeformField =
+        hasVisibleFreeformInputs(container) ||
+        Array.from(container.querySelectorAll<HTMLSelectElement>('select')).some(
+          (select) => isElementVisible(select) && !select.disabled,
+        );
+      if (hasInlineFreeformField && extractOptionsFromContainer(container).length === 0) {
+        return;
+      }
+
       const prompt = derivePromptFromContainer(container) ?? extractCleanedPromptText(node);
       if (isBoilerplateQuestionText(prompt, new Set())) {
         return;
@@ -772,6 +879,14 @@ export function installExtractorContentScript() {
 
     explicitQuestionBlocks.forEach((node, index) => {
         const element = node as HTMLElement;
+        const hasInlineFreeformField =
+          hasVisibleFreeformInputs(element) ||
+          Array.from(element.querySelectorAll<HTMLSelectElement>('select')).some(
+            (select) => isElementVisible(select) && !select.disabled,
+          );
+        if (hasInlineFreeformField && extractOptionsFromContainer(element).length === 0) {
+          return;
+        }
         const id = element.dataset.questionId || `block-${index + 1}`;
         element.dataset.studyAssistantId = id;
         pushCandidate(
@@ -802,11 +917,10 @@ export function installExtractorContentScript() {
 
       if (container instanceof HTMLElement) {
         container.dataset.studyAssistantId = id;
-      } else {
-        inputs.forEach((input) => {
-          input.dataset.studyAssistantId = id;
-        });
       }
+      inputs.forEach((input) => {
+        input.dataset.studyAssistantId = id;
+      });
 
       pushCandidate(
         createQuestionCandidate({
@@ -835,24 +949,19 @@ export function installExtractorContentScript() {
     );
 
     blankInputs.forEach((input, index) => {
-      if (input.closest('[data-study-assistant-id]')) {
-        return;
-      }
-
-      const container =
-        input.closest('.que, .formulation, .content, [data-question-block], .question, .quiz-question, article, section') ??
-        input.parentElement;
+      const container = findQuestionContainerForField(input) ?? input.parentElement;
       if (!(container instanceof HTMLElement)) {
         return;
       }
 
       const id =
-        container.dataset.studyAssistantId ||
         input.name ||
         input.id ||
         container.dataset.questionId ||
+        container.dataset.studyAssistantId ||
         `blank-${index + 1}`;
       container.dataset.studyAssistantId = id;
+      input.dataset.studyAssistantId = id;
 
       pushCandidate(
         createQuestionCandidate({
@@ -909,7 +1018,7 @@ export function installExtractorContentScript() {
       const selectContainerMap = new Map<HTMLElement, HTMLSelectElement[]>();
 
       for (const sel of allSelects) {
-        const container = (sel.closest('.que, .formulation, .question, [class*="question"], [data-question-block], fieldset, article, section') as HTMLElement | null) ?? sel.parentElement;
+        const container = (findQuestionContainerForField(sel) as HTMLElement | null) ?? sel.parentElement;
         if (!container) continue;
 
         const existing = selectContainerMap.get(container) ?? [];
@@ -1020,6 +1129,7 @@ export function installExtractorContentScript() {
 
           // Mark this select with a study-assistant ID for auto-click scoping
           sel.dataset.studyAssistantDropdownId = subId;
+          sel.dataset.studyAssistantId = subId;
 
           // Mark the question container too
           if (!container.dataset.studyAssistantId) {
@@ -1351,10 +1461,19 @@ export function installExtractorContentScript() {
     // ═══════════════════════════════════════════════════════════════
     // Strategy A: Fill-in-the-blank — text inputs and textareas
     // ═══════════════════════════════════════════════════════════════
-    const textInputs = Array.from(
-      searchRoot.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
-        'input[type="text"], input:not([type]), textarea'
-      )
+    const directTaggedTextInputs = Array.from(
+      document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+        `input[type="text"][data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"], input:not([type])[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"], textarea[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`,
+      ),
+    );
+
+    const textInputs = (directTaggedTextInputs.length > 0
+      ? directTaggedTextInputs
+      : Array.from(
+          searchRoot.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+            'input[type="text"], input:not([type]), textarea',
+          ),
+        )
     ).filter(
       (el) =>
         isElementVisible(el) &&
@@ -1367,7 +1486,7 @@ export function installExtractorContentScript() {
         el.type !== 'email' &&
         !el.name?.includes('sesskey') &&
         !el.name?.includes('_csrf') &&
-        !el.closest('nav, .quiznav, .question-nav, .submitbtns, header, footer')
+        !el.closest('nav, .quiznav, .question-nav, .submitbtns, header, footer'),
     );
 
     // For fill-in-the-blank: if there's exactly 1 text input in the question,
@@ -1431,6 +1550,15 @@ export function installExtractorContentScript() {
     }
 
     // Also try matching by select name/id
+    if (targetSelects.length === 0) {
+      const directTaggedSelect = document.querySelector<HTMLSelectElement>(
+        `select[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`,
+      );
+      if (directTaggedSelect && isElementVisible(directTaggedSelect) && !directTaggedSelect.disabled) {
+        targetSelects = [directTaggedSelect];
+      }
+    }
+
     if (targetSelects.length === 0) {
       const byName = searchRoot.querySelector<HTMLSelectElement>(`select[name="${escapeSelectorValue(payload.questionId)}"]`);
       if (byName && isElementVisible(byName) && !byName.disabled) {
@@ -1529,9 +1657,13 @@ export function installExtractorContentScript() {
     const clickables: Array<{ element: HTMLElement; text: string; normalized: string; input: HTMLInputElement | null }> = [];
 
     // Strategy 1: Radio buttons and checkboxes with labels
-    let inputs = Array.from(searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'));
-    if (!scopedContainer && inputs.length === 0) {
-      inputs = Array.from(document.querySelectorAll<HTMLInputElement>(`input[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`));
+    let inputs = Array.from(
+      document.querySelectorAll<HTMLInputElement>(
+        `input[type="radio"][data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"], input[type="checkbox"][data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`,
+      ),
+    );
+    if (inputs.length === 0) {
+      inputs = Array.from(searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'));
     }
     if (!scopedContainer && searchRoot === document) {
       const namedInputs = inputs.filter(i => i.name === payload.questionId || i.id === payload.questionId);

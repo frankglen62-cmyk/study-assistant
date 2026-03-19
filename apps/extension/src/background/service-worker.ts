@@ -50,7 +50,7 @@ import { installExtractorContentScript } from '../content/extractor';
 
 const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
-const AUTO_PILOT_ANALYZE_TIMEOUT_MS = 9_500;
+const AUTO_PILOT_ANALYZE_TIMEOUT_MS = 15_500;
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
 let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
@@ -987,7 +987,7 @@ async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number =
         },
         {
           tone: 'warning',
-          title: 'Skipped — analysis timed out',
+          title: 'Auto Pilot paused',
           message: 'The answer search took too long. Review the current question and restart Full Auto when the page is ready.',
         },
       ),

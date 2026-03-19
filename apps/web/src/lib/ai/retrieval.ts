@@ -55,7 +55,7 @@ interface QaPairRow {
 
 export type PreloadedQaPairRow = QaPairRow;
 
-const QA_PRELOAD_CACHE_TTL_MS = 5_000;
+const QA_PRELOAD_CACHE_TTL_MS = 30_000;
 const preloadedQaPairCache = new Map<string, { rows: QaPairRow[]; expiresAt: number }>();
 const preloadedQaPairPromises = new Map<string, Promise<QaPairRow[]>>();
 
