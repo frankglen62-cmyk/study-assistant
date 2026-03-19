@@ -52,6 +52,7 @@ const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
+let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
 
 void initializeRuntime();
 
@@ -73,16 +74,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       try {
         const state = await readState(browserName, extensionVersion);
         if (state.autoPilotEnabled && state.session.status === 'session_active') {
-          // Make sure this tab is currently the active one to avoid background execution
-          const activeTab = await getActiveTab();
-          if (activeTab?.id !== tabId) return;
+          // Only run on the auto-pilot target tab (works even if user switches tabs)
+          if (autoPilotTabId !== null && autoPilotTabId !== tabId) return;
+          // If no tab stored yet, store whichever tab completed
+          if (autoPilotTabId === null) autoPilotTabId = tabId;
 
           // Add a small delay to let SPA routers settle, then analyze with auto-retry
           setTimeout(async () => {
             try {
-              // Re-check active tab just before running
-              const currentActive = await getActiveTab();
-              if (currentActive?.id === tabId) {
+              const currentState = await readState(browserName, extensionVersion);
+              if (currentState.autoPilotEnabled && currentState.session.status === 'session_active') {
                 await analyzeWithAutoRetry(3, 7000);
               }
             } catch (err) {
@@ -782,8 +783,17 @@ function mergeCapturedSections(sections: ExtensionCapturedSection[]): ExtensionP
   };
 }
 
-async function collectCurrentPageContext(includeScreenshot: boolean) {
-  const tab = await getActiveTab();
+async function collectCurrentPageContext(includeScreenshot: boolean, overrideTabId?: number) {
+  let tab: chrome.tabs.Tab;
+
+  if (overrideTabId) {
+    // Use the specified tab directly (for background tab support)
+    const tabInfo = await chrome.tabs.get(overrideTabId);
+    if (!tabInfo?.url) throw new Error('The target tab no longer exists or has no URL.');
+    tab = tabInfo;
+  } else {
+    tab = await getActiveTab();
+  }
   await ensureTabHostPermission(tab.url!);
 
   let screenshotDataUrl = includeScreenshot ? await captureVisibleScreenshot(tab.windowId) : null;
@@ -890,7 +900,7 @@ async function handleCancelAnalyze() {
  * If analysis doesn't complete within timeoutMs, it retries up to maxAttempts times.
  * This prevents the Full Auto flow from freezing when the API is slow.
  */
-async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 5000) {
+async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 7000) {
   const TIMEOUT_SENTINEL = Symbol('TIMEOUT');
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -949,7 +959,42 @@ async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number =
         );
         continue; // Retry
       }
-      throw error; // Final attempt failed, rethrow
+      // Don't rethrow — fall through to the recovery below
+    }
+  }
+
+  // ─── All attempts exhausted: reset UI, skip this question, move to next ───
+  console.warn('Auto Pilot: All analysis attempts exhausted. Skipping this question.');
+  if (currentAnalyzeController) {
+    currentAnalyzeController.abort('All attempts exhausted');
+    currentAnalyzeController = null;
+  }
+
+  await updateState(
+    (current) =>
+      appendNotice(
+        { ...current, uiStatus: 'suggestion_ready' },
+        {
+          tone: 'warning',
+          title: 'Skipped — analysis timed out',
+          message: 'Could not get an answer in time. Skipping to the next question.',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
+
+  // Auto-click next page so Full Auto doesn't freeze
+  const state = await readState(browserName, extensionVersion);
+  if (state.autoPilotEnabled && state.session.status === 'session_active') {
+    try {
+      const targetTabId = autoPilotTabId ?? (await getActiveTab())?.id;
+      if (targetTabId) {
+        await injectExtractor(targetTabId);
+        await chrome.tabs.sendMessage(targetTabId, { type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE' }).catch(() => {});
+      }
+    } catch {
+      // non-fatal
     }
   }
 }
@@ -989,7 +1034,9 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
 
     pageSignals = mergeCapturedSections(state.capturedSections);
   } else {
-    const currentContext = await collectCurrentPageContext(payload.includeScreenshot ?? false);
+    // Use the stored auto-pilot tab or the active tab
+    const targetTab = autoPilotTabId ?? undefined;
+    const currentContext = await collectCurrentPageContext(payload.includeScreenshot ?? false, targetTab);
     screenshotDataUrl = currentContext.screenshotDataUrl;
     pageSignals = currentContext.pageSignals;
   }
@@ -1151,10 +1198,11 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
           await handleToggleAutoPilot(false);
           return;
         }
-        const tab = await getActiveTab();
-        if (!tab?.id) return;
-        await injectExtractor(tab.id);
-        const response = (await chrome.tabs.sendMessage(tab.id, {
+        // Use stored auto-pilot tab ID for background tab support
+        const targetTabId = autoPilotTabId ?? (await getActiveTab().catch(() => null))?.id;
+        if (!targetTabId) return;
+        await injectExtractor(targetTabId);
+        const response = (await chrome.tabs.sendMessage(targetTabId, {
           type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
         })) as ExtensionResponse<{ clicked: boolean }>;
 
@@ -1260,6 +1308,19 @@ async function handleToggleAutoPilot(enabled: boolean) {
   const state = await readState(browserName, extensionVersion);
   requirePairing(state);
 
+  if (enabled) {
+    // Store the current active tab as the autopilot target — this lets Full Auto
+    // keep working even when the user switches to another tab.
+    try {
+      const tab = await getActiveTab();
+      autoPilotTabId = tab?.id ?? null;
+    } catch {
+      autoPilotTabId = null;
+    }
+  } else {
+    autoPilotTabId = null; // Clear when disabling
+  }
+
   const nextState = await updateState(
     (current) =>
       appendNotice(
@@ -1287,15 +1348,19 @@ async function handleToggleAutoPilot(enabled: boolean) {
     extensionVersion,
   );
 
-  if (enabled) {
-    const tab = await getActiveTab();
-    if (tab?.id && tab.url) {
-      await ensureTabHostPermission(tab.url);
-      await injectExtractor(tab.id);
-      await chrome.tabs.sendMessage(tab.id, {
-        type: 'EXTENSION/SET_LIVE_ASSIST',
-        payload: { enabled: true },
-      }).catch(() => {});
+  if (enabled && autoPilotTabId) {
+    try {
+      const tab = await chrome.tabs.get(autoPilotTabId);
+      if (tab?.url) {
+        await ensureTabHostPermission(tab.url);
+        await injectExtractor(autoPilotTabId);
+        await chrome.tabs.sendMessage(autoPilotTabId, {
+          type: 'EXTENSION/SET_LIVE_ASSIST',
+          payload: { enabled: true },
+        }).catch(() => {});
+      }
+    } catch {
+      // Tab may have been closed
     }
   }
 
@@ -1314,8 +1379,15 @@ async function handleAutoClickAll() {
 }
 
 async function performAutoClickAll(state: ExtensionState) {
-  const tab = await getActiveTab();
-  await injectExtractor(tab.id!);
+  // Use stored auto-pilot tab for background tab support, fallback to active tab
+  let tabId: number;
+  if (autoPilotTabId) {
+    tabId = autoPilotTabId;
+  } else {
+    const tab = await getActiveTab();
+    tabId = tab.id!;
+  }
+  await injectExtractor(tabId);
 
   const suggestions = state.lastSuggestion.questionSuggestions;
   let clickedCount = 0;
@@ -1346,7 +1418,7 @@ async function performAutoClickAll(state: ExtensionState) {
     }
 
     try {
-      const response = (await chrome.tabs.sendMessage(tab.id!, {
+      const response = (await chrome.tabs.sendMessage(tabId, {
         type: 'EXTENSION/AUTO_CLICK_ANSWER',
         payload: {
           questionId: suggestion.questionId,
@@ -1452,7 +1524,7 @@ async function performAutoClickAll(state: ExtensionState) {
           return;
         }
 
-        const response = (await chrome.tabs.sendMessage(tab.id!, {
+        const response = (await chrome.tabs.sendMessage(tabId, {
           type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
         })) as ExtensionResponse<{ clicked: boolean }>;
 

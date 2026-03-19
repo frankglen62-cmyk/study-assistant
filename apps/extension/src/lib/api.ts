@@ -46,7 +46,7 @@ async function fetchJson<T>(
       'Cache-Control': 'no-store',
       Pragma: 'no-cache',
     },
-    signal: options.signal ?? (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(15000) : undefined),
+    signal: options.signal ?? (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(10000) : undefined),
   };
 
   if (options.body !== undefined) {
