@@ -46,9 +46,17 @@ export function installExtractorContentScript() {
       return false;
     }
 
-    return Array.from(container.querySelectorAll('input[type="radio"], input[type="checkbox"]')).some((node) =>
+    // Check for radio/checkbox inputs OR <select> dropdown elements
+    const hasRadioCheckbox = Array.from(container.querySelectorAll('input[type="radio"], input[type="checkbox"]')).some((node) =>
       isElementVisible(node),
     );
+    if (hasRadioCheckbox) return true;
+
+    // Also check for visible <select> elements (for matching/dropdown questions)
+    const hasSelect = Array.from(container.querySelectorAll('select')).some(
+      (sel) => isElementVisible(sel) && !sel.disabled && !sel.closest('nav, .quiznav, .question-nav, header, footer')
+    );
+    return hasSelect;
   }
 
   function looksLikeQuestionNavigation(element: Element | null): boolean {
@@ -277,7 +285,16 @@ export function installExtractorContentScript() {
       .filter((text) => /^[([]?[a-z0-9ivx]{1,5}[)\].:\s-]/i.test(text) || text.length < 180)
       .filter((text) => text.length > 2 && !isBoilerplateOption(text));
 
-    return Array.from(new Set([...fromInputs, ...fromDataOptions, ...fromAnswerRows, ...fromListItems])).slice(0, limit);
+    // Also extract options from <select> dropdown elements
+    const fromSelects = Array.from(container.querySelectorAll('select'))
+      .filter((sel) => isElementVisible(sel) && !sel.disabled && !sel.closest('nav, .quiznav, .question-nav'))
+      .flatMap((sel) =>
+        Array.from(sel.querySelectorAll('option'))
+          .map((opt) => cleanOptionLabel(opt.textContent ?? ''))
+          .filter((text) => text.length > 2 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose' && !isBoilerplateOption(text))
+      );
+
+    return Array.from(new Set([...fromInputs, ...fromDataOptions, ...fromAnswerRows, ...fromListItems, ...fromSelects])).slice(0, limit);
   }
 
   function collectDetachedTextNodeCandidates(container: ParentNode | null, optionLookup: Set<string>): string[] {
@@ -737,13 +754,41 @@ export function installExtractorContentScript() {
     // ═══════════════════════════════════════════════════════════════
     // Strategy: Dropdown <select> sub-question detection
     // Each <select> inside a question container becomes its own sub-question
+    // Handles Moodle matching questions with table-based layouts
     // ═══════════════════════════════════════════════════════════════
+
+    // Helper: check if a <select> is a navigation/non-question dropdown
+    function isNavigationSelect(sel: HTMLSelectElement): boolean {
+      // Filter out quiz navigation, "Jump to..." selects, etc.
+      const firstOptText = (sel.querySelector('option')?.textContent ?? '').trim().toLowerCase();
+      if (
+        firstOptText.includes('jump to') ||
+        firstOptText.includes('choose a section') ||
+        firstOptText.includes('go to')
+      ) {
+        return true;
+      }
+      // Check parent context
+      if (sel.closest('.activity-navigation, .mod_quiz_navblock, .jumpmenu, [data-region="nav"]')) {
+        return true;
+      }
+      // If all options look like page titles/sections, it's navigation
+      const allOptTexts = Array.from(sel.querySelectorAll('option')).map(o => (o.textContent ?? '').trim().toLowerCase());
+      const navPhrases = ['midterm', 'final', 'prelim', 'jump to', 'exam', 'quiz '];
+      const navCount = allOptTexts.filter(t => navPhrases.some(p => t.includes(p))).length;
+      if (navCount > allOptTexts.length * 0.5 && allOptTexts.length >= 2) {
+        return true;
+      }
+      return false;
+    }
+
     const allSelects = Array.from(document.querySelectorAll<HTMLSelectElement>('select'))
       .filter((sel) =>
         isElementVisible(sel) &&
         !sel.disabled &&
         !sel.name?.includes('sesskey') &&
-        !sel.closest('nav, .quiznav, .question-nav, header, footer, .submitbtns')
+        !sel.closest('nav, .quiznav, .question-nav, header, footer, .submitbtns, .activity-navigation') &&
+        !isNavigationSelect(sel)
       );
 
     if (allSelects.length > 0) {
@@ -763,22 +808,15 @@ export function installExtractorContentScript() {
       for (const [container, selects] of selectContainerMap) {
         dropdownContainerIndex++;
 
-        // If container already has radio/checkbox candidates, skip
-        if (container.dataset.studyAssistantId && seenIds.has(normalizeText(container.dataset.studyAssistantId))) {
-          // But still add per-dropdown sub-questions if there are multiple selects
-          if (selects.length <= 1) continue;
-        }
-
         // For each <select>, create a sub-question with the text label near it
         for (let si = 0; si < selects.length; si++) {
           const sel = selects[si]!;
           const subId = sel.name || sel.id || `dropdown-${dropdownContainerIndex}-${si + 1}`;
 
-          // Extract the prompt text for this specific dropdown
-          // Try: previous sibling text, parent row/cell text, label
+          // ── Extract the prompt text for this specific dropdown ──
           let subPrompt: string | null = null;
 
-          // Check for explicit label
+          // 1. Check for explicit <label for="...">
           if (sel.id) {
             const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
             if (label) {
@@ -786,11 +824,34 @@ export function installExtractorContentScript() {
             }
           }
 
-          // Try closest row/cell containing this select
+          // 2. Moodle table row: extract from sibling <td> cell (not the cell with the select)
           if (!subPrompt || subPrompt.length < 8) {
-            const row = sel.closest('tr, .fitem, .form-group, .ablock, div[class*="answer"], .r0, .r1, .r2, .r3');
+            const parentTd = sel.closest('td');
+            if (parentTd) {
+              const row = parentTd.closest('tr');
+              if (row) {
+                // Get text from all <td> cells EXCEPT the one containing the select
+                const cells = Array.from(row.querySelectorAll('td'));
+                const textParts: string[] = [];
+                for (const cell of cells) {
+                  if (cell === parentTd || cell.contains(sel)) continue;
+                  const cellText = normalizeText(cell.textContent ?? '');
+                  if (cellText.length >= 4) {
+                    textParts.push(cellText);
+                  }
+                }
+                const rowText = textParts.join(' ').trim();
+                if (rowText.length >= 8 && rowText.length < 500) {
+                  subPrompt = rowText;
+                }
+              }
+            }
+          }
+
+          // 3. Try closest row container (including Moodle answer row classes)
+          if (!subPrompt || subPrompt.length < 8) {
+            const row = sel.closest('tr, .fitem, .form-group, .r0, .r1, .r2, .r3');
             if (row instanceof HTMLElement) {
-              // Get text from the row EXCLUDING the select element text
               const clone = row.cloneNode(true) as HTMLElement;
               clone.querySelectorAll('select, button, .submitbtns').forEach(n => n.remove());
               const rowText = normalizeText(clone.textContent ?? '');
@@ -800,11 +861,10 @@ export function installExtractorContentScript() {
             }
           }
 
-          // Try previous sibling element text
+          // 4. Try previous sibling element text
           if (!subPrompt || subPrompt.length < 8) {
             let prevEl: Element | null = sel.previousElementSibling;
             if (!prevEl) {
-              // Check parent's previous sibling
               prevEl = sel.parentElement?.previousElementSibling ?? null;
             }
             if (prevEl && isElementVisible(prevEl)) {
@@ -815,7 +875,7 @@ export function installExtractorContentScript() {
             }
           }
 
-          // Fallback: extract text from before the select in the parent
+          // 5. Fallback: extract text from parent element, excluding the select
           if (!subPrompt || subPrompt.length < 8) {
             const parent = sel.parentElement;
             if (parent) {
@@ -838,7 +898,7 @@ export function installExtractorContentScript() {
           // Mark this select with a study-assistant ID for auto-click scoping
           sel.dataset.studyAssistantDropdownId = subId;
 
-          // Also mark the question container for SELECT matching
+          // Mark the question container too
           if (!container.dataset.studyAssistantId) {
             container.dataset.studyAssistantId = `dropdown-container-${dropdownContainerIndex}`;
           }

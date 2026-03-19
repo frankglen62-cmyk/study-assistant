@@ -1077,6 +1077,44 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     }
   }
 
+  // ─── Full Auto: Still click Next Page even when no match found ───
+  // This prevents Full Auto from freezing on no-match questions
+  if (nextState.autoPilotEnabled && nextState.session.status === 'session_active') {
+    setTimeout(async () => {
+      try {
+        const currentState = await readState(browserName, extensionVersion);
+        if (!currentState.autoPilotEnabled || currentState.session.status !== 'session_active') {
+          return;
+        }
+        if (currentState.creditsRemainingSeconds <= 0) {
+          await handleToggleAutoPilot(false);
+          return;
+        }
+        const tab = await getActiveTab();
+        if (!tab?.id) return;
+        await injectExtractor(tab.id);
+        const response = (await chrome.tabs.sendMessage(tab.id, {
+          type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
+        })) as ExtensionResponse<{ clicked: boolean }>;
+
+        if (!response?.ok || !response.data?.clicked) {
+          await updateState(
+            (current) =>
+              appendNotice(current, {
+                tone: 'info',
+                title: 'Auto Pilot paused',
+                message: 'No next page button found. Auto Pilot will resume if the page changes.',
+              }),
+            browserName,
+            extensionVersion,
+          );
+        }
+      } catch (error) {
+        console.error('Auto Pilot next page (no match) error:', error);
+      }
+    }, 800);
+  }
+
   return nextState;
 }
 
