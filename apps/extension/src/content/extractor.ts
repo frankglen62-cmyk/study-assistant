@@ -46,11 +46,11 @@ export function installExtractorContentScript() {
       return false;
     }
 
-    // Check for radio/checkbox inputs OR <select> dropdown elements
-    const hasRadioCheckbox = Array.from(container.querySelectorAll('input[type="radio"], input[type="checkbox"]')).some((node) =>
-      isElementVisible(node),
-    );
-    if (hasRadioCheckbox) return true;
+    // Check for radio/checkbox inputs OR text inputs (fill in the blank) OR <select> dropdown elements
+    const hasInput = Array.from(
+      container.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="text"], input[type="number"]')
+    ).some((node) => isElementVisible(node));
+    if (hasInput) return true;
 
     // Also check for visible <select> elements (for matching/dropdown questions)
     const hasSelect = Array.from(container.querySelectorAll('select')).some(
