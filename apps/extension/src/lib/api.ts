@@ -10,6 +10,8 @@ import {
   walletResponseSchema,
 } from './validators';
 
+const ANALYZE_REQUEST_TIMEOUT_MS = 9_000;
+
 interface FetchOptions {
   method?: 'GET' | 'POST';
   body?: unknown;
@@ -221,7 +223,7 @@ export async function analyzePage(
     method: 'POST',
     body: payload,
     signal: payload.signal,
-    timeoutMs: 5500,
+    timeoutMs: ANALYZE_REQUEST_TIMEOUT_MS,
   });
 }
 

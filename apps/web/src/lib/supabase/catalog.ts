@@ -7,26 +7,53 @@ export interface ActiveCatalog {
   categories: CategoryRecord[];
 }
 
+const CATALOG_CACHE_TTL_MS = 30_000;
+
+let activeCatalogCache: { value: ActiveCatalog; expiresAt: number } | null = null;
+let activeCatalogPromise: Promise<ActiveCatalog> | null = null;
+
 export async function getActiveCatalog(): Promise<ActiveCatalog> {
-  const supabase = getSupabaseAdmin();
-  const [subjectsResponse, categoriesResponse] = await Promise.all([
-    supabase
-      .from('subjects')
-      .select('id, name, slug, course_code, department, description, keywords, url_patterns, is_active')
-      .eq('is_active', true)
-      .order('name', { ascending: true }),
-    supabase
-      .from('categories')
-      .select('id, subject_id, name, slug, default_keywords, is_active')
-      .eq('is_active', true)
-      .order('sort_order', { ascending: true }),
-  ]);
+  const now = Date.now();
+  if (activeCatalogCache && activeCatalogCache.expiresAt > now) {
+    return activeCatalogCache.value;
+  }
 
-  assertSupabaseResult(subjectsResponse.error, 'Failed to load subject catalog.');
-  assertSupabaseResult(categoriesResponse.error, 'Failed to load category catalog.');
+  if (activeCatalogPromise) {
+    return activeCatalogPromise;
+  }
 
-  return {
-    subjects: parseArray(subjectsResponse.data ?? [], subjectRecordSchema, 'Subject catalog is invalid.'),
-    categories: parseArray(categoriesResponse.data ?? [], categoryRecordSchema, 'Category catalog is invalid.'),
-  };
+  activeCatalogPromise = (async () => {
+    const supabase = getSupabaseAdmin();
+    const [subjectsResponse, categoriesResponse] = await Promise.all([
+      supabase
+        .from('subjects')
+        .select('id, name, slug, course_code, department, description, keywords, url_patterns, is_active')
+        .eq('is_active', true)
+        .order('name', { ascending: true }),
+      supabase
+        .from('categories')
+        .select('id, subject_id, name, slug, default_keywords, is_active')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true }),
+    ]);
+
+    assertSupabaseResult(subjectsResponse.error, 'Failed to load subject catalog.');
+    assertSupabaseResult(categoriesResponse.error, 'Failed to load category catalog.');
+
+    const value = {
+      subjects: parseArray(subjectsResponse.data ?? [], subjectRecordSchema, 'Subject catalog is invalid.'),
+      categories: parseArray(categoriesResponse.data ?? [], categoryRecordSchema, 'Category catalog is invalid.'),
+    };
+
+    activeCatalogCache = {
+      value,
+      expiresAt: Date.now() + CATALOG_CACHE_TTL_MS,
+    };
+
+    return value;
+  })().finally(() => {
+    activeCatalogPromise = null;
+  });
+
+  return activeCatalogPromise;
 }

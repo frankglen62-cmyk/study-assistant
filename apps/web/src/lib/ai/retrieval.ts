@@ -55,66 +55,97 @@ interface QaPairRow {
 
 export type PreloadedQaPairRow = QaPairRow;
 
+const QA_PRELOAD_CACHE_TTL_MS = 5_000;
+const preloadedQaPairCache = new Map<string, { rows: QaPairRow[]; expiresAt: number }>();
+const preloadedQaPairPromises = new Map<string, Promise<QaPairRow[]>>();
+
+function getPreloadedQaPairCacheKey(params: { subject: SubjectRecord; category: CategoryRecord | null }) {
+  return `${params.subject.id}:${params.category?.id ?? 'all'}`;
+}
+
 export async function preloadSubjectQaPairs(params: {
   subject: SubjectRecord;
   category: CategoryRecord | null;
 }) {
-  const supabase = getSupabaseAdmin();
-  const pageSize = 1000;
-  const allRows: QaPairRow[] = [];
-  let offset = 0;
-
-  while (true) {
-    let query = supabase
-      .from('subject_qa_pairs')
-      .select(`
-        id,
-        subject_id,
-        category_id,
-        question_text,
-        answer_text,
-        short_explanation,
-        keywords,
-        sort_order,
-        updated_at,
-        subjects:subject_id (
-          name
-        ),
-        categories:category_id (
-          name
-        )
-      `)
-      .eq('subject_id', params.subject.id)
-      .eq('is_active', true)
-      .is('deleted_at', null)
-      .order('sort_order', { ascending: true })
-      .range(offset, offset + pageSize - 1);
-
-    if (params.category) {
-      query = query.or(`category_id.eq.${params.category.id},category_id.is.null`);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-      const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
-      if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
-        return [];
-      }
-      throw new RouteError(500, 'qa_retrieval_failed', 'Q&A preload failed.', error.message);
-    }
-
-    const batch = (data ?? []) as QaPairRow[];
-    allRows.push(...batch);
-
-    if (batch.length < pageSize) {
-      break;
-    }
-
-    offset += pageSize;
+  const cacheKey = getPreloadedQaPairCacheKey(params);
+  const cached = preloadedQaPairCache.get(cacheKey);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.rows;
   }
 
-  return allRows;
+  const inFlight = preloadedQaPairPromises.get(cacheKey);
+  if (inFlight) {
+    return inFlight;
+  }
+
+  const loadRows = (async () => {
+    const supabase = getSupabaseAdmin();
+    const pageSize = 1000;
+    const allRows: QaPairRow[] = [];
+    let offset = 0;
+
+    while (true) {
+      let query = supabase
+        .from('subject_qa_pairs')
+        .select(`
+          id,
+          subject_id,
+          category_id,
+          question_text,
+          answer_text,
+          short_explanation,
+          keywords,
+          sort_order,
+          updated_at,
+          subjects:subject_id (
+            name
+          ),
+          categories:category_id (
+            name
+          )
+        `)
+        .eq('subject_id', params.subject.id)
+        .eq('is_active', true)
+        .is('deleted_at', null)
+        .order('sort_order', { ascending: true })
+        .range(offset, offset + pageSize - 1);
+
+      if (params.category) {
+        query = query.or(`category_id.eq.${params.category.id},category_id.is.null`);
+      }
+
+      const { data, error } = await query;
+
+      if (error) {
+        const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
+        if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
+          return [];
+        }
+        throw new RouteError(500, 'qa_retrieval_failed', 'Q&A preload failed.', error.message);
+      }
+
+      const batch = (data ?? []) as QaPairRow[];
+      allRows.push(...batch);
+
+      if (batch.length < pageSize) {
+        break;
+      }
+
+      offset += pageSize;
+    }
+
+    preloadedQaPairCache.set(cacheKey, {
+      rows: allRows,
+      expiresAt: Date.now() + QA_PRELOAD_CACHE_TTL_MS,
+    });
+
+    return allRows;
+  })().finally(() => {
+    preloadedQaPairPromises.delete(cacheKey);
+  });
+
+  preloadedQaPairPromises.set(cacheKey, loadRows);
+  return loadRows;
 }
 
 export function rankQaPairRowsLocal(params: {

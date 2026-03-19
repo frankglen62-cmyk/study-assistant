@@ -26,7 +26,7 @@ function usesChatCompletionsCompatMode() {
 
 export function isOpenAIUnavailableError(error: unknown) {
   if (error instanceof RouteError) {
-    return ['openai_empty_output', 'embedding_failed', 'image_input_unavailable', 'structured_output_parse_failed'].includes(
+    return ['openai_empty_output', 'embedding_failed', 'image_input_unavailable', 'structured_output_parse_failed', 'openai_timeout'].includes(
       error.code,
     );
   }
@@ -151,6 +151,29 @@ function extractChatCompletionText(response: OpenAI.Chat.Completions.ChatComplet
   }
 
   return '';
+}
+
+export function withOpenAITimeout<T>(promise: Promise<T>, timeoutMs: number, action: string) {
+  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    return promise;
+  }
+
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new RouteError(504, 'openai_timeout', `The AI ${action} request timed out.`));
+    }, timeoutMs);
+
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timeoutId);
+        reject(error);
+      },
+    );
+  });
 }
 
 export async function createStructuredResponse<T>(params: {

@@ -432,39 +432,40 @@ export async function analyzeStudyPage(params: {
       retrievalStatus: 'Detection only.',
     };
 
-    await createQuestionAttempt({
-      sessionId: params.sessionId,
-      userId: params.userId,
-      pageUrl: pageSignals.pageUrl,
-      pageTitle: pageSignals.pageTitle,
-      extractedQuestionText: pageSignals.questionText,
-      extractedOptions: pageSignals.options,
-      selectedSubjectId: params.request.manualSubject ? detection.subject.id : null,
-      detectedSubjectId: detection.subject.id,
-      selectedCategoryId: params.request.manualCategory ? detection.category?.id ?? null : null,
-      detectedCategoryId: detection.category?.id ?? null,
-      detectionConfidence: detection.subjectConfidence,
-      retrievalConfidence: null,
-      finalConfidence: detection.subjectConfidence,
-      answerText: null,
-      shortExplanation: detection.reasoning,
-      answerSchema: response as unknown as Record<string, unknown>,
-      noMatchReason: null,
-      processingMs: Date.now() - startedAt,
-      modelUsed: env.OPENAI_SUBJECT_MODEL,
-    });
-
-    await syncSessionAfterAnalysis({
-      sessionId: params.sessionId,
-      userId: params.userId,
-      subjectId: detection.subject.id,
-      categoryId: detection.category?.id ?? null,
-      detectionMode: detection.detectionMode,
-      usedSecondsDelta: 0,
-      pageUrl: pageSignals.pageUrl,
-      pageDomain: pageSignals.pageDomain,
-      pageTitle: pageSignals.pageTitle,
-    });
+    await Promise.all([
+      createQuestionAttempt({
+        sessionId: params.sessionId,
+        userId: params.userId,
+        pageUrl: pageSignals.pageUrl,
+        pageTitle: pageSignals.pageTitle,
+        extractedQuestionText: pageSignals.questionText,
+        extractedOptions: pageSignals.options,
+        selectedSubjectId: params.request.manualSubject ? detection.subject.id : null,
+        detectedSubjectId: detection.subject.id,
+        selectedCategoryId: params.request.manualCategory ? detection.category?.id ?? null : null,
+        detectedCategoryId: detection.category?.id ?? null,
+        detectionConfidence: detection.subjectConfidence,
+        retrievalConfidence: null,
+        finalConfidence: detection.subjectConfidence,
+        answerText: null,
+        shortExplanation: detection.reasoning,
+        answerSchema: response as unknown as Record<string, unknown>,
+        noMatchReason: null,
+        processingMs: Date.now() - startedAt,
+        modelUsed: env.OPENAI_SUBJECT_MODEL,
+      }),
+      syncSessionAfterAnalysis({
+        sessionId: params.sessionId,
+        userId: params.userId,
+        subjectId: detection.subject.id,
+        categoryId: detection.category?.id ?? null,
+        detectionMode: detection.detectionMode,
+        usedSecondsDelta: 0,
+        pageUrl: pageSignals.pageUrl,
+        pageDomain: pageSignals.pageDomain,
+        pageTitle: pageSignals.pageTitle,
+      }),
+    ]);
 
     return response;
   }
@@ -568,39 +569,40 @@ export async function analyzeStudyPage(params: {
     remainingSeconds: walletResult.remaining_seconds,
   };
 
-  await createQuestionAttempt({
-    sessionId: params.sessionId,
-    userId: params.userId,
-    pageUrl: pageSignals.pageUrl,
-    pageTitle: pageSignals.pageTitle,
-    extractedQuestionText: extracted.questionText,
-    extractedOptions: extracted.options ?? null,
-    selectedSubjectId: params.request.manualSubject ? detection.subject.id : null,
-    detectedSubjectId: detection.subject.id,
-    selectedCategoryId: params.request.manualCategory ? detection.category?.id ?? null : null,
-    detectedCategoryId: detection.category?.id ?? null,
-    detectionConfidence: detection.subjectConfidence,
-    retrievalConfidence: primarySuggestion.confidence,
-    finalConfidence,
-    answerText: response.answerText,
-    shortExplanation: response.shortExplanation,
-    answerSchema: response as unknown as Record<string, unknown>,
-    noMatchReason: null,
-    processingMs: Date.now() - startedAt,
-    modelUsed: env.OPENAI_ANSWER_MODEL,
-  });
-
-  await syncSessionAfterAnalysis({
-    sessionId: params.sessionId,
-    userId: params.userId,
-    subjectId: detection.subject.id,
-    categoryId: detection.category?.id ?? null,
-    detectionMode: detection.detectionMode,
-    usedSecondsDelta: env.ANALYSIS_DEBIT_SECONDS,
-    pageUrl: pageSignals.pageUrl,
-    pageDomain: pageSignals.pageDomain,
-    pageTitle: pageSignals.pageTitle,
-  });
+  await Promise.all([
+    createQuestionAttempt({
+      sessionId: params.sessionId,
+      userId: params.userId,
+      pageUrl: pageSignals.pageUrl,
+      pageTitle: pageSignals.pageTitle,
+      extractedQuestionText: extracted.questionText,
+      extractedOptions: extracted.options ?? null,
+      selectedSubjectId: params.request.manualSubject ? detection.subject.id : null,
+      detectedSubjectId: detection.subject.id,
+      selectedCategoryId: params.request.manualCategory ? detection.category?.id ?? null : null,
+      detectedCategoryId: detection.category?.id ?? null,
+      detectionConfidence: detection.subjectConfidence,
+      retrievalConfidence: primarySuggestion.confidence,
+      finalConfidence,
+      answerText: response.answerText,
+      shortExplanation: response.shortExplanation,
+      answerSchema: response as unknown as Record<string, unknown>,
+      noMatchReason: null,
+      processingMs: Date.now() - startedAt,
+      modelUsed: env.OPENAI_ANSWER_MODEL,
+    }),
+    syncSessionAfterAnalysis({
+      sessionId: params.sessionId,
+      userId: params.userId,
+      subjectId: detection.subject.id,
+      categoryId: detection.category?.id ?? null,
+      detectionMode: detection.detectionMode,
+      usedSecondsDelta: env.ANALYSIS_DEBIT_SECONDS,
+      pageUrl: pageSignals.pageUrl,
+      pageDomain: pageSignals.pageDomain,
+      pageTitle: pageSignals.pageTitle,
+    }),
+  ]);
 
   logEvent('info', 'ai.analysis.completed', {
     userId: params.userId,
@@ -670,39 +672,40 @@ async function persistNoMatch(params: {
     retrievalStatus: params.retrievalStatus,
   };
 
-  await createQuestionAttempt({
-    sessionId: params.sessionId,
-    userId: params.userId,
-    pageUrl: params.pageSignals.pageUrl,
-    pageTitle: params.pageSignals.pageTitle,
-    extractedQuestionText: params.extractedQuestionText ?? params.pageSignals.questionText,
-    extractedOptions: params.extractedOptions ?? params.pageSignals.options,
-    selectedSubjectId: params.request.manualSubject ? params.detection.subject?.id ?? null : null,
-    detectedSubjectId: params.detection.subject?.id ?? null,
-    selectedCategoryId: params.request.manualCategory ? params.detection.category?.id ?? null : null,
-    detectedCategoryId: params.detection.category?.id ?? null,
-    detectionConfidence: params.detection.subjectConfidence,
-    retrievalConfidence: params.retrievalConfidence ?? null,
-    finalConfidence: params.detection.subjectConfidence,
-    answerText: null,
-    shortExplanation: null,
-    answerSchema: response as unknown as Record<string, unknown>,
-    noMatchReason: params.reason,
-    processingMs: Date.now() - params.startedAt,
-    modelUsed: env.OPENAI_ANSWER_MODEL,
-  });
-
-  await syncSessionAfterAnalysis({
-    sessionId: params.sessionId,
-    userId: params.userId,
-    subjectId: params.detection.subject?.id ?? null,
-    categoryId: params.detection.category?.id ?? null,
-    detectionMode: params.detection.detectionMode,
-    usedSecondsDelta: env.NO_MATCH_ANALYSIS_DEBIT_SECONDS,
-    pageUrl: params.pageSignals.pageUrl,
-    pageDomain: params.pageSignals.pageDomain,
-    pageTitle: params.pageSignals.pageTitle,
-  });
+  await Promise.all([
+    createQuestionAttempt({
+      sessionId: params.sessionId,
+      userId: params.userId,
+      pageUrl: params.pageSignals.pageUrl,
+      pageTitle: params.pageSignals.pageTitle,
+      extractedQuestionText: params.extractedQuestionText ?? params.pageSignals.questionText,
+      extractedOptions: params.extractedOptions ?? params.pageSignals.options,
+      selectedSubjectId: params.request.manualSubject ? params.detection.subject?.id ?? null : null,
+      detectedSubjectId: params.detection.subject?.id ?? null,
+      selectedCategoryId: params.request.manualCategory ? params.detection.category?.id ?? null : null,
+      detectedCategoryId: params.detection.category?.id ?? null,
+      detectionConfidence: params.detection.subjectConfidence,
+      retrievalConfidence: params.retrievalConfidence ?? null,
+      finalConfidence: params.detection.subjectConfidence,
+      answerText: null,
+      shortExplanation: null,
+      answerSchema: response as unknown as Record<string, unknown>,
+      noMatchReason: params.reason,
+      processingMs: Date.now() - params.startedAt,
+      modelUsed: env.OPENAI_ANSWER_MODEL,
+    }),
+    syncSessionAfterAnalysis({
+      sessionId: params.sessionId,
+      userId: params.userId,
+      subjectId: params.detection.subject?.id ?? null,
+      categoryId: params.detection.category?.id ?? null,
+      detectionMode: params.detection.detectionMode,
+      usedSecondsDelta: env.NO_MATCH_ANALYSIS_DEBIT_SECONDS,
+      pageUrl: params.pageSignals.pageUrl,
+      pageDomain: params.pageSignals.pageDomain,
+      pageTitle: params.pageSignals.pageTitle,
+    }),
+  ]);
 
   return response;
 }

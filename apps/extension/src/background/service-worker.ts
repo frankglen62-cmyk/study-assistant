@@ -50,6 +50,7 @@ import { installExtractorContentScript } from '../content/extractor';
 
 const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
+const AUTO_PILOT_ANALYZE_TIMEOUT_MS = 9_500;
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
 let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
@@ -85,7 +86,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             try {
               const currentState = await readState(browserName, extensionVersion);
               if (currentState.autoPilotEnabled && currentState.session.status === 'session_active') {
-                await analyzeWithAutoRetry(2, 5000);
+                await analyzeWithAutoRetry(2, AUTO_PILOT_ANALYZE_TIMEOUT_MS);
               }
             } catch (err) {
               console.error('Auto Pilot analysis failed on new page load:', err);
@@ -906,7 +907,7 @@ async function handleCancelAnalyze() {
  * If analysis doesn't complete within timeoutMs, it retries up to maxAttempts times.
  * This prevents the Full Auto flow from freezing when the API is slow.
  */
-async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number = 5000) {
+async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number = AUTO_PILOT_ANALYZE_TIMEOUT_MS) {
   const TIMEOUT_SENTINEL = Symbol('TIMEOUT');
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -925,7 +926,7 @@ async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number =
       ]);
 
       if (result === TIMEOUT_SENTINEL) {
-        console.warn(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} timed out after ${timeoutMs}ms, ${attempt < maxAttempts ? 'retrying...' : 'giving up.'}`);
+        console.warn(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} timed out after ${timeoutMs}ms, ${attempt < maxAttempts ? 'retrying...' : 'pausing.'}`);
 
         // CRITICAL: Actively kill the underlying fetch request before proceeding
         if (currentAnalyzeController) {
@@ -970,7 +971,7 @@ async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number =
   }
 
   // ─── All attempts exhausted: reset UI, skip this question, move to next ───
-  console.warn('Auto Pilot: All analysis attempts exhausted. Skipping this question.');
+  console.warn('Auto Pilot: All analysis attempts exhausted. Pausing on the current question.');
   if (currentAnalyzeController) {
     currentAnalyzeController.abort('All attempts exhausted');
     currentAnalyzeController = null;
@@ -979,30 +980,20 @@ async function analyzeWithAutoRetry(maxAttempts: number = 2, timeoutMs: number =
   await updateState(
     (current) =>
       appendNotice(
-        { ...current, uiStatus: 'suggestion_ready' },
+        {
+          ...current,
+          autoPilotEnabled: false,
+          uiStatus: current.lastSuggestion.questionSuggestions.length > 0 ? 'suggestion_ready' : 'ready',
+        },
         {
           tone: 'warning',
           title: 'Skipped — analysis timed out',
-          message: 'Could not get an answer in time. Skipping to the next question.',
+          message: 'The answer search took too long. Review the current question and restart Full Auto when the page is ready.',
         },
       ),
     browserName,
     extensionVersion,
   );
-
-  // Auto-click next page so Full Auto doesn't freeze
-  const state = await readState(browserName, extensionVersion);
-  if (state.autoPilotEnabled && state.session.status === 'session_active') {
-    try {
-      const targetTabId = autoPilotTabId ?? (await getActiveTab())?.id;
-      if (targetTabId) {
-        await injectExtractor(targetTabId);
-        await chrome.tabs.sendMessage(targetTabId, { type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE' }).catch(() => { });
-      }
-    } catch {
-      // non-fatal
-    }
-  }
 }
 
 async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
