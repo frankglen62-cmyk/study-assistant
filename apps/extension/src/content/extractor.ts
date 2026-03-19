@@ -56,6 +56,23 @@ export function installExtractorContentScript() {
     return normalizeText(clone.textContent ?? '');
   }
 
+  function hasVisibleFreeformInputs(container: ParentNode | null): boolean {
+    if (!container) {
+      return false;
+    }
+
+    return Array.from(container.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[type="text"], input[type="number"], input:not([type]), textarea'))
+      .some((node) =>
+        isElementVisible(node) &&
+        !node.disabled &&
+        !node.readOnly &&
+        (
+          !(node instanceof HTMLInputElement) ||
+          !['hidden', 'submit', 'button', 'password', 'email', 'radio', 'checkbox'].includes(node.type)
+        ),
+      );
+  }
+
   function hasVisibleChoiceInputs(container: ParentNode | null): boolean {
     if (!container) {
       return false;
@@ -108,7 +125,7 @@ export function installExtractorContentScript() {
     }
 
     return (
-      /^(question\s*\d+|select one:?|select one or more:?|true|false|yes|no)$/i.test(normalized) ||
+      /^(question\s*\d+|select one:?|select one or more:?|true|false|yes|no|answer:?|response:?|your answer:?|fill in the blank:?|blank:?|blanks:?)$/i.test(normalized) ||
       /^question\s*\d+\s*(select one:?|select one or more:?)?$/i.test(normalized) ||
       /^(complete|flag question|mark\b|answered|not answered|finish review)$/i.test(normalized)
     );
@@ -405,7 +422,30 @@ export function installExtractorContentScript() {
     
     clone.querySelectorAll('.accesshide, .sr-only, input[type="radio"], input[type="checkbox"]').forEach(el => el.remove());
 
-    const promptCandidate = collectDetachedTextNodeCandidates(clone, optionLookup)
+    const promptFragments = collectDetachedTextNodeCandidates(clone, optionLookup)
+      .map((text) => normalizeText(text))
+      .filter(Boolean)
+      .filter((text) => !isBoilerplateQuestionText(text, optionLookup));
+
+    const uniqueFragments: string[] = [];
+    const seenFragments = new Set<string>();
+    promptFragments.forEach((text) => {
+      const key = text.toLowerCase();
+      if (seenFragments.has(key)) {
+        return;
+      }
+
+      seenFragments.add(key);
+      uniqueFragments.push(text);
+    });
+
+    const hasFreeformQuestion = hasVisibleFreeformInputs(container) && extractOptionsFromContainer(container).length === 0;
+    if (hasFreeformQuestion) {
+      const compositePrompt = normalizeText(uniqueFragments.join(' '));
+      return compositePrompt || null;
+    }
+
+    const promptCandidate = uniqueFragments
       .map((text) => ({
         text,
         score: scorePromptCandidate(text, optionLookup),
@@ -443,6 +483,7 @@ export function installExtractorContentScript() {
       return null;
     }
 
+    const hasFreeformQuestion = hasVisibleFreeformInputs(container) && extractOptionsFromContainer(container).length === 0;
     const optionLookup = new Set(
       extractOptionsFromContainer(container)
         .map((option) => normalizeText(option).toLowerCase())
@@ -465,6 +506,13 @@ export function installExtractorContentScript() {
     if (explicitPrompt && isElementVisible(explicitPrompt) && !looksLikeQuestionNavigation(explicitPrompt)) {
       const text = extractCleanedPromptText(explicitPrompt);
       if (text.length >= 12 && !isBoilerplateQuestionText(text, optionLookup)) {
+        if (hasFreeformQuestion) {
+          const enrichedText = derivePromptFromPrunedContainer(container);
+          if (enrichedText && enrichedText.length > text.length) {
+            return enrichedText.slice(0, 500);
+          }
+        }
+
         return text.slice(0, 500);
       }
     }
@@ -698,7 +746,7 @@ export function installExtractorContentScript() {
         return;
       }
 
-      const prompt = extractCleanedPromptText(node);
+      const prompt = derivePromptFromContainer(container) ?? extractCleanedPromptText(node);
       if (isBoilerplateQuestionText(prompt, new Set())) {
         return;
       }

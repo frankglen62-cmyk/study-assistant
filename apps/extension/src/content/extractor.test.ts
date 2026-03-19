@@ -355,4 +355,57 @@ describe('extension extractor', () => {
     expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('___ Layer describes');
     expect(response?.data?.questionCandidates?.[0]?.prompt).not.toContain('Physical Access');
   });
+
+  it('keeps salary and responsibility details with repeated short-form job questions', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 9</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">What jobs in information security is this?</div>
+              <p>Salary: $104,000</p>
+              <p>Responsibilities: Create an in-office network for a small business or a cloud infrastructure for a business with corporate locations in cities on opposite coasts.</p>
+              <div class="ablock">
+                <label for="q9-answer">Answer:</label>
+                <input id="q9-answer" type="text" name="q9_answer" />
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let response: any = null;
+    listener?.({ type: 'EXTENSION/EXTRACT_PAGE_SIGNALS' }, null, (value) => {
+      response = value;
+    });
+
+    expect(response?.ok).toBe(true);
+    expect(response?.data?.questionCandidates).toHaveLength(1);
+    expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('What jobs in information security is this?');
+    expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('Salary: $104,000');
+    expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('Responsibilities: Create an in-office network');
+    expect(response?.data?.questionText).toContain('Salary: $104,000');
+  });
 });
