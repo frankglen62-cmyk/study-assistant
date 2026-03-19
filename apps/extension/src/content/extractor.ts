@@ -683,7 +683,7 @@ export function installExtractorContentScript() {
         return;
       }
 
-      const key = `${candidate.prompt.toLowerCase()}::${candidate.options.join('|').toLowerCase()}`;
+      const key = `${candidate.contextLabel?.toLowerCase() ?? ''}::${candidate.prompt.toLowerCase()}::${candidate.options.join('|').toLowerCase()}`;
       if (seenKeys.has(key)) {
         return;
       }
@@ -698,7 +698,7 @@ export function installExtractorContentScript() {
         return;
       }
 
-      const prompt = normalizeText(node.textContent ?? '');
+      const prompt = extractCleanedPromptText(node);
       if (isBoilerplateQuestionText(prompt, new Set())) {
         return;
       }
@@ -767,6 +767,50 @@ export function installExtractorContentScript() {
           contextLabel:
             (container instanceof HTMLElement ? container.dataset.questionLabel ?? null : null) ??
             deriveQuestionLabel(container),
+        }),
+      );
+    });
+
+    const blankInputs = Array.from(
+      document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[type="text"], input:not([type]), textarea'),
+    ).filter(
+      (node) =>
+        isElementVisible(node) &&
+        !node.disabled &&
+        !node.readOnly &&
+        (
+          !(node instanceof HTMLInputElement) ||
+          !['hidden', 'submit', 'button', 'password', 'email'].includes(node.type)
+        ) &&
+        !node.closest('nav, .quiznav, .question-nav, .submitbtns, header, footer'),
+    );
+
+    blankInputs.forEach((input, index) => {
+      if (input.closest('[data-study-assistant-id]')) {
+        return;
+      }
+
+      const container =
+        input.closest('.que, .formulation, .content, [data-question-block], .question, .quiz-question, article, section') ??
+        input.parentElement;
+      if (!(container instanceof HTMLElement)) {
+        return;
+      }
+
+      const id =
+        container.dataset.studyAssistantId ||
+        input.name ||
+        input.id ||
+        container.dataset.questionId ||
+        `blank-${index + 1}`;
+      container.dataset.studyAssistantId = id;
+
+      pushCandidate(
+        createQuestionCandidate({
+          id,
+          prompt: derivePromptFromContainer(container),
+          options: [],
+          contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
         }),
       );
     });

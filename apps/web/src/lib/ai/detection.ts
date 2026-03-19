@@ -244,23 +244,6 @@ export async function detectSubjectCategory(params: {
     } satisfies DetectionResult;
   }
 
-  // Fast-path: If the session already established a subject successfully in a previous request, reuse it instantly.
-  if (params.sessionSubjectId) {
-    const sessionSubject = params.subjects.find(s => s.id === params.sessionSubjectId);
-    if (sessionSubject) {
-      const sessionCategory = params.categories.find(c => c.id === params.sessionCategoryId) ?? null;
-      return {
-        subject: sessionSubject,
-        category: sessionCategory,
-        subjectConfidence: 1,
-        categoryConfidence: sessionCategory ? 1 : null,
-        detectionMode: 'auto' as const,
-        warning: null,
-        reasoning: 'Session context locked from earlier successful detection.',
-      };
-    }
-  }
-
   const normalizedPage = [
     params.pageSignals.pageUrl,
     params.pageSignals.pageTitle,
@@ -284,6 +267,32 @@ export async function detectSubjectCategory(params: {
   const topSubject = rankedSubjects[0];
   const secondSubject = rankedSubjects[1];
   const subjectGap = topSubject ? topSubject.score - (secondSubject?.score ?? 0) : 0;
+
+  // Reuse the session subject only while the current page still resembles it.
+  if (params.sessionSubjectId) {
+    const sessionSubject = params.subjects.find((subject) => subject.id === params.sessionSubjectId) ?? null;
+    if (sessionSubject) {
+      const sessionCategory = params.categories.find((category) => category.id === params.sessionCategoryId) ?? null;
+      const sessionScore = scoreSubject(sessionSubject, normalizedPage, params.pageSignals);
+      const topScore = topSubject?.score ?? 0;
+      const topSubjectId = topSubject?.subject.id ?? null;
+      const mayReuseSessionSubject =
+        topSubjectId === sessionSubject.id ||
+        (sessionScore >= 0.18 && (topSubjectId === null || sessionScore >= topScore - 0.06));
+
+      if (mayReuseSessionSubject) {
+        return {
+          subject: sessionSubject,
+          category: sessionCategory,
+          subjectConfidence: Math.max(sessionScore, topScore, 0.75),
+          categoryConfidence: sessionCategory ? 1 : null,
+          detectionMode: 'auto' as const,
+          warning: null,
+          reasoning: 'Session context remained aligned with the current page signals.',
+        };
+      }
+    }
+  }
 
   const candidateSubject = topSubject && topSubject.score >= 0.18 ? topSubject.subject : null;
   const candidateCategories = params.categories.filter(

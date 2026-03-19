@@ -7,7 +7,7 @@ import {
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { env } from '@/lib/env/server';
 import { createEmbedding } from '@/lib/ai/openai';
-import { normalizeComparableText } from '@/lib/ai/choice-matching';
+import { isQuestionTextEquivalent, normalizeComparableText, normalizeQuestionLookupSkeleton, normalizeQuestionLookupText } from '@/lib/ai/choice-matching';
 import { RouteError } from '@/lib/http/route';
 
 export interface RetrievalResult {
@@ -128,9 +128,7 @@ export function rankQaPairRowsLocal(params: {
 }
 
 function isExactQuestionMatch(queryText: string, questionText: string) {
-  const normalizedQuery = normalizeComparableText(queryText);
-  const normalizedQuestion = normalizeComparableText(questionText);
-  return Boolean(normalizedQuery && normalizedQuestion && normalizedQuery === normalizedQuestion);
+  return isQuestionTextEquivalent(queryText, questionText);
 }
 
 function rankQaPairRows(params: {
@@ -196,10 +194,12 @@ function qaPairScore(params: {
   options: string[];
   pair: QaPairRow;
 }) {
-  const normalizedQuery = normalizeComparableText(params.queryText);
-  const normalizedQuestion = normalizeComparableText(params.pair.question_text);
+  const normalizedQuery = normalizeQuestionLookupText(params.queryText);
+  const normalizedQuestion = normalizeQuestionLookupText(params.pair.question_text);
+  const normalizedQuerySkeleton = normalizeQuestionLookupSkeleton(params.queryText);
+  const normalizedQuestionSkeleton = normalizeQuestionLookupSkeleton(params.pair.question_text);
 
-  if (normalizedQuery && normalizedQuestion && normalizedQuery === normalizedQuestion) {
+  if (isQuestionTextEquivalent(params.queryText, params.pair.question_text)) {
     return 0.995;
   }
 
@@ -208,7 +208,14 @@ function qaPairScore(params: {
   const containmentBoost =
     normalizedQuery &&
     normalizedQuestion &&
-    (normalizedQuery.includes(normalizedQuestion) || normalizedQuestion.includes(normalizedQuery))
+    (
+      normalizedQuery.includes(normalizedQuestion) ||
+      normalizedQuestion.includes(normalizedQuery) ||
+      (normalizedQuerySkeleton &&
+        normalizedQuestionSkeleton &&
+        (normalizedQuerySkeleton.includes(normalizedQuestionSkeleton) ||
+          normalizedQuestionSkeleton.includes(normalizedQuerySkeleton)))
+    )
       ? 0.28
       : 0;
   const keywordScore =

@@ -9,7 +9,7 @@ import type {
 } from '@study-assistant/shared-types';
 
 import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
-import { normalizeComparableText, overlapScore } from '@/lib/ai/choice-matching';
+import { isQuestionTextEquivalent, normalizeComparableText, overlapScore } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
 import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
@@ -61,6 +61,10 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
   }
 
   if (normalizedCandidatePrompt === normalizedPairPrompt) {
+    return true;
+  }
+
+  if (isQuestionTextEquivalent(candidate.prompt, pair.question_text)) {
     return true;
   }
 

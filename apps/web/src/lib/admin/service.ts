@@ -946,6 +946,7 @@ export async function updateSourceMetadata(
 
 export async function createSubjectQaPair(input: AdminSubjectQaPairCreateRequest & AuditContext) {
   const supabase = getSupabaseAdmin();
+  const updatedAt = new Date().toISOString();
 
   const { data: existingExactMatches } = await supabase
     .from('subject_qa_pairs')
@@ -973,6 +974,7 @@ export async function createSubjectQaPair(input: AdminSubjectQaPairCreateRequest
       is_active: input.isActive ?? true,
       created_by: input.actorUserId,
       updated_by: input.actorUserId,
+      updated_at: updatedAt,
     })
     .select('id')
     .single();
@@ -1008,6 +1010,7 @@ export async function updateSubjectQaPair(
 ) {
   const supabase = getSupabaseAdmin();
   const existing = await getSubjectQaPairById(input.pairId);
+  const updatedAt = new Date().toISOString();
 
   if (input.action === 'update') {
     const { data: existingExactMatches } = await supabase
@@ -1036,6 +1039,7 @@ export async function updateSubjectQaPair(
         sort_order: input.sortOrder ?? 0,
         is_active: input.isActive ?? true,
         updated_by: input.actorUserId,
+        updated_at: updatedAt,
       })
       .eq('id', input.pairId);
 
@@ -1072,6 +1076,7 @@ export async function updateSubjectQaPair(
       .update({
         is_active: input.isActive,
         updated_by: input.actorUserId,
+        updated_at: updatedAt,
       })
       .eq('id', input.pairId);
 
@@ -1107,6 +1112,7 @@ export async function updateSubjectQaPair(
       deleted_by: input.actorUserId,
       updated_by: input.actorUserId,
       is_active: false,
+      updated_at: updatedAt,
     })
     .eq('id', input.pairId);
 

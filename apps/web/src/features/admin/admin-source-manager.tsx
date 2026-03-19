@@ -519,6 +519,10 @@ export function AdminSourceManager({
     }
   }
 
+  async function refreshSubjectLibraryState(subjectId: string) {
+    await Promise.all([loadSubjectPairCounts(), loadSubjectPairs(subjectId, { force: true })]);
+  }
+
   useEffect(() => {
     let isCancelled = false;
 
@@ -902,6 +906,7 @@ export function AdminSourceManager({
         ...current,
         [selectedSubject.id]: draft.editingId ? current[selectedSubject.id] ?? 0 : (current[selectedSubject.id] ?? 0) + 1,
       }));
+      await refreshSubjectLibraryState(selectedSubject.id);
 
       pushToast({
         tone: 'success',
@@ -943,6 +948,8 @@ export function AdminSourceManager({
   }
 
   async function handleTogglePair(pair: SubjectQaPairRecord) {
+    const pairSubjectId = pair.subject_id;
+
     await runAction(`toggle-pair-${pair.id}`, async () => {
       const response = await fetch(`/api/admin/subject-qa/${pair.id}`, {
         method: 'PATCH',
@@ -962,7 +969,7 @@ export function AdminSourceManager({
 
       setQaPairCache((current) => ({
         ...current,
-        [selectedSubjectId]: (current[selectedSubjectId] ?? []).map((entry) =>
+        [pairSubjectId]: (current[pairSubjectId] ?? []).map((entry) =>
           entry.id === pair.id
             ? {
                 ...entry,
@@ -972,6 +979,7 @@ export function AdminSourceManager({
             : entry,
         ),
       }));
+      await refreshSubjectLibraryState(pairSubjectId);
 
       if (editor.editingId === pair.id) {
         setEditor((current) => ({ ...current, isActive: !pair.is_active }));
@@ -998,6 +1006,7 @@ export function AdminSourceManager({
   }
 
   async function handleDeletePair(pair: SubjectQaPairRecord) {
+    const pairSubjectId = pair.subject_id;
     const confirmText = window.prompt("Type 'DELETE' to confirm removing this Q&A pair from the subject library.");
     if (confirmText !== 'DELETE') {
       return;
@@ -1021,12 +1030,13 @@ export function AdminSourceManager({
 
       setQaPairCache((current) => ({
         ...current,
-        [selectedSubjectId]: (current[selectedSubjectId] ?? []).filter((entry) => entry.id !== pair.id),
+        [pairSubjectId]: (current[pairSubjectId] ?? []).filter((entry) => entry.id !== pair.id),
       }));
       setQaPairCountsBySubjectId((current) => ({
         ...current,
-        [selectedSubjectId]: Math.max((current[selectedSubjectId] ?? 1) - 1, 0),
+        [pairSubjectId]: Math.max((current[pairSubjectId] ?? 1) - 1, 0),
       }));
+      await refreshSubjectLibraryState(pairSubjectId);
       if (editor.editingId === pair.id) {
         resetEditor();
       }
@@ -1132,7 +1142,7 @@ export function AdminSourceManager({
     }
 
     await runAction(`reload-subject-${selectedSubjectId}`, async () => {
-      await Promise.all([loadSubjectPairCounts(), loadSubjectPairs(selectedSubjectId, { force: true })]);
+      await refreshSubjectLibraryState(selectedSubjectId);
 
       pushToast({
         tone: 'success',

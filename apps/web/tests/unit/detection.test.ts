@@ -63,4 +63,68 @@ describe('subject detection', () => {
     expect(result.category?.name).toBe('Midterm');
     expect(result.subjectConfidence).toBe(1);
   });
+
+  it('does not keep a stale session subject lock when the current page clearly matches a different subject', async () => {
+    const { detectSubjectCategory } = await import('@/lib/ai/detection');
+
+    const result = await detectSubjectCategory({
+      subjects: [
+        {
+          id: '8da4f2bf-f831-4bba-8db4-6b36f1f8eb1a',
+          name: 'Physics',
+          slug: 'physics',
+          course_code: 'PHY101',
+          department: null,
+          description: null,
+          keywords: ['force', 'energy'],
+          url_patterns: ['physics'],
+          is_active: true,
+        },
+        {
+          id: '6f7d95ec-f503-4370-b708-af5db64ae4e2',
+          name: 'Information Assurance and Security 2',
+          slug: 'information-assurance-and-security-2',
+          course_code: 'IT6206',
+          department: null,
+          description: null,
+          keywords: ['cia', 'confidentiality', 'integrity', 'availability'],
+          url_patterns: ['it6206', 'information-assurance'],
+          is_active: true,
+        },
+      ],
+      categories: [],
+      pageSignals: {
+        pageUrl: 'https://lms.example.com/course/it6206/final-exam',
+        pageDomain: 'lms.example.com',
+        pageTitle: 'UGRD-IT6206 Information Assurance and Security 2',
+        headings: ['Final Examination'],
+        breadcrumbs: ['Home', 'UGRD-IT6206-2522S'],
+        visibleLabels: ['Question 33'],
+        visibleTextExcerpt:
+          'CIA stands for ___, integrity, and availability and these are the three main objectives of information security.',
+        questionText:
+          'CIA stands for ___, integrity, and availability and these are the three main objectives of information security.',
+        options: [],
+        questionCandidates: [
+          {
+            id: 'question-33',
+            prompt:
+              'CIA stands for ___, integrity, and availability and these are the three main objectives of information security.',
+            options: [],
+            contextLabel: 'Question 33',
+          },
+        ],
+        courseCodes: ['IT6206'],
+        extractedAt: new Date().toISOString(),
+      },
+      manualSubject: '',
+      manualCategory: '',
+      sessionSubjectId: '8da4f2bf-f831-4bba-8db4-6b36f1f8eb1a',
+      sessionCategoryId: null,
+      screenshotDataUrl: null,
+    });
+
+    expect(result.subject?.name).toBe('Information Assurance and Security 2');
+    expect(result.reasoning).not.toContain('Session context remained aligned');
+  });
 });

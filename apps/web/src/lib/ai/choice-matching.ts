@@ -10,14 +10,46 @@ function stripLeadingChoiceMarker(value: string) {
   return value.replace(/^\s*[(\[]?([a-z]|\d{1,2}|[ivxlcdm]{1,5})[)\].:-]?\s+/iu, '');
 }
 
+function normalizeBlankMarkers(value: string) {
+  return value
+    .replace(/\b(?:fill\s+in\s+the\s+blank|fill-in-the-blank|blank|blanks)\b/giu, ' _ ')
+    .replace(/[_\s]*_{2,}[_\s]*/g, ' _ ');
+}
+
 export function normalizeComparableText(value: string) {
-  return collapseWhitespace(stripLeadingChoiceMarker(stripDiacritics(value)))
+  return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(value))))
     .toLowerCase()
-    // Preserve fill-in-the-blank indicators: convert sequences of underscores/spaces to a single '_' token
-    .replace(/[_\s]*_{2,}[_\s]*/g, ' _ ')
     .replace(/[^\p{L}\p{N}\s.,+\-%=_]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+export function normalizeQuestionLookupText(value: string) {
+  return normalizeComparableText(value)
+    .replace(/\s*([.,;:!?])\s*/g, '$1 ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function normalizeQuestionLookupSkeleton(value: string) {
+  return normalizeQuestionLookupText(value)
+    .replace(/\b_\b/g, ' ')
+    .replace(/[.,;:!?]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function isQuestionTextEquivalent(left: string, right: string) {
+  const normalizedLeft = normalizeQuestionLookupText(left);
+  const normalizedRight = normalizeQuestionLookupText(right);
+
+  if (normalizedLeft && normalizedRight && normalizedLeft === normalizedRight) {
+    return true;
+  }
+
+  const skeletonLeft = normalizeQuestionLookupSkeleton(left);
+  const skeletonRight = normalizeQuestionLookupSkeleton(right);
+  return Boolean(skeletonLeft && skeletonRight && skeletonLeft === skeletonRight);
 }
 
 function tokenize(value: string) {

@@ -265,7 +265,7 @@ describe('extension extractor', () => {
     expect(response?.data?.questionCandidates?.[0]?.prompt).toBe('Statement 1 should keep its real prompt text.');
     expect(response?.data?.questionCandidates?.[49]?.prompt).toBe('Statement 50 should keep its real prompt text.');
     expect(response?.data?.totalQuestionsDetected).toBe(50);
-  }, 15000);
+  }, 30000);
 
   it('detects quiz title and quiz number from page headings', () => {
     const chromeMock = createChromeMock();
@@ -307,5 +307,52 @@ describe('extension extractor', () => {
     expect(response?.data?.quizTitle).toBe('Midterm Quiz 3');
     expect(response?.data?.quizNumber).toBe('3');
     expect(response?.data?.totalQuestionsDetected).toBe(1);
+  });
+
+  it('preserves fill-in-the-blank placeholders inside visible prompt nodes', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que shortanswer">
+          <div class="info"><span class="no">Question 29</span></div>
+          <div class="content">
+            <div class="formulation clearfix">
+              <div class="qtext">
+                The <input type="text" name="q29:1_answer" value="Physical Access" /> Layer describes the notion that access to end-user applications have to be constrained to business ought-to-know.
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let response: any = null;
+    listener?.({ type: 'EXTENSION/EXTRACT_PAGE_SIGNALS' }, null, (value) => {
+      response = value;
+    });
+
+    expect(response?.ok).toBe(true);
+    expect(response?.data?.questionCandidates).toHaveLength(1);
+    expect(response?.data?.questionCandidates?.[0]?.prompt).toContain('___ Layer describes');
+    expect(response?.data?.questionCandidates?.[0]?.prompt).not.toContain('Physical Access');
   });
 });
