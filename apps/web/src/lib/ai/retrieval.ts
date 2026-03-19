@@ -225,7 +225,29 @@ function qaPairScore(params: {
       )
     : 0;
 
-  return Math.min(questionScore * 0.76 + answerScore * 0.14 + optionSupport * 0.16 + keywordScore + containmentBoost, 0.99);
+  const extractSignificantNumbers = (text: string) => {
+    return Array.from(new Set(
+      (text.match(/\b\d+(?:[.,]\d+)+\b|\b\d{2,}\b/g) ?? [])
+    ));
+  };
+
+  const queryNums = extractSignificantNumbers(params.queryText);
+  const pairNums = extractSignificantNumbers(params.pair.question_text);
+  
+  let numberPenalty = 0;
+  if (queryNums.length > 0 || pairNums.length > 0) {
+    const unmatchedPairNums = pairNums.filter(n => !queryNums.includes(n));
+    const unmatchedQueryNums = queryNums.filter(n => !pairNums.includes(n));
+    
+    if (unmatchedPairNums.length > 0 && unmatchedQueryNums.length > 0) {
+      numberPenalty = 0.5;
+    } else if (unmatchedPairNums.length > 0) {
+      numberPenalty = 0.3;
+    }
+  }
+
+  const baseScore = Math.min(questionScore * 0.76 + answerScore * 0.14 + optionSupport * 0.16 + keywordScore + containmentBoost, 0.99);
+  return Math.max(0, baseScore - numberPenalty);
 }
 
 async function retrieveByKeywordFallback(params: {

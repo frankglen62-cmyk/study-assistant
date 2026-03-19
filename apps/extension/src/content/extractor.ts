@@ -41,6 +41,21 @@ export function installExtractorContentScript() {
     return value.replace(/\s+/g, ' ').trim();
   }
 
+  function extractCleanedPromptText(node: Element): string {
+    const clone = node.cloneNode(true) as HTMLElement;
+    
+    clone.querySelectorAll('.feedback, .rightanswer, .generalfeedback, .specificfeedback, .history, .info, .state, .grade, .qn_buttons, .controls, .submitbtns, button, nav').forEach(el => el.remove());
+    
+    clone.querySelectorAll('input[type="text"], input:not([type]), select, .fillintheblank, .correct, .incorrect').forEach(el => {
+      el.replaceWith(document.createTextNode(' ___ '));
+    });
+
+    // Also strip out screen-reader only elements that inject "Answer"
+    clone.querySelectorAll('.accesshide, .sr-only').forEach(el => el.remove());
+
+    return normalizeText(clone.textContent ?? '');
+  }
+
   function hasVisibleChoiceInputs(container: ParentNode | null): boolean {
     if (!container) {
       return false;
@@ -377,13 +392,18 @@ export function installExtractorContentScript() {
           '.quiznav',
           '.question-nav',
           '.question-navigation',
-          'input',
           'label',
           'button',
           'nav',
         ].join(', '),
       )
       .forEach((node) => node.remove());
+
+    clone.querySelectorAll('input[type="text"], input:not([type]), select, .fillintheblank, .correct, .incorrect').forEach((el) => {
+      el.replaceWith(document.createTextNode(' ___ '));
+    });
+    
+    clone.querySelectorAll('.accesshide, .sr-only, input[type="radio"], input[type="checkbox"]').forEach(el => el.remove());
 
     const promptCandidate = collectDetachedTextNodeCandidates(clone, optionLookup)
       .map((text) => ({
@@ -443,7 +463,7 @@ export function installExtractorContentScript() {
       ].join(', '),
     );
     if (explicitPrompt && isElementVisible(explicitPrompt) && !looksLikeQuestionNavigation(explicitPrompt)) {
-      const text = normalizeText(explicitPrompt.textContent ?? '');
+      const text = extractCleanedPromptText(explicitPrompt);
       if (text.length >= 12 && !isBoilerplateQuestionText(text, optionLookup)) {
         return text.slice(0, 500);
       }
