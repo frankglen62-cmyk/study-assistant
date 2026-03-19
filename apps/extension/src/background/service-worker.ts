@@ -76,13 +76,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           const activeTab = await getActiveTab();
           if (activeTab?.id !== tabId) return;
 
-          // Add a small delay to let SPA routers settle, then analyze
+          // Add a small delay to let SPA routers settle, then analyze with auto-retry
           setTimeout(async () => {
             try {
               // Re-check active tab just before running
               const currentActive = await getActiveTab();
               if (currentActive?.id === tabId) {
-                await handleAnalyze({ mode: 'analyze', source: 'current', searchScope: 'subject_first' });
+                await analyzeWithAutoRetry(3, 7000);
               }
             } catch (err) {
               console.error('Auto Pilot analysis failed on new page load:', err);
@@ -858,6 +858,67 @@ async function handleClearCapturedSections() {
   );
 
   return nextState;
+}
+/**
+ * Wraps handleAnalyze with a timeout and auto-retry mechanism for Full Auto mode.
+ * If analysis doesn't complete within timeoutMs, it retries up to maxAttempts times.
+ * This prevents the Full Auto flow from freezing when the API is slow.
+ */
+async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number = 7000) {
+  const TIMEOUT_SENTINEL = Symbol('TIMEOUT');
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    // Re-check auto pilot is still enabled before each attempt
+    const currentState = await readState(browserName, extensionVersion);
+    if (!currentState.autoPilotEnabled || currentState.session.status !== 'session_active') {
+      return; // Auto pilot was disabled, stop retrying
+    }
+
+    try {
+      const result = await Promise.race([
+        handleAnalyze({ mode: 'analyze', source: 'current', searchScope: 'subject_first' }),
+        new Promise<typeof TIMEOUT_SENTINEL>((resolve) =>
+          setTimeout(() => resolve(TIMEOUT_SENTINEL), timeoutMs)
+        ),
+      ]);
+
+      if (result === TIMEOUT_SENTINEL) {
+        console.warn(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} timed out after ${timeoutMs}ms, ${attempt < maxAttempts ? 'retrying...' : 'giving up.'}`);
+        if (attempt < maxAttempts) {
+          // Update state to show retrying
+          await updateState(
+            (current) =>
+              appendNotice(current, {
+                tone: 'warning',
+                title: 'Retrying analysis',
+                message: `Answer search timed out. Auto-retrying... (attempt ${attempt + 1}/${maxAttempts})`,
+              }),
+            browserName,
+            extensionVersion,
+          );
+          continue; // Retry
+        }
+      } else {
+        return result; // Success!
+      }
+    } catch (error) {
+      console.error(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} failed:`, error);
+      if (attempt < maxAttempts) {
+        await updateState(
+          (current) =>
+            appendNotice(current, {
+              tone: 'warning',
+              title: 'Retrying analysis',
+              message: `Analysis failed. Auto-retrying... (attempt ${attempt + 1}/${maxAttempts})`,
+            }),
+          browserName,
+          extensionVersion,
+        );
+        continue; // Retry
+      }
+      throw error; // Final attempt failed, rethrow
+    }
+  }
 }
 
 async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {

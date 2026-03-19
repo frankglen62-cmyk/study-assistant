@@ -734,6 +734,127 @@ export function installExtractorContentScript() {
       );
     });
 
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy: Dropdown <select> sub-question detection
+    // Each <select> inside a question container becomes its own sub-question
+    // ═══════════════════════════════════════════════════════════════
+    const allSelects = Array.from(document.querySelectorAll<HTMLSelectElement>('select'))
+      .filter((sel) =>
+        isElementVisible(sel) &&
+        !sel.disabled &&
+        !sel.name?.includes('sesskey') &&
+        !sel.closest('nav, .quiznav, .question-nav, header, footer, .submitbtns')
+      );
+
+    if (allSelects.length > 0) {
+      // Group selects by parent question container
+      const selectContainerMap = new Map<HTMLElement, HTMLSelectElement[]>();
+
+      for (const sel of allSelects) {
+        const container = (sel.closest('.que, .formulation, .question, [class*="question"], [data-question-block], fieldset, article, section') as HTMLElement | null) ?? sel.parentElement;
+        if (!container) continue;
+
+        const existing = selectContainerMap.get(container) ?? [];
+        existing.push(sel);
+        selectContainerMap.set(container, existing);
+      }
+
+      let dropdownContainerIndex = 0;
+      for (const [container, selects] of selectContainerMap) {
+        dropdownContainerIndex++;
+
+        // If container already has radio/checkbox candidates, skip
+        if (container.dataset.studyAssistantId && seenIds.has(normalizeText(container.dataset.studyAssistantId))) {
+          // But still add per-dropdown sub-questions if there are multiple selects
+          if (selects.length <= 1) continue;
+        }
+
+        // For each <select>, create a sub-question with the text label near it
+        for (let si = 0; si < selects.length; si++) {
+          const sel = selects[si]!;
+          const subId = sel.name || sel.id || `dropdown-${dropdownContainerIndex}-${si + 1}`;
+
+          // Extract the prompt text for this specific dropdown
+          // Try: previous sibling text, parent row/cell text, label
+          let subPrompt: string | null = null;
+
+          // Check for explicit label
+          if (sel.id) {
+            const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
+            if (label) {
+              subPrompt = normalizeText(label.textContent ?? '');
+            }
+          }
+
+          // Try closest row/cell containing this select
+          if (!subPrompt || subPrompt.length < 8) {
+            const row = sel.closest('tr, .fitem, .form-group, .ablock, div[class*="answer"], .r0, .r1, .r2, .r3');
+            if (row instanceof HTMLElement) {
+              // Get text from the row EXCLUDING the select element text
+              const clone = row.cloneNode(true) as HTMLElement;
+              clone.querySelectorAll('select, button, .submitbtns').forEach(n => n.remove());
+              const rowText = normalizeText(clone.textContent ?? '');
+              if (rowText.length >= 8 && rowText.length < 500) {
+                subPrompt = rowText;
+              }
+            }
+          }
+
+          // Try previous sibling element text
+          if (!subPrompt || subPrompt.length < 8) {
+            let prevEl: Element | null = sel.previousElementSibling;
+            if (!prevEl) {
+              // Check parent's previous sibling
+              prevEl = sel.parentElement?.previousElementSibling ?? null;
+            }
+            if (prevEl && isElementVisible(prevEl)) {
+              const text = normalizeText(prevEl.textContent ?? '');
+              if (text.length >= 8 && text.length < 500) {
+                subPrompt = text;
+              }
+            }
+          }
+
+          // Fallback: extract text from before the select in the parent
+          if (!subPrompt || subPrompt.length < 8) {
+            const parent = sel.parentElement;
+            if (parent) {
+              const clone = parent.cloneNode(true) as HTMLElement;
+              clone.querySelectorAll('select, button').forEach(n => n.remove());
+              const parentText = normalizeText(clone.textContent ?? '');
+              if (parentText.length >= 8) {
+                subPrompt = parentText;
+              }
+            }
+          }
+
+          if (!subPrompt || subPrompt.length < 8) continue;
+
+          // Extract options from this specific <select>
+          const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
+            .map(opt => normalizeText(opt.textContent ?? ''))
+            .filter(text => text.length > 0 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose' && text.trim() !== '');
+
+          // Mark this select with a study-assistant ID for auto-click scoping
+          sel.dataset.studyAssistantDropdownId = subId;
+
+          // Also mark the question container for SELECT matching
+          if (!container.dataset.studyAssistantId) {
+            container.dataset.studyAssistantId = `dropdown-container-${dropdownContainerIndex}`;
+          }
+
+          pushCandidate(
+            createQuestionCandidate({
+              id: subId,
+              prompt: subPrompt,
+              options: selectOptions,
+              contextLabel: deriveQuestionLabel(container),
+            }),
+          );
+        }
+      }
+    }
+
     const questionCandidates = candidates.slice(0, MAX_QUESTION_CANDIDATES);
 
     return {
@@ -1079,25 +1200,47 @@ export function installExtractorContentScript() {
 
     // ═══════════════════════════════════════════════════════════════
     // Strategy B: Dropdown <select> elements
+    // First try to find a specific <select> matching this sub-question ID
     // ═══════════════════════════════════════════════════════════════
-    const selectElements = Array.from(
-      searchRoot.querySelectorAll<HTMLSelectElement>('select')
-    ).filter(
-      (el) =>
-        isElementVisible(el) &&
-        !el.disabled &&
-        !el.name?.includes('sesskey') &&
-        !el.closest('nav, .quiznav, .question-nav, header, footer')
+    
+    // Try to find a specific dropdown tagged for this sub-question
+    let targetSelects: HTMLSelectElement[] = [];
+    const specificDropdown = document.querySelector<HTMLSelectElement>(
+      `select[data-study-assistant-dropdown-id="${CSS.escape(payload.questionId)}"]`
     );
+    if (specificDropdown && isElementVisible(specificDropdown) && !specificDropdown.disabled) {
+      targetSelects = [specificDropdown];
+    }
 
-    if (selectElements.length > 0) {
+    // Also try matching by select name/id
+    if (targetSelects.length === 0) {
+      const byName = searchRoot.querySelector<HTMLSelectElement>(`select[name="${CSS.escape(payload.questionId)}"]`);
+      if (byName && isElementVisible(byName) && !byName.disabled) {
+        targetSelects = [byName];
+      }
+    }
+
+    // Fallback: all selects in the search root (for non-sub-question cases)
+    if (targetSelects.length === 0) {
+      targetSelects = Array.from(
+        searchRoot.querySelectorAll<HTMLSelectElement>('select')
+      ).filter(
+        (el) =>
+          isElementVisible(el) &&
+          !el.disabled &&
+          !el.name?.includes('sesskey') &&
+          !el.closest('nav, .quiznav, .question-nav, header, footer')
+      );
+    }
+
+    if (targetSelects.length > 0) {
       // For dropdown questions, the answerText might describe the correct option.
       // Try to match the answer text against the option labels in each dropdown.
       const answerForDropdown = payload.answerText || targetText;
       const normalizedDropdownAnswer = normalizeForMatch(answerForDropdown);
       let dropdownFilled = false;
 
-      for (const select of selectElements) {
+      for (const select of targetSelects) {
         // Skip already answered selects (non-default value selected)
         const currentValue = select.value;
         const defaultOption = select.querySelector<HTMLOptionElement>('option[value=""], option:first-child');
