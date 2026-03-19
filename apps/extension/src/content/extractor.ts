@@ -1010,11 +1010,162 @@ export function installExtractorContentScript() {
     const normalizedTarget = normalizeForMatch(targetText);
     const lowerTarget = targetText.trim().toLowerCase();
 
-    // Scope clickables to the specific question container
-    const clickables: Array<{ element: HTMLElement; text: string; normalized: string; input: HTMLInputElement | null }> = [];
-
+    // Scope to the specific question container if available
     const scopedContainer = document.querySelector(`[data-study-assistant-id="${CSS.escape(payload.questionId)}"]`);
     const searchRoot = scopedContainer ?? document;
+
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy A: Fill-in-the-blank — text inputs and textareas
+    // ═══════════════════════════════════════════════════════════════
+    const textInputs = Array.from(
+      searchRoot.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+        'input[type="text"], input:not([type]), textarea'
+      )
+    ).filter(
+      (el) =>
+        isElementVisible(el) &&
+        !el.readOnly &&
+        !el.disabled &&
+        el.type !== 'hidden' &&
+        el.type !== 'submit' &&
+        el.type !== 'button' &&
+        el.type !== 'password' &&
+        el.type !== 'email' &&
+        !el.name?.includes('sesskey') &&
+        !el.name?.includes('_csrf') &&
+        !el.closest('nav, .quiznav, .question-nav, .submitbtns, header, footer')
+    );
+
+    // For fill-in-the-blank: if there's exactly 1 text input in the question,
+    // fill it with the raw answer text (not the suggestedOption which is for choices).
+    // If multiple inputs, try to match by proximity or just fill the first empty one.
+    if (textInputs.length > 0) {
+      const answerForFill = payload.answerText || targetText;
+      // Check if these are actual blank-answer inputs, not search boxes etc.
+      const blankInputs = textInputs.filter((el) => {
+        // Must be inside a question-like container (Moodle: .que, .formulation, etc.)
+        const inQuestion =
+          !!scopedContainer ||
+          !!el.closest('.que, .formulation, .question, .qtext, [class*="question"], .content, .answer');
+        return inQuestion;
+      });
+
+      if (blankInputs.length > 0) {
+        let filled = false;
+        for (const input of blankInputs) {
+          // Only fill if empty or has default placeholder
+          if (input.value.trim() === '' || input.value.trim() === input.placeholder?.trim()) {
+            const nativeSetter = Object.getOwnPropertyDescriptor(
+              input instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
+              'value'
+            )?.set;
+            if (nativeSetter) {
+              nativeSetter.call(input, answerForFill);
+            } else {
+              input.value = answerForFill;
+            }
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            input.dispatchEvent(new Event('blur', { bubbles: true }));
+            filled = true;
+            break; // Fill one input per question
+          }
+        }
+        if (filled) {
+          return { clicked: true, clickedText: answerForFill, matchMethod: 'fill_in_blank' };
+        }
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy B: Dropdown <select> elements
+    // ═══════════════════════════════════════════════════════════════
+    const selectElements = Array.from(
+      searchRoot.querySelectorAll<HTMLSelectElement>('select')
+    ).filter(
+      (el) =>
+        isElementVisible(el) &&
+        !el.disabled &&
+        !el.name?.includes('sesskey') &&
+        !el.closest('nav, .quiznav, .question-nav, header, footer')
+    );
+
+    if (selectElements.length > 0) {
+      // For dropdown questions, the answerText might describe the correct option.
+      // Try to match the answer text against the option labels in each dropdown.
+      const answerForDropdown = payload.answerText || targetText;
+      const normalizedDropdownAnswer = normalizeForMatch(answerForDropdown);
+      let dropdownFilled = false;
+
+      for (const select of selectElements) {
+        // Skip already answered selects (non-default value selected)
+        const currentValue = select.value;
+        const defaultOption = select.querySelector<HTMLOptionElement>('option[value=""], option:first-child');
+        const isDefault = !currentValue || currentValue === '' || currentValue === (defaultOption?.value ?? '');
+        
+        if (!isDefault) continue; // Already answered
+
+        const options = Array.from(select.querySelectorAll<HTMLOptionElement>('option'));
+        let bestOption: HTMLOptionElement | null = null;
+        let bestScore = 0;
+        let bestMethod = 'none';
+
+        for (const opt of options) {
+          const optText = normalizeText(opt.textContent ?? '');
+          if (!optText || opt.value === '' || optText.toLowerCase() === 'choose...' || optText.toLowerCase() === 'choose') {
+            continue;
+          }
+          const normalizedOpt = normalizeForMatch(optText);
+
+          // Exact match
+          if (normalizedOpt === normalizedDropdownAnswer) {
+            bestOption = opt;
+            bestScore = 1;
+            bestMethod = 'dropdown_exact';
+            break;
+          }
+
+          // Contains match
+          if (normalizedOpt.includes(normalizedDropdownAnswer) || normalizedDropdownAnswer.includes(normalizedOpt)) {
+            if (0.9 > bestScore) {
+              bestOption = opt;
+              bestScore = 0.9;
+              bestMethod = 'dropdown_contains';
+            }
+          }
+
+          // Word fuzzy match
+          const targetWords = normalizedDropdownAnswer.split(/\s+/).filter(w => w.length > 2);
+          if (targetWords.length > 0) {
+            const optWords = new Set(normalizedOpt.split(/\s+/));
+            const matchCount = targetWords.filter(w => optWords.has(w)).length;
+            const score = matchCount / targetWords.length;
+            if (score > bestScore && score >= 0.5) {
+              bestOption = opt;
+              bestScore = score;
+              bestMethod = 'dropdown_fuzzy';
+            }
+          }
+        }
+
+        if (bestOption) {
+          select.value = bestOption.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          select.dispatchEvent(new Event('input', { bubbles: true }));
+          dropdownFilled = true;
+          // Don't break — there may be multiple dropdowns in one question (e.g. matching)
+        }
+      }
+
+      if (dropdownFilled) {
+        return { clicked: true, clickedText: answerForDropdown, matchMethod: 'dropdown_select' };
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy C: Radio buttons and checkboxes (existing logic)
+    // ═══════════════════════════════════════════════════════════════
+    const clickables: Array<{ element: HTMLElement; text: string; normalized: string; input: HTMLInputElement | null }> = [];
 
     // Strategy 1: Radio buttons and checkboxes with labels
     let inputs = Array.from(searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]'));
