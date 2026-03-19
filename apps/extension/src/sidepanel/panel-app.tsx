@@ -4,6 +4,7 @@ import { confidenceToLevel, formatConfidence, formatDurationDetailed } from '@st
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
 
 import type { AnalyzeCurrentPagePayload, ManualOverridePayload } from '../lib/messages';
+import { fetchSubjects } from '../lib/api';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
@@ -239,6 +240,7 @@ export function SidePanelApp() {
   const [overrideDraft, setOverrideDraft] = useState<ManualOverridePayload>({ subject: '', category: '' });
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [siteAccessMessage, setSiteAccessMessage] = useState<string | null>(null);
+  const [availableSubjects, setAvailableSubjects] = useState<{ id: string; name: string }[]>([]);
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
@@ -256,6 +258,16 @@ export function SidePanelApp() {
       setSiteAccessMessage(null);
     }
   }, [access?.status]);
+
+  useEffect(() => {
+    if (isPaired && state?.session.status === 'session_active') {
+      fetchSubjects(state).then((res) => {
+        if (res && res.subjects) {
+          setAvailableSubjects(res.subjects);
+        }
+      }).catch(console.error);
+    }
+  }, [isPaired, state?.session.status, state]);
 
   const detectedQuestionCount = state?.currentPage?.totalQuestionsDetected
     ?? state?.currentPage?.questionCandidates.length
@@ -337,12 +349,12 @@ export function SidePanelApp() {
 
     const lines = suggestions.length > 0
       ? suggestions.map((s, i) =>
-          [
-            `Question ${i + 1}: ${s.questionText}`,
-            `Suggested: ${s.suggestedOption ?? s.answerText ?? 'No match'}`,
-            s.shortExplanation ? `Why: ${s.shortExplanation}` : null,
-          ].filter(Boolean).join('\n'),
-        )
+        [
+          `Question ${i + 1}: ${s.questionText}`,
+          `Suggested: ${s.suggestedOption ?? s.answerText ?? 'No match'}`,
+          s.shortExplanation ? `Why: ${s.shortExplanation}` : null,
+        ].filter(Boolean).join('\n'),
+      )
       : [];
 
     const text = lines.join('\n\n') || state.lastSuggestion.answerText || state.lastSuggestion.suggestedOption || '';
@@ -384,9 +396,9 @@ export function SidePanelApp() {
 
   const nextPrimaryAction =
     !isPaired ? 'pair'
-    : !siteAccessGranted ? 'grant'
-    : state.session.status === 'session_inactive' ? 'start'
-    : 'ready';
+      : !siteAccessGranted ? 'grant'
+        : state.session.status === 'session_inactive' ? 'start'
+          : 'ready';
 
   const currentPageLabel = state.currentPage?.pageDomain ?? access?.host ?? 'No page analyzed';
 
@@ -659,11 +671,11 @@ export function SidePanelApp() {
           title="Study Results"
           subtitle={
             isAnalyzing ? 'Searching sources…'
-            : suggestions.length > 0
-              ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
-              : hasSuggestion
-                ? `${sourceSubject}`
-                : 'Click Find All Answers to get started'
+              : suggestions.length > 0
+                ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
+                : hasSuggestion
+                  ? `${sourceSubject}`
+                  : 'Click Find All Answers to get started'
           }
           icon={Target}
           className="panel-card--primary"
@@ -834,11 +846,16 @@ export function SidePanelApp() {
             <div className="override-grid mt-2">
               <label>
                 <span>Manual Subject</span>
-                <input
+                <select
                   value={overrideDraft.subject}
                   onChange={(e) => setOverrideDraft((c) => ({ ...c, subject: e.target.value }))}
-                  placeholder="e.g. Physics"
-                />
+                  style={{ width: '100%', padding: '6px', borderRadius: '4px', border: '1px solid var(--sa-border-subtle)', background: 'var(--sa-surface)', color: 'var(--sa-fg)', fontSize: '13px' }}
+                >
+                  <option value="">-- Auto Detect --</option>
+                  {availableSubjects.map((sub) => (
+                    <option key={sub.id} value={sub.name}>{sub.name}</option>
+                  ))}
+                </select>
               </label>
               <label>
                 <span>Manual Category</span>

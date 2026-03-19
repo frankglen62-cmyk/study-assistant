@@ -437,15 +437,15 @@ async function handleRequestPermission(payload: RequestPermissionPayload) {
         },
         granted
           ? {
-              tone: 'success',
-              title: 'Connection allowed',
-              message: `The extension can now reach ${normalizeAppUrl(payload.appBaseUrl)}.`,
-            }
+            tone: 'success',
+            title: 'Connection allowed',
+            message: `The extension can now reach ${normalizeAppUrl(payload.appBaseUrl)}.`,
+          }
           : {
-              tone: 'warning',
-              title: 'Permission denied',
-              message: 'Allow the app origin to continue with secure pairing.',
-            },
+            tone: 'warning',
+            title: 'Permission denied',
+            message: 'Allow the app origin to continue with secure pairing.',
+          },
       ),
     browserName,
     extensionVersion,
@@ -879,7 +879,7 @@ async function handleCancelAnalyze() {
     currentAnalyzeController.abort('User cancelled the search');
     currentAnalyzeController = null;
   }
-  
+
   const currentState = await readState(browserName, extensionVersion);
   if (['scanning_page', 'detecting_subject', 'searching_sources'].includes(currentState.uiStatus)) {
     return updateState(
@@ -920,7 +920,7 @@ async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number =
 
       if (result === TIMEOUT_SENTINEL) {
         console.warn(`Auto Pilot: Analysis attempt ${attempt}/${maxAttempts} timed out after ${timeoutMs}ms, ${attempt < maxAttempts ? 'retrying...' : 'giving up.'}`);
-        
+
         // CRITICAL: Actively kill the underlying fetch request before proceeding
         if (currentAnalyzeController) {
           currentAnalyzeController.abort('Auto Pilot Timeout');
@@ -991,7 +991,7 @@ async function analyzeWithAutoRetry(maxAttempts: number = 3, timeoutMs: number =
       const targetTabId = autoPilotTabId ?? (await getActiveTab())?.id;
       if (targetTabId) {
         await injectExtractor(targetTabId);
-        await chrome.tabs.sendMessage(targetTabId, { type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE' }).catch(() => {});
+        await chrome.tabs.sendMessage(targetTabId, { type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE' }).catch(() => { });
       }
     } catch {
       // non-fatal
@@ -1094,10 +1094,10 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     creditsRemainingSeconds === 0
       ? 'no_credits'
       : response.sourceScope === 'no_match' || response.warning?.toLowerCase().includes('no match') || !response.subject
-      ? 'no_match_found'
-      : confidenceToLevel(response.confidence) === 'low'
-        ? 'low_confidence'
-        : 'suggestion_ready';
+        ? 'no_match_found'
+        : confidenceToLevel(response.confidence) === 'low'
+          ? 'low_confidence'
+          : 'suggestion_ready';
 
   const nextState = await updateState(
     (current) =>
@@ -1135,18 +1135,16 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
             title:
               payload.mode === 'detect'
                 ? 'Detection complete'
-                  : source === 'captured'
-                    ? 'Merged analysis complete'
-                    : 'Analysis complete',
+                : source === 'captured'
+                  ? 'Merged analysis complete'
+                  : 'Analysis complete',
             message:
               response.warning ??
-              `${response.detectedSubject ?? response.subject ?? 'Unknown subject'}${
-                response.sourceSubject && response.sourceSubject !== response.detectedSubject
+              `${response.detectedSubject ?? response.subject ?? 'Unknown subject'}${response.sourceSubject && response.sourceSubject !== response.detectedSubject
                   ? ` -> ${response.sourceSubject}`
                   : ''
-              } ${
-                response.confidence !== null ? `at ${Math.round(response.confidence * 100)}% confidence` : ''
-              }`.trim(),
+                } ${response.confidence !== null ? `at ${Math.round(response.confidence * 100)}% confidence` : ''
+                }`.trim(),
           },
         ),
         payload.mode === 'detect'
@@ -1236,7 +1234,7 @@ async function handleResetExam() {
       await chrome.tabs.sendMessage(tab.id, {
         type: 'EXTENSION/SET_LIVE_ASSIST',
         payload: { enabled: false },
-      }).catch(() => {});
+      }).catch(() => { });
     }
   } catch {
     // Non-fatal: tab may not be available
@@ -1357,7 +1355,7 @@ async function handleToggleAutoPilot(enabled: boolean) {
         await chrome.tabs.sendMessage(autoPilotTabId, {
           type: 'EXTENSION/SET_LIVE_ASSIST',
           payload: { enabled: true },
-        }).catch(() => {});
+        }).catch(() => { });
       }
     } catch {
       // Tab may have been closed

@@ -3,6 +3,7 @@ import { normalizeAppUrl } from '@study-assistant/shared-utils';
 
 import {
   analyzeResponseSchema,
+  catalogResponseSchema,
   pairingExchangeResponseSchema,
   refreshTokenResponseSchema,
   sessionResponseSchema,
@@ -169,4 +170,8 @@ export async function analyzePage(
     body: payload,
     signal: payload.signal,
   });
+}
+
+export async function fetchSubjects(state: ExtensionState) {
+  return fetchJson(state, '/api/client/subjects', (input) => catalogResponseSchema.parse(input));
 }

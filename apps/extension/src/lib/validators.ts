@@ -1,5 +1,17 @@
 import { z } from 'zod';
 
+export const catalogResponseSchema = z.object({
+  subjects: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+  })),
+  categories: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    subject_id: z.string(),
+  })),
+});
+
 export const pageSignalsSchema = z.object({
   pageUrl: z.string().url(),
   pageDomain: z.string().min(1),

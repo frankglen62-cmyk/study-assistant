@@ -93,7 +93,7 @@ export async function POST(request: Request) {
     });
 
     assertRateLimit(`analyze:${context.userId}`, {
-      max: 120,
+      max: 600,
       windowMs: 60 * 60 * 1000,
     });
 
