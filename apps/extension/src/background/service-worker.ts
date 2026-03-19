@@ -1193,40 +1193,23 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
   // ─── Full Auto: Still click Next Page even when no match found ───
   // This prevents Full Auto from freezing on no-match questions
   if (nextState.autoPilotEnabled && nextState.session.status === 'session_active') {
-    setTimeout(async () => {
-      try {
-        const currentState = await readState(browserName, extensionVersion);
-        if (!currentState.autoPilotEnabled || currentState.session.status !== 'session_active') {
-          return;
-        }
-        if (currentState.creditsRemainingSeconds <= 0) {
-          await handleToggleAutoPilot(false);
-          return;
-        }
-        // Use stored auto-pilot tab ID for background tab support
-        const targetTabId = autoPilotTabId ?? (await getActiveTab().catch(() => null))?.id;
-        if (!targetTabId) return;
-        await injectExtractor(targetTabId);
-        const response = (await chrome.tabs.sendMessage(targetTabId, {
-          type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
-        })) as ExtensionResponse<{ clicked: boolean }>;
-
-        if (!response?.ok || !response.data?.clicked) {
-          await updateState(
-            (current) =>
-              appendNotice(current, {
-                tone: 'info',
-                title: 'Auto Pilot paused',
-                message: 'No next page button found. Auto Pilot will resume if the page changes.',
-              }),
-            browserName,
-            extensionVersion,
-          );
-        }
-      } catch (error) {
-        console.error('Auto Pilot next page (no match) error:', error);
-      }
-    }, 800);
+    return updateState(
+      (current) =>
+        appendNotice(
+          {
+            ...current,
+            autoPilotEnabled: false,
+            uiStatus: nextStatus,
+          },
+          {
+            tone: 'warning',
+            title: 'Auto Pilot paused',
+            message: 'No confirmed answer was inserted for the current page. Review the result before continuing.',
+          },
+        ),
+      browserName,
+      extensionVersion,
+    );
   }
 
   return nextState;
@@ -1546,7 +1529,12 @@ async function performAutoClickAll(state: ExtensionState) {
     extensionVersion,
   );
 
-  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && blockingFailures > 0) {
+  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && failedCount > 0) {
+    const pauseMessage =
+      blockingFailures > 0
+        ? `${blockingFailures} detected answer${blockingFailures > 1 ? 's were' : ' was'} found but could not be inserted into the page. Review the current question before continuing.`
+        : `${failedCount} question${failedCount > 1 ? 's still do' : ' still does'} not have a confirmed answer inserted on the page. Auto Pilot paused to avoid skipping unanswered items.`;
+
     return updateState(
       (current) =>
         appendNotice(
@@ -1558,7 +1546,7 @@ async function performAutoClickAll(state: ExtensionState) {
           {
             tone: 'warning',
             title: 'Auto Pilot paused',
-            message: `${blockingFailures} detected answer${blockingFailures > 1 ? 's were' : ' was'} found but could not be inserted into the page. Review the current question before continuing.`,
+            message: pauseMessage,
           },
         ),
       browserName,
@@ -1566,7 +1554,7 @@ async function performAutoClickAll(state: ExtensionState) {
     );
   }
 
-  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active') {
+  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && clickedCount > 0 && failedCount === 0) {
     // Wait briefly, then attempt to click Next Page
     setTimeout(async () => {
       try {

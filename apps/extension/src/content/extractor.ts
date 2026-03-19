@@ -292,6 +292,7 @@ export function installExtractorContentScript() {
     const isBoilerplateOption = (text: string): boolean => {
       const lower = text.trim().toLowerCase();
       return /^(clear my choice|flag question|check|not yet answered|not answered|answered|finish review|finish attempt|marked out of|mark \d|marks?$|submit|save|cancel|next page|previous page|time left)$/i.test(lower)
+        || /^(answer:?|response:?|your answer:?|fill in the blank:?|blank:?|blanks:?)$/i.test(lower)
         || lower.length < 2;
     };
 
