@@ -291,6 +291,57 @@ button, input, select, textarea { font: inherit; }
 .privacy-strip p { margin: 0; }
 
 /* ================================================================
+   Pairing Card
+   ================================================================ */
+.pairing-state-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pairing-form-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.pairing-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pairing-field span {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
+}
+
+.pairing-field input {
+  width: 100%;
+  border-radius: var(--sa-radius);
+  border: 1px solid var(--sa-border);
+  background: linear-gradient(180deg, rgba(19, 25, 35, 0.9), rgba(12, 17, 24, 0.98));
+  color: var(--sa-fg);
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
+.pairing-field input:focus {
+  outline: none;
+  border-color: var(--sa-accent);
+  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.18);
+}
+
+.pairing-button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ================================================================
    Panel Cards (Section Card component)
    ================================================================ */
 .panel-card {
@@ -1379,7 +1430,9 @@ button, input, select, textarea { font: inherit; }
   .override-grid,
   .subject-mode-toggle,
   .subject-mode-grid,
-  .subject-picker-actions {
+  .subject-picker-actions,
+  .pairing-state-grid,
+  .pairing-button-row {
     grid-template-columns: 1fr;
   }
 

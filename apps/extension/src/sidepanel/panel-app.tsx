@@ -1,18 +1,18 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import { confidenceToLevel, formatConfidence, formatDurationDetailed } from '@study-assistant/shared-utils';
+import { confidenceToLevel, formatConfidence, formatDurationDetailed, normalizeAppUrl } from '@study-assistant/shared-utils';
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
 
-import type { AnalyzeCurrentPagePayload, ManualOverridePayload } from '../lib/messages';
+import type { AnalyzeCurrentPagePayload, ManualOverridePayload, PairExtensionPayload } from '../lib/messages';
 import { fetchSubjects } from '../lib/api';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
 import {
-  ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MonitorSmartphone, MousePointerClick,
+  ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
-  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle,
+  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -245,19 +245,56 @@ export function SidePanelApp() {
   const [subjectSearch, setSubjectSearch] = useState('');
   const [subjectsLoading, setSubjectsLoading] = useState(false);
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
+  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
+  const [pairingCode, setPairingCode] = useState('');
+  const [deviceName, setDeviceName] = useState('My Study Device');
+  const [pairingFeedback, setPairingFeedback] = useState<{ tone: 'info' | 'success' | 'warning' | 'danger'; message: string } | null>({
+    tone: 'info',
+    message: 'Enter your portal URL, request connection permission, then paste the short-lived pairing code.',
+  });
+  const [pairingJustCompleted, setPairingJustCompleted] = useState(false);
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
 
   useEffect(() => {
     if (!state) return;
+
+    if (state.appBaseUrl) {
+      setAppBaseUrl(state.appBaseUrl);
+    }
+
+    if (state.deviceName) {
+      setDeviceName(state.deviceName);
+    }
+
     setOverrideDraft({
       subject: state.session.manualSubject,
       category: state.session.manualCategory,
     });
     setSubjectMode(state.session.manualSubject ? 'picker' : 'auto');
     setDisplayRemainingSeconds(state.creditsRemainingSeconds);
-  }, [state?.creditsRemainingSeconds, state?.session.manualCategory, state?.session.manualSubject]);
+  }, [
+    state?.appBaseUrl,
+    state?.creditsRemainingSeconds,
+    state?.deviceName,
+    state?.session.manualCategory,
+    state?.session.manualSubject,
+  ]);
+
+  useEffect(() => {
+    if (!pairingJustCompleted) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setPairingJustCompleted(false);
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [pairingJustCompleted]);
 
   useEffect(() => {
     if (access?.status === 'granted' || access?.status === 'unsupported_page') {
@@ -310,6 +347,25 @@ export function SidePanelApp() {
       window.clearInterval(intervalId);
     };
   }, [state?.session.status]);
+
+  useEffect(() => {
+    if (!state || isPaired) {
+      return;
+    }
+
+    if (state.pairingStatus === 'revoked') {
+      setPairingFeedback({
+        tone: 'warning',
+        message: 'This browser was revoked from the portal. Request permission again and use a new pairing code to reconnect it.',
+      });
+      return;
+    }
+
+    setPairingFeedback((current) => current ?? {
+      tone: 'info',
+      message: 'Enter your portal URL, request connection permission, then paste the short-lived pairing code.',
+    });
+  }, [isPaired, state]);
 
   const detectedQuestionCount = state?.currentPage?.totalQuestionsDetected
     ?? state?.currentPage?.questionCandidates.length
@@ -484,6 +540,67 @@ export function SidePanelApp() {
     });
   }
 
+  async function requestConnectionPermission() {
+    await runAction('pairing-permission', async () => {
+      const response = await sendExtensionMessage<{ granted?: boolean }, { appBaseUrl: string }>({
+        type: 'EXTENSION/REQUEST_HOST_PERMISSION',
+        payload: { appBaseUrl },
+      });
+
+      if (response.ok && response.data?.granted) {
+        setPairingFeedback({
+          tone: 'success',
+          message: `Connection permission granted for ${normalizeAppUrl(appBaseUrl)}.`,
+        });
+      } else if (response.ok) {
+        setPairingFeedback({
+          tone: 'warning',
+          message: 'Permission was not granted. Allow the trusted portal origin before pairing this browser.',
+        });
+      } else {
+        setPairingFeedback({
+          tone: 'warning',
+          message: response.error ?? 'Permission request was denied. Allow the portal origin to continue.',
+        });
+      }
+    });
+  }
+
+  async function pairCurrentBrowser() {
+    const payload: PairExtensionPayload = {
+      appBaseUrl,
+      pairingCode,
+      deviceName,
+    };
+
+    await runAction('pair-browser', async () => {
+      const response = await sendExtensionMessage({
+        type: 'EXTENSION/PAIR_EXTENSION',
+        payload,
+      });
+
+      if (response.ok) {
+        setPairingCode('');
+        setPairingJustCompleted(true);
+        setPairingFeedback({
+          tone: 'success',
+          message: 'Extension paired successfully. Study Assistant is ready in this side panel.',
+        });
+        return;
+      }
+
+      setPairingFeedback({
+        tone: 'danger',
+        message: response.error ?? 'Pairing failed. Check the app URL and pairing code, then try again.',
+      });
+    });
+  }
+
+  async function openPortalDraft() {
+    const targetUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistant-web.vercel.app');
+    await chrome.tabs.create({ url: targetUrl });
+  }
+
   /* ---------------------------------------------------------------- */
   /*  Render: Loading state                                            */
   /* ---------------------------------------------------------------- */
@@ -515,7 +632,7 @@ export function SidePanelApp() {
           </div>
           <div>
             <p className="panel-hero__eyebrow">Study Assistant</p>
-            <h1>{isPaired ? (manualSubject || cachedSubject || 'Ready') : 'Connect First'}</h1>
+            <h1>{isPaired ? (manualSubject || cachedSubject || 'Ready') : 'Pair This Browser'}</h1>
           </div>
         </div>
 
@@ -576,22 +693,22 @@ export function SidePanelApp() {
         ) : (
           <>
             <p className="panel-hero__copy">
-              Open pairing, connect this browser to your portal account, then come back here.
+              Pair this browser directly in the side panel. Request the trusted portal permission, paste the code, and continue here.
             </p>
             <div className="panel-hero__actions">
               <button
                 className="action-button action-button--primary"
-                onClick={() => {
-                  void chrome.tabs.create({ url: chrome.runtime.getURL('src/onboarding/index.html') });
-                }}
+                onClick={() => void requestConnectionPermission()}
+                disabled={pendingAction !== null}
               >
-                <MonitorSmartphone size={16} /> Open Pairing Setup
+                <ShieldCheck size={16} />
+                {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Request Permission'}
               </button>
               <button
                 className="action-button"
-                onClick={() => void sendSimple('EXTENSION/OPEN_DASHBOARD')}
+                onClick={() => void openPortalDraft()}
               >
-                <LayoutDashboard size={16} /> Web Portal
+                <LayoutDashboard size={16} /> Open Web Portal
               </button>
             </div>
             <div className="hero-metrics-row" style={{ marginTop: 8 }}>
@@ -599,10 +716,105 @@ export function SidePanelApp() {
                 <WifiOff size={11} />
                 <span>Disconnected</span>
               </div>
+              <div className="hero-metric">
+                <BadgeCheck size={11} />
+                <span>{state.extensionVersion ? `v${state.extensionVersion}` : 'Waiting for pairing'}</span>
+              </div>
             </div>
           </>
         )}
       </header>
+
+      {isPaired && pairingJustCompleted && pairingFeedback?.tone === 'success' && (
+        <div className="notice notice--success">
+          <p>{pairingFeedback.message}</p>
+        </div>
+      )}
+
+      {!isPaired && (
+        <SectionCard
+          title="Pair This Browser"
+          subtitle="No extra onboarding tab is needed. Complete the trusted portal pairing flow here in the side panel."
+          icon={Link2}
+          className="panel-card--primary"
+          actions={(
+            <button
+              className="link-button text-xs flex-center-gap"
+              onClick={() => void openPortalDraft()}
+              title="Open your client portal"
+            >
+              <LayoutDashboard size={11} />
+              Portal
+            </button>
+          )}
+        >
+          <div className="pairing-state-grid">
+            <div className="metric-tile">
+              <span>Installed build</span>
+              <strong>{`v${state.extensionVersion}`}</strong>
+            </div>
+            <div className="metric-tile">
+              <span>Current state</span>
+              <strong>{state.pairingStatus === 'revoked' ? 'Revoked' : 'Not paired'}</strong>
+            </div>
+          </div>
+
+          <div className="pairing-form-grid">
+            <label className="pairing-field">
+              <span>App URL</span>
+              <input
+                value={appBaseUrl}
+                onChange={(event) => setAppBaseUrl(event.target.value)}
+                spellCheck={false}
+              />
+            </label>
+
+            <label className="pairing-field">
+              <span>Device Name</span>
+              <input
+                value={deviceName}
+                onChange={(event) => setDeviceName(event.target.value)}
+                spellCheck={false}
+              />
+            </label>
+
+            <label className="pairing-field">
+              <span>Pairing Code</span>
+              <input
+                value={pairingCode}
+                onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
+                spellCheck={false}
+                placeholder="Paste code from the client portal"
+              />
+            </label>
+          </div>
+
+          <div className="pairing-button-row">
+            <button
+              className="action-button"
+              onClick={() => void requestConnectionPermission()}
+              disabled={pendingAction !== null}
+            >
+              <ShieldCheck size={15} />
+              {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Request Connection Permission'}
+            </button>
+            <button
+              className="action-button action-button--primary"
+              onClick={() => void pairCurrentBrowser()}
+              disabled={pendingAction !== null || !pairingCode.trim()}
+            >
+              <Share2 size={15} />
+              {pendingAction === 'pair-browser' ? 'Pairing...' : 'Pair Extension'}
+            </button>
+          </div>
+
+          {pairingFeedback && (
+            <div className={`notice notice--${pairingFeedback.tone}`}>
+              <p>{pairingFeedback.message}</p>
+            </div>
+          )}
+        </SectionCard>
+      )}
 
       {isPaired && (
         <SectionCard

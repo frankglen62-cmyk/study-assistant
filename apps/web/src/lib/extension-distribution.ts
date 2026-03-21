@@ -1,7 +1,7 @@
-export const extensionVersion = '0.1.35';
+export const extensionVersion = '0.1.36';
 export const extensionDownloadFileName = `study-assistant-extension-v${extensionVersion}.zip`;
 export const extensionDownloadPath = `/downloads/${extensionDownloadFileName}`;
 export const genericDownloadPath = `/downloads/study-assistant-extension.zip`;
 export const extensionMinimumChromeVersion = '116';
-export const extensionPackageUpdatedAt = '2026-03-22T23:40:00+08:00';
+export const extensionPackageUpdatedAt = '2026-03-22T03:30:00+08:00';
 export const extensionManifestFileName = 'manifest.json';

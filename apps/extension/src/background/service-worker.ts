@@ -59,12 +59,8 @@ let currentTokenRefreshPromise: Promise<ExtensionState> | null = null;
 
 void initializeRuntime();
 
-chrome.runtime.onInstalled.addListener(async (details) => {
+chrome.runtime.onInstalled.addListener(async () => {
   await initializeRuntime();
-
-  if (details.reason === 'install') {
-    await chrome.tabs.create({ url: chrome.runtime.getURL('src/onboarding/index.html') });
-  }
 });
 
 chrome.runtime.onStartup.addListener(async () => {
