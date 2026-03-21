@@ -412,7 +412,7 @@ export function SidePanelApp() {
       <header className="panel-hero">
         <div className="panel-hero__brand">
           <div className="panel-hero__logo">
-            <Sparkles size={18} strokeWidth={2.5} />
+            <img src="../../brand/study-assistant-crest.svg" alt="" />
           </div>
           <div>
             <p className="panel-hero__eyebrow">Study Assistant</p>

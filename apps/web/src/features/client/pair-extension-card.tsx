@@ -73,6 +73,7 @@ export function PairExtensionCard({
 
   const pairingState = pairedDeviceCount > 0 ? 'Paired' : 'Ready to pair';
   const installedBuildLabel = latestInstalledVersion ? latestInstalledVersion : 'Not detected yet';
+  const hasPairingCode = Boolean(pairingCode);
 
   function handleGenerateCode() {
     startTransition(() => {
@@ -216,30 +217,6 @@ export function PairExtensionCard({
                 Give this browser a clear name so you can revoke the correct device later.
               </p>
             </div>
-
-            <div className="flex flex-wrap gap-3">
-              <Button type="button" onClick={handleGenerateCode} disabled={pending}>
-                {pending ? (
-                  'Generating...'
-                ) : pairingCode ? (
-                  <>
-                    <RefreshCw className="h-4 w-4" />
-                    Regenerate Code
-                  </>
-                ) : (
-                  <>
-                    <ShieldCheck className="h-4 w-4" />
-                    Generate Pairing Code
-                  </>
-                )}
-              </Button>
-              {pairingCode ? (
-                <Button type="button" variant="secondary" onClick={() => void copyValue(pairingCode, 'Pairing code')}>
-                  <Copy className="h-4 w-4" />
-                  Copy Code
-                </Button>
-              ) : null}
-            </div>
           </div>
 
           <div className="rounded-[24px] border border-accent/15 bg-background/50 p-5">
@@ -250,18 +227,52 @@ export function PairExtensionCard({
                   Generate only when the extension onboarding screen is open.
                 </p>
               </div>
-              {countdownLabel ? (
-                <Badge tone={isExpired ? 'danger' : secondsRemaining !== null && secondsRemaining < 90 ? 'warning' : 'accent'}>
-                  <Clock3 className="h-3.5 w-3.5" />
-                  {countdownLabel}
-                </Badge>
-              ) : null}
+              <div className="flex flex-wrap items-center justify-end gap-2">
+                {countdownLabel ? (
+                  <Badge tone={isExpired ? 'danger' : secondsRemaining !== null && secondsRemaining < 90 ? 'warning' : 'accent'}>
+                    <Clock3 className="h-3.5 w-3.5" />
+                    {countdownLabel}
+                  </Badge>
+                ) : null}
+                <Button type="button" onClick={handleGenerateCode} disabled={pending} className="gap-2">
+                  {pending ? (
+                    'Generating...'
+                  ) : pairingCode ? (
+                    <>
+                      <RefreshCw className="h-4 w-4" />
+                      Regenerate Code
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="h-4 w-4" />
+                      Generate Code
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
 
-            <div className="mt-5 rounded-[20px] border border-border/70 bg-background/60 p-4">
-              <p className="break-all font-mono text-[1.65rem] font-semibold tracking-[0.28em] text-foreground">
+            <div className="relative mt-5 rounded-[20px] border border-border/70 bg-background/60 p-4 pr-16">
+              <p
+                className={[
+                  'font-mono font-semibold uppercase text-foreground',
+                  hasPairingCode
+                    ? 'break-all text-[1.45rem] tracking-[0.24em]'
+                    : 'text-[1rem] tracking-[0.14em] text-muted-foreground',
+                ].join(' ')}
+              >
                 {pairingCode ?? 'NOT GENERATED YET'}
               </p>
+              <button
+                type="button"
+                aria-label="Copy pairing code"
+                title={hasPairingCode ? 'Copy pairing code' : 'Generate a code first'}
+                disabled={!hasPairingCode}
+                onClick={() => pairingCode ? void copyValue(pairingCode, 'Pairing code') : undefined}
+                className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-2xl border border-border/70 bg-background/70 text-foreground transition hover:border-accent/40 hover:bg-accent/10 hover:text-accent disabled:cursor-not-allowed disabled:opacity-45"
+              >
+                <Copy className="h-4 w-4" />
+              </button>
             </div>
 
             <p className="mt-3 text-xs leading-6 text-muted-foreground">

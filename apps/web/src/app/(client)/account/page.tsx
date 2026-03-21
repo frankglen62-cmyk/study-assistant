@@ -1,29 +1,28 @@
 import Link from 'next/link';
 
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Badge } from '@study-assistant/ui';
-import { Mail, User, Clock, LaptopIcon, ShieldAlert, KeyRound, AlertTriangle } from 'lucide-react';
+import { Mail, User, Clock, LaptopIcon, KeyRound, AlertTriangle, Download, ArrowRight } from 'lucide-react';
 
 import { DataTable } from '@/components/data-table';
 import { PageHeading } from '@/components/page-heading';
 import { StatusBadge } from '@/components/status-badge';
 import { LogoutButton } from '@/features/auth/logout-button';
-import { ExtensionInstallFlow } from '@/features/client/extension-install-flow';
-import { PairExtensionCard } from '@/features/client/pair-extension-card';
 import { RevokeDeviceButton } from '@/features/client/revoke-device-button';
 import { getClientAccountData } from '@/features/client/server';
 import { requirePageUser } from '@/lib/auth/page-context';
-import { env } from '@/lib/env/server';
+import { extensionDownloadFileName, extensionDownloadPath, extensionVersion } from '@/lib/extension-distribution';
 
 export default async function AccountPage() {
   const context = await requirePageUser(['client']);
   const account = await getClientAccountData(context.userId);
+  const latestDevice = account.devices[0] ?? null;
 
   return (
     <div className="space-y-8 pb-12">
       <PageHeading
         eyebrow="Account"
         title="Account Settings"
-        description="Manage your profile, active sessions, billing history, and paired study devices."
+        description="Manage your profile, billing history, and paired study devices."
         actions={
           <>
             <Button asChild variant="secondary">
@@ -84,7 +83,64 @@ export default async function AccountPage() {
         </Card>
 
         <div className="space-y-6">
-          <ExtensionInstallFlow compact={!account.devices.length} showActions pairedDeviceCount={account.devices.length} />
+          <Card className="h-fit">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <CardTitle>Extension Access</CardTitle>
+                  <CardDescription>
+                    No tutorial here. Use the guide only when you need to install, update, or pair another browser.
+                  </CardDescription>
+                </div>
+                <Badge tone={account.devices.length > 0 ? 'success' : 'warning'} className="gap-1.5">
+                  <LaptopIcon className="h-3.5 w-3.5 text-muted-foreground" />
+                  {account.devices.length > 0 ? `${account.devices.length} paired` : 'Not paired yet'}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Paired browsers</p>
+                  <p className="mt-2 text-2xl font-semibold text-foreground">{account.devices.length}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {account.devices.length > 0 ? 'Authorized devices connected to your account.' : 'Open the guide when you are ready to pair a browser.'}
+                  </p>
+                </div>
+
+                <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Current ZIP build</p>
+                  <p className="mt-2 text-2xl font-semibold text-accent">v{extensionVersion}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Download this build when you need a fresh install or update.
+                  </p>
+                </div>
+
+                <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Latest browser</p>
+                  <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {latestDevice ? `Installed ${latestDevice.version} | Last seen ${latestDevice.lastSeen}` : 'Pair a browser first to see install status here.'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Button asChild>
+                  <Link href="/extension-guide">
+                    Open Extension Guide
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="secondary">
+                  <a href={extensionDownloadPath} download={extensionDownloadFileName}>
+                    <Download className="h-4 w-4" />
+                    {`Download ZIP v${extensionVersion}`}
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card id="paired-devices">
             <CardHeader>
@@ -126,20 +182,15 @@ export default async function AccountPage() {
                   <AlertTriangle className="h-8 w-8 text-warning" />
                   <div>
                     <p className="text-sm font-medium">No extensions paired yet</p>
-                    <p className="text-xs text-muted-foreground mt-1 max-w-sm">Generate a pairing code below and enter it into the Chrome extension to connect your account.</p>
+                    <p className="text-xs text-muted-foreground mt-1 max-w-sm">Open the Extension Guide to download the ZIP and pair your first browser.</p>
                   </div>
+                  <Button asChild size="sm">
+                    <Link href="/extension-guide">Go To Extension Guide</Link>
+                  </Button>
                 </div>
               )}
             </CardContent>
           </Card>
-          
-          {account.devices.length === 0 ? (
-            <PairExtensionCard
-              appBaseUrl={env.NEXT_PUBLIC_APP_URL}
-              initialDeviceName={`${context.profile.full_name.split(' ')[0] || 'My'} Study Device`}
-              pairedDeviceCount={account.devices.length}
-            />
-          ) : null}
         </div>
       </div>
       <div className="space-y-4 mt-8">

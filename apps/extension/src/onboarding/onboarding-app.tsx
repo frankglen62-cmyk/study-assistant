@@ -16,7 +16,6 @@ import {
   ScreenShare,
   Share,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 import type { PairExtensionPayload } from '../lib/messages';
@@ -242,7 +241,7 @@ export function OnboardingApp() {
     <div className="onboarding-shell">
       <aside className="onboarding-overview" aria-label="Pairing overview">
         <div className="onboarding-overview__brandmark" aria-hidden="true">
-          <Sparkles size={24} strokeWidth={2.4} />
+          <img src="../../brand/study-assistant-crest.svg" alt="" />
         </div>
 
         <div className="onboarding-overview__header">
