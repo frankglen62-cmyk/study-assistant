@@ -191,6 +191,10 @@ export const refreshTokenResponseSchema = z.object({
   refreshToken: z.string().nullable().default(null),
 });
 
+export const deviceRevokeResponseSchema = z.object({
+  revoked: z.boolean(),
+});
+
 export const walletResponseSchema = z.object({
   remainingSeconds: z.number().int().nonnegative(),
 });

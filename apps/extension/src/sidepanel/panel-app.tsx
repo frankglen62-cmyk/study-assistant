@@ -241,6 +241,10 @@ export function SidePanelApp() {
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [siteAccessMessage, setSiteAccessMessage] = useState<string | null>(null);
   const [availableSubjects, setAvailableSubjects] = useState<{ id: string; name: string }[]>([]);
+  const [subjectMode, setSubjectMode] = useState<'auto' | 'picker'>('auto');
+  const [subjectSearch, setSubjectSearch] = useState('');
+  const [subjectsLoading, setSubjectsLoading] = useState(false);
+  const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
@@ -251,7 +255,9 @@ export function SidePanelApp() {
       subject: state.session.manualSubject,
       category: state.session.manualCategory,
     });
-  }, [state?.session.manualCategory, state?.session.manualSubject]);
+    setSubjectMode(state.session.manualSubject ? 'picker' : 'auto');
+    setDisplayRemainingSeconds(state.creditsRemainingSeconds);
+  }, [state?.creditsRemainingSeconds, state?.session.manualCategory, state?.session.manualSubject]);
 
   useEffect(() => {
     if (access?.status === 'granted' || access?.status === 'unsupported_page') {
@@ -260,14 +266,50 @@ export function SidePanelApp() {
   }, [access?.status]);
 
   useEffect(() => {
-    if (isPaired && state?.session.status === 'session_active') {
-      fetchSubjects(state).then((res) => {
-        if (res && res.subjects) {
-          setAvailableSubjects(res.subjects);
-        }
-      }).catch(console.error);
+    if (!isPaired || !state) {
+      setAvailableSubjects([]);
+      return;
     }
-  }, [isPaired, state?.session.status, state]);
+
+    let active = true;
+    setSubjectsLoading(true);
+
+    fetchSubjects(state)
+      .then((res) => {
+        if (active) {
+          setAvailableSubjects(res.subjects ?? []);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        if (active) {
+          setAvailableSubjects([]);
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setSubjectsLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [isPaired, state?.accessToken, state?.appBaseUrl, state?.refreshToken]);
+
+  useEffect(() => {
+    if (state?.session.status !== 'session_active') {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setDisplayRemainingSeconds((current) => Math.max(0, current - 1));
+    }, 1000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [state?.session.status]);
 
   const detectedQuestionCount = state?.currentPage?.totalQuestionsDetected
     ?? state?.currentPage?.questionCandidates.length
@@ -277,7 +319,13 @@ export function SidePanelApp() {
   const isAnalyzing = state?.uiStatus === 'scanning_page' || state?.uiStatus === 'detecting_subject' || state?.uiStatus === 'searching_sources';
 
   const cachedSubject = state?.session.cachedSubjectName ?? null;
-  const currentSubject = state?.lastSuggestion.detectedSubject ?? state?.lastSuggestion.subject ?? cachedSubject ?? 'Auto';
+  const manualSubject = state?.session.manualSubject.trim() ?? '';
+  const currentSubject =
+    manualSubject
+    || state?.lastSuggestion.detectedSubject
+    || state?.lastSuggestion.subject
+    || cachedSubject
+    || 'Auto';
   const sourceSubject = state?.lastSuggestion.sourceSubject ?? state?.lastSuggestion.detectedSubject ?? 'No source yet';
   const quizTitle = state?.currentPage?.quizTitle ?? null;
   const quizNumber = state?.currentPage?.quizNumber ?? null;
@@ -285,6 +333,14 @@ export function SidePanelApp() {
   const siteAccessGranted = access?.status === 'granted';
   const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
   const isFullAutoOn = state?.autoPilotEnabled ?? false;
+  const filteredSubjects = availableSubjects.filter((subject) =>
+    subject.name.toLowerCase().includes(subjectSearch.trim().toLowerCase()),
+  );
+  const activeSubjectSummary = manualSubject
+    ? `Locked: ${manualSubject}`
+    : cachedSubject
+      ? `Detected: ${cachedSubject}`
+      : 'Auto detect';
 
   const confidenceLevel = confidenceToLevel(state?.lastSuggestion.confidence ?? null);
 
@@ -345,6 +401,51 @@ export function SidePanelApp() {
     });
   }
 
+  async function refreshSubjectCatalog() {
+    if (!state || !isPaired) return;
+
+    setSubjectsLoading(true);
+    try {
+      const response = await fetchSubjects(state);
+      setAvailableSubjects(response.subjects ?? []);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setSubjectsLoading(false);
+    }
+  }
+
+  async function enableAutoDetect() {
+    setSubjectMode('auto');
+    setSubjectSearch('');
+    setOverrideDraft({ subject: '', category: '' });
+
+    await runAction('EXTENSION/SET_MANUAL_OVERRIDE', async () => {
+      await sendExtensionMessage({
+        type: 'EXTENSION/SET_MANUAL_OVERRIDE',
+        payload: { subject: '', category: '' },
+      });
+    });
+  }
+
+  async function applySelectedSubject() {
+    if (!overrideDraft.subject) {
+      return;
+    }
+
+    await confirmOverride();
+  }
+
+  async function unpairBrowser() {
+    if (!window.confirm('Unpair this browser from your client account? You will need a new pairing code to reconnect it.')) {
+      return;
+    }
+
+    await runAction('EXTENSION/UNPAIR_BROWSER', async () => {
+      await sendExtensionMessage({ type: 'EXTENSION/UNPAIR_BROWSER' });
+    });
+  }
+
   async function copyAnswer() {
     if (!state) return;
 
@@ -401,8 +502,6 @@ export function SidePanelApp() {
         : state.session.status === 'session_inactive' ? 'start'
           : 'ready';
 
-  const currentPageLabel = state.currentPage?.pageDomain ?? access?.host ?? 'No page analyzed';
-
   /* ---------------------------------------------------------------- */
   /*  Render                                                           */
   /* ---------------------------------------------------------------- */
@@ -416,7 +515,7 @@ export function SidePanelApp() {
           </div>
           <div>
             <p className="panel-hero__eyebrow">Study Assistant</p>
-            <h1>{isPaired ? (cachedSubject ? cachedSubject : 'Ready') : 'Connect First'}</h1>
+            <h1>{isPaired ? (manualSubject || cachedSubject || 'Ready') : 'Connect First'}</h1>
           </div>
         </div>
 
@@ -438,13 +537,13 @@ export function SidePanelApp() {
             <div className="hero-metrics-row">
               <div className="hero-metric">
                 <Zap size={11} />
-                <span className={state.creditsRemainingSeconds < 1800 ? 'text-danger' : ''}>
-                  {formatDurationDetailed(state.creditsRemainingSeconds)}
+                <span className={displayRemainingSeconds < 1800 ? 'text-danger' : ''}>
+                  {formatDurationDetailed(displayRemainingSeconds)}
                 </span>
               </div>
               <div className="hero-metric">
-                <Globe size={11} />
-                <span className="truncate">{currentPageLabel}</span>
+                <BookOpen size={11} />
+                <span className="truncate">{activeSubjectSummary}</span>
               </div>
             </div>
 
@@ -504,6 +603,115 @@ export function SidePanelApp() {
           </>
         )}
       </header>
+
+      {isPaired && (
+        <SectionCard
+          title="Subject Mode"
+          subtitle="Keep Auto Detect on, or lock one real subject from your portal list before you search."
+          icon={BookOpen}
+          actions={(
+            <button
+              className="link-button text-xs flex-center-gap"
+              onClick={() => void refreshSubjectCatalog()}
+              disabled={subjectsLoading}
+              title="Refresh subject list"
+            >
+              <RefreshCw size={11} className={subjectsLoading ? 'animate-spin' : ''} />
+              Refresh
+            </button>
+          )}
+        >
+          <div className="subject-mode-toggle">
+            <button
+              type="button"
+              className={`subject-mode-toggle__button ${subjectMode === 'auto' ? 'subject-mode-toggle__button--active' : ''}`}
+              onClick={() => void enableAutoDetect()}
+              disabled={pendingAction !== null || (state.session.detectionMode === 'auto' && !manualSubject)}
+            >
+              Auto Detect
+            </button>
+            <button
+              type="button"
+              className={`subject-mode-toggle__button ${subjectMode === 'picker' ? 'subject-mode-toggle__button--active' : ''}`}
+              onClick={() => setSubjectMode('picker')}
+              disabled={pendingAction !== null}
+            >
+              Subject Picker
+            </button>
+          </div>
+
+          <div className="subject-mode-grid">
+            <div className="metric-tile">
+              <span>Current mode</span>
+              <strong>{state.session.detectionMode === 'manual' && manualSubject ? 'Subject locked' : 'Auto detect'}</strong>
+            </div>
+            <div className="metric-tile">
+              <span>Applied subject</span>
+              <strong>{manualSubject || cachedSubject || 'Choose a subject or detect automatically'}</strong>
+            </div>
+          </div>
+
+          {subjectMode === 'picker' ? (
+            <div className="subject-picker-panel">
+              <label className="subject-picker-field">
+                <span>Search subjects</span>
+                <input
+                  value={subjectSearch}
+                  onChange={(event) => setSubjectSearch(event.target.value)}
+                  placeholder="Search your real subject list"
+                />
+              </label>
+
+              <label className="subject-picker-field">
+                <span>Available subjects</span>
+                <select
+                  value={overrideDraft.subject}
+                  onChange={(event) => setOverrideDraft((current) => ({ ...current, subject: event.target.value, category: '' }))}
+                  disabled={subjectsLoading || filteredSubjects.length === 0}
+                >
+                  <option value="">Select a subject</option>
+                  {filteredSubjects.map((subject) => (
+                    <option key={subject.id} value={subject.name}>{subject.name}</option>
+                  ))}
+                </select>
+              </label>
+
+              <div className="subject-picker-actions">
+                <button
+                  className="action-button action-button--primary"
+                  onClick={() => void applySelectedSubject()}
+                  disabled={pendingAction !== null || !overrideDraft.subject}
+                >
+                  <CheckCircle2 size={15} />
+                  Select Subject
+                </button>
+                <button
+                  className="action-button"
+                  onClick={() => void enableAutoDetect()}
+                  disabled={pendingAction !== null}
+                >
+                  <RotateCcw size={15} />
+                  Back to Auto
+                </button>
+              </div>
+
+              <div className="notice notice--info">
+                <p>
+                  {subjectsLoading
+                    ? 'Loading your latest admin subject list...'
+                    : filteredSubjects.length > 0
+                      ? 'Find All Answers will reuse the selected subject and skip an extra subject-detection pass.'
+                      : 'No subjects matched your search. Clear the search or refresh the list.'}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="notice notice--info">
+              <p>Auto Detect stays on. Use Subject Picker only when you want to lock a subject and save extra detection work.</p>
+            </div>
+          )}
+        </SectionCard>
+      )}
 
       {/* ======== QUICK ACTION BAR ======== */}
       {isPaired && nextPrimaryAction === 'ready' && (
@@ -773,6 +981,16 @@ export function SidePanelApp() {
             <ChevronDown size={14} />
           </summary>
           <div className="panel-disclosure__content">
+            <div className="session-timer-card">
+              <span>Remaining credits</span>
+              <strong>{formatDurationDetailed(displayRemainingSeconds)}</strong>
+              <p>
+                {state.session.status === 'session_active'
+                  ? 'Timer is running while the current session is active.'
+                  : 'Timer freezes whenever the session is paused or ended.'}
+              </p>
+            </div>
+
             <div className="action-grid">
               <button
                 className="action-button action-button--primary"
@@ -818,63 +1036,20 @@ export function SidePanelApp() {
             >
               <RefreshCw size={11} /> Refresh Credits
             </button>
-          </div>
-        </details>
-      )}
 
-      {/* ======== DETECTION OVERRIDE (collapsible) ======== */}
-      {isPaired && (
-        <details className="panel-disclosure" open={confidenceLevel === 'low'}>
-          <summary className="panel-disclosure__summary">
-            <div>
-              <strong>Detection Override</strong>
-              <p>Manually set subject or category.</p>
-            </div>
-            <ChevronDown size={14} />
-          </summary>
-          <div className="panel-disclosure__content">
-            <div className="detection-grid">
-              <div className="metric-tile">
-                <span>Subject</span>
-                <strong>{state.lastSuggestion.subject ?? cachedSubject ?? 'Auto'}</strong>
+            <div className="session-danger-zone">
+              <div>
+                <strong>Unpair this browser</strong>
+                <p>Use this when you want to disconnect this browser from your account and go back to pairing mode.</p>
               </div>
-              <div className="metric-tile">
-                <span>Category</span>
-                <strong>{state.lastSuggestion.category ?? 'Auto'}</strong>
-              </div>
+              <button
+                className="action-button action-button--danger"
+                onClick={() => void unpairBrowser()}
+                disabled={pendingAction !== null}
+              >
+                <XCircle size={14} /> Unpair Browser
+              </button>
             </div>
-
-            <div className="override-grid mt-2">
-              <label>
-                <span>Manual Subject</span>
-                <select
-                  value={overrideDraft.subject}
-                  onChange={(e) => setOverrideDraft((c) => ({ ...c, subject: e.target.value }))}
-                  style={{ width: '100%', padding: '6px', borderRadius: '4px', border: '1px solid var(--sa-border-subtle)', background: 'var(--sa-surface)', color: 'var(--sa-fg)', fontSize: '13px' }}
-                >
-                  <option value="">-- Auto Detect --</option>
-                  {availableSubjects.map((sub) => (
-                    <option key={sub.id} value={sub.name}>{sub.name}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span>Manual Category</span>
-                <input
-                  value={overrideDraft.category}
-                  onChange={(e) => setOverrideDraft((c) => ({ ...c, category: e.target.value }))}
-                  placeholder="e.g. Midterm"
-                />
-              </label>
-            </div>
-            <button
-              className="action-button action-button--primary mt-2"
-              onClick={() => void confirmOverride()}
-              disabled={pendingAction !== null}
-              style={{ width: '100%' }}
-            >
-              Confirm Override
-            </button>
           </div>
         </details>
       )}

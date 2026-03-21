@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 import type { DeviceRevokeRequest, DeviceRevokeResponse } from '@study-assistant/shared-types';
 
-import { requirePortalUser } from '@/lib/auth/request-context';
-import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { requireClientUser } from '@/lib/auth/request-context';
+import { getRequestMeta, jsonError, jsonOk, parseJsonBody, RouteError } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { assertRateLimit } from '@/lib/security/rate-limit';
 import { revokeInstallation } from '@/lib/supabase/extension';
@@ -16,9 +16,13 @@ export async function POST(request: Request) {
   const { requestId, ipAddress, userAgent } = getRequestMeta(request);
 
   try {
-    const context = await requirePortalUser(request, ['client']);
+    const context = await requireClientUser(request);
     assertRateLimit(`revoke:${context.userId}`, { max: 20, windowMs: 60 * 60 * 1000 });
     const body = await parseJsonBody<DeviceRevokeRequest>(request, requestSchema);
+
+    if ('installationId' in context && context.installationId !== body.installationId) {
+      throw new RouteError(403, 'installation_mismatch', 'This extension can only revoke its own paired browser.');
+    }
 
     await revokeInstallation(body.installationId, context.userId);
     await writeAuditLog({

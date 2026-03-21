@@ -774,6 +774,93 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
+   Subject Mode
+   ================================================================ */
+.subject-mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.subject-mode-toggle__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: var(--sa-radius-sm);
+  border: 1px solid var(--sa-border);
+  background: var(--sa-surface-2);
+  color: var(--sa-fg-2);
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--sa-transition);
+}
+
+.subject-mode-toggle__button:hover:not(:disabled) {
+  border-color: var(--sa-accent);
+  color: var(--sa-fg);
+}
+
+.subject-mode-toggle__button--active {
+  background: var(--sa-accent-bg);
+  border-color: rgba(56, 139, 253, 0.35);
+  color: var(--sa-accent-2);
+}
+
+.subject-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.subject-picker-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subject-picker-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subject-picker-field span {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
+}
+
+.subject-picker-field input,
+.subject-picker-field select {
+  width: 100%;
+  border-radius: var(--sa-radius-sm);
+  border: 1px solid var(--sa-border);
+  background: var(--sa-surface-2);
+  color: var(--sa-fg);
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+.subject-picker-field input:focus,
+.subject-picker-field select:focus {
+  outline: none;
+  border-color: var(--sa-accent);
+  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.15);
+}
+
+.subject-picker-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ================================================================
    Override Grid
    ================================================================ */
 .override-grid {
@@ -850,6 +937,27 @@ button, input, select, textarea { font: inherit; }
   color: var(--sa-fg);
 }
 
+.step-status-card {
+  flex: 1;
+  border-radius: var(--sa-radius);
+  border: 1px solid var(--sa-green-border);
+  background: linear-gradient(180deg, rgba(63, 185, 80, 0.12), rgba(63, 185, 80, 0.05));
+  padding: 10px 12px;
+}
+
+.step-status-card strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sa-fg);
+}
+
+.step-status-card p {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--sa-green);
+}
+
 /* ================================================================
    Notices
    ================================================================ */
@@ -876,6 +984,60 @@ button, input, select, textarea { font: inherit; }
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.session-timer-card {
+  border-radius: var(--sa-radius);
+  border: 1px solid rgba(56, 139, 253, 0.2);
+  background: linear-gradient(180deg, rgba(56, 139, 253, 0.08), rgba(56, 139, 253, 0.03));
+  padding: 12px;
+}
+
+.session-timer-card span {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
+  margin-bottom: 6px;
+}
+
+.session-timer-card strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--sa-fg);
+}
+
+.session-timer-card p {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--sa-muted);
+}
+
+.session-danger-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: var(--sa-radius);
+  border: 1px solid var(--sa-red-border);
+  background: rgba(248, 81, 73, 0.06);
+  padding: 12px;
+}
+
+.session-danger-zone strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sa-fg);
+}
+
+.session-danger-zone p {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--sa-muted);
 }
 
 /* ================================================================
@@ -1214,7 +1376,10 @@ button, input, select, textarea { font: inherit; }
   .action-grid,
   .action-row,
   .detection-grid,
-  .override-grid {
+  .override-grid,
+  .subject-mode-toggle,
+  .subject-mode-grid,
+  .subject-picker-actions {
     grid-template-columns: 1fr;
   }
 

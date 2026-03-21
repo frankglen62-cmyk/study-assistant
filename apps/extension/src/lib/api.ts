@@ -4,6 +4,7 @@ import { normalizeAppUrl } from '@study-assistant/shared-utils';
 import {
   analyzeResponseSchema,
   catalogResponseSchema,
+  deviceRevokeResponseSchema,
   pairingExchangeResponseSchema,
   refreshTokenResponseSchema,
   sessionResponseSchema,
@@ -201,6 +202,19 @@ export async function resumeSession(state: ExtensionState) {
 export async function endSession(state: ExtensionState) {
   return fetchJson(state, '/api/client/sessions/end', (input) => sessionResponseSchema.parse(input), {
     method: 'POST',
+  });
+}
+
+export async function revokeCurrentInstallation(state: ExtensionState) {
+  if (!state.installationId) {
+    throw new Error('This browser is not paired yet.');
+  }
+
+  return fetchJson(state, '/api/client/devices/revoke', (input) => deviceRevokeResponseSchema.parse(input), {
+    method: 'POST',
+    body: {
+      installationId: state.installationId,
+    },
   });
 }
 

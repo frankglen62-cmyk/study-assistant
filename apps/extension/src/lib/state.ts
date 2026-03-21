@@ -192,12 +192,22 @@ export function clearAuthState(current: ExtensionState): ExtensionState {
     accessToken: null,
     refreshToken: null,
     creditsRemainingSeconds: 0,
+    currentPage: null,
     capturedSections: [],
+    lastSuggestion: defaultSuggestion,
+    autoClickEnabled: false,
+    autoPilotEnabled: false,
     session: {
       ...current.session,
       sessionId: null,
       status: 'session_inactive',
+      detectionMode: 'auto',
       liveAssistEnabled: false,
+      manualSubject: '',
+      manualCategory: '',
+      lastActivityAt: null,
+      cachedSubjectId: null,
+      cachedSubjectName: null,
     },
   };
 }

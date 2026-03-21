@@ -16,6 +16,7 @@ import {
   pauseSession,
   refreshExtensionToken,
   refreshWallet,
+  revokeCurrentInstallation,
   resumeSession,
   startSession,
 } from '../lib/api';
@@ -124,6 +125,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
         case 'EXTENSION/PAIR_EXTENSION': {
           const payload = message.payload as unknown as PairExtensionPayload;
           sendResponse(success(await handlePairExtension(payload)));
+          return;
+        }
+        case 'EXTENSION/UNPAIR_BROWSER': {
+          sendResponse(success(await handleUnpairBrowser()));
           return;
         }
         case 'EXTENSION/START_SESSION': {
@@ -627,6 +632,56 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
   );
 
   return nextState;
+}
+
+async function handleUnpairBrowser() {
+  const state = await readState(browserName, extensionVersion);
+  requirePairing(state);
+
+  if (currentAnalyzeController) {
+    currentAnalyzeController.abort('Browser unpaired');
+    currentAnalyzeController = null;
+  }
+
+  autoPilotTabId = null;
+
+  for (const timer of liveAssistTimers.values()) {
+    clearTimeout(timer);
+  }
+  liveAssistTimers.clear();
+
+  if (state.session.status !== 'session_inactive') {
+    try {
+      await withAuthRetry((current) => endSession(current));
+    } catch (error) {
+      console.warn('Unable to end session before unpairing:', error);
+    }
+  }
+
+  await withAuthRetry((current) => revokeCurrentInstallation(current));
+
+  return updateState(
+    (current) =>
+      appendNotice(
+        appendRecentAction(
+          {
+            ...clearAuthState({
+              ...current,
+              pairingStatus: 'not_paired',
+              lastError: null,
+            }),
+          },
+          'Unpair Browser',
+        ),
+        {
+          tone: 'success',
+          title: 'Browser unpaired',
+          message: 'This browser was disconnected from your client account. Open pairing mode to connect it again.',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
 }
 
 async function injectExtractor(tabId: number): Promise<void> {
