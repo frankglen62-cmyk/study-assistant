@@ -1,40 +1,46 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import type { ReactNode } from 'react';
 import type { ExtensionState } from '@study-assistant/shared-types';
+import type { LucideIcon } from 'lucide-react';
 import { normalizeOriginPattern } from '@study-assistant/shared-utils';
-import { Sparkles, Plug, Link as LinkIcon, AlertTriangle, ScreenShare, Share, CheckCircle2, Copy } from 'lucide-react';
+import {
+  AlertTriangle,
+  ArrowUpRight,
+  BadgeCheck,
+  Check,
+  CheckCircle2,
+  Copy,
+  Globe,
+  Link2,
+  Monitor,
+  ScreenShare,
+  Share,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 
 import type { PairExtensionPayload } from '../lib/messages';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
 import { getExtensionVersion } from '../lib/auth';
 
-const onboardingSteps = [
-  { text: 'Enter the base URL for your deployed web app or local development app.', icon: LinkIcon },
-  { text: 'Grant the extension permission for that app origin only.', icon: ShieldCheckIcon },
-  { text: 'Paste the short-lived pairing code from the client portal.', icon: Copy },
-  { text: 'Finish pairing and open the dashboard to verify the installation.', icon: CheckCircle2 },
+const onboardingSteps: Array<{ title: string; description: string }> = [
+  {
+    title: 'Enter the web portal host',
+    description: 'Point the extension to the exact client dashboard URL you trust.',
+  },
+  {
+    title: 'Grant permission safely',
+    description: 'Allow this browser to talk only to that app origin and nothing broader.',
+  },
+  {
+    title: 'Paste the pairing code',
+    description: 'Use the short-lived code generated from the client portal for this device.',
+  },
+  {
+    title: 'Open the dashboard',
+    description: 'Finish pairing, confirm the installed build, and continue in the side panel.',
+  },
 ];
-
-function ShieldCheckIcon(props: any) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  );
-}
 
 function useOnboardingState() {
   const [state, setState] = useState<ExtensionState | null>(null);
@@ -70,13 +76,39 @@ function useOnboardingState() {
   return state;
 }
 
+function formatPairingState(status: ExtensionState['pairingStatus'] | null | undefined) {
+  switch (status) {
+    case 'paired':
+      return 'PAIRED';
+    case 'revoked':
+      return 'REVOKED';
+    case 'not_paired':
+      return 'READY TO PAIR';
+    default:
+      return 'CHECKING STATE';
+  }
+}
+
+function formatSummaryState(status: ExtensionState['pairingStatus'] | null | undefined) {
+  switch (status) {
+    case 'paired':
+      return 'Paired';
+    case 'revoked':
+      return 'Revoked';
+    case 'not_paired':
+      return 'Not paired';
+    default:
+      return 'Loading';
+  }
+}
+
 export function OnboardingApp() {
   const state = useOnboardingState();
   const extensionVersion = useMemo(() => getExtensionVersion(), []);
   const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
-  const [statusMessage, setStatusMessage] = useState('Enter your app URL and pairing code to continue.');
+  const [statusMessage, setStatusMessage] = useState('Ready to request permission and pair this browser securely.');
   const [pending, setPending] = useState<string | null>(null);
 
   useEffect(() => {
@@ -91,7 +123,11 @@ export function OnboardingApp() {
     if (state.deviceName) {
       setDeviceName(state.deviceName);
     }
-  }, [state]);
+
+    if (state.pairingStatus === 'paired' && statusMessage === 'Ready to request permission and pair this browser securely.') {
+      setStatusMessage('Extension paired successfully.');
+    }
+  }, [state, statusMessage]);
 
   async function runAction(label: string, operation: () => Promise<void>) {
     setPending(label);
@@ -158,140 +194,193 @@ export function OnboardingApp() {
     });
   }
 
+  const isPaired = state?.pairingStatus === 'paired';
+  const pairingStateLabel = formatPairingState(state?.pairingStatus);
+  const summaryState = formatSummaryState(state?.pairingStatus);
+  const statusTone =
+    statusMessage.toLowerCase().includes('failed') || statusMessage.toLowerCase().includes('denied')
+      ? 'danger'
+      : statusMessage.toLowerCase().includes('successful') || statusMessage.toLowerCase().includes('granted') || isPaired
+        ? 'success'
+        : 'neutral';
+
+  const summaryItems: Array<{ label: string; value: string; icon: LucideIcon; tone?: 'success' | 'default' }> = [
+    {
+      label: 'Pairing Status',
+      value: summaryState,
+      icon: ShieldCheck,
+      tone: isPaired ? 'success' : 'default',
+    },
+    {
+      label: 'App Host',
+      value: state?.appBaseUrl || appBaseUrl,
+      icon: Globe,
+    },
+    {
+      label: 'Device Name',
+      value: state?.deviceName ?? deviceName,
+      icon: Copy,
+    },
+    {
+      label: 'Extension Target',
+      value: state?.browserName ?? 'Google Chrome',
+      icon: Monitor,
+    },
+    {
+      label: 'Installed Build',
+      value: `v${extensionVersion}`,
+      icon: BadgeCheck,
+    },
+    {
+      label: 'Next Step',
+      value: isPaired ? 'Open side panel' : 'Finish pairing',
+      icon: Link2,
+    },
+  ];
+
   return (
     <div className="onboarding-shell">
-      <aside className="onboarding-hero">
-        <div className="onboarding-hero__brand">
-          <div className="onboarding-hero__logo"><Sparkles strokeWidth={2.5} size={24} /></div>
-          <div>
-            <p className="onboarding-hero__eyebrow">Chrome extension</p>
-            <h1>Pair the Study Assistant safely.</h1>
-          </div>
+      <aside className="onboarding-overview" aria-label="Pairing overview">
+        <div className="onboarding-overview__brandmark" aria-hidden="true">
+          <Sparkles size={24} strokeWidth={2.4} />
         </div>
-        <div className="onboarding-version-strip">
-          <span className="onboarding-chip onboarding-chip--accent">{`Extension v${extensionVersion}`}</span>
-          <span className="onboarding-chip">
-            {state?.pairingStatus === 'paired' ? 'Paired and ready' : 'Pairing required'}
-          </span>
+
+        <div className="onboarding-overview__header">
+          <p className="onboarding-kicker">Chrome extension</p>
+          <h1>Pair the Study Assistant safely</h1>
         </div>
-        <p className="onboarding-hero__copy">
-          The extension does not rely on shared browser cookies. Pairing uses a short-lived code from the client portal and
-          stores a revocable installation token in extension-local storage.
+
+        <div className="onboarding-badge-row">
+          <span className="onboarding-badge onboarding-badge--build">{`Extension v${extensionVersion}`}</span>
+          <span className={`onboarding-badge onboarding-badge--state ${isPaired ? 'is-live' : ''}`}>{pairingStateLabel}</span>
+        </div>
+
+        <p className="onboarding-overview__copy">
+          Pairing uses a short-lived code from the client portal, grants access only to the selected host, and stores a
+          revocable installation token inside extension-local storage. This screen exists only for pairing, re-pairing,
+          and confirming the installed build.
         </p>
-        <div className="onboarding-callout">
-          <strong>You are viewing the onboarding screen.</strong>
-          <p>
-            The redesigned analysis UI appears in the extension side panel after pairing. Use this screen only to pair or re-pair the browser and confirm the installed version.
-          </p>
-        </div>
-        <div className="onboarding-steps">
-          {onboardingSteps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={index} className="onboarding-step">
-                <div className="step-icon-wrapper"><Icon size={16} /></div>
-                <p>{step.text}</p>
+
+        <div className="onboarding-step-list" aria-label="Secure pairing steps">
+          {onboardingSteps.map((step, index) => (
+            <div key={step.title} className="onboarding-step-item">
+              <div className="onboarding-step-item__rail" aria-hidden="true">
+                <span className="onboarding-step-item__dot">
+                  <Check size={14} strokeWidth={3} />
+                </span>
+                {index < onboardingSteps.length - 1 ? <span className="onboarding-step-item__line" /> : null}
               </div>
-            );
-          })}
+
+              <div className="onboarding-step-item__content">
+                <strong>{step.title}</strong>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </aside>
 
-      <main className="onboarding-main">
-        <section className="onboarding-card">
-          <header>
-            <p className="eyebrow flex items-center gap-1.5"><Plug size={14} /> Pairing</p>
+      <main className="onboarding-content">
+        <section className="onboarding-panel onboarding-panel--glass">
+          <header className="onboarding-panel__header">
+            <p className="onboarding-kicker onboarding-kicker--muted">Pairing</p>
             <h2>Connect this browser to your client account</h2>
-            <p>Grant permission for the app origin, then exchange the pairing code from the web portal.</p>
+            <p>
+              Grant permission for the app origin, then exchange the pairing code from the web portal. The browser keeps
+              its own installation identity and can be revoked at any time.
+            </p>
           </header>
 
-          <div className="onboarding-meta-row">
-            <div className="onboarding-meta-pill">
+          <div className="onboarding-state-row">
+            <div className="onboarding-state-pill">
               <span>Installed build</span>
               <strong>{`v${extensionVersion}`}</strong>
             </div>
-            <div className="onboarding-meta-pill">
+            <div className="onboarding-state-pill">
               <span>Current state</span>
-              <strong>{state?.pairingStatus ?? 'loading'}</strong>
+              <strong>{summaryState}</strong>
             </div>
           </div>
 
-          <div className="onboarding-form">
-            <label>
-              <span>App URL <span className="text-muted-foreground text-xs font-normal ml-1">(Where is your portal hosted?)</span></span>
-              <input value={appBaseUrl} onChange={(event) => setAppBaseUrl(event.target.value)} placeholder="https://app.example.com" />
+          <div className="onboarding-form-grid">
+            <label className="onboarding-field">
+              <span>App URL</span>
+              <input value={appBaseUrl} onChange={(event) => setAppBaseUrl(event.target.value)} spellCheck={false} />
             </label>
-            <label>
-              <span>Device name</span>
-              <input value={deviceName} onChange={(event) => setDeviceName(event.target.value)} placeholder="MacBook Pro - Chrome" />
+
+            <label className="onboarding-field">
+              <span>Device Name</span>
+              <input value={deviceName} onChange={(event) => setDeviceName(event.target.value)} spellCheck={false} />
             </label>
-            <label>
-              <span>Pairing code</span>
-              <input value={pairingCode} onChange={(event) => setPairingCode(event.target.value)} placeholder="Enter your short-lived code" />
+
+            <label className="onboarding-field">
+              <span>Pairing Code</span>
+              <input value={pairingCode} onChange={(event) => setPairingCode(event.target.value.toUpperCase())} spellCheck={false} />
             </label>
           </div>
 
-          <div className="onboarding-actions">
-            <button className="onboarding-button onboarding-button--secondary flex items-center justify-center gap-2" onClick={() => void allowOrigin()} disabled={pending !== null}>
-              <ScreenShare size={16} /> Request Connection Permission
+          <div className="onboarding-action-row">
+            <button
+              className="onboarding-button onboarding-button--secondary"
+              onClick={() => void allowOrigin()}
+              disabled={pending !== null}
+            >
+              <ScreenShare size={16} />
+              <span>Request Connection Permission</span>
             </button>
-            <button className="onboarding-button onboarding-button--primary flex items-center justify-center gap-2" onClick={() => void pairExtension()} disabled={pending !== null || !pairingCode}>
-              <Share size={16} /> Pair Extension
+
+            <button
+              className="onboarding-button onboarding-button--primary"
+              onClick={() => void pairExtension()}
+              disabled={pending !== null || !pairingCode}
+            >
+              <Share size={16} />
+              <span>Pair Extension</span>
             </button>
           </div>
 
-          {statusMessage && (
-            <div className={`onboarding-status ${statusMessage.includes('successful') || statusMessage.includes('granted') ? 'bg-success/10 border-success/20 text-success' : statusMessage.includes('failed') ? 'bg-danger/10 border-danger/20 text-danger' : ''}`}>
-              <strong className="flex items-center gap-1.5">
-                {statusMessage.includes('failed') ? <AlertTriangle size={14} /> : statusMessage.includes('successful') ? <CheckCircle2 size={14} /> : null}
-                Status
+          {statusMessage ? (
+            <div className={`onboarding-status onboarding-status--${statusTone}`}>
+              <strong>
+                {statusTone === 'danger' ? <AlertTriangle size={15} /> : <CheckCircle2 size={15} />}
+                <span>Status</span>
               </strong>
               <p>{statusMessage}</p>
             </div>
-          )}
+          ) : null}
         </section>
 
-        <section className="onboarding-card">
-          <header>
-            <p className="eyebrow">Current extension state</p>
+        <section className="onboarding-panel onboarding-panel--summary">
+          <header className="onboarding-panel__header">
+            <p className="onboarding-kicker onboarding-kicker--muted">Current extension state</p>
             <h2>Installation summary</h2>
-            <p>Use this view to confirm the extension is paired, connected, and ready for session use.</p>
+            <p>Confirm the pairing status, connected app host, current device identity, and the next action for this browser.</p>
           </header>
 
-          <div className="summary-grid">
-            <div className="summary-tile">
-              <span>Pairing Status</span>
-              <strong className={state?.pairingStatus === 'paired' ? 'text-success' : 'text-warning'}>
-                {state?.pairingStatus ?? 'Loading'}
-              </strong>
-            </div>
-            <div className="summary-tile">
-              <span>App Host</span>
-              <strong className="truncate" title={state?.appBaseUrl}>{state?.appBaseUrl || 'Not configured'}</strong>
-            </div>
-            <div className="summary-tile">
-              <span>Device Name</span>
-              <strong className="truncate" title={state?.deviceName ?? deviceName}>{state?.deviceName ?? deviceName}</strong>
-            </div>
-            <div className="summary-tile">
-              <span>Extension Target</span>
-              <strong>{state?.browserName ?? 'Unknown'}</strong>
-            </div>
-            <div className="summary-tile">
-              <span>Installed Build</span>
-              <strong>{`v${extensionVersion}`}</strong>
-            </div>
-            <div className="summary-tile">
-              <span>Next Step</span>
-              <strong>{state?.pairingStatus === 'paired' ? 'Open side panel' : 'Finish pairing'}</strong>
-            </div>
+          <div className="onboarding-summary-grid">
+            {summaryItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <article key={item.label} className="onboarding-summary-tile">
+                  <div className={`onboarding-summary-tile__icon ${item.tone === 'success' ? 'is-success' : ''}`}>
+                    <Icon size={18} />
+                  </div>
+
+                  <div className="onboarding-summary-tile__body">
+                    <span>{item.label}</span>
+                    <strong title={item.value}>{item.value}</strong>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-          
-          <div className="mt-6 pt-5 border-t border-border/50">
-             <button className="onboarding-button w-full flex items-center justify-center gap-2" onClick={() => void openDashboard()} disabled={pending !== null}>
-              <LinkIcon size={16} /> Open Web Dashboard
-            </button>
-          </div>
+
+          <button className="onboarding-button onboarding-button--dashboard" onClick={() => void openDashboard()} disabled={pending !== null}>
+            <Link2 size={16} />
+            <span>Open Web Dashboard</span>
+            <ArrowUpRight size={15} />
+          </button>
         </section>
       </main>
     </div>
