@@ -219,6 +219,7 @@ export interface ExtensionState {
 
 export type ExtensionActionType =
   | 'EXTENSION/GET_STATE'
+  | 'EXTENSION/GET_SUBJECTS'
   | 'EXTENSION/REQUEST_HOST_PERMISSION'
   | 'EXTENSION/PAIR_EXTENSION'
   | 'EXTENSION/UNPAIR_BROWSER'

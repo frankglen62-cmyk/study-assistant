@@ -13,6 +13,7 @@ import {
   analyzePage,
   endSession,
   exchangePairingCode,
+  fetchSubjects,
   pauseSession,
   refreshExtensionToken,
   refreshWallet,
@@ -103,6 +104,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
       switch (message.type) {
         case 'EXTENSION/GET_STATE': {
           sendResponse(success(await readState(browserName, extensionVersion)));
+          return;
+        }
+        case 'EXTENSION/GET_SUBJECTS': {
+          sendResponse(success(await handleGetSubjects()));
           return;
         }
         case 'EXTENSION/REQUEST_HOST_PERMISSION': {
@@ -628,6 +633,11 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
   );
 
   return nextState;
+}
+
+async function handleGetSubjects() {
+  const catalog = await withAuthRetry((state) => fetchSubjects(state));
+  return catalog;
 }
 
 async function handleUnpairBrowser() {

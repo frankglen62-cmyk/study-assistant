@@ -4,7 +4,6 @@ import { confidenceToLevel, formatConfidence, formatDurationDetailed, normalizeA
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
 
 import type { AnalyzeCurrentPagePayload, ManualOverridePayload, PairExtensionPayload } from '../lib/messages';
-import { fetchSubjects } from '../lib/api';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
@@ -311,11 +310,18 @@ export function SidePanelApp() {
     let active = true;
     setSubjectsLoading(true);
 
-    fetchSubjects(state)
-      .then((res) => {
-        if (active) {
-          setAvailableSubjects(res.subjects ?? []);
+    sendExtensionMessage<{ subjects: { id: string; name: string }[]; categories: { id: string; name: string; subject_id: string }[] }>({
+      type: 'EXTENSION/GET_SUBJECTS',
+    })
+      .then((response) => {
+        if (!active) return;
+
+        if (response.ok && response.data) {
+          setAvailableSubjects(response.data.subjects ?? []);
+          return;
         }
+
+        setAvailableSubjects([]);
       })
       .catch((error) => {
         console.error(error);
@@ -389,9 +395,11 @@ export function SidePanelApp() {
   const siteAccessGranted = access?.status === 'granted';
   const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
   const isFullAutoOn = state?.autoPilotEnabled ?? false;
+  const normalizedSubjectSearch = subjectSearch.trim().toLowerCase();
   const filteredSubjects = availableSubjects.filter((subject) =>
-    subject.name.toLowerCase().includes(subjectSearch.trim().toLowerCase()),
+    subject.name.toLowerCase().includes(normalizedSubjectSearch),
   );
+  const subjectSuggestions = (normalizedSubjectSearch ? filteredSubjects : availableSubjects).slice(0, 8);
   const activeSubjectSummary = manualSubject
     ? `Locked: ${manualSubject}`
     : cachedSubject
@@ -462,13 +470,38 @@ export function SidePanelApp() {
 
     setSubjectsLoading(true);
     try {
-      const response = await fetchSubjects(state);
-      setAvailableSubjects(response.subjects ?? []);
+      const response = await sendExtensionMessage<{ subjects: { id: string; name: string }[]; categories: { id: string; name: string; subject_id: string }[] }>({
+        type: 'EXTENSION/GET_SUBJECTS',
+      });
+      setAvailableSubjects(response.ok && response.data ? response.data.subjects ?? [] : []);
     } catch (error) {
       console.error(error);
     } finally {
       setSubjectsLoading(false);
     }
+  }
+
+  function chooseSubject(subjectName: string) {
+    setOverrideDraft((current) => ({ ...current, subject: subjectName, category: '' }));
+    setSubjectSearch(subjectName);
+  }
+
+  function updateSubjectSearch(value: string) {
+    const normalizedValue = value.trim().toLowerCase();
+    const exactMatch = availableSubjects.find((subject) => subject.name.toLowerCase() === normalizedValue);
+
+    setSubjectSearch(value);
+    setOverrideDraft((current) => {
+      if (exactMatch) {
+        return { ...current, subject: exactMatch.name, category: '' };
+      }
+
+      if (normalizedValue && current.subject && current.subject.toLowerCase() !== normalizedValue) {
+        return { ...current, subject: '', category: '' };
+      }
+
+      return current;
+    });
   }
 
   async function enableAutoDetect() {
@@ -724,17 +757,9 @@ export function SidePanelApp() {
         ) : (
           <>
             <p className="panel-hero__copy">
-              Pair this browser directly in the side panel. Request the trusted portal permission, paste the code, and continue here.
+              Pair this browser directly in the side panel. Open your portal, copy the short-lived code, then paste it into the highlighted field below.
             </p>
             <div className="panel-hero__actions">
-              <button
-                className="action-button action-button--primary"
-                onClick={() => void requestConnectionPermission()}
-                disabled={pendingAction !== null}
-              >
-                <ShieldCheck size={16} />
-                {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Request Permission'}
-              </button>
               <button
                 className="action-button"
                 onClick={() => void openPortalDraft()}
@@ -765,7 +790,7 @@ export function SidePanelApp() {
       {!isPaired && (
         <SectionCard
           title="Pair This Browser"
-          subtitle="No extra onboarding tab is needed. Complete the trusted portal pairing flow here in the side panel."
+          subtitle="No extra onboarding tab is needed. Paste the short-lived code first, then approve the portal and pair here."
           icon={Link2}
           className="panel-card--primary"
           actions={(
@@ -779,6 +804,31 @@ export function SidePanelApp() {
             </button>
           )}
         >
+          <div className="pairing-code-spotlight">
+            <div className="pairing-code-spotlight__header">
+              <div>
+                <span className="pairing-code-spotlight__eyebrow">Paste this first</span>
+                <strong>Pairing Code</strong>
+                <p>Generate the code from the client portal, then paste it here before you continue.</p>
+              </div>
+              <div className="pairing-code-spotlight__step">Step 1</div>
+            </div>
+
+            <label className="pairing-field pairing-field--code">
+              <span>Short-lived portal code</span>
+              <input
+                value={pairingCode}
+                onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
+                spellCheck={false}
+                placeholder="Paste code from the client portal"
+              />
+            </label>
+
+            <div className="pairing-code-spotlight__hint">
+              Paste the code here, request permission for your portal host, then click Pair Extension.
+            </div>
+          </div>
+
           <div className="pairing-state-grid">
             <div className="metric-tile">
               <span>Installed build</span>
@@ -790,7 +840,7 @@ export function SidePanelApp() {
             </div>
           </div>
 
-          <div className="pairing-form-grid">
+          <div className="pairing-form-grid pairing-form-grid--secondary">
             <label className="pairing-field">
               <span>App URL</span>
               <input
@@ -806,16 +856,6 @@ export function SidePanelApp() {
                 value={deviceName}
                 onChange={(event) => setDeviceName(event.target.value)}
                 spellCheck={false}
-              />
-            </label>
-
-            <label className="pairing-field">
-              <span>Pairing Code</span>
-              <input
-                value={pairingCode}
-                onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
-                spellCheck={false}
-                placeholder="Paste code from the client portal"
               />
             </label>
           </div>
@@ -845,6 +885,40 @@ export function SidePanelApp() {
             </div>
           )}
         </SectionCard>
+      )}
+
+      {isPaired && nextPrimaryAction === 'ready' && (
+        <section className="quick-action-bar">
+          <button
+            className="quick-action-btn quick-action-btn--reset"
+            onClick={() => void sendSimple('EXTENSION/RESET_EXAM')}
+            disabled={pendingAction !== null}
+            title="Clear everything and start a new exam/subject"
+          >
+            <RotateCcw size={14} />
+            <span>New Exam</span>
+          </button>
+
+          <button
+            className={`quick-action-btn ${isFullAutoOn ? 'quick-action-btn--active' : 'quick-action-btn--auto'}`}
+            onClick={() => void toggleFullAuto(!isFullAutoOn)}
+            disabled={pendingAction !== null || !siteAccessGranted}
+            title="Auto Pilot: analyze -> click answer -> next page"
+          >
+            <BotMessageSquare size={14} />
+            <span>{isFullAutoOn ? 'Auto: ON' : 'Full Auto'}</span>
+          </button>
+
+          <button
+            className="quick-action-btn quick-action-btn--select"
+            onClick={() => void triggerAutoClickAll()}
+            disabled={pendingAction !== null || suggestions.length === 0 || isAnalyzing}
+            title="Click all matched answers on the page at once"
+          >
+            <ListChecks size={14} />
+            <span>Select All</span>
+          </button>
+        </section>
       )}
 
       {isPaired && (
@@ -883,41 +957,68 @@ export function SidePanelApp() {
             </button>
           </div>
 
-          <div className="subject-mode-grid">
-            <div className="metric-tile">
-              <span>Current mode</span>
-              <strong>{state.session.detectionMode === 'manual' && manualSubject ? 'Subject locked' : 'Auto detect'}</strong>
-            </div>
-            <div className="metric-tile">
-              <span>Applied subject</span>
-              <strong>{manualSubject || cachedSubject || 'Choose a subject or detect automatically'}</strong>
-            </div>
-          </div>
-
           {subjectMode === 'picker' ? (
             <div className="subject-picker-panel">
-              <label className="subject-picker-field">
-                <span>Search subjects</span>
-                <input
-                  value={subjectSearch}
-                  onChange={(event) => setSubjectSearch(event.target.value)}
-                  placeholder="Search your real subject list"
-                />
-              </label>
+              <div className="subject-picker-summary">
+                <span>Selected subject</span>
+                <strong>{overrideDraft.subject || manualSubject || cachedSubject || 'Auto detect is active'}</strong>
+              </div>
 
               <label className="subject-picker-field">
-                <span>Available subjects</span>
-                <select
-                  value={overrideDraft.subject}
-                  onChange={(event) => setOverrideDraft((current) => ({ ...current, subject: event.target.value, category: '' }))}
-                  disabled={subjectsLoading || filteredSubjects.length === 0}
-                >
-                  <option value="">Select a subject</option>
-                  {filteredSubjects.map((subject) => (
-                    <option key={subject.id} value={subject.name}>{subject.name}</option>
-                  ))}
-                </select>
+                <span>Search subjects</span>
+                <div className="subject-picker-search">
+                  <Search size={14} />
+                  <input
+                    value={subjectSearch}
+                    onChange={(event) => updateSubjectSearch(event.target.value)}
+                    onKeyDown={(event) => {
+                      const firstSuggestion = subjectSuggestions[0];
+                      if (event.key === 'Enter' && firstSuggestion) {
+                        event.preventDefault();
+                        chooseSubject(firstSuggestion.name);
+                      }
+                    }}
+                    placeholder="Type at least 2 letters to filter subjects"
+                  />
+                </div>
               </label>
+
+              <div className="subject-picker-results">
+                {subjectsLoading ? (
+                  <div className="subject-picker-empty">
+                    <Loader2 size={14} className="animate-spin" />
+                    <span>Loading your latest admin subject list...</span>
+                  </div>
+                ) : subjectSuggestions.length > 0 ? (
+                  <>
+                    <div className="subject-picker-results__meta">
+                      <span>{normalizedSubjectSearch ? `${filteredSubjects.length} matches` : `${availableSubjects.length} subjects available`}</span>
+                      <span>Click one subject to lock it</span>
+                    </div>
+                    <div className="subject-suggestion-list">
+                      {subjectSuggestions.map((subject) => {
+                        const isSelected = overrideDraft.subject === subject.name;
+                        return (
+                          <button
+                            key={subject.id}
+                            type="button"
+                            className={`subject-suggestion ${isSelected ? 'subject-suggestion--active' : ''}`}
+                            onClick={() => chooseSubject(subject.name)}
+                          >
+                            <span className="subject-suggestion__name">{subject.name}</span>
+                            {isSelected && <CheckCircle2 size={14} />}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="subject-picker-empty">
+                    <Info size={14} />
+                    <span>No subjects matched your search. Clear the search or refresh the list.</span>
+                  </div>
+                )}
+              </div>
 
               <div className="subject-picker-actions">
                 <button
@@ -939,25 +1040,19 @@ export function SidePanelApp() {
               </div>
 
               <div className="notice notice--info">
-                <p>
-                  {subjectsLoading
-                    ? 'Loading your latest admin subject list...'
-                    : filteredSubjects.length > 0
-                      ? 'Find All Answers will reuse the selected subject and skip an extra subject-detection pass.'
-                      : 'No subjects matched your search. Clear the search or refresh the list.'}
-                </p>
+                <p>Once selected, Find All Answers will reuse that subject and skip an extra subject-detection pass.</p>
               </div>
             </div>
           ) : (
             <div className="notice notice--info">
-              <p>Auto Detect stays on. Use Subject Picker only when you want to lock a subject and save extra detection work.</p>
+              <p>Auto Detect stays on. Open Subject Picker only when you want to lock one real subject and save extra detection work.</p>
             </div>
           )}
         </SectionCard>
       )}
 
       {/* ======== QUICK ACTION BAR ======== */}
-      {isPaired && nextPrimaryAction === 'ready' && (
+      {false && isPaired && nextPrimaryAction === 'ready' && (
         <section className="quick-action-bar">
           <button
             className="quick-action-btn quick-action-btn--reset"
