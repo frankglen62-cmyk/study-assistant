@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import { confidenceToLevel, formatConfidence, formatDurationDetailed, normalizeAppUrl } from '@study-assistant/shared-utils';
+import { confidenceToLevel, formatConfidence, formatDurationDetailed, normalizeAppUrl, normalizeOriginPattern } from '@study-assistant/shared-utils';
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
 
 import type { AnalyzeCurrentPagePayload, ManualOverridePayload, PairExtensionPayload } from '../lib/messages';
@@ -540,17 +540,39 @@ export function SidePanelApp() {
     });
   }
 
+  async function requestPortalPermissionFromGesture() {
+    const normalizedUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistant-web.vercel.app');
+    const originPattern = normalizeOriginPattern(normalizedUrl);
+    const alreadyGranted = await chrome.permissions.contains({ origins: [originPattern] });
+
+    if (alreadyGranted) {
+      return { granted: true, normalizedUrl };
+    }
+
+    const granted = await chrome.permissions.request({ origins: [originPattern] });
+    return { granted, normalizedUrl };
+  }
+
   async function requestConnectionPermission() {
     await runAction('pairing-permission', async () => {
+      const permission = await requestPortalPermissionFromGesture();
+      if (!permission.granted) {
+        setPairingFeedback({
+          tone: 'warning',
+          message: 'Permission was not granted. Allow the trusted portal origin before pairing this browser.',
+        });
+        return;
+      }
+
       const response = await sendExtensionMessage<{ granted?: boolean }, { appBaseUrl: string }>({
         type: 'EXTENSION/REQUEST_HOST_PERMISSION',
-        payload: { appBaseUrl },
+        payload: { appBaseUrl: permission.normalizedUrl },
       });
 
       if (response.ok && response.data?.granted) {
         setPairingFeedback({
           tone: 'success',
-          message: `Connection permission granted for ${normalizeAppUrl(appBaseUrl)}.`,
+          message: `Connection permission granted for ${permission.normalizedUrl}.`,
         });
       } else if (response.ok) {
         setPairingFeedback({
@@ -567,13 +589,22 @@ export function SidePanelApp() {
   }
 
   async function pairCurrentBrowser() {
-    const payload: PairExtensionPayload = {
-      appBaseUrl,
-      pairingCode,
-      deviceName,
-    };
-
     await runAction('pair-browser', async () => {
+      const permission = await requestPortalPermissionFromGesture();
+      if (!permission.granted) {
+        setPairingFeedback({
+          tone: 'warning',
+          message: 'Allow the trusted portal permission first, then pair this browser.',
+        });
+        return;
+      }
+
+      const payload: PairExtensionPayload = {
+        appBaseUrl: permission.normalizedUrl,
+        pairingCode: pairingCode.trim().toUpperCase(),
+        deviceName: deviceName.trim() || 'My Study Device',
+      };
+
       const response = await sendExtensionMessage({
         type: 'EXTENSION/PAIR_EXTENSION',
         payload,
