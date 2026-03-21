@@ -1,13 +1,12 @@
 'use client';
 
 import { startTransition, useEffect, useMemo, useState } from 'react';
-import { Clock3, Copy, Download, RefreshCw } from 'lucide-react';
+import { Clock3, Copy, Download, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
 
 import type { ExtensionPairingCodeResponse } from '@study-assistant/shared-types';
 
-import { FormField } from '@/components/forms/form-field';
 import { useToast } from '@/components/providers/toast-provider';
-import { extensionDownloadFileName, extensionDownloadPath } from '@/lib/extension-distribution';
+import { extensionDownloadFileName, extensionDownloadPath, extensionVersion } from '@/lib/extension-distribution';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input } from '@study-assistant/ui';
 
 interface PairExtensionCardProps {
@@ -17,15 +16,17 @@ interface PairExtensionCardProps {
   title?: string;
   description?: string;
   pairedDeviceCount?: number;
+  latestInstalledVersion?: string | null;
 }
 
 export function PairExtensionCard({
   cardId,
   appBaseUrl,
   initialDeviceName = 'My Study Device',
-  title = 'Pair extension',
-  description = 'Generate a short-lived code for the Chrome extension onboarding flow.',
+  title = 'Pairing mode',
+  description = 'Generate a short-lived code and use it right away in the extension onboarding screen.',
   pairedDeviceCount = 0,
+  latestInstalledVersion = null,
 }: PairExtensionCardProps) {
   const { pushToast } = useToast();
   const [deviceName, setDeviceName] = useState(initialDeviceName);
@@ -70,6 +71,9 @@ export function PairExtensionCard({
     return `${minutes}:${seconds.toString().padStart(2, '0')} remaining`;
   }, [secondsRemaining]);
 
+  const pairingState = pairedDeviceCount > 0 ? 'Paired' : 'Ready to pair';
+  const installedBuildLabel = latestInstalledVersion ? latestInstalledVersion : 'Not detected yet';
+
   function handleGenerateCode() {
     startTransition(() => {
       void (async () => {
@@ -97,13 +101,13 @@ export function PairExtensionCard({
           try {
             await navigator.clipboard.writeText(payload.pairingCode);
           } catch {
-            // Ignore clipboard failures here; the explicit copy button still works.
+            // Clipboard auto-copy is best effort only.
           }
 
           pushToast({
             tone: 'success',
             title: 'Pairing code ready',
-            description: 'The code was generated and copied. Use it in the extension onboarding screen before it expires.',
+            description: 'The code was generated and copied. Paste it into the extension onboarding screen before it expires.',
           });
         } catch (error) {
           pushToast({
@@ -135,96 +139,137 @@ export function PairExtensionCard({
   }
 
   return (
-    <Card id={cardId}>
-      <CardHeader>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>
-              {description}{' '}
-              {pairedDeviceCount > 0
-                ? 'Use this when you want to connect another browser or re-pair the current one.'
-                : 'Have the extension onboarding screen open first so the new code can be used immediately.'}
-            </CardDescription>
+    <Card
+      id={cardId}
+      className="overflow-hidden border-accent/20 bg-[linear-gradient(135deg,rgba(37,194,163,0.12)_0%,rgba(17,24,39,0.96)_36%,rgba(10,14,23,1)_100%)] shadow-[0_24px_70px_-45px_rgba(0,0,0,0.9)]"
+    >
+      <CardHeader className="space-y-4 pb-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="accent" className="gap-1.5">
+                <Zap className="h-3.5 w-3.5" />
+                Pairing Mode
+              </Badge>
+              <Badge tone={pairedDeviceCount > 0 ? 'success' : 'warning'}>
+                {pairedDeviceCount > 0
+                  ? `${pairedDeviceCount} paired ${pairedDeviceCount === 1 ? 'device' : 'devices'}`
+                  : 'No paired browser yet'}
+              </Badge>
+            </div>
+            <div>
+              <CardTitle>{title}</CardTitle>
+              <CardDescription>
+                {description}{' '}
+                {pairedDeviceCount > 0
+                  ? 'Use this when you want to add another browser or reconnect the current one.'
+                  : 'Open the extension onboarding screen first, then generate and paste the code immediately.'}
+              </CardDescription>
+            </div>
           </div>
-          {pairedDeviceCount > 0 ? (
-            <Badge tone="success">
-              {pairedDeviceCount} paired {pairedDeviceCount === 1 ? 'device' : 'devices'}
-            </Badge>
-          ) : (
-            <Badge tone="warning">No paired device yet</Badge>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <FormField
-          label="App URL"
-          description="Enter this exact URL during extension onboarding so pairing and API calls stay on the trusted app origin."
-        >
-          <div className="flex gap-3">
-            <Input value={appBaseUrl} readOnly />
-            <Button type="button" variant="secondary" onClick={() => void copyValue(appBaseUrl, 'App URL')}>
-              Copy URL
-            </Button>
-          </div>
-        </FormField>
 
-        <FormField label="Device name" description="Use a clear name so you can revoke the correct browser later.">
-          <Input value={deviceName} onChange={(event) => setDeviceName(event.target.value)} maxLength={120} />
-        </FormField>
-
-        <div className="flex flex-wrap gap-3">
-          <Button type="button" onClick={handleGenerateCode} disabled={pending}>
-            {pending ? (
-              'Generating...'
-            ) : pairingCode ? (
-              <>
-                <RefreshCw className="h-4 w-4" />
-                Regenerate Code
-              </>
-            ) : (
-              'Generate Pairing Code'
-            )}
-          </Button>
-          <Button asChild type="button" variant="secondary">
+          <Button asChild variant="secondary" className="gap-2">
             <a href={extensionDownloadPath} download={extensionDownloadFileName}>
               <Download className="h-4 w-4" />
               Download ZIP
             </a>
           </Button>
-          {pairingCode ? (
-            <Button type="button" variant="secondary" onClick={() => void copyValue(pairingCode, 'Pairing code')}>
-              <Copy className="h-4 w-4" />
-              Copy Code
-            </Button>
-          ) : null}
         </div>
 
-        <div className="rounded-[20px] border border-border/70 bg-background/50 px-4 py-3">
-          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">Install reminder</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Download the extension package first, extract it locally, then load it from <span className="font-mono text-foreground">chrome://extensions</span> using Developer mode.
-          </p>
-        </div>
-
-        <div className="rounded-[24px] border border-border/70 bg-background/60 p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">Current pairing code</p>
-            {countdownLabel ? (
-              <Badge tone={isExpired ? 'danger' : secondsRemaining !== null && secondsRemaining < 90 ? 'warning' : 'accent'}>
-                <Clock3 className="h-3.5 w-3.5" />
-                {countdownLabel}
-              </Badge>
-            ) : null}
+        <div className="grid gap-3 lg:grid-cols-3">
+          <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Pairing status</p>
+            <p className="mt-2 text-xl font-semibold text-foreground">{pairingState}</p>
           </div>
-          <p className="mt-2 break-all font-mono text-2xl font-semibold tracking-[0.3em]">
-            {pairingCode ?? 'Not generated yet'}
-          </p>
-          <p className="mt-2 text-xs text-muted-foreground">
-            {expiresAt
-              ? `Expires ${new Date(expiresAt).toLocaleString()}. ${isExpired ? 'Generate a fresh code before pairing.' : 'The latest code was auto-copied for you.'}`
-              : 'Generate a new code when the extension onboarding screen is ready.'}
-          </p>
+          <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Current ZIP build</p>
+            <p className="mt-2 text-xl font-semibold text-accent">v{extensionVersion}</p>
+          </div>
+          <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Installed on latest browser</p>
+            <p className="mt-2 text-xl font-semibold text-foreground">{installedBuildLabel}</p>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-5">
+        <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="space-y-4">
+            <div className="rounded-[24px] border border-border/70 bg-background/40 p-4">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">App URL</p>
+                <Button type="button" variant="ghost" size="sm" className="h-8 px-2.5" onClick={() => void copyValue(appBaseUrl, 'App URL')}>
+                  <Copy className="h-4 w-4" />
+                  Copy
+                </Button>
+              </div>
+              <Input value={appBaseUrl} readOnly className="font-mono text-sm" />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Use this exact portal host inside the extension so pairing and API calls stay on the trusted origin.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-border/70 bg-background/40 p-4">
+              <p className="mb-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Device name</p>
+              <Input value={deviceName} onChange={(event) => setDeviceName(event.target.value)} maxLength={120} />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Give this browser a clear name so you can revoke the correct device later.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Button type="button" onClick={handleGenerateCode} disabled={pending}>
+                {pending ? (
+                  'Generating...'
+                ) : pairingCode ? (
+                  <>
+                    <RefreshCw className="h-4 w-4" />
+                    Regenerate Code
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck className="h-4 w-4" />
+                    Generate Pairing Code
+                  </>
+                )}
+              </Button>
+              {pairingCode ? (
+                <Button type="button" variant="secondary" onClick={() => void copyValue(pairingCode, 'Pairing code')}>
+                  <Copy className="h-4 w-4" />
+                  Copy Code
+                </Button>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="rounded-[24px] border border-accent/15 bg-background/50 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Current pairing code</p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Generate only when the extension onboarding screen is open.
+                </p>
+              </div>
+              {countdownLabel ? (
+                <Badge tone={isExpired ? 'danger' : secondsRemaining !== null && secondsRemaining < 90 ? 'warning' : 'accent'}>
+                  <Clock3 className="h-3.5 w-3.5" />
+                  {countdownLabel}
+                </Badge>
+              ) : null}
+            </div>
+
+            <div className="mt-5 rounded-[20px] border border-border/70 bg-background/60 p-4">
+              <p className="break-all font-mono text-[1.65rem] font-semibold tracking-[0.28em] text-foreground">
+                {pairingCode ?? 'NOT GENERATED YET'}
+              </p>
+            </div>
+
+            <p className="mt-3 text-xs leading-6 text-muted-foreground">
+              {expiresAt
+                ? `Expires ${new Date(expiresAt).toLocaleString()}. ${isExpired ? 'Generate a fresh code before pairing.' : 'The newest code was copied automatically.'}`
+                : 'After you generate a code, paste it immediately into the extension together with the app URL and device name.'}
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>

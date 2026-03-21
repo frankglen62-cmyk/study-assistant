@@ -19,12 +19,22 @@ export async function getClientDashboardData(userId: string) {
   const activeSession = sessions.find((session) => session.status === 'active') ?? null;
   const latestAttempt = recentAttempts[0] ?? null;
   const usedThisWeek = sessions.reduce((sum, session) => sum + session.used_seconds, 0);
+  const activeDevices = devices.filter((device) => device.installation_status === 'active');
+  const latestActiveDevice = activeDevices[0] ?? null;
 
   return {
     usedThisWeek,
     sessionStatus: activeSession?.status ?? 'ended',
     lastDetectedSubject: latestAttempt?.subjects?.name ?? 'No subject yet',
     lastUsedCategory: latestAttempt?.categories?.name ?? 'No category yet',
+    activeDeviceCount: activeDevices.length,
+    latestActiveDevice: latestActiveDevice
+      ? {
+          name: `${latestActiveDevice.browser_name ?? 'Browser'} on ${latestActiveDevice.device_name ?? 'Unnamed device'}`,
+          version: latestActiveDevice.extension_version ?? null,
+          lastSeen: latestActiveDevice.last_seen_at ? new Date(latestActiveDevice.last_seen_at).toLocaleString() : 'Never',
+        }
+      : null,
     recentActions: [
       `Manage ${devices.length} paired device${devices.length === 1 ? '' : 's'}`,
       'Buy Credits',
