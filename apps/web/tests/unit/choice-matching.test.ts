@@ -27,3 +27,29 @@ describe('question text equivalence', () => {
     ).toBe(true);
   });
 });
+
+describe('choice matching', () => {
+  it('ignores LMS control text like clear my choice when resolving an option', async () => {
+    const { resolveSuggestedOption } = await import('@/lib/ai/choice-matching');
+
+    expect(
+      resolveSuggestedOption(
+        ['Positive', 'Negative', 'Clear my choice'],
+        'Positive, Negative',
+        'The 2 kinds of charge are ?',
+      ),
+    ).toBe(null);
+  });
+
+  it('does not collapse multi-answer checkbox text into a single option', async () => {
+    const { resolveSuggestedOption } = await import('@/lib/ai/choice-matching');
+
+    expect(
+      resolveSuggestedOption(
+        ['Positive', 'Negative'],
+        'Positive, Negative',
+        'The 2 kinds of charge are ?',
+      ),
+    ).toBe(null);
+  });
+});

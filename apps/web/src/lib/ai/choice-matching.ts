@@ -2,6 +2,9 @@ function collapseWhitespace(value: string) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
+const IGNORED_CHOICE_TEXT_PATTERN =
+  /^(?:clear my choice|flag question|check|not yet answered|not answered|answered|finish review|finish attempt|marked out of|mark \d+|marks?|submit|save|cancel|next page|previous page|time left|jump to|quiz navigation|response:?|your answer:?|answer:?|choose\.{0,3}|choose an option)$/i;
+
 function stripDiacritics(value: string) {
   return value.normalize('NFKD').replace(/\p{M}+/gu, '');
 }
@@ -58,6 +61,33 @@ function tokenize(value: string) {
 
 function isBooleanToken(value: string) {
   return value === 'true' || value === 'false';
+}
+
+export function isIgnoredChoiceOption(value: string) {
+  const collapsed = collapseWhitespace(value);
+  if (!collapsed) {
+    return true;
+  }
+
+  return IGNORED_CHOICE_TEXT_PATTERN.test(collapsed.toLowerCase());
+}
+
+export function splitMultiAnswerSegments(value: string) {
+  const collapsed = collapseWhitespace(value);
+  if (!collapsed) {
+    return [];
+  }
+
+  const segments = collapsed
+    .split(/\s*(?:,|;|\/|\band\b|&|\+)\s*/i)
+    .map((segment) => collapseWhitespace(segment))
+    .filter((segment) => segment.length >= 2);
+
+  if (segments.length < 2 || segments.length > 5) {
+    return [];
+  }
+
+  return Array.from(new Set(segments));
 }
 
 function extractReferencedChoiceLabel(value: string) {
@@ -146,7 +176,10 @@ export function scoreChoiceOption(params: {
 }
 
 export function resolveSuggestedOption(options: string[], answerText: string, questionText?: string | null) {
-  const parsedOptions = options.map(parseChoiceOption);
+  const parsedOptions = options
+    .filter((option) => !isIgnoredChoiceOption(option))
+    .map(parseChoiceOption)
+    .filter((option) => !isIgnoredChoiceOption(option.raw) && Boolean(option.normalizedRaw));
   const normalizedAnswer = normalizeComparableText(answerText);
   const referencedLabel = extractReferencedChoiceLabel(answerText);
 
@@ -163,6 +196,20 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
     );
     if (booleanOption) {
       return booleanOption.display;
+    }
+  }
+
+  const multiAnswerSegments = splitMultiAnswerSegments(answerText);
+  if (multiAnswerSegments.length >= 2) {
+    const matchedSegments = multiAnswerSegments
+      .map((segment) =>
+        parsedOptions.find((option) => scoreChoiceOption({ option, answerText: segment, questionText }) >= 0.85)?.display ?? null,
+      )
+      .filter((display): display is string => Boolean(display));
+
+    const distinctMatches = Array.from(new Set(matchedSegments));
+    if (distinctMatches.length >= 2) {
+      return null;
     }
   }
 

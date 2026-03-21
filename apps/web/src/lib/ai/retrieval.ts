@@ -7,7 +7,14 @@ import {
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { env } from '@/lib/env/server';
 import { createEmbedding } from '@/lib/ai/openai';
-import { isQuestionTextEquivalent, normalizeComparableText, normalizeQuestionLookupSkeleton, normalizeQuestionLookupText } from '@/lib/ai/choice-matching';
+import {
+  isQuestionTextEquivalent,
+  normalizeComparableText,
+  normalizeQuestionLookupSkeleton,
+  normalizeQuestionLookupText,
+  resolveSuggestedOption,
+  splitMultiAnswerSegments,
+} from '@/lib/ai/choice-matching';
 import { RouteError } from '@/lib/http/route';
 
 export interface RetrievalResult {
@@ -187,12 +194,32 @@ function rankQaPairRows(params: {
 
   const exactMatches = rankedRows
     .filter((row) => isExactQuestionMatch(params.queryText, row.question_text))
-    .sort((left, right) => new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime());
+    .sort((left, right) => {
+      const optionAlignmentDelta =
+        scoreAnswerAgainstOptions(params.options ?? [], right.answer_text) -
+        scoreAnswerAgainstOptions(params.options ?? [], left.answer_text);
+
+      if (optionAlignmentDelta !== 0) {
+        return optionAlignmentDelta;
+      }
+
+      const categorySpecificDelta = Number(Boolean(right.category_id)) - Number(Boolean(left.category_id));
+      if (categorySpecificDelta !== 0) {
+        return categorySpecificDelta;
+      }
+
+      return new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime();
+    });
 
   const exactMatchIds = new Set(exactMatches.map((row) => row.id));
   const nonExactMatches = rankedRows
     .filter((row) => !exactMatchIds.has(row.id))
-    .sort((left, right) => right.similarity - left.similarity || new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime());
+    .sort(
+      (left, right) =>
+        right.similarity - left.similarity ||
+        Number(Boolean(right.category_id)) - Number(Boolean(left.category_id)) ||
+        new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime(),
+    );
 
   return [...exactMatches, ...nonExactMatches].slice(0, 12);
 }
@@ -207,6 +234,33 @@ function pickJoinedName(value: QaPairRow['subjects'] | QaPairRow['categories']) 
 
 function tokenize(value: string) {
   return normalizeComparableText(value).match(/[\p{L}\p{N}]+/gu) ?? [];
+}
+
+function scoreAnswerAgainstOptions(options: string[], answerText: string) {
+  if (options.length === 0) {
+    return 0;
+  }
+
+  if (resolveSuggestedOption(options, answerText)) {
+    return 1;
+  }
+
+  const multiSegments = splitMultiAnswerSegments(answerText);
+  if (multiSegments.length >= 2) {
+    const matchedSegments = multiSegments.filter((segment) => Boolean(resolveSuggestedOption(options, segment))).length;
+    if (matchedSegments > 0) {
+      return matchedSegments / multiSegments.length;
+    }
+  }
+
+  return Math.max(
+    ...options.map((option) =>
+      Math.max(
+        lexicalScore(option, answerText),
+        lexicalScore(answerText, option),
+      ),
+    ),
+  );
 }
 
 function lexicalScore(queryText: string, chunkText: string) {

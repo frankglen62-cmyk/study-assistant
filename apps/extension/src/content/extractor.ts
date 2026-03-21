@@ -1410,6 +1410,35 @@ export function installExtractorContentScript() {
       .trim();
   }
 
+  function isIgnoredClickableText(value: string): boolean {
+    const normalized = normalizeText(value).toLowerCase();
+    if (!normalized) {
+      return true;
+    }
+
+    return /^(?:clear my choice|flag question|check|not yet answered|not answered|answered|finish review|finish attempt|marked out of|mark \d+|marks?|submit|save|cancel|next page|previous page|time left|jump to|quiz navigation|response:?|your answer:?|answer:?|choose\.{0,3}|choose an option|select one:?|select one or more:?)$/i.test(
+      normalized,
+    );
+  }
+
+  function splitAnswerSegments(value: string): string[] {
+    const normalized = normalizeText(value);
+    if (!normalized) {
+      return [];
+    }
+
+    const segments = normalized
+      .split(/\s*(?:,|;|\/|\band\b|&|\+)\s*/i)
+      .map((segment) => normalizeText(segment))
+      .filter((segment) => segment.length >= 2);
+
+    if (segments.length < 2 || segments.length > 5) {
+      return [];
+    }
+
+    return Array.from(new Set(segments));
+  }
+
   function escapeSelectorValue(value: string): string {
     if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
       return CSS.escape(value);
@@ -1450,9 +1479,6 @@ export function installExtractorContentScript() {
     if (!targetText) {
       return { clicked: false, clickedText: null, matchMethod: 'no_answer' };
     }
-
-    const normalizedTarget = normalizeForMatch(targetText);
-    const lowerTarget = targetText.trim().toLowerCase();
 
     // Scope to the specific question container if available
     const scopedContainer = document.querySelector(`[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`);
@@ -1731,79 +1757,159 @@ export function installExtractorContentScript() {
       }
     }
 
-    if (clickables.length === 0) {
+    const filteredClickables = Array.from(
+      new Map(
+        clickables
+          .filter((clickable) => !isIgnoredClickableText(clickable.text))
+          .map((clickable) => {
+            const inputKey = clickable.input
+              ? clickable.input.id || clickable.input.name || clickable.input.value || clickable.normalized
+              : clickable.normalized;
+            return [`${inputKey}::${clickable.normalized}`, clickable] as const;
+          }),
+      ).values(),
+    );
+
+    if (filteredClickables.length === 0) {
       return { clicked: false, clickedText: null, matchMethod: 'no_clickables_found' };
     }
 
     // Match priority: exact → normalized exact → starts with → contains → fuzzy
-    let bestMatch: (typeof clickables)[number] | null = null;
-    let matchMethod = 'none';
+    function findBestClickableForText(matchText: string) {
+      const normalizedMatch = normalizeForMatch(matchText);
+      const lowerMatch = matchText.trim().toLowerCase();
 
-    // 1. Exact normalized match
-    for (const c of clickables) {
-      if (c.normalized === normalizedTarget) {
-        bestMatch = c;
-        matchMethod = 'exact';
-        break;
+      if (!normalizedMatch) {
+        return { bestMatch: null as (typeof filteredClickables)[number] | null, matchMethod: 'empty' };
       }
-    }
+
+      let bestMatch: (typeof filteredClickables)[number] | null = null;
+      let matchMethod = 'none';
+
+      // 1. Exact normalized match
+      for (const c of filteredClickables) {
+        if (c.normalized === normalizedMatch) {
+          bestMatch = c;
+          matchMethod = 'exact';
+          break;
+        }
+      }
 
     // 2. Lowercase trimmed match
-    if (!bestMatch) {
-      for (const c of clickables) {
-        if (c.text.trim().toLowerCase() === lowerTarget) {
-          bestMatch = c;
-          matchMethod = 'lowercase';
-          break;
+      if (!bestMatch) {
+        for (const c of filteredClickables) {
+          if (c.text.trim().toLowerCase() === lowerMatch) {
+            bestMatch = c;
+            matchMethod = 'lowercase';
+            break;
+          }
         }
       }
-    }
 
     // 3. Target starts with choice text or choice starts with target
-    if (!bestMatch) {
-      for (const c of clickables) {
-        if (normalizedTarget.startsWith(c.normalized) || c.normalized.startsWith(normalizedTarget)) {
-          bestMatch = c;
-          matchMethod = 'starts_with';
-          break;
+      if (!bestMatch) {
+        for (const c of filteredClickables) {
+          if (normalizedMatch.startsWith(c.normalized) || c.normalized.startsWith(normalizedMatch)) {
+            bestMatch = c;
+            matchMethod = 'starts_with';
+            break;
+          }
         }
       }
-    }
 
     // 4. Contains match
-    if (!bestMatch) {
-      for (const c of clickables) {
-        if (c.normalized.includes(normalizedTarget) || normalizedTarget.includes(c.normalized)) {
-          bestMatch = c;
-          matchMethod = 'contains';
-          break;
+      if (!bestMatch) {
+        for (const c of filteredClickables) {
+          if (c.normalized.includes(normalizedMatch) || normalizedMatch.includes(c.normalized)) {
+            bestMatch = c;
+            matchMethod = 'contains';
+            break;
+          }
+        }
+      }
+
+      // 5. Word-level fuzzy: check if most words in target appear in choice
+      if (!bestMatch) {
+        const targetWords = normalizedMatch.split(/\s+/).filter((word) => word.length > 2);
+        let bestScore = 0;
+
+        for (const c of filteredClickables) {
+          const choiceWords = new Set(c.normalized.split(/\s+/));
+          const matchCount = targetWords.filter((word) => choiceWords.has(word)).length;
+          const score = targetWords.length > 0 ? matchCount / targetWords.length : 0;
+
+          if (score > bestScore && score >= 0.6) {
+            bestScore = score;
+            bestMatch = c;
+            matchMethod = 'fuzzy';
+          }
+        }
+      }
+
+      return { bestMatch, matchMethod };
+    }
+
+    const hasCheckboxChoices = filteredClickables.some((clickable) => clickable.input?.type === 'checkbox');
+    const multiAnswerSegments = splitAnswerSegments(payload.answerText || targetText);
+
+    if (hasCheckboxChoices && multiAnswerSegments.length >= 2) {
+      const matchedSegments = multiAnswerSegments
+        .map((segment) => {
+          const result = findBestClickableForText(segment);
+          return result.bestMatch
+            ? {
+                match: result.bestMatch,
+              }
+            : null;
+        })
+        .filter((entry): entry is { match: (typeof filteredClickables)[number] } => Boolean(entry));
+
+      const distinctMatches = Array.from(
+        new Map(
+          matchedSegments.map((entry) => {
+            const inputKey = entry.match.input
+              ? entry.match.input.id || entry.match.input.name || entry.match.input.value || entry.match.normalized
+              : entry.match.normalized;
+            return [inputKey, entry] as const;
+          }),
+        ).values(),
+      );
+
+      if (distinctMatches.length === multiAnswerSegments.length) {
+        try {
+          for (const entry of distinctMatches) {
+            if (entry.match.input) {
+              if (!entry.match.input.checked) {
+                entry.match.input.focus();
+                entry.match.input.click();
+                entry.match.input.dispatchEvent(new Event('change', { bubbles: true }));
+                entry.match.input.dispatchEvent(new Event('input', { bubbles: true }));
+              }
+            } else {
+              entry.match.element.click();
+            }
+          }
+
+          return {
+            clicked: true,
+            clickedText: distinctMatches.map((entry) => entry.match.text).join(', '),
+            matchMethod: 'checkbox_multi',
+          };
+        } catch {
+          return {
+            clicked: false,
+            clickedText: distinctMatches.map((entry) => entry.match.text).join(', '),
+            matchMethod: 'checkbox_multi_error',
+          };
         }
       }
     }
 
-    // 5. Word-level fuzzy: check if most words in target appear in choice
-    if (!bestMatch) {
-      const targetWords = normalizedTarget.split(/\s+/).filter(w => w.length > 2);
-      let bestScore = 0;
-
-      for (const c of clickables) {
-        const choiceWords = new Set(c.normalized.split(/\s+/));
-        const matchCount = targetWords.filter(w => choiceWords.has(w)).length;
-        const score = targetWords.length > 0 ? matchCount / targetWords.length : 0;
-
-        if (score > bestScore && score >= 0.6) {
-          bestScore = score;
-          bestMatch = c;
-          matchMethod = 'fuzzy';
-        }
-      }
-    }
-
+    const { bestMatch, matchMethod } = findBestClickableForText(targetText);
     if (!bestMatch) {
       return { clicked: false, clickedText: null, matchMethod: 'no_match' };
     }
 
-    // Perform the click
     try {
       if (bestMatch.input && !bestMatch.input.checked) {
         bestMatch.input.focus();
@@ -1812,9 +1918,8 @@ export function installExtractorContentScript() {
         bestMatch.input.dispatchEvent(new Event('input', { bubbles: true }));
       } else if (!bestMatch.input) {
         bestMatch.element.click();
-      } else {
-        // Already checked, still report as clicked
       }
+
       return { clicked: true, clickedText: bestMatch.text, matchMethod };
     } catch {
       return { clicked: false, clickedText: bestMatch.text, matchMethod: 'click_error' };

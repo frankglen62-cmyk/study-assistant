@@ -114,4 +114,44 @@ describe('qa pair ranking', () => {
     expect(ranked[0]?.answer_text).toBe('Information Security Analyst');
     expect(ranked[0]?.question_text).toContain('$95,510');
   });
+
+  it('prefers the category-specific exact match when a generic duplicate has a different valid option', async () => {
+    const { rankQaPairRowsLocal } = await import('@/lib/ai/retrieval');
+
+    const rows = [
+      {
+        id: '55555555-5555-4555-8555-555555555555',
+        subject_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        category_id: null,
+        question_text: 'The unit of POWER is __________?',
+        answer_text: 'WATTS',
+        short_explanation: null,
+        keywords: [],
+        sort_order: 10,
+        updated_at: '2026-03-22T10:00:00.000Z',
+      },
+      {
+        id: '66666666-6666-4666-8666-666666666666',
+        subject_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        category_id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
+        question_text: 'The unit of POWER is __________?',
+        answer_text: 'all of the above',
+        short_explanation: null,
+        keywords: [],
+        sort_order: 278,
+        updated_at: '2026-03-19T00:24:14.000Z',
+      },
+    ];
+
+    const ranked = rankQaPairRowsLocal({
+      rows,
+      queryText: 'The unit of POWER is __________?',
+      options: ['Watts', 'Horsepower', 'All of the above'],
+      subjectNameFallback: 'Calculus-Based Physics 2',
+      categoryNameFallback: 'Quiz',
+    });
+
+    expect(ranked[0]?.answer_text).toBe('all of the above');
+    expect(ranked[0]?.category_id).toBe('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb');
+  });
 });

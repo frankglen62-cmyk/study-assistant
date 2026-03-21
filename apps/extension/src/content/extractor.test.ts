@@ -705,4 +705,73 @@ describe('extension extractor', () => {
     expect(autoClickResponse?.data?.matchMethod).toBe('fill_in_blank');
     expect((document.getElementById('q28-answer') as HTMLInputElement).value).toBe('Computer Network Architects');
   });
+
+  it('auto-selects all matching checkbox answers and ignores clear-my-choice controls', () => {
+    const chromeMock = createChromeMock();
+    vi.stubGlobal('chrome', chromeMock);
+
+    document.body.innerHTML = `
+      <main>
+        <article class="que multichoice">
+          <div class="info"><span class="no">Question 31</span></div>
+          <div class="content">
+            <div class="formulation clearfix" data-study-assistant-id="q31">
+              <div class="qtext">The 2 kinds of charge are ?</div>
+              <div class="answer">
+                <label for="q31-positive">
+                  <input id="q31-positive" data-study-assistant-id="q31" type="checkbox" name="q31" />
+                  Positive
+                </label>
+                <label for="q31-negative">
+                  <input id="q31-negative" data-study-assistant-id="q31" type="checkbox" name="q31" />
+                  Negative
+                </label>
+                <a href="#" class="ml-1">Clear my choice</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    `;
+
+    Array.from(document.querySelectorAll<HTMLElement>('*')).forEach((element) => {
+      vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+        width: 320,
+        height: 48,
+        top: 0,
+        left: 0,
+        right: 320,
+        bottom: 48,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      });
+    });
+
+    installExtractorContentScript();
+
+    const listener = chromeMock.__listeners[0];
+    let autoClickResponse: any = null;
+    listener?.(
+      {
+        type: 'EXTENSION/AUTO_CLICK_ANSWER',
+        payload: {
+          questionId: 'q31',
+          answerText: 'Positive, Negative',
+          suggestedOption: null,
+          options: ['Positive', 'Negative', 'Clear my choice'],
+        },
+      },
+      null,
+      (value) => {
+        autoClickResponse = value;
+      },
+    );
+
+    expect(autoClickResponse?.ok).toBe(true);
+    expect(autoClickResponse?.data?.clicked).toBe(true);
+    expect(autoClickResponse?.data?.matchMethod).toBe('checkbox_multi');
+    expect((document.getElementById('q31-positive') as HTMLInputElement).checked).toBe(true);
+    expect((document.getElementById('q31-negative') as HTMLInputElement).checked).toBe(true);
+  });
 });
