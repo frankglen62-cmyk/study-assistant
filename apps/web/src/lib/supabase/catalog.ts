@@ -45,9 +45,13 @@ export async function getActiveCatalog(): Promise<ActiveCatalog> {
     assertSupabaseResult(subjectsResponse.error, 'Failed to load subject catalog.');
     assertSupabaseResult(categoriesResponse.error, 'Failed to load category catalog.');
 
+    const parsedSubjects = parseArray(subjectsResponse.data ?? [], subjectRecordSchema, 'Subject catalog is invalid.');
+    const parsedCategories = parseArray(categoriesResponse.data ?? [], categoryRecordSchema, 'Category catalog is invalid.');
+
     const value = {
-      subjects: parseArray(subjectsResponse.data ?? [], subjectRecordSchema, 'Subject catalog is invalid.'),
-      categories: parseArray(categoriesResponse.data ?? [], categoryRecordSchema, 'Category catalog is invalid.'),
+      subjects: parsedSubjects,
+      // Subject picker and detector only need categories that still belong to a real subject.
+      categories: parsedCategories.filter((category) => category.subject_id !== null),
     };
 
     activeCatalogCache = {

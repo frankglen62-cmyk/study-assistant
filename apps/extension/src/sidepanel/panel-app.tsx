@@ -320,9 +320,9 @@ export function SidePanelApp() {
     setSubjectsLoading(true);
     setSubjectsError(null);
 
-    sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string }[] }>({
-      type: 'EXTENSION/GET_SUBJECTS',
-    })
+    sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string | null }[] }>({
+        type: 'EXTENSION/GET_SUBJECTS',
+      })
       .then((response) => {
         if (!active) return;
 
@@ -479,12 +479,12 @@ export function SidePanelApp() {
   }
 
   const refreshSubjectCatalog = useCallback(async () => {
-    if (!state || !isPaired) return;
+    if (!isPaired) return;
 
     setSubjectsLoading(true);
     setSubjectsError(null);
     try {
-      const response = await sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string }[] }>({
+      const response = await sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string | null }[] }>({
         type: 'EXTENSION/GET_SUBJECTS',
       });
       if (response.ok && response.data) {
@@ -500,7 +500,7 @@ export function SidePanelApp() {
     } finally {
       setSubjectsLoading(false);
     }
-  }, [isPaired, state]);
+  }, [isPaired]);
 
   function chooseSubject(subject: SubjectCatalogEntry) {
     setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
@@ -704,12 +704,12 @@ export function SidePanelApp() {
   }
 
   useEffect(() => {
-    if (!isPaired || subjectMode !== 'picker' || subjectsLoading || availableSubjects.length > 0) {
+    if (!isPaired || subjectMode !== 'picker' || subjectsLoading || availableSubjects.length > 0 || Boolean(subjectsError)) {
       return;
     }
 
     void refreshSubjectCatalog();
-  }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode, subjectsLoading]);
+  }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode, subjectsError, subjectsLoading]);
 
   /* ---------------------------------------------------------------- */
   /*  Render: Loading state                                            */

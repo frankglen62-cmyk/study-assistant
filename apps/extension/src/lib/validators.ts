@@ -10,7 +10,7 @@ export const catalogResponseSchema = z.object({
   categories: z.array(z.object({
     id: z.string(),
     name: z.string(),
-    subject_id: z.string(),
+    subject_id: z.string().nullable().optional().default(null),
   })),
 });
 
