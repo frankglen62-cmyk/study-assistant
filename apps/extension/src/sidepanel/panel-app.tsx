@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { confidenceToLevel, formatConfidence, formatDurationDetailed, normalizeAppUrl, normalizeOriginPattern } from '@study-assistant/shared-utils';
 import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assistant/shared-types';
@@ -13,7 +13,7 @@ import {
   type SubjectCatalogEntry,
 } from './subject-picker';
 import {
-  ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
+  Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
   RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft,
@@ -252,6 +252,7 @@ export function SidePanelApp() {
   const [subjectsError, setSubjectsError] = useState<string | null>(null);
   const [subjectsLastSyncedAt, setSubjectsLastSyncedAt] = useState<string | null>(null);
   const [workspaceView, setWorkspaceView] = useState<'controls' | 'answering'>('controls');
+  const subjectsLoadingRef = useRef(false);
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
   const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
   const [pairingCode, setPairingCode] = useState('');
@@ -496,8 +497,9 @@ export function SidePanelApp() {
   }
 
   const refreshSubjectCatalog = useCallback(async () => {
-    if (!isPaired || subjectsLoading) return;
+    if (!isPaired || subjectsLoadingRef.current) return;
 
+    subjectsLoadingRef.current = true;
     setSubjectsLoading(true);
     setSubjectsError(null);
     try {
@@ -516,9 +518,10 @@ export function SidePanelApp() {
       console.error(error);
       setSubjectsError('Could not refresh the subject list from the portal.');
     } finally {
+      subjectsLoadingRef.current = false;
       setSubjectsLoading(false);
     }
-  }, [isPaired, subjectsLoading]);
+  }, [isPaired]);
 
   function chooseSubject(subject: SubjectCatalogEntry) {
     setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
@@ -725,12 +728,12 @@ export function SidePanelApp() {
   }
 
   useEffect(() => {
-    if (!isPaired || subjectMode !== 'picker' || subjectsLoading || availableSubjects.length > 0 || Boolean(subjectsError)) {
+    if (!isPaired || subjectMode !== 'picker' || subjectsLoadingRef.current || availableSubjects.length > 0) {
       return;
     }
 
     void refreshSubjectCatalog();
-  }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode, subjectsError, subjectsLoading]);
+  }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode]);
 
   useEffect(() => {
     if (!isPaired || subjectMode !== 'picker' || !subjectPickerOpen) {
@@ -754,6 +757,18 @@ export function SidePanelApp() {
       window.removeEventListener('focus', handleWindowFocus);
     };
   }, [isPaired, refreshSubjectCatalog, subjectMode, subjectPickerOpen]);
+
+  useEffect(() => {
+    if (isPaired) {
+      return;
+    }
+
+    subjectsLoadingRef.current = false;
+    setAvailableSubjects([]);
+    setSubjectsLoading(false);
+    setSubjectsError(null);
+    setSubjectsLastSyncedAt(null);
+  }, [isPaired]);
 
   useEffect(() => {
     if (!isPaired || !manualSubject || availableSubjects.length === 0) {
@@ -802,11 +817,11 @@ export function SidePanelApp() {
     || state.lastSuggestion.detectedSubject
     || state.lastSuggestion.subject
     || 'Auto Detect';
-  const answerWorkspaceReadyLabel = manualSubject
-    ? 'Locked subject is saved and ready.'
+  const answeringModeLabel = manualSubject
+    ? 'Locked subject'
     : cachedSubject
-      ? 'Detected subject is ready to reuse.'
-      : 'Auto Detect will choose the subject when you search.';
+      ? 'Detected subject'
+      : 'Auto Detect';
 
   /* ---------------------------------------------------------------- */
   /*  Render                                                           */
@@ -933,14 +948,17 @@ export function SidePanelApp() {
               Answering
             </button>
           </div>
-          <div className="workspace-switcher__summary">
-            <strong>{showAnswerWorkspace ? activeSubjectLabel : 'Setup and detection controls'}</strong>
-            <span>
-              {showAnswerWorkspace
-                ? 'Find answers and review study results here.'
-                : 'Pick a subject, detect the right folder, and manage the session here.'}
-            </span>
-          </div>
+          {showControlsWorkspace ? (
+            <div className="workspace-switcher__summary">
+              <strong>Setup and detection controls</strong>
+              <span>{activeSubjectSummary}</span>
+            </div>
+          ) : (
+            <div className="workspace-switcher__subject">
+              <span>Answering subject</span>
+              <strong>{activeSubjectLabel}</strong>
+            </div>
+          )}
         </section>
       )}
 
@@ -1157,7 +1175,7 @@ export function SidePanelApp() {
                       </div>
 
                       <div className="subject-picker-results">
-                        {subjectsLoading ? (
+                        {subjectsLoading && availableSubjects.length === 0 ? (
                           <div className="subject-picker-empty">
                             <Loader2 size={14} className="animate-spin" />
                             <span>Loading your latest admin subject list...</span>
@@ -1170,7 +1188,7 @@ export function SidePanelApp() {
                                   ? `${subjectSuggestions.length} suggestion${subjectSuggestions.length === 1 ? '' : 's'}`
                                   : `${availableSubjects.length} subjects available`}
                               </span>
-                              <span>Click one subject below</span>
+                              <span>{subjectsLoading ? 'Refreshing…' : 'Click one subject below'}</span>
                             </div>
                             <div className="subject-suggestion-list">
                               {subjectSuggestions.map((subject) => {
@@ -1196,8 +1214,12 @@ export function SidePanelApp() {
                           </>
                         ) : (
                           <div className="subject-picker-empty">
-                            <Info size={14} />
-                            <span>No subjects matched that search yet.</span>
+                            {subjectsLoading ? <Loader2 size={14} className="animate-spin" /> : <Info size={14} />}
+                            <span>
+                              {availableSubjects.length === 0
+                                ? 'No portal subjects are available yet. Refresh after you add one in the admin portal.'
+                                : 'No subjects matched that search yet.'}
+                            </span>
                           </div>
                         )}
                       </div>
@@ -1349,7 +1371,6 @@ export function SidePanelApp() {
       {showAnswerWorkspace && (
         <SectionCard
           title="Find All Answers"
-          subtitle="This answering workspace keeps the main search button and study results near the top."
           icon={Sparkles}
           className="panel-card--primary"
           actions={(
@@ -1364,9 +1385,16 @@ export function SidePanelApp() {
         >
           <div className="answering-hero">
             <div className="answering-hero__summary">
-              <span className="answering-hero__eyebrow">Current answering subject</span>
+              <span className="answering-hero__eyebrow">Current subject</span>
               <strong>{activeSubjectLabel}</strong>
-              <p>{answerWorkspaceReadyLabel}</p>
+            </div>
+            <div className="answering-hero__pills">
+              <span className="answering-hero__pill">{answeringModeLabel}</span>
+              {quizTitle && (
+                <span className="answering-hero__pill">
+                  {quizTitle}{quizNumber ? ` (#${quizNumber})` : ''}
+                </span>
+              )}
             </div>
             <button
               className="action-button action-button--primary action-button--lg"
@@ -1423,13 +1451,6 @@ export function SidePanelApp() {
       )}
 
       {/* ======== PRIVACY STRIP ======== */}
-      {showAnswerWorkspace && (
-        <section className="privacy-strip">
-          <ShieldAlert size={13} className="shrink-0" style={{ color: 'var(--sa-accent)' }} />
-          <p>AI reads the current tab only when you click Detect or Find Answers.</p>
-        </section>
-      )}
-
       {/* ======== SITE ACCESS WARNING ======== */}
       {showControlsWorkspace && access && access.status !== 'granted' && (
         <SectionCard
