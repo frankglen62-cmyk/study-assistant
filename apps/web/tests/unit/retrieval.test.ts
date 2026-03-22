@@ -154,4 +154,44 @@ describe('qa pair ranking', () => {
     expect(ranked[0]?.answer_text).toBe('all of the above');
     expect(ranked[0]?.category_id).toBe('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb');
   });
+
+  it('prefers the exact duplicate with matching blank markers over the plain-text variant', async () => {
+    const { rankQaPairRowsLocal } = await import('@/lib/ai/retrieval');
+
+    const rows = [
+      {
+        id: '77777777-7777-4777-8777-777777777777',
+        subject_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        category_id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
+        question_text: 'The unit of POWER is ?',
+        answer_text: 'WATTs',
+        short_explanation: null,
+        keywords: [],
+        sort_order: 279,
+        updated_at: '2026-03-19T01:46:41.000Z',
+      },
+      {
+        id: '88888888-8888-4888-8888-888888888888',
+        subject_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+        category_id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
+        question_text: 'The unit of POWER is __________?',
+        answer_text: 'all of the above',
+        short_explanation: null,
+        keywords: [],
+        sort_order: 278,
+        updated_at: '2026-03-19T00:24:14.000Z',
+      },
+    ];
+
+    const ranked = rankQaPairRowsLocal({
+      rows,
+      queryText: 'The unit of POWER is __________?',
+      options: ['Watt', 'Kilowatt', 'all of the above'],
+      subjectNameFallback: 'Calculus-Based Physics 2',
+      categoryNameFallback: 'Quiz',
+    });
+
+    expect(ranked[0]?.question_text).toBe('The unit of POWER is __________?');
+    expect(ranked[0]?.answer_text).toBe('all of the above');
+  });
 });

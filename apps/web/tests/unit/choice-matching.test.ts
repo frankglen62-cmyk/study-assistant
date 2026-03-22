@@ -29,6 +29,22 @@ describe('question text equivalence', () => {
 });
 
 describe('choice matching', () => {
+  it('prefers question text with the same blank-marker structure', async () => {
+    const { scoreBlankStructureAlignment } = await import('@/lib/ai/choice-matching');
+
+    expect(
+      scoreBlankStructureAlignment(
+        'The unit of POWER is __________?',
+        'The unit of POWER is __________?',
+      ),
+    ).toBeGreaterThan(
+      scoreBlankStructureAlignment(
+        'The unit of POWER is __________?',
+        'The unit of POWER is ?',
+      ),
+    );
+  });
+
   it('ignores LMS control text like clear my choice when resolving an option', async () => {
     const { resolveSuggestedOption } = await import('@/lib/ai/choice-matching');
 

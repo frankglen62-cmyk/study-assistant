@@ -42,6 +42,34 @@ export function normalizeQuestionLookupSkeleton(value: string) {
     .trim();
 }
 
+export function countBlankMarkers(value: string) {
+  return normalizeQuestionLookupText(value).match(/\b_\b/g)?.length ?? 0;
+}
+
+export function scoreBlankStructureAlignment(queryText: string, candidateText: string) {
+  const queryBlankCount = countBlankMarkers(queryText);
+  const candidateBlankCount = countBlankMarkers(candidateText);
+
+  if (queryBlankCount === candidateBlankCount) {
+    return queryBlankCount > 0 ? 1 : 0.5;
+  }
+
+  if (queryBlankCount > 0 && candidateBlankCount === 0) {
+    return -1;
+  }
+
+  if (queryBlankCount === 0 && candidateBlankCount > 0) {
+    return -0.35;
+  }
+
+  const maxBlankCount = Math.max(queryBlankCount, candidateBlankCount);
+  if (maxBlankCount === 0) {
+    return 0.5;
+  }
+
+  return 1 - Math.abs(queryBlankCount - candidateBlankCount) / maxBlankCount;
+}
+
 export function isQuestionTextEquivalent(left: string, right: string) {
   const normalizedLeft = normalizeQuestionLookupText(left);
   const normalizedRight = normalizeQuestionLookupText(right);

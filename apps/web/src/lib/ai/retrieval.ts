@@ -8,11 +8,13 @@ import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { env } from '@/lib/env/server';
 import { createEmbedding } from '@/lib/ai/openai';
 import {
+  countBlankMarkers,
   isQuestionTextEquivalent,
   normalizeComparableText,
   normalizeQuestionLookupSkeleton,
   normalizeQuestionLookupText,
   resolveSuggestedOption,
+  scoreBlankStructureAlignment,
   splitMultiAnswerSegments,
 } from '@/lib/ai/choice-matching';
 import { RouteError } from '@/lib/http/route';
@@ -195,6 +197,14 @@ function rankQaPairRows(params: {
   const exactMatches = rankedRows
     .filter((row) => isExactQuestionMatch(params.queryText, row.question_text))
     .sort((left, right) => {
+      const blankAlignmentDelta =
+        scoreBlankStructureAlignment(params.queryText, right.question_text) -
+        scoreBlankStructureAlignment(params.queryText, left.question_text);
+
+      if (blankAlignmentDelta !== 0) {
+        return blankAlignmentDelta;
+      }
+
       const optionAlignmentDelta =
         scoreAnswerAgainstOptions(params.options ?? [], right.answer_text) -
         scoreAnswerAgainstOptions(params.options ?? [], left.answer_text);
@@ -217,6 +227,8 @@ function rankQaPairRows(params: {
     .sort(
       (left, right) =>
         right.similarity - left.similarity ||
+        scoreBlankStructureAlignment(params.queryText, right.question_text) -
+          scoreBlankStructureAlignment(params.queryText, left.question_text) ||
         Number(Boolean(right.category_id)) - Number(Boolean(left.category_id)) ||
         new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime(),
     );
@@ -283,9 +295,10 @@ function qaPairScore(params: {
   const normalizedQuestion = normalizeQuestionLookupText(params.pair.question_text);
   const normalizedQuerySkeleton = normalizeQuestionLookupSkeleton(params.queryText);
   const normalizedQuestionSkeleton = normalizeQuestionLookupSkeleton(params.pair.question_text);
+  const blankAlignment = scoreBlankStructureAlignment(params.queryText, params.pair.question_text);
 
   if (isQuestionTextEquivalent(params.queryText, params.pair.question_text)) {
-    return 0.995;
+    return Math.max(0, Math.min(0.995 + blankAlignment * 0.002, 0.999));
   }
 
   const questionScore = lexicalScore(params.queryText, params.pair.question_text);
@@ -338,8 +351,16 @@ function qaPairScore(params: {
     }
   }
 
-  const baseScore = Math.min(questionScore * 0.76 + answerScore * 0.14 + optionSupport * 0.16 + keywordScore + containmentBoost, 0.99);
-  return Math.max(0, baseScore - numberPenalty);
+  const blankPenalty =
+    countBlankMarkers(params.queryText) > 0 && countBlankMarkers(params.pair.question_text) === 0 ? 0.18 : 0;
+
+  const blankBonus = blankAlignment > 0.5 ? 0.06 : blankAlignment > 0 ? 0.03 : 0;
+
+  const baseScore = Math.min(
+    questionScore * 0.76 + answerScore * 0.14 + optionSupport * 0.16 + keywordScore + containmentBoost + blankBonus,
+    0.99,
+  );
+  return Math.max(0, baseScore - numberPenalty - blankPenalty);
 }
 
 async function retrieveByKeywordFallback(params: {
