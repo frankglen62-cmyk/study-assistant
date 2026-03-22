@@ -948,29 +948,6 @@ button, input, select, textarea { font: inherit; }
   gap: 10px;
 }
 
-.subject-picker-summary {
-  border-radius: var(--sa-radius-sm);
-  border: 1px solid rgba(56, 139, 253, 0.18);
-  background: rgba(56, 139, 253, 0.06);
-  padding: 10px 12px;
-}
-
-.subject-picker-summary span {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sa-muted);
-}
-
-.subject-picker-summary strong {
-  display: block;
-  font-size: 13px;
-  color: var(--sa-fg);
-}
-
 .subject-picker-field {
   display: flex;
   flex-direction: column;
@@ -1019,10 +996,59 @@ button, input, select, textarea { font: inherit; }
   color: var(--sa-muted);
 }
 
+.subject-combobox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subject-combobox__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  border-radius: var(--sa-radius-sm);
+  border: 1px solid var(--sa-border);
+  background: var(--sa-surface-2);
+  color: var(--sa-fg);
+  padding: 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--sa-transition);
+}
+
+.subject-combobox__trigger:hover:not(:disabled),
+.subject-combobox--open .subject-combobox__trigger {
+  border-color: rgba(56, 139, 253, 0.35);
+  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.12);
+}
+
+.subject-combobox__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: var(--sa-radius);
+  border: 1px solid rgba(56, 139, 253, 0.18);
+  background: rgba(20, 27, 38, 0.96);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+  padding: 10px;
+}
+
+.subject-combobox__chevron--open {
+  transform: rotate(180deg);
+}
+
 .subject-picker-results {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
 }
 
 .subject-picker-results__meta {
@@ -1068,9 +1094,23 @@ button, input, select, textarea { font: inherit; }
   color: var(--sa-fg);
 }
 
+.subject-suggestion__content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .subject-suggestion__name {
   font-size: 12px;
   font-weight: 600;
+}
+
+.subject-suggestion__meta {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
 }
 
 .subject-picker-empty {
@@ -1083,6 +1123,29 @@ button, input, select, textarea { font: inherit; }
   padding: 10px 12px;
   font-size: 11px;
   color: var(--sa-muted);
+}
+
+.subject-picker-selection {
+  border-radius: var(--sa-radius-sm);
+  border: 1px solid rgba(56, 139, 253, 0.16);
+  background: rgba(56, 139, 253, 0.05);
+  padding: 10px 12px;
+}
+
+.subject-picker-selection span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
+}
+
+.subject-picker-selection strong {
+  display: block;
+  font-size: 13px;
+  color: var(--sa-fg);
 }
 
 .subject-picker-actions {

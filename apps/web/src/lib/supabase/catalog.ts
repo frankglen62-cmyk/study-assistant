@@ -7,10 +7,15 @@ export interface ActiveCatalog {
   categories: CategoryRecord[];
 }
 
-const CATALOG_CACHE_TTL_MS = 30_000;
+const CATALOG_CACHE_TTL_MS = 3_000;
 
 let activeCatalogCache: { value: ActiveCatalog; expiresAt: number } | null = null;
 let activeCatalogPromise: Promise<ActiveCatalog> | null = null;
+
+export function invalidateActiveCatalogCache() {
+  activeCatalogCache = null;
+  activeCatalogPromise = null;
+}
 
 export async function getActiveCatalog(): Promise<ActiveCatalog> {
   const now = Date.now();

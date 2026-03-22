@@ -4,6 +4,8 @@ export const catalogResponseSchema = z.object({
   subjects: z.array(z.object({
     id: z.string(),
     name: z.string(),
+    slug: z.string().nullable().optional(),
+    course_code: z.string().nullable().optional(),
   })),
   categories: z.array(z.object({
     id: z.string(),

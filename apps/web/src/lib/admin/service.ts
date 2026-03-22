@@ -16,9 +16,11 @@ import type {
 import { slugify } from '@study-assistant/shared-utils';
 
 import { applyWalletSeconds } from '@/lib/billing/wallet';
+import { invalidatePreloadedQaPairCache } from '@/lib/ai/retrieval';
 import { RouteError } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
+import { invalidateActiveCatalogCache } from '@/lib/supabase/catalog';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 import { getProfileWithWalletByUserId, setUserAccountStatusAtomic } from '@/lib/supabase/users';
 
@@ -307,6 +309,8 @@ export async function createSubject(input: AdminSubjectMutationRequest & AuditCo
     userAgent: input.userAgent,
   });
 
+  invalidateActiveCatalogCache();
+
   return {
     subjectId: subject.id,
     folderId: rootFolder.data!.id,
@@ -365,6 +369,8 @@ export async function updateSubject(
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
   });
+
+  invalidateActiveCatalogCache();
 
   return {
     subjectId: input.subjectId,
@@ -471,6 +477,9 @@ export async function deleteSubjectLibrary(input: AuditContext & { subjectId: st
     userAgent: input.userAgent,
   });
 
+  invalidateActiveCatalogCache();
+  invalidatePreloadedQaPairCache(input.subjectId);
+
   return {
     subjectId: input.subjectId,
     message: 'Subject folder deleted successfully.',
@@ -511,6 +520,8 @@ export async function createCategory(input: AdminCategoryMutationRequest & Audit
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
   });
+
+  invalidateActiveCatalogCache();
 
   return {
     categoryId: inserted.data!.id,
@@ -568,6 +579,8 @@ export async function updateCategory(
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
   });
+
+  invalidateActiveCatalogCache();
 
   return {
     categoryId: input.categoryId,
@@ -999,6 +1012,8 @@ export async function createSubjectQaPair(input: AdminSubjectQaPairCreateRequest
     userAgent: input.userAgent,
   });
 
+  invalidatePreloadedQaPairCache(input.subjectId);
+
   return {
     pairId: inserted.data!.id,
     message: 'Subject Q&A pair created successfully.',
@@ -1064,6 +1079,8 @@ export async function updateSubjectQaPair(
       userAgent: input.userAgent,
     });
 
+    invalidatePreloadedQaPairCache(input.subjectId);
+
     return {
       pairId: input.pairId,
       message: 'Subject Q&A pair updated successfully.',
@@ -1099,6 +1116,8 @@ export async function updateSubjectQaPair(
       userAgent: input.userAgent,
     });
 
+    invalidatePreloadedQaPairCache(existing.subject_id);
+
     return {
       pairId: input.pairId,
       message: `Subject Q&A pair ${input.isActive ? 'activated' : 'deactivated'} successfully.`,
@@ -1129,6 +1148,8 @@ export async function updateSubjectQaPair(
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
   });
+
+  invalidatePreloadedQaPairCache(existing.subject_id);
 
   return {
     pairId: input.pairId,

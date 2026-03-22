@@ -101,4 +101,84 @@ describe('subject detection fast path', () => {
     expect(result.reasoning).toContain('course-code match');
     expect(openAiMocks.createStructuredResponse).not.toHaveBeenCalled();
   });
+
+  it('prefers the explicit LMS course heading before generic question keywords', async () => {
+    const { detectSubjectCategory } = await import('@/lib/ai/detection');
+
+    const result = await detectSubjectCategory({
+      subjects: [
+        {
+          id: '11111111-1111-4111-8111-111111111111',
+          name: 'Information Assurance and Security 2',
+          slug: 'information-assurance-and-security-2',
+          course_code: 'UGRD-IT6206',
+          department: null,
+          description: null,
+          keywords: ['information security', 'confidentiality', 'integrity'],
+          url_patterns: ['information-assurance', 'it6206'],
+          is_active: true,
+        },
+        {
+          id: '22222222-2222-4222-8222-222222222222',
+          name: 'Information Management',
+          slug: 'information-management',
+          course_code: 'UGRD-ITE6220',
+          department: null,
+          description: null,
+          keywords: ['management systems', 'data sets', 'employee number'],
+          url_patterns: ['information-management', 'ite6220'],
+          is_active: true,
+        },
+      ],
+      categories: [
+        {
+          id: '33333333-3333-4333-8333-333333333333',
+          subject_id: '22222222-2222-4222-8222-222222222222',
+          name: 'Quiz',
+          slug: 'quiz',
+          default_keywords: ['quiz', 'attempt', 'review'],
+          is_active: true,
+        },
+      ],
+      pageSignals: {
+        pageUrl: 'https://semestralexam.amaes.com/2522/mod/quiz/attempt.php?attempt=999&cmid=5410&page=1',
+        pageDomain: 'semestralexam.amaes.com',
+        pageTitle: 'SEMESTRALEXAM 2522(PSCS) | UGRD-ITE6220 Information Management',
+        headings: ['UGRD-ITE6220 Information Management', 'Prelim Exam'],
+        breadcrumbs: ['Home', 'My courses', 'UGRD-ITE6220-2522S', 'Prelim Exam'],
+        visibleLabels: ['Question 1'],
+        visibleTextExcerpt: 'Management systems mimic human expertise to identify patterns in large data sets.',
+        questionText: 'Management systems mimic human expertise to identify patterns in large data sets.',
+        options: ['True', 'False'],
+        questionCandidates: [
+          {
+            id: 'question-1',
+            prompt: 'Management systems mimic human expertise to identify patterns in large data sets.',
+            options: ['True', 'False'],
+            contextLabel: 'Question 1',
+          },
+        ],
+        diagnostics: {
+          explicitQuestionBlockCount: 1,
+          structuredQuestionBlockCount: 1,
+          groupedInputCount: 1,
+          promptCandidateCount: 1,
+          questionCandidateCount: 1,
+          visibleOptionCount: 2,
+          courseCodeCount: 1,
+        },
+        courseCodes: ['UGRD-ITE6220'],
+        extractedAt: new Date().toISOString(),
+      },
+      manualSubject: '',
+      manualCategory: '',
+      sessionSubjectId: '11111111-1111-4111-8111-111111111111',
+      sessionCategoryId: null,
+      screenshotDataUrl: null,
+    });
+
+    expect(result.subject?.name).toBe('Information Management');
+    expect(result.reasoning).toContain('Page header');
+    expect(openAiMocks.createStructuredResponse).not.toHaveBeenCalled();
+  });
 });

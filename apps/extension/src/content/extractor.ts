@@ -1200,11 +1200,51 @@ export function installExtractorContentScript() {
   }
 
   function extractBreadcrumbs(): string[] {
-    return Array.from(document.querySelectorAll('nav[aria-label*="breadcrumb" i] a, nav[aria-label*="breadcrumb" i] li'))
+    return Array.from(
+      document.querySelectorAll(
+        [
+          'nav[aria-label*="breadcrumb" i] a',
+          'nav[aria-label*="breadcrumb" i] li',
+          '.breadcrumb a',
+          '.breadcrumb li',
+          '.breadcrumb-item',
+          '.breadcrumb-item a',
+          '.breadcrumb-nav a',
+          '.breadcrumb-nav li',
+          '.page-context-header .breadcrumb a',
+          '.page-context-header .breadcrumb li',
+          '[data-region="page-header"] .breadcrumb a',
+          '[data-region="page-header"] .breadcrumb li',
+        ].join(', '),
+      ),
+    )
       .filter((node) => isElementVisible(node))
       .map((node) => normalizeText(node.textContent ?? ''))
       .filter(Boolean)
       .slice(0, 12);
+  }
+
+  function extractCourseHeadingCandidates(): string[] {
+    return Array.from(
+      document.querySelectorAll(
+        [
+          '.page-header-headings h1',
+          '.page-header-headings h2',
+          '.page-context-header h1',
+          '.page-context-header h2',
+          '[data-region="page-header"] h1',
+          '[data-region="page-header"] h2',
+          '.activity-header h1',
+          '.activity-header h2',
+          'h1',
+          'h2',
+        ].join(', '),
+      ),
+    )
+      .filter((node) => isElementVisible(node))
+      .map((node) => normalizeText(node.textContent ?? ''))
+      .filter(Boolean)
+      .slice(0, 16);
   }
 
   function detectQuizMeta(): { quizTitle: string | null; quizNumber: string | null } {
@@ -1243,13 +1283,22 @@ export function installExtractorContentScript() {
   }
 
   function buildSignals() {
-    const headings = collectTexts('h1, h2, h3');
+    const headings = Array.from(
+      new Set([
+        ...extractCourseHeadingCandidates(),
+        ...collectTexts('h1, h2, h3'),
+      ]),
+    ).slice(0, 20);
+    const breadcrumbs = extractBreadcrumbs();
     const visibleLabels = collectTexts('label, button, legend, th');
     const visibleTextExcerpt = collectVisibleText();
     const extractedQuestions = extractQuestionCandidates();
     const questionCandidates = extractedQuestions.candidates;
     const questionText = extractQuestionText(questionCandidates);
-    const courseCodeSource = [document.title, ...headings, ...extractBreadcrumbs(), visibleTextExcerpt].join(' ');
+    const primaryHeading = headings[0] ?? '';
+    const pageTitle = Array.from(new Set([document.title, primaryHeading].map((value) => normalizeText(value)).filter(Boolean))).join(' | ')
+      || window.location.hostname;
+    const courseCodeSource = [pageTitle, ...headings, ...breadcrumbs, visibleTextExcerpt].join(' ');
     const courseCodes = Array.from(
       new Set(
         (courseCodeSource.match(courseCodePattern) ?? [])
@@ -1263,9 +1312,9 @@ export function installExtractorContentScript() {
     return {
       pageUrl: window.location.href,
       pageDomain: window.location.hostname,
-      pageTitle: document.title || window.location.hostname,
+      pageTitle,
       headings,
-      breadcrumbs: extractBreadcrumbs(),
+      breadcrumbs,
       visibleLabels,
       visibleTextExcerpt,
       questionText,

@@ -8,6 +8,11 @@ import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionStat
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
 import {
+  getSubjectDisplayLabel,
+  getSubjectSuggestions,
+  type SubjectCatalogEntry,
+} from './subject-picker';
+import {
   ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
@@ -239,10 +244,12 @@ export function SidePanelApp() {
   const [overrideDraft, setOverrideDraft] = useState<ManualOverridePayload>({ subject: '', category: '' });
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [siteAccessMessage, setSiteAccessMessage] = useState<string | null>(null);
-  const [availableSubjects, setAvailableSubjects] = useState<{ id: string; name: string }[]>([]);
+  const [availableSubjects, setAvailableSubjects] = useState<SubjectCatalogEntry[]>([]);
   const [subjectMode, setSubjectMode] = useState<'auto' | 'picker'>('auto');
   const [subjectSearch, setSubjectSearch] = useState('');
+  const [subjectPickerOpen, setSubjectPickerOpen] = useState(false);
   const [subjectsLoading, setSubjectsLoading] = useState(false);
+  const [subjectsError, setSubjectsError] = useState<string | null>(null);
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
   const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
   const [pairingCode, setPairingCode] = useState('');
@@ -272,6 +279,7 @@ export function SidePanelApp() {
       category: state.session.manualCategory,
     });
     setSubjectMode(state.session.manualSubject ? 'picker' : 'auto');
+    setSubjectPickerOpen(Boolean(state.session.manualSubject));
     setDisplayRemainingSeconds(state.creditsRemainingSeconds);
   }, [
     state?.appBaseUrl,
@@ -304,13 +312,15 @@ export function SidePanelApp() {
   useEffect(() => {
     if (!isPaired || !state) {
       setAvailableSubjects([]);
+      setSubjectsError(null);
       return;
     }
 
     let active = true;
     setSubjectsLoading(true);
+    setSubjectsError(null);
 
-    sendExtensionMessage<{ subjects: { id: string; name: string }[]; categories: { id: string; name: string; subject_id: string }[] }>({
+    sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string }[] }>({
       type: 'EXTENSION/GET_SUBJECTS',
     })
       .then((response) => {
@@ -322,11 +332,13 @@ export function SidePanelApp() {
         }
 
         setAvailableSubjects([]);
+        setSubjectsError(response.error ?? 'Could not load the latest subject list from the portal.');
       })
       .catch((error) => {
         console.error(error);
         if (active) {
           setAvailableSubjects([]);
+          setSubjectsError('Could not load the latest subject list from the portal.');
         }
       })
       .finally(() => {
@@ -395,11 +407,12 @@ export function SidePanelApp() {
   const siteAccessGranted = access?.status === 'granted';
   const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
   const isFullAutoOn = state?.autoPilotEnabled ?? false;
-  const normalizedSubjectSearch = subjectSearch.trim().toLowerCase();
-  const filteredSubjects = availableSubjects.filter((subject) =>
-    subject.name.toLowerCase().includes(normalizedSubjectSearch),
-  );
-  const subjectSuggestions = (normalizedSubjectSearch ? filteredSubjects : availableSubjects).slice(0, 8);
+  const subjectSuggestions = getSubjectSuggestions(availableSubjects, subjectSearch, 10);
+  const selectedSubjectEntry =
+    availableSubjects.find((subject) => subject.name === overrideDraft.subject)
+    ?? availableSubjects.find((subject) => subject.name === manualSubject)
+    ?? null;
+  const selectedSubjectLabel = selectedSubjectEntry ? getSubjectDisplayLabel(selectedSubjectEntry) : overrideDraft.subject || manualSubject || '';
   const activeSubjectSummary = manualSubject
     ? `Locked: ${manualSubject}`
     : cachedSubject
@@ -465,38 +478,59 @@ export function SidePanelApp() {
     });
   }
 
-  async function refreshSubjectCatalog() {
+  const refreshSubjectCatalog = useCallback(async () => {
     if (!state || !isPaired) return;
 
     setSubjectsLoading(true);
+    setSubjectsError(null);
     try {
-      const response = await sendExtensionMessage<{ subjects: { id: string; name: string }[]; categories: { id: string; name: string; subject_id: string }[] }>({
+      const response = await sendExtensionMessage<{ subjects: SubjectCatalogEntry[]; categories: { id: string; name: string; subject_id: string }[] }>({
         type: 'EXTENSION/GET_SUBJECTS',
       });
-      setAvailableSubjects(response.ok && response.data ? response.data.subjects ?? [] : []);
+      if (response.ok && response.data) {
+        setAvailableSubjects(response.data.subjects ?? []);
+        return;
+      }
+
+      setAvailableSubjects([]);
+      setSubjectsError(response.error ?? 'Could not refresh the subject list from the portal.');
     } catch (error) {
       console.error(error);
+      setSubjectsError('Could not refresh the subject list from the portal.');
     } finally {
       setSubjectsLoading(false);
     }
-  }
+  }, [isPaired, state]);
 
-  function chooseSubject(subjectName: string) {
-    setOverrideDraft((current) => ({ ...current, subject: subjectName, category: '' }));
-    setSubjectSearch(subjectName);
+  function chooseSubject(subject: SubjectCatalogEntry) {
+    setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
+    setSubjectSearch(getSubjectDisplayLabel(subject));
+    setSubjectPickerOpen(false);
   }
 
   function updateSubjectSearch(value: string) {
-    const normalizedValue = value.trim().toLowerCase();
-    const exactMatch = availableSubjects.find((subject) => subject.name.toLowerCase() === normalizedValue);
-
     setSubjectSearch(value);
+    setSubjectPickerOpen(true);
     setOverrideDraft((current) => {
+      const normalizedValue = value.trim().toLowerCase();
+      if (!normalizedValue) {
+        return current;
+      }
+
+      const exactMatch = availableSubjects.find((subject) => {
+        const displayLabel = getSubjectDisplayLabel(subject).toLowerCase();
+        return displayLabel === normalizedValue || subject.name.toLowerCase() === normalizedValue;
+      });
       if (exactMatch) {
         return { ...current, subject: exactMatch.name, category: '' };
       }
 
-      if (normalizedValue && current.subject && current.subject.toLowerCase() !== normalizedValue) {
+      const currentDisplayLabel = selectedSubjectEntry ? getSubjectDisplayLabel(selectedSubjectEntry).toLowerCase() : '';
+      if (
+        current.subject &&
+        normalizedValue !== current.subject.toLowerCase() &&
+        normalizedValue !== currentDisplayLabel
+      ) {
         return { ...current, subject: '', category: '' };
       }
 
@@ -507,6 +541,7 @@ export function SidePanelApp() {
   async function enableAutoDetect() {
     setSubjectMode('auto');
     setSubjectSearch('');
+    setSubjectPickerOpen(false);
     setOverrideDraft({ subject: '', category: '' });
 
     await runAction('EXTENSION/SET_MANUAL_OVERRIDE', async () => {
@@ -523,6 +558,9 @@ export function SidePanelApp() {
     }
 
     await confirmOverride();
+    setSubjectPickerOpen(false);
+    const nextSelectedSubject = availableSubjects.find((subject) => subject.name === overrideDraft.subject) ?? null;
+    setSubjectSearch(nextSelectedSubject ? getSubjectDisplayLabel(nextSelectedSubject) : '');
   }
 
   async function unpairBrowser() {
@@ -664,6 +702,14 @@ export function SidePanelApp() {
     const targetUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistant-web.vercel.app');
     await chrome.tabs.create({ url: targetUrl });
   }
+
+  useEffect(() => {
+    if (!isPaired || subjectMode !== 'picker' || subjectsLoading || availableSubjects.length > 0) {
+      return;
+    }
+
+    void refreshSubjectCatalog();
+  }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode, subjectsLoading]);
 
   /* ---------------------------------------------------------------- */
   /*  Render: Loading state                                            */
@@ -950,7 +996,10 @@ export function SidePanelApp() {
             <button
               type="button"
               className={`subject-mode-toggle__button ${subjectMode === 'picker' ? 'subject-mode-toggle__button--active' : ''}`}
-              onClick={() => setSubjectMode('picker')}
+              onClick={() => {
+                setSubjectMode('picker');
+                setSubjectPickerOpen(true);
+              }}
               disabled={pendingAction !== null}
             >
               Subject Picker
@@ -959,65 +1008,90 @@ export function SidePanelApp() {
 
           {subjectMode === 'picker' ? (
             <div className="subject-picker-panel">
-              <div className="subject-picker-summary">
-                <span>Selected subject</span>
-                <strong>{overrideDraft.subject || manualSubject || cachedSubject || 'Auto detect is active'}</strong>
-              </div>
-
               <label className="subject-picker-field">
-                <span>Search subjects</span>
-                <div className="subject-picker-search">
-                  <Search size={14} />
-                  <input
-                    value={subjectSearch}
-                    onChange={(event) => updateSubjectSearch(event.target.value)}
-                    onKeyDown={(event) => {
-                      const firstSuggestion = subjectSuggestions[0];
-                      if (event.key === 'Enter' && firstSuggestion) {
-                        event.preventDefault();
-                        chooseSubject(firstSuggestion.name);
-                      }
-                    }}
-                    placeholder="Type at least 2 letters to filter subjects"
-                  />
+                <span>Pick one real subject from your admin portal list</span>
+                <div className={`subject-combobox ${subjectPickerOpen ? 'subject-combobox--open' : ''}`}>
+                  <button
+                    type="button"
+                    className="subject-combobox__trigger"
+                    onClick={() => setSubjectPickerOpen((current) => !current)}
+                  >
+                    <span>{selectedSubjectLabel || 'Open the subject list'}</span>
+                    <ChevronDown size={14} className={subjectPickerOpen ? 'subject-combobox__chevron--open' : ''} />
+                  </button>
+
+                  {subjectPickerOpen && (
+                    <div className="subject-combobox__menu">
+                      <div className="subject-picker-search">
+                        <Search size={14} />
+                        <input
+                          value={subjectSearch}
+                          onChange={(event) => updateSubjectSearch(event.target.value)}
+                          onKeyDown={(event) => {
+                            const firstSuggestion = subjectSuggestions[0];
+                            if (event.key === 'Enter' && firstSuggestion) {
+                              event.preventDefault();
+                              chooseSubject(firstSuggestion);
+                            }
+                          }}
+                          placeholder="Type 2+ letters, like CA for Calculus"
+                          autoFocus
+                        />
+                      </div>
+
+                      <div className="subject-picker-results">
+                        {subjectsLoading ? (
+                          <div className="subject-picker-empty">
+                            <Loader2 size={14} className="animate-spin" />
+                            <span>Loading your latest admin subject list...</span>
+                          </div>
+                        ) : subjectSuggestions.length > 0 ? (
+                          <>
+                            <div className="subject-picker-results__meta">
+                              <span>
+                                {subjectSearch.trim()
+                                  ? `${subjectSuggestions.length} suggestion${subjectSuggestions.length === 1 ? '' : 's'}`
+                                  : `${availableSubjects.length} subjects available`}
+                              </span>
+                              <span>Click one subject below</span>
+                            </div>
+                            <div className="subject-suggestion-list">
+                              {subjectSuggestions.map((subject) => {
+                                const isSelected = overrideDraft.subject === subject.name;
+                                return (
+                                  <button
+                                    key={subject.id}
+                                    type="button"
+                                    className={`subject-suggestion ${isSelected ? 'subject-suggestion--active' : ''}`}
+                                    onClick={() => chooseSubject(subject)}
+                                  >
+                                    <div className="subject-suggestion__content">
+                                      <span className="subject-suggestion__name">{subject.name}</span>
+                                      {subject.course_code && (
+                                        <span className="subject-suggestion__meta">{subject.course_code}</span>
+                                      )}
+                                    </div>
+                                    {isSelected && <CheckCircle2 size={14} />}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="subject-picker-empty">
+                            <Info size={14} />
+                            <span>No subjects matched that search yet.</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </label>
 
-              <div className="subject-picker-results">
-                {subjectsLoading ? (
-                  <div className="subject-picker-empty">
-                    <Loader2 size={14} className="animate-spin" />
-                    <span>Loading your latest admin subject list...</span>
-                  </div>
-                ) : subjectSuggestions.length > 0 ? (
-                  <>
-                    <div className="subject-picker-results__meta">
-                      <span>{normalizedSubjectSearch ? `${filteredSubjects.length} matches` : `${availableSubjects.length} subjects available`}</span>
-                      <span>Click one subject to lock it</span>
-                    </div>
-                    <div className="subject-suggestion-list">
-                      {subjectSuggestions.map((subject) => {
-                        const isSelected = overrideDraft.subject === subject.name;
-                        return (
-                          <button
-                            key={subject.id}
-                            type="button"
-                            className={`subject-suggestion ${isSelected ? 'subject-suggestion--active' : ''}`}
-                            onClick={() => chooseSubject(subject.name)}
-                          >
-                            <span className="subject-suggestion__name">{subject.name}</span>
-                            {isSelected && <CheckCircle2 size={14} />}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </>
-                ) : (
-                  <div className="subject-picker-empty">
-                    <Info size={14} />
-                    <span>No subjects matched your search. Clear the search or refresh the list.</span>
-                  </div>
-                )}
+              <div className="subject-picker-selection">
+                <span>Chosen subject</span>
+                <strong>{selectedSubjectLabel || 'Nothing selected yet'}</strong>
               </div>
 
               <div className="subject-picker-actions">
@@ -1039,8 +1113,14 @@ export function SidePanelApp() {
                 </button>
               </div>
 
+              {subjectsError && (
+                <div className="notice notice--warning">
+                  <p>{subjectsError}</p>
+                </div>
+              )}
+
               <div className="notice notice--info">
-                <p>Once selected, Find All Answers will reuse that subject and skip an extra subject-detection pass.</p>
+                <p>Once selected, Detection Summary and Find All Answers will reuse that subject until you switch back to Auto Detect.</p>
               </div>
             </div>
           ) : (
@@ -1174,7 +1254,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== DETECTION SUMMARY (always visible when available) ======== */}
-      {isPaired && siteAccessGranted && (hasSuggestion || cachedSubject) && (
+      {isPaired && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
         <div className="detection-summary-card">
           <div className="detection-summary__header">
             <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />

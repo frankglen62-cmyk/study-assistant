@@ -51,6 +51,20 @@ function countTokenMatches(tokens: Set<string>, candidates: string[]) {
   return candidates.reduce((count, candidate) => count + (tokens.has(candidate) ? 1 : 0), 0);
 }
 
+function buildPageChromeBlocks(signals: ExtensionPageSignals) {
+  return Array.from(
+    new Set(
+      [
+        signals.pageTitle,
+        ...signals.headings,
+        ...signals.breadcrumbs,
+      ]
+        .map((value) => normalize(value))
+        .filter(Boolean),
+    ),
+  );
+}
+
 function buildSubjectSignalSet(subject: SubjectRecord) {
   const name = normalize(subject.name);
   const slug = normalize(subject.slug);
@@ -92,6 +106,88 @@ function buildCategorySignalSet(category: CategoryRecord) {
       ),
     ),
   };
+}
+
+function findExplicitPageChromeSubject(subjects: SubjectRecord[], signals: ExtensionPageSignals) {
+  const blocks = buildPageChromeBlocks(signals);
+  if (blocks.length === 0) {
+    return null;
+  }
+
+  const ranked = subjects
+    .map((subject) => {
+      const subjectSignals = buildSubjectSignalSet(subject);
+      const nameTokens = tokenize(subject.name).filter((token) => token.length >= 4);
+
+      let bestScore = 0;
+      let bestReason = '';
+
+      for (const block of blocks) {
+        const compactBlock = normalizeCompact(block);
+        const blockTokens = new Set(tokenize(block));
+        const exactCourseCode =
+          Boolean(subjectSignals.compactCourseCode) && compactBlock.includes(subjectSignals.compactCourseCode);
+        const exactName = Boolean(subjectSignals.name) && block.includes(subjectSignals.name);
+        const exactSlug = Boolean(subjectSignals.slug) && block.includes(subjectSignals.slug);
+        const nameTokenMatches = countTokenMatches(blockTokens, nameTokens);
+        const tokenCoverage = nameTokens.length > 0 ? nameTokenMatches / nameTokens.length : 0;
+
+        let score = 0;
+        if (exactCourseCode) {
+          score += 0.72;
+        }
+        if (exactName) {
+          score += 0.54;
+        }
+        if (exactSlug) {
+          score += 0.32;
+        }
+        score += Math.min(nameTokenMatches * 0.08, 0.24);
+
+        if (exactCourseCode && (exactName || tokenCoverage >= 0.5)) {
+          score += 0.18;
+        } else if (exactName && tokenCoverage >= 0.5) {
+          score += 0.1;
+        }
+
+        if (score > bestScore) {
+          bestScore = clamp(score, 0, 0.99);
+          bestReason = exactCourseCode
+            ? 'Page header and course-code match identified the catalog subject directly.'
+            : exactName || exactSlug
+              ? 'Page header matched the catalog subject name directly.'
+              : 'Page header tokens strongly matched the catalog subject.';
+        }
+      }
+
+      return {
+        subject,
+        score: bestScore,
+        reasoning: bestReason,
+        exactCourseCode: blocks.some((block) => {
+          const compactBlock = normalizeCompact(block);
+          return Boolean(subjectSignals.compactCourseCode) && compactBlock.includes(subjectSignals.compactCourseCode);
+        }),
+      };
+    })
+    .sort((left, right) => right.score - left.score);
+
+  const top = ranked[0];
+  const second = ranked[1];
+  if (!top) {
+    return null;
+  }
+
+  const gap = top.score - (second?.score ?? 0);
+  if (top.exactCourseCode && top.score >= 0.78) {
+    return top;
+  }
+
+  if (top.score >= 0.82 && gap >= 0.08) {
+    return top;
+  }
+
+  return null;
 }
 
 function findSubjectByLooseMatch(subjects: SubjectRecord[], value: string) {
@@ -293,6 +389,29 @@ export async function detectSubjectCategory(params: {
   const topSubject = rankedSubjects[0];
   const secondSubject = rankedSubjects[1];
   const subjectGap = topSubject ? topSubject.score - (secondSubject?.score ?? 0) : 0;
+  const explicitPageChromeSubject = findExplicitPageChromeSubject(params.subjects, params.pageSignals);
+
+  if (explicitPageChromeSubject) {
+    const explicitCategories = params.categories.filter(
+      (category) => category.subject_id === explicitPageChromeSubject.subject.id || category.subject_id === null,
+    );
+    const explicitCategory = explicitCategories
+      .map((category) => ({
+        category,
+        score: scoreCategory(category, normalizedPage, params.pageSignals),
+      }))
+      .sort((left, right) => right.score - left.score)[0];
+
+    return {
+      subject: explicitPageChromeSubject.subject,
+      category: explicitCategory?.score ? explicitCategory.category : null,
+      subjectConfidence: explicitPageChromeSubject.score,
+      categoryConfidence: explicitCategory?.score ?? null,
+      detectionMode: 'auto' as const,
+      warning: null,
+      reasoning: explicitPageChromeSubject.reasoning,
+    };
+  }
 
   // Reuse the session subject only while the current page still resembles it.
   if (params.sessionSubjectId) {

@@ -64,12 +64,32 @@ interface QaPairRow {
 
 export type PreloadedQaPairRow = QaPairRow;
 
-const QA_PRELOAD_CACHE_TTL_MS = 30_000;
+const QA_PRELOAD_CACHE_TTL_MS = 3_000;
 const preloadedQaPairCache = new Map<string, { rows: QaPairRow[]; expiresAt: number }>();
 const preloadedQaPairPromises = new Map<string, Promise<QaPairRow[]>>();
 
 function getPreloadedQaPairCacheKey(params: { subject: SubjectRecord; category: CategoryRecord | null }) {
   return `${params.subject.id}:${params.category?.id ?? 'all'}`;
+}
+
+export function invalidatePreloadedQaPairCache(subjectId?: string | null) {
+  if (!subjectId) {
+    preloadedQaPairCache.clear();
+    preloadedQaPairPromises.clear();
+    return;
+  }
+
+  for (const key of preloadedQaPairCache.keys()) {
+    if (key.startsWith(`${subjectId}:`)) {
+      preloadedQaPairCache.delete(key);
+    }
+  }
+
+  for (const key of preloadedQaPairPromises.keys()) {
+    if (key.startsWith(`${subjectId}:`)) {
+      preloadedQaPairPromises.delete(key);
+    }
+  }
 }
 
 export async function preloadSubjectQaPairs(params: {
