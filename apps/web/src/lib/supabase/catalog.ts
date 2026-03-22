@@ -7,7 +7,7 @@ export interface ActiveCatalog {
   categories: CategoryRecord[];
 }
 
-const CATALOG_CACHE_TTL_MS = 3_000;
+const CATALOG_CACHE_TTL_MS = 1_000;
 
 let activeCatalogCache: { value: ActiveCatalog; expiresAt: number } | null = null;
 let activeCatalogPromise: Promise<ActiveCatalog> | null = null;

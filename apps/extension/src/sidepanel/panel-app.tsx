@@ -16,7 +16,7 @@ import {
   ShieldAlert, Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
-  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2,
+  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -250,6 +250,8 @@ export function SidePanelApp() {
   const [subjectPickerOpen, setSubjectPickerOpen] = useState(false);
   const [subjectsLoading, setSubjectsLoading] = useState(false);
   const [subjectsError, setSubjectsError] = useState<string | null>(null);
+  const [subjectsLastSyncedAt, setSubjectsLastSyncedAt] = useState<string | null>(null);
+  const [workspaceView, setWorkspaceView] = useState<'controls' | 'answering'>('controls');
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
   const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
   const [pairingCode, setPairingCode] = useState('');
@@ -328,6 +330,7 @@ export function SidePanelApp() {
 
         if (response.ok && response.data) {
           setAvailableSubjects(response.data.subjects ?? []);
+          setSubjectsLastSyncedAt(new Date().toISOString());
           return;
         }
 
@@ -420,6 +423,20 @@ export function SidePanelApp() {
       : 'Auto detect';
 
   const confidenceLevel = confidenceToLevel(state?.lastSuggestion.confidence ?? null);
+  const subjectsSyncedLabel = subjectsLastSyncedAt
+    ? new Date(subjectsLastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    : null;
+
+  useEffect(() => {
+    if (!isPaired) {
+      setWorkspaceView('controls');
+      return;
+    }
+
+    if (isAnalyzing || hasSuggestion) {
+      setWorkspaceView('answering');
+    }
+  }, [hasSuggestion, isAnalyzing, isPaired]);
 
   async function runAction(action: string, operation: () => Promise<void>) {
     setPendingAction(action);
@@ -479,7 +496,7 @@ export function SidePanelApp() {
   }
 
   const refreshSubjectCatalog = useCallback(async () => {
-    if (!isPaired) return;
+    if (!isPaired || subjectsLoading) return;
 
     setSubjectsLoading(true);
     setSubjectsError(null);
@@ -489,6 +506,7 @@ export function SidePanelApp() {
       });
       if (response.ok && response.data) {
         setAvailableSubjects(response.data.subjects ?? []);
+        setSubjectsLastSyncedAt(new Date().toISOString());
         return;
       }
 
@@ -500,7 +518,7 @@ export function SidePanelApp() {
     } finally {
       setSubjectsLoading(false);
     }
-  }, [isPaired]);
+  }, [isPaired, subjectsLoading]);
 
   function chooseSubject(subject: SubjectCatalogEntry) {
     setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
@@ -561,6 +579,9 @@ export function SidePanelApp() {
     setSubjectPickerOpen(false);
     const nextSelectedSubject = availableSubjects.find((subject) => subject.name === overrideDraft.subject) ?? null;
     setSubjectSearch(nextSelectedSubject ? getSubjectDisplayLabel(nextSelectedSubject) : '');
+    if (canAnalyze) {
+      setWorkspaceView('answering');
+    }
   }
 
   async function unpairBrowser() {
@@ -711,6 +732,51 @@ export function SidePanelApp() {
     void refreshSubjectCatalog();
   }, [availableSubjects.length, isPaired, refreshSubjectCatalog, subjectMode, subjectsError, subjectsLoading]);
 
+  useEffect(() => {
+    if (!isPaired || subjectMode !== 'picker' || !subjectPickerOpen) {
+      return;
+    }
+
+    void refreshSubjectCatalog();
+
+    const intervalId = window.setInterval(() => {
+      void refreshSubjectCatalog();
+    }, 15_000);
+
+    const handleWindowFocus = () => {
+      void refreshSubjectCatalog();
+    };
+
+    window.addEventListener('focus', handleWindowFocus);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.removeEventListener('focus', handleWindowFocus);
+    };
+  }, [isPaired, refreshSubjectCatalog, subjectMode, subjectPickerOpen]);
+
+  useEffect(() => {
+    if (!isPaired || !manualSubject || availableSubjects.length === 0) {
+      return;
+    }
+
+    const subjectStillExists = availableSubjects.some((subject) => subject.name === manualSubject);
+    if (subjectStillExists) {
+      return;
+    }
+
+    setSubjectMode('auto');
+    setSubjectPickerOpen(false);
+    setSubjectSearch('');
+    setOverrideDraft({ subject: '', category: '' });
+    setSubjectsError('The locked subject was removed from the portal. Auto Detect is active again.');
+
+    void sendExtensionMessage({
+      type: 'EXTENSION/SET_MANUAL_OVERRIDE',
+      payload: { subject: '', category: '' },
+    });
+  }, [availableSubjects, isPaired, manualSubject]);
+
   /* ---------------------------------------------------------------- */
   /*  Render: Loading state                                            */
   /* ---------------------------------------------------------------- */
@@ -728,6 +794,19 @@ export function SidePanelApp() {
       : !siteAccessGranted ? 'grant'
         : state.session.status === 'session_inactive' ? 'start'
           : 'ready';
+  const showAnswerWorkspace = isPaired && nextPrimaryAction === 'ready' && workspaceView === 'answering';
+  const showControlsWorkspace = isPaired && !showAnswerWorkspace;
+  const activeSubjectLabel =
+    manualSubject
+    || cachedSubject
+    || state.lastSuggestion.detectedSubject
+    || state.lastSuggestion.subject
+    || 'Auto Detect';
+  const answerWorkspaceReadyLabel = manualSubject
+    ? 'Locked subject is saved and ready.'
+    : cachedSubject
+      ? 'Detected subject is ready to reuse.'
+      : 'Auto Detect will choose the subject when you search.';
 
   /* ---------------------------------------------------------------- */
   /*  Render                                                           */
@@ -833,6 +912,38 @@ export function SidePanelApp() {
         </div>
       )}
 
+      {isPaired && (
+        <section className="workspace-switcher">
+          <div className="workspace-switcher__buttons">
+            <button
+              type="button"
+              className={`workspace-switcher__button ${showControlsWorkspace ? 'workspace-switcher__button--active' : ''}`}
+              onClick={() => setWorkspaceView('controls')}
+            >
+              <BookOpen size={14} />
+              Controls
+            </button>
+            <button
+              type="button"
+              className={`workspace-switcher__button ${showAnswerWorkspace ? 'workspace-switcher__button--active' : ''}`}
+              onClick={() => setWorkspaceView('answering')}
+              disabled={nextPrimaryAction !== 'ready'}
+            >
+              <Sparkles size={14} />
+              Answering
+            </button>
+          </div>
+          <div className="workspace-switcher__summary">
+            <strong>{showAnswerWorkspace ? activeSubjectLabel : 'Setup and detection controls'}</strong>
+            <span>
+              {showAnswerWorkspace
+                ? 'Find answers and review study results here.'
+                : 'Pick a subject, detect the right folder, and manage the session here.'}
+            </span>
+          </div>
+        </section>
+      )}
+
       {!isPaired && (
         <SectionCard
           title="Pair This Browser"
@@ -933,7 +1044,7 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
-      {isPaired && nextPrimaryAction === 'ready' && (
+      {showAnswerWorkspace && (
         <section className="quick-action-bar">
           <button
             className="quick-action-btn quick-action-btn--reset"
@@ -967,21 +1078,26 @@ export function SidePanelApp() {
         </section>
       )}
 
-      {isPaired && (
+      {showControlsWorkspace && (
         <SectionCard
           title="Subject Mode"
           subtitle="Keep Auto Detect on, or lock one real subject from your portal list before you search."
           icon={BookOpen}
           actions={(
-            <button
-              className="link-button text-xs flex-center-gap"
-              onClick={() => void refreshSubjectCatalog()}
-              disabled={subjectsLoading}
-              title="Refresh subject list"
-            >
-              <RefreshCw size={11} className={subjectsLoading ? 'animate-spin' : ''} />
-              Refresh
-            </button>
+            <div className="subject-card-actions">
+              {subjectsSyncedLabel && (
+                <span className="subject-sync-label">Synced {subjectsSyncedLabel}</span>
+              )}
+              <button
+                className="link-button text-xs flex-center-gap"
+                onClick={() => void refreshSubjectCatalog()}
+                disabled={subjectsLoading}
+                title="Refresh subject list"
+              >
+                <RefreshCw size={11} className={subjectsLoading ? 'animate-spin' : ''} />
+                Refresh
+              </button>
+            </div>
           )}
         >
           <div className="subject-mode-toggle">
@@ -999,6 +1115,7 @@ export function SidePanelApp() {
               onClick={() => {
                 setSubjectMode('picker');
                 setSubjectPickerOpen(true);
+                void refreshSubjectCatalog();
               }}
               disabled={pendingAction !== null}
             >
@@ -1120,7 +1237,10 @@ export function SidePanelApp() {
               )}
 
               <div className="notice notice--info">
-                <p>Once selected, Detection Summary and Find All Answers will reuse that subject until you switch back to Auto Detect.</p>
+                <p>
+                  Once selected, Detection Summary and Find All Answers will reuse that subject until you switch back to Auto Detect.
+                  {subjectPickerOpen ? ' This list auto-refreshes while open so new portal subjects appear here.' : ''}
+                </p>
               </div>
             </div>
           ) : (
@@ -1128,6 +1248,66 @@ export function SidePanelApp() {
               <p>Auto Detect stays on. Open Subject Picker only when you want to lock one real subject and save extra detection work.</p>
             </div>
           )}
+        </SectionCard>
+      )}
+
+      {showControlsWorkspace && nextPrimaryAction === 'ready' && (
+        <SectionCard
+          title="Ready To Answer"
+          subtitle="Lock a subject here if you want, then move into a cleaner answering workspace."
+          icon={Sparkles}
+          className="panel-card--primary"
+          actions={(
+            <button
+              className="link-button text-xs flex-center-gap"
+              onClick={() => setWorkspaceView('answering')}
+            >
+              <Sparkles size={11} />
+              Open Answering
+            </button>
+          )}
+        >
+          <div className="workspace-launch">
+            <div className="workspace-launch__summary">
+              <div className="metric-tile">
+                <span>Current subject</span>
+                <strong>{activeSubjectLabel}</strong>
+              </div>
+              <div className="metric-tile">
+                <span>Mode</span>
+                <strong>{manualSubject ? 'Manual lock' : 'Auto Detect'}</strong>
+              </div>
+              <div className="metric-tile">
+                <span>Questions</span>
+                <strong>{detectedQuestionCount > 0 ? detectedQuestionCount : 'Ready to scan'}</strong>
+              </div>
+              <div className="metric-tile">
+                <span>Assessment</span>
+                <strong>{quizTitle ?? 'Current page'}</strong>
+              </div>
+            </div>
+
+            <div className="workspace-launch__actions">
+              <button
+                className="action-button"
+                onClick={() => void sendAnalyze('detect', 'current')}
+                disabled={!canAnalyze || pendingAction !== null}
+              >
+                {state.uiStatus === 'detecting_subject'
+                  ? <><Loader2 size={15} className="animate-spin" /> Detecting...</>
+                  : <><FileSearch size={15} /> {cachedSubject ? 'Re-detect Subject' : 'Detect Subject'}</>
+                }
+              </button>
+              <button
+                className="action-button action-button--primary"
+                onClick={() => setWorkspaceView('answering')}
+                disabled={!canAnalyze}
+              >
+                <Sparkles size={15} />
+                Start Answering
+              </button>
+            </div>
+          </div>
         </SectionCard>
       )}
 
@@ -1166,8 +1346,44 @@ export function SidePanelApp() {
         </section>
       )}
 
+      {showAnswerWorkspace && (
+        <SectionCard
+          title="Find All Answers"
+          subtitle="This answering workspace keeps the main search button and study results near the top."
+          icon={Sparkles}
+          className="panel-card--primary"
+          actions={(
+            <button
+              className="link-button text-xs flex-center-gap"
+              onClick={() => setWorkspaceView('controls')}
+            >
+              <ArrowLeft size={11} />
+              Back to Controls
+            </button>
+          )}
+        >
+          <div className="answering-hero">
+            <div className="answering-hero__summary">
+              <span className="answering-hero__eyebrow">Current answering subject</span>
+              <strong>{activeSubjectLabel}</strong>
+              <p>{answerWorkspaceReadyLabel}</p>
+            </div>
+            <button
+              className="action-button action-button--primary action-button--lg"
+              onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
+              disabled={!canAnalyze || pendingAction !== null}
+            >
+              {isAnalyzing && state.uiStatus !== 'detecting_subject'
+                ? <><Loader2 size={16} className="animate-spin" /> Finding Answers...</>
+                : <><Sparkles size={16} /> Find All Answers</>
+              }
+            </button>
+          </div>
+        </SectionCard>
+      )}
+
       {/* ======== STEP 1 & 2: DETECT + ANALYZE ======== */}
-      {isPaired && nextPrimaryAction === 'ready' && (
+      {false && showAnswerWorkspace && (
         <section className="steps-section">
           {/* Step 1: Detect Subject */}
           <div className="step-row">
@@ -1177,7 +1393,7 @@ export function SidePanelApp() {
               onClick={() => void sendAnalyze('detect', 'current')}
               disabled={!canAnalyze || pendingAction !== null}
             >
-              {state.uiStatus === 'detecting_subject'
+              {state!.uiStatus === 'detecting_subject'
                 ? <><Loader2 size={15} className="animate-spin" /> Detecting…</>
                 : <><FileSearch size={15} /> {cachedSubject ? `Re-detect Subject` : `Detect Subject`}</>
               }
@@ -1197,7 +1413,7 @@ export function SidePanelApp() {
               onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
               disabled={!canAnalyze || pendingAction !== null}
             >
-              {isAnalyzing && state.uiStatus !== 'detecting_subject'
+              {isAnalyzing && state!.uiStatus !== 'detecting_subject'
                 ? <><Loader2 size={16} className="animate-spin" /> Finding Answers…</>
                 : <><Sparkles size={16} /> Find All Answers</>
               }
@@ -1207,7 +1423,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== PRIVACY STRIP ======== */}
-      {isPaired && (
+      {showAnswerWorkspace && (
         <section className="privacy-strip">
           <ShieldAlert size={13} className="shrink-0" style={{ color: 'var(--sa-accent)' }} />
           <p>AI reads the current tab only when you click Detect or Find Answers.</p>
@@ -1215,7 +1431,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== SITE ACCESS WARNING ======== */}
-      {isPaired && access && access.status !== 'granted' && (
+      {showControlsWorkspace && access && access.status !== 'granted' && (
         <SectionCard
           title="Site Access Required"
           subtitle={
@@ -1254,7 +1470,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== DETECTION SUMMARY (always visible when available) ======== */}
-      {isPaired && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
+      {false && showAnswerWorkspace && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
         <div className="detection-summary-card">
           <div className="detection-summary__header">
             <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
@@ -1281,10 +1497,10 @@ export function SidePanelApp() {
             </div>
             <div className="detection-summary__item">
               <span>Confidence</span>
-              <strong><ConfidenceBadge confidence={state.lastSuggestion.confidence} /></strong>
+              <strong><ConfidenceBadge confidence={state!.lastSuggestion.confidence} /></strong>
             </div>
           </div>
-          {state.lastSuggestion.fallbackApplied && (
+          {state!.lastSuggestion.fallbackApplied && (
             <div className="notice notice--warning mt-2" style={{ fontSize: 11 }}>
               <p>Fallback sources used — no direct match in detected subject folder.</p>
             </div>
@@ -1293,7 +1509,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== RESULTS SECTION ======== */}
-      {isPaired && (
+      {showAnswerWorkspace && (
         <SectionCard
           title="Study Results"
           subtitle={
@@ -1388,8 +1604,46 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
+      {showAnswerWorkspace && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
+        <div className="detection-summary-card">
+          <div className="detection-summary__header">
+            <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
+            <h2>Detection Summary</h2>
+          </div>
+          <div className="detection-summary__grid">
+            <div className="detection-summary__item">
+              <span>Subject</span>
+              <strong>{currentSubject}</strong>
+            </div>
+            <div className="detection-summary__item">
+              <span>Questions</span>
+              <strong>{detectedQuestionCount > 0 ? detectedQuestionCount : '—'}</strong>
+            </div>
+            {quizTitle && (
+              <div className="detection-summary__item detection-summary__item--wide">
+                <span>Quiz / Assessment</span>
+                <strong>{quizTitle}{quizNumber ? ` (#${quizNumber})` : ''}</strong>
+              </div>
+            )}
+            <div className="detection-summary__item">
+              <span>Source Folder</span>
+              <strong>{sourceSubject}</strong>
+            </div>
+            <div className="detection-summary__item">
+              <span>Confidence</span>
+              <strong><ConfidenceBadge confidence={state.lastSuggestion.confidence} /></strong>
+            </div>
+          </div>
+          {state.lastSuggestion.fallbackApplied && (
+            <div className="notice notice--warning mt-2" style={{ fontSize: 11 }}>
+              <p>Fallback sources used — no direct match in detected subject folder.</p>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* ======== SESSION CONTROLS (collapsible) ======== */}
-      {isPaired && (
+      {showControlsWorkspace && (
         <details className="panel-disclosure" open={state.session.status !== 'session_active'}>
           <summary className="panel-disclosure__summary">
             <div>
@@ -1473,6 +1727,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== ACTIVITY LOG (collapsible) ======== */}
+      {showControlsWorkspace && (
       <details className="panel-disclosure">
         <summary className="panel-disclosure__summary">
           <div>
@@ -1525,6 +1780,7 @@ export function SidePanelApp() {
           </button>
         </div>
       </details>
+      )}
     </div>
   );
 }

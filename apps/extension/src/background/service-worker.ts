@@ -245,8 +245,23 @@ function failure(error: string): ExtensionResponse {
 
 async function recordError(error: string): Promise<void> {
   await updateState(
-    (current) =>
-      appendNotice(
+    (current) => {
+      const lastNotice = current.notices[0];
+      const isDuplicateError =
+        lastNotice?.tone === 'danger' &&
+        lastNotice.title === 'Extension error' &&
+        lastNotice.message === error &&
+        Date.now() - new Date(lastNotice.createdAt).getTime() < 15_000;
+
+      if (isDuplicateError) {
+        return {
+          ...current,
+          uiStatus: 'error',
+          lastError: error,
+        };
+      }
+
+      return appendNotice(
         {
           ...current,
           uiStatus: 'error',
@@ -257,7 +272,8 @@ async function recordError(error: string): Promise<void> {
           title: 'Extension error',
           message: error,
         },
-      ),
+      );
+    },
     browserName,
     extensionVersion,
   );

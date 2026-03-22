@@ -480,6 +480,137 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
+   Workspace Switcher / Split Views
+   ================================================================ */
+.workspace-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(56, 139, 253, 0.14);
+  background: linear-gradient(180deg, rgba(56, 139, 253, 0.06), rgba(12, 17, 24, 0.22));
+  border-radius: var(--sa-radius-lg);
+  padding: 12px;
+}
+
+.workspace-switcher__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.workspace-switcher__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: var(--sa-radius);
+  border: 1px solid var(--sa-border);
+  background: var(--sa-surface);
+  color: var(--sa-fg-2);
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--sa-transition);
+}
+
+.workspace-switcher__button:hover:not(:disabled) {
+  border-color: rgba(56, 139, 253, 0.32);
+  color: var(--sa-fg);
+}
+
+.workspace-switcher__button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.workspace-switcher__button--active {
+  border-color: rgba(56, 139, 253, 0.38);
+  background: rgba(56, 139, 253, 0.14);
+  color: var(--sa-accent-2);
+  box-shadow: inset 0 0 0 1px rgba(56, 139, 253, 0.06);
+}
+
+.workspace-switcher__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workspace-switcher__summary strong {
+  font-size: 12px;
+  color: var(--sa-fg);
+}
+
+.workspace-switcher__summary span {
+  font-size: 11px;
+  color: var(--sa-muted);
+  line-height: 1.45;
+}
+
+.subject-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subject-sync-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sa-green);
+}
+
+.workspace-launch {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workspace-launch__summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.workspace-launch__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.answering-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answering-hero__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.answering-hero__eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sa-accent);
+}
+
+.answering-hero__summary strong {
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--sa-fg);
+}
+
+.answering-hero__summary p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--sa-muted);
+}
+
+/* ================================================================
    Detection Summary
    ================================================================ */
 .detection-summary-card {
@@ -1672,6 +1803,9 @@ button, input, select, textarea { font: inherit; }
   .detection-grid,
   .override-grid,
   .subject-mode-toggle,
+  .workspace-switcher__buttons,
+  .workspace-launch__summary,
+  .workspace-launch__actions,
   .subject-picker-actions,
   .pairing-state-grid,
   .pairing-button-row {

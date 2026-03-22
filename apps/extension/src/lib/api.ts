@@ -31,6 +31,56 @@ export class ApiError extends Error {
   }
 }
 
+export function parseCatalogResponse(input: unknown) {
+  const parsed = catalogResponseSchema.safeParse(input);
+  if (parsed.success) {
+    return parsed.data;
+  }
+
+  const raw = input as {
+    subjects?: Array<{ id?: unknown; name?: unknown; slug?: unknown; course_code?: unknown }>;
+    categories?: Array<{ id?: unknown; name?: unknown; subject_id?: unknown }>;
+  } | null;
+
+  const recoveredSubjects = Array.isArray(raw?.subjects)
+    ? raw.subjects.flatMap((subject) => {
+        if (!subject || typeof subject.id !== 'string' || typeof subject.name !== 'string') {
+          return [];
+        }
+
+        return [{
+          id: subject.id,
+          name: subject.name,
+          slug: typeof subject.slug === 'string' ? subject.slug : null,
+          course_code: typeof subject.course_code === 'string' ? subject.course_code : null,
+        }];
+      })
+    : [];
+
+  if (recoveredSubjects.length === 0) {
+    throw parsed.error;
+  }
+
+  const recoveredCategories = Array.isArray(raw?.categories)
+    ? raw.categories.flatMap((category) => {
+        if (!category || typeof category.id !== 'string' || typeof category.name !== 'string') {
+          return [];
+        }
+
+        return [{
+          id: category.id,
+          name: category.name,
+          subject_id: typeof category.subject_id === 'string' ? category.subject_id : null,
+        }];
+      })
+    : [];
+
+  return {
+    subjects: recoveredSubjects,
+    categories: recoveredCategories,
+  };
+}
+
 function createRequestSignal(signal: AbortSignal | undefined, timeoutMs: number): AbortSignal | undefined {
   if (typeof AbortController === 'undefined') {
     return signal;
@@ -242,5 +292,5 @@ export async function analyzePage(
 }
 
 export async function fetchSubjects(state: ExtensionState) {
-  return fetchJson(state, '/api/client/subjects', (input) => catalogResponseSchema.parse(input));
+  return fetchJson(state, '/api/client/subjects', parseCatalogResponse);
 }
