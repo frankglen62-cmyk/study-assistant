@@ -1,0 +1,426 @@
+[
+  {
+    "q": "__________ enables functional tests to be carried out automatically to increase the speed and cost effectiveness of application development and delivery.",
+    "a": "Micro Focus Unified Functional Testing"
+  },
+  {
+    "q": "2nd Steps how to insert a Synchronization Point",
+    "a": "Start recording session"
+  },
+  {
+    "q": "A _____________ is a set of definitions that enable you to identify the object in the application according to ist neighboring objects in the applications",
+    "a": "Visual relation identifiers"
+  },
+  {
+    "q": "A dynamic checkpoint is a checkpoint that can check for any value generated at run time",
+    "a": "True"
+  },
+  {
+    "q": "A function that encapsulates an activity into a keyword",
+    "a": "User-defined function"
+  },
+  {
+    "q": "A graphical representation of the result in an expandable tree, organized according to the actions and the Web pages visited during the test run",
+    "a": "Run Result Tree"
+  },
+  {
+    "q": "A high-level result overview report, containing general information about the test, which steps passed or failed, statistics in pie chart format, and so on",
+    "a": "Result Details"
+  },
+  {
+    "q": "An action can be divided into logical sections such as the Login process, Create New Order process, and Logoff process.",
+    "a": "Test with Multiple Actions"
+  },
+  {
+    "q": "Base Filter properties is the most fundamental properties of a particular test object class.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Benefits of Automated Testing where you can build a suite of tests that covers every feature in your Web site or application.",
+    "a": "comprehensive"
+  },
+  {
+    "q": "Captured Data is a still image of the state of your application at a particular step.",
+    "a": "Captured Data"
+  },
+  {
+    "q": "Constant is a value that is defined or generated externally and is retrieved during a run session",
+    "a": "False"
+  },
+  {
+    "q": "Displays the image that UFT for GUI Testing uses to identify the object in the application.",
+    "a": "Object Image Area (Insight Test Objects)"
+  },
+  {
+    "q": "Enables you to associate one or more shared object repositories with one or more actions in a test.",
+    "a": "Dialog Box"
+  },
+  {
+    "q": "Enables you to check the text is displayed in a screen, window, or web page, according to specified criteria",
+    "a": "Textcheckpoint"
+  },
+  {
+    "q": "Enables you to check the text property of an object",
+    "a": "Standard checkpoint"
+  },
+  {
+    "q": "Enables you to check the text string appears within a defined area in a Windows application, according to specified criteria",
+    "a": "Text Areacheckpoint"
+  },
+  {
+    "q": "Enables you to define related objects according to their distance or hierarchical location relative to the object to identify.",
+    "a": "Distance and hierarchy"
+  },
+  {
+    "q": "Enables you to open multiple shared object repositories and modify them as required. Object Repository Manager dialog box",
+    "a": "Object Repository Manager dialog box"
+  },
+  {
+    "q": "Enables you to select any local function defined directly in the current action or function library",
+    "a": "Local script functions"
+  },
+  {
+    "q": "Enables you to track application performance counters during a run session These counters enable you to monitor the resources used by your application",
+    "a": "Local system monitor"
+  },
+  {
+    "q": "Enables you to view the properties of a checkpoint object, the same way as you do in the relevant Checkpoint Properties dialog box.",
+    "a": "Object Details area (Checkpoint Objects)"
+  },
+  {
+    "q": "Enables you to view the properties of a checkpoints object, the same way as you do in the relevant Checkpoint Properties dialog box",
+    "a": "Object Details Area (Checkpoint Objects)"
+  },
+  {
+    "q": "Enables you to view the properties of an output value object, the same way as you do in the relevant Checkpoint Properties dialog box",
+    "a": "Object Details Area (Output Value Objects)"
+  },
+  {
+    "q": "Environment parameters enable you to insert a value in the test from an environment variable list",
+    "a": "True"
+  },
+  {
+    "q": "Functions and function libraries are the sets of steps that are randomly set in several actions",
+    "a": "False"
+  },
+  {
+    "q": "Global Sheet enables you to insert data that applies only to that action.",
+    "a": "Global sheet"
+  },
+  {
+    "q": "If the object is not recognized, which recording mode should be used?",
+    "a": "Low-Level Recording"
+  },
+  {
+    "q": "If you select the check box of an add-in that contains a child add-in, the parent add-in is selected automatically",
+    "a": "True"
+  },
+  {
+    "q": "In the Test Result Viewer Window-Component, this is a movie clip of the state of the application at a particular step or of the entire test or component",
+    "a": "Screen Recorder Pane"
+  },
+  {
+    "q": "In the UFT for GUI testing test directory structure, onlyScriptmts file is useful that contains the call to the actions and the number of iterations on which the action must iterate",
+    "a": "True"
+  },
+  {
+    "q": "In UFT, it can load environment-specific add-ins, such as ActiveX, NET and Web",
+    "a": "True"
+  },
+  {
+    "q": "Indicates that the value of the property is currently a parameter.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Indicates that the value of the property is currently an environment variable parameter.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Input parameters enable you to replace a static recorded value in a step with a placeholder for a dynamic value",
+    "a": "True"
+  },
+  {
+    "q": "It checks the contents of a data based accessed by an application.",
+    "a": "Database Checkpoint"
+  },
+  {
+    "q": "It Click the Links button to open links to the UFT for GUI Testing Help.",
+    "a": "Links Area"
+  },
+  {
+    "q": "It enables you to open only GUI tests and components",
+    "a": "Quick Test Professional"
+  },
+  {
+    "q": "It is a browsers-based application.",
+    "a": "Mercury Tours"
+  },
+  {
+    "q": "It is a checkpoint that can check for any value generated at run time.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is a combined solution for GUI and API testing to test the functionality across multiple application layers",
+    "a": "Unified Functional Testing"
+  },
+  {
+    "q": "It is a value of a property captured from the the AUT during the test execution.",
+    "a": "Output Parameter"
+  },
+  {
+    "q": "It is an image-based identification ability to recognize objects in your application based on what they look like, instead of using properties that are part of their design",
+    "a": "Insight"
+  },
+  {
+    "q": "It is one that can be called multiple times by the local test.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Locates cells according to the row position A shift in the position of any of the rows within the table result in a mismatch",
+    "a": "By position"
+  },
+  {
+    "q": "Low Recording recognizes objects based on their appearance rather than their native properties.",
+    "a": "Insight Recording"
+  },
+  {
+    "q": "Manual Testing enables you to verify the following features of Application Under test.",
+    "a": "Functional Testing"
+  },
+  {
+    "q": "Match the missing word/details to its corresponding statement",
+    "a": ""
+  },
+  {
+    "q": "n Input parameter is the value of a property captured from the AUT during test execution",
+    "a": "False"
+  },
+  {
+    "q": "Provides a source of values that can be used by any action in the test",
+    "a": "Global data sheet"
+  },
+  {
+    "q": "Provides a wizard that guides you through the process of defining a recovery scenario, which includes a definition of an unexpected event and the operations necessary to recover the run session",
+    "a": "Recovery Scenarios Manager"
+  },
+  {
+    "q": "Records additional detail into some steps, such as the coordinates of a mouse click on an object so that UFT may use that additional data.",
+    "a": "Low level recording"
+  },
+  {
+    "q": "Regular Expression option enables you to specify a constant value using a regular expressions",
+    "a": "True"
+  },
+  {
+    "q": "Run on all rows test with iterations using one rows in the global data table",
+    "a": "False"
+  },
+  {
+    "q": "Run one iteration only using the first row in the global data table",
+    "a": "True"
+  },
+  {
+    "q": "Test Object Mapping for Unidentified or Custom ClassesIf your application has a button that cannot be identified, this button is learned as a generic WinObject",
+    "a": "True"
+  },
+  {
+    "q": "The AUT usually detects if UFT for GUI Testing or an actual tester is performing the steps",
+    "a": "False"
+  },
+  {
+    "q": "The details of the visual relation for the selected related object.",
+    "a": "Relation details"
+  },
+  {
+    "q": "The following answer are correct except one:These are the visual cues to use a synchronization step",
+    "a": "A pop-up message appears in response to an document"
+  },
+  {
+    "q": "The following image shows the Object Details area when a ListView object is selected during an _______________",
+    "a": "editing session"
+  },
+  {
+    "q": "The Glasses icon that helps shrink the Object Repository windows and display the action and object tree section only",
+    "a": "Compact View"
+  },
+  {
+    "q": "The Highlight Feature is helpful if an object definition has changed and you want to confirm that UFT for GUI Testing still recognizes the Object",
+    "a": "True"
+  },
+  {
+    "q": "The name of the parameter that UFT for GUI Testing creates for each method argument is in the format _________",
+    "a": "TestObjectName_ArgumentName"
+  },
+  {
+    "q": "The name of the test object as it appears in the object repository (read-only).",
+    "a": "Test Object to Identify"
+  },
+  {
+    "q": "The Object Management area enables you to view the properties and property values used to identify a test object during a run session.",
+    "a": "Object Details Area (Test Objects)"
+  },
+  {
+    "q": "The Record toolbar opens manually at the beginning of a recording session",
+    "a": "False"
+  },
+  {
+    "q": "The target location for the results, as specified in the Results Location tab.",
+    "a": "Results Location"
+  },
+  {
+    "q": "The test or component to run. You can select any open item from the drop- down list.",
+    "a": "Test Name"
+  },
+  {
+    "q": "These are tests that check a multi-user client/server system",
+    "a": "Load test"
+  },
+  {
+    "q": "These names are used in the code that UFT for GUI Testing generates whenever it records your actions",
+    "a": "Logical name"
+  },
+  {
+    "q": "This can configure whether UFT for GUI testing should open these applications at the beginning of a record or run session",
+    "a": "Record and Run Only On"
+  },
+  {
+    "q": "This checkpoint is displayed in the Editor as a ______________ statement and as a step in the Keyword view",
+    "a": "DbTableCheckCheckPoint"
+  },
+  {
+    "q": "This enables you to record operations on objects that UFT for GUI Testing recognizes based on their appearance, instead of their native properties This can be useful if you are recording on an application whose technology is not supported by UFT for GUI Testing, or on an application running on an emulator or a remote computer",
+    "a": "Insight Recording"
+  },
+  {
+    "q": "This feature enables you to update the properties f the object as identified in the object repository to the object definition in the AUT",
+    "a": "Application Feature"
+  },
+  {
+    "q": "This feature enables you to view the native properties and operations of any object in an open application, test object hierarchy, identification properties and operations of the test object that UFT for GUI Testing uses to represent that object",
+    "a": "Object Spy"
+  },
+  {
+    "q": "This identifies the object uniquely even after using mandatory and assistive properties if the identified object is not unique",
+    "a": "Ordinal Identifier"
+  },
+  {
+    "q": "This is the identifier that applicable only to web applications.",
+    "a": "Creation Time"
+  },
+  {
+    "q": "This option records, recognizes and runs only on application listed in the applications in the Application Details area",
+    "a": "Applications specified below"
+  },
+  {
+    "q": "This page welcomes you to UFT for GUI Testing and describe the new features in this release",
+    "a": "Start Page"
+  },
+  {
+    "q": "This pane enables you to specify which information UFT for GUI Testing saves and displays information while recording and running tests",
+    "a": "Active Screen"
+  },
+  {
+    "q": "This recording mode enables you to record the exact mouse and keyboard operations relative to the screen or application windows",
+    "a": "Analog recording"
+  },
+  {
+    "q": "This section specifies the objects for which UFT and GUI Testing stores data in the Active Screen",
+    "a": "Capture Level Area"
+  },
+  {
+    "q": "This stage is determining the development environments in which your application controls were developed",
+    "a": "Analyzing Your Application"
+  },
+  {
+    "q": "This takes you to the location of the data table that can be used in your testFile Menu -> Test Setting -> ?",
+    "a": "Resources"
+  },
+  {
+    "q": "This task is anything that needs to be performed in a test or component",
+    "a": "TODO task"
+  },
+  {
+    "q": "This testing is any type of software testing that seeks to uncover new software bugs",
+    "a": "Regression Test"
+  },
+  {
+    "q": "This window displays a tree of all test objects and all checkpoint and output objects in the current action or component, including all local objects",
+    "a": "Object Repository"
+  },
+  {
+    "q": "UFT for GUI testing enables you to compress the test folder to conserve hard disk space on your computer and to ensure easy transfer of test within a network",
+    "a": "True"
+  },
+  {
+    "q": "UFT stands for Unitied Functinal Testing.",
+    "a": "False"
+  },
+  {
+    "q": "UFT supports creating and managing tests and components, for both GUI testing and API testing",
+    "a": "True"
+  },
+  {
+    "q": "Use the ________ clause to specify the rows that you want to retrieve from a table",
+    "a": "where"
+  },
+  {
+    "q": "Use the ________ clause to specify the sort order for the columns",
+    "a": "order by"
+  },
+  {
+    "q": "What area have the interface elements Configure Valueand Modify?",
+    "a": "Configure Value Area"
+  },
+  {
+    "q": "What area have the interface elements name and class?",
+    "a": "Object Details Area"
+  },
+  {
+    "q": "What area is shown only when some of the properties are selected?",
+    "a": "Properties Grid Area"
+  },
+  {
+    "q": "What area shows the statement location area when you insert a new output value step during an editing session?",
+    "a": "Statement Location Area"
+  },
+  {
+    "q": "What is the fourth stage of the GUI testing workflow?",
+    "a": "Enhancing Your Test"
+  },
+  {
+    "q": "When a local data sheet is used, values specific to an action appear in the action data sheets that are available to that action only.",
+    "a": "Local data sheet"
+  },
+  {
+    "q": "When you insert a call to a copy of an action into a test, the original action is copied in its entirety, including checkpoints, parameterization, the corresponding action tab in the Data pane, plus any defined action parameters",
+    "a": "Calls to copies of actions"
+  },
+  {
+    "q": "When you use global data parameters for the automatic parameterization option, each relevant method argument is converted to a new action parameter",
+    "a": "False"
+  },
+  {
+    "q": "Which is the most fundamental properties of a particular test object class in Smart Identification Mechanism?",
+    "a": "Base Filter Properties"
+  },
+  {
+    "q": "Which is the Web-based application that UFT tests as a sample application?",
+    "a": "Mercury Tours"
+  },
+  {
+    "q": "Which item in the user interface element defines the properties and values for your test object?",
+    "a": "Test Object Details"
+  },
+  {
+    "q": "Which phase of the UFT for GUI Testing records user action?",
+    "a": "Create"
+  },
+  {
+    "q": "You can insert a call to a reusable action that is stored in your current test (local action), or in any other test (external action)",
+    "a": "Calls to existing actions"
+  },
+  {
+    "q": "You can insert a synchronization point that instructs the tool to wait until the Update Order button's enabled property equals to 0",
+    "a": "False"
+  }
+]
