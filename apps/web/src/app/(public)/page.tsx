@@ -71,16 +71,19 @@ function PlatformTicker() {
   const platforms = [
     {
       name: 'Coursera',
-      el: <span className="text-[28px] font-bold tracking-tight text-[#0056D2]">coursera</span>,
+      el: <span className="text-[30px] font-bold tracking-tight text-[#0056D2]">coursera</span>,
     },
     {
       name: 'Course Hero',
       el: (
         <div className="flex items-center gap-3">
-          <svg width="32" height="32" viewBox="0 0 512 512" fill="#00249C">
-            {/* Extremely precise Course Hero Shield + Star cutout */}
-            <path d="M464 64L256 96 48 64v256l208 128 208-128V64z"/>
-            <path fill="#fff" d="M256 150l30 88h94l-76 56 30 88-78-56-78 56 30-88-76-56h94z"/>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#00249C">
+            {/* Extremely precise Course Hero Shield with dipped top + Star cutout */}
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M2 4v10c0 5 10 9 10 9s10-4 10-9V4l-10 3-10-3zm10 5.5l1.5 4.5H18l-3.5 3 1.5 4.5-4-3-4 3 1.5-4.5-3.5-3h4.5L12 9.5z"
+            />
           </svg>
           <span className="font-serif text-[26px] font-bold tracking-tight text-[#00249C]">
             Course Hero
@@ -92,12 +95,11 @@ function PlatformTicker() {
       name: 'Scribd',
       el: (
         <div className="flex items-center gap-2">
-          <svg width="36" height="36" viewBox="0 0 512 512" fill="#1A7B85">
-            {/* Precise Scribd Comma Hooks */}
+          <svg width="34" height="34" viewBox="0 0 512 512" fill="#1A7B85">
             <path d="M192 256c-35 0-64-29-64-64s29-64 64-64h106c-18-28-40-52-66-70H192C112 58 48 122 48 202c0 53 28 98 70 123l74-69z"/>
             <path d="M320 256c35 0 64 29 64 64s-29 64-64 64H214c18 28 40 52 66 70h40c80 0 144-64 144-144 0-53-28-98-70-123l-74 69z"/>
           </svg>
-          <span className="text-[20px] font-semibold tracking-[0.2em] text-[#001D24]">
+          <span className="text-[22px] font-semibold tracking-[0.2em] text-[#001D24]">
             SCRIBD
           </span>
         </div>
@@ -106,13 +108,13 @@ function PlatformTicker() {
     {
       name: 'Studocu',
       el: (
-        <div className="flex items-center gap-2">
-          <svg width="34" height="34" viewBox="0 0 100 100">
-            {/* Exact Studocu Block Logo shape */}
-            <path fill="#111" d="M25 15 C10 15 10 35 10 35 L12 50 L35 50 C35 50 40 30 50 30 L65 30 C75 30 80 25 80 15 Z" />
-            <path fill="#111" d="M75 85 C90 85 90 65 90 65 L88 50 L65 50 C65 50 60 70 50 70 L35 70 C25 70 20 75 20 85 Z" />
+        <div className="flex items-center gap-2.5">
+          <svg width="30" height="30" viewBox="0 0 100 100">
+            {/* Blocky Studocu 'S' Logo shape */}
+            <path fill="#111" d="M25 10 A 15 15 0 0 0 10 25 V 45 C 10 50 15 55 20 55 H 35 L 45 40 H 80 A 15 15 0 0 0 95 25 V 10 H 25 Z" />
+            <path fill="#111" d="M75 90 A 15 15 0 0 0 90 75 V 55 C 90 50 85 45 80 45 H 65 L 55 60 H 20 A 15 15 0 0 0 5 75 V 90 H 75 Z" />
           </svg>
-          <span className="text-[30px] font-black tracking-tighter text-[#111111]">
+          <span className="text-[30px] font-black tracking-tighter text-[#111111] antialiased">
             studocu
           </span>
         </div>
@@ -120,31 +122,31 @@ function PlatformTicker() {
     },
     {
       name: 'Chegg',
-      el: <span className="text-[34px] font-extrabold tracking-tighter text-[#EB7100]">Chegg</span>,
+      el: <span className="text-[36px] font-extrabold tracking-tighter text-[#EB7100]">Chegg</span>,
     },
   ];
 
   return (
     <div className="relative mx-auto mt-16 w-full max-w-6xl overflow-hidden py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-32 before:bg-gradient-to-r before:from-[#0a0a0a] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-32 after:bg-gradient-to-l after:from-[#0a0a0a] after:to-transparent">
-      {/* 200% width with 2 copies allows seamless infinite animation loop */}
-      <div className="flex w-[200%] animate-marquee-right items-center">
+      {/* w-max forces container to take exactly the combined width of flex children without wrapping */}
+      <div className="flex w-max animate-marquee-right items-center">
         {/* SET 1 */}
-        <div className="flex w-1/2 justify-around gap-6 px-3">
+        <div className="flex shrink-0 gap-6 px-3">
           {platforms.map((p) => (
             <div
               key={p.name}
-              className="flex h-[80px] w-[260px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-transform duration-300 hover:scale-105"
+              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
             >
               {p.el}
             </div>
           ))}
         </div>
         {/* SET 2 (CLONE FOR INFINITE LOOP) */}
-        <div className="flex w-1/2 justify-around gap-6 px-3">
+        <div className="flex shrink-0 gap-6 px-3">
           {platforms.map((p) => (
             <div
               key={`copy-${p.name}`}
-              className="flex h-[80px] w-[260px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-transform duration-300 hover:scale-105"
+              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
             >
               {p.el}
             </div>
