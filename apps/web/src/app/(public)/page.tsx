@@ -69,86 +69,33 @@ const previewQA = [
    ═══════════════════════════════════════════ */
 function PlatformTicker() {
   const platforms = [
-    {
-      name: 'Coursera',
-      el: <span className="text-[30px] font-bold tracking-tight text-[#0056D2]">coursera</span>,
-    },
-    {
-      name: 'Course Hero',
-      el: (
-        <div className="flex items-center gap-3">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#00249C">
-            {/* Extremely precise Course Hero Shield with dipped top + Star cutout */}
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M2 4v10c0 5 10 9 10 9s10-4 10-9V4l-10 3-10-3zm10 5.5l1.5 4.5H18l-3.5 3 1.5 4.5-4-3-4 3 1.5-4.5-3.5-3h4.5L12 9.5z"
-            />
-          </svg>
-          <span className="font-serif text-[26px] font-bold tracking-tight text-[#00249C]">
-            Course Hero
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Scribd',
-      el: (
-        <div className="flex items-center gap-2">
-          <svg width="34" height="34" viewBox="0 0 512 512" fill="#1A7B85">
-            <path d="M192 256c-35 0-64-29-64-64s29-64 64-64h106c-18-28-40-52-66-70H192C112 58 48 122 48 202c0 53 28 98 70 123l74-69z"/>
-            <path d="M320 256c35 0 64 29 64 64s-29 64-64 64H214c18 28 40 52 66 70h40c80 0 144-64 144-144 0-53-28-98-70-123l-74 69z"/>
-          </svg>
-          <span className="text-[22px] font-semibold tracking-[0.2em] text-[#001D24]">
-            SCRIBD
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Studocu',
-      el: (
-        <div className="flex items-center gap-2.5">
-          <svg width="30" height="30" viewBox="0 0 100 100">
-            {/* Blocky Studocu 'S' Logo shape */}
-            <path fill="#111" d="M25 10 A 15 15 0 0 0 10 25 V 45 C 10 50 15 55 20 55 H 35 L 45 40 H 80 A 15 15 0 0 0 95 25 V 10 H 25 Z" />
-            <path fill="#111" d="M75 90 A 15 15 0 0 0 90 75 V 55 C 90 50 85 45 80 45 H 65 L 55 60 H 20 A 15 15 0 0 0 5 75 V 90 H 75 Z" />
-          </svg>
-          <span className="text-[30px] font-black tracking-tighter text-[#111111] antialiased">
-            studocu
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Chegg',
-      el: <span className="text-[36px] font-extrabold tracking-tighter text-[#EB7100]">Chegg</span>,
-    },
+    { name: 'coursera', className: 'text-[28px] font-black tracking-[-0.05em] text-white/45' },
+    { name: 'Course Hero', className: 'text-[28px] font-semibold tracking-[-0.04em] text-white/45' },
+    { name: 'SCRIBD', className: 'text-[22px] font-light uppercase tracking-[0.24em] text-white/45' },
+    { name: 'studocu', className: 'text-[29px] font-black tracking-[-0.05em] text-white/45' },
+    { name: 'chegg', className: 'text-[34px] font-extrabold tracking-[-0.06em] text-white/45' },
   ];
 
   return (
     <div className="relative mx-auto mt-16 w-full max-w-6xl overflow-hidden py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-32 before:bg-gradient-to-r before:from-[#0a0a0a] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-32 after:bg-gradient-to-l after:from-[#0a0a0a] after:to-transparent">
-      {/* w-max forces container to take exactly the combined width of flex children without wrapping */}
       <div className="flex w-max animate-marquee-right items-center">
-        {/* SET 1 */}
         <div className="flex shrink-0 gap-6 px-3">
-          {platforms.map((p) => (
+          {platforms.map((platform) => (
             <div
-              key={p.name}
-              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+              key={platform.name}
+              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] px-10 backdrop-blur-sm transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
             >
-              {p.el}
+              <span className={platform.className}>{platform.name}</span>
             </div>
           ))}
         </div>
-        {/* SET 2 (CLONE FOR INFINITE LOOP) */}
-        <div className="flex shrink-0 gap-6 px-3">
-          {platforms.map((p) => (
+        <div className="flex shrink-0 gap-6 px-3" aria-hidden="true">
+          {platforms.map((platform) => (
             <div
-              key={`copy-${p.name}`}
-              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+              key={`copy-${platform.name}`}
+              className="flex h-[84px] w-[280px] shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] px-10 backdrop-blur-sm transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
             >
-              {p.el}
+              <span className={platform.className}>{platform.name}</span>
             </div>
           ))}
         </div>
@@ -355,9 +302,9 @@ export default function HomePage() {
               Access content from leading platforms — all in one place
             </p>
             <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-neutral-500 sm:text-base">
-              Built for study workflows familiar to learners across Coursera, Course Hero, Scribd,
-              Studocu, and Chegg, while keeping everything organized inside one controlled review
-              experience.
+              Built for admin-curated review libraries that can organize approved course references
+              alongside materials learners commonly recognize from leading study ecosystems, while
+              keeping everything inside one controlled experience.
             </p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -366,6 +313,10 @@ export default function HomePage() {
             >
               <PlatformTicker />
             </motion.div>
+            <p className="mx-auto mt-5 max-w-3xl text-xs leading-6 text-neutral-600">
+              Third-party names remain the property of their respective owners. Their mention here
+              describes familiar study formats only and does not imply endorsement or affiliation.
+            </p>
           </motion.div>
         </motion.div>
       </section>
