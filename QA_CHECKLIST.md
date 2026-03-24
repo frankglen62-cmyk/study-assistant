@@ -1,112 +1,76 @@
-# QA Checklist — Admin-Managed AI Study Assistant
+# QA Checklist
 
-Manual verification matrix for pre-launch quality assurance.
+Manual verification matrix for the current web app and extension flow.
 
----
+## Auth and Portal Access
 
-## Authentication Flows
+- [ ] client login redirects to `/dashboard`
+- [ ] admin login redirects to `/admin/dashboard`
+- [ ] client cannot access admin routes
+- [ ] suspended accounts are blocked
 
-- [ ] Client login with valid credentials → redirected to client dashboard
-- [ ] Client login with invalid credentials → error shown, no redirect
-- [ ] Admin login with valid credentials → redirected to admin dashboard
-- [ ] Admin login blocked for client-role accounts
-- [ ] Register new client account → account created, redirected to login
-- [ ] Forgot password → reset email sent (or stub message shown)
-- [ ] Reset password → password updated successfully
-- [ ] Suspended account login → access blocked with appropriate message
+## Client Portal
 
----
+- [ ] dashboard loads with live wallet/session/device data
+- [ ] dashboard extension card shows paired state, ZIP version, and latest active browser
+- [ ] Extension Guide shows highlighted pairing mode and latest ZIP metadata
+- [ ] account page shows clean extension actions without tutorial clutter
+- [ ] settings and sessions pages load without runtime errors
 
-## Admin Flows
+## Admin Portal
 
-- [ ] Admin dashboard loads with live metrics (users, sessions, credits, confidence)
-- [ ] Subject creation → subject and root folder created, audit log written
-- [ ] Subject update → fields updated, audit log written
-- [ ] Category creation with subject association → category created
-- [ ] Category update → fields updated, audit log written
-- [ ] Folder creation (child folder type) → folder created under parent
-- [ ] Source file upload → file stored in private bucket, source record created
-- [ ] Source processing → extraction, normalization, chunking, embedding insertion succeed
-- [ ] Source processing failure → job marked as failed, error logged
-- [ ] Source activation → status set to active
-- [ ] Source deactivation → status set to draft
-- [ ] Source reprocessing → old chunks replaced, new embeddings generated
-- [ ] User credit adjustment (add) → wallet balance increases, credit_transaction created, audit logged
-- [ ] User credit adjustment (subtract) → wallet balance decreases, negative balance blocked
-- [ ] User suspend → account status set to suspended, audit logged
-- [ ] User reactivate → account status set to active, audit logged
-- [ ] Admin payments page → shows live payment history with gross revenue
-- [ ] Admin sessions page → shows live session list with suspicious flags
-- [ ] Admin audit logs page → shows recent audit entries with actor details
-- [ ] Admin reports page → shows revenue, usage highlights, recent findings
+- [ ] subjects page loads and creates subjects
+- [ ] Sources page loads selected subject data correctly
+- [ ] stored Q&A add/edit/delete works and persists after reload
+- [ ] subject/category changes are visible after refresh
+- [ ] subject search and quick select behave correctly
 
----
+## Extension Pairing
 
-## Client Flows
+- [ ] sidepanel opens in pairing mode when browser is not paired
+- [ ] request permission works from button click
+- [ ] pairing code paste works
+- [ ] `Pair Extension` succeeds with a valid code
+- [ ] successful pairing swaps the sidepanel into Study Assistant view
+- [ ] `Unpair Browser` returns the extension to pairing mode
 
-- [ ] Client dashboard shows live wallet balance, session status, recent subjects
-- [ ] Sessions page shows active session info and history table
-- [ ] Buy Credits page shows available packages with correct pricing
-- [ ] Settings page loads and saves detection mode preference
-- [ ] Account page shows paired devices and billing history
-- [ ] Extension guide page shows 10-step setup and troubleshooting
+## Session Controls
 
----
+- [ ] session start works
+- [ ] pause/resume/end work
+- [ ] countdown updates while active
+- [ ] countdown freezes when paused or ended
 
-## Payment Flow
+## Subject Detection and Picker
 
-- [ ] Checkout creation → Stripe checkout session opened
-- [ ] Checkout return URLs validated (reject external origins)
-- [ ] Successful Stripe payment → webhook received, payment marked paid
-- [ ] Wallet credited once (idempotent) after successful payment
-- [ ] Webhook duplicate handling → no double crediting
-- [ ] Expired checkout → payment marked canceled
-- [ ] Payment history → shows all transactions with correct status
+- [ ] Auto Detect works from the current page
+- [ ] LMS header/course code influences subject detection correctly
+- [ ] subject picker dropdown opens
+- [ ] typing 2+ letters shows subject suggestions
+- [ ] selected subject can be locked with `Select Subject`
+- [ ] locked subject appears in the Answering workspace
+- [ ] new portal subjects appear after refresh/open refresh cycle
+- [ ] removed portal subjects no longer remain locked forever
 
----
+## Answering Workspace
 
-## Extension Pairing Flow
+- [ ] `Find All Answers` is visible near the top
+- [ ] `Study Results` appears directly below the main answering actions
+- [ ] current subject is highlighted at the top of the Answering view
+- [ ] `New Exam`, `Full Auto`, and `Select All` are usable
+- [ ] `Stop Search` appears during analyze
 
-- [ ] Generate pairing code from client portal → code shown with expiry
-- [ ] Exchange pairing code → access token + refresh token returned
-- [ ] Invalid/expired code exchange → error returned
-- [ ] Token refresh → new access token issued
-- [ ] Revoke device → installation marked revoked, audit logged
-- [ ] Revoked device cannot use access token for protected actions
-- [ ] Re-pair after revoke → new installation created
+## Matching Accuracy
 
----
+- [ ] fill-in-the-blank questions respect blank markers
+- [ ] repeated questions with different salary/details resolve to the correct answer
+- [ ] LMS control text such as `Clear my choice` is never selected as the answer
+- [ ] multi-answer checkbox questions can select multiple valid options
+- [ ] question/answer changes from admin sources appear after refresh
 
-## Analyze Flow
+## Output Safety and UX
 
-- [ ] Analyze with active session → subject detected, answer returned
-- [ ] Analyze without active session → error (no session)
-- [ ] Analyze with zero credits → error (insufficient credits)
-- [ ] Analyze with locked wallet → error (wallet locked)
-- [ ] Low confidence result → confidence warning shown
-- [ ] No match result → no-match message, no raw chunks leaked
-- [ ] Rate limit exceeded → 429 response after excessive requests
-- [ ] Response contains no raw source text, chunk content, or storage paths
-
----
-
-## Security & Error Handling
-
-- [ ] 404 page renders for unknown routes
-- [ ] Public error boundary renders for public page errors
-- [ ] Client error boundary renders for client portal errors
-- [ ] Admin error boundary renders for admin portal errors
-- [ ] Global error fallback renders when root layout fails
-- [ ] No stack traces or sensitive details visible in error pages
-- [ ] Rate limiting active on: analyze, checkout, session start/end, pair, exchange, refresh, revoke, admin credits, admin status
-- [ ] Rate limit rejection logged with monitoring context
-
----
-
-## Legal & Public Pages
-
-- [ ] Privacy Policy page renders at /privacy
-- [ ] Terms of Service page renders at /terms
-- [ ] Footer links to Privacy and Terms visible on all public pages
-- [ ] Landing page renders correctly (hero, features, pricing teaser, FAQ)
-- [ ] Contact page renders with form
+- [ ] no raw source chunks or private storage details leak into Study Results
+- [ ] no stack traces appear in portal pages
+- [ ] sidepanel errors are readable and actionable
+- [ ] portal and extension both show the current release version

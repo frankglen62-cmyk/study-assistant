@@ -1,120 +1,93 @@
-# Security Checklist & Incident Runbook
+# Security Checklist and Incident Runbook
 
-Pre-launch security verification and production incident response procedures.
+## Current Security Posture
 
----
+- web app auth is handled by Supabase-backed portal sessions
+- extension auth is handled by paired installation tokens, not shared browser cookies
+- pairing requires a short-lived portal-generated code
+- the extension must request portal host permission from a direct user gesture
+- sidepanel analysis is explicit and tied to the active tab flow
 
-## Pre-Launch Security Verification
+## Pre-Release Security Checks
 
-### Authentication & Authorization
-- [ ] All API routes require authentication (`requireClientUser`, `requirePortalUser`, or `requireAdminUser`)
-- [ ] Admin endpoints only accessible with admin-role tokens
-- [ ] Client endpoints only accessible with client-role tokens
-- [ ] Extension endpoints verify installation ownership before acting
-- [ ] Suspended accounts blocked from all protected actions
-- [ ] Pairing codes expire after `EXTENSION_PAIRING_CODE_TTL_SECONDS` (default: 5 min)
-- [ ] Extension access tokens expire after `EXTENSION_ACCESS_TOKEN_TTL_SECONDS`
-- [ ] Refresh tokens expire after `EXTENSION_REFRESH_TOKEN_TTL_SECONDS`
+### Auth and authorization
 
-### Data Protection
-- [ ] Raw source files stored in private bucket (no public access)
-- [ ] Source chunks and embeddings never returned in client API responses
-- [ ] Analyze response contains only: suggestion, explanation, confidence, and detected metadata
-- [ ] `server-only` import guard on all server-side modules
-- [ ] Service role key never exposed to client-side code
-- [ ] No environment variables with sensitive data leaked to frontend
+- [ ] admin routes require admin role checks
+- [ ] client routes require signed-in portal users
+- [ ] extension routes validate paired installation ownership
+- [ ] revoked installations cannot continue using protected routes
+- [ ] unpaired extensions cannot access protected client APIs
 
-### Rate Limiting
-- [ ] Analyze: 120 requests/hour per user
-- [ ] Checkout creation: 20 requests/hour per user
-- [ ] Session start: 20 requests/hour per user
-- [ ] Session end: 30 requests/hour per user
-- [ ] Pairing code: 10 requests/10 minutes per user
-- [ ] Exchange: 20 requests/10 minutes per IP
-- [ ] Refresh: 30 requests/10 minutes per IP
-- [ ] Device revoke: 20 requests/hour per user
-- [ ] Admin credit adjustment: 120 requests/hour per admin
-- [ ] Admin status change: 120 requests/hour per admin
-- [ ] Rate limit rejections logged with monitoring context
+### Secrets and data
 
-### Stripe Security
-- [ ] Webhook signatures verified via `stripe.webhooks.constructEvent`
-- [ ] Checkout return URLs validated against `NEXT_PUBLIC_APP_URL` origin
-- [ ] Payment crediting is idempotent (no double credits)
-- [ ] Raw Stripe payloads stored for dispute/audit trail
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` is server-only
+- [ ] `OPENAI_API_KEY` is server-only
+- [ ] `EXTENSION_PAIRING_SECRET` is server-only
+- [ ] raw source files remain private
+- [ ] source chunks and embeddings are not returned to client responses
+- [ ] portal responses expose only the intended answer metadata and UI state
 
----
+### Extension permissions
 
-## Incident Response Runbook
+- [ ] portal origin permission is requested only from a user click
+- [ ] current site access is requested only when needed
+- [ ] unsupported browser pages are handled safely
+- [ ] extension state resets cleanly after revoke or unpair
 
-### 1. Payment Webhook Failures
+### Rate limiting
 
-**Symptoms**: Payments marked as paid in Stripe but wallet not credited.
+- [ ] analyze route limit matches current code configuration
+- [ ] auth and device mutation routes still use route limiters
+- [ ] repeated failures or timeouts are logged without leaking secrets
 
-**Investigation steps**:
-1. Check Vercel/server logs for `payment.webhook.credited` or `payment.checkout.created` events.
-2. Query `payments` table for the checkout session ID — check `status` field.
-3. Query `credit_transactions` table for the payment ID.
-4. If payment exists but no credit_transaction, the RPC call may have failed.
+## Operational Security Notes
 
-**Resolution**:
-- Run `apply_payment_credit_once` manually via Supabase SQL editor with the payment ID.
-- Check Stripe dashboard to confirm the webhook was delivered and acknowledged.
-- If webhooks are consistently failing, verify `STRIPE_WEBHOOK_SECRET` and endpoint URL.
+- extension updates require a rebuilt ZIP and manual reload of the unpacked extension
+- local editor files such as `.vscode/` and build caches should not be committed by accident
+- production visibility always depends on GitHub push plus Vercel deployment, not local edits
 
-### 2. Extension Auth Failures
+## Incident Runbook
 
-**Symptoms**: Extension shows "Not Paired" or tokens continuously expire.
+### 1. Extension cannot pair
 
-**Investigation steps**:
-1. Check `extension_installations` table for the user's devices — verify `installation_status`.
-2. Check if the access token TTL is too short for the user's workflow.
-3. Check server logs for `rate_limit.rejected` events on the refresh endpoint.
+Check:
 
-**Resolution**:
-- If installation is revoked, user must re-pair from the portal.
-- If refresh is rate-limited, user is making too many requests — investigate automation.
-- Verify `EXTENSION_PAIRING_SECRET` matches between environments.
+1. portal pairing code was freshly generated
+2. portal host permission was granted
+3. installation is not revoked
+4. production URL matches the trusted portal URL
 
-### 3. Wallet Balance Mismatch
+### 2. Subject picker or extension data is stale
 
-**Symptoms**: User reports balance doesn't match expected credits.
+Check:
 
-**Investigation steps**:
-1. Query `wallets` table for the user's wallet — check `remaining_seconds`.
-2. Query `credit_transactions` table for the user — sum all deltas.
-3. Compare sum of transactions to `remaining_seconds` — they should match.
-4. Check `payments` table for any duplicate credits.
+1. admin subject/Q&A changes were saved successfully
+2. portal subject catalog endpoint returns current data
+3. extension subject picker refreshes after open/refresh/focus
+4. latest ZIP is actually reloaded in Chrome
 
-**Resolution**:
-- If discrepancy exists, use admin credit adjustment to correct the balance.
-- Write an audit log entry documenting the correction.
-- If caused by duplicate webhook credits, review `apply_payment_credit_once` idempotency.
+### 3. Payment credited incorrectly
 
-### 4. Source Ingestion Failures
+Check:
 
-**Symptoms**: Source file uploaded but processing job fails.
+1. `payments` status
+2. `credit_transactions` idempotency
+3. Stripe webhook delivery logs
 
-**Investigation steps**:
-1. Query `processing_jobs` table for the source — check `status` and `error_message`.
-2. Check server logs for extraction/chunking/embedding errors.
-3. Verify the file format is supported and within size limits.
+### 4. Wrong subject or answer routing
 
-**Resolution**:
-- Fix the underlying issue (file format, API quota, etc.).
-- Reprocess the source from the admin Sources page.
-- If the file is corrupt, re-upload a clean version.
+Check:
 
-### 5. General Production Errors
+1. LMS page header and course code extraction
+2. current manual subject override
+3. stored Q&A duplicates or conflicting rows
+4. Study Results source folder and confidence
 
-**First checks**:
-1. Vercel function logs (or hosting provider logs).
-2. Supabase dashboard — check for RLS policy violations or query errors.
-3. OpenAI API status page — check for outages.
-4. Stripe dashboard — check for webhook delivery failures.
+### 5. Live app does not reflect local changes
 
-**Escalation path**:
-1. Platform operator / lead developer
-2. Supabase support (for database/storage issues)
-3. OpenAI support (for API quota/rate issues)
-4. Stripe support (for payment/webhook issues)
+Check:
+
+1. commit exists locally
+2. commit was pushed to GitHub `main`
+3. Vercel deployed that exact commit
+4. extension ZIP was refreshed if extension code changed

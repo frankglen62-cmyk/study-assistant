@@ -1,113 +1,118 @@
-# Deployment Documentation — Admin-Managed AI Study Assistant
+# Deployment Docs
 
----
+## Current Production Targets
+
+- Production URL: `https://study-assistant-web.vercel.app`
+- GitHub repo: `https://github.com/frankglen62-cmyk/study-assistant.git`
+- Branch: `main`
+- Vercel project: `study-assistant-web`
+- Vercel root directory: `apps/web`
+- Current extension ZIP release: `v0.1.44`
+
+## Current Deployment Model
+
+### Web app
+
+- source of truth is GitHub `main`
+- Vercel auto-deploys from GitHub after push
+- anything not committed and pushed is not live
+
+### Extension
+
+- the extension is not auto-updated from source code alone
+- the extension must be rebuilt
+- the ZIP in `apps/web/public/downloads` must be refreshed
+- the updated ZIP must be committed and pushed
+- users must download the new ZIP and reload the unpacked extension
+
+## Release Files To Keep In Sync
+
+- [apps/extension/package.json](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/extension/package.json)
+- [apps/extension/public/manifest.json](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/extension/public/manifest.json)
+- [apps/web/src/lib/extension-distribution.ts](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/web/src/lib/extension-distribution.ts)
+- [apps/web/public/downloads/study-assistant-extension.zip](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/web/public/downloads/study-assistant-extension.zip)
+- versioned ZIP such as [apps/web/public/downloads/study-assistant-extension-v0.1.44.zip](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/web/public/downloads/study-assistant-extension-v0.1.44.zip)
 
 ## Environment Variables
 
-All required environment variables are validated at startup via Zod in `apps/web/src/lib/env/server.ts`.
+All required web environment variables are validated in:
 
-### Required
+- [apps/web/src/lib/env/server.ts](/c:/Users/glenn/Documents/NEW%20PROJECT/apps/web/src/lib/env/server.ts)
 
-| Variable | Description |
-|---|---|
-| `NEXT_PUBLIC_APP_URL` | Full URL of the deployed app (e.g., `https://study.example.com`) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous/public key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-only) |
-| `OPENAI_API_KEY` | OpenAI API key for extraction, answering, embeddings, and subject detection |
-| `STRIPE_SECRET_KEY` | Stripe secret key (live key for production) |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
-| `EXTENSION_PAIRING_SECRET` | Shared secret for extension pairing token generation |
+Core production values include:
 
-### Optional
+- `NEXT_PUBLIC_APP_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `OPENAI_API_KEY`
+- `STRIPE_SECRET_KEY`
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `EXTENSION_PAIRING_SECRET`
 
-| Variable | Default | Description |
-|---|---|---|
-| `SESSION_IDLE_SECONDS` | `300` (5 min) | Idle timeout before session auto-ends |
-| `LOW_CREDIT_THRESHOLD_SECONDS` | `900` (15 min) | Threshold for low-credit warnings |
-| `MAX_UPLOAD_SIZE_MB` | `25` | Maximum source file upload size |
-| `OPENAI_EXTRACTION_MODEL` | `gpt-4.1-mini` | Model for question extraction |
-| `OPENAI_ANSWER_MODEL` | `gpt-4.1` | Model for answer generation |
-| `OPENAI_EMBEDDING_MODEL` | `text-embedding-3-small` | Model for vector embeddings |
-| `OPENAI_SUBJECT_MODEL` | `gpt-4.1-mini` | Model for subject/category detection |
-| `STRIPE_PRICE_CURRENCY` | `usd` | Default currency for Stripe payments |
+## Standard Release Workflow
 
----
+1. Edit code locally.
+2. Run relevant checks:
 
-## Vercel Deployment
-
-### Initial Setup
-1. Connect the repository to Vercel.
-2. Set root directory to `apps/web` (or configure monorepo settings).
-3. Set framework preset to **Next.js**.
-4. Configure all required environment variables in the Vercel dashboard.
-5. Set the build command: `pnpm --filter @study-assistant/web build`
-6. Set the output directory: `.next`
-
-### Build Verification
-```bash
-pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm test
-pnpm --filter @study-assistant/web build
+```powershell
+pnpm.cmd --filter @study-assistant/extension typecheck
+pnpm.cmd --filter @study-assistant/extension build
+pnpm.cmd --filter @study-assistant/web build
 ```
 
-### Domain Configuration
-1. Add custom domain in Vercel project settings.
-2. Configure DNS records per Vercel instructions (CNAME or A record).
-3. Wait for SSL certificate provisioning (automatic via Vercel).
-4. Update `NEXT_PUBLIC_APP_URL` to match the production domain.
+3. If extension code changed, rebuild and refresh both ZIPs.
+4. Verify git state:
 
----
+```powershell
+git status --short
+```
 
-## Supabase Production Setup
+5. Commit the intended release:
 
-### Project Configuration
-1. Create a production Supabase project (separate from development).
-2. Copy the production URL and keys to environment variables.
-3. Ensure row-level security (RLS) policies are active on all tables.
+```powershell
+git add <files>
+git commit -m "describe the change"
+```
 
-### Database Migrations
-1. Run all SQL migrations against the production database.
-2. Verify the following RPC functions exist: `apply_wallet_seconds`, `apply_payment_credit_once`.
-3. Verify `pg_vector` extension is enabled for embedding storage.
+6. Push:
 
-### Storage Buckets
-1. Create the `private-sources` bucket with **private** access policy.
-2. Verify service-role key has read/write access to the bucket.
-3. Confirm client tokens do NOT have access to the storage bucket.
+```powershell
+git push origin main
+```
 
----
+7. Verify the latest commit is on GitHub:
 
-## Stripe Production Setup
+```powershell
+git log --oneline -5
+```
 
-### Live Keys
-1. Switch from test keys to live keys in the environment variables.
-2. Update `STRIPE_SECRET_KEY` and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`.
-3. Ensure payment packages in the database reference valid Stripe price IDs (if using `provider_price_reference`).
+8. Wait for Vercel to deploy the latest commit.
+9. Hard refresh the live portal.
+10. If the extension changed, re-download and reload the unpacked extension.
 
-### Webhook Configuration
-1. Create a webhook endpoint in the Stripe dashboard: `https://your-domain.com/api/webhooks/stripe`
-2. Subscribe to events:
-   - `checkout.session.completed`
-   - `checkout.session.async_payment_succeeded`
-   - `checkout.session.expired`
-3. Copy the webhook signing secret to `STRIPE_WEBHOOK_SECRET`.
+## ZIP Refresh Notes
 
----
+Recommended packaging flow:
 
-## Extension Environment Config
+1. Build `apps/extension`.
+2. If Windows file locks the `dist` output, copy the built files into a temporary staging folder.
+3. Create or refresh:
+   - `study-assistant-extension.zip`
+   - `study-assistant-extension-vX.Y.Z.zip`
+4. Confirm the packaged `manifest.json` version matches the intended release.
 
-The Chrome extension connects to the web app via the user-configured app URL during pairing.
-- Ensure `NEXT_PUBLIC_APP_URL` matches the production domain.
-- Extension does not require separate environment variables — all configuration is derived from the pairing flow.
+## Vercel Checks
 
----
+Before telling anyone that the live app is updated, verify:
+
+- latest Git commit was pushed
+- Vercel built from that same commit
+- deployment status is `Ready`
+- the portal shows the new ZIP version
 
 ## Rollback Notes
 
-- **Vercel**: Use the Vercel dashboard to redeploy a previous deployment.
-- **Database**: Maintain migration versioning. Be cautious with destructive migrations.
-- **Stripe**: Webhook endpoints can be deactivated in the Stripe dashboard immediately.
-- **Extension**: Published extension updates cannot easily be rolled back. Test thoroughly before publishing to Chrome Web Store.
+- Web app rollback: redeploy an earlier GitHub commit from Vercel
+- Extension rollback: restore an earlier ZIP and its matching metadata, then push that rollback commit to `main`

@@ -1,84 +1,59 @@
-# Launch Checklist — Admin-Managed AI Study Assistant
+# Launch Checklist
 
-Final sanity checks before going live.
+Current release-oriented checklist for the live app and extension.
 
----
+## Production Baseline
 
-## Environment & Infrastructure
-
-- [ ] All required environment variables set in production (see DEPLOYMENT_DOCS.md)
-- [ ] `NEXT_PUBLIC_APP_URL` set to production domain
-- [ ] Supabase project is production instance (not development)
-- [ ] RLS policies active on all tables
-- [ ] `private-sources` storage bucket exists with private access
-- [ ] `pg_vector` extension enabled
-- [ ] RPC functions `apply_wallet_seconds` and `apply_payment_credit_once` deployed
-- [ ] DNS configured and SSL certificate active
-
----
-
-## Payment Gateway
-
-- [ ] Stripe keys are **live** (not test)
-- [ ] Stripe webhook endpoint registered for production domain
-- [ ] Webhook signing secret matches `STRIPE_WEBHOOK_SECRET`
-- [ ] Webhook subscribed to: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.expired`
-- [ ] At least one active payment package exists in the database
-- [ ] Test purchase completed on live Stripe with live keys (refund after verification)
-
----
+- [ ] Production URL points to `https://study-assistant-web.vercel.app`
+- [ ] Vercel project is `study-assistant-web`
+- [ ] GitHub branch is `main`
+- [ ] Supabase production keys are configured
+- [ ] Stripe production keys and webhook secret are configured
 
 ## Build Verification
 
-- [ ] `pnpm install --frozen-lockfile` succeeds
-- [ ] `pnpm typecheck` passes (0 errors, 5/5 packages)
-- [ ] `pnpm test` passes (all tests green)
-- [ ] `pnpm --filter @study-assistant/web build` succeeds
-- [ ] Deployed build loads without runtime errors
+- [ ] `pnpm typecheck` passes
+- [ ] `pnpm test` passes if tests were affected
+- [ ] `pnpm --filter @study-assistant/web build` passes
+- [ ] `pnpm --filter @study-assistant/extension build` passes when extension code changes
 
----
+## Current Extension Release
 
-## Legal & Compliance
+- [ ] `apps/extension/package.json` version matches release target
+- [ ] `apps/extension/public/manifest.json` version matches release target
+- [ ] `apps/web/src/lib/extension-distribution.ts` matches the same version and timestamp
+- [ ] generic ZIP refreshed
+- [ ] versioned ZIP refreshed
+- [ ] packaged `manifest.json` inside both ZIPs matches the release version
 
-- [ ] Privacy Policy page live at /privacy
-- [ ] Terms of Service page live at /terms
-- [ ] Footer links visible on all public pages
-- [ ] Cookie consent or privacy notice if required by jurisdiction
+## Client Portal Checks
 
----
+- [ ] dashboard shows extension status card
+- [ ] dashboard shows current ZIP version
+- [ ] Extension Guide shows current ZIP version and pairing mode
+- [ ] account page links cleanly into extension actions
 
-## Chrome Extension
+## Extension Checks
 
-- [ ] Extension manifest version and permissions finalized
-- [ ] Extension icon and branding assets ready
-- [ ] Chrome Web Store listing copy prepared (name, description, screenshots)
-- [ ] Privacy practices disclosure completed for Chrome Web Store
-- [ ] Extension tested against production API URL
-- [ ] Pairing flow verified end-to-end on production
+- [ ] sidepanel pairing works without opening a separate onboarding tab
+- [ ] request permission works from a direct user gesture
+- [ ] pairing code paste and pair flow works
+- [ ] unpair action returns the extension to pairing mode
+- [ ] Controls and Answering workspaces both render correctly
+- [ ] subject picker suggestions appear while typing
+- [ ] `Find All Answers` and `Study Results` are visible near the top of Answering
 
----
+## Admin Data Checks
 
-## Core Smoke Tests
+- [ ] subjects load in admin Sources
+- [ ] stored Q&A add/edit/delete persists after reload
+- [ ] subject and Q&A changes appear in the extension after refresh
+- [ ] latest subject list is available to the extension subject picker
 
-- [ ] Landing page loads correctly
-- [ ] Login page loads and form validates
-- [ ] Registration page loads and form validates
-- [ ] Client dashboard loads with live data after login
-- [ ] Admin dashboard loads with live data after login
-- [ ] Buy credits → Stripe checkout opens
-- [ ] Analyze → returns suggestion-only answer
-- [ ] Session start/end → wallet debited correctly
-- [ ] Extension pairing works from production portal
-- [ ] 404 page renders for /nonexistent-route
-- [ ] Error boundaries render without leaking details
+## Go-Live Rule
 
----
-
-## Operational Readiness
-
-- [ ] Admin account created with valid credentials
-- [ ] At least one test client account created
-- [ ] At least one subject with active sources processed and embedded
-- [ ] Support/contact page accessible
-- [ ] Monitoring dashboards or log access configured (Vercel logs, Supabase logs)
-- [ ] Incident response contact identified (see SECURITY_CHECKLIST.md)
+- [ ] all intended files committed
+- [ ] pushed to GitHub `main`
+- [ ] Vercel deployed the latest commit
+- [ ] live portal refreshed
+- [ ] latest extension ZIP downloaded and reloaded if extension changed
