@@ -24,7 +24,7 @@ import {
   listAdminUsers,
   listAdminWallets,
 } from '@/lib/supabase/admin';
-import { countAdminSubjectQaPairsBySubjectIds, listAdminSubjectQaPairsBySubjectId } from '@/lib/supabase/subject-qa';
+import { countAdminSubjectQaPairsBySubjectIds } from '@/lib/supabase/subject-qa';
 import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
 
 function extractDomainFromUrl(value: string | null | undefined) {
@@ -168,17 +168,13 @@ export async function getAdminSourcesPageData() {
 
   const activeSubjects = subjects.filter((subject) => subject.is_active);
   const activeSubjectIds = new Set(activeSubjects.map((subject) => subject.id));
-  const initialSubjectId = activeSubjects[0]?.id ?? null;
-  const [qaPairCounts, initialQaPairs] = await Promise.all([
-    countAdminSubjectQaPairsBySubjectIds(activeSubjects.map((subject) => subject.id)),
-    initialSubjectId ? listAdminSubjectQaPairsBySubjectId(initialSubjectId) : Promise.resolve([]),
-  ]);
+  const qaPairCounts = await countAdminSubjectQaPairsBySubjectIds(activeSubjects.map((subject) => subject.id));
 
   return {
     folders: folders.filter((folder) => !folder.subject_id || activeSubjectIds.has(folder.subject_id)),
     sourceFiles: sourceFiles.filter((file) => activeSubjectIds.has(file.subject_id)),
     subjects: activeSubjects,
-    initialQaPairs: initialQaPairs.filter((pair) => activeSubjectIds.has(pair.subject_id)),
+    initialQaPairs: [],
     qaPairCounts: Object.fromEntries(qaPairCounts.entries()),
     subjectsById: new Map(activeSubjects.map((subject) => [subject.id, subject])),
   };

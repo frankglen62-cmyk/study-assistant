@@ -125,17 +125,42 @@ export async function countAdminSubjectQaPairsBySubjectIds(subjectIds: string[])
   }
 
   const supabase = getSupabaseAdmin();
-  const counts = new Map<string, number>();
+  const counts = new Map(subjectIds.map((subjectId) => [subjectId, 0]));
+  const pageSize = 1000;
+  let offset = 0;
 
-  for (const subjectId of subjectIds) {
-    const { count, error } = await supabase
+  while (true) {
+    const { data, error } = await supabase
       .from('subject_qa_pairs')
-      .select('id', { count: 'exact', head: true })
-      .eq('subject_id', subjectId)
-      .is('deleted_at', null);
+      .select('subject_id')
+      .in('subject_id', subjectIds)
+      .is('deleted_at', null)
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
+      if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
+        return counts;
+      }
+    }
 
     assertSupabaseResult(error, 'Failed to count subject Q&A pairs.');
-    counts.set(subjectId, count ?? 0);
+
+    const batch = data ?? [];
+    for (const row of batch) {
+      const subjectId = row.subject_id;
+      if (!subjectId) {
+        continue;
+      }
+
+      counts.set(subjectId, (counts.get(subjectId) ?? 0) + 1);
+    }
+
+    if (batch.length < pageSize) {
+      break;
+    }
+
+    offset += pageSize;
   }
 
   return counts;

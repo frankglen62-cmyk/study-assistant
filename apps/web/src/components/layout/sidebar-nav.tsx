@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Activity,
   BookOpen,
@@ -43,6 +46,8 @@ export function SidebarNav({
   items: NavItem[];
   currentPath: string;
 }) {
+  const router = useRouter();
+
   return (
     <nav className="space-y-1">
       {items.map((item) => {
@@ -53,6 +58,8 @@ export function SidebarNav({
           <Link
             key={item.href}
             href={item.href as any}
+            onMouseEnter={() => router.prefetch(item.href as any)}
+            onFocus={() => router.prefetch(item.href as any)}
             className={cn(
               'group relative flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-300',
               isActive
