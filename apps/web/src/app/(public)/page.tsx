@@ -26,18 +26,13 @@ const iconMap: Record<string, any> = {
 
 export default function HomePage() {
   return (
-    <div className="overflow-hidden">
-      {/* ════════════════════════════════════════════════
-          HERO SECTION
-      ════════════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-[#0a0a0a]">
-        {/* Gradient glow */}
+    <div className="overflow-hidden bg-[#0a0a0a]">
+      <section className="relative overflow-hidden border-b border-white/[0.06]">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-teal-500/[0.07] via-cyan-500/[0.04] to-transparent blur-3xl" />
+          <div className="absolute left-1/2 top-0 h-[620px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-b from-teal-500/[0.08] via-cyan-500/[0.05] to-transparent blur-3xl" />
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         </div>
 
-        {/* Floating icons */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute left-[8%] top-[20%] animate-float rounded-2xl border border-white/[0.06] bg-white/[0.04] p-3 shadow-2xl backdrop-blur-sm">
             <GraduationCap className="h-7 w-7 text-neutral-500" />
@@ -60,28 +55,42 @@ export default function HomePage() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-24 text-center lg:pt-32">
-          {/* Pill badge */}
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-neutral-400 backdrop-blur-sm transition-colors hover:border-white/20">
             <Zap className="h-4 w-4 text-teal-400" />
             <span>Discover the AI-powered Study Assistant</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </div>
 
-          {/* Headline */}
           <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-            One Tool For Acing{' '}
+            One Workspace For
+            {' '}
             <span className="bg-gradient-to-r from-teal-400 to-cyan-300 bg-clip-text text-transparent">
-              Every Subject
+              Faster Subject Review
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
-            Study Assistant enables you to achieve academic clarity at scale by linking
-            AI-powered retrieval to admin-curated subject libraries for accurate, grounded answers.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-400">
+            Study Assistant keeps your portal, extension, and subject-based review flow in one clean experience
+            so learners can stay focused without exposing the internal structure behind the system.
           </p>
 
-          {/* CTA Buttons */}
+          <div className="mx-auto mt-10 max-w-5xl rounded-[30px] border border-white/[0.08] bg-white/[0.03] px-6 py-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm sm:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-teal-400/90">
+              Access content from leading platforms — all in one place
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-neutral-500 sm:text-base">
+              Built for study workflows familiar to learners across Coursera, Course Hero, Scribd, Studocu, and Chegg,
+              while keeping everything organized inside one controlled review experience.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:gap-x-12">
+              <span className="text-lg font-bold tracking-[0.18em] text-neutral-500 sm:text-xl">coursera</span>
+              <span className="text-lg font-bold tracking-[0.12em] text-neutral-500 sm:text-xl">Course Hero</span>
+              <span className="text-lg font-bold tracking-[0.16em] text-neutral-500 sm:text-xl">scribd</span>
+              <span className="text-lg font-bold tracking-[0.14em] text-neutral-500 sm:text-xl">studocu</span>
+              <span className="text-lg font-bold tracking-[0.16em] text-neutral-500 sm:text-xl">chegg</span>
+            </div>
+          </div>
+
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/register"
@@ -90,89 +99,15 @@ export default function HomePage() {
               Get Started
             </Link>
             <Link
-              href="/features"
+              href="/#how-it-works"
               className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
             >
               How it Works
             </Link>
           </div>
-
-          {/* Product Screenshot Preview */}
-          <div className="relative mx-auto mt-16 max-w-5xl">
-            <div className="overflow-hidden rounded-xl border border-white/[0.08] bg-[#111] shadow-2xl shadow-black/50">
-              <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
-                <div className="h-3 w-3 rounded-full bg-red-500/60" />
-                <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
-                <div className="h-3 w-3 rounded-full bg-green-500/60" />
-                <div className="ml-4 flex-1 rounded-md bg-white/[0.04] px-4 py-1.5 text-xs text-neutral-600">
-                  study-assistant.app/admin/sources
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
-                  {/* Sidebar mock */}
-                  <div className="space-y-2 rounded-lg bg-white/[0.02] p-4">
-                    <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-600">Subjects</div>
-                    {['Physics', 'Ethics', 'Discrete Math', 'Cloud Computing'].map((s, i) => (
-                      <div
-                        key={s}
-                        className={`rounded-md px-3 py-2 text-sm ${i === 0 ? 'bg-teal-500/10 text-teal-400' : 'text-neutral-500'}`}
-                      >
-                        {s}
-                      </div>
-                    ))}
-                  </div>
-                  {/* Content mock */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-sm font-semibold text-white">Calculus-Based Physics 2</div>
-                        <div className="text-xs text-neutral-600">258 Q&A Pairs • 0 Files</div>
-                      </div>
-                      <div className="rounded-md bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-400">Active</div>
-                    </div>
-                    {[
-                      { q: 'What is the SI unit of electric charge?', a: 'Coulomb' },
-                      { q: 'What does Gauss\'s law relate?', a: 'Electric flux through a closed surface' },
-                      { q: 'An electron moves in a magnetic field...', a: 'Circular motion perpendicular to B' },
-                    ].map((item) => (
-                      <div key={item.q} className="flex items-start gap-4 rounded-lg bg-white/[0.02] px-4 py-3">
-                        <div className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-teal-500" />
-                        <div className="flex-1">
-                          <div className="text-sm text-neutral-300">{item.q}</div>
-                          <div className="mt-1 text-xs text-neutral-600">{item.a}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Glow under screenshot */}
-            <div className="absolute -bottom-10 left-1/2 -z-10 h-40 w-[80%] -translate-x-1/2 rounded-full bg-teal-500/[0.06] blur-3xl" />
-          </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════
-          TRUSTED-BY STRIP
-      ════════════════════════════════════════════════ */}
-      <section className="border-y border-white/[0.06] bg-[#0a0a0a] py-10">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <p className="mb-8 text-sm font-medium text-neutral-600">Access content from leading platforms — all in one place</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            <span className="text-xl font-bold tracking-wide text-neutral-600">coursera</span>
-            <span className="text-xl font-bold tracking-wide text-neutral-600">Course Hero</span>
-            <span className="text-xl font-bold tracking-wide text-neutral-600">scribd</span>
-            <span className="text-xl font-bold tracking-wide text-neutral-600">studocu</span>
-            <span className="text-xl font-bold tracking-wide text-neutral-600">chegg</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════
-          FEATURES
-      ════════════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-16 text-center">
@@ -181,10 +116,10 @@ export default function HomePage() {
               Features
             </div>
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Everything You Need to Study Smarter
+              A Cleaner Study Workspace
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-neutral-500">
-              Every major surface is designed around admin control, client-safe answers, and retrieval that stays grounded in your course material.
+              Designed to keep the portal and extension easier to understand, easier to navigate, and easier to trust.
             </p>
           </div>
 
@@ -208,15 +143,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════
-          HOW IT WORKS
-      ════════════════════════════════════════════════ */}
       <section id="how-it-works" className="border-t border-white/[0.06] bg-[#0a0a0a] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">How It Works</h2>
             <p className="mx-auto mt-4 max-w-2xl text-neutral-500">
-              Four simple steps from setup to grounded AI study assistance.
+              A simple flow from setup to a cleaner, subject-based review session.
             </p>
           </div>
 
@@ -234,9 +166,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════
-          TESTIMONIALS
-      ════════════════════════════════════════════════ */}
       <section className="border-t border-white/[0.06] bg-[#0f0f0f] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-16 text-center">
@@ -248,7 +177,7 @@ export default function HomePage() {
               See What Our Users Are Saying
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-neutral-500">
-              Here's what students and administrators say about our platform.
+              Here&apos;s what students and administrators say about our platform.
             </p>
           </div>
 
@@ -258,7 +187,6 @@ export default function HomePage() {
                 key={t.name}
                 className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all hover:border-white/10"
               >
-                {/* Stars */}
                 <div className="mb-4 flex items-center gap-2">
                   <div className="flex gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -268,10 +196,8 @@ export default function HomePage() {
                   <span className="text-sm font-medium text-neutral-400">{t.rating}</span>
                 </div>
 
-                {/* Quote */}
-                <p className="mb-6 text-sm leading-relaxed text-neutral-300">"{t.quote}"</p>
+                <p className="mb-6 text-sm leading-relaxed text-neutral-300">&quot;{t.quote}&quot;</p>
 
-                {/* Author */}
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 text-sm font-bold text-white">
                     {t.name.split(' ').map((n) => n[0]).join('')}
@@ -287,9 +213,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════
-          FAQ
-      ════════════════════════════════════════════════ */}
       <section id="faq" className="border-t border-white/[0.06] bg-[#0a0a0a] py-24">
         <div className="mx-auto max-w-3xl px-6">
           <div className="mb-16 text-center">
@@ -315,9 +238,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════
-          CTA BANNER
-      ════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#0a0a0a] py-24">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-teal-500/[0.06] to-cyan-500/[0.04] blur-3xl" />
@@ -327,7 +247,7 @@ export default function HomePage() {
             Ready to Study Smarter?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-neutral-500">
-            Join students who are already using AI-powered assistance grounded in their actual course material.
+            Join learners using a cleaner, subject-focused review workspace built for consistent study support.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
@@ -337,7 +257,7 @@ export default function HomePage() {
               Get Started
             </Link>
             <Link
-              href="/features"
+              href="/#how-it-works"
               className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
             >
               How it Works

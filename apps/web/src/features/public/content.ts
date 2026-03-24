@@ -6,39 +6,39 @@ export const heroHighlights = [
 
 export const featureCards = [
   {
-    title: 'Subject-Aware Routing',
+    title: 'Subject-Guided Review',
     description:
-      'The system routes each question into the correct subject and category using URL rules, keywords, visible page signals, and model-assisted confirmation.',
+      'Stay focused on the right course with a cleaner review flow that keeps each session aligned to the subject you are working on.',
     icon: 'BrainCircuit' as const,
   },
   {
-    title: 'Admin-Managed Source Library',
+    title: 'Private Study Library',
     description:
-      'Only admins manage folders, files, versions, and categories. Clients never browse raw material, embeddings, or storage URLs.',
+      'Course material stays organized in one private library so learners always review from a consistent, controlled study workspace.',
     icon: 'FolderTree' as const,
   },
   {
-    title: 'Credit-Based Access',
+    title: 'Flexible Session Access',
     description:
-      'Usage is tracked in wallet seconds with webhook-verified top-ups, idle protection, and consistent ledger accounting.',
+      'Start when you need it, pause when you do not, and keep your study time easy to manage from the portal.',
     icon: 'WalletCards' as const,
   },
   {
-    title: 'Extension Side Panel',
+    title: 'Focused Side Panel',
     description:
-      'Learners can analyze the active tab, inspect confidence, switch subject/course manually, and copy suggestion-only output.',
+      'Open a compact side panel built for quick review, fast switching, and a cleaner study experience inside the browser.',
     icon: 'MonitorSmartphone' as const,
   },
   {
-    title: 'AI-Powered Detection',
+    title: 'Smart Subject Matching',
     description:
-      'Automatically identifies active questions, extracts answer choices, and matches against the admin-curated Q&A library with high accuracy.',
+      'The workspace helps match the current page to the right subject so results stay more relevant and easier to review.',
     icon: 'Sparkles' as const,
   },
   {
-    title: 'Secure by Design',
+    title: 'Private by Design',
     description:
-      'Private sources remain server-side. No raw file leakage, no auto-submit behavior, and no silent tab monitoring.',
+      'Built around admin control, client-safe outputs, and a cleaner privacy boundary for every study session.',
     icon: 'ShieldCheck' as const,
   },
 ];
@@ -46,23 +46,23 @@ export const featureCards = [
 export const howItWorks = [
   {
     step: '01',
-    title: 'Admins curate private sources',
-    description: 'Subjects, categories, folders, and source files are organized once and re-used across every learner session.',
+    title: 'Set up your study workspace',
+    description: 'Open the portal, connect the browser once, and keep your study tools ready in a single place.',
   },
   {
     step: '02',
-    title: 'Clients buy time credits and pair the extension',
-    description: 'The wallet tracks remaining seconds, paired devices, and session activity from the client portal.',
+    title: 'Pick the right subject',
+    description: 'Choose a subject manually or let the workspace guide detection from the page you are reviewing.',
   },
   {
     step: '03',
-    title: 'The extension analyzes only on request',
-    description: 'Page signals are extracted from the active tab after user action or explicitly enabled Live Assist.',
+    title: 'Review suggestions in the side panel',
+    description: 'Use the browser panel to keep actions, subject context, and study results in one cleaner view.',
   },
   {
     step: '04',
-    title: 'The backend returns a grounded suggestion',
-    description: 'Retrieval stays server-side and returns only concise answers, explanations, and confidence.',
+    title: 'Keep sessions organized',
+    description: 'Move from page to page with a simpler workflow designed for repeatable, subject-based review.',
   },
 ];
 
