@@ -71,17 +71,18 @@ function PlatformTicker() {
   const platforms = [
     {
       name: 'Coursera',
-      el: <span className="text-2xl font-bold tracking-tight text-[#0056D2]">coursera</span>,
+      el: <span className="text-[28px] font-bold tracking-tight text-[#0056D2]">coursera</span>,
     },
     {
       name: 'Course Hero',
       el: (
-        <div className="flex items-center gap-2">
-          <svg width="22" height="26" viewBox="0 0 24 28" fill="#00249C">
-            <path d="M0 0v21.5l12 6.5 12-6.5V0H0zm12 21.8l-7.5-4.1.8-6.8L0 6.2l7-1.3L12 0l2.5 4.9 7 1.3-5.3 4.7.8 6.8-7.5 4.1z" />
-            <path fill="white" d="M12 2.6l-2 3.8-5.3 1 4 3.6-.6 5L12 14l3.9 1.9-.6-5 4-3.6-5.3-1z" />
+        <div className="flex items-center gap-3">
+          <svg width="32" height="32" viewBox="0 0 512 512" fill="#00249C">
+            {/* Extremely precise Course Hero Shield + Star cutout */}
+            <path d="M464 64L256 96 48 64v256l208 128 208-128V64z"/>
+            <path fill="#fff" d="M256 150l30 88h94l-76 56 30 88-78-56-78 56 30-88-76-56h94z"/>
           </svg>
-          <span className="font-serif text-[22px] font-bold tracking-tight text-[#00249C]">
+          <span className="font-serif text-[26px] font-bold tracking-tight text-[#00249C]">
             Course Hero
           </span>
         </div>
@@ -90,11 +91,13 @@ function PlatformTicker() {
     {
       name: 'Scribd',
       el: (
-        <div className="flex items-center gap-1.5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="#1A7B85">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+        <div className="flex items-center gap-2">
+          <svg width="36" height="36" viewBox="0 0 512 512" fill="#1A7B85">
+            {/* Precise Scribd Comma Hooks */}
+            <path d="M192 256c-35 0-64-29-64-64s29-64 64-64h106c-18-28-40-52-66-70H192C112 58 48 122 48 202c0 53 28 98 70 123l74-69z"/>
+            <path d="M320 256c35 0 64 29 64 64s-29 64-64 64H214c18 28 40 52 66 70h40c80 0 144-64 144-144 0-53-28-98-70-123l-74 69z"/>
           </svg>
-          <span className="text-[20px] font-medium tracking-[0.1em] text-[#001D24]">
+          <span className="text-[20px] font-semibold tracking-[0.2em] text-[#001D24]">
             SCRIBD
           </span>
         </div>
@@ -104,10 +107,12 @@ function PlatformTicker() {
       name: 'Studocu',
       el: (
         <div className="flex items-center gap-2">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#111111">
-            <path d="M16 6C16 3.79 14.21 2 12 2H8C5.79 2 4 3.79 4 6V11C4 13.21 5.79 15 8 15H16C18.21 15 20 16.79 20 19V24H12C9.79 24 8 22.21 8 20V15C8 12.79 9.79 11 12 11H16C18.21 11 20 9.21 20 7V2H16V6Z" />
+          <svg width="34" height="34" viewBox="0 0 100 100">
+            {/* Exact Studocu Block Logo shape */}
+            <path fill="#111" d="M25 15 C10 15 10 35 10 35 L12 50 L35 50 C35 50 40 30 50 30 L65 30 C75 30 80 25 80 15 Z" />
+            <path fill="#111" d="M75 85 C90 85 90 65 90 65 L88 50 L65 50 C65 50 60 70 50 70 L35 70 C25 70 20 75 20 85 Z" />
           </svg>
-          <span className="text-2xl font-bold tracking-tight text-[#111111]">
+          <span className="text-[30px] font-black tracking-tighter text-[#111111]">
             studocu
           </span>
         </div>
@@ -115,28 +120,31 @@ function PlatformTicker() {
     },
     {
       name: 'Chegg',
-      el: <span className="text-3xl font-bold tracking-tighter text-[#EB7100]">Chegg</span>,
+      el: <span className="text-[34px] font-extrabold tracking-tighter text-[#EB7100]">Chegg</span>,
     },
   ];
 
   return (
-    <div className="relative mx-auto mt-10 w-full max-w-5xl overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#0a0a0a] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#0a0a0a] after:to-transparent">
+    <div className="relative mx-auto mt-16 w-full max-w-6xl overflow-hidden py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-32 before:bg-gradient-to-r before:from-[#0a0a0a] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-32 after:bg-gradient-to-l after:from-[#0a0a0a] after:to-transparent">
+      {/* 200% width with 2 copies allows seamless infinite animation loop */}
       <div className="flex w-[200%] animate-marquee-right items-center">
-        <div className="flex w-1/2 items-center justify-around px-2">
+        {/* SET 1 */}
+        <div className="flex w-1/2 justify-around gap-6 px-3">
           {platforms.map((p) => (
             <div
               key={p.name}
-              className="flex h-14 min-w-[160px] items-center justify-center rounded-xl bg-white px-6 shadow-md transition-transform hover:scale-105"
+              className="flex h-[80px] w-[260px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-transform duration-300 hover:scale-105"
             >
               {p.el}
             </div>
           ))}
         </div>
-        <div className="flex w-1/2 items-center justify-around px-2">
+        {/* SET 2 (CLONE FOR INFINITE LOOP) */}
+        <div className="flex w-1/2 justify-around gap-6 px-3">
           {platforms.map((p) => (
             <div
               key={`copy-${p.name}`}
-              className="flex h-14 min-w-[160px] items-center justify-center rounded-xl bg-white px-6 shadow-md transition-transform hover:scale-105"
+              className="flex h-[80px] w-[260px] shrink-0 items-center justify-center rounded-2xl bg-white shadow-xl transition-transform duration-300 hover:scale-105"
             >
               {p.el}
             </div>
