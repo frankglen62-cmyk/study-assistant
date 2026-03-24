@@ -5,7 +5,6 @@ import {
   ArrowRight,
   BrainCircuit,
   BookOpenText,
-  CheckCircle2,
   FolderTree,
   GraduationCap,
   MonitorSmartphone,
@@ -25,11 +24,7 @@ import {
   heroHeadlineReveal,
   heroTextReveal,
   heroCtaReveal,
-  heroPanelReveal,
-  heroPanelItemStagger,
-  heroPanelItem,
   trustStripReveal,
-  trustItemStagger,
   sectionReveal,
   staggerContainer,
   staggerItem,
@@ -49,20 +44,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Sparkles,
   ShieldCheck,
 };
-
-/* ═══════════════════════════════════════════
-   Subject preview data for the hero panel
-   ═══════════════════════════════════════════ */
-const previewSubjects = [
-  { name: 'Calculus-Based Physics 2', count: 156, active: true },
-  { name: 'Software Engineering 1', count: 224, active: false },
-  { name: 'Information Assurance & Security', count: 189, active: false },
-];
-
-const previewQA = [
-  { q: 'The SI unit of electric charge is…', a: 'Coulomb (C)', confidence: 96 },
-  { q: 'Which SDLC model allows iterative…', a: 'Spiral Model', confidence: 91 },
-];
 
 /* ═══════════════════════════════════════════
    Platform Ticker Component
@@ -217,86 +198,10 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          {/* ── Product preview panel ── */}
-          <motion.div
-            variants={heroPanelReveal}
-            className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-          >
-            {/* Browser dots */}
-            <div className="flex items-center gap-2 border-b border-white/[0.06] px-5 py-3">
-              <div className="h-2.5 w-2.5 rounded-full bg-red-500/50" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/50" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-500/50" />
-              <span className="ml-3 text-xs text-neutral-600">studyassistant.app/admin/sources</span>
-            </div>
-
-            <motion.div
-              variants={heroPanelItemStagger}
-              initial={reduced ? undefined : 'hidden'}
-              animate={reduced ? undefined : 'visible'}
-              className="grid gap-0 md:grid-cols-[260px_1fr]"
-            >
-              {/* Left: subjects sidebar */}
-              <div className="border-b border-white/[0.06] p-5 md:border-b-0 md:border-r">
-                <motion.p variants={heroPanelItem} className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-600">
-                  Subject Library
-                </motion.p>
-                <div className="space-y-2">
-                  {previewSubjects.map((s) => (
-                    <motion.div
-                      key={s.name}
-                      variants={heroPanelItem}
-                      className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm ${
-                        s.active
-                          ? 'border border-teal-500/20 bg-teal-500/[0.08] text-teal-300'
-                          : 'text-neutral-500 hover:bg-white/[0.03]'
-                      }`}
-                    >
-                      <span className="truncate">{s.name}</span>
-                      <span className={`ml-2 rounded-full px-2 py-0.5 text-[10px] font-bold ${s.active ? 'bg-teal-500/20 text-teal-400' : 'bg-white/[0.04] text-neutral-600'}`}>
-                        {s.count}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right: Q&A preview */}
-              <div className="p-5">
-                <motion.div variants={heroPanelItem} className="mb-3 flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-600">Q&A Pairs</p>
-                  <span className="rounded-full bg-teal-500/10 px-2.5 py-0.5 text-[10px] font-bold text-teal-400">
-                    156 items
-                  </span>
-                </motion.div>
-                <div className="space-y-2">
-                  {previewQA.map((qa) => (
-                    <motion.div
-                      key={qa.q}
-                      variants={heroPanelItem}
-                      className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
-                    >
-                      <p className="text-sm text-neutral-300">{qa.q}</p>
-                      <div className="mt-2 flex items-center gap-3">
-                        <span className="flex items-center gap-1.5 text-xs font-medium text-teal-400">
-                          <CheckCircle2 className="h-3.5 w-3.5" />
-                          {qa.a}
-                        </span>
-                        <span className="rounded-full bg-white/[0.04] px-2 py-0.5 text-[10px] text-neutral-600">
-                          {qa.confidence}% confidence
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
           {/* ── Trust strip (inside hero) ── */}
           <motion.div
             variants={trustStripReveal}
-            className="mx-auto mt-14 max-w-4xl"
+            className="mx-auto mt-16 max-w-4xl"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-teal-400/90">
               Access content from leading platforms — all in one place
