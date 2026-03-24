@@ -74,23 +74,6 @@ export default function HomePage() {
             so learners can stay focused without exposing the internal structure behind the system.
           </p>
 
-          <div className="mx-auto mt-10 max-w-5xl rounded-[30px] border border-white/[0.08] bg-white/[0.03] px-6 py-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm sm:px-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-teal-400/90">
-              Access content from leading platforms — all in one place
-            </p>
-            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-neutral-500 sm:text-base">
-              Built for study workflows familiar to learners across Coursera, Course Hero, Scribd, Studocu, and Chegg,
-              while keeping everything organized inside one controlled review experience.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:gap-x-12">
-              <span className="text-lg font-bold tracking-[0.18em] text-neutral-500 sm:text-xl">coursera</span>
-              <span className="text-lg font-bold tracking-[0.12em] text-neutral-500 sm:text-xl">Course Hero</span>
-              <span className="text-lg font-bold tracking-[0.16em] text-neutral-500 sm:text-xl">scribd</span>
-              <span className="text-lg font-bold tracking-[0.14em] text-neutral-500 sm:text-xl">studocu</span>
-              <span className="text-lg font-bold tracking-[0.16em] text-neutral-500 sm:text-xl">chegg</span>
-            </div>
-          </div>
-
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/register"
@@ -104,6 +87,23 @@ export default function HomePage() {
             >
               How it Works
             </Link>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-5xl px-6 sm:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-teal-400/90">
+              Access content from leading platforms - all in one place
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-neutral-500 sm:text-base">
+              Built for study workflows familiar to learners across Coursera, Course Hero, Scribd, Studocu, and Chegg,
+              while keeping everything organized inside one controlled review experience.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:gap-x-12">
+              <span className="text-lg font-bold tracking-[0.18em] text-white/35 sm:text-xl">coursera</span>
+              <span className="text-lg font-bold tracking-[0.12em] text-white/35 sm:text-xl">Course Hero</span>
+              <span className="text-lg font-bold tracking-[0.16em] text-white/35 sm:text-xl">scribd</span>
+              <span className="text-lg font-bold tracking-[0.14em] text-white/35 sm:text-xl">studocu</span>
+              <span className="text-lg font-bold tracking-[0.16em] text-white/35 sm:text-xl">chegg</span>
+            </div>
           </div>
         </div>
       </section>
