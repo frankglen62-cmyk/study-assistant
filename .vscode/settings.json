@@ -1,0 +1,5 @@
+{
+  "python.pyrefly.displayTypeErrors": "force-off",
+  "python.pyrefly.disableLanguageServices": true,
+  "python.pyrefly.diagnosticMode": "openFilesOnly"
+}

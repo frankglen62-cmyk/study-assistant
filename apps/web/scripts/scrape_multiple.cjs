@@ -3,39 +3,11 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Application Life Cycle Management',
-    slug: 'application-life-cycle-management',
-    expectedCount: 272,
-    pages: 5,
-    baseUrl: 'https://amauoed.com/courses/cs/application-life-cycle-management-6302-cs'
-  },
-  {
     name: 'Cloud Computing and the Internet of Things',
     slug: 'cloud-computing-and-the-internet-of-things',
     expectedCount: 292,
-    pages: 5,
-    baseUrl: 'https://amauoed.com/courses/ite/cloud-computing-and-the-internet-of-things-6300-ite'
-  },
-  {
-    name: 'Database Management System 2',
-    slug: 'database-management-system-2',
-    expectedCount: 187,
     pages: 4,
-    baseUrl: 'https://amauoed.com/courses/it/database-management-system-2-oracle-10g-admin-6203-it'
-  },
-  {
-    name: 'Ethics',
-    slug: 'ethics',
-    expectedCount: 139,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/ge/ethics-6107-ge'
-  },
-  {
-    name: 'Discrete Mathematics',
-    slug: 'discrete-mathematics',
-    expectedCount: 326,
-    pages: 6,
-    baseUrl: 'https://amauoed.com/courses/cs/discrete-mathematics-6105-cs'
+    baseUrl: 'https://amauoed.com/courses/ite/cloud-computing-and-the-internet-of-things-6300-ite'
   }
 ];
 

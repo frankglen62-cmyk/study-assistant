@@ -10,7 +10,12 @@ async function main() {
     'purposive-communication-1',
     'purposive-communication-2',
     'rhythmic-activities',
-    'art-appreciation'
+    'art-appreciation',
+    'application-life-cycle-management',
+    'cloud-computing-and-the-internet-of-things',
+    'database-management-system-2',
+    'ethics',
+    'discrete-mathematics'
   ];
 
   for (const slug of slugs) {
