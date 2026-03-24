@@ -53,11 +53,16 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
           '50%': { transform: 'translateY(-8px) rotate(2deg)' },
         },
+        'marquee-right': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
       animation: {
         float: 'float 5s ease-in-out infinite',
         'float-delayed': 'float-delayed 6s ease-in-out 1s infinite',
         'float-slow': 'float-slow 7s ease-in-out 2s infinite',
+        'marquee-right': 'marquee-right 30s linear infinite',
       },
       boxShadow: {
         glow: '0 18px 65px -28px rgba(9, 62, 70, 0.55)',
