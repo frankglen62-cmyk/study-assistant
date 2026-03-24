@@ -159,11 +159,13 @@ export default function HomePage() {
       ════════════════════════════════════════════════ */}
       <section className="border-y border-white/[0.06] bg-[#0a0a0a] py-10">
         <div className="mx-auto max-w-7xl px-6 text-center">
-          <p className="mb-8 text-sm font-medium text-neutral-600">Trusted by students across universities</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-            {['AMA University', 'STI College', 'TIP Manila', 'FEU Institute', 'Mapúa University'].map((name) => (
-              <span key={name} className="text-lg font-semibold tracking-wide text-neutral-700">{name}</span>
-            ))}
+          <p className="mb-8 text-sm font-medium text-neutral-600">Access content from leading platforms — all in one place</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            <span className="text-xl font-bold tracking-wide text-neutral-600">coursera</span>
+            <span className="text-xl font-bold tracking-wide text-neutral-600">Course Hero</span>
+            <span className="text-xl font-bold tracking-wide text-neutral-600">scribd</span>
+            <span className="text-xl font-bold tracking-wide text-neutral-600">studocu</span>
+            <span className="text-xl font-bold tracking-wide text-neutral-600">chegg</span>
           </div>
         </div>
       </section>
