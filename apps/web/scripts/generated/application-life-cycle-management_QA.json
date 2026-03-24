@@ -1,0 +1,1002 @@
+[
+  {
+    "q": "______ are the means for setting objectives on Project Planning and Tracking releases and for planning and tracking release progress towards these objectives throughout its duration.",
+    "a": "Thresholds"
+  },
+  {
+    "q": "_______are checkpoints on a release timeline used to verify that the release and its interim deliverables are progressing as planned.",
+    "a": "Milestones"
+  },
+  {
+    "q": "A _______ contains the actions that must be performed during test execution.",
+    "a": "Test script"
+  },
+  {
+    "q": "A _______ is a variable that can be assigned a value during test execution.",
+    "a": "Parameter"
+  },
+  {
+    "q": "A _______ is an independent business unit within an organization, with its own set of rules, standards, resources, objectives, and applications.",
+    "a": "Line of business (LOB)"
+  },
+  {
+    "q": "A document-centric viewing mode that enables you to see a list of requirements in a single document view and allows for quick editing of descriptions. This helps you to better understand the big picture.",
+    "a": "Author mode"
+  },
+  {
+    "q": "A dynamic hierarchical structure based on virtual folders allows for flexibility in manipulating the Requirements view.",
+    "a": "Category views"
+  },
+  {
+    "q": "A good test plan enables you to assess the quality of your application at any point in the application management process.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A good test plan enables you to assess the quality of your application at any stage in the testing process.",
+    "a": "True"
+  },
+  {
+    "q": "A group of tests designed to achieve specific testing goals.",
+    "a": "Test Set"
+  },
+  {
+    "q": "A KPI is a quantifiable measure designed to track a critical performance variable over time, and measure the essential outcome of a release scope item.",
+    "a": "True"
+  },
+  {
+    "q": "A library represents a set of entities in a project and the relationship between them.",
+    "a": "True"
+  },
+  {
+    "q": "A milestone is a point in the time-line of a release that signifies the completion of a deliverable.",
+    "a": "True"
+  },
+  {
+    "q": "A physical devices used to identify users in secure systems.",
+    "a": "Smart Card Authentication"
+  },
+  {
+    "q": "A Requirement tree is a visual ______ of the relationship between requirements.",
+    "a": "Organization"
+  },
+  {
+    "q": "A session/user authentication process that permits a user to enter one name and password to access multiple applications.",
+    "a": "Single Sign-on"
+  },
+  {
+    "q": "A subset of features for quality management teams managing medium to large release.",
+    "a": "HP Quality Center Enterprise Edition"
+  },
+  {
+    "q": "A test can cover more than one______ and a requirement can be covered by more than one test.",
+    "a": "Requirement"
+  },
+  {
+    "q": "A test configuration is a set of definitions that describe a specific test use-case.",
+    "a": "True"
+  },
+  {
+    "q": "A test must be appropriate for its testers and its environment.",
+    "a": "appropriate"
+  },
+  {
+    "q": "A test must include only the necessary steps and fields that are needed for its purpose.",
+    "a": "economical"
+  },
+  {
+    "q": "A test must map to a requirement or a process.",
+    "a": "traceable"
+  },
+  {
+    "q": "A test set folder in the Test Lab module contains tests that are covered by your requirements.",
+    "a": "True"
+  },
+  {
+    "q": "According to the HP ALM Dashboard, the 2nd phase of this management after Project Planning & Tracking is ___________________.",
+    "a": "Release Management"
+  },
+  {
+    "q": "Adds a new blank test to the Tests and Components list.",
+    "a": "New HP ALM Test"
+  },
+  {
+    "q": "Adds a new component to the Tests and Components list.",
+    "a": "New HP ALM Business Component"
+  },
+  {
+    "q": "After adding a cycle to a release, you specify the details for the cycle using the _____.",
+    "a": "Details tab"
+  },
+  {
+    "q": "After Checking Out Entities Automatically, the entity is displayed with a blue lock icon, indicating that it is checked out.",
+    "a": "False"
+  },
+  {
+    "q": "After defining the subjects in the Test Plan tree, the next step is to add and define the specific tests to be performed for each subject.",
+    "a": "True"
+  },
+  {
+    "q": "After finalizing the testing policy for your requirements, you can ______ a risk report that details your testing strategy for the analysis requirement.",
+    "a": "Generate"
+  },
+  {
+    "q": "After the _____, the release goes through further testing cycles to test aspects, such as functionality and performance of the application.",
+    "a": "first cycle"
+  },
+  {
+    "q": "After you make changes to an entity, you _____ the entity.",
+    "a": "Check in"
+  },
+  {
+    "q": "After you select an automatic method for conversion, you cannot customize the conversion.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Allows you to capture a group of requirements, tests, or test assets at strategic points in the project lifecycle to mark specific milestones.",
+    "a": "Baselining"
+  },
+  {
+    "q": "ALM support you through ____.",
+    "a": "All phases of Application Lifecycle Management"
+  },
+  {
+    "q": "An example of a KPI is the number of severe defects.",
+    "a": "True"
+  },
+  {
+    "q": "Assigns a short description of the requirement.",
+    "a": "Name"
+  },
+  {
+    "q": "Before defining manual tests, you specify the detailed steps to execute each test.",
+    "a": "False"
+  },
+  {
+    "q": "Before you create a report, you can add sub-reports. A sub-report adds an extra layer of information related to the parent report.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Changes the speed that it takes for ALM to calculate the KPI data.",
+    "a": "Engines Throttle"
+  },
+  {
+    "q": "Clearly defined requirements help developers set a target for themselves and the testing team to identify their testing priorities.",
+    "a": "Aids development and testing"
+  },
+  {
+    "q": "Contains tests that you can assign to cycles in the Management module. This association allows you to review the progress of tests, determine the number of resolved and outstanding defects, and enhance your reporting ability.",
+    "a": "Test Set folder"
+  },
+  {
+    "q": "Contains the Analysis tree in which you organize all of your analysis items.",
+    "a": "Analysis View module"
+  },
+  {
+    "q": "Contains the Dashboard tree in which you organize dashboard pages.",
+    "a": "Dashboard View module"
+  },
+  {
+    "q": "Converting a requirement to a test has no limitation.",
+    "a": "False"
+  },
+  {
+    "q": "Converts the selected requirement to a subject folder",
+    "a": "convert to subject"
+  },
+  {
+    "q": "Converts the selected requirement to a test",
+    "a": "convert to test"
+  },
+  {
+    "q": "Converts the selected requirement to a test description",
+    "a": "convert to description"
+  },
+  {
+    "q": "Converts the selected requirement to a test step",
+    "a": "convert to step"
+  },
+  {
+    "q": "Cycle 2 can start before the end of cycle 1.",
+    "a": "True"
+  },
+  {
+    "q": "Displays a description of the selected requirement.",
+    "a": "Description"
+  },
+  {
+    "q": "Displays a list of changes made to the currently selected requirement.",
+    "a": "History"
+  },
+  {
+    "q": "Displays KPI calculations that enable you to determine the status of your release.",
+    "a": "Scorecard tab"
+  },
+  {
+    "q": "Displays the comments added by various users for the selected requirement.",
+    "a": "Comments"
+  },
+  {
+    "q": "Displays the number of child requirements associated with each risk category",
+    "a": "No. of Requirements Graph"
+  },
+  {
+    "q": "Displays the Open ALM Test dialog box. The tests you select are added to the Tests and Components list.",
+    "a": "Open HP ALM Test"
+  },
+  {
+    "q": "Displays the progress of a release in a Gantt chart.",
+    "a": "Master Plan tab"
+  },
+  {
+    "q": "Displays the total testing time needed to test all assessment requirements included in the risk analysis",
+    "a": "total required testing time field"
+  },
+  {
+    "q": "Displays the total time needed to develop all the assessment requirements, based on the required development time you estimated for each assessment requirement",
+    "a": "Total Required Development Time Field"
+  },
+  {
+    "q": "Each iteration of the test must execute consistently.",
+    "a": "consistent"
+  },
+  {
+    "q": "Each test should have a distinct objective, such as verifying a specific function or system requirement.",
+    "a": "accurate"
+  },
+  {
+    "q": "Enable you to create and display a dynamic graphic representation of data related to test plans and test sets.",
+    "a": "Live Analysis graphs"
+  },
+  {
+    "q": "Enabled for requirements, tests, and test assets to allow distributed teams to collaborate and manage multiple versions of assets in parallel while maintaining data integrity and providing an audit history of changes throughout the project lifecycle.",
+    "a": "Version control"
+  },
+  {
+    "q": "Enables quality assurance managers to track application readiness by defining goals for activities of an application release.",
+    "a": "ALM project planning and tracking (PPT)"
+  },
+  {
+    "q": "Enables subject matter experts (SMEs) to work with Business Process Testing (BPT), the HP test automation solution.",
+    "a": "Business Components module"
+  },
+  {
+    "q": "Enables you to add and remove traceability links between requirements",
+    "a": "Relationships"
+  },
+  {
+    "q": "Enables you to add attachments to a requirement.",
+    "a": "Attachments"
+  },
+  {
+    "q": "Enables you to add, view, and edit rich text using an editor from within ALM",
+    "a": "Rich Text"
+  },
+  {
+    "q": "Enables you to analyze the breakdown of child requirements according to test coverage status.",
+    "a": "Coverage analysis"
+  },
+  {
+    "q": "Enables you to analyze the impact of requirement changes by reviewing requirement relationships",
+    "a": "Impact Analysis"
+  },
+  {
+    "q": "Enables you to associate the selected requirement with other requirements in the requirements tree .",
+    "a": "Requirements Traceability"
+  },
+  {
+    "q": "Enables you to control the execution of automated tests by setting test run conditions and creating a schedule.",
+    "a": "Organize test runs"
+  },
+  {
+    "q": "Enables you to create and edit tests or components directly in Sprinter and save them to ALM.",
+    "a": "Sprinter's Plan mode"
+  },
+  {
+    "q": "Enables you to create links between requirements and other entities.",
+    "a": "Requirements Details"
+  },
+  {
+    "q": "Enables you to increase the number of parallel calculations performed on an entire site.",
+    "a": "Advanced Area"
+  },
+  {
+    "q": "Enables you to instruct ALM to automatically send a status alert email to the author when the test set completes execution.",
+    "a": "Set automation options"
+  },
+  {
+    "q": "Enables you to manage resources used by your tests. You can organize your resources by defining a hierarchical Test Resource tree containing resource folders and resources.",
+    "a": "Test Resources"
+  },
+  {
+    "q": "Enables you to manage the execution of manual and automated tests and document their results.",
+    "a": "Run the tests"
+  },
+  {
+    "q": "Enables you to purge calculations after a specific time period.",
+    "a": "Purge Area"
+  },
+  {
+    "q": "Enables you to record additional details about the actual test execution results.",
+    "a": "Actual Field"
+  },
+  {
+    "q": "Enables you to schedule PPT calculations for your entire site.",
+    "a": "Scheduling Area"
+  },
+  {
+    "q": "Enables you to view and change the values of fields specified for the selected requirement",
+    "a": "Details"
+  },
+  {
+    "q": "Enables you to view requirements in a flat non-hierarchical view.",
+    "a": "Requirements Grid"
+  },
+  {
+    "q": "Enables you to view traceability relationships between requirements and other requirements or tests in a matrix.",
+    "a": "Traceability Matrix"
+  },
+  {
+    "q": "Enables you to view your requirements hierarchically in a tree.",
+    "a": "Requirement Tree"
+  },
+  {
+    "q": "Excludes the selected requirement from the conversion process",
+    "a": "exclude from conversion"
+  },
+  {
+    "q": "Export library in ALM enables you to share and reuse and existing set of entities.",
+    "a": "False"
+  },
+  {
+    "q": "For which modules does the Automail customisation feature apply?",
+    "a": "Only Defects"
+  },
+  {
+    "q": "have been made in many areas of the product, such as opening, loading, and running tests.",
+    "a": "Performance Improvements"
+  },
+  {
+    "q": "Having a direct link between a defect and a test has an implication of what?",
+    "a": "The defect is indirectly linked to the related Requirement."
+  },
+  {
+    "q": "If an application flaw is detected while running a test set, you can submit a defect.",
+    "a": "True"
+  },
+  {
+    "q": "If test instances are present in multiple test sets, you can associate defects with test instances to ensure easy traceability.",
+    "a": "TRUE"
+  },
+  {
+    "q": "If the first row of the Excel worksheet contains column names, hose column names must exactly correspond to field names.",
+    "a": "False"
+  },
+  {
+    "q": "If you begin to make changes to an entity in a version control-enabled project, you are prompted to check in the entity.",
+    "a": "FALSE"
+  },
+  {
+    "q": "If you know that a test in your test set might fail, but you want to make sure that subsequent tests in the test set still execute, which of the following should you do?",
+    "a": "Ensure that the execution condition for the arrow running out from the test is set to Finished."
+  },
+  {
+    "q": "If you want to make changes to an entity in a version control enabled project, what is the first thing you must do?",
+    "a": "Check out the entity"
+  },
+  {
+    "q": "If you would like to revert an entity to a previous version, which of the following actions would you take?",
+    "a": "Promote the entity"
+  },
+  {
+    "q": "Imported libraries functionality is available for the HP ALM and HP ALM Performance Center editions.",
+    "a": "True"
+  },
+  {
+    "q": "In a version control-enabled project, you can only make changes to an entity by checking it in.",
+    "a": "FALSE"
+  },
+  {
+    "q": "In Modifying the Libraries Tree, to compare two versions, press the Ctrl key, select version and click on compare button. The compare Entities <Entity> dialog box opens showing the Field Name, the field values in the two versions and a Changes column, indicating the type of change.",
+    "a": "True"
+  },
+  {
+    "q": "In Modifying the Libraries Tree, you can compare two baseline when the same base line belongs to the same library. To compare two baselines, press the Ctrl key, select the baselines and click on Compare button.",
+    "a": "True"
+  },
+  {
+    "q": "In performing risk-based quality management, it is the determination on how the critical requirement is for the business.",
+    "a": "Establish Business Criticality"
+  },
+  {
+    "q": "In the _________, you analyze ALM data by creating graphs, project reports, and Excel reports.",
+    "a": "Dashboard modules"
+  },
+  {
+    "q": "In the dashboard pages, you can arrange and view multiple graphs on a single page.",
+    "a": "TRUE"
+  },
+  {
+    "q": "In the definition phase, the QA/project manager defines the scope, milestones, and KPIs for the project in ALM.",
+    "a": "False"
+  },
+  {
+    "q": "Indicates the component of the application on which the requirement is based.",
+    "a": "Product"
+  },
+  {
+    "q": "Indicates the cycle to which the requirement is assigned.",
+    "a": "Target cycle"
+  },
+  {
+    "q": "Indicates the execution status of tests that are linked to a requirement.",
+    "a": "Direct Cover Status"
+  },
+  {
+    "q": "Indicates the name of the user who created the requirement.",
+    "a": "Author"
+  },
+  {
+    "q": "Indicates the release to which the requirement is assigned.",
+    "a": "Target Release"
+  },
+  {
+    "q": "Indicates the type of the requirement, which may be business, folder, functional, group, testing, or undefined.",
+    "a": "Requirement Type"
+  },
+  {
+    "q": "Indicates whether the requirement has been reviewed and approved.",
+    "a": "Reviewed"
+  },
+  {
+    "q": "Indicates whether the scheduled calculation is currently running.",
+    "a": "Active/Inactive"
+  },
+  {
+    "q": "It breaks the logjam by providing fast, compliant test data.",
+    "a": "HP Test Data Management"
+  },
+  {
+    "q": "It calculates and analyzes risk for the currently selected requirement.",
+    "a": "Risk Assessment"
+  },
+  {
+    "q": "It enables you to attached files, snapshots, URLs, system information, and clipboard images to provide a better explanation for a defect.",
+    "a": "Attachment tab"
+  },
+  {
+    "q": "It is a translating business goals/objectives into a realized software-enabled business process.",
+    "a": "Creating requirements"
+  },
+  {
+    "q": "It is automatically creating tests based on the requirements you define in the Requirements module.",
+    "a": "Converting Requirements to Tests"
+  },
+  {
+    "q": "It lists the tests associated with the currently selected requirement.",
+    "a": "Test coverage"
+  },
+  {
+    "q": "It provides a tabular list of the defects logged for a project.",
+    "a": "Defects Grid"
+  },
+  {
+    "q": "It provides filter fields from where you can define criteria for filtering the data listed in the Defects grid",
+    "a": "Grid Filter"
+  },
+  {
+    "q": "It standardizes the requirements definition with the rich text editor and templates.",
+    "a": "Business Process Modeling"
+  },
+  {
+    "q": "It supports you through all the phases of application lifecycle management. By integrating the tasks involved in application management.",
+    "a": "Application Lifecycle Management"
+  },
+  {
+    "q": "Libraries and baselines have group permissions.",
+    "a": "True"
+  },
+  {
+    "q": "List the run steps for a test run",
+    "a": "Run steps"
+  },
+  {
+    "q": "Lists the business model entities linked to the currently selected requirement.",
+    "a": "Business Models Linkage"
+  },
+  {
+    "q": "Lists the defects linked to the currently selected requirement.",
+    "a": "Linked Defects"
+  },
+  {
+    "q": "Lists the test instance in a test set",
+    "a": "Contained Test"
+  },
+  {
+    "q": "Lists the test that are linked to a defect",
+    "a": "Source Test"
+  },
+  {
+    "q": "Lists the tests associated with the currently selected requirement.",
+    "a": "Test Coverage"
+  },
+  {
+    "q": "Live _________ enable you to create and display a dynamic graphic representation of data related to test plans.",
+    "a": "Analysis graphs"
+  },
+  {
+    "q": "Milestones are used to measure progress in project planning and tracking.",
+    "a": "True"
+  },
+  {
+    "q": "Module addresses the need for a stronger connection between business process modeling, quality assurance management, and requirements definition.",
+    "a": "ALM Business Models"
+  },
+  {
+    "q": "PPT stands for Planning Project and Tracking",
+    "a": "False"
+  },
+  {
+    "q": "Project reports offer the following advantages, except for",
+    "a": "Multiple configuration for multiple output formats"
+  },
+  {
+    "q": "Provides a clear picture of the test building blocks and assists in the execution of the actual tests.",
+    "a": "Develop the Test Sets tree"
+  },
+  {
+    "q": "Provides a tabular list of the defects logged for a project.",
+    "a": "Defects grid"
+  },
+  {
+    "q": "Provides an audit trail of changes made to each defect.",
+    "a": "History tab"
+  },
+  {
+    "q": "Provides filter fields from where you can define criteria for filtering the data listed in the Defects grid.",
+    "a": "Grid filter"
+  },
+  {
+    "q": "Refreshes the scorecard table, so that it displays the most up-to-date information.",
+    "a": "Generate"
+  },
+  {
+    "q": "SCA is a session/user authentication process that permits a user to enter one name and password to access multiple applications.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Sets the priority level of the requirement. Selections include 1-low, 2-medium, 3-high, ␣␣very high, and 5-urgent.",
+    "a": "priority"
+  },
+  {
+    "q": "Sprinter runs auto tests in ALM from the Test Lab module",
+    "a": "False"
+  },
+  {
+    "q": "Sprinter software gives you the ability to test web or native applications using a cloud mobile provider.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Synchronization is bidirectional",
+    "a": "False"
+  },
+  {
+    "q": "Testing is shifting to adopt Agile and Continuous Integration methodologies.",
+    "a": "True"
+  },
+  {
+    "q": "Tests the new features of the application implemented in the release.",
+    "a": "Cycle 1-New Features"
+  },
+  {
+    "q": "Tests the performance of the application for criteria such as number of concurrent users that the application supports and the response time of the application.",
+    "a": "Cycle 3-Performance Testing"
+  },
+  {
+    "q": "The ______ module allows you to view all test runs for your project in a grid.",
+    "a": "Test Runs"
+  },
+  {
+    "q": "The ________ module addresses the need for a stronger connection between business process modeling, quality assurance management, and requirement definition.",
+    "a": "ALM Business Models"
+  },
+  {
+    "q": "The ____________ relationship enables you to identify the status of defects to determine whether requirements have been met.",
+    "a": "Defect-Requirement"
+  },
+  {
+    "q": "The ALM Business module addresses the need for a stronger connection between business process modeling, quality assurance management, and requirements definition.",
+    "a": "Models"
+  },
+  {
+    "q": "The ALM Mobile Innovation testing cannot be used in Offline Testing. It has to be online all the time.",
+    "a": "False"
+  },
+  {
+    "q": "The ALM Synchronizer is a device that combines with what resources outside the box? (Select three.)",
+    "a": "Rational CIearQuest, Rational RegPro, Defects between two ALM Projects"
+  },
+  {
+    "q": "The built Test Steps are not being able to include calls to other tests.",
+    "a": "False"
+  },
+  {
+    "q": "The Detailed tab enables you to select content to include in the release scope item.",
+    "a": "False"
+  },
+  {
+    "q": "The dramatic innovation for manual testing that is automatically records the testing actions and results in ALM.",
+    "a": "HP Sprinter"
+  },
+  {
+    "q": "The foundation of the Management module is the ______.",
+    "a": "Release tree"
+  },
+  {
+    "q": "The HP Fortify/Application Security Center identifies root cause and line of code detail of vulnerabilities.",
+    "a": "True"
+  },
+  {
+    "q": "The HP’s strategy and software approach for modern application delivery starts with a what?",
+    "a": "Unified platform"
+  },
+  {
+    "q": "The maximum number of entities in a library is 3500.",
+    "a": "False"
+  },
+  {
+    "q": "The project administrator for your organization can _______ version control through ALM Site Administration.",
+    "a": "Enable or Disable"
+  },
+  {
+    "q": "The ratio of linked entities is 1 to 4",
+    "a": "True"
+  },
+  {
+    "q": "The Release Scope tab enables you to define and update release scope items.",
+    "a": "True"
+  },
+  {
+    "q": "The save options are disabled when more than one test or component is selected.",
+    "a": "True"
+  },
+  {
+    "q": "The scorecard is used by users to determine where the project milestone might be on or off track.",
+    "a": "False"
+  },
+  {
+    "q": "The Test Plan module enables you to ____ your application according to functionality.",
+    "a": "Divide"
+  },
+  {
+    "q": "The testing process begins with defining defect in the Management module.",
+    "a": "False"
+  },
+  {
+    "q": "There are three ways to open a test in Sprinter.",
+    "a": "False"
+  },
+  {
+    "q": "This allows you to design a scanner that detects the desired items in your application.",
+    "a": "Custom scanner"
+  },
+  {
+    "q": "This area displays the assigned or calculated values of the risk and functional complexity of an assessment requirement.",
+    "a": "Assessment Results tab"
+  },
+  {
+    "q": "This cycle ensures that the new features meet the expectations of the business.",
+    "a": "Cycle 4-User Acceptance Testing"
+  },
+  {
+    "q": "This cycle tests the new features with existing features that might have been impacted by the changes.",
+    "a": "Cycle 2-Integrated System Testing"
+  },
+  {
+    "q": "This indicates the cycle to which the requirement is assigned.",
+    "a": "Target Cycle"
+  },
+  {
+    "q": "This indicates the execution status of tests that are linked to a requirement.",
+    "a": "Direct Cover Status"
+  },
+  {
+    "q": "This is the two modules that have been completely redesigned as part of this release of ALM 12.0.",
+    "a": "Requirements Management and Defects Management"
+  },
+  {
+    "q": "This is useful because a new test is created specifically for a defect.",
+    "a": "Defect Linkage"
+  },
+  {
+    "q": "This scanner checks your application for errors resulting from translating the application’s UI into different languages.",
+    "a": "Localization scanner"
+  },
+  {
+    "q": "This scanner, relevant only for web applications, checks your application for broken hyperlinks and missing referenced content.",
+    "a": "Broken links scanner"
+  },
+  {
+    "q": "This section enables you to open the ALM documentation library and other online resources.",
+    "a": "Help section"
+  },
+  {
+    "q": "This tab displays requirements in a hierarchical structure.",
+    "a": "Impact Analysis"
+  },
+  {
+    "q": "This tab enables you to determine the business criticality, failure probability, and functional complexity of a requirement by assigning it values directly or by assigning values to a set of criteria.",
+    "a": "Assessment Questions tab"
+  },
+  {
+    "q": "This tab enables you to determine the business criticality, failure probability, and functional complexity of a requirement by assigning it values directly or by assigning values to a set of riteria.",
+    "a": "Assessment Questions tab"
+  },
+  {
+    "q": "This tab enables you to manage the analysis items.",
+    "a": "Analysis Menus tab"
+  },
+  {
+    "q": "To check in more than one entity, press the CTRL key and select multiple entities for which you want to check in.",
+    "a": "True"
+  },
+  {
+    "q": "To checked out a previous version, select the version and click Checked Out. The Confirm dialog box opens. Click the OK button to confirm.",
+    "a": "True"
+  },
+  {
+    "q": "To compare two versions, press the Alt key and select each version. Click the Compare button.",
+    "a": "FALSE"
+  },
+  {
+    "q": "To compare two versions, press the Ctrl key and select each version. Click the Compare button.",
+    "a": "True"
+  },
+  {
+    "q": "To create a _____, click the New button in the Plan area.",
+    "a": "New Test"
+  },
+  {
+    "q": "To create the Test Plan tree in the Test Plan module, you manually create folders and add tests to these folders.",
+    "a": "TRUE"
+  },
+  {
+    "q": "To undo a checkout:Select Version =E2=86=92 Select an Entity =E2=86=92 Undo Checkout =E2=86=92 Click OK button.",
+    "a": "False"
+  },
+  {
+    "q": "Using the _____, you can report flaws in your application and track their repair during all stages of the application management process.",
+    "a": "ALM Web client"
+  },
+  {
+    "q": "v Calculates and analyzes risk for the currently selected requirement.",
+    "a": "Risk Assessment"
+  },
+  {
+    "q": "Version control enables you to create and manage ALM entities while maintaining previous versions of these entities.",
+    "a": "TRUE"
+  },
+  {
+    "q": "What are the characteristics of a useful Requirement?",
+    "a": "Unique, Precise, Bounded, Measurable"
+  },
+  {
+    "q": "What are the Key Pointers for Defining Tests?",
+    "a": "Accuracy, Economical, Consistency, Appropriates, Traceability"
+  },
+  {
+    "q": "What are the physical devices used to identify users in secure system?",
+    "a": "Smart Cards"
+  },
+  {
+    "q": "What are two options to start in creating cross-project graphs? i. Graph Wizardii. Analysis Wizardiii. Graph Analysisiv. Analysis Tree",
+    "a": "i and iv"
+  },
+  {
+    "q": "What enables you to do Risk-based Quality Management?",
+    "a": "Calculate the level at which each requirement should be tested***"
+  },
+  {
+    "q": "What entities may be connected to a defect? (Select two.)",
+    "a": "Defects, Tests"
+  },
+  {
+    "q": "What is the fifth step when you want to compare entities?",
+    "a": "Click the Rich Text tab to compare the entity's rich text Each pane in the Rich Text Tab indicates of rich text has been added, deleted, or modified for the relevant entity version"
+  },
+  {
+    "q": "What is the module that enables you to manage resources used by your tests?",
+    "a": "Test Resources"
+  },
+  {
+    "q": "What is the third stage of the testing process?",
+    "a": "Test Planning"
+  },
+  {
+    "q": "What organizations do support the regulation of versions? (Select three.)",
+    "a": "Tests, Requirements, Test resources"
+  },
+  {
+    "q": "What use cases for customization can only be accommodated by editing workflow code?",
+    "a": "Sending an email to a test’s owner whenever a linked requirement is updated"
+  },
+  {
+    "q": "When working in Power mode, you can save manual Sprinter can import the XML file and convert it to an automated GUI test.",
+    "a": "Integration with UFT"
+  },
+  {
+    "q": "When you are in ________, Sprinter keeps a record of all your user actions, which you can view as a list or in the Storyboard at the end of your run.",
+    "a": "Power mode"
+  },
+  {
+    "q": "When you assign a requirement to a cycle, the requirement is not automatically assigned to the release.",
+    "a": "False"
+  },
+  {
+    "q": "When you checked out an entity, security source locks the entity, preventing other users from overwriting any changes you make.",
+    "a": "False"
+  },
+  {
+    "q": "When you create a library, you can also define filter for each entity tree you include, providing you with better control over library content",
+    "a": "True"
+  },
+  {
+    "q": "When you undo a checkout, any changes you made to non-versioned fields while entity was checked out are cancelled.",
+    "a": "False"
+  },
+  {
+    "q": "Which annotation tools can be used to detect a defect during a test run on HP Sprinter? (Select two.)",
+    "a": "Ruler tool, Guides tool"
+  },
+  {
+    "q": "Which does HP Application Lifecycle Management assign by default when a new defect is created? (select 2)",
+    "a": "C - (2) (4) and (5) Only"
+  },
+  {
+    "q": "Which does HP Application Lifecycle Management assign by default when a new defect is created? (Select two.)",
+    "a": "A unique defect ID, The status New"
+  },
+  {
+    "q": "Which of the following is not part of the steps to run in Power mode using injection?",
+    "a": "Click the Browse button"
+  },
+  {
+    "q": "Which of the following new features allows you to perform testing with a single motivation of identifying defects?",
+    "a": "Exploratory testing"
+  },
+  {
+    "q": "Which options can be used to submit defects from HP Sprinter to HP Application Lifecycle Management? (Select two.)",
+    "a": "Smart Defects, Defect Reminder"
+  },
+  {
+    "q": "Which tool can be used to store HP Sprinter information on a defect without interrupting the test flow?",
+    "a": "Defect Reminder tool"
+  },
+  {
+    "q": "XML files which are compatible with HP Unified Functional Testing (UFT).",
+    "a": "Manual Mapping Tests"
+  },
+  {
+    "q": "You can _______ to a Word or PDF file. This file contains the run summary, step status, and defect information for the run session.",
+    "a": "Export a Storyboard"
+  },
+  {
+    "q": "You can _____graphs for viewing in a web browser without downloading an ALM client.",
+    "a": "Share"
+  },
+  {
+    "q": "You can ­­­­­________ a defect to record all the information about an issue and to record the decisions made as different individuals review the defect.",
+    "a": "Regularly update"
+  },
+  {
+    "q": "You can add ______ to a cycle.",
+    "a": "Attachments"
+  },
+  {
+    "q": "You can add user-defined fields and restrict the label of any of the fields in the Details tab.",
+    "a": "False"
+  },
+  {
+    "q": "You can compare associated libraries at all stages of the application development lifecycle.",
+    "a": "True"
+  },
+  {
+    "q": "You can define what data appear in a graph and how the data are organized.",
+    "a": "TRUE"
+  },
+  {
+    "q": "You can drill down to the graph's records by clicking on segments in the graph.",
+    "a": "True"
+  },
+  {
+    "q": "You can export requirements, test plans, and defects data from a Microsoft Excel spreadsheet.",
+    "a": "True"
+  },
+  {
+    "q": "You can import a library under the same previously imported library. This applies in the requirements, test plan, or test resource tree.",
+    "a": "False"
+  },
+  {
+    "q": "You can not customize each KPI to reflect your needs.",
+    "a": "FALSE"
+  },
+  {
+    "q": "You can now link a test run to an existing defect",
+    "a": "link to existing defects"
+  },
+  {
+    "q": "You can now see the run steps of manual tests executed with Sprinter in ALM reports.",
+    "a": "ALM Reporting Capabilities Improvements"
+  },
+  {
+    "q": "You can now test Web or Native applications using a cloud mobile provider (Perfecto Mobile).",
+    "a": "Mobile Application Testing"
+  },
+  {
+    "q": "You can now view screen captures, in the Step tab, as full images in Run mode.",
+    "a": "expanded view"
+  },
+  {
+    "q": "You can remove the Hub project using the Remove Project button in the Select Projects dialog box.",
+    "a": "True"
+  },
+  {
+    "q": "You can rename a library folder or a library to a different location in the libraries tree.",
+    "a": "True"
+  },
+  {
+    "q": "You can use the Project Report reporting tool, available in the Analysis View module, to design and generate comprehensive reports of project data.",
+    "a": "TRUE"
+  },
+  {
+    "q": "You can use the Script Editor to change and dynamically restrict the fields and values in the Libraries module.",
+    "a": "False"
+  },
+  {
+    "q": "You can view a list of all entities in the current module that you have checked out, and check in or undo the check out for selected entities.",
+    "a": "TRUE"
+  },
+  {
+    "q": "You can view the history for a selected entity including all previous versions, the name of the user who created each version, and all the date each version was created but not the baseline in which a version is stored.",
+    "a": "False"
+  },
+  {
+    "q": "You cannot check out an entity automatically.",
+    "a": "False"
+  },
+  {
+    "q": "You cannot view a list of all entities in the current module that you have checked out but you can check in or undo the check out for selected entities.",
+    "a": "False"
+  },
+  {
+    "q": "You convert requirements to tests to automatically create a one-to-one mapping between ____________ and ______.",
+    "a": "Requirements and tests"
+  },
+  {
+    "q": "You create a _____ to define the hierarchical framework of releases.",
+    "a": "Release tree"
+  },
+  {
+    "q": "You must start asset synchronization from the source.",
+    "a": "False"
+  },
+  {
+    "q": "You need a new project for every initiative that will share defects. This defect master for that initiative is called the Hub project",
+    "a": "True"
+  },
+  {
+    "q": "You run tests ________ from ALM using HP Sprinter.",
+    "a": "Manually"
+  },
+  {
+    "q": "You start building a requirements tree by creating a requirement within the Requirements ______at the root level.",
+    "a": "Folder"
+  },
+  {
+    "q": "You use the ________ to add an existing test or component to the Tests and Components list.",
+    "a": "Open button"
+  },
+  {
+    "q": "You use the Graph wizard to generate an old graph.",
+    "a": "FALSE"
+  }
+]

@@ -1,0 +1,750 @@
+[
+  {
+    "q": "A join condition that is based on all the columns in two or more table that have the same name.",
+    "a": "Natural Join"
+  },
+  {
+    "q": "A join condition used when a table has columns with match values.",
+    "a": "Self-Join"
+  },
+  {
+    "q": "A process where an application waits indefinitely to obtain any needed locks.",
+    "a": "Lockwait"
+  },
+  {
+    "q": "A single row of a table, which contains a single record for that relation.",
+    "a": "Tuple"
+  },
+  {
+    "q": "A state of the data where a transaction data must not be available to other transactions until the original transaction is committed or rolled back.",
+    "a": "Isolation"
+  },
+  {
+    "q": "A state of the data where a transaction must be fully complete, saved (committed) or completely undone (rolled back).",
+    "a": "Atomicity"
+  },
+  {
+    "q": "A state of the data where a transaction must be fully compliant with the state of the database as it was prior to the transaction.",
+    "a": "Consistency"
+  },
+  {
+    "q": "A state where a transaction data changes must be available, even in the event of database failure.",
+    "a": "durability"
+  },
+  {
+    "q": "A transaction ends when either of the following occurs. (Choose 5)",
+    "a": "The correct answers are: CREATE TABLE is issued, The user closes the isqlplus, The user type in Commit, The user encounter system failure, The user type in Rollback"
+  },
+  {
+    "q": "A transaction start when the first ____________ is issued.",
+    "a": "DML"
+  },
+  {
+    "q": "A type constraint that uniquely identifies each record in a database table and can be applied on one or more column.",
+    "a": "Unique"
+  },
+  {
+    "q": "A type of constraint that ensures the relationship between tables remain preserved as data is inserted, deleted and modified.",
+    "a": "Foreign key"
+  },
+  {
+    "q": "A type of constraint that is used to insert a default value into a column.",
+    "a": "Default"
+  },
+  {
+    "q": "A type of constraint that is used to limit the value range that can be placed in a column.",
+    "a": "Check"
+  },
+  {
+    "q": "A type of constraint uniquely identifies each record in a database table.",
+    "a": "Primary key"
+  },
+  {
+    "q": "A type of lock that is acquired when an application updates, inserts, or deletes a row.",
+    "a": "Exclusive Lock (X Lock)"
+  },
+  {
+    "q": "A type of lock that is acquired when an application wants to read and prevent others from updating the same row.",
+    "a": "Sharelock (S locks)"
+  },
+  {
+    "q": "A type of model that is based on the notion of real-world entities and relationships among them.",
+    "a": "Entity Relationship Model"
+  },
+  {
+    "q": "A type of that do not exist in the physical database, but their values are derived from other attributes present in the database.",
+    "a": "Derived Attribute"
+  },
+  {
+    "q": "A type of transaction that is ends the current transactions by making all pending data changes permanent.",
+    "a": "COMMIT"
+  },
+  {
+    "q": "A type of transaction that rolls back the current transaction to the specified savepoint, thereby discarding any changes or savepoint created after the savepoint to which you are rolling back.",
+    "a": "ROLLBACK TO SAVEPOINT"
+  },
+  {
+    "q": "Also known as Oracle Database backup and restore operations",
+    "a": "Large Pool"
+  },
+  {
+    "q": "Also known as the application or tool that connects to the Oracle Database Processes",
+    "a": "session"
+  },
+  {
+    "q": "An automatic commit is issued by the Oracle Server under the following circumstances. (Choose 2)",
+    "a": "The correct answers are: CREATE TABLE is issued, Closes the sqlplus normally by typing exit"
+  },
+  {
+    "q": "An automatic rollback is issued by the oracle under the following circumstances. (Choose 2)",
+    "a": "The correct answers are: The user encounter system failure, Closes the sqlplus normally by closing he isqlplus using x button"
+  },
+  {
+    "q": "Based on the table EMPLOYEES, DEPARTMENTS and LOCATIONS.",
+    "a": "KOCHAR, NENA and LEX, DE HAAN"
+  },
+  {
+    "q": "Holds information about changes made to the database",
+    "a": "Redo Log Buffer"
+  },
+  {
+    "q": "If WITH CHECK OPTION is added on the view (see sample code below) what is/are the restriction?",
+    "a": "It restricts the users to add a value where course is equal to BSCS onlyCorrec"
+  },
+  {
+    "q": "If WITH READ ONLY is added on the view (see sample code below) what is/are the restriction?",
+    "a": "NO DML operations allowed on this view."
+  },
+  {
+    "q": "In planning to install Oracle which of the following is not important to consider.",
+    "a": "Any Oracle version will do even when multiple products are involved."
+  },
+  {
+    "q": "In the given complex view example what will be the possible output if this code is run?",
+    "a": "Cause an error because the JOIN condition is omitted."
+  },
+  {
+    "q": "It holds information about changes made to the database",
+    "a": "Redo Log Buffer"
+  },
+  {
+    "q": "It is a collection of data treated as a unit with the main purpose of storing and retrieving related information in the database.",
+    "a": "Oracle Database"
+  },
+  {
+    "q": "It is a collection of data treated as a unit. The purpose of a database is to store and retrieve related information.",
+    "a": "Oracle database"
+  },
+  {
+    "q": "It is a communication between a user process and an instance",
+    "a": "Connection"
+  },
+  {
+    "q": "It is a communication pathway between a user process and an Oracle Database instance.",
+    "a": "Connection"
+  },
+  {
+    "q": "It is a join of two or more table that returns only matched rows.",
+    "a": "Inner Join"
+  },
+  {
+    "q": "It is a named group of related privileges that can be granted to the user. This method makes it easier to revoke and maintain privileges.",
+    "a": "Role"
+  },
+  {
+    "q": "It is a state of operational database with data at any given time.",
+    "a": "Database Instance"
+  },
+  {
+    "q": "It is a type a Oracle environment where Oracle Products run.",
+    "a": "ORACLE_HOME"
+  },
+  {
+    "q": "It is a type of privilege that gain access to the database",
+    "a": "System"
+  },
+  {
+    "q": "It is a type of privilege that is used to manipulating the content of the database objects.",
+    "a": "Object"
+  },
+  {
+    "q": "It is a type of process structure that automatically connects to other databases involved in in- doubt distributed transactions",
+    "a": "Recoverer Process"
+  },
+  {
+    "q": "It is a type of process structure that can collect transaction, redo data and transmit that data to standby destinations.",
+    "a": "Archiver Processes (ARCn)"
+  },
+  {
+    "q": "It is a type of process structure that cleans up the database buffer cache",
+    "a": "Process Monitor Process (PMON)"
+  },
+  {
+    "q": "It is a type of process structure that records checkpoint information in Control file on each data file header",
+    "a": "Checkpoint Process (CKPT)"
+  },
+  {
+    "q": "It is a type of process structure that writes modified (dirty) buffers in the database buffer cache asynchronously while performing other processing to advance the checkpoint",
+    "a": "Database Writer Process (DBWn)"
+  },
+  {
+    "q": "It is a type of process structure that writes the redo log buffer to a redo log file on disk",
+    "a": "Log Writer Process (LGWR)"
+  },
+  {
+    "q": "It is a type process structure that automatically connects to other databases involved in in- doubt distributed transactions.",
+    "a": "Checkpoint Process (CKPT)"
+  },
+  {
+    "q": "It is a type process structure that cleans up the database buffer cache",
+    "a": "Process Monitor Process (PMON)"
+  },
+  {
+    "q": "It is a type process structure that records checkpoint information in Control file on each data file header.",
+    "a": "Checkpoint Process (CKPT)"
+  },
+  {
+    "q": "It is also known as specific connection of a user to an instance through a user process",
+    "a": "Session"
+  },
+  {
+    "q": "It is an attribute or collection of attributes that uniquely identifies an entity among entity set.",
+    "a": "Key"
+  },
+  {
+    "q": "It is formed when a join condition is omitted.",
+    "a": "Cartesian Product"
+  },
+  {
+    "q": "It is join between two tables that return the result of an Inner Join as well as the results of Left and Right joins.",
+    "a": "Outer Join"
+  },
+  {
+    "q": "It is part of the System Global Area (SGA) that hold copies of data blocks that are read from data files.",
+    "a": "Data Buffer Cache"
+  },
+  {
+    "q": "It is part of the System Global Area which is used to provide memory for Oracle Streams processes",
+    "a": "Java Pool"
+  },
+  {
+    "q": "It is the key in solving the problems of information management.",
+    "a": "Database Server"
+  },
+  {
+    "q": "It is the key to solving the problems of information management.",
+    "a": "Database server"
+  },
+  {
+    "q": "It is the skeleton structure that represents the logical view of the entire database.",
+    "a": "Database Schema"
+  },
+  {
+    "q": "It is used to ensure that data values inside a database follow defines rules for values, range and format",
+    "a": "Domain Intergrity"
+  },
+  {
+    "q": "It is used to ensures that data values inside a database follow defines rules for values, range and format",
+    "a": "Domain Intergrity"
+  },
+  {
+    "q": "It occurs when two or more applications wait indefinitely for a resources.",
+    "a": "Deadlock"
+  },
+  {
+    "q": "It represents the state of a current user login to the database instance.",
+    "a": "session"
+  },
+  {
+    "q": "Refer to the table AUTHORS and COPY_AUTHORS (Note during the creation of view the condition added is YR_PUBLISHED=2010). Supposed that the user update the YR_PUBLISHED of book OS to from 2010 to 2010 as shown below what is/are the possible output on both table and view?",
+    "a": "The record of book OS will be removed in the COPY_AUTHORS view since its YR_PUBLIHED is updated to 2016"
+  },
+  {
+    "q": "Refer to the table AUTHORS and COPY_AUTHORS (Note ID column is with Primary Key constraint). Supposed that the user insert the following values to COPY_AUTHORS view as shown below what is/are the possible output on both table and view?",
+    "a": "Unique constraint is violated on AUTHORS table"
+  },
+  {
+    "q": "SELECT EMPLOYEES.EMPLOYEE_ID, EMPLOYEES.LASTNAME,EMPLOYEES.DEPARTMENT_ID,DEPARTMENTS.DEPARTMENT_ID,DEPARTMENTS.LOCATION_ID",
+    "a": "The given statement is Outer Join"
+  },
+  {
+    "q": "SELECT EMPLOYEES.EMPLOYEE_ID, EMPLOYEES.LASTNAME,EMPLOYEES.DEPARTMENT_ID,DEPARTMENTS.DEPARTMENT_ID,DEPARTMENTS.LOCATION_ID FROM EMPLOYEES JOIN DEPARTMENTS USING (DEPARTMENT_ID);",
+    "a": "The given statement is not a valid join condition or is incorrect"
+  },
+  {
+    "q": "Supposed that a user performs the query as shown below, what will happen to the data?",
+    "a": "The manager_id that is equal to null is now change to IT and the job_id of employees under department_id 50,90 or salary greater that 500 have been updated to secretary."
+  },
+  {
+    "q": "Supposed that table: Workers and Employees is consists of the following values.",
+    "a": "INSERT INTO EMPLOYEES(ID, LASTNAME, DEPARTMENT)SELECT ID, LASTNAME, DEPARTMENTFROM WORKERSWHERE STATUS = ‘Regular’;"
+  },
+  {
+    "q": "This gives the user more flexibility and control when changing data and they ensure data consistency in the event of user process or system failure.",
+    "a": "Transaction"
+  },
+  {
+    "q": "This is a join clause that produces a cross-product of two or more tables.",
+    "a": "Cartesian Product"
+  },
+  {
+    "q": "This is a join clause used to specify arbitrary conditions of specify columns to join.",
+    "a": "ON"
+  },
+  {
+    "q": "This is a join clause used when the columns in two or more tables have the same but of different data type.",
+    "a": "Using"
+  },
+  {
+    "q": "This is a join clause used when the columns in two or more tables have the same but of different data types.",
+    "a": "Using"
+  },
+  {
+    "q": "This is a kind of mechanism, which liberalizes itself from actual data stored on the disk.",
+    "a": "Logical Data Independence"
+  },
+  {
+    "q": "This is a schema that pertains to the actual storage of data and its form of storage like files, indices.",
+    "a": "Logical Database Schema"
+  },
+  {
+    "q": "This is a type of attribute that is atomic value, which cannot be divided further.",
+    "a": "Simple Attribute"
+  },
+  {
+    "q": "This is a type of attribute that is made of more than one simple attribute.",
+    "a": "Composite Attribute"
+  },
+  {
+    "q": "This is a type of schema defines all the logical constraints that need to be applied on the data stored. It defines tables, views, and integrity constraints.",
+    "a": "Logical Database Schema"
+  },
+  {
+    "q": "This is a type of schema that has the power to change the physical data without impacting the schema or logical data.",
+    "a": "Physical Data Independence"
+  },
+  {
+    "q": "This is acquired automatically as needed to support a transaction based on isolation levels.",
+    "a": "Lock"
+  },
+  {
+    "q": "This is also known as unit of work.",
+    "a": "Transaction"
+  },
+  {
+    "q": "This is also known collection of objects such as tables, views, and sequences.",
+    "a": "Schema"
+  },
+  {
+    "q": "This is the fundamental entity which introduces abstraction in a Database Management System (DBMS).",
+    "a": "Entity Relationship Diagram"
+  },
+  {
+    "q": "This is use to connect to the Oracle instance and is started when a user establishes a session",
+    "a": "Server process"
+  },
+  {
+    "q": "This is used to deactivate an integrity constraint.",
+    "a": "DISABLE CONSTRAINT"
+  },
+  {
+    "q": "This is used to delete a primary key constraint in a parent table and will automatically drop the foreign key constraint in the child table.",
+    "a": "DROP CASCADE"
+  },
+  {
+    "q": "This is used to delete child row when a parent key is deleted.",
+    "a": "ON DELETE CASCADE"
+  },
+  {
+    "q": "This is used to enable a currently disable constraint in the table definition.",
+    "a": "ENABLE CONSTRAINT"
+  },
+  {
+    "q": "This is used to quality ambiguous column when joining two or more tables.",
+    "a": "Table Prefixes"
+  },
+  {
+    "q": "This is used to remove a privilege granted to a user.",
+    "a": "REVOKE"
+  },
+  {
+    "q": "What are the two forms of key integrity constraint?",
+    "a": "Foreign key and Primary Key"
+  },
+  {
+    "q": "Which of the following are mandatory tablespaces that are created at the time of database creation",
+    "a": "System and Syshaux"
+  },
+  {
+    "q": "Which of the following follows the correct order of designing, implementing and mainting and Oracle Database.",
+    "a": "Evaluating the database server hardwareInstalling the Oracle softwarePlanning the database and security strategyCreating, migrating, and opening the databaseBacking up the databaseEnrolling system users and planning for their Oracle Network access.Implementing the database designRecovering from database failureMonitoring database performance"
+  },
+  {
+    "q": "Which of the following follows the order of designing, implementing and mainting and Oracle Database",
+    "a": "Evaluating the database server hardwareInstalling the Oracle softwarePlanning the database and security strategyCreating, migrating, and opening the databaseBacking up the databaseEnrolling system users and planning for their Oracle Network accessImplementing the database designRecovering from database failureMonitoring database performance"
+  },
+  {
+    "q": "Which of the following is not included in the disk requirements of oracle database?",
+    "a": "3 GB for the preconfigured database (required)"
+  },
+  {
+    "q": "Which of the following is not included in the memory requirements of oracle database.",
+    "a": "3GB for the ASM instance"
+  },
+  {
+    "q": "Which of the following is not included in the optional requirement for operating system of oracle database?",
+    "a": "Dba"
+  },
+  {
+    "q": "Which of the following is not included in the oracle environment?",
+    "a": "Oracle_instance"
+  },
+  {
+    "q": "Which of the following is not included in the required operating system users and groups?",
+    "a": "sysdba"
+  },
+  {
+    "q": "Which of the following is not part of multiple row subqueries?",
+    "a": "MAX"
+  },
+  {
+    "q": "Which of the following is not part of single to subqueries?",
+    "a": "IN"
+  },
+  {
+    "q": "Which of the following is not part or Oracle Installation System Requirement.",
+    "a": "File Manager"
+  },
+  {
+    "q": "Which of the following is not possible causes of lock.",
+    "a": "Lost Update"
+  },
+  {
+    "q": "Which of the following is not true about complex view when using DELETE statement?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is not true about complex view when using INSERT statement?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is not true about complex view when using UPDATE statement?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is the correct Disk space requirement when installing Oracle?",
+    "a": "3.8 GB"
+  },
+  {
+    "q": "Which of the following is the correct example of adding a check constraint on column BOOK_ID to accept value greater that 10?",
+    "a": "CREATE TABLE BOOKS(BOOK_ID NUMBER,TITLE VARCHAR(10),YEAR NUMBER(4),CONSTRAINT BK_ID CHECK (BOOK_ID > 10));"
+  },
+  {
+    "q": "Which of the following is the correct example of adding a CHECK constraint where CODE should start with the character ‘BS’.",
+    "a": "The correct answers are: CREATE TABLE COURSE(CODE CHAR(4) PRIMARY KEY,TITLE VARCHAR(20),CONSTRAINT CODE_ck CHECK (CODE LIKE ‘BS%’));b, ‘BS’));"
+  },
+  {
+    "q": "Which of the following is the correct example of adding primary key constraint?",
+    "a": "ALTER TABLE AUTHORSADD CONSTRAINT AUTHOR_ID PRIMARY KEY(NUMBER);"
+  },
+  {
+    "q": "Which of the following is the correct example of an attribute?",
+    "a": "USN_ID"
+  },
+  {
+    "q": "Which of the following is the correct example of an attributes?",
+    "a": "USN_ID"
+  },
+  {
+    "q": "Which of the following is the correct example of an entity.",
+    "a": "Workers"
+  },
+  {
+    "q": "Which of the following is the correct example of changing a password to user ANNA from ANNA01 to AN01?",
+    "a": "ALTER USER ANNAIDENTIFIED BY AN01;"
+  },
+  {
+    "q": "Which of the following is the correct example of create a default constraint.",
+    "a": "CREATE TABLE COURSE(CODE CHAR(4) PRIMARY KEY,TITLE VARCHAR(20),CONSTRAINT CODE_df DEFAULT(CODE 'BSIT'));"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a role STUDENT?",
+    "a": "CREATE ROLE STUDENT;"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a subquery that copy the values from employees table to workers table?",
+    "a": "INSERT INTO WORKERS(ID, NAME, POSITION)SELECT (ID, NAME, POSITIONFROM EMPLOYEES);"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a subquery that will copy all values from employees table to workers where job_id is equal to ST_CLERK;",
+    "a": "INSERT INTO WORKERS(SELECT * FROM EMPLOYEES WHERE JOB_ID = ‘ST_CLERK’);"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a user ANNA with password ANN01?",
+    "a": "CREATE USER ANNAIDENTIFIED BY ANN01;"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a view where LASTNAME ends with letter S rename LASTNAME to SURNAME?",
+    "a": "CREATE VIEW WORKERS (EMPLOYEE_ID, SURNAME, FIRSTNAME)AS (EMPLOYEE_ID, LASTNAME, FIRSTNAMEFROM EMPLOYEES WHERE SALARY LASTNAME LIKE '%S');"
+  },
+  {
+    "q": "Which of the following is the correct example of derived attribute?",
+    "a": "The correct answer is:"
+  },
+  {
+    "q": "Which of the following is the correct example of disabling an integrity constraint?",
+    "a": "ALTER TABLE STUDENTS DISABLE CONSTRAINT usn_pk;"
+  },
+  {
+    "q": "Which of the following is the correct example of dropping on delete cascade?",
+    "a": "ALTER TABLE AUTHORSDROP PRIMARY KEY CASCADE;"
+  },
+  {
+    "q": "Which of the following is the correct example of enabling constraint?",
+    "a": "ALTER TABLE BOOKSENABLE CONSTRAINT STUD_ID;"
+  },
+  {
+    "q": "Which of the following is the correct example of granting create session and create table to user ANNA?",
+    "a": "GRANT CREATE SESSION, CREATE TABLETO ANNA;"
+  },
+  {
+    "q": "Which of the following is the correct example of granting INSERT, UPDATE and DELETE to user ANNA with an option to pass the privilege to other user?",
+    "a": "GRANT INSERT, UPDATE, DELETEON EMPLOYEESTO ANNAWITH GRANT OPTION;"
+  },
+  {
+    "q": "Which of the following is the correct example of granting role STUDENT to USER ANNA?",
+    "a": "GRANT STUDENT TO ANNA;"
+  },
+  {
+    "q": "Which of the following is the correct example of granting SELECT and INSERT on table EMPLOYEES to roleSTUDENT?",
+    "a": "GRANT SELECT, INSERTON EMPLOYEESTO STUDENT;"
+  },
+  {
+    "q": "Which of the following is the correct example of modifying a view where salary manager_id is null?",
+    "a": "CREATE OR REPLACE VIEW WORKERS (EMPLOYEE_ID, SURNAME, FIRSTNAME, MANAGER_ID)AS (EMPLOYEE_ID, LASTNAME, FIRSTNAME, MANAGER_ID)FROM EMPLOYEES WHERE MANAGER_ID IS NULL);"
+  },
+  {
+    "q": "Which of the following is the correct example of multiple row subquery?",
+    "a": "SELECT EMPLOYEE_ID, SALARY FROM EMPLOYEES WHERE SALARY =(SELECT MIN(SALARY) FROM EMPLOYEES;"
+  },
+  {
+    "q": "Which of the following is the correct example of passing a privilege (INSERT and UPDATE) to user HR coming from a SYSTEM?",
+    "a": "GRANT INSERT, UPDATEON EMPLOYEESTO HRWITH GRANT OPTION;"
+  },
+  {
+    "q": "Which of the following is the correct example of passing a privilege (INSERT and UPDATE) to user HR coming from a user scott?",
+    "a": "GRANT INSERT, UPDATEON SYSTEM.EMPLOYEESTO HR;"
+  },
+  {
+    "q": "Which of the following is the correct example of referencing the BOOKS table to AUTHORS?",
+    "a": "CREATE TABLE BOOKS(BOOK_ID NUMBER PRIMARY KEY NOT NULL,TITLE VARCHAR(10),YEAR NUMBER(4),CONSTRAINT BK_ID FOREIGN KEY(BOOK_ID)REFERENCES AUTHORS (BOOK_ID));"
+  },
+  {
+    "q": "Which of the following is the correct example of saving changes made on the table?",
+    "a": "Commit;"
+  },
+  {
+    "q": "Which of the following is the correct example of selecting all columns from employees table using the user BEN?",
+    "a": "SELECT * FROM SYSTEM.STUDENT;"
+  },
+  {
+    "q": "Which of the following is the correct example revoking a priviledge to INSERT, UPDATE and DELETE to USER ANNA?",
+    "a": "REVOKE INSERT, UPDATE, DELETEON EMPLOYEESTO ANNA;"
+  },
+  {
+    "q": "Which of the following is the correct example revoking a privilege to INSERT, UPDATE and DELETE to user ANNA from user BEN?",
+    "a": "REVOKE INSERT, UPDATE, DELETEON SYSTEM.EMPLOYEESTO ANNA;"
+  },
+  {
+    "q": "Which of the following is the correct query that will create a report that will display the following: FIRTSNAME, SALARY with additional 1000 in employees salary, rename this column as BONUS, then get the DEPARTMENT_NAME and DEPARTMENT_ID. Join the table using ON condition.",
+    "a": "SELECT FIRSTNAME, SALARY + 1000 AS BONUS, DEPARTMENT_NAME, D.DEPARTMENT_IDFROM EMPLOYEES E JOIN DEPARTMENTS DON E.DEPARTMENT_ID = D.DEPARTMENT_ID;"
+  },
+  {
+    "q": "Which of the following is the correct query that will create a report that will display the following: STREET_ADDRESS, CITY, DEPARTMENT_NAME and LOATION_ID? Use using clause to get the data from two tables.",
+    "a": "SELECT STREET_ADDRESS, CITY, DEPARTMENT_NAME, LOCATION_ID FROM DEPARTMENTS JOIN LOCATIONS USING (LOCATION_ID);"
+  },
+  {
+    "q": "Which of the following is the correct representation of many-to-many relation?",
+    "a": "The correct answer is:"
+  },
+  {
+    "q": "Which of the following is the correct representation of one-to-many relation?",
+    "a": "The correct answer is:"
+  },
+  {
+    "q": "Which of the following is the correct representation of one-to-one relation?",
+    "a": "The correct answer is:"
+  },
+  {
+    "q": "Which of the following is the correct syntax for creating a new user?",
+    "a": "CREATE USER hrIDENTIFIED BY hr;"
+  },
+  {
+    "q": "Which of the following is the Disk space requirement when installing Oracle?",
+    "a": "8 GB"
+  },
+  {
+    "q": "Which of the following is the example of adding a check constraint on column BOOK_ID to accept value greater that 10?",
+    "a": "CREATE TABLE BOOKS(BOOK_ID NUMBER,TITLE VARCHAR(10),YEAR NUMBER(4),CONSTRAINT BK_ID CHECK (BOOK_ID > 10));"
+  },
+  {
+    "q": "Which of the following is the example of adding a CHECK constraint where CODE should start with the character ‘BS’",
+    "a": "The answers are: CREATE TABLE COURSE(CODE CHAR(4) PRIMARY KEY,TITLE VARCHAR(20),CONSTRAINT CODE_ck CHECK (CODE LIKE ‘BS%’));b, ‘BS’));"
+  },
+  {
+    "q": "Which of the following is the example of adding primary key constraint?",
+    "a": "ALTER TABLE AUTHORSADD CONSTRAINT AUTHOR_ID PRIMARY KEY(NUMBER);"
+  },
+  {
+    "q": "Which of the following is the example of an attribute?",
+    "a": "USN_ID"
+  },
+  {
+    "q": "Which of the following is the example of an attributes?",
+    "a": "USN_ID"
+  },
+  {
+    "q": "Which of the following is the example of an entity",
+    "a": "Workers"
+  },
+  {
+    "q": "Which of the following is the example of changing a password to user ANNA from ANNA01 to AN01?",
+    "a": "ALTER USER ANNAIDENTIFIED BY AN01;"
+  },
+  {
+    "q": "Which of the following is the example of create a default constraint",
+    "a": "CREATE TABLE COURSE(CODE CHAR(4) PRIMARY KEY,TITLE VARCHAR(20),CONSTRAINT CODE_df DEFAULT(CODE 'BSIT'));"
+  },
+  {
+    "q": "Which of the following is the example of creating a role STUDENT?",
+    "a": "CREATE ROLE STUDENT;"
+  },
+  {
+    "q": "Which of the following is the example of creating a subquery that copy the values from employees table to workers table?",
+    "a": "INSERT INTO WORKERS(ID, NAME, POSITION)SELECT (ID, NAME, POSITIONFROM EMPLOYEES);"
+  },
+  {
+    "q": "Which of the following is the example of creating a subquery that will copy all values from employees table to workers where job_id is equal to ST_CLERK;",
+    "a": "INSERT INTO WORKERS(SELECT * FROM EMPLOYEES WHERE JOB_ID = ‘ST_CLERK’);"
+  },
+  {
+    "q": "Which of the following is the example of creating a user ANNA with password ANN01?",
+    "a": "CREATE USER ANNAIDENTIFIED BY ANN01;"
+  },
+  {
+    "q": "Which of the following is the example of creating a view where LASTNAME ends with letter S rename LASTNAME to SURNAME?",
+    "a": "CREATE VIEW WORKERS (EMPLOYEE_ID, SURNAME, FIRSTNAME)AS (EMPLOYEE_ID, LASTNAME, FIRSTNAMEFROM EMPLOYEES WHERE SALARY LASTNAME LIKE '%S');"
+  },
+  {
+    "q": "Which of the following is the example of derived attribute?",
+    "a": "The answer is:"
+  },
+  {
+    "q": "Which of the following is the example of disabling an integrity constraint?",
+    "a": "ALTER TABLE STUDENTS DISABLE CONSTRAINT usn_pk;"
+  },
+  {
+    "q": "Which of the following is the example of dropping on delete cascade?",
+    "a": "ALTER TABLE AUTHORSDROP PRIMARY KEY CASCADE;"
+  },
+  {
+    "q": "Which of the following is the example of enabling constraint?",
+    "a": "ALTER TABLE BOOKSENABLE CONSTRAINT STUD_ID;"
+  },
+  {
+    "q": "Which of the following is the example of granting create session and create table to user ANNA?",
+    "a": "GRANT CREATE SESSION, CREATE TABLETO ANNA;"
+  },
+  {
+    "q": "Which of the following is the example of granting INSERT, UPDATE and DELETE to user ANNA with an option to pass the privilege to other user?",
+    "a": "GRANT INSERT, UPDATE, DELETEON EMPLOYEESTO ANNAWITH GRANT OPTION;"
+  },
+  {
+    "q": "Which of the following is the example of granting role STUDENT to USER ANNA?",
+    "a": "GRANT STUDENT TO ANNA;"
+  },
+  {
+    "q": "Which of the following is the example of granting SELECT and INSERT on table EMPLOYEES to roleSTUDENT?",
+    "a": "GRANT SELECT, INSERTON EMPLOYEESTO STUDENT;"
+  },
+  {
+    "q": "Which of the following is the example of modifying a view where salary manager_id is null?",
+    "a": "CREATE OR REPLACE VIEW WORKERS (EMPLOYEE_ID, SURNAME,FIRSTNAME, MANAGER_ID)AS (EMPLOYEE_ID, LASTNAME, FIRSTNAME, MANAGER_ID)FROM EMPLOYEES WHERE MANAGER_ID IS NULL);"
+  },
+  {
+    "q": "Which of the following is the example of multiple row subquery?",
+    "a": "SELECT EMPLOYEE_ID, SALARY FROM EMPLOYEES WHERE SALARY=(SELECT MIN(SALARY) FROM EMPLOYEES;"
+  },
+  {
+    "q": "Which of the following is the example of passing a privilege (INSERT and UPDATE) to user HR coming from a SYSTEM?",
+    "a": "GRANT INSERT, UPDATEON EMPLOYEESTO HRWITH GRANT OPTION;"
+  },
+  {
+    "q": "Which of the following is the example of passing a privilege (INSERT and UPDATE) to user HR coming from a user scott?",
+    "a": "GRANT INSERT, UPDATEON SYSTEMEMPLOYEESTO HR;"
+  },
+  {
+    "q": "Which of the following is the example of referencing the BOOKS table to AUTHORS?",
+    "a": "CREATE TABLE BOOKS(BOOK_ID NUMBER PRIMARY KEY NOT NULL,TITLE VARCHAR(10),YEAR NUMBER(4),CONSTRAINT BK_ID FOREIGN KEY(BOOK_ID)REFERENCES AUTHORS (BOOK_ID));"
+  },
+  {
+    "q": "Which of the following is the example of saving changes made on the table?",
+    "a": "Commit;"
+  },
+  {
+    "q": "Which of the following is the example of selecting all columns from employees table using the user BEN?",
+    "a": "SELECT * FROM SYSTEMSTUDENT;"
+  },
+  {
+    "q": "Which of the following is the example revoking a priviledge to INSERT, UPDATE and DELETE to USER ANNA?",
+    "a": "REVOKE INSERT, UPDATE, DELETEON EMPLOYEESTO ANNA;"
+  },
+  {
+    "q": "Which of the following is the example revoking a privilege to INSERT, UPDATE and DELETE to user ANNA from user BEN?",
+    "a": "REVOKE INSERT, UPDATE, DELETEON SYSTEMEMPLOYEESTO ANNA;"
+  },
+  {
+    "q": "Which of the following is the query that will create a report that will display the following: FIRTSNAME, SALARY with additional 1000 in employees salary, rename this column as BONUS, then get the DEPARTMENT_NAME and DEPARTMENT_ID Join the table using ON condition",
+    "a": "SELECT FIRSTNAME, SALARY + 1000 AS BONUS, DEPARTMENT_NAME, DDEPARTMENT_IDFROM EMPLOYEES E JOIN DEPARTMENTS DON EDEPARTMENT_ID = DDEPARTMENT_ID;"
+  },
+  {
+    "q": "Which of the following is the query that will create a report that will display the following: STREET_ADDRESS, CITY, DEPARTMENT_NAME and LOATION_ID? Use using clause to get the data from two tables",
+    "a": "SELECT STREET_ADDRESS, CITY, DEPARTMENT_NAME, LOCATION_ID FROM DEPARTMENTS JOIN LOCATIONS USING (LOCATION_ID);"
+  },
+  {
+    "q": "Which of the following is the syntax for creating a new user?",
+    "a": "CREATE USER hrIDENTIFIED BY hr;"
+  },
+  {
+    "q": "Which of the following joins are mutually exclusive.",
+    "a": "Natural Join and Using clause"
+  },
+  {
+    "q": "Which of the following statement is not true about Foreign Key constraint?",
+    "a": "A foreign key in one table points to a foreign key in another table."
+  },
+  {
+    "q": "Which of the following System Privileges is not part of SYSTEM privilege?",
+    "a": "CREATE INDEX"
+  },
+  {
+    "q": "Which of the following system privileges is not part of the task by the database admin.?",
+    "a": "Managing user environment"
+  },
+  {
+    "q": "Which of the following transaction rules is not included in the group?",
+    "a": "Redundancy"
+  },
+  {
+    "q": "Which one (1) Data Definition Language is considered as part of Database Transaction.",
+    "a": "CREATE TABLE"
+  },
+  {
+    "q": "Which one (1) DCL (Data Control Langauge) is considered as part of Database Transaction",
+    "a": "COMMIT"
+  },
+  {
+    "q": "Which three (3) of thefollowing is the three Data Manipulation Langauge that is considered as part of database transaction.",
+    "a": "The correct answers are: INSERT, UPDATE, DELETE"
+  }
+]

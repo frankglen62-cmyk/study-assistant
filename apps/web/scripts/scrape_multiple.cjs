@@ -3,32 +3,39 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Data Communications and Networking 4',
-    slug: 'data-communications-and-networking-4',
-    expectedCount: 140,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-4-6300-it'
+    name: 'Application Life Cycle Management',
+    slug: 'application-life-cycle-management',
+    expectedCount: 272,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/cs/application-life-cycle-management-6302-cs'
   },
   {
-    name: 'Purposive Communication 1',
-    slug: 'purposive-communication-1',
-    expectedCount: 59,
-    pages: 1,
-    baseUrl: 'https://amauoed.com/courses/ge/purposive-communication-1-6106-ge'
+    name: 'Cloud Computing and the Internet of Things',
+    slug: 'cloud-computing-and-the-internet-of-things',
+    expectedCount: 292,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/ite/cloud-computing-and-the-internet-of-things-6300-ite'
   },
   {
-    name: 'Purposive Communication 2',
-    slug: 'purposive-communication-2',
-    expectedCount: 240,
+    name: 'Database Management System 2',
+    slug: 'database-management-system-2',
+    expectedCount: 187,
     pages: 4,
-    baseUrl: 'https://amauoed.com/courses/engl/purposive-communication-2-6100-engl'
+    baseUrl: 'https://amauoed.com/courses/it/database-management-system-2-oracle-10g-admin-6203-it'
   },
   {
-    name: 'Rhythmic Activities',
-    slug: 'rhythmic-activities',
-    expectedCount: 203,
+    name: 'Ethics',
+    slug: 'ethics',
+    expectedCount: 139,
     pages: 3,
-    baseUrl: 'https://amauoed.com/courses/phyed/rhythmic-activities-6102-phyed'
+    baseUrl: 'https://amauoed.com/courses/ge/ethics-6107-ge'
+  },
+  {
+    name: 'Discrete Mathematics',
+    slug: 'discrete-mathematics',
+    expectedCount: 326,
+    pages: 6,
+    baseUrl: 'https://amauoed.com/courses/cs/discrete-mathematics-6105-cs'
   }
 ];
 

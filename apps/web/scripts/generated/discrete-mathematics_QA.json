@@ -1,0 +1,1302 @@
+[
+  {
+    "q": "( A' )' = empty set?",
+    "a": "False"
+  },
+  {
+    "q": "(A ∪ B)' = A' ∩ B' is true based on the De Morgan law",
+    "a": "True"
+  },
+  {
+    "q": "¬(P ∨ Q) is logically equal to which of the following expressions?",
+    "a": "¬P ∧ ¬Q."
+  },
+  {
+    "q": "¬P ∨ Q is equivalent to :",
+    "a": "P → Q"
+  },
+  {
+    "q": "10 The truth table Is a contradiction",
+    "a": "False"
+  },
+  {
+    "q": "9 The truth table Is a tautology",
+    "a": "False"
+  },
+  {
+    "q": "A ___ connected graph with no cycles. (If we remove the requirement that the graph is connected, the graph is called a forest.) The vertices in a tree with degree 1 are called __",
+    "a": "Tree - leaves"
+  },
+  {
+    "q": "A ___ graph has two distinct groups where no vertices in either group connecting to members of their own group",
+    "a": "bipartite"
+  },
+  {
+    "q": "A ____ is a ___which starts and stops at the same vertex.",
+    "a": "Euler circuit - Euler path"
+  },
+  {
+    "q": "A ______ graph has no isolated vertices",
+    "a": "connected"
+  },
+  {
+    "q": "A = {10,11,12,13} and B = {13,14,15} then (A−B) = {10,11,12}",
+    "a": "True"
+  },
+  {
+    "q": "A = {10,11,12,13} and B = {13,14,15} then (B−A) = {10,11,12}",
+    "a": "False"
+  },
+  {
+    "q": "A = {5,2,6} and B = {2,10,31} is considered a disjoint set",
+    "a": "False"
+  },
+  {
+    "q": "A = {7,1,8} and B = {100,99,54} are considered equivalent sets",
+    "a": "True"
+  },
+  {
+    "q": "A = {7,1,8} and B = {8,1,9} are considered equal sets",
+    "a": "False"
+  },
+  {
+    "q": "A bijective function is a function wherein no two elements are mapped into the same image",
+    "a": "False"
+  },
+  {
+    "q": "A bijective function is both injective and surjective",
+    "a": "True"
+  },
+  {
+    "q": "A binary relation R on a single set B is a subset ofB×B",
+    "a": "True"
+  },
+  {
+    "q": "A Bipartite graph is a graph for which it is possible to divide the vertices into two disjoint sets such that there are no edges between any two vertices in the same set.",
+    "a": "True"
+  },
+  {
+    "q": "A Ç Æ = Æ",
+    "a": "True"
+  },
+  {
+    "q": "A ÇA' = Æ",
+    "a": "True"
+  },
+  {
+    "q": "A connected graph with no cycles.",
+    "a": "tree"
+  },
+  {
+    "q": "A Contradiction is a formula which is always true for every value of its propositional variables",
+    "a": "False"
+  },
+  {
+    "q": "A dimension is the size of a matrix",
+    "a": "True"
+  },
+  {
+    "q": "A finite set is a collection of all elements in a particular context or application",
+    "a": "False"
+  },
+  {
+    "q": "A Function assigns to each element of a set, exactly one element of a related set",
+    "a": "True"
+  },
+  {
+    "q": "A function can be one to one, many to one, and one to many",
+    "a": "False"
+  },
+  {
+    "q": "A function table is one way to describe a function",
+    "a": "True"
+  },
+  {
+    "q": "A function which renames the vertices.",
+    "a": "isomorphism"
+  },
+  {
+    "q": "A graph F is a ___if and only if between any pair of vertices in F there is at most ___",
+    "a": "forest - one path"
+  },
+  {
+    "q": "A graph for which it is possible to divide the vertices into two disjoint sets such that there are no edges between any two vertices in the same set.",
+    "a": "Bipartite graph"
+  },
+  {
+    "q": "A graph is an ordered pair G (V, E) consisting of a nonempty set V (called the vertices) and a set E (called the edges) of two-element subsets of V.",
+    "a": "true"
+  },
+  {
+    "q": "A graph is complete if there is a path from any vertex to any other vertex.",
+    "a": "false"
+  },
+  {
+    "q": "A graph T is a tree if and only if between every pair of distinct vertices of T there is a unique path.",
+    "a": "true"
+  },
+  {
+    "q": "A is a subset of B, if A is contained in B or every element of A is in B This type of set is called a",
+    "a": "subset"
+  },
+  {
+    "q": "A path which visits every vertex exactly once",
+    "a": "Hamilton Path"
+  },
+  {
+    "q": "A relation can be a subset of a Cartesian product",
+    "a": "True"
+  },
+  {
+    "q": "A relation can be represented by a directed graph",
+    "a": "True"
+  },
+  {
+    "q": "A relation can be written as R(x,y)",
+    "a": "True"
+  },
+  {
+    "q": "A Relation is a term used in mathematics to express relationship between objects",
+    "a": "True"
+  },
+  {
+    "q": "A relation is considered a function even if all of the elements of the domain are assigned to the same element of the range",
+    "a": "True"
+  },
+  {
+    "q": "A sequence of vertices such that consecutive vertices (in the sequence) are adjacent (in the graph). A walk in which no edge is repeated is called a trail, and a trail in which no vertex is repeated (except possibly the first and last) is called a path",
+    "a": "Walk"
+  },
+  {
+    "q": "A sequence of vertices such that every vertex in the sequence is adjacent to the vertices before and after it in the sequence",
+    "a": "Walk"
+  },
+  {
+    "q": "A sequence that involves a common difference in identifying the succeeding terms",
+    "a": "Arithmetic Progression"
+  },
+  {
+    "q": "A set of statements, one of which is called the conclusion and the rest of which are called premises.",
+    "a": "argument"
+  },
+  {
+    "q": "A simple graph has no loops nor multiple edges.",
+    "a": "True"
+  },
+  {
+    "q": "A spanning tree that has the smallest possible combined weight.",
+    "a": "minimum spanning tree"
+  },
+  {
+    "q": "A statement which is true on the basis of its logical form alone.",
+    "a": "Tautology"
+  },
+  {
+    "q": "A surjective function is a function that \"reverses\" another function",
+    "a": "False"
+  },
+  {
+    "q": "A survey was conducted among a group of students and it was revealed that each of the students liked at least one of the following three fruits: apples, oranges, and watermelon 34 liked apples 30 liked oranges 33 liked watermelon 11 liked apples and oranges 15 liked oranges and watermelon 17 liked apple and watermelon 10 liked all three fruitsHow many students took part in the survey?",
+    "a": "62"
+  },
+  {
+    "q": "A Tautology is a formula which is always true for every value of its propositional variables",
+    "a": "True"
+  },
+  {
+    "q": "A tree is the same as a forest.",
+    "a": "False"
+  },
+  {
+    "q": "A universal set is denoted by the symbol U",
+    "a": "True"
+  },
+  {
+    "q": "A Venn diagram can represent the relationship between sets",
+    "a": "True"
+  },
+  {
+    "q": "Additive principle states that if given two sets A and B, we have |A × B| |A| · |B|.",
+    "a": "False"
+  },
+  {
+    "q": "AÈ A = ⋃",
+    "a": "False"
+  },
+  {
+    "q": "AÈÆ=Æ",
+    "a": "False"
+  },
+  {
+    "q": "All graphs have Euler's Path",
+    "a": "false"
+  },
+  {
+    "q": "Amusing to the designer but not the user?",
+    "a": "gimmick"
+  },
+  {
+    "q": "An argument form which is always valid.",
+    "a": "deduction rule"
+  },
+  {
+    "q": "An argument is said to be valid if the conclusion must be true whenever the premises are all true.",
+    "a": "true"
+  },
+  {
+    "q": "An element is a collection of sets",
+    "a": "False"
+  },
+  {
+    "q": "An empty or null set is denoted by =E2=88=85",
+    "a": "True"
+  },
+  {
+    "q": "An equivalent set are sets that have the same elements",
+    "a": "False"
+  },
+  {
+    "q": "An undirected graph G which is connected and acyclic is called ____________.",
+    "a": "tree"
+  },
+  {
+    "q": "Arithmetic progression is the sum of the terms of the arithmetic series.",
+    "a": "false"
+  },
+  {
+    "q": "As soon as one vertex of a tree is designated as the ____, then every other vertex on the tree can be characterized by its position relative to the root.",
+    "a": "root"
+  },
+  {
+    "q": "At a breakfast buffet, 93 people ordered regular coffee and 47 people ordered iced coffeeIf 25 people chose both How many people visited in the buffet?",
+    "a": "115"
+  },
+  {
+    "q": "Based on the involution law, the set (A')' is equivalent to",
+    "a": "A"
+  },
+  {
+    "q": "BÈÆ = B?",
+    "a": "True"
+  },
+  {
+    "q": "Bijective means both Injective and Surjective together",
+    "a": "True"
+  },
+  {
+    "q": "Binary relations relate the elements of one set with those of another set and even possibly with the same set",
+    "a": "True"
+  },
+  {
+    "q": "Circuits start and stop at ___",
+    "a": "same vertex"
+  },
+  {
+    "q": "Color, icons, sounds, graphical elements, and animations are used to make the 'look and feel' of an interface appealing?",
+    "a": "Expressive interfaces"
+  },
+  {
+    "q": "Commutative law and associative law mean the same thing",
+    "a": "False"
+  },
+  {
+    "q": "Conditional Statements are statements that have a hypothesis and a conclusion",
+    "a": "True"
+  },
+  {
+    "q": "Consider the function f : N → N given by f (0) 0 and f (n + 1) f+ 2n + 1. Find f (6).",
+    "a": "36"
+  },
+  {
+    "q": "Contingency are statements that are always FALSE regardless of the truth value of the propositions it contains",
+    "a": "False"
+  },
+  {
+    "q": "Corollary 4.2.2",
+    "a": "A graph F is a forest if and only if between any pair of vertices in F there is at most one path"
+  },
+  {
+    "q": "Customers must wear shoes",
+    "a": "Not a Statement"
+  },
+  {
+    "q": "De Morgan's law is used in finding the equivalence of a logic expression using other logical functions.",
+    "a": "true"
+  },
+  {
+    "q": "De Morgan's Law states that A∪U is equivalent to U",
+    "a": "False"
+  },
+  {
+    "q": "Deduction rule is an argument that is not always right.",
+    "a": "False"
+  },
+  {
+    "q": "Defined as the product of all the whole numbers from 1 to n.",
+    "a": "factorials"
+  },
+  {
+    "q": "Determine the number of elements in A U B.",
+    "a": "18"
+  },
+  {
+    "q": "Digraphs is the graphical representation of a relation",
+    "a": "True"
+  },
+  {
+    "q": "Does a rational r value for r",
+    "a": "No, a rational r does not exist."
+  },
+  {
+    "q": "Does this graph have an Euler Path, Euler Circuit, both, or neither?",
+    "a": "Both"
+  },
+  {
+    "q": "Euler paths must touch all edges.",
+    "a": "True"
+  },
+  {
+    "q": "Every connected graph has a spanning tree.",
+    "a": "true"
+  },
+  {
+    "q": "Every natural number greater than 1 is either prime or composite.",
+    "a": "Molecular - Conditional"
+  },
+  {
+    "q": "Everybody needs somebody sometime",
+    "a": "Atomic – N/A"
+  },
+  {
+    "q": "Expressive interfacing gives consoling input that can be both enlightening and fun",
+    "a": "True"
+  },
+  {
+    "q": "Expressive interfacing when panicked or irate we center barely, and body reacts by straining muscles and sweating",
+    "a": "False"
+  },
+  {
+    "q": "Facial Coding too employments this to gauge how locked in the client is when looking at motion pictures, online shopping locales, and advertisements",
+    "a": "True"
+  },
+  {
+    "q": "Find | R | when R = {2, 4, 6,..., 180}",
+    "a": "90"
+  },
+  {
+    "q": "Find |A∩ B| when A = {1, 3, 5, 7, 9} and B {2, 4, 6, 8, 10}",
+    "a": "0"
+  },
+  {
+    "q": "Find an elementnof the domain such thatf= n",
+    "a": "3"
+  },
+  {
+    "q": "Find the cardinality of R = {20,21,...,39, 40} | R |",
+    "a": "21"
+  },
+  {
+    "q": "Find the cardinality of S = {1, {2,3,4},0} | S | =",
+    "a": "3"
+  },
+  {
+    "q": "For a function f : N → N, a ______ definition consists of an ________ together with a _________",
+    "a": "Recursive - initialcondition- recurrencerelation"
+  },
+  {
+    "q": "For a set of positive integers, we use the special set notation",
+    "a": "Z+"
+  },
+  {
+    "q": "For all n in rational, 1/n ≠ n - 1",
+    "a": "false"
+  },
+  {
+    "q": "For the set of whole numbers, we use the special set notation",
+    "a": "W"
+  },
+  {
+    "q": "g: X→YIn the notation above, X is the Domain of g",
+    "a": "True"
+  },
+  {
+    "q": "Given the sets A={5,2,6} and B={2,10,31}, which of the following is correct?",
+    "a": "their intersection is {2}"
+  },
+  {
+    "q": "Given the sets A={7,1,8} and B={100,99,54} which of the following is CORRECT?",
+    "a": "They are disjoint sets"
+  },
+  {
+    "q": "Given the sets A={7,1,8} and B={8,1,9}, which of the following is INCORRECT?",
+    "a": "They are both considered singletons"
+  },
+  {
+    "q": "Given the sets A={a, b, c} and B={c, d, e} which of the following is CORRECT?",
+    "a": "All statements are correct"
+  },
+  {
+    "q": "How many 3-letter words with or without meaning, can be formed out of the letters of the word, 'LOGARITHMS', if repetition of letters is not allowed?",
+    "a": "720"
+  },
+  {
+    "q": "How many edges would a complete graph have if it had 6 vertices?",
+    "a": "15"
+  },
+  {
+    "q": "How many people like apples only?",
+    "a": "2"
+  },
+  {
+    "q": "How many people like only one of the three?",
+    "a": "26"
+  },
+  {
+    "q": "How many people takes coffee but not tea and wine?",
+    "a": "45"
+  },
+  {
+    "q": "How many people takes tea and wine?",
+    "a": "32"
+  },
+  {
+    "q": "How many possible output will be produced in a proposition of three statements?",
+    "a": "8"
+  },
+  {
+    "q": "How many simple non-isomorphic graphs are possible with 3 vertices?",
+    "a": "4"
+  },
+  {
+    "q": "How many spanning trees are possible in the given figure?",
+    "a": "4"
+  },
+  {
+    "q": "Idempotent law states that A∪A=A",
+    "a": "True"
+  },
+  {
+    "q": "Identify the propositional logic of the truth table given",
+    "a": "negation"
+  },
+  {
+    "q": "Identity Laws state that A∪=E2=88=85=A",
+    "a": "True"
+  },
+  {
+    "q": "If ⋃ = {1, 2, 3, 4, 5, 6, 7, 8, 9} and A = {2, 3, 4, 5}, what is A'?",
+    "a": "{1, 6, 7, 8, 9}"
+  },
+  {
+    "q": "If A = {2,1,6} and B = {7,1,6} then A ∩ B = {1, 6}",
+    "a": "True"
+  },
+  {
+    "q": "If A = {6,1,9} and B = {1,5,7} then A ∩ B = {1}",
+    "a": "True"
+  },
+  {
+    "q": "If A = {a, b, c, d} and B = { d, e, f, g} then what is A ∩ B?",
+    "a": "{d}"
+  },
+  {
+    "q": "If A = {a, b, c, d} and B = { x, y, z} then what is A∪ B?",
+    "a": "{a, b, c, d, x, y, z}"
+  },
+  {
+    "q": "If A={10,11,12,13} and B={13,14,15} then (A−B)=?",
+    "a": "{10,11,12}"
+  },
+  {
+    "q": "If A={10,11,12,13} and B={13,14,15} then (B−A)= ?",
+    "a": "{14, 15}"
+  },
+  {
+    "q": "If A={2, 4, 6} and B = {1, 3, 5} then A ∪ B = {2, 4, 6}",
+    "a": "{1, 2, 3, 4, 5, 6}"
+  },
+  {
+    "q": "If A={a,x,c} and B={x,y,z} then A ∩ B=?",
+    "a": "{x}"
+  },
+  {
+    "q": "If f and g are one-to-one then the function(gof)is also one-to-one",
+    "a": "True"
+  },
+  {
+    "q": "If f and g are onto then the function (gof) is also onto",
+    "a": "True"
+  },
+  {
+    "q": "If I will give you magic beans, then you will give me a cow",
+    "a": "Converse"
+  },
+  {
+    "q": "If I will not give you magic beans, then you will not give me acow",
+    "a": "Contrapositive"
+  },
+  {
+    "q": "If n is a rational number, 1/n does not equal n-1",
+    "a": "true"
+  },
+  {
+    "q": "If the right angled triangle t, with sides of length a and b and hypotenuse of length c, has area equal to c 2/4, what kind of triangle is this?",
+    "a": "isosceles triangle"
+  },
+  {
+    "q": "If the triangle is green, then the square is blue.",
+    "a": "The statement is TRUE"
+  },
+  {
+    "q": "If the triangle is not green, then the square is not blue.",
+    "a": "The Statement is TRUE"
+  },
+  {
+    "q": "If two vertices are adjacent, then we say one of them is the parent of the other, which is called the ___ of the parent",
+    "a": "child"
+  },
+  {
+    "q": "If we apply the commutative law on XÈY, we will get",
+    "a": "YÈ X"
+  },
+  {
+    "q": "If we have two sets, Set A = {a, b} and Set B = {2, 7},the Cartesian product of A and B is:A × B = {(a, 2), (a, 7), (b, 2), (b, 7)}",
+    "a": "True"
+  },
+  {
+    "q": "If we have two sets, Set A = {a, b} and Set B = {3, 5}, the Cartesian product of A and B (A × B) is:A × B = {(3, a), (3, b), (5, a), (5, b)}",
+    "a": "False"
+  },
+  {
+    "q": "If X = {7, 1, 6} and Y = {6, 1, 9} then X ∪ Y = {1, 6, 7, 9}",
+    "a": "True"
+  },
+  {
+    "q": "If X = FALSE, then ~X must be equal to_______",
+    "a": "TRUE"
+  },
+  {
+    "q": "If X={x, y, z} and Y = {x, y, z} then X ∪ Y=?",
+    "a": "{x, y, z}"
+  },
+  {
+    "q": "If you travel to London by train, then the journey takes at least two hours.",
+    "a": "If your journey by train takes less than two hours, then you don’t travel to London."
+  },
+  {
+    "q": "If you will give me a cow, then I will not give you magic beans",
+    "a": "Neither"
+  },
+  {
+    "q": "If you will not give me a cow, then I will not give you magicbeans",
+    "a": "Neither"
+  },
+  {
+    "q": "In a dorm room of 15 people, 7 of them knows how to play guitar while 5 of them plays the piano 2 people can play both How many people in the room does not play any instrument?",
+    "a": "5"
+  },
+  {
+    "q": "In a dorm room of 15 people, 7 of them knows how to play guitar while 5 of them plays the piano If 2 people can play both, how many can play the guitar ONLY?",
+    "a": "3"
+  },
+  {
+    "q": "In a given function f:X→Y, X is the co domain and Y is the domain",
+    "a": "False"
+  },
+  {
+    "q": "In a simple graph, the number of edges is equal to twice the sum of the degrees of the vertices.",
+    "a": "FALSE"
+  },
+  {
+    "q": "IN combinations, the arrangement of the elements is in a specific order.",
+    "a": "False"
+  },
+  {
+    "q": "In how many different ways can the letters of the word 'OPTICAL' be arranged so that the vowels always come together?",
+    "a": "720"
+  },
+  {
+    "q": "In set theory, N represents all natural numbers",
+    "a": "True"
+  },
+  {
+    "q": "In set theory, R represents all real numbers",
+    "a": "True"
+  },
+  {
+    "q": "In set theory, Z+ represents all natural numbers",
+    "a": "False"
+  },
+  {
+    "q": "In the absorption law, the set A ∪ (A ∩ B) is equivalent to A",
+    "a": "True"
+  },
+  {
+    "q": "In the absorption law, the setXÈ(X Ç Y)is equivalent to",
+    "a": "X"
+  },
+  {
+    "q": "In the complement law, (A ∪ B) ∪ C = A ∪ (B ∪ C)",
+    "a": "False"
+  },
+  {
+    "q": "In the concept of identity law, the expression BÈÆis equivalent to",
+    "a": "B"
+  },
+  {
+    "q": "In the function f: A →B,f is the function while A is called the domain and B is the codomain",
+    "a": "True"
+  },
+  {
+    "q": "In the hierarchy of logical connectives, which has the second level of precedence?",
+    "a": "AND"
+  },
+  {
+    "q": "In the relation R={(1,1),(1,2),(3,2), {1 and 2} are considered the domain",
+    "a": "False"
+  },
+  {
+    "q": "In the relation R={(1,1),(1,2),(3,2), {1 and 3} are considered the range",
+    "a": "False"
+  },
+  {
+    "q": "In the relation R={(a,1),(b,2),(c,2), {a, b,and c} are considered the domain",
+    "a": "True"
+  },
+  {
+    "q": "In the relationA × B = {(a, 2), (a, 7), (b, 2), (b, 7)}Dom(R) = {2,7}",
+    "a": "False"
+  },
+  {
+    "q": "In the relationA × B = {(a, 2), (a, 7), (b, 2), (b, 7)}Ran(R) = {a,b}",
+    "a": "False"
+  },
+  {
+    "q": "Indicate which, if any, of the following graphs G = (V, E, φ), |V | = 5, is not connected.",
+    "a": "φ = ( a {1,2} b {2,3} c {1,2} d {1,3} e {2,3} f {4,5} )"
+  },
+  {
+    "q": "Indicate which, if any, of the following three graphs G = (V, E, φ), |V | = 5, is not isomorphic to any of the other two.",
+    "a": "φ = (A {1,3} B {2,4} C {1,2} D {2,3} E {3,5} F {4,5} )"
+  },
+  {
+    "q": "Injective function is a function where in no two elements are mapped into the same image",
+    "a": "True"
+  },
+  {
+    "q": "Injective means we won't have two or more \"A\"s pointing to the same \"B\"",
+    "a": "True"
+  },
+  {
+    "q": "is a function from a subset of the set of integers.",
+    "a": "sequence"
+  },
+  {
+    "q": "is a function which is both an injection and surjection. In other words, if every element of the codomain is the image of exactly one element from the domain",
+    "a": "bijection"
+  },
+  {
+    "q": "Is it the beginning to be used more to infer or predict someone's behavior?",
+    "a": "Indirect emotion detection"
+  },
+  {
+    "q": "is the same truth value under any assignment of truth values to their atomic parts.",
+    "a": "Logic equivalence"
+  },
+  {
+    "q": "is the simplest style of proof.",
+    "a": "direct proof"
+  },
+  {
+    "q": "It develops slowly and take a long time to go _____________",
+    "a": "Conscious Emotion"
+  },
+  {
+    "q": "It is a connected graph containing no cycles.",
+    "a": "tree"
+  },
+  {
+    "q": "It is a rule that assigns each input exactly one output",
+    "a": "function"
+  },
+  {
+    "q": "It is an algorithm for traversing or searching tree or graph data structures.",
+    "a": "breadth first search"
+  },
+  {
+    "q": "It is the switching the hypothesis and conclusion of a conditional statement.",
+    "a": "Converse"
+  },
+  {
+    "q": "It is used to measure GSR, facial expressions, gestures, body movement?",
+    "a": "Sensing technologies"
+  },
+  {
+    "q": "It refers to making products look, feel, and sound good",
+    "a": "Visceral Design"
+  },
+  {
+    "q": "Let ‘G’ be a connected planar graph with 20 vertices and the degree of each vertex is 3. Find the number of regions in the graph.",
+    "a": "12"
+  },
+  {
+    "q": "Let A = {1, 2, 3, 4, 5} and B = {3, 4, 5, 6, 7} Find A U B",
+    "a": "{1, 2, 3, 4, 5, 6, 7}"
+  },
+  {
+    "q": "Let A = {1, 2, 3, 4, 5} and B = {3, 4, 5, 6, 7} Find A\\ B",
+    "a": "{1, 2}"
+  },
+  {
+    "q": "Let A = {1, 2, 3, 4, 5} and B = {3, 4, 5, 6, 7} Find A∩ B",
+    "a": "{3, 4, 5}"
+  },
+  {
+    "q": "Let A = {3, 4, 5}. Find the cardinality of P(A)",
+    "a": "8"
+  },
+  {
+    "q": "of a a subset B of the codomain is the set f −1 (B) {x ∈ X : f (x) ∈ B}.",
+    "a": "inverse image"
+  },
+  {
+    "q": "Out of 7 consonants and 4 vowels, how many words of 3 consonants and 2 vowels can be formed?",
+    "a": "210"
+  },
+  {
+    "q": "Paths start and stop at the same vertex.",
+    "a": "false"
+  },
+  {
+    "q": "Proofs that is used when statements cannot be rephrased as implications.",
+    "a": "Proof by Contradiction"
+  },
+  {
+    "q": "Proposition 4.2.1",
+    "a": "A graph T is a tree if and only if between every pair of distinct vertices of T there is a unique path."
+  },
+  {
+    "q": "Proposition 4.2.3",
+    "a": "Any tree with at least two vertices has at least two vertices of degree one."
+  },
+  {
+    "q": "Proposition 4.2.4",
+    "a": "4 Let T be a tree with v vertices and e edges. Then e v - 1."
+  },
+  {
+    "q": "R = {(a, b), (a, c), (b, c), (d, a)}The given relation above has the following digraph",
+    "a": "False"
+  },
+  {
+    "q": "Read the problem below then answer the questions that follow:An advertising company conducted a survey on which brand of detergent is used by the residents in a Barangay Maligaya The results are: 35 residents use only Brand A, 23 residents use only Brand Band 40 residents use only Brand C They also came up with the following results: 15 residents both use brand A and B, 12 residents both use brand A and C, 10 residents both use brand B and C, and 5 residents use all three brandsHow many residents took part in the survey?",
+    "a": "66 people took part on the survey"
+  },
+  {
+    "q": "Read the problem below then answer the questions that follow:In a class of 40, 14 students are taking up Programming 1 and 29 are taking up Filipino 1 If 5 students are taking both classes, how many students are taking up Filipino 1 ONLY?",
+    "a": "24"
+  },
+  {
+    "q": "Read the problem below then answer the questions that follow:In a class of 40, 14 students are taking up Programming 1 and 29 are taking up Filipino 1 If 5 students are taking both classes, how many students are taking up Programming 1 ONLY?",
+    "a": "9"
+  },
+  {
+    "q": "Relations may exist between objects of the same set or between objects of two or more sets",
+    "a": "True"
+  },
+  {
+    "q": "Rule that states that every function can be described in four ways: algebraically (a formula), numerically (a table), graphically, or in words.",
+    "a": "Rule of four"
+  },
+  {
+    "q": "Shneiderman's rules for mistake messages alludes to the detecting advances utilized to degree galvanic skin reaction (GSR), facial expressions, motions, body development",
+    "a": "False"
+  },
+  {
+    "q": "Solve for the value of n in : −4= n+7 over 6",
+    "a": "-31"
+  },
+  {
+    "q": "surjective and injecive are opposites of each other",
+    "a": "False"
+  },
+  {
+    "q": "Tautological statement is a statement whose form is a tautology",
+    "a": "True"
+  },
+  {
+    "q": "Tautology are statements that are always TRUE regardless of the truth values of the proposition it contains",
+    "a": "True"
+  },
+  {
+    "q": "The ________________________ states that if event A can occur in m ways, and event B can occur in n disjoint ways, then the event “A or B” can occur in m + n ways",
+    "a": "Additive principle"
+  },
+  {
+    "q": "The ____is a subset of the codomain. It is the set of all elements which are assigned to at least one element of the domain by the function. That is, the range is the set of all outputs",
+    "a": "range"
+  },
+  {
+    "q": "The (->)is also called a conditional statement",
+    "a": "True"
+  },
+  {
+    "q": "The Broncos will win the Super Bowl or I’ll eat my hat.",
+    "a": "Molecular - Conjunction"
+  },
+  {
+    "q": "The cardinality of {3, 5, 7, 9, 5} is 5.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The child of a child of a vertex is called",
+    "a": "Grandchild"
+  },
+  {
+    "q": "The contra-positive of X->Y is ~X->~Y",
+    "a": "False"
+  },
+  {
+    "q": "The converse of the statement x -> y is y -> x",
+    "a": "True"
+  },
+  {
+    "q": "The converse of X->Y is X->Y",
+    "a": "False"
+  },
+  {
+    "q": "The customers wore shoes",
+    "a": "Atomic"
+  },
+  {
+    "q": "The customers wore shoes and they wore socks",
+    "a": "Molecular"
+  },
+  {
+    "q": "The expression A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) is based on the distributive law",
+    "a": "True"
+  },
+  {
+    "q": "The expression A∩B=B∩A is based on the commutative law",
+    "a": "True"
+  },
+  {
+    "q": "The expression A∪B=B∪A is based on the associative law",
+    "a": "False"
+  },
+  {
+    "q": "The expression X⊆Y is read as, \"X is a subset of Y\"",
+    "a": "True"
+  },
+  {
+    "q": "The expression, ( A' )' = A is based on",
+    "a": "Involution Law"
+  },
+  {
+    "q": "The expression, AÇÆ= Æis based on",
+    "a": "Domination Law"
+  },
+  {
+    "q": "The expression, AÇB = B ÇA is based on",
+    "a": "Commutative Law"
+  },
+  {
+    "q": "The expression, AÈ A = A is based on",
+    "a": "Idempotent Law"
+  },
+  {
+    "q": "The expression, AÈÆ= A is based on",
+    "a": "Identity Law"
+  },
+  {
+    "q": "The expressionA={x:x is a consonant in English alphabet}Is an example of a set written in roster or tabular form",
+    "a": "False"
+  },
+  {
+    "q": "The figure below is an inverse function",
+    "a": "False"
+  },
+  {
+    "q": "The functionIs a bijective function",
+    "a": "True"
+  },
+  {
+    "q": "The functionIs an injective function",
+    "a": "False"
+  },
+  {
+    "q": "The geometric sequences uses common ___ in finding the succeeding terms.",
+    "a": "factor"
+  },
+  {
+    "q": "The given graph is planar.",
+    "a": "true"
+  },
+  {
+    "q": "The inverse of A->B is ~A->~B",
+    "a": "True"
+  },
+  {
+    "q": "The inverse of the statement a -> b is ~a -> ~b",
+    "a": "True"
+  },
+  {
+    "q": "The minimum number of colors required in a proper vertex coloring of the graph.",
+    "a": "Chromatic Number"
+  },
+  {
+    "q": "The number of edges incident to a vertex.",
+    "a": "Degree of a vertex"
+  },
+  {
+    "q": "The number of simple digraphs with |V | = 3 is",
+    "a": "512"
+  },
+  {
+    "q": "The set Y = {a} is considered as aI : Finite setII : Singleton",
+    "a": "Both I and II"
+  },
+  {
+    "q": "The set-builder notation for the set A = {2, 4, 6, 8} is",
+    "a": "A = { x : x> 0 and x % 2 = 0}"
+  },
+  {
+    "q": "The set-builder notation for the set X = {1, 2, 3, 4} is",
+    "a": "A = { x : x> 0 and x <5}"
+  },
+  {
+    "q": "The square and the triangle are both blue.",
+    "a": "The statement is FALSE"
+  },
+  {
+    "q": "The square and the triangle are both green.",
+    "a": "The statement is FALSE"
+  },
+  {
+    "q": "The square is not blue or the triangle is green",
+    "a": "The Statement is TRUE"
+  },
+  {
+    "q": "The square is not blue or the triangle is green.",
+    "a": "The statement is FALSE"
+  },
+  {
+    "q": "The study of what makes an argument good or bad.",
+    "a": "logic"
+  },
+  {
+    "q": "The sum of the first 100 odd positive integers",
+    "a": "Atomic – N/A"
+  },
+  {
+    "q": "The sum of the geometric progression is called geometric series",
+    "a": "true"
+  },
+  {
+    "q": "The symbol →means _______",
+    "a": "NOT"
+  },
+  {
+    "q": "The tree elements are called",
+    "a": "nodes"
+  },
+  {
+    "q": "The truth table Is a contingency",
+    "a": "True"
+  },
+  {
+    "q": "TheFull Relation between sets X and Y is the setX×Y",
+    "a": "True"
+  },
+  {
+    "q": "There is no such thing as an \"empty relation\"",
+    "a": "False"
+  },
+  {
+    "q": "These are lines or curves that connect vertices.",
+    "a": "edges"
+  },
+  {
+    "q": "These are the rules by which a computer operates and are created through the laws of discrete mathematics",
+    "a": "algorithm"
+  },
+  {
+    "q": "This can be conceptualized as finding the chance of occurrence of an event",
+    "a": "probability"
+  },
+  {
+    "q": "This is a method for determining the number of elements without actually enumerating the elements in a set one by one",
+    "a": "Counting technique"
+  },
+  {
+    "q": "This is a series of points called nodes or vertices which are interconnected by a set of lines called edges",
+    "a": "graphs"
+  },
+  {
+    "q": "This is a set of mathematical discipline that is used in order to reduce rules of formal logic to the rules of algebra",
+    "a": "mathematical logic"
+  },
+  {
+    "q": "This is a set that contains a definite number of elements",
+    "a": "Finite set"
+  },
+  {
+    "q": "This is about considering the meaning and personal value of a product in a particular culture",
+    "a": "Reflective Design"
+  },
+  {
+    "q": "This is an application of discrete mathematics that defines the rules by which a computer operates",
+    "a": "algorithm"
+  },
+  {
+    "q": "This is an application of discrete mathematics that use linear algebra in order to transform (move, scale, change perspective) objects",
+    "a": "video games"
+  },
+  {
+    "q": "This is the branch of mathematics that deals with \"discrete objects\"",
+    "a": "discrete math"
+  },
+  {
+    "q": "This is the mathematics of counting and arranging objects",
+    "a": "combinatorics"
+  },
+  {
+    "q": "Tracing all edges on a figure without picking up your pencil or repeating and starting and stopping at different spots",
+    "a": "Euler Circuit"
+  },
+  {
+    "q": "Translate \"¬(Pν Q)→ Q\" into English",
+    "a": "If Jack or Jill did not pass math, then Jill passed math."
+  },
+  {
+    "q": "Two edges are adjacent if they share a vertex.",
+    "a": "true"
+  },
+  {
+    "q": "Two graphs that are the same are said to be _______________",
+    "a": "isomorphic"
+  },
+  {
+    "q": "Two statements are said to be logically equivalent if their truth tables have the same truth values",
+    "a": "True"
+  },
+  {
+    "q": "Under the complement law, the set AÇ A' is equivalent to",
+    "a": "Æ"
+  },
+  {
+    "q": "We can define a function using f: A →B",
+    "a": "True"
+  },
+  {
+    "q": "We can have donuts for dinner, but only if it rains.",
+    "a": "Molecular - Conditional"
+  },
+  {
+    "q": "What does the application of propositional logic in Search engines?",
+    "a": "It narrows down searches"
+  },
+  {
+    "q": "What does the propositional logic uses to stand for statements and show the relationships between statements?",
+    "a": "symbols"
+  },
+  {
+    "q": "What is the 20th term?",
+    "a": "29"
+  },
+  {
+    "q": "What is the 4th and 8th element of a = n^(2) ?",
+    "a": "16,64"
+  },
+  {
+    "q": "What is the difference of persons who take wine and coffee to the persons who the persons who takes tea only?",
+    "a": "15"
+  },
+  {
+    "q": "What is the elementnin the domain such asf = 1",
+    "a": "2"
+  },
+  {
+    "q": "What is the line covering number of for the following graph?",
+    "a": "3"
+  },
+  {
+    "q": "What is the matching number for the following graph?",
+    "a": "4"
+  },
+  {
+    "q": "What is the minimum height height of a full binary tree?",
+    "a": "3"
+  },
+  {
+    "q": "What is the missing term? 3,9,__,81....",
+    "a": "27"
+  },
+  {
+    "q": "What is the sum from 1st to 5th element",
+    "a": "40"
+  },
+  {
+    "q": "What is the type of progression?",
+    "a": "Arithmetic"
+  },
+  {
+    "q": "What is the value of the last column in the truth table below?",
+    "a": "TRUE TRUE TRUE FALSE"
+  },
+  {
+    "q": "What type of progression this suggest?",
+    "a": "arithmetic"
+  },
+  {
+    "q": "When a connected graph can be drawn without any edges crossing, it is called ________________ .",
+    "a": "Planar graph"
+  },
+  {
+    "q": "Which among the following is an example of a Truth table?",
+    "a": "A~A TRUE FALSE FALSE TRUE"
+  },
+  {
+    "q": "Which among the following is NOT under the logical connectives?",
+    "a": "None of these"
+  },
+  {
+    "q": "Which among the following statement correctly describes Discrete Mathematics?",
+    "a": "This is the branch of mathematics that deals with discrete objects"
+  },
+  {
+    "q": "Which among the following statement is a proposition?",
+    "a": "10 + 2 = 6+6"
+  },
+  {
+    "q": "Which among the following statement is NOT TRUE about tautology?",
+    "a": "Contingency are statements that are always FALSE regardless of the truth value of the propositions it contains"
+  },
+  {
+    "q": "Which among the following statements best describes \"Combinatorics\"?",
+    "a": "This is the mathematics of counting and arranging objects"
+  },
+  {
+    "q": "Which among the following statements is a Propositional Equivalents?",
+    "a": "x∧~x and ~(x∨~x"
+  },
+  {
+    "q": "Which among the following truth table is a contradiction?",
+    "a": "ABA ∨ B TRUE TRUE FALSE TRUE FALSE FALSE FALSE TRUE FALSE FALSE FALSE FALSE"
+  },
+  {
+    "q": "Which among the following truth table is a tautology?",
+    "a": "(P Λ Q)~ (P Λ Q)(P V Q) Λ ~ (P Λ Q)TRUE FALSE TRUE FALSE TRUE TRUE FALSE TRUE TRUE FALSE TRUE TRUE"
+  },
+  {
+    "q": "Which among the following utilizes discrete mathematics in its application?",
+    "a": "Google Maps"
+  },
+  {
+    "q": "Which of among the following is/are the object/s studied in discrete mathematics?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following are considered as disjoint sets?",
+    "a": "A = {1, 2, 3, 6} B = {10, 4, 8, 9, 7}"
+  },
+  {
+    "q": "Which of the following are considered as equal sets?",
+    "a": "X = {3, 2, 5, 9} Y = {2, 5, 3, 9}"
+  },
+  {
+    "q": "Which of the following are considered as equivalent sets?",
+    "a": "X = {3, 2, 5, 9} Y = {2, 5, 3, 9}"
+  },
+  {
+    "q": "Which of the following are topics under discrete mathematics?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following can be considered as TRUE?",
+    "a": "Usually, programmers uses algorithms that requires discrete math"
+  },
+  {
+    "q": "Which of the following field does law of probability can be used?",
+    "a": "weather forecasting"
+  },
+  {
+    "q": "Which of the following is a compound proposition?",
+    "a": "(P V Q) Λ ~ (P Λ Q)"
+  },
+  {
+    "q": "Which of the following is a possible range of the function",
+    "a": "all multiples of three"
+  },
+  {
+    "q": "Which of the following is CORRECT about Propositional logic?",
+    "a": "Statements in Propositional Logic have can have 2 truth values"
+  },
+  {
+    "q": "Which of the following is does not make use of discrete mathematics in its application?",
+    "a": "None of these"
+  },
+  {
+    "q": "Which of the following is false?",
+    "a": "A graph with one odd vertex will have an Euler Path but not an Euler Circuit."
+  },
+  {
+    "q": "Which of the following is NOT TRUE about sets?",
+    "a": "A set should have at least one element"
+  },
+  {
+    "q": "Which of the following is the correct description of set?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following is the symbol for a Universal set?",
+    "a": "=E2=8B=83"
+  },
+  {
+    "q": "Which of the following statement CORRECT?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following statement is CORRECT?",
+    "a": "Most algorithms used by programmers require discrete math"
+  },
+  {
+    "q": "Which of the following statement is INCORRECT?",
+    "a": "Delivery routing does not make use of discrete math"
+  },
+  {
+    "q": "Which of the following statement is TRUE?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following statements is INCORRECT",
+    "a": "None of these"
+  },
+  {
+    "q": "Which of the following statements is TRUE?",
+    "a": "All of the statements are TRUE"
+  },
+  {
+    "q": "Which of the following the logic representation of proof by contrapositive?",
+    "a": "P → Q = ¬Q → ¬P"
+  },
+  {
+    "q": "Which of the following translates into “Jack and Jill both passed math” into symbols?",
+    "a": "PΛ Q"
+  },
+  {
+    "q": "X È X = X?",
+    "a": "True"
+  },
+  {
+    "q": "XÇY = YÇX",
+    "a": "True"
+  },
+  {
+    "q": "Y ÈX is equivalent to XÈY?",
+    "a": "True"
+  },
+  {
+    "q": "You will give me a cow and I will not give you magic beans",
+    "a": "Neither"
+  }
+]

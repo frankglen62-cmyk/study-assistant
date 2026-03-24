@@ -1,0 +1,1170 @@
+[
+  {
+    "q": "____ is a party that can conduct independent assessment of cloud services, information system information, performance and security of the cloud implementation",
+    "a": "Cloud auditor"
+  },
+  {
+    "q": "____ is a person or organization that maintains a business relationship with and uses service from cloud providers",
+    "a": "Cloud consumer"
+  },
+  {
+    "q": "____ is a person, organization, or entity responsible for making a service available to interested parties",
+    "a": "Cloud provider"
+  },
+  {
+    "q": "_____ refers to energy efficiency in cloud computing",
+    "a": "Green computing"
+  },
+  {
+    "q": "_____ requires in-depth technical know-how",
+    "a": "Cluster computing"
+  },
+  {
+    "q": "_______ computing system is a multiprocessor capable of executing multiple instructions on multiple data sets.",
+    "a": "Multiple-instruction, Multiple-data"
+  },
+  {
+    "q": "_______ computing system is a multiprocessor machine capable of executing different instructions on different Pes all of them operating on the same data set.",
+    "a": "Multiple-instruction, Single-data"
+  },
+  {
+    "q": "_______ computing system is a multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.",
+    "a": "Single-instruction, Multiple-data"
+  },
+  {
+    "q": "_______ computing system is a uni-processor machine capable of executing a single instruction, which operates on a single data stream",
+    "a": "Single-instruction, Single-data"
+  },
+  {
+    "q": "____________ is an example of on-premise software because it needs to be installed on the computer that runs it, while Office365 is not, because it is accessed via the internet and run remotely",
+    "a": "Microsoft Office Suite"
+  },
+  {
+    "q": "____________ is the process of transferring all of or a piece of a company’s data, applications, and services from on-premise to the cloud",
+    "a": "Cloud migration"
+  },
+  {
+    "q": "_____________ infrastructure is a combined set of hardware and virtual resources that support an overall IT environment",
+    "a": "Information technology (IT)"
+  },
+  {
+    "q": "_____________is a mode of operation for software in which multiple instances of one or many applications run in a shared environment",
+    "a": "Multi-Tenancy"
+  },
+  {
+    "q": "\"Internet\" and \"Computers\" require more clarification It seems that every object capable of connecting to computers will fall into the \"Internet\" category",
+    "a": "False"
+  },
+  {
+    "q": "A ___________ a virtualization instance in which the kernel of an operating system allows for multiple isolated user-space instances",
+    "a": "container"
+  },
+  {
+    "q": "A ___________ is a piece of physical hardware that hosts virtual machines",
+    "a": "host machine"
+  },
+  {
+    "q": "A _____________ is an online marketplace, operated by a cloud service provider (CSP), where customers can browse and subscribe to software applications and developer services that are built on, integrate with, or supplement the CSP’s main offering",
+    "a": "cloud marketplace"
+  },
+  {
+    "q": "A ______________ is a network of distributed services that deliver content to a user based on the user’s geographic proximity to servers",
+    "a": "content delivery network (CDN)"
+  },
+  {
+    "q": "A _______________ is the concurrent use of separate cloud service providers for different infrastructure, platform, or software needs",
+    "a": "multi-cloud strategy"
+  },
+  {
+    "q": "A _______________ or virtual machine monitor (VMM) is a piece of software that allows physical devices to share their resources among virtual machines (VMs) running on top of that physical hardware",
+    "a": "hypervisor"
+  },
+  {
+    "q": "A cloud computing service model by which a customer can provision additional cloud resources on-demand, without involving the service provider",
+    "a": "On-Demand Self Service"
+  },
+  {
+    "q": "A cloud life cycle encompasses nine steps that can be followed for both the migration to cloud computing and perpetual management of public cloud-based services",
+    "a": "True"
+  },
+  {
+    "q": "A device that measures real world condition",
+    "a": "Sensor"
+  },
+  {
+    "q": "A person or organization that maintains a business relationship with and uses service from cloud providers",
+    "a": "cloud consumer"
+  },
+  {
+    "q": "A public cloud is defined by",
+    "a": "Portability"
+  },
+  {
+    "q": "A ready-made environment is a peculiar component of ____",
+    "a": "PaaS"
+  },
+  {
+    "q": "A RPL network consists of one or more RPL networks connected to the Internet through the edge router that controls flow incoming and outgoing from the RPL",
+    "a": "False"
+  },
+  {
+    "q": "A SaaS provider gives subscribers access to the components that they require to develop and operate applications over the internet",
+    "a": "False"
+  },
+  {
+    "q": "A system in which multiple databases appear to function as a single entity",
+    "a": "federated database"
+  },
+  {
+    "q": "A type of cloud which is marketed based on availability and price",
+    "a": "Public Cloud"
+  },
+  {
+    "q": "A virtual server uses a combination of all of the following for identification except:",
+    "a": "password"
+  },
+  {
+    "q": "A______is an application that provides a programming environment for",
+    "a": "integrated development environment"
+  },
+  {
+    "q": "According to the official NIST definition, there are _______________ of cloud computing",
+    "a": "five essential characteristics"
+  },
+  {
+    "q": "acts as a reverse proxy and distributes application traffic to multiple servers in order to prevent any single application server from becoming a point of failure",
+    "a": "load balancer"
+  },
+  {
+    "q": "Algorithms cannot be allocated differently depending on the cloud environment",
+    "a": "False"
+  },
+  {
+    "q": "All but one, are the components of a microcontroller.",
+    "a": "Low memory size"
+  },
+  {
+    "q": "All of the following are objectives of load balancing except:",
+    "a": "decrease user satisfaction"
+  },
+  {
+    "q": "An amalgamation of “development” and “operations”",
+    "a": "DevOps"
+  },
+  {
+    "q": "An IaaS system goes a level above the Software as a Service setup",
+    "a": "False"
+  },
+  {
+    "q": "An IDE typically includes a code editor, automation tools, and a",
+    "a": "Debugger"
+  },
+  {
+    "q": "Apple iCloud is a cloud-based storage suite system that allows Apple device users to securely store documents, media files, and application data on dedicated Apple servers",
+    "a": "True"
+  },
+  {
+    "q": "Applications developed specifically for cloud platforms",
+    "a": "Cloud Native"
+  },
+  {
+    "q": "As the basic ser- vice provided by each cloud vendor is discussed, reference will be made to either SaaS, PaaS, or IaaS",
+    "a": "True"
+  },
+  {
+    "q": "Azure was originally launched as a _____________ but now provides both PaaS and IaaS services",
+    "a": "PaaS solution"
+  },
+  {
+    "q": "Bengio et al (2013) note that techniques for greedy, layer wise, unsupervised, pre-training were a significant technical breakthrough, enabling deep learning systems to articulate business process modeling are typically based on stochastic versions of Milner's pi calculus or stochastic Petri nets",
+    "a": "False"
+  },
+  {
+    "q": "Bengio et al (2013) note that techniques for greedy, layer wise, unsupervised, pre-training were a significant technical breakthrough, enabling deep learning systems to learn a hierarchy of features one level at a time, using unsupervised feature studies to learn a new transformation at each level",
+    "a": "True"
+  },
+  {
+    "q": "Bluetooth Low Energy (BLE) is a wireless technology based on the IEEE 802154 standard and used in various application areas, including home automation, smart energy, remote control and health care",
+    "a": "False"
+  },
+  {
+    "q": "Both wireless and wired connection can be used to connect in the internet or networks.",
+    "a": "True"
+  },
+  {
+    "q": "Burden of VM management, requirement of storage area networks, increased head- count, and so on are a few examples of unanticipated cost",
+    "a": "True"
+  },
+  {
+    "q": "Challenges of Internet of Things",
+    "a": "Security Signaling Bandwidth Diversity (wrong)"
+  },
+  {
+    "q": "Choose below which are the Applications of IOT:",
+    "a": "Transportation Medical Systems Manufacturing Environmental Monitoring Infrastructure Management Energy Management"
+  },
+  {
+    "q": "Cite examples of a cloud.",
+    "a": "Windows Azure Google App Engine iCloud Amazon Web Services"
+  },
+  {
+    "q": "Cloud architecture should make provision for adjustments whenever additional computing resources are added",
+    "a": "True"
+  },
+  {
+    "q": "Cloud computing allows people to use their Cellphones as well as various portable devices",
+    "a": "False"
+  },
+  {
+    "q": "Cloud computing also allows courses to be offered and run from remote locations, as evidenced by distant learning and Massive Open Online Courses (MOOCs) offered by many renowned universities",
+    "a": "True"
+  },
+  {
+    "q": "Cloud Computing is a set of ______________ architectures, which allow users to access a number of resources in a way that is _____, _____, and _____.",
+    "a": "service-oriented; elastic, cost-efficient, and on-demand."
+  },
+  {
+    "q": "Cloud computing is highly utilized in numerous segments of the global economy Across the world, scholastic, industrial, commercial, governmental, healthcare, and social welfare organizations are all presently in the process of digital transformation as they reform conventional methods of operations both for their survival and progression",
+    "a": "True"
+  },
+  {
+    "q": "Cloud Computing is one of the leading online information service providers, offers a suite of SaaS services known as Google Apps",
+    "a": "False"
+  },
+  {
+    "q": "Cloud computing is receiving a great deal of attention, both in publications and among users, from individuals at home to the US government Yet it is not always clearly defined",
+    "a": "True"
+  },
+  {
+    "q": "Cloud computing offers physical pay-per-use platforms",
+    "a": "False"
+  },
+  {
+    "q": "Cloud consumers may request services directly from providers or through brokers",
+    "a": "True"
+  },
+  {
+    "q": "Cloud definition: A model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources",
+    "a": "True"
+  },
+  {
+    "q": "Cloud service consumers are subjected to any impairment caused by other users",
+    "a": "False"
+  },
+  {
+    "q": "Cloud service management dimensions are?",
+    "a": "Business support, provisioning/configuration, and portability/ interoperability"
+  },
+  {
+    "q": "Cloud service management refers to",
+    "a": "All activities performed by a cloud service"
+  },
+  {
+    "q": "Cloud Service Models are IaaS, PaaS and SaaS",
+    "a": "True"
+  },
+  {
+    "q": "Computers can have shared memory.",
+    "a": "Parallel Computing"
+  },
+  {
+    "q": "Computing pioneer who developed the LISP programming language family who said that “Computation may someday be organized as a public utility”?",
+    "a": "John McCarthy"
+  },
+  {
+    "q": "Computing resources are measured at a granular level, allowing users to pay only for the resources and workloads they use What benefit of cloud computing is this?",
+    "a": "pay-per-use"
+  },
+  {
+    "q": "Computing systems are classified into categories:",
+    "a": "Multiple-instruction, Multiple-data Multiple-instruction, Single-data Single-instruction, Single-data Single-instruction, Multiple-data"
+  },
+  {
+    "q": "Connectivity: In IoT communications (Section 6), connecting various devices of different capabilities in a secure manner is another challenge",
+    "a": "True"
+  },
+  {
+    "q": "Contemporary approaches to business process modeling are typically based on stochastic versions of Milner's pi calculus or stochastic Petri nets",
+    "a": "True"
+  },
+  {
+    "q": "CPU virtualization allows a single processor to act as multiple individual CPUs, that is, two separate systems running into a single machine",
+    "a": "True"
+  },
+  {
+    "q": "CSD is a mechanism designed and tailored for?",
+    "a": "Cloud-based distribution and provisioning"
+  },
+  {
+    "q": "CSD is a mechanism provide",
+    "a": "Cloud storage levels"
+  },
+  {
+    "q": "Data Virtualization is a technique in which the virtualization layer runs on top of a hypervisor and provides desktop provisioning",
+    "a": "False"
+  },
+  {
+    "q": "Database entries fortags can have an effectively unlimited size Therefore, the size of the database of a tag and its associated object can be enormous (Russom, 2011)",
+    "a": "False"
+  },
+  {
+    "q": "Desktop virtualization is a technique in which the virtualization layer runs on top of a hypervisor and provides desktop provisioning",
+    "a": "True"
+  },
+  {
+    "q": "Developers utilize application developments to streamline the creation and deployment of web apps",
+    "a": "False"
+  },
+  {
+    "q": "Difficulty in locating faults is common to",
+    "a": "Cluster computing"
+  },
+  {
+    "q": "Each computer has their own memory.",
+    "a": "Distributed Computing"
+  },
+  {
+    "q": "Each provider serves a specific function, giving users more or less control over their cloud depending on the type",
+    "a": "True"
+  },
+  {
+    "q": "Education Cloud includes 10 factors",
+    "a": "False"
+  },
+  {
+    "q": "Education is a crucial aspect fostering a country's economic growth, especially for underdeveloped ones Today, students have become more technologically savvy as teaching and learning utilizes more innovative technology on a daily basis",
+    "a": "True"
+  },
+  {
+    "q": "Enabled the infrastructure to be adaptive, configurable, open, and flexible?",
+    "a": "Factors driving the future of cloud"
+  },
+  {
+    "q": "End-to-End Security: End-to-end security measures between IoT devices and Internet hosts are equally important",
+    "a": "True"
+  },
+  {
+    "q": "Energy efficiency in cloud computing is termed",
+    "a": "Green computing"
+  },
+  {
+    "q": "Enormous storage in cloud computing is termed",
+    "a": "High performance computing"
+  },
+  {
+    "q": "Ensuring complex scaling of applications is an advantage of grid computing",
+    "a": "False"
+  },
+  {
+    "q": "Enumerate the evolution of cloud computing.",
+    "a": "Software as a Service Utility Computing Cloud Computing Grid Computing"
+  },
+  {
+    "q": "Evolution of Cloud Computing",
+    "a": "Grid Computing Utility Computing Cloud Computing Software as a Service"
+  },
+  {
+    "q": "Examples of a ready-made environment pm-installed cloud resources are all of the following except",
+    "a": "Resource agents"
+  },
+  {
+    "q": "Files definition is",
+    "a": "A collection of information or data with a unique name typically located in folders"
+  },
+  {
+    "q": "Gartner identifies IoT as one of the top ten strategic technology trends, Cisco forecasts 50 billion devices connected by 2020, a potential market in excess of $14 trillion, and also claims that IoT is actually already here",
+    "a": "True"
+  },
+  {
+    "q": "Google App Engine (GAE) managed few application development platform (PaaS)",
+    "a": "False"
+  },
+  {
+    "q": "Google Calendar is a free file storage SaaS that allows users to store and access files located in the cloud",
+    "a": "False"
+  },
+  {
+    "q": "Google Calendar is a free time management and SaaS app that allows users to create and modify calendars in order to keep track of their personal and professional events",
+    "a": "True"
+  },
+  {
+    "q": "How the workload is evenly distributed among computing resources is called ____",
+    "a": "system load"
+  },
+  {
+    "q": "Huansheng Ning exclaimed that, \"In the last five years, different types of structures have been proposed for IoT system architecture including layer-based models, dimension-based models, application domain structures and social domain structures\"",
+    "a": "False"
+  },
+  {
+    "q": "iCloud is a cloud storage service (SaaS) that allows users to store practically any kind of file on remote cloud servers with the ability to share these files in a synchronized format across all PCs or mobile devices",
+    "a": "False"
+  },
+  {
+    "q": "Identify the odd out of the following:",
+    "a": "Resource aggregation"
+  },
+  {
+    "q": "If computing resources are efficiently utilized, the system's overall performance in speed will automatically improve",
+    "a": "True"
+  },
+  {
+    "q": "IGT Cloud is an example of",
+    "a": "Community cloud"
+  },
+  {
+    "q": "In a ________________, pooled physical and virtual resources are dynamically assigned and reassigned to tenants according to consumer demand",
+    "a": "cloud computing model"
+  },
+  {
+    "q": "In a hybrid cloud, ____________ cloud infrastructures remain distinct from one another but are bound together by technology that allows data and services portability between them",
+    "a": "private and public"
+  },
+  {
+    "q": "In computer science, a ____________ is any component within a computer system that is of limited availability",
+    "a": "resource"
+  },
+  {
+    "q": "In computing, a ___________ is defined as a computer system that applications run on, or as a base of technologies on which other technologies (such as applications) are built",
+    "a": "Platform"
+  },
+  {
+    "q": "In defining services, key decisions on employment, communication, project execution, organizational policies, and risk assessment strategies should be well-defined",
+    "a": "True"
+  },
+  {
+    "q": "In implementing a plan, assemble a team that will manage the migration to the new cloud platform",
+    "a": "True"
+  },
+  {
+    "q": "In many developing countries, governments have strived to keep up with the current pace of IT innovation This stress an adoption of cloud for Law and Policies",
+    "a": "False"
+  },
+  {
+    "q": "In order to achieve better results, there is an ongoing research for more advanced technologies Special interest has been attracted by the loT schemes of combined mode, that supports probably encryption and authentication",
+    "a": "False"
+  },
+  {
+    "q": "In order to make IoT services available at low cost with a large number of devices communicating securely to each other, there are many security challenges to overcome We will briefly review some main challenges",
+    "a": "True"
+  },
+  {
+    "q": "In partial virtualization, primary hardware is replicated and made available tothe guest operating system",
+    "a": "False"
+  },
+  {
+    "q": "In Process Mechanism, Computers rely on message passing.",
+    "a": "Distributed Computing"
+  },
+  {
+    "q": "In Process Mechanism, Multiple processors perform processing.",
+    "a": "Parallel Computing"
+  },
+  {
+    "q": "In the ____, a third-party provider delivers the cloud service over the Internet",
+    "a": "public cloud model"
+  },
+  {
+    "q": "In transport logistics, IoT improves not only material flow systems but also the global positioning and automatic identification of freight",
+    "a": "True"
+  },
+  {
+    "q": "In which year was Google Docs services?",
+    "a": "2006"
+  },
+  {
+    "q": "IOT is also referred to as:",
+    "a": "Skynet Internet of Everything M2M"
+  },
+  {
+    "q": "IPv6 Routing Protocol for LLNs (RPL) is a low-power version of the Bluetooth 24 GHz wireless communication protocol",
+    "a": "False"
+  },
+  {
+    "q": "is an application (or software) that is intended for large scale use by a (large) business",
+    "a": "enterprise application"
+  },
+  {
+    "q": "is an organized collection of data",
+    "a": "database"
+  },
+  {
+    "q": "is any computing that involves multiple computers remote from each other that each have a role in a computation problem or information processing",
+    "a": "distributed computing"
+  },
+  {
+    "q": "is the combination of tasks performed by an organization’s applications development and systems operations teams",
+    "a": "DevOps"
+  },
+  {
+    "q": "is the human process of developing programs that express what computations should be executed in parallel",
+    "a": "parallel programming"
+  },
+  {
+    "q": "is the use of two or more processors (computers), usually within a single system, working simultaneously to solve a single problem",
+    "a": "parallel computing"
+  },
+  {
+    "q": "It enables companies to consume compute resources as a utility -- just like electricity -- rather than having to build and maintain computing infrastructures in-house",
+    "a": "cloud computing"
+  },
+  {
+    "q": "It ensures that workloads are evenly distributed across nodes so that some are not left idle or underutilized in their capacity",
+    "a": "Load balancing"
+  },
+  {
+    "q": "It is a platform in which every device becomes smart, processing becomes faster and every data and communication becomes more and more informative.",
+    "a": "internet of things"
+  },
+  {
+    "q": "It is a set of service-oriented architectures, which allow users to access a number of resources.",
+    "a": "cloud computing"
+  },
+  {
+    "q": "It is associated with the server costs",
+    "a": "support cost"
+  },
+  {
+    "q": "It is not very easy, one disadvantages of",
+    "a": "Grid computing"
+  },
+  {
+    "q": "It should be applied to multiple layers of the cloud architecture for optimum application performance and efficiency of costs",
+    "a": "data caching"
+  },
+  {
+    "q": "It used to share resources and to increase scalability.",
+    "a": "Distributed Computing"
+  },
+  {
+    "q": "It uses to increase performance and for scientific.",
+    "a": "Parallel Computing"
+  },
+  {
+    "q": "Kernel-based virtual machine directly runs on the host's hardware and therefore multiple instances of operating systems",
+    "a": "False"
+  },
+  {
+    "q": "Kevin Ashton is accredited for using the term \"Internet-of-Things\" for the first time during a presentation in 2005 regarding internet management",
+    "a": "False"
+  },
+  {
+    "q": "Load balancing is used to accomplish peak resource utilization, maximize throughput, minimize job response time, and avoid system overload",
+    "a": "True"
+  },
+  {
+    "q": "loT's change in global supply chain will be achieved by means of continuous synchronization of supply chain information and seamless real-time tracking and tracing of objects It will make the supply chain transparent, visible and controllable, enabling intelligent communication between people and cargo/goods",
+    "a": "True"
+  },
+  {
+    "q": "Mainframe systems are low-performance systems",
+    "a": "False"
+  },
+  {
+    "q": "Match the term/details to complete each assessments",
+    "a": "Match the term/details to complete each assessments"
+  },
+  {
+    "q": "Match the term/details to complete each statement",
+    "a": "Match the term/details to complete each statement"
+  },
+  {
+    "q": "MCC is developed to enable mobile users to store/access cloud data This refers to ___",
+    "a": "improving data storage capacity and processing power"
+  },
+  {
+    "q": "Microservices or _________ a is a way of designing applications in which complex applications are built out of a suite of small, independently deployable services",
+    "a": "Microservice architecture"
+  },
+  {
+    "q": "Microsoft Azure is formerly known as",
+    "a": "windows azure"
+  },
+  {
+    "q": "Mobile computing is comprised of four key concepts",
+    "a": "False"
+  },
+  {
+    "q": "Mobile computing offers a model that links the benefits of both mobile technology and cloud computing",
+    "a": "True"
+  },
+  {
+    "q": "Mobile nodes do not always maintain their connection What feature of MCC is this?",
+    "a": "frequent disconnection and consistency"
+  },
+  {
+    "q": "More prevalent in today's online computing environment, software is often pro- vided to end users as a recurring service from vendors (SaaS) This service provision is commonly referred to as 'Apps' which is an abbreviated form of 'Applications'",
+    "a": "True"
+  },
+  {
+    "q": "Negotiating service terms is about choosing the best cloud provider based on interface, quality, cost, and continuity",
+    "a": "False"
+  },
+  {
+    "q": "Numerous cloud service providers exist, but the top six cloud computing platforms are Google, Dropbox, Apple, Microsoft, and Amazon, and so on",
+    "a": "True"
+  },
+  {
+    "q": "On-demand provisioning of resources and scalability allows applications to be accessed without reserving computing resources or paying for additional services This refers to ____",
+    "a": "improving reliability"
+  },
+  {
+    "q": "On-demand self-service: Cloud services are automatically made available without human interference when required by a potential consumer",
+    "a": "True"
+  },
+  {
+    "q": "On-premise private cloud refers to an internal cloud, hosted within an organization's own data center",
+    "a": "True"
+  },
+  {
+    "q": "Once the different databases are “combined”, ____________ federated database is formed",
+    "a": "one"
+  },
+  {
+    "q": "One of the following is not an advantage of the private cloud",
+    "a": "Not economical"
+  },
+  {
+    "q": "Oracle cloud was launched in _____",
+    "a": "2012"
+  },
+  {
+    "q": "PaaS seamlessly allows the developers and technical operations professionals to access the services platform",
+    "a": "False"
+  },
+  {
+    "q": "Parallel computing has their own memory while Distributed computing can have shared memory.",
+    "a": "False"
+  },
+  {
+    "q": "Parallel computing occurs on one system while Distributed computing occurs between multiple system.",
+    "a": "True"
+  },
+  {
+    "q": "Platform-as-a-Service (PaaS) allows scholastic organizations to use application software through a cloud platform via the internet",
+    "a": "False"
+  },
+  {
+    "q": "Programming issues faults is common to",
+    "a": "Cluster computing"
+  },
+  {
+    "q": "Proper VM management and proper capacity management is required orelse VMs can become uncontrollable and create a virtual bottleneck thatcan cause disasters on the performance of virtualized system",
+    "a": "True"
+  },
+  {
+    "q": "SaaS is typically the Technical layer of the cloud service model",
+    "a": "False"
+  },
+  {
+    "q": "Scalability: Managing a large number of IoT nodes requires scalable security solutions",
+    "a": "True"
+  },
+  {
+    "q": "Security must be addressed throughout the IoT lifecycle from the initial design to the services running",
+    "a": "True"
+  },
+  {
+    "q": "Semantic technologies provide users with integrated access to data by applying search and navigation techniques that are tuned to the computational ontologies of relevance to the organization",
+    "a": "True"
+  },
+  {
+    "q": "Servers, access points, and other MSS permit strong send/receive signals However, such ability in mobile nodes is comparatively weak This feature is called ____",
+    "a": "dissymmetrical network communication"
+  },
+  {
+    "q": "Service interoperability involves",
+    "a": "Cloud users' ability to access their unique data set"
+  },
+  {
+    "q": "Service providers can pool resources to support an assortment of applications with a multiplicity of users This refers to ____",
+    "a": "multi-tenancy"
+  },
+  {
+    "q": "Services from diverse service providers can be assimilated through the cloud This refers to ____",
+    "a": "ease of integration"
+  },
+  {
+    "q": "Smart Cities also address security issues by means of complex security systems for detecting theft, fire or unauthorized entry The stakeholders involved in this scenario constitute a very heterogeneous group",
+    "a": "False"
+  },
+  {
+    "q": "Smart Cities will be conscious about what happens inside a building, mainly impacting three aspects: resource usage (water conservation and energy consumption), security and comfort",
+    "a": "False"
+  },
+  {
+    "q": "software development method emphasizes collaboration, communication and integration between developers and other IT personnel with the goal of streamlining software development and quality assurance",
+    "a": "DevOps"
+  },
+  {
+    "q": "Software is often pro- vided to end users as a recurring service from vendors (SaaS)",
+    "a": "True"
+  },
+  {
+    "q": "The ____ makes cloud services accessible to cloud consumers",
+    "a": "cloud carrier"
+  },
+  {
+    "q": "The _____________ creates, runs and manages VMs",
+    "a": "hypervisor"
+  },
+  {
+    "q": "The ability of a cloud solution to add new runtime and framework support via community buildpacks",
+    "a": "extensibility"
+  },
+  {
+    "q": "The adoption of Cloud Computing has 3 factors namely: technology factors, organization factors, and national factors",
+    "a": "False"
+  },
+  {
+    "q": "The advantages of IaaS are",
+    "a": "Reliability, almost limitless computing power and storage, cost reduction, business agility, scalability, and privacy"
+  },
+  {
+    "q": "The BLE security utilizes a \"Security\" field after the 4-byte ICMPv6 message header",
+    "a": "False"
+  },
+  {
+    "q": "The capabilities of virtualization and sharing of infrastructure in the Cloud computing paradigm is fulfilled by three major distribution models, namely, SAAS, PAAS and IAAS",
+    "a": "True"
+  },
+  {
+    "q": "The cloud computing reference architecture is a practical plan for a system with a distinct range of operations",
+    "a": "True"
+  },
+  {
+    "q": "The cloud computing technology, everyone using the World Wide Web can enjoy flexible computing power on-demand",
+    "a": "True"
+  },
+  {
+    "q": "The cloud usage monitor is technically composed of",
+    "a": "A monitoring agent and a resource agent"
+  },
+  {
+    "q": "The core elements of parallel processing are CPUs.",
+    "a": "True"
+  },
+  {
+    "q": "The data collected needed to be store somewhere and the data generated anytime, anywhere These huge data given back in raw form back to end user will also consume time, data",
+    "a": "True"
+  },
+  {
+    "q": "The data with a unique name typically located in folders is called",
+    "a": "Files"
+  },
+  {
+    "q": "The databases typically involved in this kind of system exists independently of the others",
+    "a": "Federated Database"
+  },
+  {
+    "q": "The decision-making framework to adopt cloud computing was developed based on the technology-organization-environment (TOE) framework",
+    "a": "True"
+  },
+  {
+    "q": "The disadvantages of cloud computing: Most documented Cloud interfaces have no associated standards",
+    "a": "True"
+  },
+  {
+    "q": "The focus of virtualization is to escalate the utilization of underlined hardware re-source to its minimum capacity",
+    "a": "False"
+  },
+  {
+    "q": "The higher the reliability, the higher the cloud service usage risks",
+    "a": "False"
+  },
+  {
+    "q": "The Internet of Things is a combination of a technological push and a human pull for more and ever-increasing connectivity with anything happening in the immediate and wider environment - a logical extension of the computing power in a single machine to the environment: the environment as an interface",
+    "a": "True"
+  },
+  {
+    "q": "The main issues faced by SaaS are security and privacy Poorly secured IaaS devices and services can serve as potential entry points for cyber-attack and expose user data to theft by leaving data streams inadequately protected",
+    "a": "False"
+  },
+  {
+    "q": "The migration to the cloud requires considerable awareness among industry stakeholders to adopt it and tap into a well-established global data pool",
+    "a": "True"
+  },
+  {
+    "q": "The monitoring agent is?",
+    "a": "An event-driven program"
+  },
+  {
+    "q": "The physical machine on which the VMM runs is called the host machine and each VM is termed as a guest machine",
+    "a": "True"
+  },
+  {
+    "q": "The process of distributing computing workloads across multiple resources, such as servers",
+    "a": "load balancing"
+  },
+  {
+    "q": "The process of moving data between two or more storage systems, data formats, warehouses or servers",
+    "a": "data migration"
+  },
+  {
+    "q": "The spectacle of the technology is that the applications running on top of a virtual machine think that they have their own dedicated operating system and libraries but actually the resources are shared among various applications",
+    "a": "True"
+  },
+  {
+    "q": "The three main cloud computing models are infrastructure as a service, software as a service, and ____________",
+    "a": "platform as a service"
+  },
+  {
+    "q": "The ultimate result in network virtualization is a virtual network which is highly efficient in terms of utilization with less time overhead",
+    "a": "True"
+  },
+  {
+    "q": "There are 2 types of clouds that you can subscribe to depending on your needs As a home user or small business owner, you will most likely use private cloud services",
+    "a": "False"
+  },
+  {
+    "q": "There are many firms that provide cloud environments for development, management, and provision of software",
+    "a": "True"
+  },
+  {
+    "q": "There are three cloud service models, namely, Software-as-a-Service (SaaS), Plat- form-as-Servicevice (PaaS), and Infrastructure-as-a-service (IaaS)",
+    "a": "True"
+  },
+  {
+    "q": "There is no global clock in parallel computing, it uses synchronization algorithms.",
+    "a": "False"
+  },
+  {
+    "q": "These ‘__________' run their own processes and communicate with one another using lightweight mechanisms such as language-agnostic APIs",
+    "a": "microservices"
+  },
+  {
+    "q": "These cloud services are delivered from a business' data center to internal users",
+    "a": "private"
+  },
+  {
+    "q": "This applications allow a business to manage relationships with current and future customers by providing the business with tools to manage sales, customer service, and technical support roles SaaS CRM applications, such as Salesforcecom, are very popular",
+    "a": "Customer Relationship Management (CRM)"
+  },
+  {
+    "q": "This benefit of cloud computing enables ends users to spin up computing resources for almost any type of workload on-demand",
+    "a": "self-service provisioning"
+  },
+  {
+    "q": "This is a cloud computing environment that is comprised of a mix of private cloud, public cloud, and on-premises solutions",
+    "a": "hybrid cloud"
+  },
+  {
+    "q": "This is a company that offers a cloud computing service, such as PaaS, IaaS, or SaaS, to individuals or other businesses",
+    "a": "Cloud Service Provider (CSP)"
+  },
+  {
+    "q": "This is a comprehensive cloud platform offered by Google, Inc that consists of both infrastructure as a service (IaaS) and platform as a service (PaaS) offerings",
+    "a": "Google Cloud Platform (GCP)"
+  },
+  {
+    "q": "This is a deceptive marketing technique used to rebrand old products by connecting them to the cloud, or at least to the term cloud",
+    "a": "Cloud washing"
+  },
+  {
+    "q": "This is a development model in which a product’s source code is made openly available to the public",
+    "a": "Open Source"
+  },
+  {
+    "q": "This is a free, open-source cloud platform that is primarily deployed as an infrastructure as a service offering",
+    "a": "Open Stack"
+  },
+  {
+    "q": "This is a model of cloud computing in which the vendor hosts virtualized computing resources, as well as network and storage resources, and provides them to the user as a service via the internet",
+    "a": "infrastructure as a service"
+  },
+  {
+    "q": "This is a model of cloud computing in which the vendor provides the hardware and software tools necessary to create, deploy and manage applications at scale to the user via the internet, as a service",
+    "a": "Platform as a Service (PaaS)"
+  },
+  {
+    "q": "This is a model of computer storage in which data is stored in facilities (often multiple facilities) managed by a hosting company (cloud service provider) and is accessed remotely by the user via a network",
+    "a": "Cloud Storage"
+  },
+  {
+    "q": "This is a product that gives the user integrated management of public, private, and hybrid cloud environments",
+    "a": "Cloud Management Platform"
+  },
+  {
+    "q": "This is a term used to reference the ability of a system to adapt to changing workload demand by provisioning and deprovisioning pooled resources so that provisioned resources match current demand as well as possible",
+    "a": "elasticity"
+  },
+  {
+    "q": "This is also known as virtual machine",
+    "a": "Guest Machine"
+  },
+  {
+    "q": "This is an example of cloud washing",
+    "a": "Personal Cloud"
+  },
+  {
+    "q": "This is an IT services provider that provides fully outsourced network, application, and system services across a network to clients",
+    "a": "managed service provider"
+  },
+  {
+    "q": "This is an open-source cloud platform as a service that was originally developed as a joint venture between VMware, EMC, and General Electric, and is now owned by Pivotal Software",
+    "a": "Cloud Foundry"
+  },
+  {
+    "q": "This is an open-source operating system, built on Unix that is used for the majority of cloud services",
+    "a": "Linux"
+  },
+  {
+    "q": "This is Microsoft's cloud computing platform",
+    "a": "Microsoft Azure"
+  },
+  {
+    "q": "This is software or infrastructure that is run on computers on the premises (in the building) of the person or organization using the software or infrastructure",
+    "a": "On Premise technology"
+  },
+  {
+    "q": "This is software that connects software components or enterprise applications",
+    "a": "Middleware"
+  },
+  {
+    "q": "This is the act of replacing traditional on-premise IT operations with low-cost cloud-based services",
+    "a": "Cloudsourcing"
+  },
+  {
+    "q": "This means you develop applications using Web-based tools so they run on systems software and hardware provided by another company",
+    "a": "PaaS"
+  },
+  {
+    "q": "This means you use a complete application running on someone else's system",
+    "a": "SaaS"
+  },
+  {
+    "q": "This means you're buying access to raw computing hardware over the Net, such as servers or storage",
+    "a": "IaaS"
+  },
+  {
+    "q": "This phase comprises the execution and regular management of the cloud service",
+    "a": "operate"
+  },
+  {
+    "q": "This software allows a business or organization to manage a suite of integrated applications which are used to collect, manage, and store data on a variety of business activities",
+    "a": "Enterprise Resource Planning"
+  },
+  {
+    "q": "This step is about choosing the best cloud provider based on interface, quality, cost, and continuity",
+    "a": "Select supplier"
+  },
+  {
+    "q": "Three categories of IoT risks include safety to ensure no harm is caused by misusing actuators, for instance",
+    "a": "True"
+  },
+  {
+    "q": "Types of Cloud",
+    "a": "Local Cloud Hybrid Cloud Public Cloud"
+  },
+  {
+    "q": "Ubiquitous Computing Systems (UCS) must continually adapt online to new requirements",
+    "a": "True"
+  },
+  {
+    "q": "Unlike_______________, containers do not need to run a full-blown operating system (OS) image for each instance Instead, containers are able to run Answer 7 virtual machines separate instances of an application within a single shared OS",
+    "a": "virtual machines"
+  },
+  {
+    "q": "URL Fetch service permits the hosted web app's scripts to communicate with other apps or access various computing resources on Google's network infrastructure to issue HTTP and HTTPs requests and receive responses",
+    "a": "True"
+  },
+  {
+    "q": "Users' concerns in Cloud computing adoption?",
+    "a": "Cloud security, portability, and interoperability"
+  },
+  {
+    "q": "Various organizations are taking advantage by adopting virtualization dueto the following factors:Cost reduction in terms of limiting the hardware resources, and therebyreducing significant operational and maintenance cost which ultimately reduces the electricity, air conditioning, and cooling costs",
+    "a": "True"
+  },
+  {
+    "q": "Various organizations are taking advantage by adopting virtualization dueto the following factors:Protecting the environment by safe guarding planet Earth, saving energyand less e-waste generation",
+    "a": "True"
+  },
+  {
+    "q": "Virtual Machine Monitor (VMM) or Hypervisor can be a software agent, a firmware or a hardware device",
+    "a": "True"
+  },
+  {
+    "q": "Virtualization technology can be tracked down for its foundations in late 60s but due to some recent developments and technological paradigm shifts like cloud and grid computing, it is now widely accepted",
+    "a": "True"
+  },
+  {
+    "q": "VMware classified their products in three categories",
+    "a": "False"
+  },
+  {
+    "q": "VMware ESX server is a virtualized software package in which multiple instances of operating systems (either similar or different) are installed on a single hardware machine",
+    "a": "False"
+  },
+  {
+    "q": "VMware ESXi server is a specialized product for Apple's Mac OS X with additional compatibility",
+    "a": "False"
+  },
+  {
+    "q": "VMware workstation is a virtualized software package in which multiple instances of operating systems (either similar or different) are installed on a single hardware machine",
+    "a": "True"
+  },
+  {
+    "q": "We are currently on the verge of witnessing the emergence of a \"mega-market\", where markets such as home and building automation, electricity generation and distribution, logistics, automotive, as well as telecommunications and information technology will steadily converge",
+    "a": "True"
+  },
+  {
+    "q": "What are the Characteristics of Cloud Computing?",
+    "a": "Location-independent resource pooling Measured device On-demand self-service Rapid elasticity Ubiquitous network access"
+  },
+  {
+    "q": "What are the features to become a \"Thing\" in IoT?",
+    "a": "Identification and Information storage Actuation Information collection Information processing Communications"
+  },
+  {
+    "q": "What does IOT stands for?",
+    "a": "Internet of Things"
+  },
+  {
+    "q": "What does M2M stands for?",
+    "a": "machine-to-machine"
+  },
+  {
+    "q": "What does MIMD stands for?",
+    "a": "Multiple Instruction Multiple Data"
+  },
+  {
+    "q": "What does MISD stands for?",
+    "a": "Multiple Instruction Single Data"
+  },
+  {
+    "q": "What does NIST stands for?",
+    "a": "National Institute of Standards and Technology"
+  },
+  {
+    "q": "What does RFID stands for?",
+    "a": "radio frequency identification"
+  },
+  {
+    "q": "What does SIMD stands for?",
+    "a": "single instruction multiple data"
+  },
+  {
+    "q": "What does SISD stands for?",
+    "a": "single instruction single data"
+  },
+  {
+    "q": "What does SMP stands for?",
+    "a": "Symmetric Multi-processing"
+  },
+  {
+    "q": "What is Software-as-a-Service?",
+    "a": "functional layer of the cloud service model"
+  },
+  {
+    "q": "When did Cloud Computing began?",
+    "a": "2007"
+  },
+  {
+    "q": "Which device that is used to process data within digits, called binary numbers?",
+    "a": "Digital"
+  },
+  {
+    "q": "Which is not an objective of load balancing?",
+    "a": "decrease computing resource availability"
+  },
+  {
+    "q": "Which of the following consider a definition of cloud computing?",
+    "a": "Delivery of IT infrastructure and applications as a service on-demand"
+  },
+  {
+    "q": "Which of the following consider advantages of cloud computing?",
+    "a": "Economical, Easy access to information and Backup and recovery"
+  },
+  {
+    "q": "Which of the following consider characteristics of IaaS?",
+    "a": "Resources are provisioned as a service"
+  },
+  {
+    "q": "Which of the following consider Cloud computing providers SaaS?",
+    "a": "Google"
+  },
+  {
+    "q": "Which of the following consider disadvantages of cloud computing?",
+    "a": "Continuously evolving"
+  },
+  {
+    "q": "Which of the following consider the main elements of Basic operating mode of a cloud?",
+    "a": "Individuals and organizations"
+  },
+  {
+    "q": "Which of the following not a purpose of cloud service management?",
+    "a": "To demonstrate teappropriate techniques for document the cloud-oriented services"
+  },
+  {
+    "q": "Which of these are the examples of cloud?",
+    "a": "Amazon Web Services iCloud Windows Azure Google App Engine"
+  },
+  {
+    "q": "Which of these is a key business driver of cloud computing?",
+    "a": "Costs reduction"
+  },
+  {
+    "q": "Which of these is an advantage of cloud computing?",
+    "a": "You avoid equipment going out of date and other familiar IT problems like ensuring system security and reliability"
+  },
+  {
+    "q": "Which of these is NOT an Essential characteristic of the cloud?",
+    "a": "Dynamic resource scheduling"
+  },
+  {
+    "q": "While the RPL data rate and radio range are lower than the same metrics in classic Bluetooth, RPL is designed for very low-power applications running off a coin battery (for example, the popular CR2032)",
+    "a": "False"
+  },
+  {
+    "q": "Who coined the term “Internet of Things”?",
+    "a": "kevin ashton"
+  },
+  {
+    "q": "Who consolidates several fixed cloud services into one or new services?",
+    "a": "The Cloud brokers"
+  },
+  {
+    "q": "Who makes cloud services accessible to Cloud consumers?",
+    "a": "The Cloud carrier"
+  },
+  {
+    "q": "Who popularized the idea of the cloud?",
+    "a": "amazon"
+  },
+  {
+    "q": "Who proposed Intergalactic computer network?",
+    "a": "JCR Licklider"
+  },
+  {
+    "q": "Windows Azure is one of the prevailing online storage solutions used mainly for small businesses",
+    "a": "False"
+  },
+  {
+    "q": "With the expansion of computing, Internet and the latest mobile technology the word virtual has experienced a radical change in the last few years",
+    "a": "True"
+  },
+  {
+    "q": "With this benefit of cloud computing, companies can scale up as computing needs increase and then scale down again as demands decreases",
+    "a": "elasticity"
+  },
+  {
+    "q": "WSN provide a virtual layer through which the digital systems can access information of the physical world Therefore, WSNs have become one of the most important elements in IoT (Luigi Atzori et al, 2010)",
+    "a": "False"
+  },
+  {
+    "q": "XEN converts a Linux operated machine into a Type 1, bare-metal hypervisor that can run multiple but isolated virtual environments",
+    "a": "False"
+  },
+  {
+    "q": "You can edit and format the document in the same manner as you would do on any standard desktop word processing document such as MS Word",
+    "a": "True"
+  },
+  {
+    "q": "You can share files and folders with people and choose whether they can view, edit, or comment on them",
+    "a": "True"
+  },
+  {
+    "q": "You must first create a google sheet to access Google Docs",
+    "a": "False"
+  }
+]
