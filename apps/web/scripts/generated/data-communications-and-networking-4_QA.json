@@ -1,0 +1,562 @@
+[
+  {
+    "q": "A client calls the support desk and says this to a technician: \"I have just started my computer and attempted to check e-mail. The error 0x800ccc0d was displayed. However, I was able to connect to network drives and access the Internet.\" Which statement would describe the status of this issue?",
+    "a": "The helpdesk has enough information to begin finding a resolution."
+  },
+  {
+    "q": "A construction firm is building a power plant at a remote and isolated mine site and needs to connect the data network of the plant to the corporate network. Which public technology is the most suitable to meet the connection needs?",
+    "a": "satellite Internet"
+  },
+  {
+    "q": "A general term for Internet services from a mobile phone or from any device that uses the same technology",
+    "a": "wireless internet"
+  },
+  {
+    "q": "A network administrator issues the telnet www.cisco.com 25 command on the workstation. What is the purpose of this command?",
+    "a": "to probe the server that provides the web service to determine if it is also running an email service"
+  },
+  {
+    "q": "A network architecture that virtualizes the network",
+    "a": "Software Defined Networking"
+  },
+  {
+    "q": "A network engineer is investigating an access issue to a web server. The web server can access the Internet and the local clients can open the web pages. However, outside clients cannot access the web pages. What is the most likely cause of the problem?",
+    "a": "An ACL is blocking incoming connections."
+  },
+  {
+    "q": "A network engineer is troubleshooting a network that has recently been updated with a new routing protocol, but the network is not working as expected. The engineer is comparing the running configuration from before and after the change was made. Which approach to troubleshooting the problem is the engineer using?",
+    "a": "divide-and-conquer"
+  },
+  {
+    "q": "A network engineer is troubleshooting an unsuccessful PPP multilink connection between two routers. The multilink interface has been created and assigned a number, the interface has been enabled for multilink PPP, and the interface has been assigned a multilink group number that matches the group assigned to the member physical serial interfaces. The physical serial interfaces have also been enabled for PPP multilink. Which additional command should to be issued on the multilink interface?",
+    "a": "no ip address"
+  },
+  {
+    "q": "A newer and faster technology considered to be part of 4G technology.",
+    "a": "long-tern evolution"
+  },
+  {
+    "q": "A purpose-built hardware solution for integrating cloud computing and data center management.",
+    "a": "Cisco Application Centric Infrastructure"
+  },
+  {
+    "q": "A site-to-site VPN is created when devices on both sides of the VPN connection are aware of the VPN configuration in advance.",
+    "a": "True"
+  },
+  {
+    "q": "A type of digital modem used with high-speed DSL or cable Internet service.",
+    "a": "broadband modem"
+  },
+  {
+    "q": "a type of network that establishes a dedicated circuit (or channel) between nodes and terminals before the users may communicate.",
+    "a": "Circuit-switched network"
+  },
+  {
+    "q": "After gathering symptoms, if the troubleshooter determines that the problem is located outside the control of the organization, what is the next step?",
+    "a": "Contact the administrator of the external system."
+  },
+  {
+    "q": "allows source and destination ports to be in different switches.",
+    "a": "rspan"
+  },
+  {
+    "q": "Also called the forwarding plane, this plane is typically the switch fabric connecting the various network ports on a device",
+    "a": "data plane"
+  },
+  {
+    "q": "An _______ is a collection of end-point groups (EPG), their connections, and the policies that define those connections",
+    "a": "Application Network Profile"
+  },
+  {
+    "q": "An administrator has configured an access list on R1 to allow SSH administrative access from host 172.16.1.100. Which command correctly applies the ACL?",
+    "a": "R1(config-line)# access-class 1 in"
+  },
+  {
+    "q": "An attack has been launched within a company and a host name has been identified as the source. What command can a network technician use to determine the IP address assigned to the host name?",
+    "a": "nslookup"
+  },
+  {
+    "q": "are specialized, handheld devices designed for testing the various types of data communication cabling",
+    "a": "cable testers"
+  },
+  {
+    "q": "CBWFQ extends the standard WFQ functionality to provide support for user-defined traffic classes.",
+    "a": "True"
+  },
+  {
+    "q": "Cloud computing and virtualization are different terms that refer to the same thing.",
+    "a": "False"
+  },
+  {
+    "q": "Delay-sensitive data such as voice is added to a priority queue so that it can be sent first (before packets in other queues).",
+    "a": "LLQ"
+  },
+  {
+    "q": "DHCP _______ is a mitigation technique to prevent rogue DHCP servers from providing false IP configuration parameters.",
+    "a": "snooping"
+  },
+  {
+    "q": "DHCP is the protocol that automatically assigns a host a valid IP address out of a DHCP pool.",
+    "a": "True"
+  },
+  {
+    "q": "diagrams keep track of the location, function, and status of devices on the network.",
+    "a": "network topology"
+  },
+  {
+    "q": "Dynamic Multipoint VPN (DMVPN) is a Cisco software solution for building multiple VPNs in an easy, dynamic, and scalable manner",
+    "a": "True"
+  },
+  {
+    "q": "External BGP is the routing protocol used between routers in different autonomous systems.",
+    "a": "True"
+  },
+  {
+    "q": "For a data center, what is the difference in the server virtualization data traffic compared with the traditional client-server model?",
+    "a": "There are significant data exchanges between virtual servers."
+  },
+  {
+    "q": "Generic Routing Encapsulation (GRE) is one example of a basic, non-secure, site-to-site VPN tunneling protocol.",
+    "a": "True"
+  },
+  {
+    "q": "How can SNMP access be restricted to a specific SNMP manager?",
+    "a": "Define an ACL and reference it by using the snmp-server community command."
+  },
+  {
+    "q": "How many \"things\" are predicted to be interconnected on the Internet by 2020?",
+    "a": "50 billion"
+  },
+  {
+    "q": "How many levels of priority are possible when using class of service (CoS) marking on frames?",
+    "a": "8"
+  },
+  {
+    "q": "In the 802.1X standard, the client attempting to access the network is referred to as the supplicant.",
+    "a": "True"
+  },
+  {
+    "q": "Internal BGP is the routing protocol used between routers in the same AS.",
+    "a": "True"
+  },
+  {
+    "q": "IntServ provides a way to deliver the end-to-end QoS that real-time applications require by explicitly managing network resources to provide QoS to specific user packet streams, sometimes called microflows.",
+    "a": "True"
+  },
+  {
+    "q": "is considered to be the brains of the ACI architecture",
+    "a": "Application Policy Infrastructure Controller"
+  },
+  {
+    "q": "is software that creates and runs VM instances and can be installed directly on hardware or run as an application on an OS.",
+    "a": "hypervisor"
+  },
+  {
+    "q": "It is a networking device that provides internetworking and WAN access interface ports that are used to connect to the service provider network.",
+    "a": "router"
+  },
+  {
+    "q": "It is a queuing algorithm also known as first-come, first-served (FCFS) queuing, involves buffering and forwarding of packets in the order of arrival.",
+    "a": "FIFO"
+  },
+  {
+    "q": "It is a queuing algorithm which extends the standard WFQ functionality to provide support for user-defined traffic classes.",
+    "a": "cbwfq"
+  },
+  {
+    "q": "It is a queuing algorithm which feature brings strict priority queuing (PQ) to CBWFQ.",
+    "a": "LLQ"
+  },
+  {
+    "q": "It is a queuing algorithm which is an automated scheduling method that provides fair bandwidth allocation to all network traffic",
+    "a": "w eighted fair queuing"
+  },
+  {
+    "q": "It is a SPAN Terminology which refers to the traffic that leaves the switch.",
+    "a": "egress traffic"
+  },
+  {
+    "q": "It is a type of DHCP attack where the attacker configures a fake DHCP server on the network to issue IP addresses to clients.",
+    "a": "DHCP spoofing attack"
+  },
+  {
+    "q": "It is a type of DHCP where the attacker floods the DHCP server with bogus DHCP requests and eventually leases all of the available IP addresses in the DHCP server pool.",
+    "a": "DHCP starvation attack"
+  },
+  {
+    "q": "It is a type of telnet attack where the attacker continuously requests Telnet connections in an attempt to render the Telnet service unavailable and preventing an administrator from remotely accessing a switch.",
+    "a": "telnet dos attack"
+  },
+  {
+    "q": "It is a type of telnet attack where the attacker may use a list of common passwords, dictionary words, and variations of words to discover the administrative password",
+    "a": "telnet dos attack"
+  },
+  {
+    "q": "It is a WAN protocol that provides Provides router-to-router and host-to-network connections over synchronous and asynchronous circuits",
+    "a": "PPP"
+  },
+  {
+    "q": "It is an ever increasing requirement of networks today",
+    "a": "Quality of Service"
+  },
+  {
+    "q": "It is an SPAN Terminology which refers to the port that is monitored with use of the SPAN feature answer Source (SPAN) port",
+    "a": "Source (SPAN) port (wrong)"
+  },
+  {
+    "q": "It is the default encapsulation type on point-to-point connections, dedicated links, and circuit-switched connections when the link uses two Cisco devices.",
+    "a": "HDLC"
+  },
+  {
+    "q": "It SPAN Terminology which refers to the traffic that enters the switch.",
+    "a": "ingress traffic"
+  },
+  {
+    "q": "MAC address table flooding attacks are addressed with port security.",
+    "a": "True"
+  },
+  {
+    "q": "Network traffic can be marked at both Layer 2 and Layer 3 for QoS..",
+    "a": "True"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is developing better routing protocols for new devices",
+    "a": "False"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is improving the Internet connections from homes",
+    "a": "False"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is increasing the CPU power of computers",
+    "a": "False"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is integrating many devices from different vendors with custom applications.",
+    "a": "True"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is integrating new things into existing networks.",
+    "a": "True"
+  },
+  {
+    "q": "One of the new challenges associated with the rapid growth of the IoT is securing new devices with varying level of security.",
+    "a": "True"
+  },
+  {
+    "q": "Packets are assigned to user-defined classes based on matches to criteria such as protocols, ACLs, and input interfaces.",
+    "a": "CBWFQ"
+  },
+  {
+    "q": "Packets are classified into different flows based on header information including the ToS value.",
+    "a": "WFQ"
+  },
+  {
+    "q": "Packets are forwarded in the order in which they are received.",
+    "a": "FIFO"
+  },
+  {
+    "q": "PPP authentication is performed at which OSI layer?",
+    "a": "Layer 2"
+  },
+  {
+    "q": "QoS model specifies a simple and scalable mechanism for classifying and managing network traffic and providing QoS guarantees on modern IP networks.",
+    "a": "differentiated services"
+  },
+  {
+    "q": "Satellite Internet services are used in locations where land-based Internet access is not available, or for temporary installations that are mobile.",
+    "a": "True"
+  },
+  {
+    "q": "SDN is a network architecture that has been developed to virtualize the network.",
+    "a": "True"
+  },
+  {
+    "q": "Simple Network Management Protocol (SNMP) was developed to allow administrators to manage nodes such as servers, workstations, routers, switches, and security appliances, on an IP network",
+    "a": "True"
+  },
+  {
+    "q": "SNMP is an application layer protocol that provides a message format for communication between managers and agents",
+    "a": "True"
+  },
+  {
+    "q": "The _______feature on Cisco switches is a type of port mirroring that sends copies of the frame entering a port, out another port on the same switch.",
+    "a": "switched port analyzer"
+  },
+  {
+    "q": "The Cisco Discovery Protocol (CDP) is a proprietary Layer 2 link discovery protocol.",
+    "a": "True"
+  },
+  {
+    "q": "The IoT refers to the network of billons of physical objects accessible through the Internet as we continue to connect the unconnected.",
+    "a": "True"
+  },
+  {
+    "q": "The LLQ feature brings strict priority queuing (PQ) to CBWFQ.",
+    "a": "True"
+  },
+  {
+    "q": "The OSI reference model describes how information from a software application in one computer moves through a network medium to a software application in another computer",
+    "a": "True"
+  },
+  {
+    "q": "The show cdp neighbors detail command is used to obtain detailed information about directly connected Cisco neighbor devices.",
+    "a": "True"
+  },
+  {
+    "q": "The show ip interface brief and show ipv6 interface brief commands are used to display the up or down status and IP address of all interfaces on a device.",
+    "a": "True"
+  },
+  {
+    "q": "The show ip route and show ipv6 route commands are used to display the routing table in a router to learn the directly connected neighbors, more remote devices (through learned routes), and the routing protocols that have been configured.",
+    "a": "True"
+  },
+  {
+    "q": "The show monitor command is used to verify the SPAN session.",
+    "a": "True"
+  },
+  {
+    "q": "The use of BGP is most appropriate when an AS has connections to multiple autonomous systems.",
+    "a": "True"
+  },
+  {
+    "q": "These switches provide an application-aware switching fabric and work with an APIC to manage the virtual and physical network infrastructure.",
+    "a": "Cisco Nexus 9000 series switch"
+  },
+  {
+    "q": "This is a point established in a building or complex to separate customer equipment from service provider equipment",
+    "a": "demarcation point"
+  },
+  {
+    "q": "This is typically regarded as the brains of a device.",
+    "a": "control plane"
+  },
+  {
+    "q": "This type of SDN uses a centralized controller that has knowledge of all devices in the network.",
+    "a": "Controller-based SDN"
+  },
+  {
+    "q": "To verify the state of a GRE tunnel, use the show interface tunnel command.",
+    "a": "True"
+  },
+  {
+    "q": "Today, over __% of things in the physical world are still not connected to the Internet. Select the answer that will complete the statement.",
+    "a": "99"
+  },
+  {
+    "q": "topology illustrates how devices are logically connected to the network, meaning how devices actually transfer data across the network when communicating with other devices.",
+    "a": "logical network"
+  },
+  {
+    "q": "topology shows the physical layout of the devices connected to the network.",
+    "a": "Physical network"
+  },
+  {
+    "q": "transmits bits from one computer to another and regulates the transmission of a stream of bits over the physical medium.",
+    "a": "physical layer"
+  },
+  {
+    "q": "Under which condition does congestion occur on a converged network with voice, video, and data traffic?",
+    "a": "if the request for bandwidth exceeds the amount of bandwidth available"
+  },
+  {
+    "q": "Use the show ip sla configuration operation-number command to display configuration values including all defaults for IP SLA operations or for a specific operation.",
+    "a": "True"
+  },
+  {
+    "q": "VLAN attacks are controlled by disabling DTP and following basic guidelines for configuring trunk ports.",
+    "a": "True"
+  },
+  {
+    "q": "What does the FIFO queuing stands for?",
+    "a": "first-in first-out"
+  },
+  {
+    "q": "What does the WFQ automated scheduling method stands for?",
+    "a": "weighted fair queuing"
+  },
+  {
+    "q": "What equipment at the cable service provider office connects the office to the subscriber locations?",
+    "a": "CMTS"
+  },
+  {
+    "q": "What function does NCP perform in the establishment of a PPP session?",
+    "a": "It completes the specific configuration of the network layer protocol that is being used."
+  },
+  {
+    "q": "What happens when an edge router using IntServ QoS determines that the data pathway cannot support the level of QoS requested?",
+    "a": "Data is not forwarded along the pathway."
+  },
+  {
+    "q": "What happens when the memory queue of a device fills up and new network traffic is received?",
+    "a": "he network device will drop the arriving packets."
+  },
+  {
+    "q": "What is a characteristic of a WAN?",
+    "a": "WAN service providers include carriers such as a telephone network or satellite service."
+  },
+  {
+    "q": "What is a characteristic of data flow processing in SDN?",
+    "a": "Each data flow through the network must be approved by the SDN controller first."
+  },
+  {
+    "q": "What is a characteristic of the two-tier spine-leaf topology of the Cisco ACI fabric architecture?",
+    "a": "The leaf switches always attach to the spines, but they never attach to each other."
+  },
+  {
+    "q": "What is a disadvantage of leased lines?",
+    "a": "high cost"
+  },
+  {
+    "q": "What is an advantage offered by GRE tunnels?",
+    "a": "support for IP multicast tunneling"
+  },
+  {
+    "q": "What is an example of an M2M connection?",
+    "a": "a sensor in a garbage can signaling that it is full and delivering the data to a GPS mapping system for the sanitation truck to adjust its route for pickups"
+  },
+  {
+    "q": "What is an SNMP management agent?",
+    "a": "software that is installed on devices managed by SNMP"
+  },
+  {
+    "q": "What is Fog computing?",
+    "a": "It is a type of computing where services are hosted where they are used, such as at the network edge or with end devices."
+  },
+  {
+    "q": "What is the default queuing method used on the LAN interfaces of Cisco devices?",
+    "a": "FIFO"
+  },
+  {
+    "q": "What is the protocol that provides ISPs the ability to send PPP frames over DSL networks?",
+    "a": "PPPoE"
+  },
+  {
+    "q": "What mitigation plan is best for thwarting a DoS attack that is creating a switch buffer overflow?",
+    "a": "Enable port security"
+  },
+  {
+    "q": "What range of IP addresses is represented by the network and wildcard mask 192.168.70.0 0.0.0.127?",
+    "a": "192.168.70.0 to 192.168.70.127"
+  },
+  {
+    "q": "What TCP port is used by BGP to exchange messages between routers?",
+    "a": "179"
+  },
+  {
+    "q": "When a PPPoE configuration is being verified, which command can be used to verify the MTU size and encapsulation type configured on a Cisco router?",
+    "a": "show interface dialer 1"
+  },
+  {
+    "q": "When is the most appropriate time to measure network operations to establish a network performance baseline?",
+    "a": "at the same time each day across a set period of average working days, so that typical traffic patterns can be established"
+  },
+  {
+    "q": "Which additional functionality is available on an interface when the encapsulation is changed from HDLC to PPP?",
+    "a": "authentication"
+  },
+  {
+    "q": "Which Cloud computing service would be best for an organization that needs to collaboratively create applications and deliver them over the web?",
+    "a": "PaaS"
+  },
+  {
+    "q": "Which command runs several other show commands in order to generate many pages of detailed troubleshooting information?",
+    "a": "show tech-support"
+  },
+  {
+    "q": "Which component in a traditional infrastructure device provides Layer 2 and Layer 3 functions to create data paths within a network?",
+    "a": "control plane"
+  },
+  {
+    "q": "Which feature sends simulated data across the network and measures performance between multiple network locations?",
+    "a": "IP SLA"
+  },
+  {
+    "q": "Which IPv4 address range covers all IP addresses that match the ACL filter specified by 172.16.2.0 with wildcard mask 0.0.1.255?",
+    "a": "172.16.2.0 to 172.16.3.255"
+  },
+  {
+    "q": "Which medium do service providers use to transmit data over WAN connections with SONET, SDH, and DWDM?",
+    "a": "fiber optic"
+  },
+  {
+    "q": "Which mode is used to configure SNMP?",
+    "a": "global configuration mode"
+  },
+  {
+    "q": "Which model is the only QoS model with no mechanism to classify packets?",
+    "a": "best-effort"
+  },
+  {
+    "q": "Which network traffic management technology is a basic element in SDN implementations?",
+    "a": "OpenFlow"
+  },
+  {
+    "q": "Which one of the WAN technologies is inadequate for video traffic but operates adequately for voice traffic?",
+    "a": "ISDN BRI"
+  },
+  {
+    "q": "Which PPP option enables load balancing on PPP-enabled interfaces that connect to a single destination?",
+    "a": "Multilink"
+  },
+  {
+    "q": "Which PPP protocol allows a device to specify an IP address for routing over the PPP link?",
+    "a": "IPCP"
+  },
+  {
+    "q": "Which protocol is used by PPP to provide authentication and protection from playback attacks?",
+    "a": "CHAP"
+  },
+  {
+    "q": "Which public WAN technology provides security by using encrypted tunnels over Internet connections?",
+    "a": "VPN"
+  },
+  {
+    "q": "Which queuing method provides user-defined traffic classes where each traffic class has a FIFO queue?",
+    "a": "CBWFQ"
+  },
+  {
+    "q": "Which service is enabled on a Cisco router by default that can reveal significant information about the router and potentially make it more vulnerable to attack?",
+    "a": "CDP"
+  },
+  {
+    "q": "Which statement correctly describes a WAN technology?",
+    "a": "MPLS can be used to deliver any type of packet between sites."
+  },
+  {
+    "q": "Which statement describes a characteristic of standard IPv4 ACLs?",
+    "a": "They filter traffic based on source IP addresses only."
+  },
+  {
+    "q": "Which statement describes a difference between the operation of inbound and outbound ACLs?",
+    "a": "Inbound ACLs are processed before the packets are routed while outbound ACLs are processed after the routing is completed."
+  },
+  {
+    "q": "Which statement describes the physical topology for a LAN?",
+    "a": "It defines how hosts and network devices connect to the LAN."
+  },
+  {
+    "q": "Which statement describes the QoS classification and marking tools?",
+    "a": "Marking is the adding of a value to a packet header."
+  },
+  {
+    "q": "Which term describes the data exchanges between virtual servers in a data center?",
+    "a": "east-west traffic"
+  },
+  {
+    "q": "Which troubleshooting tool can be used to pinpoint the distance to a break in a network cable?",
+    "a": "cable tester"
+  },
+  {
+    "q": "Which type of traffic does Cisco recommend be placed in the strict priority queue (PQ) when low latency queuing (LLQ) is being used?",
+    "a": "voice"
+  },
+  {
+    "q": "Which WAN technology uses a fixed payload of 48 bytes and is transported across both switched and permanent virtual circuits?",
+    "a": "ATM"
+  },
+  {
+    "q": "With which layers of the OSI model do the PPP control protocols interface?",
+    "a": "NCP interfaces with Layer 3; LCP interfaces with Layer 1"
+  }
+]

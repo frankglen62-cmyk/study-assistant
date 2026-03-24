@@ -3,18 +3,32 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Technopreneurship',
-    slug: 'technopreneurship',
-    expectedCount: 177,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/ite/technopreneurship-6301-ite'
+    name: 'Data Communications and Networking 4',
+    slug: 'data-communications-and-networking-4',
+    expectedCount: 140,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-4-6300-it'
   },
   {
-    name: 'Unified Functional Testing',
-    slug: 'unified-functional-testing',
-    expectedCount: 107,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/cs/unified-functional-testing-6306-cs'
+    name: 'Purposive Communication 1',
+    slug: 'purposive-communication-1',
+    expectedCount: 59,
+    pages: 1,
+    baseUrl: 'https://amauoed.com/courses/ge/purposive-communication-1-6106-ge'
+  },
+  {
+    name: 'Purposive Communication 2',
+    slug: 'purposive-communication-2',
+    expectedCount: 240,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/engl/purposive-communication-2-6100-engl'
+  },
+  {
+    name: 'Rhythmic Activities',
+    slug: 'rhythmic-activities',
+    expectedCount: 203,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/phyed/rhythmic-activities-6102-phyed'
   }
 ];
 
