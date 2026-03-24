@@ -40,6 +40,25 @@ const config: Config = {
           foreground: 'hsl(var(--danger-foreground))',
         },
       },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-12px) rotate(3deg)' },
+        },
+        'float-delayed': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-16px) rotate(-2deg)' },
+        },
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-8px) rotate(2deg)' },
+        },
+      },
+      animation: {
+        float: 'float 5s ease-in-out infinite',
+        'float-delayed': 'float-delayed 6s ease-in-out 1s infinite',
+        'float-slow': 'float-slow 7s ease-in-out 2s infinite',
+      },
       boxShadow: {
         glow: '0 18px 65px -28px rgba(9, 62, 70, 0.55)',
       },
