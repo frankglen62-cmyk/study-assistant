@@ -1,0 +1,434 @@
+[
+  {
+    "q": "A common object type used in a 3D scene is a mesh. Blender comes with a number of these mesh shapes that you can start modeling from. You can also add in Edit Mode at the 3D cursor",
+    "a": "Blender Primitives"
+  },
+  {
+    "q": "A doughnut-shaped primitive created by rotating a circle around an axis. The overall dimensions can be defined by two methods.",
+    "a": "Torus"
+  },
+  {
+    "q": "A primitive model that is a single quad face, which is composed of four vertices, four edges, and one face. It is like a piece of paper lying on a table; it is not a three-dimensional object because it is flat and has no thickness. Objects that can be created with planes include floors, tabletops, or mirrors.",
+    "a": "Plane"
+  },
+  {
+    "q": "A standard sphere is made out of quad faces and a triangle fan at the top and bottom. It can be used for texturing is a UV Sphere",
+    "a": "True"
+  },
+  {
+    "q": "All Faces have vertex and edges",
+    "a": "True"
+  },
+  {
+    "q": "allows you to map textures directly to the mesh faces. The 3D Viewport shows you the object being textured. If you set the 3D Viewport into Textured viewport shading, you will immediately see any changes",
+    "a": "UV Editor"
+  },
+  {
+    "q": "always connects two vertices by a straight line. These are the “wires” you see when you look at a mesh in wireframe view. They are usually invisible on the rendered image. They are used to construct faces.",
+    "a": "Edges"
+  },
+  {
+    "q": "An Italian word that means boldly contrasting light and dark. The technique of was developed during the Renaissance.",
+    "a": "Chiraoscuro"
+  },
+  {
+    "q": "Basic Drawing and Composition of basic elements",
+    "a": "Drawing from observation"
+  },
+  {
+    "q": "Basic Drawing and Composition of basic elements An Italian word that means boldly contrasting light and dark. The technique of was developed during the Renaissance.",
+    "a": "Chiraoscuro"
+  },
+  {
+    "q": "Basic Drawing and Composition of basic elements Exciting balance active, exciting, not boring",
+    "a": "Dynamic Equilibriu"
+  },
+  {
+    "q": "Basic Drawing and Composition of basic elements used to block in the layout of the basic shapes in the composition. Best compared to a scribble drawing. Seeks to express motion and/or emotive qualities of the composition.",
+    "a": "Gestural drawing"
+  },
+  {
+    "q": "Blender 3D is a Cross platform Application that can run accross all OS",
+    "a": "True"
+  },
+  {
+    "q": "Blender mode that allows the selection of Faces, Edges and Vertices",
+    "a": "Edit mode"
+  },
+  {
+    "q": "Blender Selection Mode By holding Shift-LMB when selecting a selection mode, you can enable manySelection Modes at once. This allows you to quickly select Vertices/Edges/Faces, without first having to switch modes.",
+    "a": "Multiple Selection Modes"
+  },
+  {
+    "q": "Blender Selection Mode By holding Ctrl when selecting a higher selection mode, all elements touching the current selection will be added, even if the selection does not form a complete higher element. Or contracting the selection when switching to a lower mode",
+    "a": "Expand/Contract Selection"
+  },
+  {
+    "q": "Blender Selection Mode setting is not just for shading, it impacts selection too. When enabled, selection isn’t occluded by the objects geometry (as if the object was solid).",
+    "a": "X-Ray"
+  },
+  {
+    "q": "Blender Selection Mode When switching modes in an “ascendant” way (i.e. from simpler to more complex), from Vertices to Edges and from Edges to Faces, the selected parts will still be selected if they form a complete element in the new mode. For example, if all four edges in a face are selected, switching from Edges mode to Faces mode will keep the face selected. All selected parts that do not form a complete set in the new mode will be unselected.",
+    "a": "Switching Select Mode"
+  },
+  {
+    "q": "Blender’s physically-based path tracer for production rendering. It is designed to provide physically based results out-of-the-box, with artistic control and flexible shading nodes for production needs.",
+    "a": "Cycles"
+  },
+  {
+    "q": "But it is something that the character is doing/acting that adds a more realistic and natural feel to the animation. As mentioned, it must be staged so that the main action isn’t overpowered. It’s the kind of thing that is usually more subtle or can be felt more than noticed immediately.",
+    "a": "Secondary Action"
+  },
+  {
+    "q": "Combining and post-processing of images and rendering information.",
+    "a": "Compositing"
+  },
+  {
+    "q": "Compressed burned wood used for drawing. Charcoal is so fast, direct and responsive, that it is amongst the least inhibiting media. It can produce bold and fluid lines, and a great host of textures",
+    "a": "Charcoal"
+  },
+  {
+    "q": "Deselect alternate elements relative to the active item.",
+    "a": "Checker Deselect"
+  },
+  {
+    "q": "Eevee uses techniques to properly shadow the light coming directly from light objects this is a texture that stores the nearest occluder from the light position. Eevee also filters the shadow maps in order to smooth out the pixelated appearance",
+    "a": "Shadows"
+  },
+  {
+    "q": "Even gross body movements when you walk somewhere tend not be perfectly straight. When a hand/arm reaches out to reach something, it tends to move",
+    "a": "Arcs"
+  },
+  {
+    "q": "Exciting balance active, exciting, not boring",
+    "a": "Dynamic Equilibriu"
+  },
+  {
+    "q": "For example, a bouncing ball tends to have a lot of ease in and out when at the top of its bounce. As it goes up, gravity affects it and slows down , then it starts its downward motion more and more rapidly",
+    "a": "Ease In and Out (or Slow In and Out)"
+  },
+  {
+    "q": "For example, the animator draws the first frame of the animation, then draws the second, and so on until the sequence is complete. In this way, there is one drawing or image per frame that the animator has setup. This approach tends to yield a more creative and fresh look but can be difficult to time correctly and tweak.",
+    "a": "Straight Ahead Action and Pose-To-Pose Action"
+  },
+  {
+    "q": "For modification of geometry by modeling tools.",
+    "a": "Modeling"
+  },
+  {
+    "q": "For modification of meshes by sculpting tools",
+    "a": "Sculpting"
+  },
+  {
+    "q": "For viewing and analyzing rendering results.",
+    "a": "Rendering"
+  },
+  {
+    "q": "he ray is generated by a reflection off a surface",
+    "a": "Reflection"
+  },
+  {
+    "q": "important to communicate messages in different ways",
+    "a": "WORDS"
+  },
+  {
+    "q": "important to convey meaning through process of smiotics, denotation and cognitions",
+    "a": "SIGNS, SYMBOLS"
+  },
+  {
+    "q": "important to define focal point",
+    "a": "PROPORTIONS"
+  },
+  {
+    "q": "important to drive or support an idea",
+    "a": "IMAGES/ILLUSTRATIONS"
+  },
+  {
+    "q": "important to help the creative team to put into a harmony pattern the constitutive elements",
+    "a": "SHAPES"
+  },
+  {
+    "q": "important to make a powerful communication and to drive the attention",
+    "a": "COLORS"
+  },
+  {
+    "q": "In geometry, a this is a direction or line that is perpendicular to something, typically a triangle or surface but can also be relative to a line, a tangent line for a point on a curve, or a tangent plane for a point on a surface.",
+    "a": "Normal"
+  },
+  {
+    "q": "Instead of dealing with individual mesh elements, support sculpting with brushes (not covered in this chapter).",
+    "a": "Sculpt Mode"
+  },
+  {
+    "q": "Interactive box selection",
+    "a": "B"
+  },
+  {
+    "q": "Involves the use of real persons as stop motion characters. This allows a number of surreal effects, including the disappearance and reappearance of objects or characters, as well as allowing people to appear to slide across the ground and other effects.",
+    "a": "PIXELATION"
+  },
+  {
+    "q": "is a continuous mark made on a surface or the edge created when two shapes meet. May be actual, implied, vertical, horizontal, diagonal, and/or contour.",
+    "a": "Seven Elements of Design Line"
+  },
+  {
+    "q": "is a post-process effect that diffuses very bright pixels. This mimics lens artifacts of real cameras. This allows a better sense of what the actual intensities of the pixels are.",
+    "a": "Bloom"
+  },
+  {
+    "q": "is a self-contained defined area, either geometric or organic. Shape refers to a two-dimensional element with area on a plane, while form refers to a three dimensional element with volume in space.",
+    "a": "Shape / Form"
+  },
+  {
+    "q": "is a useful tool to simplify a mesh by merging the selected vertices that are closer than a specified distance to each other. An alternative way to simplify a mesh is to use the Decimate Modifie",
+    "a": "Merging By Distance"
+  },
+  {
+    "q": "is Blender’s realtime render engine built using OpenGL focused on speed and interactivity while achieving the goal of rendering PBR materials can be used interactively in the 3D Viewport but also produce high quality final renders",
+    "a": "Eevee"
+  },
+  {
+    "q": "is designed for layout, modeling and previews",
+    "a": "Workbench"
+  },
+  {
+    "q": "is done as a post-process effect in Eevee. The depth of field effect can be controlled in the camera settings",
+    "a": "Depth of Field"
+  },
+  {
+    "q": "is done as a post-process effect in Eevee. The depth of field effect can be controlled in the camera settings.",
+    "a": "Depth of Field"
+  },
+  {
+    "q": "is the distance or area around or between elements in a work.",
+    "a": "Space"
+  },
+  {
+    "q": "is the surface quality of a shape, or how it appears to feel: rough, smooth, spiky, soft, hard, and glossy, etc. Texture can be real or implied.",
+    "a": "Texture"
+  },
+  {
+    "q": "is the visible spectrum of radiation reflected from an object. Color is also sometimes referred to as hue.",
+    "a": "Color"
+  },
+  {
+    "q": "It is a technique that manipulates an object physically so that it appears to move on its own. The object is moved in small steps between individually photographed frames, creating the illusion of movement when the series of frames are played in a fast sequence",
+    "a": "STOP MOTION TECHNIQUE"
+  },
+  {
+    "q": "It should be used in a careful and balanced manner, not arbitrarily. The result will be that the animation will seem more realistic and entertaining.",
+    "a": "Exaggeration"
+  },
+  {
+    "q": "Mapping of image texture coordinates to 3D surfaces",
+    "a": "UV Editing"
+  },
+  {
+    "q": "Match the order of the Animation production process",
+    "a": "Step 1: → Gathering informationStep 2: → Concept & ScriptStep 3: → Voiceover recordingStep 4: → StoryboardStep 5: → Visual styleStep 6: → Animation"
+  },
+  {
+    "q": "mode keeps the shape of the selected edge loop the same as one of the edge loops adjacent to it, rather than sliding a percentage along each perpendicular edge. the tool shows the position along the length of the currently selected edge which is marked in yellow, from the vertex that has an enlarged red marker. Movement of the sliding edge loop is restricted to this length. As you move the mouse the length indicator in the header changes showing where along the length of the edge you are.",
+    "a": "Even Mode"
+  },
+  {
+    "q": "Motion blur in Eevee is done by post processing the image after rendering. The motion blur is really basic and just blurs the render results based on pixel velocity",
+    "a": "Motion Blur"
+  },
+  {
+    "q": "One of the 12 Principles of Animation",
+    "a": "Anticipation"
+  },
+  {
+    "q": "One of the Animation Techniques:",
+    "a": "CUT-OUT ANIMATION"
+  },
+  {
+    "q": "physically based path tracer.",
+    "a": "Cycles"
+  },
+  {
+    "q": "physically based realtime renderer",
+    "a": "Eevee"
+  },
+  {
+    "q": "Programming workspace for writing scripts",
+    "a": "Scripting"
+  },
+  {
+    "q": "refers to how light or dark an object, area, or element is, independent of its color. Value is also sometimes referred to as tone.",
+    "a": "Value"
+  },
+  {
+    "q": "Rip creates a “hole” in the mesh by making a copy of selected vertices and edges, still linked to the neighboring non-selected vertices, so that the new edges are borders of the faces on one side, and the old ones, borders of the faces on the other side",
+    "a": "Rip Regeion"
+  },
+  {
+    "q": "scattering by evaluating all volume objects inside the view frustumthis it uses several 3D textures which have a high video memory usage. The texture dimensions can be tweaked using the Tile Size and Samples parameters. Object volumes have some limitations",
+    "a": "Volumetrics"
+  },
+  {
+    "q": "Select connected edges",
+    "a": "Select Loops"
+  },
+  {
+    "q": "Select elements similar to the current selection.",
+    "a": "Select Similar"
+  },
+  {
+    "q": "Select geometry by querying its characteristics",
+    "a": "Select All by Trait"
+  },
+  {
+    "q": "Selects a random group of vertices, edges, or faces, based on a percentage value",
+    "a": "Select Random"
+  },
+  {
+    "q": "Selects all the geometry that is not selected, and deselect currently selected components.",
+    "a": "Ctrl-I"
+  },
+  {
+    "q": "ses a pair of connected edge loops or a single, closed edge loop to fill in a grid that follows the surrounding geometry. The best predictable result can be achieved if you select two opposite edge loops with an equal number of vertices. When a single, closed edge loop is selected, the Span/Offset options allows you to adjust the way two opposite edge loops are detected from one closed edge loop",
+    "a": "Grid Fill"
+  },
+  {
+    "q": "Seven Elements of Design is the surface quality of a shape, or how it appears to feel: rough, smooth, spiky, soft, hard, and glossy, etc. Texture can be real or implied.",
+    "a": "Texture"
+  },
+  {
+    "q": "Supports basic operations such as object creation, joining objects, managing shape keys, UV/color layers. The default mode, available for all object types, as it is dedicated to Object data-block editing (e.g. position, rotation, size).",
+    "a": "Object Mode"
+  },
+  {
+    "q": "The background and the characters are flat and can be filmed from only one side. Traditional drawing animation is done in a non-chronological way, developing first the main action, and filling it up with background images later on.",
+    "a": "DRAWING ANIMATION"
+  },
+  {
+    "q": "The blender default mode is the Edit Mode",
+    "a": "False"
+  },
+  {
+    "q": "the extreme differences in values, colors, textures or other elements",
+    "a": "Contrast"
+  },
+  {
+    "q": "The goal is draw or paint the objects as accurate to the still life as possible. Find relationships between objects.",
+    "a": "Drawing from observation"
+  },
+  {
+    "q": "The most elementary part of a mesh which is a single point or position in 3D space and are represented in the 3D Viewport in Edit Mode as small dots.",
+    "a": "Vertices"
+  },
+  {
+    "q": "the ray comes straight from the camera",
+    "a": "Camera"
+  },
+  {
+    "q": "the ray is generated by a diffuse reflection or transmission (translucency)",
+    "a": "Diffuse"
+  },
+  {
+    "q": "the ray is generated by a glossy specular reflection or transmission.",
+    "a": "Glossy"
+  },
+  {
+    "q": "the ray is generated by a perfectly sharp reflection or transmission",
+    "a": "Singular"
+  },
+  {
+    "q": "the ray is generated by a transmission through a surface",
+    "a": "Transmission"
+  },
+  {
+    "q": "the ray is used for (transparent) shadows",
+    "a": "Shadow"
+  },
+  {
+    "q": "The Sharp flag is used by the split normals and the Edge Split modifier, which are part of the smoothing/customized shading techniques. As seams, it is a property of edges, and these operators set or unset it for selected ones.",
+    "a": "Mark Sharp and Clear Sharp"
+  },
+  {
+    "q": "The shortcut for Move is G Rotate is R and Scale is S",
+    "a": "True"
+  },
+  {
+    "q": "The speed at which something moves gives a sense of what the object is, the weight of an object, and why it is moving. Something like an eye blink can be fast or slow. If it’s fast, a character will seem alert and awake.",
+    "a": "Timing"
+  },
+  {
+    "q": "The way you arrange or divide the space in your artwork. Do not have a lot of empty space in your art.",
+    "a": "Composition"
+  },
+  {
+    "q": "These are global settings that apply to all instances of folicle systems. The resolution of the strands is controlled by the step values in particle settings. Each hair system uses the material identified in the particle settings",
+    "a": "Hair"
+  },
+  {
+    "q": "These are used to build the actual surface of the object. They are what you see when you render the mesh. If this area does not contain of it, it will simply be transparent or non-existent in the rendered image.",
+    "a": "Faces"
+  },
+  {
+    "q": "This edge property, a value between (0.0 to 1.0), is used by the Bevel Modifier to control the bevel intensity of the edges. This operator enters an interactive mode (a bit like transform tools), where by moving the mouse (or typing a value with the keyboard) you can set the bevel weight of selected edges. If two or more edges are selected, this operator alters the average weight of the edges.",
+    "a": "Adjust Bevel Weight"
+  },
+  {
+    "q": "This effect mimics real subsurface scattering by blurring the diffuse lighting in screen space.",
+    "a": "Subsurface Scattering"
+  },
+  {
+    "q": "This is a way of deforming an object such that it shows how rigid the object is. For example if a rubber ball bounces and hits the ground it will tend to flatten when it hits.",
+    "a": "Squash and Stretch"
+  },
+  {
+    "q": "This option will create triangular faces from any group of selected edges or vertices, as long as they form one or more complete perimeters.",
+    "a": "Fill"
+  },
+  {
+    "q": "This takes a selection of faces and solidifies them by extruding them uniformly to give volume to a non-manifold surface. This is also available as a Modifier. After using the tool, you can set the offset distance in the Adjust Last Operation panel.",
+    "a": "Solidify"
+  },
+  {
+    "q": "This tool allows you to merge all selected vertices to a unique one, dissolving all others. You can choose the location of the surviving vertex in the menu this tool pops up before executing",
+    "a": "Merging Vertices"
+  },
+  {
+    "q": "This tool selects all edges between two faces forming an angle greater than the angle value, where an increasing angle selects sharper edges.",
+    "a": "Select Sharp Edges"
+  },
+  {
+    "q": "Tools for coloring image textures in the 3D View.",
+    "a": "Texture Paint"
+  },
+  {
+    "q": "Tools for making properties of objects dependent on time.",
+    "a": "Animation"
+  },
+  {
+    "q": "Tools for specifying material properties for rendering.",
+    "a": "Shading"
+  },
+  {
+    "q": "type of stop-motion animation produced by moving two dimensional pieces of material, paper or cloth. The background has to be fixed to the table and everything on the background",
+    "a": "THREE DIMENSIONAL PUPPET ANIMATION"
+  },
+  {
+    "q": "Used for the majority of mesh editing operations",
+    "a": "Edit Mode"
+  },
+  {
+    "q": "used to block in the layout of the basic shapes in the composition. Best compared to a scribble drawing. Seeks to express motion and/or emotive qualities of the composition.",
+    "a": "Gestural drawing"
+  },
+  {
+    "q": "Vertex is a collection of interconnected edges",
+    "a": "True"
+  },
+  {
+    "q": "you can make a Face of ODD numbered vertext group",
+    "a": "True"
+  },
+  {
+    "q": "you can select alternating faces on a mesh through a select command in edit mode",
+    "a": "True"
+  }
+]

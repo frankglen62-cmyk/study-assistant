@@ -1,0 +1,1482 @@
+[
+  {
+    "q": "2D transform offers a dominant alternative to linear spatial filtering",
+    "a": "True"
+  },
+  {
+    "q": "A color space that is used mainly in applications related to video",
+    "a": "YCbCr color space"
+  },
+  {
+    "q": "A color space type wherein image's luminance component are specified by component Y and its color information was specified by the combined Cb and Cr component",
+    "a": "YCbCr color space"
+  },
+  {
+    "q": "A component for restructuring which can fix intrusions within white objects and it can also remove extrusions within dark objects",
+    "a": "erosion"
+  },
+  {
+    "q": "A data carries information about physical system setup or some of the features of a system",
+    "a": "True"
+  },
+  {
+    "q": "A detection in an image which is also carried out using Laplacian masks",
+    "a": "line detection"
+  },
+  {
+    "q": "A fast rate of change of intensity in a direction given by the angle of the gradient vector is observed in edge pixels",
+    "a": "True"
+  },
+  {
+    "q": "A filter that eliminates a value of pixel with the use of the median value from its neighboring pixel",
+    "a": "media filter"
+  },
+  {
+    "q": "A filter that wipes out Gaussian noise and uniform noise from the noisy image",
+    "a": "media filter"
+  },
+  {
+    "q": "A filter type that applies a combined technique of the average filter and order statistics filter",
+    "a": "mid-point filter"
+  },
+  {
+    "q": "A form of Fourier transform that is utilized to convert a digital image into its frequency domain",
+    "a": "Discrete Fourier Transform"
+  },
+  {
+    "q": "A function type that is defined by the total sum of diverse frequency's sine or cosine function and multiplied by other coefficient",
+    "a": "Periodic function"
+  },
+  {
+    "q": "A functional element of a finite number of elements, each one of which had a particular location and value",
+    "a": "Digital image"
+  },
+  {
+    "q": "A group of color pixels with size of M x N x 3, where each color pixel is a triple combination of the red, green, and blue color of a color image",
+    "a": "color image"
+  },
+  {
+    "q": "A kind of image filter that makes another gray level value using a linear operation",
+    "a": "Linear filter"
+  },
+  {
+    "q": "A mandatory process that takes place when an image is passed along a communication channel due to the bandwidth limitation",
+    "a": "image compression"
+  },
+  {
+    "q": "A masking that generates precise sharp transitions on the output image having high emphasis compare from its original image",
+    "a": "Unsharp masking"
+  },
+  {
+    "q": "A mean filter that computes the average value of a degraded image g(x, y) in the area defined by Pxy",
+    "a": "arithmetic mean filter"
+  },
+  {
+    "q": "A mean filter type that computes for the degraded image's average value on the area identified by Pxy",
+    "a": "Arithmetic mean filter"
+  },
+  {
+    "q": "A median filter which is typically applied to diminish if not totally eliminate impulse noise that are not detected by traditional median filter",
+    "a": "adaptive median filter"
+  },
+  {
+    "q": "A method that is planned utilizing different types of multimedia as its cover data and, based on multimedia data",
+    "a": "watermarking technique"
+  },
+  {
+    "q": "A method that performs some operations on an image in order to get an enhanced image is called Image processing",
+    "a": "True"
+  },
+  {
+    "q": "A method where a high value is allotted to the pixels with gray levels in the range of interest and a low value is allotted to the other pixels",
+    "a": "Gray level slicing without background"
+  },
+  {
+    "q": "A method wherein a sequence of images, time and higher dimensional scalar data are modified so that to reference histogram counterparts",
+    "a": "Histogram matching"
+  },
+  {
+    "q": "A procedure that is commonly used in various vision application in industries such as object recognition, image segmentation and defect detection are known as the morphological processing",
+    "a": "True"
+  },
+  {
+    "q": "A procedure where a time series, image, or higher dimension scalar data is updated such that its histogram matches with the other (reference) dataset",
+    "a": "Histogram matching"
+  },
+  {
+    "q": "A procedure which includes different operations like the depiction of a certain object as introduced from the image segmentation and classification of objects",
+    "a": "High-level image processing"
+  },
+  {
+    "q": "A process by which the inputs are the cover data and watermark data, and the resulting output is the watermarked data",
+    "a": "embedding process"
+  },
+  {
+    "q": "A signal can be categorized based on its shapes, energy, time intervals, and other physical assets",
+    "a": "True"
+  },
+  {
+    "q": "A sort of edge detector that can recognize edges in vertical, horizontal or even the two directions in the image",
+    "a": "edge detector"
+  },
+  {
+    "q": "A structuring element where any on pixel in the structuring element covers an on pixel in the image",
+    "a": "hit"
+  },
+  {
+    "q": "A structuring element wherein any pixel in the structuring element covers all the pixel within the image",
+    "a": "hit"
+  },
+  {
+    "q": "A technique that can be implemented using various approaches such as least significant bit (LSB) substitution in the spatial domain",
+    "a": "watermarking technique"
+  },
+  {
+    "q": "A technique that has been planned by researchers utilizing a mixture of two or more image transformation",
+    "a": "hybrid compression"
+  },
+  {
+    "q": "A technique that is used to create a sharp transition for the output images which results to a better output than the original",
+    "a": "Unsharp masking"
+  },
+  {
+    "q": "A type of color space where it is primarily applied to many applications related to videos",
+    "a": "YCbCr color space"
+  },
+  {
+    "q": "A type of color space which is sometimes known as the YIQ color space",
+    "a": "NTSC color space"
+  },
+  {
+    "q": "A type of color space which is technically adopted by different users to choose from a particular color palette",
+    "a": "HSV"
+  },
+  {
+    "q": "A type of conversion which is a special case of contrast stretching where r1 = r2, s1= 0, and s2= L – 1",
+    "a": "Contrast thresholding"
+  },
+  {
+    "q": "A type of depth in an image where it is specified as having (2b) 3, and in here the variable b is represented by the quantity of bits",
+    "a": "bit depth"
+  },
+  {
+    "q": "A type of edge detector that can identify edges in vertical, horizontal or even both directions in the image",
+    "a": "edge detector"
+  },
+  {
+    "q": "A type of Fourier transform that is used to change a digital image into its frequency domain",
+    "a": "Discrete Fourier Transform"
+  },
+  {
+    "q": "A type of function for smoothing that presents blurring in an image",
+    "a": "Gaussian function"
+  },
+  {
+    "q": "A type of intensity that are acknowledged as a random variable and are created using a Probability Density Function",
+    "a": "noise intensity"
+  },
+  {
+    "q": "A type of recognition/ detection to an image which is additionally completed out using Laplacian masks",
+    "a": "line detection"
+  },
+  {
+    "q": "A type of standard where unwanted frequency factors of images are given up and the said image is reconstructed by using the remaining factors having predefined threshold",
+    "a": "image compression standards"
+  },
+  {
+    "q": "All regions with smooth gray levels are shattered in the output image are similar to the spatial domain HPF",
+    "a": "True"
+  },
+  {
+    "q": "An additional process of gray level conversion where an operating function is useful to a neighborhood pixel of each targeted pixel",
+    "a": "Neighbor processing"
+  },
+  {
+    "q": "An algorithm having the assumption that the edges are the pixels with a high gradient",
+    "a": "edge detection algorithm"
+  },
+  {
+    "q": "An application that is generally utilized in mobile phones to catch an image with a more extensive area",
+    "a": "Image mosaicing"
+  },
+  {
+    "q": "An application that is widely used in mobile phones to capture an image with a wider area",
+    "a": "Image mosaicing"
+  },
+  {
+    "q": "An approach which can be applied using various techniques such as least significant bit substitution within the spatial domain",
+    "a": "watermarking technique"
+  },
+  {
+    "q": "An edge detector algorithm which was introduced and actualized by John F Canny back in 1986",
+    "a": "Canny edge detector algorithm"
+  },
+  {
+    "q": "An edge detector algorithm which was proposed and implemented by John F Canny way back in 1986",
+    "a": "Canny edge detector algorithm"
+  },
+  {
+    "q": "An essential morphological operations that can fix intrusions in black objects and can strip away extrusions in white objects",
+    "a": "erosion"
+  },
+  {
+    "q": "An essential morphological operations that widens white and shrinks black objects",
+    "a": "dilation"
+  },
+  {
+    "q": "An image application that can likewise consolidate images taken with various resolutions and different lens angles",
+    "a": "image mosaicing"
+  },
+  {
+    "q": "An imaging type adopted by NASA's satellite that apprehends images of earth and are taken from space",
+    "a": "Visual imaging"
+  },
+  {
+    "q": "An instance of Gaussian noise are noise due to electronic circuits and sensors",
+    "a": "True"
+  },
+  {
+    "q": "An instance of Gaussian noise due to electronic circuits and sensors",
+    "a": "True"
+  },
+  {
+    "q": "An instance of image enhancement is __________",
+    "a": "contrast stretching"
+  },
+  {
+    "q": "An instance of image enhancement is reconstructing an image while an instance of image restoration is removing a blur in the image",
+    "a": "False"
+  },
+  {
+    "q": "An instance of image restoration is removing a blur in the image",
+    "a": "instance of image restoration"
+  },
+  {
+    "q": "An intensity which can be estimated as random variable and is determined by the Probability Density Function (PDF)",
+    "a": "noise intensity"
+  },
+  {
+    "q": "An intensity which may be measured as random variable and is derived by the Probability Density Function(PDF)",
+    "a": "noise intensity"
+  },
+  {
+    "q": "An open-source software designed for the processing of mathematics equations and scientific interpretation",
+    "a": "Scilab"
+  },
+  {
+    "q": "An operation that is comparable to erosion, but it doesn't cause the disappearance of object components",
+    "a": "thinning operation"
+  },
+  {
+    "q": "Another type of imaging wherein images are created thru gamma ray",
+    "a": "Gamma-ray imaging"
+  },
+  {
+    "q": "Any abrupt transition, such as edges and borders, will be replaced by a smooth transition is called ______",
+    "a": "Smoothing Filter"
+  },
+  {
+    "q": "Any color image can be represented by various types of color spaces",
+    "a": "True"
+  },
+  {
+    "q": "Are color pixels with the standard size of MxNx3 where each of its color pixel is 3 times the combination of red, green, and blue color of a color images",
+    "a": "color image"
+  },
+  {
+    "q": "Are produced by DFT which can be organized in an ungainly manner",
+    "a": "frequency components"
+  },
+  {
+    "q": "Based on multimedia data, watermarking can be classified as image watermarking, video watermarking, audio watermarking, and document watermarking",
+    "a": "True"
+  },
+  {
+    "q": "Based on the amplitude and the time axis, it refers to a signal that has never been repeated in any time interval",
+    "a": "Aperiodic signal"
+  },
+  {
+    "q": "Basing from a time interval, a signal can be categorized as an analog time signal or a digital time signal",
+    "a": "False"
+  },
+  {
+    "q": "Bit plane refers to the inversion of the gray level, like, the white value pixel in the original image will now become the black value pixel in the processed image and/ or vice versa",
+    "a": "False"
+  },
+  {
+    "q": "Bit plane slicing is a kind of image processing is primarily utilized in image compression and image watermarking",
+    "a": "True"
+  },
+  {
+    "q": "Can be characterized using a sequence of binary images by slicing it into different bit-planes",
+    "a": "Gray-scale image"
+  },
+  {
+    "q": "Canny Edge Detector is known as the simplest edge detector algorithm",
+    "a": "False"
+  },
+  {
+    "q": "CMYK is a group of color pixels having the size of M x N x 3, wherein every color pixel is a tri-combination of the red, green, and blue color of a color image",
+    "a": "True"
+  },
+  {
+    "q": "Colorimages can be converted into any of the color spaces using SCILAB",
+    "a": "True"
+  },
+  {
+    "q": "Contrast stretching is an example of ____________",
+    "a": "Picture Enhancement"
+  },
+  {
+    "q": "Convolution process decreases one degraded pixel in an image at a time to progress a restoration algorithm for each possible degraded pixel and combines the results of each process",
+    "a": "False"
+  },
+  {
+    "q": "D_0 is a cut-off frequency in an ideal LPF which determines non-negative distance",
+    "a": "False"
+  },
+  {
+    "q": "Deconvolution process refers to the process of restoration wherein the degradation function is linear and invariant",
+    "a": "True"
+  },
+  {
+    "q": "Deterministic signal alludes to a specific signal if for every value of the said signal is characterized",
+    "a": "True"
+  },
+  {
+    "q": "Digital watermarking is utilized to identify individuals and other difficulties that the user can encounter on a regular basis",
+    "a": "False"
+  },
+  {
+    "q": "Dilation refers to the structuring element that is located within its origin at (x, y)",
+    "a": "True"
+  },
+  {
+    "q": "Dilation widens black and shrinks white objects",
+    "a": "False"
+  },
+  {
+    "q": "Dilationmay remove extrusions from white items and correct incursions in black objects",
+    "a": "False"
+  },
+  {
+    "q": "Empowers high-frequency elements to pass and low-frequency elements are weakened",
+    "a": "high-pass frequency domain filter"
+  },
+  {
+    "q": "Erosion can fix breaks in black objects and can split apart white objects",
+    "a": "True"
+  },
+  {
+    "q": "Erosionand dilation are the two most essential operations in Digital Image Processing",
+    "a": "False"
+  },
+  {
+    "q": "Every time it is signified in terms of the collection of pixels, object is said to be in the spatial domain",
+    "a": "True"
+  },
+  {
+    "q": "Fits and Hits are the two most important morphological processes",
+    "a": "False"
+  },
+  {
+    "q": "Foer an RGB color space, the SCILAB function syntax changes over into the HSV color space and HSV to RGB are as per the following: HSV = hsv2rgb(RGB) and RGB = rgb2hsv (HSV)",
+    "a": "False"
+  },
+  {
+    "q": "Fourier domain is more economical and a strong alternative to linear spatial filtering",
+    "a": "False"
+  },
+  {
+    "q": "Fourier transform allows us to make tasks which could be terrible to perform but its efficiency allows us to perform other tasks more quickly",
+    "a": "True"
+  },
+  {
+    "q": "Functional elements refers to elements that are essentially tiny binary images having a value of 0 or 1 Structuring elements",
+    "a": "False"
+  },
+  {
+    "q": "Gaussian LPF's inverse FFT is also Gaussian",
+    "a": "True"
+  },
+  {
+    "q": "Gaussian noise is a special case of Erlang/gamma noise with b = 1",
+    "a": "False"
+  },
+  {
+    "q": "Geometric mean filter provides an enhanced smoothing results compare to the arithmetic mean filter and it also provides more detail from the noisy image",
+    "a": "True"
+  },
+  {
+    "q": "Gray level slicing without background is a strategy where a high value is assigned to the pixels with gray levels in the range of interest and a low value is allotted to the other pixels",
+    "a": "True"
+  },
+  {
+    "q": "Handles a primary key role in navigation, identification, verification, gait, gesture, posture, communication, and in psychological interpretation",
+    "a": "Human Visual System"
+  },
+  {
+    "q": "High-frequency emphasis is similar to the unsharp masking",
+    "a": "True"
+  },
+  {
+    "q": "High-Pass filter is the upgraded version of the Order Statistic Filter that is used to enhance the edges while retaining the background",
+    "a": "False"
+  },
+  {
+    "q": "Ideal Low-Pass Filter was the most well-known ideal filter mainly because it provides a piercing cut-off",
+    "a": "True"
+  },
+  {
+    "q": "If a signal has been repeated in some time interval, they are known as deterministic signals; else it is called as a random signal",
+    "a": "False"
+  },
+  {
+    "q": "Image degradation changes over bitmap data into improved structured data that are simpler to interpret",
+    "a": "False"
+  },
+  {
+    "q": "Image degradation is planned to work on an image in order to obtain benefit from the psychophysical facets of human visual system (HVS)",
+    "a": "False"
+  },
+  {
+    "q": "Image degradation reduces a large amount of needless data, living only those important data for image analysis",
+    "a": "False"
+  },
+  {
+    "q": "Image mosaicking is generally used in industry to search for defects in products, for product packaging, and for object identification",
+    "a": "True"
+  },
+  {
+    "q": "Image processing is the procedure of extraction of critical information from the signal",
+    "a": "False"
+  },
+  {
+    "q": "Image restoration is focused on towards modeling the degradation and implementing the inverse process in order to reconstruct an original image",
+    "a": "True"
+  },
+  {
+    "q": "Imagecompression is used to separate an image into constituent parts based on someimage attributes",
+    "a": "False"
+  },
+  {
+    "q": "Images captured by means of an acquisition process does not possess exactly the same information as original object, as image incurred some degradation in acquisition process",
+    "a": "True"
+  },
+  {
+    "q": "Impartial process is also known as ______",
+    "a": "Image Restoration"
+  },
+  {
+    "q": "Impulse noise shows in an image during its completion thru the use of electrical or electromechanical tools",
+    "a": "False"
+  },
+  {
+    "q": "In Canny edge detector, sigma is an aperture parameter for the Sobel operator having the default value equal to 3",
+    "a": "True"
+  },
+  {
+    "q": "In frequency domain filtering, the operation of the image is completed by convolving the original image with a filtering mask",
+    "a": "False"
+  },
+  {
+    "q": "In histogram stretching, the main idea is to level all values of the histogram so that the entire gray level range from 0 to L - 1 is covered",
+    "a": "False"
+  },
+  {
+    "q": "In Ideal Low-Pass Filter, the strength of the filter can be determined by computing the percentage of the total power contained inside the circle of the radius of D0 centered at the origin of the frequency plane",
+    "a": "True"
+  },
+  {
+    "q": "In identity conversion, the processed pixel must have the same gray level as to the original pixel",
+    "a": "True"
+  },
+  {
+    "q": "In Low-Pass Frequency Domain Filter, boundaries and edges are substituted with smooth transitions",
+    "a": "True"
+  },
+  {
+    "q": "In Miss procedure, the structuring element is moved across every pixel in the original image to give a new pixel value for the processed image",
+    "a": "False"
+  },
+  {
+    "q": "In NTSC color space system, a color image has three components: luminance (Y), hue (I), and saturation (Q)",
+    "a": "True"
+  },
+  {
+    "q": "In the application of image template matching, two areas of an institute are acquired and one image is generated showing details from both images",
+    "a": "False"
+  },
+  {
+    "q": "In the CMYKcolor image, any pixel has a combination of three colors (red, green, and blue)",
+    "a": "False"
+  },
+  {
+    "q": "In the conversion of an RGB images into other spaces, the inbuilt functions are available for conversion of a color image into any spaces and vice versa",
+    "a": "True"
+  },
+  {
+    "q": "In the electrical system, current and voltage are represented as signals and called electrical signals",
+    "a": "True"
+  },
+  {
+    "q": "In thresholding, if the value of threshold is constant it is known global thresholding",
+    "a": "True"
+  },
+  {
+    "q": "In what year does the Roberts edge detector proposed and implemented?",
+    "a": "1963"
+  },
+  {
+    "q": "In-built high-level programming in Scilab is interpreted automatically",
+    "a": "True"
+  },
+  {
+    "q": "Inbuilt function RGB special is used to define any image filter with a specific value",
+    "a": "False"
+  },
+  {
+    "q": "Is a process where an image might be reverted to its original form by its degraded state",
+    "a": "image restoration"
+  },
+  {
+    "q": "Is an exceptional compressing function and is therefore in log conversion",
+    "a": "Log operator"
+  },
+  {
+    "q": "Is there a command to record all commands that you type and save them to a file so thatyou can see them later?",
+    "a": "Type help diary"
+  },
+  {
+    "q": "It actually refers to the occurrence of image enhancement",
+    "a": "contrast stretching"
+  },
+  {
+    "q": "It alludes to pixels of object wherein its neighbor pixels have a value of 0 bits at least",
+    "a": "borderline pixel"
+  },
+  {
+    "q": "It alludes to the classification of image degradation which typically happens due to blurring",
+    "a": "spatial degradation"
+  },
+  {
+    "q": "It alludes to the moment when the process of extracting objects from the background is to choose a threshold",
+    "a": "starting point"
+  },
+  {
+    "q": "It alludes to the quantity of light reflected from a specific point",
+    "a": "reflectance component"
+  },
+  {
+    "q": "It alludes to the reversal of the gray level, for example, the black value pixel from the original image will turn into white value pixel in the processed image and/ or the other way around",
+    "a": "Image negative conversion"
+  },
+  {
+    "q": "It also allows us to isolate and process image \"frequencies\", and to perform low-pass and high-pass filtering with a higher degree of precision",
+    "a": "Fourier transform"
+  },
+  {
+    "q": "It appears in an image during its attainment using electrical or electromechanical tools",
+    "a": "periodic noise"
+  },
+  {
+    "q": "It broadens the frequency component values of an object, which is created in an image within the spatial domain",
+    "a": "Rotation property"
+  },
+  {
+    "q": "It can be characterized as the integral of sines/cosines multiplied by the weighing function",
+    "a": "Non-periodic function"
+  },
+  {
+    "q": "It can be detected in a horizontal, vertical, +45°, and -45°direction",
+    "a": "lines"
+  },
+  {
+    "q": "It changes over bitmap data into a more structured data that are simpler to interpret",
+    "a": "image segmentation"
+  },
+  {
+    "q": "It characterizes different image processing procedures which manages the state of features in an image",
+    "a": "morphological image processing"
+  },
+  {
+    "q": "It defines various image processing procedures which deals with the shape of features in an image",
+    "a": "It defines various image processing procedures which deals with the shape of features in an image"
+  },
+  {
+    "q": "It demonstrates that the low-frequency components lie in the center of the image and high-frequency components lie on the external of the image",
+    "a": "frequency components"
+  },
+  {
+    "q": "It enables us to make tasks which would be terrible to perform any other way and its efficiency enables us to perform other tasks more quickly",
+    "a": "Fourier transform"
+  },
+  {
+    "q": "It holds one of the most vital key role in navigation, gesture, identification, and communication interpretation",
+    "a": "Human Visual System"
+  },
+  {
+    "q": "It identifies edges of images utilizing a Gaussian filter predefined having a standard deviation value",
+    "a": "Canny edge detector"
+  },
+  {
+    "q": "It implies the closing of image by organizing elements",
+    "a": "f * s"
+  },
+  {
+    "q": "It implies turning around a component around the boundaries",
+    "a": "Shifting"
+  },
+  {
+    "q": "It is a special case of Erlang/gamma noise with b = 1",
+    "a": "exponential noise"
+  },
+  {
+    "q": "It is a transfer function that lacks an abrupt discontinuity and unambiguous cut-off between the passing and filtered frequencies This is called __________",
+    "a": "Butterworth HPF"
+  },
+  {
+    "q": "It is an essential step for structural representation of the pattern shape",
+    "a": "True"
+  },
+  {
+    "q": "It is an exceptional case of Erlang/gamma noise having b Equals 1",
+    "a": "exponential noise"
+  },
+  {
+    "q": "It is at first multiplied with the input image f(x, y) so as to implement filtering in the frequency domain",
+    "a": "(-1) (x + y)"
+  },
+  {
+    "q": "It is broadly castoff for copyright protection on multimedia data like digital images, videos, and audio signals against unauthorized distribution via the web",
+    "a": "digital watermarking"
+  },
+  {
+    "q": "It is defined by a data class of uint8 or uint16",
+    "a": "color image"
+  },
+  {
+    "q": "It is estimated by some researcher that having it in an independent spatial coordinates function would have no relevance at all to an image",
+    "a": "noise"
+  },
+  {
+    "q": "It is linear and it is invariant which can be modeled as convolution",
+    "a": "degradation function"
+  },
+  {
+    "q": "It is obtained along with the forward two-dimensional discrete Fourier transform (2D-DFT) of the end result",
+    "a": "F(u, v)"
+  },
+  {
+    "q": "It is possible to obtain a perfectly flat histogram because the discrete domain is not an approximation of the continuous domain",
+    "a": "False"
+  },
+  {
+    "q": "It is required when any image is transmitted through a communication channel due to the band limitation of channels",
+    "a": "image compression"
+  },
+  {
+    "q": "It is the process by which critical information are extracted from within the signal This is called __________",
+    "a": "Signal Processing"
+  },
+  {
+    "q": "It is the process of embedding the owner's or user's secret information to cover data",
+    "a": "watermarking"
+  },
+  {
+    "q": "It is used to design and implement JPEG 2000 standard",
+    "a": "discrete wavelet transform (DWT)"
+  },
+  {
+    "q": "It is used to separate an image into constituent parts based on some image attributes This is called ________",
+    "a": "Image Segmentation"
+  },
+  {
+    "q": "It is utilized principally to distinguish an object in an image",
+    "a": "template matching"
+  },
+  {
+    "q": "It is utilized to design and actualize JPEG 2000 standard",
+    "a": "discrete wavelet transform (DWT)"
+  },
+  {
+    "q": "It is utilized to eradicate impulse noise which can't be removed by a traditional median filter",
+    "a": "adaptive median filter"
+  },
+  {
+    "q": "It is utilized to plan and actualize JPEG standard",
+    "a": "discrete wavelet transform (DWT)"
+  },
+  {
+    "q": "It is where pixels in the chosen range are allotted a high value while the other pixels are not altered",
+    "a": "Gray Level Slicing with Background"
+  },
+  {
+    "q": "It is widely used for copyright protection of multimedia data such as digital images, videos, and audio signals against unauthenticated distribution over the internet",
+    "a": "digital watermarking"
+  },
+  {
+    "q": "It is widely used in industry to find defects in products, for packing products, and for identification of objects",
+    "a": "image processing"
+  },
+  {
+    "q": "It is within thistype of color space where the luminance component of an image is represented by the component Y, and color information is represented by the two components Cb and Cr",
+    "a": "YCbCr color space"
+  },
+  {
+    "q": "It means rotating a component around the boundaries",
+    "a": "Shifting"
+  },
+  {
+    "q": "It means the general frequency of event of the various gray levels in the image",
+    "a": "Histogram"
+  },
+  {
+    "q": "It might ordinarily be one of its pixels, however, this might also be outside the structuring element",
+    "a": "origin of structuring element"
+  },
+  {
+    "q": "It offers the arithmetical performance of noise intensity",
+    "a": "spatial noise descriptor"
+  },
+  {
+    "q": "It pertains to the latest bit with the least value when the gray value of each pixel of an image is defined by 8-bit",
+    "a": "Least significant bit"
+  },
+  {
+    "q": "It plots a squeaky range of dark input values into a bigger output value range or the other way around",
+    "a": "Power low conversion"
+  },
+  {
+    "q": "It points to the characterization of images in the digital world",
+    "a": "Pixel"
+  },
+  {
+    "q": "It refers to a color space which defines an image based from the usage of alternate light colors such as yellow, cyan, and magenta",
+    "a": "CMY color space"
+  },
+  {
+    "q": "It refers to a specific signal if for each value of the said signal is defined",
+    "a": "Deterministic signal"
+  },
+  {
+    "q": "It refers to a type of descriptor that sends the statistical behavior of a certain noise intensity",
+    "a": "spatial noise descriptor"
+  },
+  {
+    "q": "It refers to edges that are recognized utilizing first-and second-order subsidiaries or derivatives",
+    "a": "image edges"
+  },
+  {
+    "q": "It refers to pixels of object whose neighbor pixels have at least a value of 0 bits",
+    "a": "borderline pixel"
+  },
+  {
+    "q": "It refers to processing the image in the Fourier domain",
+    "a": "Image enhancement"
+  },
+  {
+    "q": "It refers to the cut-off frequency in an ideal LPF which determines non-negative distance",
+    "a": "Do"
+  },
+  {
+    "q": "It refers to the distance of the frequency component starting from the origin of the frequency plane in the filter function of an ideal LPF",
+    "a": "D(u, v)"
+  },
+  {
+    "q": "It refers to the inversion of the gray level, such as the black value pixel in the original image will now become the white value pixel in the processed image and/or vice versa",
+    "a": "Image negative conversion"
+  },
+  {
+    "q": "It refers to the magnitude response in the polar depiction of function",
+    "a": "|F(u, v)|"
+  },
+  {
+    "q": "It refers to the phase response in the polar depiction of function",
+    "a": "ϕ(u, v)"
+  },
+  {
+    "q": "It refers to the seventh bit having the highest value if the gray value of each pixel of the image is characterized by 8-bit",
+    "a": "Most significant bit"
+  },
+  {
+    "q": "It refers to the smallest item of information from within an image This is called _______",
+    "a": "Pixel"
+  },
+  {
+    "q": "It refers to the structuring element which is situated within its origin at (x, y)",
+    "a": "dilation"
+  },
+  {
+    "q": "It shows that the low-frequency components lie in the focal point of the image and high-frequency parts lie on the external of the image",
+    "a": "frequency components"
+  },
+  {
+    "q": "It suppresses echoing of intermediate results in Scilab",
+    "a": "Semicolon (;)"
+  },
+  {
+    "q": "It was discovered during the seventeenth century and has become a critical tool for modern science and technology",
+    "a": "Digital Signal Processing"
+  },
+  {
+    "q": "It was essentially introduced in the USA for the purpose of video transmission in television communication system",
+    "a": "NTSC color space"
+  },
+  {
+    "q": "Its basic idea is to equalize all the histogram values making the whole gray level within the range 0 up to L-1 concealed",
+    "a": "Histogram equalization"
+  },
+  {
+    "q": "Its fourier transform is usually described by its complex values",
+    "a": "f(x,y)"
+  },
+  {
+    "q": "Its full tool box are automatically installed when the software itself is installed",
+    "a": "Matlab"
+  },
+  {
+    "q": "Its main objective is to descend features of the original image from its degraded version while having some information of degradation function and noise parameter",
+    "a": "image restoration process"
+  },
+  {
+    "q": "Its reaction is set up on ordering or ranking of pixels",
+    "a": "order statistics filter"
+  },
+  {
+    "q": "Its transfer function does not have a sharp discontinuity and obvious cut-off between the past frequency and filtered frequency",
+    "a": "butterworth LPF"
+  },
+  {
+    "q": "Log conversion is utilized to compress the high pixel values so that the utilizer can see the image clearly",
+    "a": "True"
+  },
+  {
+    "q": "Maps a slim range of dark input values into a larger range of output values or vice versa",
+    "a": "Power low conversion"
+  },
+  {
+    "q": "Mean filtering is a process where a degraded pixel from an image are decreased at a time to progress such restoration algorithm for any possible degraded pixel and merges the result of each process",
+    "a": "False"
+  },
+  {
+    "q": "Median filter is very useful for removal of unipolar noise (salt or pepper) and bipolar noise (salt and pepper)",
+    "a": "True"
+  },
+  {
+    "q": "Min filter is intended to remove pepper noise from a noisy picture and find bright spots within it",
+    "a": "False"
+  },
+  {
+    "q": "Noises with parched values causing positive impulses being a white dot and negative impulses being a black dot",
+    "a": "False"
+  },
+  {
+    "q": "Number of bits are required to represent the pixel values of color component images which determines the bit depth of the color image",
+    "a": "True"
+  },
+  {
+    "q": "Object edges are the areas in which sudden intensity changes happen in images",
+    "a": "True"
+  },
+  {
+    "q": "Order Statistics filter is established based on the ordering or ranking of pixels",
+    "a": "True"
+  },
+  {
+    "q": "Periodic functions can be characterized as the integral of sines/cosines multiplied by the weighing function",
+    "a": "False"
+  },
+  {
+    "q": "Periodic functions can be considered using the sum of the sine/cosine functions of different frequencies, multiplied by a dissimilar coefficient",
+    "a": "True"
+  },
+  {
+    "q": "Periodic functions may be characterized by the sum of the sine or cosine functions of diverse frequencies, multiplied by a different coefficient",
+    "a": "True"
+  },
+  {
+    "q": "Point detection is a crucial step in image segmentation",
+    "a": "False"
+  },
+  {
+    "q": "Regularly viewed as a time waveform, for example, x(t)",
+    "a": "One-Dimensional Signal"
+  },
+  {
+    "q": "Research analysts assumes that it is an independent function of spatial coordinates and it is irrelevant to the image",
+    "a": "noise"
+  },
+  {
+    "q": "Rotation Property is used to spin or turn an object's frequency component values while developing a spatial domain picture",
+    "a": "False"
+  },
+  {
+    "q": "Scilabis a proprietary software where all the features, data types, and toolboxes are already prepositioned",
+    "a": "False"
+  },
+  {
+    "q": "Searches for the top matched features from two featured objects and its corresponding matching matrix",
+    "a": "imbestmatches"
+  },
+  {
+    "q": "Sharpening of a color image using a linear spatial filter is the same as sharpening a gray-scale image",
+    "a": "True"
+  },
+  {
+    "q": "Since 2003, this software had been maintained and improved by the Scilab consortium and was merged with the Digiteo Foundation way back in July 2008",
+    "a": "True"
+  },
+  {
+    "q": "Since both the spatial and frequency domain are periodic or intermittent, shifting refers to rotating a component around the limitations",
+    "a": "True"
+  },
+  {
+    "q": "Spatial area separation points to the operation where the image is finished by convolving the original image with a filtering mask",
+    "a": "False"
+  },
+  {
+    "q": "Template matching technique of combining two pictures captured using a camera that has a restricted capture area",
+    "a": "False"
+  },
+  {
+    "q": "The actual depth if each color component image is an 8-bit image the color image",
+    "a": "24-bit depth"
+  },
+  {
+    "q": "The actual depth if every color element image having an 8-bit color image",
+    "a": "24-bit depth"
+  },
+  {
+    "q": "The actual number of colors in an 8-bit color image",
+    "a": "16,777,216 colors"
+  },
+  {
+    "q": "The algorithm for image mosaicing can be designed and implemented using a basic image addition process and thresholding",
+    "a": "True"
+  },
+  {
+    "q": "The contrast thresholding conversion is utilized to increase details of images that are gathered using low illumination conditions, an image sensor with a lower dynamic range, or with wrong camera lens settings",
+    "a": "False"
+  },
+  {
+    "q": "The corresponding estimate pixel values of the image are then attained by taking the inverse Fourier transform",
+    "a": "True"
+  },
+  {
+    "q": "The degradation H function is linear and it is invariant which can be modeled as convolution",
+    "a": "True"
+  },
+  {
+    "q": "The easiest way to approximate noise parameters is from the set of adapted noise from flat environments",
+    "a": "False"
+  },
+  {
+    "q": "The element which is referred to components which are played a fixed matrix size",
+    "a": "dimension of element"
+  },
+  {
+    "q": "The entire objectis divided into subtypes with an object presented in it and each image with this object is compared with the template image using a correlator",
+    "a": "False"
+  },
+  {
+    "q": "The equation used where the processed pixel must have the same gray level as to the original pixel",
+    "a": "S=r"
+  },
+  {
+    "q": "The filter parameters of periodic noise are assessed in the frequency domain",
+    "a": "False"
+  },
+  {
+    "q": "The filter which is utilized to eradicate salt noise from the noisy image and to search dark points in the image",
+    "a": "min filter"
+  },
+  {
+    "q": "The filter's strength may be calculated by calculating the proportion of total power contained inside a circle of radius D0 centered at the frequency plane's origin",
+    "a": "True"
+  },
+  {
+    "q": "The following are used in classifying signals except _________",
+    "a": "Radiation"
+  },
+  {
+    "q": "The greater part of which are tarnished by noise during their procurement and/ or transmission",
+    "a": "images"
+  },
+  {
+    "q": "The handling of this signal has a sound history and is of extraordinary importance in different fields as speech communication, biomedical engineering, and military communication",
+    "a": "One-Dimensional signal"
+  },
+  {
+    "q": "The high-pass frequency domain filter allows low-frequency components to go through and high-frequency components are deteriorated",
+    "a": "False"
+  },
+  {
+    "q": "The impact from laplacian of a Gaussian edge detector which relies on the quality of standard deviation",
+    "a": "blurring"
+  },
+  {
+    "q": "The inverse discrete Fourier transform is give as",
+    "a": "False"
+  },
+  {
+    "q": "The Laplacian of Gaussian (LOG) function has two effects on an image: it smoothes the image that is corrupted by noise and it computes the Laplacian, which gives a double-edged image",
+    "a": "True"
+  },
+  {
+    "q": "The Laplacian of Gaussian (LOG) function have 2 possible effects to an image: either it soften the image having corrupted by noise, or it calculates the Laplacian, which gives a double-edged image",
+    "a": "True"
+  },
+  {
+    "q": "The least complex edge detector algorithm that was proposed and actualized by Lawrence Roberts way back in 1963",
+    "a": "Roberts edge detector"
+  },
+  {
+    "q": "The low rank approximation property of discrete cosine transform (DCT) is also used for image compression",
+    "a": "image processing"
+  },
+  {
+    "q": "The low rank estimation property of discrete cosine transform (DCT) is additionally utilized for image compression",
+    "a": "False"
+  },
+  {
+    "q": "The mathematical equation of Identity Conversion is S=L-r-1",
+    "a": "False"
+  },
+  {
+    "q": "The only way to convert the multiplication into addition in homomorphic filtering is by applying a logarithm on both sides",
+    "a": "True"
+  },
+  {
+    "q": "The outcome is that any sharp transition, for example, edges and boundaries will be replaced with a smooth transition (blurred) This filter is called as the smoothing filter",
+    "a": "Low-pass frequency domain filter"
+  },
+  {
+    "q": "The outcome is that if spatial domain values turn, then the corresponding frequency components rotates or turns",
+    "a": "Rotation property"
+  },
+  {
+    "q": "The outcome would be, any blurred in an image will be substituted with a sharp edges",
+    "a": "High-pass frequency domain filter"
+  },
+  {
+    "q": "The pixel in the picture is covered by any on pixel in the structuring element This is called ______",
+    "a": "Hit"
+  },
+  {
+    "q": "The Prewitt edge detector is easier to implement than the Sobel detector but introduces more noise as a result",
+    "a": "True"
+  },
+  {
+    "q": "The primary field of application used for gamma ray imaging",
+    "a": "Image processing"
+  },
+  {
+    "q": "The procedure wherein the input is the watermarked data itself and the yield is the extracted watermarked data",
+    "a": "extraction process"
+  },
+  {
+    "q": "The process by which the structuring is arranged by its origin at (x,y) and its new approximation of the pixel is calculated using the rule (x,y)=1 if the value of s fits the value of f",
+    "a": "erosion of image"
+  },
+  {
+    "q": "The process of histogram equalization escalates the vigorous range of the image and, hence, progresses the contrast of the image",
+    "a": "False"
+  },
+  {
+    "q": "The property type of the gradient vector that points to the direction of the highest rate of change of the image vector having coordinates (x, y)",
+    "a": "fundamental property"
+  },
+  {
+    "q": "The representation of the magnitude reaction to depict a function",
+    "a": "|F(u, v)|"
+  },
+  {
+    "q": "The result would be, any blurred in an image would be replaced with a sharp edges",
+    "a": "High-pass frequency domain filter"
+  },
+  {
+    "q": "The Roberts edge detection method was developed and implemented by Johnny Roberts in 1968",
+    "a": "False"
+  },
+  {
+    "q": "The role of structuring elements in morphological image processing is the same as the role of convolution kernels in spatial linear filtering",
+    "a": "True"
+  },
+  {
+    "q": "The rotate property is characterized using the equation: and",
+    "a": "True"
+  },
+  {
+    "q": "The rotation property extends the frequency component values of an object, which develop in an image in the spatial domain",
+    "a": "False"
+  },
+  {
+    "q": "The SCILAB function parameter for an RGB color space having change over to the YCbCr color space",
+    "a": "YCC = rgb2ycbcr(RGB);"
+  },
+  {
+    "q": "The SCILAB function syntax for an RGB color space converted to the YCbCr color space",
+    "a": "YCC = rgb2ycbcr(RGB);"
+  },
+  {
+    "q": "The SCILAB function syntax for converting the RGB color space to the CMY color space isCMY = imcomplement(RGB)",
+    "a": "True"
+  },
+  {
+    "q": "The shifting transform of a real function f(x, y) is commonly characterized by complex values",
+    "a": "False"
+  },
+  {
+    "q": "The simple data type in Scilab is a matrix and all functions for matrix operations are in-built in Scilab",
+    "a": "True"
+  },
+  {
+    "q": "The simple morphological processing is the same to spatial filtering",
+    "a": "True"
+  },
+  {
+    "q": "The simplest edge detector algorithm is the Prewitt edge detector",
+    "a": "False"
+  },
+  {
+    "q": "The simplest edge detector algorithm, which was proposed and implemented by Lawrence Roberts in 1963",
+    "a": "Roberts edge detector"
+  },
+  {
+    "q": "The Sobel edge detector detects edges in horizontal, vertical, or both directions in the image",
+    "a": "True"
+  },
+  {
+    "q": "The standards where unwanted frequency coefficients of images are abandoned and the image is reconstructed using the remaining coefficients with a predefined threshold",
+    "a": "image compression standards"
+  },
+  {
+    "q": "the term which actually refers to YCbCr",
+    "a": "luminance, chrominance"
+  },
+  {
+    "q": "The thickening procedure is similar to erosion, however it does not result in the loss of object components",
+    "a": "False"
+  },
+  {
+    "q": "The thickening procedure is used to increase a percentage of an object",
+    "a": "True"
+  },
+  {
+    "q": "The thresholding procedure serves as the initial step in image enhancement for ease of deployment of image processing applications",
+    "a": "True"
+  },
+  {
+    "q": "The transfer function of the Gaussian HPF is characterized as",
+    "a": "False"
+  },
+  {
+    "q": "The type and degree of enhancement acquired to an image depends on the nature of the definite histogram",
+    "a": "True"
+  },
+  {
+    "q": "The type of images produced by using a gamma-ray",
+    "a": "Gamma-ray imaging"
+  },
+  {
+    "q": "The watermarking process is divided into two: the embedding process and the extraction process",
+    "a": "True"
+  },
+  {
+    "q": "Thedimension of the elements is characterized by a specified matrix size",
+    "a": "True"
+  },
+  {
+    "q": "There is an inbuilt function 'Canny' edge algorithm in SCILAB and the syntax for this algorithm is given as:",
+    "a": "False"
+  },
+  {
+    "q": "There is an inbuilt function 'Canny' edge algorithm in SCILAB and the syntax for this algorithm is:",
+    "a": "True"
+  },
+  {
+    "q": "These are dictated by large changes in the gray level value over a short distance such as noise and edges",
+    "a": "High-frequency coefficient"
+  },
+  {
+    "q": "Thickening can be used in different applications such as industrial part inspection, fingerprint recognition, optical character recognition, and biomedical diagnosis",
+    "a": "False"
+  },
+  {
+    "q": "This activity can be achieved utilizing the dilation process and then following the erosion process",
+    "a": "opening image"
+  },
+  {
+    "q": "This activity might be achieved using the erosion process followed by the dilation process",
+    "a": "opening image"
+  },
+  {
+    "q": "This color space is also known as the YIQ color space",
+    "a": "NTSC color space"
+  },
+  {
+    "q": "This filter deals with all kinds of noisy images however it doesn't work on images corrupted by pepper noise",
+    "a": "harmonic mean filter"
+  },
+  {
+    "q": "This filter is a mixture of an order statistics filter and average filter",
+    "a": "mid-point filter"
+  },
+  {
+    "q": "This filter is basically known as the sharpening filter",
+    "a": "High-Pass Frequency Domain Filter"
+  },
+  {
+    "q": "This filter is primarily called as the sharpening filter",
+    "a": "High-Pass Frequency Domain Filter"
+  },
+  {
+    "q": "This filter is used to remove salt noise from a noisy picture and to locate dark spots within it It is called _________",
+    "a": "Min"
+  },
+  {
+    "q": "This filter is utilized to eradicate pepper noise out from the noisy image and to identify bright points from the image",
+    "a": "max filter"
+  },
+  {
+    "q": "This filter offers a similar performance for noise removal however includes less blurring than the mean filter",
+    "a": "media filter"
+  },
+  {
+    "q": "This filter offers excellent results compared with other linear smoothing filters when an image is less corrupted due to blurring",
+    "a": "media filter"
+  },
+  {
+    "q": "This filter provides an improved smoothing results than the arithmetic mean filter and provides more detail from the noisy image",
+    "a": "geometric mean filter"
+  },
+  {
+    "q": "This filter works on all kinds of noisy images but does not work on images corrupted by pepper noise",
+    "a": "harmonic mean filter"
+  },
+  {
+    "q": "This is also commonly called as an ideal filter since it gives a sharp cut-off",
+    "a": "Ideal Low-Pass Filter"
+  },
+  {
+    "q": "This method is largely utilized television for the correction of video representations using cathode ray tubes (CRTs)",
+    "a": "Power low conversion"
+  },
+  {
+    "q": "This operation can be attained using the erosion process followed by the dilation process",
+    "a": "opening image"
+  },
+  {
+    "q": "This Pass filter transfer function doesn't have any sharp brokenness and obvious cut-off between the passed frequency and the filtered frequency",
+    "a": "butterworth LPF"
+  },
+  {
+    "q": "This process includes essential operations such as noise reduction in the image, image enhancement with regards to contrast, and image sharpening",
+    "a": "Low-level image processing"
+  },
+  {
+    "q": "This refers to an element that is used for structuring image which can resolve breaks from white objects and this element can also divide black objects",
+    "a": "dilation"
+  },
+  {
+    "q": "This signal gives functional conduct relevant to the energy distributed over the (x, y) plane",
+    "a": "Two-Dimensional signal"
+  },
+  {
+    "q": "This signal processing is an advanced field of interest in an industry where information is attained from various dimensions",
+    "a": "Multi-Dimensional signal"
+  },
+  {
+    "q": "This sort of image processing is essentially used in image compression and image watermarking",
+    "a": "Bit plane slicing"
+  },
+  {
+    "q": "This type of imaging is primarily used in NASA's LANDSAT satellite, which acquires earth images from space for weather monitoring and environmental conditions in specific areas of the Earth",
+    "a": "Visual imaging"
+  },
+  {
+    "q": "This type of mean filter can work on all types of noisy pictures except for photographs that have been tainted by pepper noise It is called ______",
+    "a": "Harmonic"
+  },
+  {
+    "q": "To keep the regions with constant gray levels, a large negative constant is included to the filter transfer function before applying on F(u, v)",
+    "a": "False"
+  },
+  {
+    "q": "Translates a hue, saturation, value (HSV) image to the equivalent red green blue (RGB) image",
+    "a": "hsv2rgb"
+  },
+  {
+    "q": "Translates sound waves into nerve impulses, to examine auditory events, rememberHunab and recognize sound sources, and perceive acoustic arrangements",
+    "a": "Human Auditory System"
+  },
+  {
+    "q": "Unlike ideal HPF, the Butterworth HPF transfer function does not have any sharp discontinuity and clear cut-off between the passed frequency and filtered frequency",
+    "a": "True"
+  },
+  {
+    "q": "Usinga linear spatial filter to sharpen a color image is the same as sharpening agray-scale image",
+    "a": "True"
+  },
+  {
+    "q": "Visual imaging and ultraviolet imagingare highly utilized in the examination of the human body in medical science",
+    "a": "False"
+  },
+  {
+    "q": "Watermarking is the process of installing an owner's or user's secret data to cover informations",
+    "a": "False"
+  },
+  {
+    "q": "What are the other ways of obtaining online help in Scilab, other than typing \"help\" at the command prompt?",
+    "a": "F1"
+  },
+  {
+    "q": "What are the shortcut keys to use the command history?",
+    "a": "Arrow keys"
+  },
+  {
+    "q": "What is command use to view the history?",
+    "a": "Go to the menu Edit -> History"
+  },
+  {
+    "q": "What is the command to clear the screen?",
+    "a": "clc"
+  },
+  {
+    "q": "What is the first step in image enhancement for ease of deployment of image processing applications?",
+    "a": "Thresholding"
+  },
+  {
+    "q": "What is the short cut key to clear the screen?",
+    "a": "F2 key"
+  },
+  {
+    "q": "When any image is transmitted through a communication channel, compression of the image is required due to the band limitation of the channel rephrase",
+    "a": "True"
+  },
+  {
+    "q": "When any image is transmitted through acommunication channel, __________ of the image is required due to the bandlimitation of the channel",
+    "a": "Compression"
+  },
+  {
+    "q": "When the canny edge detection method was developed and implemented by John F Canny?",
+    "a": "1986"
+  },
+  {
+    "q": "Whenever it is represented in terms of the collection of pixels, it is said to be in the spatial domain",
+    "a": "Image"
+  },
+  {
+    "q": "Where are the demo programs that demonstrate Scilab's capabilities?",
+    "a": "Demos"
+  },
+  {
+    "q": "Where can you change the font used by Scilab?",
+    "a": "menu Preferences"
+  },
+  {
+    "q": "Where can you find user contributeddocuments on using and applying Scilab?",
+    "a": "Help"
+  },
+  {
+    "q": "Which algorithm requires the processed pixel to have the same gray level as the original pixel during the conversion?",
+    "a": "Identity Conversion"
+  },
+  {
+    "q": "Which can be characterized by the sum of the sine/cosine functions of diverse frequencies, multiplied by a different coefficient?",
+    "a": "Periodic Function"
+  },
+  {
+    "q": "Which component is used to determine the quantity of light incident on the location?",
+    "a": "Illumination Component"
+  },
+  {
+    "q": "Which conversion has the process of inverting the gray level in order to have a black value pixel in the original image becomes a white value pixel in the processed image, and vice versa?",
+    "a": "Image Negative"
+  },
+  {
+    "q": "Which filter is used to remove a pixel value by comparing it to the median value of its neighbors?",
+    "a": "Median"
+  },
+  {
+    "q": "Which filter is used to replace each pixel's gray level value with the usual gray level value of its neighbors?",
+    "a": "Low-Pass Average Filter"
+  },
+  {
+    "q": "Which filter reduces noise by blurring the image until it is no longer visible?",
+    "a": "Low-Pass Median Filter"
+  },
+  {
+    "q": "Which filter removes a pixel value by comparing it to the median value of its neighbors?",
+    "a": "Median Filter"
+  },
+  {
+    "q": "Which function is used to specify a value forany image filter?",
+    "a": "Color Image Smoothing"
+  },
+  {
+    "q": "Which is not a category of image-degrading noise?",
+    "a": "Spatial Noise"
+  },
+  {
+    "q": "Which is not a classification of a signal?",
+    "a": "Wave"
+  },
+  {
+    "q": "Which is responsible in converting different sound waves into nerve impulses?",
+    "a": "Human Auditory System (HAS)"
+  },
+  {
+    "q": "Which is used in examining auditory events, recognition of different source of sounds, or even in interpret acoustic inputs?",
+    "a": "Human Auditory System (HAS)"
+  },
+  {
+    "q": "Which method is used for fog removal in captured images and to improve visibility of objects or information in the image?",
+    "a": "Image Processing"
+  },
+  {
+    "q": "Which method is used to hide the data by incorporating the user's private information?",
+    "a": "Watermarking"
+  },
+  {
+    "q": "Which operation can be used to repair white item breaks as well as divide apart black objects?",
+    "a": "Dilation"
+  },
+  {
+    "q": "Which procedure is used to extract features of the original picture from its degraded counterpart, while keeping track of the degradation function and the noise parameter?",
+    "a": "Image Restoration"
+  },
+  {
+    "q": "Which refers to a variety of image processing techniques that deal with the form of picture features?",
+    "a": "Morphological Image Processing"
+  },
+  {
+    "q": "Which refers to the smallest item of information from within an image?",
+    "a": "Pixel"
+  },
+  {
+    "q": "Which technique is applied to merge photos captured with different resolutions and lens angles?",
+    "a": "Image Mosaicing"
+  },
+  {
+    "q": "Which type of filter changes the gray level value of every pixel with the normal gray level value of its neighborhood pixels?",
+    "a": "Low-Pass Average Filter"
+  },
+  {
+    "q": "Which type of mean filter is used to the noisy picture in order to remove the salt and pepper noise?",
+    "a": "Contra Harmonic"
+  },
+  {
+    "q": "Wiener filtering eliminates the additive noise and inverts the blurring simultaneously",
+    "a": "True"
+  },
+  {
+    "q": "With this color space, a color image has three parts: luminance (Y), hue (I), and the saturation (Q)",
+    "a": "YCbCr color space"
+  },
+  {
+    "q": "YIQ color space is also known as what colorspace?",
+    "a": "NTSC"
+  }
+]

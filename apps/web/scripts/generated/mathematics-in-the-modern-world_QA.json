@@ -1,0 +1,386 @@
+[
+  {
+    "q": "A loan of Php 2000 is made for a period of 13 months at asimple interestrate of 20%.What is the maturity value?",
+    "a": "2,433.33"
+  },
+  {
+    "q": "A lot of events happening around us needed mathematical tools to help us in make sound analysis and better decisions.",
+    "a": "Mathematics for Organization"
+  },
+  {
+    "q": "A man borrowed 10,000 and agrees to pay at the end of 90 days under 8% simple interest rate. What is the required amount?",
+    "a": "10,200"
+  },
+  {
+    "q": "Accumulate 5,000 for 10 years at 8% compounded quarterly.",
+    "a": "11,040.20"
+  },
+  {
+    "q": "An investment earns 4% compounded monthly. Find the value of an initial investment of P5,000 after 6 years.",
+    "a": "P635371"
+  },
+  {
+    "q": "Annuity where payment is done at the end of the term",
+    "a": "Ordinary annuity"
+  },
+  {
+    "q": "At a certain interest compounded semiannually , 5,000 will amount 20,000 in 10 years .What is the amount at the end of 15 years?",
+    "a": "40,029.72"
+  },
+  {
+    "q": "Find the interest rate on 6800 for 3 years at 11%simple interest.",
+    "a": "2,244.00"
+  },
+  {
+    "q": "How long will 1,000 amount to 1,346 if invested at 6% compounded quarterly?",
+    "a": "5 years"
+  },
+  {
+    "q": "How long will 4,000 to 14,000 at asimple interestrate of 12.5% ?",
+    "a": "20 years"
+  },
+  {
+    "q": "How long will it take for 500 to accumulate to 2,000 at 12% compounded semi-annually?",
+    "a": "12.9"
+  },
+  {
+    "q": "How many conversion periods are there for an amount of 1000 compounded quarterly for 5 years",
+    "a": "10"
+  },
+  {
+    "q": "How much must be invested today in order to have 15,500 in 2 years if money is worth 12%simple interest?",
+    "a": "12,500.00"
+  },
+  {
+    "q": "If 16,000 earns 480 in 9 months ,what is the annual rate of interest?",
+    "a": "4%"
+  },
+  {
+    "q": "If money is worth 4% compounded monthly ,what payment at the end of each quarter will replace payments of Php 500.00 monthly",
+    "a": "1,505.00"
+  },
+  {
+    "q": "In Polygonal Numbers the Geometric shapes associated with numbers for Pentagonal numbers is_______________________.",
+    "a": "n(3n-1)/2"
+  },
+  {
+    "q": "In Polygonal Numbers the Geometric shapes associated with numbers for square numbers is_______________________.",
+    "a": "n2"
+  },
+  {
+    "q": "In Polygonal Numbers the Geometric shapes associated with numbers for Triangular numbers is_______________________.",
+    "a": "n(n+1)/2"
+  },
+  {
+    "q": "It displays a data set by dividing the data into intervals, or, classes, and listing the number of data values that fail into each interval.",
+    "a": "Frequency distribution"
+  },
+  {
+    "q": "It is a bell-shaped curve that is symmetric when you draw a vertical line through the mean.",
+    "a": "Normal"
+  },
+  {
+    "q": "It is a sequence of equal payments made at equal periods",
+    "a": "Annuity"
+  },
+  {
+    "q": "It is also referred to as the principle",
+    "a": "Present value"
+  },
+  {
+    "q": "It is an amount where the borrower is obliged to pay before the bond is surrendered to the borrower.",
+    "a": "Final redemption value"
+  },
+  {
+    "q": "It is an interest bearing contract which obligates the borrower to make payments of interest and principal on specific dates to the holder of the bond",
+    "a": "bond"
+  },
+  {
+    "q": "It is an interest bearing contract which obligates the borrower to make payments of interest and principal on specific dates to the holder of the bond",
+    "a": "Bond"
+  },
+  {
+    "q": "It is an interest computed based on the original principal during the whole life of investment",
+    "a": "Simple"
+  },
+  {
+    "q": "It is an ordered list of numbers called terms that may have repeated values.",
+    "a": "Sequence"
+  },
+  {
+    "q": "It is found by assuming each month to be 30 days",
+    "a": "Approximate time"
+  },
+  {
+    "q": "It is one which payment begin and end at fixed times.",
+    "a": "Annuity certain"
+  },
+  {
+    "q": "It is one whose payment depend on an event that cannot be foretold accurately.",
+    "a": "Contingent annuity"
+  },
+  {
+    "q": "It is the numbers in a sequence separated by commas.",
+    "a": "term"
+  },
+  {
+    "q": "It is used to convert any formal distribution into the standard normal curve between them.",
+    "a": "Z-score"
+  },
+  {
+    "q": "It is very important that once an answer was arrived it must be verified with regards to the given problem. Solutions must ensure that answers are consistent.",
+    "a": "Review the solution"
+  },
+  {
+    "q": "It refers to a statement that is both universal and conditional which contains some variation of the words \"for all\" and conditional statements contain versions of the words \"if-then\".",
+    "a": "Universal Conditional Statement"
+  },
+  {
+    "q": "It refers to a statement that is universal because its initial part says that a certain property is true for all objects of a given sort, and it is existential because its second part assets the presence of something.",
+    "a": "Universal Existential Statement"
+  },
+  {
+    "q": "It refers to denoting a set by enumerating all of its elements between braces.",
+    "a": "Set- Roster Notation"
+  },
+  {
+    "q": "It refers to given elements a and b, the symbol (a,b) denotes the ordered pair consisting of a and b noting that a is the first element of the pair b is the second element .Any two ordered pairs (a,b) and (c,d) are said to be equal if and only if, a=c and b=d.",
+    "a": "Ordered Pair"
+  },
+  {
+    "q": "It refers to a statement such that first part assures that a certain object exists and is universal since its second part says that the question fulfills a specific property for everything of a specific kind.",
+    "a": "Existential Universal Statement"
+  },
+  {
+    "q": "It refers to a collection of numbers or values that relate to a particular subject.",
+    "a": "Data set"
+  },
+  {
+    "q": "It refers to a set S and P(x) be a property that elements of S may or may not satisfy. We may define a new set to be the set of all elements x in S such that P(x) is true. The set is denoted as follows:",
+    "a": "Set-Builder Notation"
+  },
+  {
+    "q": "It refers to a setS andP(x) be a property that elements ofSmay or may not satisfy. We may define a new set to be the set of all elementsxinSsuch thatP(x) is true. The set is denoted as follows: {x∈S|P(x)}",
+    "a": "Set-Builder Notation"
+  },
+  {
+    "q": "It refers to a statement that is universal because its initial part says that a certain property is true for all objects of a given sort, and it is existential because its second part assets the presence of something.",
+    "a": "Universal Existential Statement."
+  },
+  {
+    "q": "It refers to any two sets denoted by A and B such that every element of A is also an element of B then A is called subset of B, written A =E2=8A=86 B,",
+    "a": "Subset"
+  },
+  {
+    "q": "It refers to any two sets denoted by A and B such that every element of A is also an element of B then A is called subset of B, written A ⊆ B,",
+    "a": "Subset"
+  },
+  {
+    "q": "It refers to any two sets denoted by A and B such that every element of A is also an element of B then A is called subset of B, written A B,",
+    "a": "Subset"
+  },
+  {
+    "q": "It refers to given sets A and B denoted by A x B read as \"A cross B\" where the set of ordered pairs (a,b) where a is in A and b is in ~",
+    "a": "Cartesian Product"
+  },
+  {
+    "q": "It refers to given sets A and B denoted by A x B read as \"A cross B\" where the set of ordered pairs (a,b) where a is in A and b is in B.",
+    "a": "Cartesian Product"
+  },
+  {
+    "q": "It refers to the bond rate or coupon rate",
+    "a": "Nominal rate"
+  },
+  {
+    "q": "It refers to the middle number if n is odd /even for a ranked order list of numbers.",
+    "a": "Median"
+  },
+  {
+    "q": "It refers to the middle number if n is odd for a ranked order list of numbers.",
+    "a": "Median"
+  },
+  {
+    "q": "It refers to the number that occurs most frequently in a list of numbers.",
+    "a": "Mode"
+  },
+  {
+    "q": "It refers to the sum of the numbers divided by n.",
+    "a": "Mean"
+  },
+  {
+    "q": "It represents the interest earned date or coupon date also referred to as coupon annuity payments",
+    "a": "Periodic payment"
+  },
+  {
+    "q": "Mathematics played a major role in the underpinnings of our world. Logical reasoning and critical thinking skills are required in any endeavor.",
+    "a": "Mathematics is indespensible"
+  },
+  {
+    "q": "Natural objects and phenomenon behave by the underlying mathematical structure. Interactions and relationships of nature can be best described by mathematical equations",
+    "a": "Mathematics for Control"
+  },
+  {
+    "q": "Population growth and bacterial decay can be modeled by the exponential growth or decay formula.",
+    "a": "Exponential Growth Model"
+  },
+  {
+    "q": "Population growth and bacterial decay can be modeled by the exponential growth or decay formula __________________.",
+    "a": "A=Pert"
+  },
+  {
+    "q": "Successful problems solvers uses a variety of techniques when they attempt to solve a problem. The following techniques are most useful:",
+    "a": "Devise a plan"
+  },
+  {
+    "q": "The actual number of days between May 4 and Sept 6 of the same year is",
+    "a": "125"
+  },
+  {
+    "q": "The actual time in days from May 1 to Dec 15 of the same year is",
+    "a": "228"
+  },
+  {
+    "q": "The compound amount when 2,000 is invested at 10% compounded every 6 months for 2 years.",
+    "a": "2,431.01"
+  },
+  {
+    "q": "The exactsimple intereston 5,000 for the period of January 15 to November 28,1992 if the interest rate is 22%",
+    "a": "955.74"
+  },
+  {
+    "q": "The interest computed on the basis of a 360-day year",
+    "a": "Ordinary interest"
+  },
+  {
+    "q": "The largest interest can be obtained when compounded.",
+    "a": "Monthly"
+  },
+  {
+    "q": "The line that minimizes the sum of the squares of the vertical deviations from each data point to the line is referred to as the least-squares regression line, or least- squares line for",
+    "a": "Least-squares regression line"
+  },
+  {
+    "q": "The maturity value of a loan of Php 10,000 and interest half of the principal",
+    "a": "15,000."
+  },
+  {
+    "q": "The mean for data set: 10,12,15,16.,8, 7 is",
+    "a": "1133"
+  },
+  {
+    "q": "The mean for data set: 10,12,15,16.,8, 7 is The line that minimizes the sum of the squares of the vertical deviations from each data point to the line is referred to as the least-squares regression line, or least- squares line for",
+    "a": "11.33 Least-squares regression line"
+  },
+  {
+    "q": "The median for the data in #5 is",
+    "a": "11"
+  },
+  {
+    "q": "The median for the data set: 10,12,15,16,8, 7 is",
+    "a": "11"
+  },
+  {
+    "q": "The median for the data: 10,12,15,16,8, 7 is",
+    "a": "11"
+  },
+  {
+    "q": "The mode for the data in #5is",
+    "a": "None"
+  },
+  {
+    "q": "The mode for the data set: 10,12,15,16,8, 7 is",
+    "a": "none"
+  },
+  {
+    "q": "The mode for the data: 10,12,15,16,8, 7 is",
+    "a": "none"
+  },
+  {
+    "q": "The most aesthetically pleasing proportion the ______________is approximated by the ratios of the Fibonacci numbers.",
+    "a": "Golden Ratio"
+  },
+  {
+    "q": "The number of days from April 12,2002 to October 25,2003 using actual time is",
+    "a": "561"
+  },
+  {
+    "q": "The present worth of 20,000 withsimple interestof 12% due in 9 months is",
+    "a": "18,348.62"
+  },
+  {
+    "q": "The process of determining the current value of a bond",
+    "a": "Bond validation"
+  },
+  {
+    "q": "The time between successive interest computation",
+    "a": "Compounding period"
+  },
+  {
+    "q": "The total amount the borrower would need to repay a loan",
+    "a": "Maturity value"
+  },
+  {
+    "q": "The type of reasoning where a conclusion is made by applying assumptions, procedures or principles.",
+    "a": "Deductive reasoning"
+  },
+  {
+    "q": "The type of reasoning where a conclusion is made by means of specific examples.",
+    "a": "Inductive reasoning"
+  },
+  {
+    "q": "These are regular, repeated or recurring forms or designs which are commonly observed in natural objects such as six-fold symmetry of snowflakes, hexagonal structure and formation of honeycombs, tiger's stripes and hyena's spots.",
+    "a": "Patterns"
+  },
+  {
+    "q": "This sequence is formed by adding the the preceeding two numbers, starting with 0 and 1.",
+    "a": "Fibonacci Sequence"
+  },
+  {
+    "q": "To be able to solve a problem, understanding what the problem asks for is very important.",
+    "a": "Understand the problem"
+  },
+  {
+    "q": "To make predictions mathematical models can generate analysis and interpretation using existing data.",
+    "a": "Mathematics for Prediction"
+  },
+  {
+    "q": "Two functions are said to be equal if and only they have the same set of ordered pairs (x,y).",
+    "a": "Equality of Functions"
+  },
+  {
+    "q": "What is the annual rate of interest if 265 is earned in four months on an investment of 15,000.00?",
+    "a": "5.3%"
+  },
+  {
+    "q": "What is the present value of Php 1000 payable every three months for 10-years. If money is worth 8% compounded quarterly.",
+    "a": "2735548"
+  },
+  {
+    "q": "What is the present worth of a Php 1000 annuity over a 10-year period if interest rate is 8%?",
+    "a": "6710.00"
+  },
+  {
+    "q": "What rate compounded annually will double any sum in 6 years?",
+    "a": "12.25%"
+  },
+  {
+    "q": "What rate compounded quarterly is equivalent to 14% compounded semiannually?",
+    "a": "13.76%"
+  },
+  {
+    "q": "When two quantities x and y are related so that for some range of values of x the value of y is determined by that of x then we say that y is a function (f) of x.",
+    "a": "Function"
+  },
+  {
+    "q": "When two sets form a collection of ordered pairs of (x,y) each of which coming from each set then it is said that x R y.",
+    "a": "Relation"
+  },
+  {
+    "q": "Which covers the longest time?",
+    "a": "800 days"
+  },
+  {
+    "q": "Which is regarded as an annuity?",
+    "a": "Monthly rental"
+  }
+]

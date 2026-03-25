@@ -1,0 +1,758 @@
+[
+  {
+    "q": "172.16.0.0 /12 is what type of IPv4 Address.",
+    "a": "APrivate IP Address"
+  },
+  {
+    "q": "802.11a network standard is typically used in public spaces",
+    "a": "False"
+  },
+  {
+    "q": "A Clean Installation will install a new OS. All user files, applications, and settings are retained.",
+    "a": "False"
+  },
+  {
+    "q": "A Domain Controller responds to requests for Active Directory Information",
+    "a": "True"
+  },
+  {
+    "q": "A File Server share the folders that contains users' files",
+    "a": "True"
+  },
+  {
+    "q": "A Naming Convention should accommodate duplicate employee names",
+    "a": "True"
+  },
+  {
+    "q": "A native-boot VHD can be used as the running operating system on a computer without a parent operating system.",
+    "a": "True"
+  },
+  {
+    "q": "A process in which data are rearrange and reunite with fragmented files.",
+    "a": "Disk Defragment"
+  },
+  {
+    "q": "A set of software programs that lets a computer perform a specific function for multiple users or other computers within the network.",
+    "a": "Server Role"
+  },
+  {
+    "q": "A specific kind of network topology in which all of the various devices in the network are connected to a single cable or line",
+    "a": "Bus Topology"
+  },
+  {
+    "q": "A type of User Account that allows user to log and access resources on a specific computer",
+    "a": "Local User Account"
+  },
+  {
+    "q": "A VLAN enables you to isolate network traffic",
+    "a": "True"
+  },
+  {
+    "q": "A Web Server is a computer attached to computer locally to provide access to File Servers",
+    "a": "False"
+  },
+  {
+    "q": "A wireless network technology that has a maximum bit rate of 54Mbps",
+    "a": "80211 g"
+  },
+  {
+    "q": "AD DS stands for?",
+    "a": "Active Directory Domain Services"
+  },
+  {
+    "q": "Ad Hoc wireless network is usually used for peer to peer connections",
+    "a": "True"
+  },
+  {
+    "q": "Advantages of using 64bit edition of Windows are listed except",
+    "a": "Improved Power Consumption"
+  },
+  {
+    "q": "Alexandria is the payroll manager and stores critical file on her local drive for added security on her Windows 7 computer. She wants to ensure that she is using the disk configuration with the most fault tolerance and the highest level of consistent availability. Which of the following provisions should she use?",
+    "a": "Mirrored volumes"
+  },
+  {
+    "q": "Among the choices, which is not a key feature of Windows 7",
+    "a": "Sustainability"
+  },
+  {
+    "q": "An IPv6 address space allocates 64bits for the network ID and 64 bits for the host ID",
+    "a": "True"
+  },
+  {
+    "q": "An object that contains all information that defines a user",
+    "a": "User Account"
+  },
+  {
+    "q": "APIPA stands for:",
+    "a": "Automatic Private IP Addressing"
+  },
+  {
+    "q": "Certificates are used as authentication credentials.",
+    "a": "True"
+  },
+  {
+    "q": "Checks for symptoms of defective computer memory and usually can be started from administratve tools in the control panel",
+    "a": "Windows Memory Diagnostics Tool"
+  },
+  {
+    "q": "Contains the partition table for the disk and a small amount of executable code",
+    "a": "Master Boot Record"
+  },
+  {
+    "q": "Determines whether someone has permission to access a resource",
+    "a": "Authorization"
+  },
+  {
+    "q": "Device Drivers are not needed to use input devices such as mouse and keyboards.",
+    "a": "False"
+  },
+  {
+    "q": "DHCP reduces the complexity and amount of administrative work by using automatic TCP/IP configuration",
+    "a": "True"
+  },
+  {
+    "q": "DHCP v6 server assigns automatic IPv4 Configuration information to the client",
+    "a": "False"
+  },
+  {
+    "q": "Disk Defragmentation can lead to poor performance of the disk subsystem.",
+    "a": "False"
+  },
+  {
+    "q": "Disk Quota does not help you track disk consumption.",
+    "a": "False"
+  },
+  {
+    "q": "DNS is the foundation of the Internet naming scheme",
+    "a": "True"
+  },
+  {
+    "q": "DNS stands for?",
+    "a": "Domain Name System"
+  },
+  {
+    "q": "Domain user accounts enables user to perform administrative tasks to network resources",
+    "a": "False"
+  },
+  {
+    "q": "Enable users to log on to the domain to gain access to network resources",
+    "a": "Domain User Account"
+  },
+  {
+    "q": "Enable users to perform administrative tasks or gain temporary access to network resources",
+    "a": "Built-in User Account"
+  },
+  {
+    "q": "Enables IT administrator to automate one-to-many management of users and computers",
+    "a": "Group Policy"
+  },
+  {
+    "q": "Event Viewer helps diagnose and resolve network problems",
+    "a": "False"
+  },
+  {
+    "q": "Extranet are services or networks exposed outside of the intranet",
+    "a": "True"
+  },
+  {
+    "q": "Firewalls can and will prevent all infected files to come in your network",
+    "a": "False"
+  },
+  {
+    "q": "Folder that allow network access to their content",
+    "a": "Shared Folder"
+  },
+  {
+    "q": "Group Policy Preference are available through local group policy",
+    "a": "False"
+  },
+  {
+    "q": "Host name can have up to 255 characters in length",
+    "a": "True"
+  },
+  {
+    "q": "How many bits are there in an IP version 4 address?",
+    "a": "32 bits"
+  },
+  {
+    "q": "How many bits are there in an IP version 6 address?",
+    "a": "128 bits"
+  },
+  {
+    "q": "Hub only supports single ports",
+    "a": "False"
+  },
+  {
+    "q": "Interconnected devices connected by radio waves instead of wires or cables",
+    "a": "Wireless Network"
+  },
+  {
+    "q": "IPv4 has better prioritized delivery port than IPv6",
+    "a": "False"
+  },
+  {
+    "q": "It a server that is used to access the corporate resources from outside the corporate network.",
+    "a": "Remote Access Server"
+  },
+  {
+    "q": "It allows the administrators to identify which software is allowed to run and was initially added to Windows XP and Windows Server 2003.",
+    "a": "Software Restriction Policies"
+  },
+  {
+    "q": "It allows you to control which role functionality is installed and enabled.",
+    "a": "Role Services"
+  },
+  {
+    "q": "It caches content from remote and web servers in the branch location so users can quickly access the content. This cache can be hosted centrally in the branch location or distributed across user PCs.",
+    "a": "Branch Cache"
+  },
+  {
+    "q": "It contains an array of partition entries describing the start and end LBA of each partition on disk.",
+    "a": "GUID Partition (GPT)"
+  },
+  {
+    "q": "It contains the partition table for the disk and a small amount of executable code called as the master boot code.",
+    "a": "Master Boot Record Disk"
+  },
+  {
+    "q": "It defines the type of access granted to a user, group, or computer for a file or folder.",
+    "a": "NTFS Permission"
+  },
+  {
+    "q": "It enables IT Administrator to automate one-to-many management of users and computers.",
+    "a": "Group Policy"
+  },
+  {
+    "q": "It enables the IT Administrators to automate one-to-several management of users and computers.",
+    "a": "Group Policy"
+  },
+  {
+    "q": "It enables the user to log on and access resources on a specific computer and usually reside in SAM.",
+    "a": "Local User Accounts"
+  },
+  {
+    "q": "It enables users to log on to the domain to gain access to the network resources and it is reside in Active Directory.",
+    "a": "Domain User Accounts"
+  },
+  {
+    "q": "It enables you to manage network traffic, group physically dispersed nodes into logical area networks and isolate network traffic.",
+    "a": "Virtual Local Area Network"
+  },
+  {
+    "q": "It holds a copy of AD DS and responds to request for active directory information.",
+    "a": "Domain Controller"
+  },
+  {
+    "q": "It is a central location for viewing messages about your system and the starting point for diagnosing and solving issues with your system.",
+    "a": "Action Center"
+  },
+  {
+    "q": "It is a collection of Domain Trees.",
+    "a": "Forest"
+  },
+  {
+    "q": "It is a collection of user accounts, computer accounts, contacts and other groups that you can manage as a single unit.",
+    "a": "Groups"
+  },
+  {
+    "q": "It is a computer that is dedicated to running network-aware application software.",
+    "a": "Application Server"
+  },
+  {
+    "q": "It is a device on a TCP/IP internet that forwards packets to other subnet",
+    "a": "Default Gateway"
+  },
+  {
+    "q": "It is a device that converts instructions from the network protocol stack into electric signals.",
+    "a": "Network Adapter"
+  },
+  {
+    "q": "It is a device that provides wiring concentrator functionality like a hub but it also enables network traffic management, performs firewall functions and makes routing decisions based upon traffic priority.",
+    "a": "Switch"
+  },
+  {
+    "q": "It is a device, usually a router, on a TCP/IP internet that forwards IP packets to other subnets.",
+    "a": "Default Gateway"
+  },
+  {
+    "q": "It is a downloadable application that helps windows user identify which edition of Windows 7 meets their needs.",
+    "a": "Windows Upgrade Advisor"
+  },
+  {
+    "q": "It is a dynamic volume that encompasses available free-space from single, dynamic, hard disk drive.",
+    "a": "Simple Volume"
+  },
+  {
+    "q": "It is a dynamic volume that joins areas of unallocated space disks into a single logical disk",
+    "a": "Spanned Volume"
+  },
+  {
+    "q": "It is a feature of Windows 7 that allows windows 7 to be backward compatible",
+    "a": "Windows XP mode"
+  },
+  {
+    "q": "It is a graphical user interface that is used to manage disks and volumes both basic and dynamic, locally or on remote computers.",
+    "a": "Disk Management"
+  },
+  {
+    "q": "It is a group of services hosted on a network which is a private structure and has the internet-like service provision.",
+    "a": "Intranet"
+  },
+  {
+    "q": "It is a method of sharing folders that allow multiple default public folders for each computer and files shared with same computer and with same network.",
+    "a": "Public Sharing"
+  },
+  {
+    "q": "It is a method of sharing folders that allows you to share folders quickly.",
+    "a": "Basic Sharing"
+  },
+  {
+    "q": "It is a method of turning a computer on or off wherein the system state is saved to memory.",
+    "a": "Sleep or Standby"
+  },
+  {
+    "q": "It is a new authentication features that controls the ability of online IDs to authenticate to a computer.",
+    "a": "Online Identity Integration"
+  },
+  {
+    "q": "It is a new Windows 7 security feature that enables IT professionals to specify exactly what is allowed to run on user desktops.",
+    "a": "Applocker"
+  },
+  {
+    "q": "It is a scriptable command line utility that create scripts to automate disk related task.",
+    "a": "Diskpart"
+  },
+  {
+    "q": "It is a security feature that simplifies the ability of users to run as standard users and perform all neccessary daily tasks",
+    "a": "User Account Control"
+  },
+  {
+    "q": "It is a small software program that allows a hardware device to communicate with a computer",
+    "a": "Drivers"
+  },
+  {
+    "q": "It is a software that is designed to deliberately harm a computer.",
+    "a": "Malicious Software"
+  },
+  {
+    "q": "It is a strong authentication (with strong EAP method) and strong (TKIP) or very strong (AES) encryption used by medium and large organization.",
+    "a": "WPA-Enterprise"
+  },
+  {
+    "q": "It is a tool used to remove system-specific data from the Windows operating system, configure windows to start in audit mode, configure the windows operating system to start the Windows Welcome phase and reset Windows Product activation.",
+    "a": "Sysprep"
+  },
+  {
+    "q": "It is a type of IPv4 Address that is required by the devices and host that connect directly to the Internet. This address must be unique, routable on the internet and must be assigned by IANA.",
+    "a": "Public IP Address"
+  },
+  {
+    "q": "It is a type of network that interconnect devices by means of radio waves instead of wires and cables",
+    "a": "Wireless Network"
+  },
+  {
+    "q": "It is a type of printing wherein it is used by legacy application in pre-vista version of windows that uses enhanced metafile format (EMF) as the spool file format.",
+    "a": "GDI based printing"
+  },
+  {
+    "q": "It is a way for you to limit use of disk space on a volume for each user to conserve disk space.",
+    "a": "Disk Quotas"
+  },
+  {
+    "q": "It is a windows 7 feature that enables support staff to connect to a remote desktop computer.",
+    "a": "Remote Assistance"
+  },
+  {
+    "q": "It is a windows 7 feature that enables user to connect to their desktop computer from another device.",
+    "a": "Remote Desktop"
+  },
+  {
+    "q": "It is a Windows Authentication Method that is used by windows 7 clients and server running Microsoft Windows Server 2000 or later",
+    "a": "Kerberos v5"
+  },
+  {
+    "q": "It is a wireless network modes that allows a wireless network adapters connects directly to another wireless network adapter for the purpose of temporarily sharing of files, presentations or an internet connection among multiple computers and devices.",
+    "a": "Ad hoc mode"
+  },
+  {
+    "q": "It is an administrative tool for managing user settings and computer settings across a network",
+    "a": "Window Update Group Policy"
+  },
+  {
+    "q": "It is an enhanced privacy features of Internet Explorer 8 that inherently more secure that using delete browsing history to maintain privacy because there are no logs kept or tracks made during browsing",
+    "a": "InPrivate Browsing"
+  },
+  {
+    "q": "It is an object that contains all of the information that defines a user in Windows Server 2008 R2.",
+    "a": "User Account"
+  },
+  {
+    "q": "It is one of the Considerations on why using the option of Upgrade rather than Migrate.",
+    "a": "Does not require the reinstallation of applications"
+  },
+  {
+    "q": "It is one of the feature of Windows 7 that encrypts the computer operating system and data stored on the operating system volume.",
+    "a": "Bitlocker"
+  },
+  {
+    "q": "It is one of the features of Mobile Computers wherein it synchronizes various content including music, video, contacts, calendar events, web browser favorites and other files between Windows Mobile devices and Windows 7",
+    "a": "Windows Mobile Device Center"
+  },
+  {
+    "q": "It is one of the Key Features of Windows 7 that simplify a user's ability to organize, search for, and view information.",
+    "a": "Usability"
+  },
+  {
+    "q": "It is one of the Key Features of Windows 7 that takes advantage of modern computing hardware, running more reliably and providing more consistent performance than previous versions of Windows.",
+    "a": "Reliability and Performance"
+  },
+  {
+    "q": "It is one of the Key Features of Windows 7 that takes advantage of modern computing hardware, running more reliably and providing more consistent performance thanprevious versions of Windows.",
+    "a": "Reliability and Performance"
+  },
+  {
+    "q": "It is one of the Options for Installing Windows 7 where in you install Windows 7 on a new partition and replace an existing operating system on a partition.",
+    "a": "Clean Installation"
+  },
+  {
+    "q": "It is one of the Options for Installing Windows 7 where in you replace an existing version of Windows with Windows 7 but all user applications, files and settings are retained.",
+    "a": "Upgrade Installation"
+  },
+  {
+    "q": "It is the built-in encryption tool for Windows file systems",
+    "a": "Encrypting File Systems"
+  },
+  {
+    "q": "It is the foundation of the Internet naming scheme and it supports accessing resources by using alphanumeric names.",
+    "a": "DNS Server"
+  },
+  {
+    "q": "It is the measurement of how a system conforms to expected behavior",
+    "a": "Reliability"
+  },
+  {
+    "q": "It is the measurement on how quickly the computer completes a task.",
+    "a": "Performance"
+  },
+  {
+    "q": "It is the most common form of computer network.",
+    "a": "Local Area Network"
+  },
+  {
+    "q": "It is the non-contiguous storage of data on a volume",
+    "a": "Disk Fragmentation"
+  },
+  {
+    "q": "It is the process of determining whether something or someone has permission to access the resources",
+    "a": "Authorization"
+  },
+  {
+    "q": "It is the process of verifying the identity of something or someone.",
+    "a": "Authentication"
+  },
+  {
+    "q": "It is used to display IP Configuration information and to release and renew addresses",
+    "a": "ipconfig"
+  },
+  {
+    "q": "It provides assistance in resolving network-related issues",
+    "a": "Windows Network Diagnostics Tool"
+  },
+  {
+    "q": "It provides authenticaltion, host operations of master roles, hosting the global catalog and support group policies and sysvol.",
+    "a": "Domain Controller"
+  },
+  {
+    "q": "It provides storage for the users' files and share folders that contain users' files.",
+    "a": "File Server"
+  },
+  {
+    "q": "It provides transparent access to internal network resources whenever they are connected to the Internet. It also enables the IT Professionals to manage remote computers outside of the office and does not require a VPN connection.",
+    "a": "DirectAccess"
+  },
+  {
+    "q": "It reduces the complexity and amount of administrative work by using automatic TCP/IP configuration.",
+    "a": "DHCP Server"
+  },
+  {
+    "q": "It specifies which part of an IPv4 address is the network ID and which part of the IPv4 address is the Host ID.",
+    "a": "Subnet Mask"
+  },
+  {
+    "q": "It specifies which part of the IPv4 address is the host ID",
+    "a": "Subnet Mask"
+  },
+  {
+    "q": "Kayla is dissatisfied with the configuration of her keyboard and mouse. She wants to reset the keyboard speed and the mouse pointer rate. Which utility should she use to configure the keyboard and mouse properties?",
+    "a": "Control Panel"
+  },
+  {
+    "q": "LAN stands for Localized Area Networks",
+    "a": "False"
+  },
+  {
+    "q": "MBR (Master Boot Record) is on the first sector of the hard disk.",
+    "a": "True"
+  },
+  {
+    "q": "MBR Stands for?",
+    "a": "Master Boot Record"
+  },
+  {
+    "q": "Migrating is a recommended solution for home or small office scenario.",
+    "a": "False"
+  },
+  {
+    "q": "NSLOOKUP enables testing of name resolution",
+    "a": "True"
+  },
+  {
+    "q": "Provide services to view, configure, and troubleshoot your network access and sharing capabilities",
+    "a": "Network and Sharing Center"
+  },
+  {
+    "q": "Provides a timeline of system changes and reliability. It also provides a system stability chart and reports on software installations and software or hardware failures.",
+    "a": "Reliability Monitor"
+  },
+  {
+    "q": "Routers divides packets equally then send it to all end devices in the network",
+    "a": "False"
+  },
+  {
+    "q": "Simple Volume can be extended across disks creating a spanned volume.",
+    "a": "True"
+  },
+  {
+    "q": "Software Programs that provide functionality of a role",
+    "a": "Role Services"
+  },
+  {
+    "q": "Strong EAP methods provide strong authentication",
+    "a": "IEEE 802.1X"
+  },
+  {
+    "q": "Subnet Mask are used to determine the best route for packet forwarding",
+    "a": "False"
+  },
+  {
+    "q": "The default shared folder's permission can be modified by anyone who has access to it.",
+    "a": "False"
+  },
+  {
+    "q": "The most common form of computer network",
+    "a": "LAN"
+  },
+  {
+    "q": "This are equivalents to door locks, employee badges and security systems. It protects the computer and networks from intrusions.",
+    "a": "Firewall"
+  },
+  {
+    "q": "This are point-to-point connection across a private or public network. It uses special protocols, called tunneling protocol to make a virtual call to a virtual port.",
+    "a": "Virtual Private Network"
+  },
+  {
+    "q": "This Power plan saves power on a mobile computer by reducing system performance. Its primary purpose is to maximize the battery life.",
+    "a": "Power Saver"
+  },
+  {
+    "q": "Tracert verifies a routing path",
+    "a": "True"
+  },
+  {
+    "q": "Type of folder that contains multiple files and folders that are compressed to reduce storage size.",
+    "a": "Compress Folder"
+  },
+  {
+    "q": "Use a secure dynamic updates for DNS zones when configuring DNS for AD DS",
+    "a": "True"
+  },
+  {
+    "q": "WAN stands for:",
+    "a": "Wide Area Network"
+  },
+  {
+    "q": "Web Servers are computer that deliver Web Pages.",
+    "a": "True"
+  },
+  {
+    "q": "WET is the recommended tool for scenarios in which you have a small number of computers to migrate.",
+    "a": "True"
+  },
+  {
+    "q": "What does DHCP stands for?",
+    "a": "Dynamic Host Configuration Protocol"
+  },
+  {
+    "q": "What does GPO stands for?",
+    "a": "Group Policy Object"
+  },
+  {
+    "q": "What does WET stands for?",
+    "a": "Windows Easy Transfer"
+  },
+  {
+    "q": "What is the binary notation for the 255.255.255.0 subnet mask?",
+    "a": "11111111.11111111.11111111.00000000"
+  },
+  {
+    "q": "What is the IEEE 802 Standards for Local Wireless Networks?",
+    "a": "IEEE 802.11"
+  },
+  {
+    "q": "What is the maximum bit rate for the 802.11n technologies?",
+    "a": "600mbps"
+  },
+  {
+    "q": "What type of notation does IP version 6 address uses?",
+    "a": "Hexadecimal"
+  },
+  {
+    "q": "Where will you see the Manage Wireless Networks tool in your PC?",
+    "a": "Control Panel"
+  },
+  {
+    "q": "Which does not belong in the list of common wireless standards below",
+    "a": "80211h"
+  },
+  {
+    "q": "Which of the following is a main type of group?",
+    "a": "Distribution"
+  },
+  {
+    "q": "Which of the following is not a Boot-option for troubleshooting startup problems?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following is not a LAN Physical Topology?",
+    "a": "Crown"
+  },
+  {
+    "q": "Which of the following is not a Performance Monitor tool?",
+    "a": "Windows Memory Diagnostics Tool"
+  },
+  {
+    "q": "Which of the following is not a Physical WAN Components?",
+    "a": "Network Adaptor"
+  },
+  {
+    "q": "Which of the following is not a Server Role of Windows Server 2008 R2?",
+    "a": "Windows Power Shell"
+  },
+  {
+    "q": "Which of the following is not a Specialized version of Windows 7?",
+    "a": "Windows 7 Professional"
+  },
+  {
+    "q": "Which of the following is not a way to improve the signal strength?",
+    "a": "None of the Choices"
+  },
+  {
+    "q": "Which of the following is not a Wireless LAN Standards?",
+    "a": "802.11 h"
+  },
+  {
+    "q": "Which of the following is not an advantage of installing a 64-bit edition of Windows 7?",
+    "a": "It supports 16-bit Windows on Windows (WOW) environment"
+  },
+  {
+    "q": "Which of the following is not an IPv6 Address types?",
+    "a": "Broadcast"
+  },
+  {
+    "q": "Which of the following is not the common network architecture types?",
+    "a": "WiMax"
+  },
+  {
+    "q": "Which of the following statement is not correct?",
+    "a": "You can configure the client computer by going to the accessories in the start menu and clicking the network options."
+  },
+  {
+    "q": "Which of the following version of Windows are allowed for Upgrade?",
+    "a": "Windows Vista SP1"
+  },
+  {
+    "q": "Windows Memory Diagnostics Tool",
+    "a": "Windows Network Diagnostics Tool"
+  },
+  {
+    "q": "Windows Upgrade Advisor is a downloadable application that helps Windows user to determine what edition of Windows meets their needs.",
+    "a": "True"
+  },
+  {
+    "q": "Wireless network provides access to internet in public spaces",
+    "a": "True"
+  },
+  {
+    "q": "You administer an Active Directory domain that includes portable computers that have Windows 7 SP1 installed. You log on to one of the portable computers by using a domain user account and install a new device for a bar-code scanner. You restart the portable computer after installing the new device driver. You successfully log on to the computer by using a domain user account. After logging on, you discover that the bar-code scanner is not working due to a driver error. You try to remove the installed driver, but the Roll Back Driver option is unavailable. You need to be able to roll back the driver to its previous version. What should you do?",
+    "a": "Run the Device Manager by using elevated permissions"
+  },
+  {
+    "q": "You are a desktop administrator for an enterprise organization. A user applies a device update from the manufacturer, and now the computer is displaying error messages. The user has critical documents on the computer that need to be preserved. You need to restore the computer to an operating state and preserve applications and data. What should you do?",
+    "a": "Restore Windows by using the most recent System Restore point"
+  },
+  {
+    "q": "You are evaluating the purchase a netbook computer that has the following hardware: 1.6-gigahertz (GHz) 32-bit processor 1024-MB RAM 1 video card that uses shared memory 4-G8 solid state drive You need to ensure that you can install Windows 7 Enterprise on the netbook computer. Which hardware component should you change or add?",
+    "a": "storage device"
+  },
+  {
+    "q": "You are the administrator for a large organization with multiple Windows Server 2008 domain controllers and multiple domains. You have a Windows 7 machine that is set up for all users to access. You have an application called StellApp.exe that everyone on this Windows 7 computer can use except for the sales group. How do you stop the sales group from accessing this one application?",
+    "a": "Create an executable rule from the Application Control Policy"
+  },
+  {
+    "q": "You are the network administrator for a large organization that uses both Windows Server 2008 R2 and Windows 7. One of the Windows 7 machines needs to be backed up daily. You perform an image backup on the Windows 7 machine. The Windows 7 machine then gets struck by a virus and will not start up properly. What can you do to get the Windows 7 machine up and running the fastest possible way",
+    "a": "Start the computer from the Windows 7 DVD and then use the System Image Recovery tool"
+  },
+  {
+    "q": "You are the network administrator for a large organization. You are in charge of implementing company policies. One company policy states that you have to prevent Internet Explorer from saving any data during a user`s browsing session. How do you accomplish this?",
+    "a": "Run the browsers in the InPrivate session"
+  },
+  {
+    "q": "You are the network administrator for a small company that has just switched its machines from Windows XP to Windows Vista and Windows 7. One of the users who has Windows Vista asks you why there is a vertical sidebar on the screen. What feature of Windows Vista is this?",
+    "a": "Windows Sidebar"
+  },
+  {
+    "q": "You are the network administrator for Stellacon Corporation. User in the sales department have been complaining that the Sales application is slow to load. Using Performance Monitor, you create a baseline report for one of the computers, monitoring memory, the processor, the disk subsystem, and the network subsystem. You notice that the disk subsystem has a high load of activity. What other subsystem should you monitor before you can know for sure whether you have a disk subsystem bottleneck?",
+    "a": "Memory"
+  },
+  {
+    "q": "You are the network administrator for your organization. You have been asked by the owner of the company to verify that all drivers installed on the Windows 7 machines are signed drivers. How do you accomplish this task?",
+    "a": "Run Sigverif.exe at the command prompt"
+  },
+  {
+    "q": "You are the network manager for a small company. You have a junior IT administrator who did some installations last week on a Windows 7 machine. How can you see what applications were installed last week on the Windows 7 machine?",
+    "a": "View the informational events of Reliability Monitor"
+  },
+  {
+    "q": "You are the system administrator for a large organization that uses Windows Server R2 and Windows 7. You have a Windows 7 machine and have enabled System Protection. You want the machine to retain only the last System Protection snapshot that was taken. What should you do?",
+    "a": "Run Disk Cleanup for System Restore and then run Shadow Copies"
+  },
+  {
+    "q": "You are the system administrator for your company. You are configuring the services on a Windows 7 computer. You want to ensure that if a service fails to load, it will attempt to restart. Which tab of the service`s Properties dialog box should you use?",
+    "a": "Recovery"
+  },
+  {
+    "q": "You have a computer that runs Windows 7. The computer is a member of a workgroup. You use Encrypting File System (EFS) to protect your local files. You need to ensure that you can decrypt EFS files on the computer if you forget your password. What should you do?",
+    "a": "From User Accounts, Select Manage your file encryption certificates."
+  },
+  {
+    "q": "You install the Windows Automated Installation Kit (WAIK) for Windows 7 on a computer that runs Windows 7. You want to deploy a Windows image (WIM) file to other computers in the domain. You need to capture the operating system, computer configuration, and applications installed on the computer to a WIM file. What should you do before you capture the image?",
+    "a": "Run ScanState.exe"
+  },
+  {
+    "q": "You manage a network device by using a web interface. You perform all critical Windows updates so that the computer now runs Internet Explorer 10. After performing these updates, the layout of the network device web page displays incorrectly. Other web pages display correctly. You need to resolve this issue. What should you do?",
+    "a": "Add the network device web page to the trusted sites zone"
+  },
+  {
+    "q": "You use a portable computer that has Windows 7 Enterprise SP1 installed. A conference room at your company has a network projector installed on a server within the company network. You need to connect to the projector from your computer. What should you do?",
+    "a": "From Accessories, click Connect to a Network Projector"
+  },
+  {
+    "q": "Your company has asked you to implement Network Access Protection(NAP) on the network. You already have Windows Server 2008 installed on your servers but your organization wants to know which client operating systems will support NAP. What operating system does not support NAP?",
+    "a": "Windows XP with SP2"
+  },
+  {
+    "q": "Your company network includes desktop computers that have Windows 7 installed. Microsoft updates are applied automatically at a scheduled time. A use1- reports that a proprietary application has stopped working. You need to uninstall the most recent update from Microsoft. What should you do first?",
+    "a": "From the Action Center, open the Windows Update window."
+  }
+]

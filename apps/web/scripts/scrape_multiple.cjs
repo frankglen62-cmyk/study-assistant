@@ -3,46 +3,95 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Individual/Dual Sports',
-    slug: 'individual-dual-sports',
-    expectedCount: 303,
+    name: 'National Service Training Program 2',
+    slug: 'national-service-training-program-2',
+    expectedCount: 198,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/nstp/national-service-training-program-2-6102-nstp'
+  },
+  {
+    name: 'Object Oriented Programming',
+    slug: 'object-oriented-programming',
+    expectedCount: 155,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/cs/object-oriented-programming-6203-cs'
+  },
+  {
+    name: 'Principles of Operating Systems and its Applications',
+    slug: 'principles-of-operating-systems-and-its-applications',
+    expectedCount: 189,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/cs/principles-of-operating-systems-and-its-applications-6206-cs'
+  },
+  {
+    name: 'Readings in Philippine History',
+    slug: 'readings-in-philippine-history',
+    expectedCount: 214,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/ge/readings-in-philippine-history-6101-ge'
+  },
+  {
+    name: 'Science, Technology and Society',
+    slug: 'science-technology-and-society',
+    expectedCount: 358,
     pages: 5,
-    baseUrl: 'https://amauoed.com/courses/phyed/individualdual-sports-6103-phyed'
+    baseUrl: 'https://amauoed.com/courses/ge/science-technology-and-society-6116-ge'
   },
   {
-    name: 'Information Assurance and Security 1',
-    slug: 'information-assurance-and-security-1',
-    expectedCount: 405,
-    pages: 6,
-    baseUrl: 'https://amauoed.com/courses/it/information-assurance-and-security-1-6205a-it'
+    name: 'Understanding the Self',
+    slug: 'understanding-the-self',
+    expectedCount: 204,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/ge/understanding-the-self-6100-ge'
   },
   {
-    name: 'Introduction to Human Computer Interaction',
-    slug: 'introduction-to-human-computer-interaction',
-    expectedCount: 432,
-    pages: 6,
-    baseUrl: 'https://amauoed.com/courses/it/introduction-to-human-computer-interaction-6200-it'
+    name: 'System Integration and Architecture 1',
+    slug: 'system-integration-and-architecture-1',
+    expectedCount: 160,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/it/system-integration-and-architecture-1-6208-it'
   },
   {
-    name: 'Kritikal na Pagbasa, Pagsulat at Pagsasalita',
-    slug: 'kritikal-na-pagbasa-pagsulat-at-pagsasalita',
-    expectedCount: 558,
+    name: '2D/3D Digital Animation',
+    slug: '2d3d-digital-animation',
+    expectedCount: 108,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/cs/2d3d-digital-animation-6211-cs'
+  },
+  {
+    name: 'Mathematics in the Modern World',
+    slug: 'mathematics-in-the-modern-world',
+    expectedCount: 111,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/ge/mathematics-in-the-modern-world-6114-ge'
+  },
+  {
+    name: 'Audio and Video Production (Digital Imaging)',
+    slug: 'audio-and-video-production',
+    expectedCount: 370,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/cs/audio-and-video-production-6321-cs'
+  },
+  {
+    name: 'Living in the IT Era',
+    slug: 'living-in-the-it-era',
+    expectedCount: 135,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/ge/living-in-the-it-era-6221-ge'
+  },
+  {
+    name: 'Physical Fitness',
+    slug: 'physical-fitness',
+    expectedCount: 537,
     pages: 8,
-    baseUrl: 'https://amauoed.com/courses/fili/kritikal-na-pagbasa-pagsulat-at-pagsasalita-6201-fili'
+    baseUrl: 'https://amauoed.com/courses/phyed/physical-fitness-6101-phyed'
   },
   {
-    name: 'Life and Works of Jose Rizal',
-    slug: 'life-and-works-of-jose-rizal',
-    expectedCount: 500, // Guessing expected count based on 7 pages
-    pages: 7,
-    baseUrl: 'https://amauoed.com/courses/ge/life-and-works-of-jose-rizal-6300-ge'
-  },
-  {
-    name: 'National Service Training Program 1',
-    slug: 'national-service-training-program-1',
-    expectedCount: 352,
-    pages: 5,
-    baseUrl: 'https://amauoed.com/courses/nstp/national-service-training-program-1-6101-nstp'
+    name: 'Team Sports',
+    slug: 'team-sports',
+    expectedCount: 281,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/phyed/team-sports-6200-phyed'
   }
 ];
 

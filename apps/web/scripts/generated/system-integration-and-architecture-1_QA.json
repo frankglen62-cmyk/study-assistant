@@ -1,0 +1,642 @@
+[
+  {
+    "q": "\"An architectural style represents a family of related systems\"",
+    "a": "Style"
+  },
+  {
+    "q": "\"An operational concept is a shared vision from the perspective of the system’s stakeholders of how the system will be:\"",
+    "a": "Developed, Produced, Deployed, Trained, Used and maintained, Refined, Retired"
+  },
+  {
+    "q": "\"Characteristics of Distributed System\"",
+    "a": "Resource Sharing, Openness, Concurrency, Scalable, Fault Tolerant and Transparent"
+  },
+  {
+    "q": "\"Conditions that must be true once the use case is run e.g. ;\"",
+    "a": "Post"
+  },
+  {
+    "q": "\"Data flow or control flow diagrams\"",
+    "a": "Relationship Model"
+  },
+  {
+    "q": "\"Defines subsystem interfaces\"",
+    "a": "Interface Model"
+  },
+  {
+    "q": "\"Describes the proposed functionality of the new system\"",
+    "a": "Use Case"
+  },
+  {
+    "q": "\"Description of the system output by architectural design\"",
+    "a": "Software Architecture"
+  },
+  {
+    "q": "\"Design is the essence of engineering.\"",
+    "a": "System Design"
+  },
+  {
+    "q": "\"Designed to run on a single user system\"",
+    "a": "Personal System"
+  },
+  {
+    "q": "\"Ensures that specific hardware/software components fit together smoothly in a stated configuration\"",
+    "a": "System Integration"
+  },
+  {
+    "q": "\"Graphs of components and connectors\"",
+    "a": "System"
+  },
+  {
+    "q": "\"Identified subsystems decomposed into modules\"",
+    "a": "Modular Decomposition"
+  },
+  {
+    "q": "\"Is an interaction diagram that emphasizes the time ordering of messages\"",
+    "a": "Sequence Diagram"
+  },
+  {
+    "q": "\"Is essential to the development of large, complex engineered systems.\"",
+    "a": "System Integration"
+  },
+  {
+    "q": "\"Is the design upon which many general purpose computers are based.\"",
+    "a": "\"Von Neumann Architecture\""
+  },
+  {
+    "q": "\"May run on a single processor\"",
+    "a": "Embedded System"
+  },
+  {
+    "q": "\"Measures of performance (MOP) and measures of effectiveness (MOE) are obtained\"",
+    "a": "Evaluation Phase"
+  },
+  {
+    "q": "\"Model of control relationships among system components is established\"",
+    "a": "Control Modeling"
+  },
+  {
+    "q": "\"No distinctions made between clients and servers\"",
+    "a": "Distributed Object"
+  },
+  {
+    "q": "\"Offer distributed services which may be called by clients\"",
+    "a": "Client/Server"
+  },
+  {
+    "q": "\"People who do similar tasks, have similar skills and/or jobs in an organization\"",
+    "a": "Functional Stucture"
+  },
+  {
+    "q": "\"Process for identifying the subsystems that make up a system\"",
+    "a": "Architectural Design"
+  },
+  {
+    "q": "\"Represent the non-structural information about the parts of an architecture description\"",
+    "a": "Properties"
+  },
+  {
+    "q": "\"Requires the coordination of preexisting and coexisting system components with newly developed ones\"",
+    "a": "System Integration"
+  },
+  {
+    "q": "\"Sequence diagram to depict the workflow – as above but graphically portrayed\"",
+    "a": "Scenarios Diagram"
+  },
+  {
+    "q": "\"Shows major system components\"",
+    "a": "Static Structural Model"
+  },
+  {
+    "q": "\"Shows process structure of the system\"",
+    "a": "Dynamic Process Model"
+  },
+  {
+    "q": "\"System decomposed into several subsystems\"",
+    "a": "System Structuring"
+  },
+  {
+    "q": "\"System software runs on loosely integrated group of cooperating processors linked by a network\"",
+    "a": "Distributed System"
+  },
+  {
+    "q": "\"Team members are given more autonomy and expected to take more responsibility for their work.\"",
+    "a": "Matrix Structure"
+  },
+  {
+    "q": "\"The computational elements and data stores of the system\"",
+    "a": "Components"
+  },
+  {
+    "q": "\"The design process begins with the identification of a human need and the reduction of this need to a precise set of specifications for the system to be built.\"",
+    "a": "Problem Definition"
+  },
+  {
+    "q": "\"The ranking of design alternatives and the ultimate selection of the most preferred design involves the selection of the best parameterization of the best conceptual design.\"",
+    "a": "Ranking and Selection"
+  },
+  {
+    "q": "\"The result of design synthesis is the selection of a promising set of preliminary or conceptual designs for the system.\"",
+    "a": "Parameterization"
+  },
+  {
+    "q": "\"The static representatives of the functional and physical\"",
+    "a": "Analysis Phase"
+  },
+  {
+    "q": "\"The ultimate step in the design process involves the fabrication and testing of a prototype or system.\"",
+    "a": "Prototype and Testing"
+  },
+  {
+    "q": "\"These are the formal rules an limitations that a use case operates under, and includes pre-post and invariant conditions.\"",
+    "a": "Contraints"
+  },
+  {
+    "q": "\"These design concepts need to be converted into for all components and subsystems.\"",
+    "a": "Analysis"
+  },
+  {
+    "q": "\"Things that the use case must allow the user to do, such as\"",
+    "a": "Requirements"
+  },
+  {
+    "q": "\"This involves generating alternative designs, or that might reasonably satisfy system specifications.\"",
+    "a": "Design Synthesis"
+  },
+  {
+    "q": "\"This kind of structure will ensure greater output of varieties of similar products.\"",
+    "a": "Divisional Structure"
+  },
+  {
+    "q": "1st features of System Control Component",
+    "a": "Management Tools"
+  },
+  {
+    "q": "1st System Integration Life Cycle",
+    "a": "Requirements definition and specification"
+  },
+  {
+    "q": "1st System Integration Life Cycle : System architecture development ; Requirements definition and specification ; Management plan:program and project plan ; Feasibility analysis",
+    "a": "Requirements definition and specification"
+  },
+  {
+    "q": "2nd features of System Control Component",
+    "a": "Directory Tools"
+  },
+  {
+    "q": "2nd System Integration Life Cycle",
+    "a": "Feasibility analysis"
+  },
+  {
+    "q": "2nd System Integration Life Cycle : Management plan:program and project plan ; Feasibility analysis ; System architecture development ; Requirements definition and specification",
+    "a": "Feasibility analysis"
+  },
+  {
+    "q": "3rd features of System Control Component",
+    "a": "Commitment control management mechanism"
+  },
+  {
+    "q": "3rd System Integration Life Cycle",
+    "a": "System architecture development"
+  },
+  {
+    "q": "3rd System Integration Life Cycle : Management plan:program and project plan ; System design: logical and physical design ; System architecture development ; System",
+    "a": "System architecture development"
+  },
+  {
+    "q": "4th features of System Control Component",
+    "a": "Strong support for metadata management"
+  },
+  {
+    "q": "4th System Integration Life Cycle",
+    "a": "Management plan: program and project plan"
+  },
+  {
+    "q": "4th System Integration Life Cycle : Management plan: program and project plan ; program ; feasibility ; system",
+    "a": "Management plan: program and project plan"
+  },
+  {
+    "q": "5th System Integration Life Cycle",
+    "a": "\"Systems design: logical and physical design\""
+  },
+  {
+    "q": "5th System Integration Life Cycle : Design ; Command ; Systems design: logical and physical design; System",
+    "a": "Systems design: logical and physical design"
+  },
+  {
+    "q": "6th System Integration Life Cycle",
+    "a": "\"Implementation: design implementation, system tests, and operational deployment\""
+  },
+  {
+    "q": "6th System Integration Life Cycle : Design ; Feasibility Analysis ; Evaluation ; Implementation: design implementation, system tests, and operational deployment",
+    "a": "Implementation: design implementation, system tests, and operational deployment"
+  },
+  {
+    "q": "7th System Integration Life Cycle",
+    "a": "\"Evaluation: system review and plan for replacement/retirement\""
+  },
+  {
+    "q": "7th System Integration Life Cycle : Problem Definition ; System Design ; Evaluation: system review and plan for replacement/retirement ; Feasibility Analysis",
+    "a": "Evaluation: system review and plan for replacement/retirement"
+  },
+  {
+    "q": "A variety of segmentsintended to achieve a specific goal as indicated by plan.",
+    "a": "System"
+  },
+  {
+    "q": "Acronym: CAE",
+    "a": "Computer-Aided Engineering"
+  },
+  {
+    "q": "Acronym: CAM",
+    "a": "Computer-Aided Manufacturing"
+  },
+  {
+    "q": "Acronym: CIM",
+    "a": "Computer-Integrated Manufacturing"
+  },
+  {
+    "q": "Acronym: CIR",
+    "a": "Current Instruction Register"
+  },
+  {
+    "q": "Acronym: MAR",
+    "a": "Memory Address Register"
+  },
+  {
+    "q": "Acronym: MDR",
+    "a": "Memory Data Register"
+  },
+  {
+    "q": "Acronym: SDLC",
+    "a": "System Development Life Cycle"
+  },
+  {
+    "q": "Advantages of EA",
+    "a": "Cost Effectiveness, Time to market, Scability and Ability to deal with complex environment"
+  },
+  {
+    "q": "Advantages of Object-Oriented approach: Allows flexibility in the design as it evolves over time",
+    "a": "True"
+  },
+  {
+    "q": "Are the peopleinvolved in or affected by project activities",
+    "a": "Stakeholders"
+  },
+  {
+    "q": "Aremore complex in that they group people in two different ways: by the functionthey perform and by the product team they are working with.",
+    "a": "Matrix Structure"
+  },
+  {
+    "q": "Characteristics of Distributed System : Resource Sharing, Openness, Concurrency, Scalable, Fault Tolerant and Transparent; System, Openness, Concurrency, Scalable, Fault Tolerant and Transparent ; Resource Sharing, Personal System, Concurrency, Scalable, Fault Tolerant and Transparent",
+    "a": "Resource Sharing, Openness, Concurrency, Scalable, Fault Tolerant and Transparent"
+  },
+  {
+    "q": "Components expected to demonstrate a product engineering include",
+    "a": "Segments, Connectors, Systems, Properties, Styles"
+  },
+  {
+    "q": "Conditionsthat must be true once the use case is run e.g. <order is modified andconsistent>;",
+    "a": "Post"
+  },
+  {
+    "q": "Data flow or control flow diagrams",
+    "a": "Relationship Mode"
+  },
+  {
+    "q": "Data flow or control flow diagrams : Relationship Model ; System ; Interface Model ; Dynamic Process Model",
+    "a": "Relationship Model"
+  },
+  {
+    "q": "Defines subsystem interfaces : Interface Model ; Control Modeling ; Dynamic Process Model ; System Structuring",
+    "a": "Interface Model"
+  },
+  {
+    "q": "Definition: Aligning IT to business",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Definition: Its not technical",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Definition: Knowing and managing the current situation, paving the road for the wanted one.",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Definition: Message broker level",
+    "a": "Routing logic"
+  },
+  {
+    "q": "Definition: Queue level",
+    "a": "Routing logic"
+  },
+  {
+    "q": "Definition:Enforce homogeneous solutions and enable “One system” to the users.",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Definition:Implementation of information management",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Definition:Transverse view",
+    "a": "Enterprise Application"
+  },
+  {
+    "q": "Description of the system output by architectural design : System Structuring ; Architectural Design ; Control Modeling ; Software Architecture",
+    "a": "Software Architecture"
+  },
+  {
+    "q": "Descriptionof the steps taken to carry out the use case",
+    "a": "Scenarios"
+  },
+  {
+    "q": "Design is the essence of engineering. : Design Synthesis ; Problem Definition ; System Design ; System Integration",
+    "a": "System Design"
+  },
+  {
+    "q": "Design is universally understood to _be a creative, iterative, decision-making process since _there is no unique solution to a given design problem.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Designed to run on a single user system : Interface Model ; Dynamic Process Model ; Personal System ; Personal System",
+    "a": "Personal System"
+  },
+  {
+    "q": "Developers program and must write the tests for their own code.",
+    "a": "Extreme Programming"
+  },
+  {
+    "q": "Developers program in pairs and must write the tests for their own code.",
+    "a": "Extreme Programming"
+  },
+  {
+    "q": "Disadvantages of Object-Oriented approach:Requires some early elimination of technology alternatives in the absence of reliable information",
+    "a": "True"
+  },
+  {
+    "q": "Ensures that specific hardware/software components fit together smoothly in a stated configuration : System Integration ; Computer-Integrated Manufacturing ; Computer-Aided Manufacturing ; Computer-Aided Engineering",
+    "a": "System Integration"
+  },
+  {
+    "q": "Identified subsystems decomposed into modules : Modular Decomposition ; Control Modeling ; System Structuring ; Software Architecture",
+    "a": "Modular Decomposition"
+  },
+  {
+    "q": "In a divisionalstructure, the company will coordinate inter-group relationships to create awork team that can readily meet the needs of a certain customer or group ofcustomers",
+    "a": "Divisional Structure"
+  },
+  {
+    "q": "Is a framework fordescribing the phases involved in developing and maintaining informationsystems",
+    "a": "SDLC"
+  },
+  {
+    "q": "Is a method forunderstanding an element as far as its motivation, as three stages",
+    "a": "System Thinking"
+  },
+  {
+    "q": "Is essential to the development of large, complex engineered systems. : System Integration ; CAM ; CAE ; CIM",
+    "a": "System Integration"
+  },
+  {
+    "q": "Is it true or false that clarify the conduct or properties of the containing entirety.",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false that clarify the conduct or properties of the thing to be clarified as far as its role(s)or function(s) inside its containing entirety",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false that distinguish a containing entire (framework), of which the thing to be clarified is a section.",
+    "a": "True"
+  },
+  {
+    "q": "is it true or false: Processes exist that need to take place in order that the system accomplish its intended functions",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false: The individual processes transform either data or materials that “flow” between them",
+    "a": "True"
+  },
+  {
+    "q": "Is the creative process by which our understanding of logic and science is joined with our understanding of human needs and wants to conceive and refine artifacts that serve specific human purposes.",
+    "a": "Design"
+  },
+  {
+    "q": "Is the creative process by which our understanding of logic and science is joined with our understanding of human needs and wants to conceive and refine artifacts that serve specific human purposes. : CAD ; CAM ; CAE ; Design",
+    "a": "Design"
+  },
+  {
+    "q": "Is the design upon which many general purpose computers are based. : Blaise Pascal Architecture ; Von Neumann Architecture ; Blase Pascal Architecture ; Von Neuman Architecture",
+    "a": "Von Neumann Architecture"
+  },
+  {
+    "q": "Is the design upon which manygeneral purpose computersare based.",
+    "a": "Von Neumann Architecture"
+  },
+  {
+    "q": "Is the mix of betweenrelated components to accomplish a typical goal.",
+    "a": "System Integration"
+  },
+  {
+    "q": "Is to model theprocedural flow of actions that are part of a larger activity",
+    "a": "Activity Diagram"
+  },
+  {
+    "q": "It is assumed that, translation from human needs to final design invariably involves the experience, intuition, skill, and creativity of the designer or design team.",
+    "a": "True"
+  },
+  {
+    "q": "It should be noted that, no single realization of the design process is just the fight style for all.",
+    "a": "True"
+  },
+  {
+    "q": "May run on a single processor : Relationship Model ; Interface Model ; System ; Embedded System",
+    "a": "Embedded System"
+  },
+  {
+    "q": "Model interactions among components",
+    "a": "Connectors"
+  },
+  {
+    "q": "Model of control relationships among system components is established : System Structuring ; Software Architecture ; Modular Decomposition ; Control Modeling",
+    "a": "Control Modeling"
+  },
+  {
+    "q": "No distinctions made between clients and servers : Distributed Object ; Dynamic Process model ; Personal System ; Client/Server",
+    "a": "Distributed Object"
+  },
+  {
+    "q": "Offer distributed services which may be called by clients : Dynamic System ; Client/Server ; System ; Personal System",
+    "a": "Client/Server"
+  },
+  {
+    "q": "Process for identifying the subsystems that make up a system : Control Modeling ; Software Architecture ; Architectural Design; System Structuring",
+    "a": "Architectural Design"
+  },
+  {
+    "q": "Provides the means to share data between different applications without writing custom interfaces",
+    "a": "EIA"
+  },
+  {
+    "q": "Refers to the use of modem computing hardware and software in converting the initial idea for a product into a detailed engineering design",
+    "a": "CAD"
+  },
+  {
+    "q": "Refers to the use of modem computing hardware and software in converting the initial idea for a product into a detailed engineering design. : CIM ; CAM ; CAD ; Computer-Aided Design",
+    "a": "CAD"
+  },
+  {
+    "q": "Repetitions of iterative development are referred to as sprints, which normally last thirty days",
+    "a": "SCRUM"
+  },
+  {
+    "q": "Requires the coordination of preexisting and coexisting system components with newly developed ones : Ranking and Selection ; Problem Definition ; Parameterization ; System Integration",
+    "a": "System Integration"
+  },
+  {
+    "q": "Shows major system components : Dynamic Process Model ; Relationships Model ; Static Structural Model ; Interface Model",
+    "a": "Static Structural Model"
+  },
+  {
+    "q": "Shows process structure of the system",
+    "a": "Dynamic Process Mode"
+  },
+  {
+    "q": "Shows process structure of the system : Control Modeling ; Dynamic Process Model ; Interface Model ; Relationship Model",
+    "a": "Dynamic Process Model"
+  },
+  {
+    "q": "System decomposed into several subsystems : Architectural Design ; Control Modeling ; System Structuring ; Software Architecture",
+    "a": "System Structuring"
+  },
+  {
+    "q": "System software runs on loosely integrated group of cooperating processors linked by a network : Personal System ; System ; Distributed System ; Embedded System",
+    "a": "Distributed System"
+  },
+  {
+    "q": "The advantages ofthis kind of structure include quick decision making because the group membersare able to communicate easily with each other.",
+    "a": "Functional Structure"
+  },
+  {
+    "q": "The architecture of aframework characterizes its elevated level structure, uncovering its grossassociation as an accumulation of cooperating parts.",
+    "a": "System Architecture"
+  },
+  {
+    "q": "The concept of the design is understood to involve: finally, the selection, implementation, and testing of the most preferred alternative",
+    "a": "TRUE"
+  },
+  {
+    "q": "The concept of the design is understood to involve: the analysis and ranking of design alternatives;",
+    "a": "TRUE"
+  },
+  {
+    "q": "The concept of the design is understood to involve: the conceptualization and parameterization of alternative candidate designs that meet or surpass specifications;",
+    "a": "TRUE"
+  },
+  {
+    "q": "The concept of the design is understood to involve: the specification of measurable goals, objectives, and constraints for the design",
+    "a": "TRUE"
+  },
+  {
+    "q": "The design process begins with the identification of a human need and the reduction of this need to a precise set of specifications for the system to be built.",
+    "a": "Problem Definition"
+  },
+  {
+    "q": "The design process begins with the identification of a human need and the reduction of this need to a precise set of specifications for the system to be built. : Parameterization ; Analysis ; Design Synthesis; Problem Definition",
+    "a": "Problem Definition"
+  },
+  {
+    "q": "The fundamental andunifying system structure defined in terms of system elements, interfaces,processes, constraints, and behaviors",
+    "a": "Architecture"
+  },
+  {
+    "q": "The fundamental organization of a system embodied in its components, their relationships toeach other and to the environment and the principles guiding its design andevolution",
+    "a": "Architecture"
+  },
+  {
+    "q": "The organizationalstructure of a system of CSCIs, identifying its components, their interfacesand a concept of execution among them",
+    "a": "Architecture"
+  },
+  {
+    "q": "The ranking of design alternatives and the ultimate selection of the most preferred design involves the selection of the best parameterization of the best conceptual design. : Problem Definition ; Design Synthesis ; Parameterization ; Ranking and Selection",
+    "a": "Ranking and Selection"
+  },
+  {
+    "q": "The result of design synthesis is the selection of a promising set of preliminary or conceptual designs for the system. : Problem Definition ; Design Synthesis ; Parameterization ; Analysis",
+    "a": "Parameterization"
+  },
+  {
+    "q": "The static constructsare used, together with descriptions of the dynamic behavior of the architectureto obtain the executable operational X-architecture (X = executable property)",
+    "a": "Synthesis Phase"
+  },
+  {
+    "q": "The teams are puttogether based on the number of members needed to produce the product orcomplete the project.",
+    "a": "Project Organization Structure"
+  },
+  {
+    "q": "The ultimate step in the design process involves the fabrication and testing of a prototype or system. : Design Synthesis ; Parameterization ; Problem Definition ; Prototype and Testing",
+    "a": "Prototype and Testing"
+  },
+  {
+    "q": "The word _____ is derived from the Greek word “architecton”, which means master mason or master builder",
+    "a": "Architecture"
+  },
+  {
+    "q": "These design concepts need to be converted into _detailed designs _for all components and subsystems. : Analysis ; Problem Definition ; Design Synthesis ; Parameterization",
+    "a": "Analysis"
+  },
+  {
+    "q": "These design concepts need to be converted into detailed designs for all components and subsystems.",
+    "a": "Analysis"
+  },
+  {
+    "q": "This gives the detail of the structure of the system including the size, shape, materials, and quantities of components and the interrelationships among these design elements together.",
+    "a": "True"
+  },
+  {
+    "q": "This involves generating alternative designs, or _design options, _that might reasonably satisfy system specifications. : Parameterization ; Design Synthesis ; Analysis ; Problem Definition",
+    "a": "Design Synthesis"
+  },
+  {
+    "q": "This involves generating alternative designs, or design options, that might reasonably satisfy system specifications.",
+    "a": "Design Synthesis"
+  },
+  {
+    "q": "To allow access to the Data Source and Target Interfaces (i.e. Siebel, SAP, PeopleSoft, ODBC, Oracle, CICS, IMS) - note that the data acquisition component is crucial to EAI success. Most vendors refer to these interfaces as \"adapters“",
+    "a": "Data Acquisition Component"
+  },
+  {
+    "q": "To allow programmers to design and test custom requirements - Design tools (for business process design, debugging, and testing)",
+    "a": "System Development Component"
+  },
+  {
+    "q": "To allow the applications to understand your business processes.",
+    "a": "Business Rule Component"
+  },
+  {
+    "q": "VDesigned to run on a single user system",
+    "a": "Personal System"
+  },
+  {
+    "q": "What is the symbol in Source or Destination of Data",
+    "a": "Square"
+  },
+  {
+    "q": "What is the symbol name for Data Flow",
+    "a": "Arrow"
+  },
+  {
+    "q": "What is the symbol name for process transforming data flow",
+    "a": "Square"
+  },
+  {
+    "q": "What is the Three Basic O",
+    "a": "Functional, Project and Matrix"
+  },
+  {
+    "q": "What is the Three Basic Organizational Structures",
+    "a": "Functional, Project and Matrix"
+  }
+]

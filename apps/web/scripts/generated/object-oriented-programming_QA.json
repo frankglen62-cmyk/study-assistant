@@ -1,0 +1,622 @@
+[
+  {
+    "q": "A class can be made static only if it is _______________?",
+    "a": "Nested class"
+  },
+  {
+    "q": "A class can have multiple Static blocks, which will execute in the same sequence in which they have been written into the program.",
+    "a": "True"
+  },
+  {
+    "q": "A class derived from the abstract class must implement all those methods that are declared as abstract in the parent class.",
+    "a": "True"
+  },
+  {
+    "q": "A class that is declared using abstract keyword.",
+    "a": "Abstract class"
+  },
+  {
+    "q": "A class which is not abstract is referred as.",
+    "a": "Concrete class"
+  },
+  {
+    "q": "A constructor can be declared as final.",
+    "a": "False"
+  },
+  {
+    "q": "A final class can be inherited.",
+    "a": "False"
+  },
+  {
+    "q": "A final method cannot be overridden.",
+    "a": "True"
+  },
+  {
+    "q": "A final variable that is not initialized at the time of declaration is known as _______________.",
+    "a": "Blank final variable"
+  },
+  {
+    "q": "A Hash can represent either a directory or a file which is the core of the Java.nio package.",
+    "a": "False"
+  },
+  {
+    "q": "A popular general-purpose programming language and computing platform. It is fast, reliable, and secure.",
+    "a": "No Modifier"
+  },
+  {
+    "q": "Abstract method has no body.",
+    "a": "True"
+  },
+  {
+    "q": "ALGOL 68 programming language was released in 1968.",
+    "a": "True"
+  },
+  {
+    "q": "All programming languages ends each of your statements with a semicolon (;).",
+    "a": "False"
+  },
+  {
+    "q": "All variables declared in an interface are by default final.",
+    "a": "True"
+  },
+  {
+    "q": "Allows developers to create Java programs that can be executed and run by the JVM and JRE.",
+    "a": "JDK"
+  },
+  {
+    "q": "An abstract class can be instantiated.",
+    "a": "False"
+  },
+  {
+    "q": "An abstract class has no use until unless it is extended by some other class.",
+    "a": "True"
+  },
+  {
+    "q": "An abstract class must be extended and in a same way abstract method must be overridden.",
+    "a": "True"
+  },
+  {
+    "q": "An interface can implement another interface",
+    "a": "False"
+  },
+  {
+    "q": "ArrayList and HashMap are classes that allows you to manage ordered and unordered sets of data.",
+    "a": "True"
+  },
+  {
+    "q": "Attributes and methods with the access modifier protected can be accessed within your class, by all classes within the same package, and by all subclasses within the same or other packages.",
+    "a": "Protected"
+  },
+  {
+    "q": "Class that implements any interface must implement all the methods of that interface, else the class should be declared abstract.",
+    "a": "False"
+  },
+  {
+    "q": "Compiling is the process of a compiler going through the source code and creating a separate file that contains the machine code or the executable file.",
+    "a": "True"
+  },
+  {
+    "q": "Constants are simply container of information.",
+    "a": "False"
+  },
+  {
+    "q": "CRC stands for:",
+    "a": "Class Responsibility Collaboration"
+  },
+  {
+    "q": "CRCW stands for:",
+    "a": "Concurrent Read Concurrent Write"
+  },
+  {
+    "q": "Extending an interface can implement another interface.",
+    "a": "True"
+  },
+  {
+    "q": "Feature of java that is very easy to learn, and its syntax is simple, clean and easy to understand.",
+    "a": "Simple"
+  },
+  {
+    "q": "Feature of java that means, organizing our software as a combination of different types of objects that incorporates both data and behavior.",
+    "a": "Object-Oriented"
+  },
+  {
+    "q": "finalize is used in exception handling.",
+    "a": "False"
+  },
+  {
+    "q": "Finally is a method that is called by JVM during garbage collection.",
+    "a": "False"
+  },
+  {
+    "q": "HashSet implements everything the TreeSet does, but it also keeps everything in an order that you can control by implementing an interface called comparable in the class that you're storing.",
+    "a": "False"
+  },
+  {
+    "q": "Have methods and variables just like the class but the methods declared in it are by default abstract.",
+    "a": "Interface"
+  },
+  {
+    "q": "IDE stands for:",
+    "a": "Integrated Development Environment"
+  },
+  {
+    "q": "If a child does not implement all the abstract methods of abstract parent class, then the child class must need to be declared abstract as well.",
+    "a": "True"
+  },
+  {
+    "q": "If method parameters are declared final then the value of these parameters cannot be changed.",
+    "a": "True"
+  },
+  {
+    "q": "If you declare an abstract method in a class then you don't need to declare the class abstract as well.",
+    "a": "False"
+  },
+  {
+    "q": "Implements the remote interface of the component on the server.",
+    "a": "Object/Remote Interface"
+  },
+  {
+    "q": "Interface provides full abstraction as none of its methods have body.",
+    "a": "True"
+  },
+  {
+    "q": "Interface which is declared inside another interface or class.",
+    "a": "Nested interface"
+  },
+  {
+    "q": "It belong to the class instead of a specific instance, this means you can access it without object.",
+    "a": "Static members"
+  },
+  {
+    "q": "It can access class variables(static variables) without using object(instance) of the class.",
+    "a": "Static methods"
+  },
+  {
+    "q": "It checks the code fragments for illegal code that can violate access right to objects.",
+    "a": "Bytecode Verifier"
+  },
+  {
+    "q": "It determines what resources a class can access such as reading and writing to the local disk.",
+    "a": "Security Manager"
+  },
+  {
+    "q": "It facilitates you to carry the Java bytecode to any platform.",
+    "a": "Portable"
+  },
+  {
+    "q": "It has the static keyword as a prefix in its declaration. Its definition occurs only inside a class and outside any function.",
+    "a": "Class variables"
+  },
+  {
+    "q": "It is a blueprint for objects to follow a specific schema defined in the class.",
+    "a": "Class"
+  },
+  {
+    "q": "It is a data type that accepts only true or false value.",
+    "a": "Boolean"
+  },
+  {
+    "q": "It is a good practice to name final variable in all CAPS.",
+    "a": "True"
+  },
+  {
+    "q": "It is a Java platform component that executes programs.",
+    "a": "JVM"
+  },
+  {
+    "q": "It is a type of pattern defines as one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.",
+    "a": "Observer Pattern"
+  },
+  {
+    "q": "It is a type of pattern that allow an object to alter its behavior or when its internal state changes and the object will appear to change its class.",
+    "a": "State Pattern"
+  },
+  {
+    "q": "It is a type of pattern that attaches additional responsibilities to an object dynamically. This pattern provide a flexible alternative to sub-classing for extending functionality.",
+    "a": "Decorator Pattern"
+  },
+  {
+    "q": "It is a type of pattern that ensures a class has only one instance and provide a global access point to it.",
+    "a": "Singleton Pattern"
+  },
+  {
+    "q": "It is a type of pattern that provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
+    "a": "Iterator Pattern"
+  },
+  {
+    "q": "It is a type of programming wherein it generates dynamic pages, takes user input, access and modify temporary local storage and lastly, sends and receive request with server.",
+    "a": "Client Side"
+  },
+  {
+    "q": "It is an interface with blocks of data that deals with moving of complex data.",
+    "a": "Coarse-grained Java Object"
+  },
+  {
+    "q": "It is an object created within a specific client session, that is usually in conversational state and doesn't use memory outside the client session.",
+    "a": "Session Object"
+  },
+  {
+    "q": "It is an object designed to be persistent and has unique primary key identifier, that stores data across client sessions.",
+    "a": "Entity Object"
+  },
+  {
+    "q": "It is common to all the instances (or objects) of the class because it is a class level variable.",
+    "a": "Static variable"
+  },
+  {
+    "q": "It is define as a family of algorithms, encapsulates each one and makes them interchangeable. This lets the algorithm vary independently from clients that use it.",
+    "a": "Stragey Pattern"
+  },
+  {
+    "q": "It is not a specific object or program but instead it is a set of programming standards that all properties are private, has getter and setter methods, has public constructors that takes no arguments and can implement serializable API.",
+    "a": "Enterprise JavaBeans"
+  },
+  {
+    "q": "It is one of the 5 steps of Object Oriented Design Process wherein it is the simple narrative about the application. Typically in use case or user stories.",
+    "a": "Describe the Application"
+  },
+  {
+    "q": "It is one of the Extension features of JavaBeans wherein you focused on making your applications personalized for different regions or different clients.",
+    "a": "Localization"
+  },
+  {
+    "q": "It is one of the several components of Javabeans that receives JMS message asynchronously.",
+    "a": "Message Bean"
+  },
+  {
+    "q": "It is one way to handle conflicts by allowing only one processor to access a memory location at a given time and the other processor of the server will be locked out. This is considered the safest but slowest solution.",
+    "a": "EREW"
+  },
+  {
+    "q": "It is referred to as the communication speed that is limited by the speed of light and can be reduced through careful workflow balancing.",
+    "a": "Latency"
+  },
+  {
+    "q": "It is the ability of the server to allow multiple clients sending a message into a single bean and the data stored in the server can be accessed by multiple client simultaneously.",
+    "a": "Concurrent Access"
+  },
+  {
+    "q": "It is the framework that helps the server to interface with the JavaBeans components.",
+    "a": "Container"
+  },
+  {
+    "q": "It is the most fundamental entity in Java or any other Object Oriented Language.",
+    "a": "Object"
+  },
+  {
+    "q": "It is the on-disk part of Java that creates the JVM.",
+    "a": "JRE"
+  },
+  {
+    "q": "It is the process wherein you capitalized the first letter of every word.",
+    "a": "CamelCase"
+  },
+  {
+    "q": "It is the solutions to common software design problems that occur over and over in software development.",
+    "a": "Design Pattern"
+  },
+  {
+    "q": "It is the Standard Java Program or the Program itself.",
+    "a": "Components"
+  },
+  {
+    "q": "It is used for initializing the static variables.",
+    "a": "Static Block"
+  },
+  {
+    "q": "Java and Javascript language is the same and related to one another.",
+    "a": "False"
+  },
+  {
+    "q": "Java is a write once, runObject Oriented Programming anywhere language.",
+    "a": "Object-Oriented"
+  },
+  {
+    "q": "Java is an Object-Oriented programming language developed by ______________ in the early 1990s",
+    "a": "James Gosling"
+  },
+  {
+    "q": "Java is to application programming language and _______________ is to designed for web development.",
+    "a": "Javascript"
+  },
+  {
+    "q": "Java Reflection API gives you tools that let you walk up the inheritance tree.",
+    "a": "True"
+  },
+  {
+    "q": "Java7 has new file system API with classes Path, Paths, Files, File System and more.",
+    "a": "True"
+  },
+  {
+    "q": "JavaScript is known to be an interpreted scripting language.",
+    "a": "True"
+  },
+  {
+    "q": "JVM stands for:",
+    "a": "Java Virtual Machine"
+  },
+  {
+    "q": "LinkedList is a class that is high performance and very easy to use but it has a drawback that you can add new items to the end of an LinkedList but you can't arbitrarily place new items with it.",
+    "a": "False"
+  },
+  {
+    "q": "Local final variable must be initializing during declaration.",
+    "a": "True"
+  },
+  {
+    "q": "Making a member static can access it without object.",
+    "a": "True"
+  },
+  {
+    "q": "Nested interface are also known as?",
+    "a": "Inner interface"
+  },
+  {
+    "q": "One of the new features of Java 7 is the String values in the Switch Statement.",
+    "a": "True"
+  },
+  {
+    "q": "One of the OOPs feature that allows us to perform a single action in different ways.",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "Part of the Java Runtime Environment(JRE) which is used to load Java classes into the Java Virtual Machine dynamically.",
+    "a": "Classloader"
+  },
+  {
+    "q": "Phyton 3 programming language was released in 2009.",
+    "a": "False"
+  },
+  {
+    "q": "Programming is the process of giving directions to a computer and this Program has instructions called statements.",
+    "a": "True"
+  },
+  {
+    "q": "Programming language source code can be bolded or underlined or italicized or justified.",
+    "a": "False"
+  },
+  {
+    "q": "Programming Languages are just bridging the gap between human beings and computer hardware.",
+    "a": "True"
+  },
+  {
+    "q": "Red Head Duck __ __ DUCK",
+    "a": "Is-A Relationship"
+  },
+  {
+    "q": "Static Initializer is a common thing in java programming wherein you initialize the values of fields in constructor methods.",
+    "a": "True"
+  },
+  {
+    "q": "Static variables are also known as ______________________?",
+    "a": "Class variables"
+  },
+  {
+    "q": "Sub class is invoked when we create the object of subclass, it by default invokes the default constructor of super class.",
+    "a": "Constructor"
+  },
+  {
+    "q": "The capability of a method to do different things based on the object that it is acting upon. In other words, it allows you define one interface and have multiple implementations.",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "The class that extends the features of another class is known as _____________?",
+    "a": "B and C"
+  },
+  {
+    "q": "The class that implements interface must implement all the methods of that interface.",
+    "a": "True"
+  },
+  {
+    "q": "The class whose properties and functionalities are use (inherited) by another class is known as _______________?",
+    "a": "Parent Class"
+  },
+  {
+    "q": "The following are the advantages of Inheritance except.",
+    "a": "Allows you to define one interface"
+  },
+  {
+    "q": "The J2SE 1.2 was released on",
+    "a": "December 1998"
+  },
+  {
+    "q": "The J2SE 1.3 was released on",
+    "a": "May 2000"
+  },
+  {
+    "q": "The J2SE 1.4 was released on",
+    "a": "February 2002"
+  },
+  {
+    "q": "The J2SE 5.0 was released on",
+    "a": "September 2004"
+  },
+  {
+    "q": "The Java reflection API contains classes and methods that allow you to dynamically instantiate and interrogate classes.",
+    "a": "True"
+  },
+  {
+    "q": "The JAVA SE 12 was released on",
+    "a": "March 2019"
+  },
+  {
+    "q": "The JDK 1.0 was released on",
+    "a": "January 1996"
+  },
+  {
+    "q": "The JDK 1.1 was released on",
+    "a": "February 1997"
+  },
+  {
+    "q": "The name Java originates from a sort of ____________",
+    "a": "Expresso Bean"
+  },
+  {
+    "q": "The process by which one class acquires the properties (data members) and functionalities(methods) of another class.",
+    "a": "Inheritance"
+  },
+  {
+    "q": "The same method in child class which is already present in the parent class.",
+    "a": "Method Overriding"
+  },
+  {
+    "q": "The super keyword refers to the ______________, immediately above of the calling class in the hierarchy.",
+    "a": "Super Class"
+  },
+  {
+    "q": "The superclass constructor can be called explicitly using the ____________________ ?",
+    "a": "Super Keyword"
+  },
+  {
+    "q": "The variables declared in an interface are public, static & final by default.",
+    "a": "True"
+  },
+  {
+    "q": "These are variables which have declarations inside methods, constructors or blocks.",
+    "a": "Local variables"
+  },
+  {
+    "q": "These variables are inside a class however outside any method. They come into existence when the class instantiates.",
+    "a": "Instance variables"
+  },
+  {
+    "q": "This act both as an interface that our own iterator classes can implement, as well as the type of the Java collection classes built in iterators.",
+    "a": "JavaUtilIterator"
+  },
+  {
+    "q": "This are blueprints of an Object Oriented Programming wherein it has a detailed description or definition.",
+    "a": "Class"
+  },
+  {
+    "q": "This are information that describes a state of a thing or an object.",
+    "a": "Attributes"
+  },
+  {
+    "q": "This are the set of steps needed to solve a problem.",
+    "a": "Algorithm"
+  },
+  {
+    "q": "This are the things that an objects can do.",
+    "a": "Behavior"
+  },
+  {
+    "q": "This are use to store and work with multiple values of the same data type using a single variable name.",
+    "a": "Arrays"
+  },
+  {
+    "q": "This is a well-tested proven approach to solve if an object will be changed by a lot of other objects but you need it to be able to undo the last change.",
+    "a": "Memento Design Pattern"
+  },
+  {
+    "q": "This is a well-tested proven approach to solve if one of your objects changes and it needs to let several other objects know.",
+    "a": "Observe Design Pattern"
+  },
+  {
+    "q": "This is the idea of taking attributes and behavior of an object and bundling them together in the same unit or same class and at the same time restrict access to its content.",
+    "a": "Data Hiding"
+  },
+  {
+    "q": "This is the least restrictive access modifier. Methods and attributes that use the public modifier can be accessed within your current class and by all other classes.",
+    "a": "Public"
+  },
+  {
+    "q": "This is the most restrictive and most commonly used access modifier. If you use the this modifier with an attribute or method, it can only be accessed within the same class.",
+    "a": "Private"
+  },
+  {
+    "q": "This term refers to automatically do the behavior even if what we're working with could take one of many different form",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "This term refers to automatically do the correct behavior even if what we're working with could take one of many different form.",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "This term refers to the focus on the essential qualities of something rather one specific example and it discards the irrelevant or the unimportant.",
+    "a": "Abstraction"
+  },
+  {
+    "q": "This terms refers to the ability to surround something or keep things together and protect its content.",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "To what programming Language did Java derives it syntax?",
+    "a": "C++"
+  },
+  {
+    "q": "TreeSet is a collection class that lets you store references to objects and ensures that each reference is only stored once.",
+    "a": "False"
+  },
+  {
+    "q": "UML stands for:",
+    "a": "Unified Modelling Language"
+  },
+  {
+    "q": "Use to define the visibility of classes, methods, and attributes.",
+    "a": "Access Modifier"
+  },
+  {
+    "q": "Variables that is constants. This variable cannot be change once it is initialized.",
+    "a": "Final variable"
+  },
+  {
+    "q": "We can change the value of a final variable.",
+    "a": "False"
+  },
+  {
+    "q": "We can instantiate an interface in java.",
+    "a": "False"
+  },
+  {
+    "q": "What data type will you be using for a True or False examination?",
+    "a": "Boolean"
+  },
+  {
+    "q": "What data type will you be using for the measurement of ingredients for a spaghetti?",
+    "a": "float"
+  },
+  {
+    "q": "What is the Scanner class for Java?",
+    "a": "Import JavaUtilScanner"
+  },
+  {
+    "q": "What type of requirement is the feature/capabilities of a system?",
+    "a": "Functional Requirements"
+  },
+  {
+    "q": "When was Java first developed by Sun Microsystems?",
+    "a": "1995"
+  },
+  {
+    "q": "Which of the following does not belong to the 4 Software Designer who invented the Design Pattern?",
+    "a": "Charles Babbage"
+  },
+  {
+    "q": "Which of the following is not a key terms in Object Oriented?",
+    "a": "Concatenation"
+  },
+  {
+    "q": "Which of the following is not a type of Session Bean?",
+    "a": "Concurrent"
+  },
+  {
+    "q": "Which of the following is not an IDE?",
+    "a": "Notepad++"
+  },
+  {
+    "q": "Which of the following is not an Integer?",
+    "a": "float"
+  },
+  {
+    "q": "Which of the following is not part of the Main Method?",
+    "a": "Initialization"
+  },
+  {
+    "q": "Writing a code that is based on a set of state and transition.",
+    "a": "State Machine"
+  },
+  {
+    "q": "You can not have abstract method in a concrete class.",
+    "a": "True"
+  }
+]
