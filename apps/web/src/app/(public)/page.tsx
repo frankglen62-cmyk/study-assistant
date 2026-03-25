@@ -107,22 +107,24 @@ const heroTopCtaRow: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.46,
-      staggerChildren: 0.14,
+      delayChildren: 0.54,
+      staggerChildren: 0.18,
     },
   },
 };
 
 const heroTopPrimaryCtaWrap: Variants = {
   hidden: {
-    opacity: 1,
+    opacity: 0,
+    y: 18,
     scale: 0.96,
   },
   visible: {
     opacity: 1,
+    y: 0,
     scale: 1,
     transition: {
-      duration: 0.18,
+      duration: 0.2,
       ease: ease.out,
       when: 'beforeChildren',
       staggerChildren: 0.02,
@@ -166,7 +168,7 @@ const heroTopPrimaryCtaLabel: Variants = {
 const heroTopSecondaryCta: Variants = {
   hidden: {
     opacity: 0,
-    x: 12,
+    x: 22,
     scale: 0.98,
   },
   visible: {
