@@ -1,0 +1,1730 @@
+[
+  {
+    "q": "____________ are easier to analyze, and may be distributed and analyzed by computer.",
+    "a": "Closed questions"
+  },
+  {
+    "q": "________________ among users and computers happens at the user interface which includes both software and hardware",
+    "a": "Interaction"
+  },
+  {
+    "q": "1999, allowed people to interact from different offices in the same building",
+    "a": "Xerox's Media Space"
+  },
+  {
+    "q": "40% response rate is good, 20% is often acceptable.",
+    "a": "True"
+  },
+  {
+    "q": "A ____ software system is one that supports the effective and efficient completino of tasks in a given work context.",
+    "a": "usable"
+  },
+  {
+    "q": "A careful design is even better than good error messages which prevents a problem from occurring in the first place. Either delete or test for error-prone conditions, and offer a validation choice to users before committing to the operation.",
+    "a": "Error prevention"
+  },
+  {
+    "q": "A computer system is made up of various elements except?",
+    "a": "pockets"
+  },
+  {
+    "q": "A grounded theory approach to analysis emphasizes the important role of empirical data in the derivation of the theory",
+    "a": "True"
+  },
+  {
+    "q": "A mouse controlling the cursor as a point of entry to the windows, menus, and icons on the screen?",
+    "a": "pointing device"
+  },
+  {
+    "q": "A page that is 'under construction'?",
+    "a": "example of a gimmick"
+  },
+  {
+    "q": "A rapid reversible action with immediate feedback on object of interest refers to conversing.",
+    "a": "False"
+  },
+  {
+    "q": "A researcher's degree of participation can vary along a scale from 'outside' to 'inside'",
+    "a": "True"
+  },
+  {
+    "q": "A search engine depends on _______to find information on the web.",
+    "a": "computers"
+  },
+  {
+    "q": "A simplification of an HCI phenomenon is intended to",
+    "a": "Make it easier for designers to predict and evaluate alternative designs"
+  },
+  {
+    "q": "A software engineer trained in the development of user interfaces would have gained experience, learned about approaches and techniques and gained an understanding of its weaknesses",
+    "a": "True"
+  },
+  {
+    "q": "Accelerators — unknown by the novice user — can often speed up the professional user interaction so the device can work for both new and seasoned users. Allow users to tailor frequent actions.",
+    "a": "Flexibility and efficiency of use"
+  },
+  {
+    "q": "According to Norman (1999), An instruction on an interface flagging how to utilize the interface",
+    "a": "False"
+  },
+  {
+    "q": "According to Strauss and Corbin (1998), there are seven aspects of \"coding\" in grounded theory",
+    "a": "False"
+  },
+  {
+    "q": "Adaptability engineering involves specifying quantifiable measures of product performance, documenting them in a usability specification, and assessing the product against them",
+    "a": "False"
+  },
+  {
+    "q": "Adaptability engineering involves specifying quantifiable product performance measures, documenting them in a usability specification, and assessing the product against them",
+    "a": "False"
+  },
+  {
+    "q": "Affinity diagramming recurring patterns or themes, categorizing date (top-down or bottom-up), looking for critical incidents.",
+    "a": "False"
+  },
+  {
+    "q": "All answers below is benefits of interface design from design rationale, except",
+    "a": "not accurately or completely capture the rationale"
+  },
+  {
+    "q": "All design decisions were taken within the context of the users, their work, and the office.",
+    "a": "False"
+  },
+  {
+    "q": "An accurate CAD - two dials for X-Y cursor position refers to?",
+    "a": "thumbwheels"
+  },
+  {
+    "q": "An examples of interfaces designed to change behavior?",
+    "a": "All of the following"
+  },
+  {
+    "q": "An optical method for detecting motions refers to?",
+    "a": "detects fluctuating alterations in reflected light intensity"
+  },
+  {
+    "q": "An optical methods for detecting motions refers to?",
+    "a": "detects fluctuating alterations in reflected light intensity"
+  },
+  {
+    "q": "Are focus groups examples of the various degrees of user involvement?",
+    "a": "Yes, they are"
+  },
+  {
+    "q": "Are focus groups used to?",
+    "a": "Build a consensus view"
+  },
+  {
+    "q": "Are Foot controls common elsewhere except for?",
+    "a": "Computer manipulation"
+  },
+  {
+    "q": "Are interviews used to?",
+    "a": "target specific user groups"
+  },
+  {
+    "q": "Are there prejudices that distort outcomes?",
+    "a": "Biases"
+  },
+  {
+    "q": "Are they encouraged to draw on their own theoretical backgrounds to inform analysis?",
+    "a": "Researchers"
+  },
+  {
+    "q": "As it says - all design decisions are ultimately taken with the context of the users, their work, and the environment in mind",
+    "a": "All design decisions"
+  },
+  {
+    "q": "Asking customers at a restaurant if pizza should be added to the menu?",
+    "a": "Sample Survey"
+  },
+  {
+    "q": "At the beginning of the Requirements Activity, there is a lot to find out and clarify.",
+    "a": "True"
+  },
+  {
+    "q": "At the end of the Requirements Activity, we will have a set of stable requirements that can be based on design activity",
+    "a": "True"
+  },
+  {
+    "q": "Attention, perception, memory, learning Reading, speaking, and listening Problem-solving, planning, reasoning, and decision making",
+    "a": "Cognition processes"
+  },
+  {
+    "q": "Attributing human-like qualities to inanimate objects (e.g. cars, computers)?",
+    "a": "Anthropomorphism"
+  },
+  {
+    "q": "Basic activities in Interactive design EXCEPT",
+    "a": "Testing the prototype"
+  },
+  {
+    "q": "Be able to commit these memories of the stimuli to a long term memory and reflect upon it (slow and deliberate)?",
+    "a": "Emotional Design Model - Reflective"
+  },
+  {
+    "q": "Before development begins, a comprehensive study of the users, what they do, and what they are trying to achieve should be completed.",
+    "a": "False"
+  },
+  {
+    "q": "Believability is showing up on our screens within the shape of Deals specialists, characters in videogames, learning companions, wizards, pets, newsreaders",
+    "a": "False"
+  },
+  {
+    "q": "Brainstorming is the technique used to generate, refine, and develop ideas.",
+    "a": "True"
+  },
+  {
+    "q": "Can the system measure what they are supposed to calculate?",
+    "a": "Validity"
+  },
+  {
+    "q": "Cathode ray tube was used formerly to?",
+    "a": "used in TVs and computer monitors"
+  },
+  {
+    "q": "Choose the correct statement:",
+    "a": "Essential use cases represent abstractions from scenarios and try to avoid the assumptions of a use case"
+  },
+  {
+    "q": "Choose the one aspects of the environment that must be considered when establishing requirements?",
+    "a": "Expressive Interface"
+  },
+  {
+    "q": "Cognition forms typically the method of selecting things to concentrate on, at a point in time, from the extend of conceivable outcomes accessible.",
+    "a": "False"
+  },
+  {
+    "q": "Cognition may be a state of intellect where we see, act, and respond to occasions around us naturally and easily.",
+    "a": "False"
+  },
+  {
+    "q": "Comment on the idea of 'too much involvement'?",
+    "a": "Heinbokel et al (1996) found that high user involvement projects tended to run less smoothly Svorgyman et al (2010) also identified that high levels of user involvement can generate un-neccessary conflics and increased reworking"
+  },
+  {
+    "q": "computer supported cooperative work is an umbrella under which falls CMC - computer mediated communication",
+    "a": "CSCW"
+  },
+  {
+    "q": "Conceptual models refer to the experience of a successful brand because of its complexity.",
+    "a": "False"
+  },
+  {
+    "q": "Concern of interaction design: Which products that are not USABLE?",
+    "a": "A key questions"
+  },
+  {
+    "q": "Context, partnership, and interpretations Contextual inquiry rest on main principles.",
+    "a": "False"
+  },
+  {
+    "q": "Contextual (ctl +click to get commands relevant to the current task)",
+    "a": "Types of menus"
+  },
+  {
+    "q": "Continuous representation of objects and actions of interest.",
+    "a": "analysis"
+  },
+  {
+    "q": "Controlled setting involving users, e.g. field experiments and seeing how the product is used in the real world in wild experiments.",
+    "a": "False"
+  },
+  {
+    "q": "Conversing is a range from simple voice recognition menu-driven systems to more complex.",
+    "a": "True"
+  },
+  {
+    "q": "Conversing is an aspect of the end user's interaction with the company, its services, and its products.",
+    "a": "False"
+  },
+  {
+    "q": "Copyright covers the expression of an idea, not the idea itself ie there are numerous mp3 players on the market, and all have similar functionality This does not represent an infringement of copyright as the idea has been expressed in different ways, and it is the expression that has been copyrighted",
+    "a": "True"
+  },
+  {
+    "q": "customer support costs",
+    "a": "decreased"
+  },
+  {
+    "q": "Debate about differences between participant observation and ethnography.",
+    "a": "True"
+  },
+  {
+    "q": "Define users.",
+    "a": "Those who interact directly with a product to achieve a task"
+  },
+  {
+    "q": "Describe some methods of ongoing user involvement after product release",
+    "a": "Error reporting systems ie online crash analysis"
+  },
+  {
+    "q": "Designer introduces an element of the Design & Use scenarios in a cognitive walkthrough.",
+    "a": "True"
+  },
+  {
+    "q": "Designing, drawing, flying, driving, sizing windows are an example of what conceptual model?",
+    "a": "Direct manipulation is good for 'doing' types of tasks"
+  },
+  {
+    "q": "Designing, drawing, flying, driving, sizing windows are example of what conceptual model?",
+    "a": "Direct manipulation is good for 'doing' types of tasks"
+  },
+  {
+    "q": "Determine if not using car seat belts increases deaths in car accidents?",
+    "a": "Observational Study"
+  },
+  {
+    "q": "Developer's behaviour and context of use are studied, and the system is designed to support them.",
+    "a": "False"
+  },
+  {
+    "q": "Developers must attempt to ______________________ in order to produce computer systems with good usability.",
+    "a": "achieve efficient, effective and safe interaction"
+  },
+  {
+    "q": "Developing fix design that needs to meet requirements.",
+    "a": "False"
+  },
+  {
+    "q": "Dialogs should not contain irrelevant or rarely needed information. Each extra information unit in a dialog competes with the related information units and diminishes their relative visibility.",
+    "a": "Aesthetics and minimalist design"
+  },
+  {
+    "q": "Digitizing tablets are very accurate for digitizing maps.",
+    "a": "True"
+  },
+  {
+    "q": "Distributed cognition grounded theory, distributed cognition, activity theory",
+    "a": "False"
+  },
+  {
+    "q": "Does it refer to focuses on information propagation & transformation?",
+    "a": "Distributed Cognition"
+  },
+  {
+    "q": "Does it refer to making products look, feel, and sound good?",
+    "a": "Visceral Design"
+  },
+  {
+    "q": "Does the assessment process distort the results?",
+    "a": "Ecological validity"
+  },
+  {
+    "q": "Does the process yield the same results on different occasions?",
+    "a": "Reliability"
+  },
+  {
+    "q": "Dynamic Systems Development method is not included in the agile software development methods",
+    "a": "False"
+  },
+  {
+    "q": "Early focus on users and tasks means understanding who the users will be by directly studying their cognitive, behavioural, anthropomorphic, and attitudinal characteristics. This requires observing users doing their normal tasks, studying the nature of those tasks, and then involving the users in the design process.",
+    "a": "True"
+  },
+  {
+    "q": "Electromagnetic fields create induction currents in conductive materials, including the human body.",
+    "a": "True"
+  },
+  {
+    "q": "Emotional interaction considering what makes us upbeat, pitiful, irritated, on edge, disappointed, spurred, insane, and so on Interpreting this into distinctive perspectives of the UX",
+    "a": "True"
+  },
+  {
+    "q": "Emotional plan Demonstrate - Behavioral be able to bring out a few kinds of activity (behavioral, facial expression, motion, discourse)",
+    "a": "True"
+  },
+  {
+    "q": "Emotional Plan Demonstrate alludes to Norman, Ortony, and Revelle (2004) show of feeling",
+    "a": "True"
+  },
+  {
+    "q": "Emotional technology aims to",
+    "a": "Predict user's feelings and behavioral aspects"
+  },
+  {
+    "q": "Empirical measurement early in development the reaction and performance of intended users to printed manuals etc, are observed and measured",
+    "a": "True"
+  },
+  {
+    "q": "Environments/context of use refers to the following except for one?",
+    "a": "friendly"
+  },
+  {
+    "q": "Error messages should be expressed in plain language (no codes), the problem should be specified precisely and a solution suggested constructively",
+    "a": "Help users recognize, diagnose, and recover from errors"
+  },
+  {
+    "q": "Essential use cases are more detailed than use cases",
+    "a": "True"
+  },
+  {
+    "q": "Establishing requirements is an interactive activity in which sub-activities inform, influence and refine each other.\"",
+    "a": "False"
+  },
+  {
+    "q": "Ethnography is a philosophy with a set of techniques that include participant observation and interviews",
+    "a": "True"
+  },
+  {
+    "q": "Evaluating what is being built throughout the process refers to the?",
+    "a": "Basic activities involves in interaction design"
+  },
+  {
+    "q": "Evaluation done during design to check that product continues to meet users needs are known as __________ evaluation.",
+    "a": "Formative"
+  },
+  {
+    "q": "Evaluations may be carried out in controlled settings such as labs, less controlled field settings, or where no users are present.",
+    "a": "True"
+  },
+  {
+    "q": "Experimental cognition alludes to considering, recalling, learning, choice-making, etc. There are two common modes: test and intelligent.",
+    "a": "False"
+  },
+  {
+    "q": "Experiments test a hypothesis by changing some variables while preserving constancy of others.",
+    "a": "True"
+  },
+  {
+    "q": "Expert is told of the assumptions regarding consumer population, sense of usage, task specifics in heuristic evaluation.",
+    "a": "False"
+  },
+  {
+    "q": "Explain the user-centered design?",
+    "a": "The user knows best and is the only guide to the designer"
+  },
+  {
+    "q": "Fast. It is a state of mind where we perceive, act, and react to events around us intuitively and effortlessly. It requires reaching a certain level of expertise and engagement.",
+    "a": "Experimental Cognition"
+  },
+  {
+    "q": "Fidelity can be considered as the",
+    "a": "level of detail and the functionality that the prototype has."
+  },
+  {
+    "q": "Field studies are evaluation studies that are carried out in natural settings to discover how people interact with technology in the real world.",
+    "a": "True"
+  },
+  {
+    "q": "Field studies involving the implementation in natural settings of prototypes or innovations can also be referred to as 'in the wild.'",
+    "a": "True"
+  },
+  {
+    "q": "Firstly, encoding occurs, determining which information is attended to in the environment and how it is interpreted.",
+    "a": "Memory filtering process"
+  },
+  {
+    "q": "Fitt’s law predicts that pointing to an object using a tool is a function of the distance from the object and the size of the object.",
+    "a": "True"
+  },
+  {
+    "q": "Fitts' Law can’t be used to predict professional, error-free results with restricted key presses for clearly defined tasks",
+    "a": "False"
+  },
+  {
+    "q": "Fitts' law is useful in evaluating structures for which it is not possible to locate an item",
+    "a": "False"
+  },
+  {
+    "q": "follow-on business due to satisfied customers",
+    "a": "more"
+  },
+  {
+    "q": "For user testing on your low fidelity prototypes, you will:",
+    "a": "Give a brief overview of your ideas and then let them explore/figure out your design"
+  },
+  {
+    "q": "Form of data gathering through a panel dialogue.",
+    "a": "Focus groups"
+  },
+  {
+    "q": "Form of gathering data that is not directed by a script",
+    "a": "Unstructured Interview"
+  },
+  {
+    "q": "Framework provide advice on how to design",
+    "a": "steps, questions, concepts, challenges, principles, tactics and dimensions"
+  },
+  {
+    "q": "Good response offers a short version for those who do not have time to complete a long questionnaire",
+    "a": "True"
+  },
+  {
+    "q": "Gulf of assessment portrays the remove from the physical framework to the client.",
+    "a": "True"
+  },
+  {
+    "q": "Gulf of execution portrays the remove from the client to the physical framework.",
+    "a": "True"
+  },
+  {
+    "q": "Having a good understanding of the problem space can help inform the design space.",
+    "a": "Interface, behavior, functionality"
+  },
+  {
+    "q": "HCI encompasses three major parts within the framework, ____________, _______________ and _________________.",
+    "a": "human, computer, interaction"
+  },
+  {
+    "q": "HCI is about understanding and creating software and other technology that people will want to use, will be able to use, and will find effective when used.",
+    "a": "True"
+  },
+  {
+    "q": "HCI is about understanding and developing software and other technology that will allow people to use, be able to use, and be successful when used.",
+    "a": "True"
+  },
+  {
+    "q": "Helps to focus on key events?",
+    "a": "Looking for critical incidents"
+  },
+  {
+    "q": "Hierarchical Task Analysis involves breaking a task into subtasks, then sub-sub-tasks, and so on. Focuses on physical and observable actions and includes looking at actions not related to software",
+    "a": "True"
+  },
+  {
+    "q": "Holtzblatt and Jones 1993 define users as to what?",
+    "a": "Those who manage direct users"
+  },
+  {
+    "q": "How can we achieve establishing requirements?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "How generalizable are outcomes?",
+    "a": "Scope"
+  },
+  {
+    "q": "How to integrate different components (different media) to improve the user experience (dynalinking, hands on activities)?",
+    "a": "research and design issues with multimedia interfaces"
+  },
+  {
+    "q": "Human and computer interaction focuses on human-machine interface _____________",
+    "a": "Design"
+  },
+  {
+    "q": "Human-Computer Interaction (HCI) is a multidisciplinary area of study focused on computer technology design and, in particular, the interaction between ______________________",
+    "a": "human and computer"
+  },
+  {
+    "q": "Human-Computer Interaction (HCI) is a multidisciplinary area of study focused on computer technology design and, in particular, the interaction between ______________________.",
+    "a": "human and computer"
+  },
+  {
+    "q": "Humans have a restricted capacity for processing information.",
+    "a": "True"
+  },
+  {
+    "q": "Ice-breaker arrangement\" is an illustration of telepresence",
+    "a": "False"
+  },
+  {
+    "q": "IE If software running windows, elements of the design will be prescribed to you because you must conform to the windows look and feel",
+    "a": "True"
+  },
+  {
+    "q": "If we know exactly what we want to find out, we try to match this with the available information.",
+    "a": "Our goals"
+  },
+  {
+    "q": "Images are made from small dots.",
+    "a": "True"
+  },
+  {
+    "q": "In choosing alternative designs Designs must be in a form that can reasonably be evaluated by users, not jargon",
+    "a": "True"
+  },
+  {
+    "q": "In conducting an interview it is required to avoid one of the following",
+    "a": "Unconscious biases"
+  },
+  {
+    "q": "In grounded theory based on categorization, the approach is called?",
+    "a": "Coding"
+  },
+  {
+    "q": "In online survey, the time required for data analysis is not reduced",
+    "a": "False"
+  },
+  {
+    "q": "In the early 1990s Jacob Nielsen developed heuristic evaluation.",
+    "a": "True"
+  },
+  {
+    "q": "Individual differences (need for structure vs. flexibility) and work situations (overloaded vs. bored) would mean that a one-size-fits-all solution is neither feasible nor prudent as we strive for optimum workplace environment and human efficiency.",
+    "a": "True"
+  },
+  {
+    "q": "Information architects are people who come up with ideas of how to plan and structure interactive products.",
+    "a": "True"
+  },
+  {
+    "q": "Information Introduction which includes mental exertion, consideration, judgment, and choice making This kind leads to unused thoughts and imagination",
+    "a": "False"
+  },
+  {
+    "q": "Inquire about and plan issues with discourse interfacing alludes to little screens, little number of physical keys,",
+    "a": "False"
+  },
+  {
+    "q": "Instructing common conceptual model, underlying a diversity of devices and systems",
+    "a": "True"
+  },
+  {
+    "q": "Instructing common conceptual model, underlying diversity of devices and systems",
+    "a": "True"
+  },
+  {
+    "q": "Interaction design concerned with ___________",
+    "a": "Machines with interactive systems"
+  },
+  {
+    "q": "Interview typically focus on the number of web visitors and page views",
+    "a": "False"
+  },
+  {
+    "q": "Involves dragging, selecting, opening, closing and zooming actions on virtual objects pertains to _______________?",
+    "a": "Manipulating"
+  },
+  {
+    "q": "Involves users moving through virtual or physical environments?",
+    "a": "Exploring"
+  },
+  {
+    "q": "Is establishing requirements simply writing a wish-list of features? Why or why not?",
+    "a": "No, establishing requirements is not simply writing a wish-list of features Establishing requirements is an interactive process that evolves through a series of evaluations"
+  },
+  {
+    "q": "Is it concerned with how we feel and react when interacting with technologies?",
+    "a": "Emotional Interaction"
+  },
+  {
+    "q": "Is the user experience undesirable aspects of?",
+    "a": "Making feel one guilty"
+  },
+  {
+    "q": "It could be scrolled, stretched, overlapped, opened, closed, and moved around the screen using the mouse?",
+    "a": "windows (WIMP)"
+  },
+  {
+    "q": "It develops slowly and takes a long time to go",
+    "a": "Conscious Emotion"
+  },
+  {
+    "q": "It enables design teams to ask specific questions about how the conceptual model will be understood.",
+    "a": "Orientation"
+  },
+  {
+    "q": "It has a way to express instructions directly to the computer using accessible keys, characters or a combination.",
+    "a": "Command Line Interface"
+  },
+  {
+    "q": "It includes a few easy questions to defuse tension at the end",
+    "a": "A cool-off period"
+  },
+  {
+    "q": "It involves an intensive interaction between the researcher and the subjects or participants",
+    "a": "Participant observation"
+  },
+  {
+    "q": "It involves recalling various kinds of knowledge that allow us to act appropriately. For example, it allows us to recognize someone's face, remember someone's name, recall when we last met them, and know what we said to them last.",
+    "a": "Memory"
+  },
+  {
+    "q": "It is a build in assets of all interactive digital machinery?",
+    "a": "Usability"
+  },
+  {
+    "q": "It is a confirmation box, in which individual and isolated regions can be selected to activate an action inside a display",
+    "a": "button"
+  },
+  {
+    "q": "It is a dialogue that can provide a good balance between richness and replicability.",
+    "a": "Semi-structured Interview"
+  },
+  {
+    "q": "It is a form of gathering data that are tightly scripted, often like a questionnaire",
+    "a": "Structured Interview"
+  },
+  {
+    "q": "It is a high-level description of how a system is organized and operates",
+    "a": "Conceptual Model"
+  },
+  {
+    "q": "It is a set of interrelated concepts and/or specific questions.",
+    "a": "Framework"
+  },
+  {
+    "q": "It is a term which supports the objects in an easy way to use.",
+    "a": "Usable"
+  },
+  {
+    "q": "It is about protecting the users from dangerous conditions.",
+    "a": "Safety"
+  },
+  {
+    "q": "It is concerned with how to use computers to recognize and express emotions as humans do.?",
+    "a": "Affective Computing"
+  },
+  {
+    "q": "It is divided in two processes: recall-directed and recognition-based scanning.",
+    "a": "Memory and search processes"
+  },
+  {
+    "q": "It is labels and phrases to use a type of menu to use placement in the list",
+    "a": "research and design issues with menus"
+  },
+  {
+    "q": "It is the design of the interaction between users and products.",
+    "a": "design interactions"
+  },
+  {
+    "q": "It is the method of choosing items to concentrate on from the set of possibilities available for a search at a point in time",
+    "a": "Attention"
+  },
+  {
+    "q": "It is the offering of lists of options that could be scrolled through and selected?",
+    "a": "Menus"
+  },
+  {
+    "q": "It is the one of the five jey issues that decide how to analyze data once collected.",
+    "a": "Setting goals"
+  },
+  {
+    "q": "It is the open (identify categories), axial (fleshing out categories and relate to subcategories), selective (refine and integrate categories)?",
+    "a": "Grounded theory 3 levels of coding"
+  },
+  {
+    "q": "It is the people, environment and artifacts are regarded as one cognitive system Used for analyzing collaborative work and focuses on information propagation and transformation?",
+    "a": "Distributed cognition"
+  },
+  {
+    "q": "It is the people, environment, and artifacts regarded as one cognitive system and used to analyze collaborative work and focus on information propagation and transformation?",
+    "a": "Distributed cognition"
+  },
+  {
+    "q": "It prevents design teams from becoming narrowly focused early on?",
+    "a": "Open Minded"
+  },
+  {
+    "q": "It refers how easy a system is to learn to use.",
+    "a": "Learnability"
+  },
+  {
+    "q": "It refers to how easy a system is to remember how to use, once learned.",
+    "a": "Memorability"
+  },
+  {
+    "q": "It refers to how information is acquired from the environment via the different sense organs - eyes, ears, fingers - and transformed into experiences of objects, events, sounds, and tastes.",
+    "a": "Perception"
+  },
+  {
+    "q": "It refers to the extent to which the system provides the right kind of functionality.",
+    "a": "Utility"
+  },
+  {
+    "q": "It represents applications, objects, commands, and tools that are opened when clicked on",
+    "a": "Icons"
+  },
+  {
+    "q": "It submits the set of requirements as a design that no one gets it right for the first time?",
+    "a": "Iteration and Prototype"
+  },
+  {
+    "q": "It uses sticky notes, organizes data in groups, label groups, add connections and prioritizes",
+    "a": "Affinity diagramming"
+  },
+  {
+    "q": "It's a separate intervention intended to change the structure but you can't predict how things will work out exactly",
+    "a": "intervention design"
+  },
+  {
+    "q": "It's about sending back details about what action was taken and what was done, enabling the individual to continue the operation.",
+    "a": "Feedback"
+  },
+  {
+    "q": "Iterative Activity one that is not involves repetition",
+    "a": "False"
+  },
+  {
+    "q": "Keeping abreast of what others do and letting others know what you do are irrelevant aspects of collaborative work and socialization",
+    "a": "False"
+  },
+  {
+    "q": "LCD is smaller, lighter, and has radiation problems.",
+    "a": "False"
+  },
+  {
+    "q": "Listening to what people might want and getting them involved InDesign.",
+    "a": "True"
+  },
+  {
+    "q": "Many individuals are presently associated in different ways over time and space in ways that were already outlandish could be a qualities of great shareable interfacing",
+    "a": "False"
+  },
+  {
+    "q": "Match the things to consider when interpreting data from Column A to Column B",
+    "a": "Match the things to consider when interpreting data from Column A to Column B"
+  },
+  {
+    "q": "Mental models expected utilize that they are utilized by individuals to reason approximately a framework and, in specific, to comprehend what to do when something unforeseen happens with the framework or when experiencing new frameworks.",
+    "a": "True"
+  },
+  {
+    "q": "Minimize the memory load of the user, by having visible objects, behaviors and choices. The user should not need to remember data from one part of the dialog to another. Instructions for using the program should be accessible or easily retrievable where appropriate",
+    "a": "Recognition rather than recall"
+  },
+  {
+    "q": "Mobile apps designed to help people monitor and change their behaviour (e.g. fitness, sleeping, weight)",
+    "a": "tracking devices"
+  },
+  {
+    "q": "Mobile interfacing may be a individual banters with the interface as in the event that it was a individual; prevalent for call steering",
+    "a": "False"
+  },
+  {
+    "q": "Mobile or online survey responses are usually received quickly and inaccurate.",
+    "a": "False"
+  },
+  {
+    "q": "Modelling includes the processing of user behavior data on a website or product",
+    "a": "False"
+  },
+  {
+    "q": "Moment Life interface for outwardly impeded clients, command line incite in Windows is an cases of Command-based interfacing.",
+    "a": "True"
+  },
+  {
+    "q": "motional Plan Demonstrate - Visceral Fast response (battle or flight) that leads to suitable engine activities",
+    "a": "True"
+  },
+  {
+    "q": "Movement of mouse moves screen cursor is _________________.",
+    "a": "(x, y) plane"
+  },
+  {
+    "q": "Multitasking and considering how data is shown can moreover incredibly impact how simple or troublesome it is to go to suitable pieces of data",
+    "a": "False"
+  },
+  {
+    "q": "n order to define its aims and purposes, it is the method of researching a practice or enterprise and creating structures and processes",
+    "a": "system analysis"
+  },
+  {
+    "q": "Natural setting involving people, e.g. usability testing & laboratory and living lab tests.",
+    "a": "False"
+  },
+  {
+    "q": "Not all aspects of the end-user's interaction with the company, its services, and its products.",
+    "a": "False"
+  },
+  {
+    "q": "Not all aspects of the end-users interact with the company, its services, and its products.",
+    "a": "False"
+  },
+  {
+    "q": "Nudging permits Web fraudsters to get to their bank accounts and draw cash from them",
+    "a": "False"
+  },
+  {
+    "q": "one of HCI's goals is to create specific capabilities and constraints for the software and/or hardware and platform chosen for the product",
+    "a": "True"
+  },
+  {
+    "q": "One of the two aims of the Requirements Activity be to \"understand as much as possible about the users and their activities\"",
+    "a": "True"
+  },
+  {
+    "q": "Online questionnaire is relatively complex and slow to distribute.",
+    "a": "False"
+  },
+  {
+    "q": "Online questionnaire requires copying and postage costs expensively",
+    "a": "False"
+  },
+  {
+    "q": "Open coding, Axial coding, Selective coding According to Strauss and Corbin (1998), which are three aspects of \"coding\" in grounded theory",
+    "a": "True"
+  },
+  {
+    "q": "Open Computer Vision Program (Open CV System) alludes to the investigations pictures captured by a webcam of their confront",
+    "a": "False"
+  },
+  {
+    "q": "overall development and maintenance costs",
+    "a": "decreased"
+  },
+  {
+    "q": "Overall view of the data is one thing that graphical representations of quantitative data help identify",
+    "a": "True"
+  },
+  {
+    "q": "Paper and pen-based sketches used for prototyping signify which of the following?",
+    "a": "Low-fidelity prototyping"
+  },
+  {
+    "q": "Participants will be told why they are doing the test, what they will be asked to do and their rights.",
+    "a": "True"
+  },
+  {
+    "q": "People involved in the design of all the interactive aspects of a product",
+    "a": "interaction designers"
+  },
+  {
+    "q": "People who come up with ideas of how to plan and structure interactive products.",
+    "a": "information architects"
+  },
+  {
+    "q": "People who focus on evaluating products, using usability methods and principles",
+    "a": "usability engineers"
+  },
+  {
+    "q": "Perception allows us to focus on information that is relevant to what we are doing and it involves an audio and/or visual senses.",
+    "a": "False"
+  },
+  {
+    "q": "Performing an activity theory (AT) analysis enables researchers and designers to identify workplace tensions, leading to specific needs for new technological tools.",
+    "a": "False"
+  },
+  {
+    "q": "Planning involves in the process of interaction design.",
+    "a": "False"
+  },
+  {
+    "q": "Planning involves the process of interaction design.",
+    "a": "False"
+  },
+  {
+    "q": "Poorly written protocol manuals that describe data collection procedures decrease the risk of failing to identify problems and errors early in the research process",
+    "a": "False"
+  },
+  {
+    "q": "Pop-up ads, warning messages, reminders, prompts, personalized messages, recommendations, Amazon 1-click are an example of what technique?",
+    "a": "nudging"
+  },
+  {
+    "q": "Predictive models, offer a way to test goods or prototypes without affecting the users directly.",
+    "a": "True"
+  },
+  {
+    "q": "profits due to more competitive products/services",
+    "a": "greater"
+  },
+  {
+    "q": "Pros and cons of the conversational model allow the clients, especially novices and technophobes",
+    "a": "True"
+  },
+  {
+    "q": "Provides reassuring feedback that can be informative and fun but can also be intrusive, causing people to become annoyed and even angry?",
+    "a": "Expressive Interface"
+  },
+  {
+    "q": "Qualitative data are textual, nominal, ordinal.",
+    "a": "True"
+  },
+  {
+    "q": "Quantitative analysis is numerical methods to ascertain size, magnitude, amount",
+    "a": "True"
+  },
+  {
+    "q": "Quantitative data information about quantities expressed as numbers.",
+    "a": "True"
+  },
+  {
+    "q": "Quantitative data is difficult to calculate, tally, or articulatein mathematical terms in a reasonable manner",
+    "a": "False"
+  },
+  {
+    "q": "Questionnaires are the only is the common form of data gathering",
+    "a": "False"
+  },
+  {
+    "q": "Questionnaires can be disseminate by _______ , ________ and the ________?",
+    "a": "Paper, email and the web"
+  },
+  {
+    "q": "Refers to an individual who sets their requirements in an interaction design?",
+    "a": "Users"
+  },
+  {
+    "q": "Refers to designing operations to behave the same within an application",
+    "a": "Difficult to achieve with complex interfaces"
+  },
+  {
+    "q": "Refers to designing operations to behave the same within an application.",
+    "a": "Difficult to achieve with complex interfaces"
+  },
+  {
+    "q": "Refers to Emergent from data, dependent on observation framework is used.",
+    "a": "Recurring patterns or themes"
+  },
+  {
+    "q": "Refers to kind of interface used to support the mode.",
+    "a": "Interface type"
+  },
+  {
+    "q": "Refers to mobile apps designed to help people monitor and change behavior based on the data collected and displayed back to them",
+    "a": "Tracking devices"
+  },
+  {
+    "q": "Refers to steps that asking what is there? What is wanted?",
+    "a": "requirements"
+  },
+  {
+    "q": "Refers to the grounded theory, distributed cognition, activity theory?",
+    "a": "Theoretical framework qualitative analysis"
+  },
+  {
+    "q": "Refers to the kind of interface used to support the mode.",
+    "a": "Interface type"
+  },
+  {
+    "q": "Refers to thinking, remembering, learning, decision making, etc. There are two general modes: experimental and reflective.",
+    "a": "Cognition"
+  },
+  {
+    "q": "Refers to tightly scripted, often like a questionnaire. Replicable but may lack richness.",
+    "a": "Structured"
+  },
+  {
+    "q": "Refers to what the user is doing when interacting with a system.",
+    "a": "Interaction type"
+  },
+  {
+    "q": "Regardless of the aim and requirement setup of an Interaction Design Project The user's needs, requirements, aspirations and expectations have to be discussed, refined, clarified and probably re-scoped Why is this?",
+    "a": "To ensure both parties, the users and development team are absolutely on the same page"
+  },
+  {
+    "q": "Remote testing systems which are inexpensive are more compact than usability laboratories. Many do have handheld eye-tracking apps and other tools.",
+    "a": "True"
+  },
+  {
+    "q": "Research and plan issues with customer gadgets and machines handheld gadgets expecting to be utilized whereas on the move.",
+    "a": "False"
+  },
+  {
+    "q": "Research and plan issues with versatile interfacing touch screens back a more energetic extend of finger activities",
+    "a": "False"
+  },
+  {
+    "q": "Research and plan issues with web interfacing are alluded to the substance and route, structure and plan, framework behavior",
+    "a": "True"
+  },
+  {
+    "q": "Sadness, disgust, fear, anger, contempt, and joy?",
+    "a": "Six-Core Expressions Typically Measured"
+  },
+  {
+    "q": "Screen is vast number of colored __________?",
+    "a": "dots"
+  },
+  {
+    "q": "Sense Cam is a wearable tool that takes photographs intermittently when worn without any user interference",
+    "a": "False"
+  },
+  {
+    "q": "Sensors are present all around us even in our own bodies.",
+    "a": "True"
+  },
+  {
+    "q": "Several systems and technologies were developed to support telepresence and co-presence",
+    "a": "True"
+  },
+  {
+    "q": "Shareable innovations could be a innovations which permit a individual to feel they are show or allow the appearance of being show at another physical area.",
+    "a": "False"
+  },
+  {
+    "q": "Should users be involved in interaction design and why?",
+    "a": "It gives the developers a better understanding of users' goals, leading to a more appropriate, more usable product"
+  },
+  {
+    "q": "Six center expressions are pity, joy, appall, fear, shock, outrage",
+    "a": "True"
+  },
+  {
+    "q": "Slow. Which involves mental effort, attention, judgment, and decision making. This kind leads to new ideas and creativity.",
+    "a": "Reflective Cognition"
+  },
+  {
+    "q": "Smiling, eye-widening, brow-raising, brow furrowing, raising a cheek, mouth opening, upper-lip raising, and wrinkling of the nose?",
+    "a": "Types of facial expression chosen by AI"
+  },
+  {
+    "q": "Social interaction which permit a individual to feel they are show or deliver the appearance of being display at another physical area.",
+    "a": "False"
+  },
+  {
+    "q": "Social processes such as turn-taking, conventions etc. help us to work together and organize our activities",
+    "a": "True"
+  },
+  {
+    "q": "Some of the same methods of collecting data are used in evaluation as to set criteria and define the needs of the users.",
+    "a": "True"
+  },
+  {
+    "q": "Sometimes the results of a field study are surprising, especially in wild studies that investigate how participants use novel technology in their own homes, workplaces, or outside.",
+    "a": "True"
+  },
+  {
+    "q": "Sounds indicate an error and confirmation of actions.",
+    "a": "True"
+  },
+  {
+    "q": "Speech-recognition systems allow users to communicate using spoken commands",
+    "a": "True"
+  },
+  {
+    "q": "Statement about an intended product that specifies what it should do or how it should perform. The statement best exemplifies the _______?",
+    "a": "Requirements"
+  },
+  {
+    "q": "Steps of design process, what to do and how to decide?",
+    "a": "design"
+  },
+  {
+    "q": "Stylus and light pens are very direct and obvious to use.",
+    "a": "True"
+  },
+  {
+    "q": "Task analysis is an umbrella term that covers techniques for investigating cognitive processes at a high level of abstraction and in minute detail",
+    "a": "False"
+  },
+  {
+    "q": "The analysis, irrespective of whether the data is qualitative or quantitative, may?",
+    "a": "identify relationships between variables"
+  },
+  {
+    "q": "The application of technology in people's daily lives can be measured in living laboratories.",
+    "a": "True"
+  },
+  {
+    "q": "The benefits of more usable software system to business users include:",
+    "a": "increased productivity decreased user errors decreased user training time and cost"
+  },
+  {
+    "q": "The bottom-line benefits of usability to development organizations include:",
+    "a": "The bottom-line benefits of usability to development organizations include:"
+  },
+  {
+    "q": "The degree of potential harm caused by faulty data collection depends on the nature of the investigation and whether it is used to support public policy?",
+    "a": "Indeed"
+  },
+  {
+    "q": "The design of a keyboard layout reflects the __________ concern in HCI",
+    "a": "physical"
+  },
+  {
+    "q": "The devices dictate the styles of interaction that the system supports?",
+    "a": "Typical computer system"
+  },
+  {
+    "q": "The electrostatic field can cause rashes.",
+    "a": "True"
+  },
+  {
+    "q": "The field of HCI __________",
+    "a": "attempts to understand and shape the way people interact with computers"
+  },
+  {
+    "q": "The first step in qualitative analysis is to gain an overall impression of the data and to start looking for patterns",
+    "a": "True"
+  },
+  {
+    "q": "The following product that is used by someone has no user experience such as newspapers, ketchup bottles, reclining armchairs, cardigan sweaters.",
+    "a": "False"
+  },
+  {
+    "q": "The following product used by someone has no user experience such as newspapers, ketchup bottles, reclining armchairs, and cardigan sweaters.",
+    "a": "False"
+  },
+  {
+    "q": "The following statement refers to Dvorak keyboard layout except?",
+    "a": "not faster for trained typists"
+  },
+  {
+    "q": "The opening statement of the agile manifesto refers to individuals and interactions over processes and tools only.",
+    "a": "False"
+  },
+  {
+    "q": "The program will also keep users updated in a reasonable time about what's happening through correct feedback.",
+    "a": "Visibility of system status"
+  },
+  {
+    "q": "The program will speak the language of the users, with user-familiar expressions, phrases, and concepts rather than system-oriented terminology.",
+    "a": "Match between system and the real world"
+  },
+  {
+    "q": "The prototyping phase follows after which of the following steps?",
+    "a": "Understanding users needs"
+  },
+  {
+    "q": "The questionnaire is a step of the first steps in encoding data.",
+    "a": "False"
+  },
+  {
+    "q": "The second principle of a user-centered approach is empirical design? What is the concept?",
+    "a": "Specific usability and user experience goals should be identified, clearly documented, and agreed upon at the beginning of the project"
+  },
+  {
+    "q": "The thought that clients gain by investigating an interface is the basic understanding fundamental the \"cognitive walkthrough\" strategy of assessment",
+    "a": "True"
+  },
+  {
+    "q": "The underlying model of having a conversation with another human is about ___________?",
+    "a": "Conversing"
+  },
+  {
+    "q": "The way information is displayed can also greatly influence how easy or difficult it is to attend to appropriate information pieces.",
+    "a": "Information Presentation"
+  },
+  {
+    "q": "The way people feel about it and their pleasure and satisfaction when providing it, ignoring it, letting go of it, and opening or closing it",
+    "a": "False"
+  },
+  {
+    "q": "There are 3 fundamental requirements recognized in all design fields, ie Mech engineering design, architecture, software design etc, Which of them is not?",
+    "a": "Detects fluctuating alterations in reflected light intensity"
+  },
+  {
+    "q": "There are many resources for design, text labels can be used, and rollovers can be used?",
+    "a": "research and design issues with icons"
+  },
+  {
+    "q": "there are three broad categories of user. This category of users know well how to perform the tasks they need to perform frequently",
+    "a": "occasional users"
+  },
+  {
+    "q": "These are set of options that appear on screen.",
+    "a": "menus"
+  },
+  {
+    "q": "These are the reports that contain information about the incident, the objective data analysis, and the conclusions.",
+    "a": "accident reports"
+  },
+  {
+    "q": "These are the screen areas which function as if they were separate, such as text or graphics.",
+    "a": "windows"
+  },
+  {
+    "q": "These are the systems where augmented reality, window system, and 3D workspaces are used",
+    "a": "Three dimensional interfaces"
+  },
+  {
+    "q": "These are the windows of information that pop up to warn about a significant incident or request information.",
+    "a": "dialogue boxes"
+  },
+  {
+    "q": "This concerned with how we feel and react when interacting with technologies?",
+    "a": "emotional interaction"
+  },
+  {
+    "q": "This data collection strategy makes use of books, journals, magazine, art works, songs, pictures and others to obtain common themes or construct for analysis",
+    "a": "Documentary Analysis"
+  },
+  {
+    "q": "This explains human behavior in terms of our practical activity in the world?",
+    "a": "Activity theory"
+  },
+  {
+    "q": "This expresses the nature of elements and is represented as themes, patterns, and stories?",
+    "a": "Qualitative analysis"
+  },
+  {
+    "q": "This is rapid and dissipates quickly?",
+    "a": "Automatic (Affect) Emotion"
+  },
+  {
+    "q": "This is the interaction of the physical characteristics.",
+    "a": "ergonomics"
+  },
+  {
+    "q": "This is the method of choosing items to concentrate on from the variety of possibilities available for a list at a time.",
+    "a": "Attention"
+  },
+  {
+    "q": "This is the nature of the interaction between the user / device.",
+    "a": "interaction styles"
+  },
+  {
+    "q": "This is the process of selecting things to concentrate on, at a point in time, from the range of possibilities available. It involves our auditory and/or visual senses.",
+    "a": "Attention"
+  },
+  {
+    "q": "This is what you want to achieve in interaction.",
+    "a": "goal"
+  },
+  {
+    "q": "This refers to good source of data about steps involved in an activity and regulations governing a task?",
+    "a": "Study documentation"
+  },
+  {
+    "q": "This refers to making the first questions easy and non-threatening",
+    "a": "Warm-up"
+  },
+  {
+    "q": "This refers to start soon after gathering the data?",
+    "a": "Data interpretation and analysis"
+  },
+  {
+    "q": "This type of interview is done to recall and reconstruct something that happened in the past.",
+    "a": "Retrospective Interview"
+  },
+  {
+    "q": "Those are the small pictures or photographs depicted as device objects.",
+    "a": "icons"
+  },
+  {
+    "q": "To test dependent variable(s), the experimenter checks independent variable(s).",
+    "a": "True"
+  },
+  {
+    "q": "To understand human-computer interaction we need to?",
+    "a": "need to understand computers"
+  },
+  {
+    "q": "Under what circumstances could the scope for considering design alternatives be limited?",
+    "a": "If producing an upgrade to an existing system, design elements may be limited to ensure you keep the familiar elements"
+  },
+  {
+    "q": "Usability research is based on indicators of success, e.g. How long and how many errors are made while performing a series of predefined tasks. Indirect observation (video and keystroke logging), questionnaires regarding user satisfaction, and interviews are also collected.",
+    "a": "True"
+  },
+  {
+    "q": "Usability testing and trials require the assessor to have a high degree of control over what is being tested, while evaluators usually exert little or no control on participants in field studies.",
+    "a": "True"
+  },
+  {
+    "q": "Usability testing is carried out in regulated labs or temporary laboratories.",
+    "a": "True"
+  },
+  {
+    "q": "Use scenarios to...",
+    "a": "Validate other models"
+  },
+  {
+    "q": "User-free settings are intended to predict, analyze & model aspects of device analytics.",
+    "a": "True"
+  },
+  {
+    "q": "Users often mistakenly choose system functions and need a clearly marked \"emergency exit\" to leave the undesirable state without having to go through an extended dialog. Support undo and redo.",
+    "a": "User control and freedom"
+  },
+  {
+    "q": "Users shouldn't be wondering whether specific words, circumstances or acts mean the same thing. Employ conventions on website.",
+    "a": "Consistency and standards"
+  },
+  {
+    "q": "Usually a high authority approves the design of the informed consent form, the assessment procedure, data processing and data storage methods",
+    "a": "True"
+  },
+  {
+    "q": "Video, audio, photos, notes are not used to capture data in both types of observations",
+    "a": "False"
+  },
+  {
+    "q": "Visibility is what operations and manipulation can be performed on a given entity",
+    "a": "False"
+  },
+  {
+    "q": "Walkthroughs are focused so they are suitable to assess small parts of a product.",
+    "a": "True"
+  },
+  {
+    "q": "Web designers are people who develop and create the visual design of websites, such as layouts.",
+    "a": "True"
+  },
+  {
+    "q": "Web Interfacing is essentially a website.",
+    "a": "True"
+  },
+  {
+    "q": "Web Interfacing is essentially a websites.",
+    "a": "True"
+  },
+  {
+    "q": "Web: at that point vs. presently concerning approximately data structure, concern for aesthetics, convenience on diverse gadgets",
+    "a": "True"
+  },
+  {
+    "q": "What % of windows xp service pack errors were resolved based on info collected from the windows error reporting system?",
+    "a": "29%"
+  },
+  {
+    "q": "What are expressive interfaces?",
+    "a": "Provide reassuring feedback that can be both informative and fun, but also intrusive and annoying"
+  },
+  {
+    "q": "What are the common lifecycle models for interaction design?",
+    "a": "International standard model (ISO 9241-210)"
+  },
+  {
+    "q": "What are the elements of the Gulf of Execution?",
+    "a": "Forming intentions, specifying right action, selecting appropriate interface mechanism"
+  },
+  {
+    "q": "What are the two aims of the Requirement Activity?",
+    "a": "To understand as much as possible about the user and their activities"
+  },
+  {
+    "q": "What are we trying to achieve?",
+    "a": "Understand users, activities, context so the system can support them in achieving their goals"
+  },
+  {
+    "q": "What can we use to gather primary data?",
+    "a": "Experiments"
+  },
+  {
+    "q": "What do we mean by needs?",
+    "a": "Refer to undreamt needs, which are those that users are unaware they could have"
+  },
+  {
+    "q": "What does HCI Stand for?",
+    "a": "Human-computer interaction"
+  },
+  {
+    "q": "What is Claim?",
+    "a": "Stating something to be true"
+  },
+  {
+    "q": "What is a lifecycle model?",
+    "a": "A lifecycle model is a term used to represent a model that captures a set of activities and how they are related"
+  },
+  {
+    "q": "What is alternatives means?",
+    "a": "Generating alternatives is a key principle in most design principles and should be encouraged in interaction design"
+  },
+  {
+    "q": "What is an Assumption?",
+    "a": "Unexamined idea"
+  },
+  {
+    "q": "What is another name for an emotion model?",
+    "a": "Norman, Ortony, and Revelle model of emotion"
+  },
+  {
+    "q": "What is Anthromorphism?",
+    "a": "attributing human-like qualities to inanimate objects"
+  },
+  {
+    "q": "What is behavioral design?",
+    "a": "Is about use and equates with the traditional values of usability"
+  },
+  {
+    "q": "What is deceptive technology?",
+    "a": "phishing and trust. Deceive people into parting with personal details"
+  },
+  {
+    "q": "What is emotional interaction?",
+    "a": "It's about how we feel and respond when we communicate with technologies"
+  },
+  {
+    "q": "What is evaluating?",
+    "a": "Is the process of of determining the usability and acceptability of the product or design that is measured in a variety of usability and user experience data"
+  },
+  {
+    "q": "What is expectation management?",
+    "a": "Process of making sure that the user's expectations of the new product are realistic"
+  },
+  {
+    "q": "What is facial coding?",
+    "a": "Measures the emotions of users by analyzing photos recorded via the camera when interacting with the device"
+  },
+  {
+    "q": "What is important when deciding which design approach to use?",
+    "a": "The design approach must select done based on the design problem in mind"
+  },
+  {
+    "q": "What is one of the tasks which quantitative data analysis for interaction design usually involves?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "What is persuasive technologies?",
+    "a": "Interactive computer systems are designed to alter perceptions and behaviors of individuals"
+  },
+  {
+    "q": "What is physiological reactions?",
+    "a": "Skin conductance, heart activity, breathing, pupil dilation"
+  },
+  {
+    "q": "What is Prototyping?",
+    "a": "A working piece of software is not always needed Prototyping is still important because it allows users and designers to interact with the products before developing a fully live version"
+  },
+  {
+    "q": "What is reflective design?",
+    "a": "Taking into account the meaning and personal value of a product in a particular culture"
+  },
+  {
+    "q": "What is the concept of Iterative design?",
+    "a": "Allows the design to be refined based on feedback However good the designers are, and however clear the users may think their vision of the artifact is, it will be necessary to revise ideas in light of feedback several times"
+  },
+  {
+    "q": "What is the fundamental insight that underlies the evaluation process of \"cognitive walk through?",
+    "a": "The idea that users earn by exploring an interface"
+  },
+  {
+    "q": "What is the ideal number of participants for FGD?",
+    "a": "6-10"
+  },
+  {
+    "q": "What is the last phase in the requirement activity?",
+    "a": "Producing a set of stable requirements"
+  },
+  {
+    "q": "What is the main reason for establishing requirements?",
+    "a": "So that you know what to build"
+  },
+  {
+    "q": "What is the most important property that a prototype should have?",
+    "a": "should allow the key concepts to be tested with users"
+  },
+  {
+    "q": "What is the pros of a focus group?",
+    "a": "good for gaining a consensus view and highlighting areas of conflict"
+  },
+  {
+    "q": "What is the pros of Direct Observation?",
+    "a": "good for understanding the nature and context of tasks"
+  },
+  {
+    "q": "What is the purpose of Visualization and Dashboards?",
+    "a": "to augment human capabilities, to improve how users see patterns, and amplify human cognition"
+  },
+  {
+    "q": "What is the Sources of Qualitative Data?",
+    "a": "Interview and observation"
+  },
+  {
+    "q": "What is the starting point of an HTA?",
+    "a": "User goal"
+  },
+  {
+    "q": "What is virtual agents?",
+    "a": "welcoming persona, has a personality and makes the user feel involved with them"
+  },
+  {
+    "q": "What kind of requirements is in place for an Interaction Design Project?",
+    "a": "There may be an initial set of requirements, or the project may have to begin by producing a set of requirements from scratch"
+  },
+  {
+    "q": "What of the following is the design principles?",
+    "a": "Generalizable abstractions for thinking about different aspects of design"
+  },
+  {
+    "q": "What other reasons/justifications are there for user involvement in interaction design?",
+    "a": "Ownership: Users who are involved and feel that they have contributed to developing a product are more likely to feel a sense of ownership towards it and support its use"
+  },
+  {
+    "q": "What research instrument is most useful in a study entitled, \"Online Classes: An Analysis on its Contribution to the Students' Learning Experience\"?",
+    "a": "FGD (Focus Group Discussion)"
+  },
+  {
+    "q": "When humans communicate with _____________, they bring to the encounter a lifetime of",
+    "a": "computer"
+  },
+  {
+    "q": "When is an interface annoying?",
+    "a": "Crashes, doesn't do what user wants, expectations not met, vague error messages, appearance of interface is gimmicky"
+  },
+  {
+    "q": "Where do alternative designs originate?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which aims to automate the measurement of feelings and behavior, which is inferred from facial expressions and voice.?",
+    "a": "Emotional AI"
+  },
+  {
+    "q": "Which are common task description types? Choose at least one.",
+    "a": "Essential use cases"
+  },
+  {
+    "q": "Which are the main factors which can influence the impact a user can have on a project?",
+    "a": "This is less of a technique and more of a philosophy"
+  },
+  {
+    "q": "Which has been traditionally about designing efficient and effective systems?",
+    "a": "Human-Computer Interaction"
+  },
+  {
+    "q": "Which is about the use and equates with the traditional values of usability?",
+    "a": "Behavioral Design"
+  },
+  {
+    "q": "Which is not one of the main options in presenting the findings of data analysis?",
+    "a": "Using activity theory"
+  },
+  {
+    "q": "Which is not one of the theories that qualitative data analysis may be framed by?",
+    "a": "Scientific theory"
+  },
+  {
+    "q": "Which is one kind of average in data analysis?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following are the Problems with Data Gathering?",
+    "a": "Identifying/involving stakeholders"
+  },
+  {
+    "q": "Which of the following best describe a trackball?",
+    "a": "For accurate CAD"
+  },
+  {
+    "q": "Which of the following best exemplified a joystick?",
+    "a": "Indirect pressure of stick"
+  },
+  {
+    "q": "Which of the following definition is regarding direct manipulation described by Shneiderman?",
+    "a": "Continuous representation of objects and actions of interest"
+  },
+  {
+    "q": "Which of the following does not belongs to Communication Methods?",
+    "a": "HyperMirror"
+  },
+  {
+    "q": "Which of the following helps meet psychological and cognitive processing needs, increases human confidence?",
+    "a": "Feedback"
+  },
+  {
+    "q": "Which of the following is a concept indicating that we understand human attention?",
+    "a": "Avoid cluttering the interface with more information than is needed at the present moment for the user"
+  },
+  {
+    "q": "Which of the following is a design implication of our understanding of human attention?",
+    "a": "Avoid cluttering the interface with more information than is needed at the present moment for the user"
+  },
+  {
+    "q": "Which of the following is a problem with online questionnaires?",
+    "a": "Preventing individuals from responding more than once can be a problem"
+  },
+  {
+    "q": "Which of the following is an advantage of an online questionnaire or survey?",
+    "a": "No copying and postage costs"
+  },
+  {
+    "q": "Which of the following is an advantage of touched-sensitive screen?",
+    "a": "suitable for use in hostile environment: clean and safe from damage"
+  },
+  {
+    "q": "Which of the following is comparing what happened in the world with what we wanted to happen?",
+    "a": "None of these"
+  },
+  {
+    "q": "Which of the following is design's golden rule?",
+    "a": "understand your materials"
+  },
+  {
+    "q": "Which of the following is NOT a usability goal?",
+    "a": "making the design to include more contents on each screen"
+  },
+  {
+    "q": "Which of the following is NOT an Ergonomic example?",
+    "a": "spiritual beliefs"
+  },
+  {
+    "q": "Which of the following is not the category of a stakeholder?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is one of the advantages of direct manipulation?",
+    "a": "Some people take the metaphor of direct manipulation too literally"
+  },
+  {
+    "q": "Which of the following is one of the user category?",
+    "a": "All of those"
+  },
+  {
+    "q": "Which of the following is the health hazard of CRT?",
+    "a": "Radio frequency emissions, plus ultrasound (16kHz)"
+  },
+  {
+    "q": "Which of the following is the principles of HCI?",
+    "a": "Tasks"
+  },
+  {
+    "q": "Which of the following is touch-sensitive screen advantage?",
+    "a": "fast, and requires no specialised pointer"
+  },
+  {
+    "q": "Which of the following levels of coding refers to form a theoretical scheme?",
+    "a": "Selective"
+  },
+  {
+    "q": "Which of the following reasons refers to direct manipulation is enjoyable?",
+    "a": "Novices can learn the basic functionality quickly"
+  },
+  {
+    "q": "Which of the following refers to optical detecting motion?",
+    "a": "may use special grid-like pad or just on desk"
+  },
+  {
+    "q": "Which of the following refers to the encouraging a good response?",
+    "a": "Promise anonymity"
+  },
+  {
+    "q": "Which of the following refers to the problems with online questionnaires?",
+    "a": "Sampling is problematic if population size is unknown"
+  },
+  {
+    "q": "Which of the following statements refers to jaggies?",
+    "a": "diagonal lines that have discontinuities in due to horizontal raster scan process"
+  },
+  {
+    "q": "Which one could NOT be found in a good HCI?",
+    "a": "A long command line to achieve a function"
+  },
+  {
+    "q": "Which one of these would NOT be found in a good HCI?",
+    "a": "A long command line to achieve a function"
+  },
+  {
+    "q": "Which step is not one of the first steps in analyzing data?",
+    "a": "Gathering"
+  },
+  {
+    "q": "Which tool is not one of the tools to support data analysis?",
+    "a": "Data Recovery"
+  },
+  {
+    "q": "Which user experience goals in desirable aspects?",
+    "a": "satisfying"
+  },
+  {
+    "q": "While it's best if the program can be used without documentation, support and documentation may need to be provided.",
+    "a": "Help and documentation"
+  },
+  {
+    "q": "Who argue that computers should be made to apologize",
+    "a": "Reeves and Naas (1996)"
+  },
+  {
+    "q": "Why are icons better than commands?",
+    "a": "easier to learn, small and compact"
+  },
+  {
+    "q": "Why Marble answering machine (Bishop, 1995) is considered to be a good design?",
+    "a": "All of them are correct"
+  },
+  {
+    "q": "Why were windows (WIMP) invented?",
+    "a": "invented to overcome physical constraints of a computer display"
+  },
+  {
+    "q": "WIMP stands for Windows, Symbols, Menus, Indicating Gadget; came some time recently the GUI",
+    "a": "True"
+  },
+  {
+    "q": "Window management switching between windows without distraction spacing, grouping, and simplicity",
+    "a": "Challenges of Windows (WIMP)"
+  },
+  {
+    "q": "You cannot use inspections to test specifications, mockups, functional prototypes, or systems",
+    "a": "False"
+  },
+  {
+    "q": "You want to test the intuitiveness of the functionality of the application. For this task, you will use:",
+    "a": "Low fidelity prototypes"
+  }
+]

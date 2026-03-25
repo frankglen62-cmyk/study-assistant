@@ -3,60 +3,46 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Data Analysis',
-    slug: 'data-analysis',
-    expectedCount: 251,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/math/data-analysis-6200-math'
-  },
-  {
-    name: 'Data Communications and Networking 1',
-    slug: 'data-communications-and-networking-1',
-    expectedCount: 271,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-1-6201-it'
-  },
-  {
-    name: 'Data Communications and Networking 2',
-    slug: 'data-communications-and-networking-2',
-    expectedCount: 361,
+    name: 'Individual/Dual Sports',
+    slug: 'individual-dual-sports',
+    expectedCount: 303,
     pages: 5,
-    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-2-6223-it'
+    baseUrl: 'https://amauoed.com/courses/phyed/individualdual-sports-6103-phyed'
   },
   {
-    name: 'Data Communications and Networking 3',
-    slug: 'data-communications-and-networking-3',
-    expectedCount: 247,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-3-6224-it'
+    name: 'Information Assurance and Security 1',
+    slug: 'information-assurance-and-security-1',
+    expectedCount: 405,
+    pages: 6,
+    baseUrl: 'https://amauoed.com/courses/it/information-assurance-and-security-1-6205a-it'
   },
   {
-    name: 'Data Structures and Algorithm Analysis',
-    slug: 'data-structures-and-algorithm-analysis',
-    expectedCount: 228,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/ite/data-structures-and-algorithm-analysis-6201-ite'
+    name: 'Introduction to Human Computer Interaction',
+    slug: 'introduction-to-human-computer-interaction',
+    expectedCount: 432,
+    pages: 6,
+    baseUrl: 'https://amauoed.com/courses/it/introduction-to-human-computer-interaction-6200-it'
   },
   {
-    name: 'Database Management System 1 (Oracle)',
-    slug: 'database-management-system-1-oracle',
-    expectedCount: 150,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/it/database-management-system-1-oracle-6202-it'
+    name: 'Kritikal na Pagbasa, Pagsulat at Pagsasalita',
+    slug: 'kritikal-na-pagbasa-pagsulat-at-pagsasalita',
+    expectedCount: 558,
+    pages: 8,
+    baseUrl: 'https://amauoed.com/courses/fili/kritikal-na-pagbasa-pagsulat-at-pagsasalita-6201-fili'
   },
   {
-    name: 'Environmental Science',
-    slug: 'environmental-science',
-    expectedCount: 269,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/ge/environmental-science-6200-ge'
+    name: 'Life and Works of Jose Rizal',
+    slug: 'life-and-works-of-jose-rizal',
+    expectedCount: 500, // Guessing expected count based on 7 pages
+    pages: 7,
+    baseUrl: 'https://amauoed.com/courses/ge/life-and-works-of-jose-rizal-6300-ge'
   },
   {
-    name: 'Euthenics 1',
-    slug: 'euthenics-1',
-    expectedCount: 151,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/ethns/euthenics-1-6101-ethns'
+    name: 'National Service Training Program 1',
+    slug: 'national-service-training-program-1',
+    expectedCount: 352,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/nstp/national-service-training-program-1-6101-nstp'
   }
 ];
 

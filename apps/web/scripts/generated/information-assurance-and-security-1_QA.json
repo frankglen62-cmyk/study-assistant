@@ -1,0 +1,1622 @@
+[
+  {
+    "q": "_______ also can create their own custom probes.",
+    "a": "Users"
+  },
+  {
+    "q": "__________ use packet switching to receive, process and forward data.",
+    "a": "Switch"
+  },
+  {
+    "q": "___________ is based on a comprehensive review of the specifications.",
+    "a": "Regulation assurance"
+  },
+  {
+    "q": "_____________ in terms of protection of the law or contractually protected or valuable information.",
+    "a": "Information security"
+  },
+  {
+    "q": "______________ is closely connected to risk management, which seeks to offer a permanent and safe approach to these conditions by different processes, protocols, rules, and requirements, which can serve to avoid or mitigate perceived risks in particular.",
+    "a": "Threat Management"
+  },
+  {
+    "q": "______________ requires assurance that all systems of information are secure and not abused.",
+    "a": "Integrity"
+  },
+  {
+    "q": "_______________ are a sequence of attacks that have been strung together.",
+    "a": "Breaches"
+  },
+  {
+    "q": "_______________ should also consider any regulations that impact the way the company collects,stores, and secures data, such as PCI-DSS, HIPAA, SOX, FISMA.",
+    "a": "Cyber Risk Assessment"
+  },
+  {
+    "q": "________________ are intended to find exploitable flaws in a company's data network.",
+    "a": "Penetration Test"
+  },
+  {
+    "q": "________________ is a network layer protocol that is used by network devices to diagnose network connectivity problems.",
+    "a": "ICMP"
+  },
+  {
+    "q": "________________ is the process of protecting individual pieces of data that could be grouped to give the bigger picture.",
+    "a": "Operation Security"
+  },
+  {
+    "q": "__________________ is measured on the basis of the likelihood of leakage of sensitive information and the effect if such leakage happens.",
+    "a": "Danger"
+  },
+  {
+    "q": "__________________ use wireless network infrastructure, such as Wi-Fi.",
+    "a": "WLANs"
+  },
+  {
+    "q": "___________________ is a mechanism that detects friendly activities that, if correctly evaluated and grouped alongside other data to expose vital information or confidential data, may be helpful to a possible intruder.",
+    "a": "OPSEC"
+  },
+  {
+    "q": "___________________ means securing the computing network of the company and protecting external computers that are connected to it, such as notebooks, smartphones and tablets.",
+    "a": "Endpoint security"
+  },
+  {
+    "q": "___________________ refers to the defense of physical threats against infrastructure.",
+    "a": "Physical security"
+  },
+  {
+    "q": "____________________ identifies and implements a set of procedures, guidelines, methodologies, programs, and frameworks with regard to individuals, systems, technologies, information, and supporting resources to preserve mission integrity.",
+    "a": "Information assurance"
+  },
+  {
+    "q": "____________________ these are unintentional in nature and are by far the most prevalent form of operating problems.",
+    "a": "Accidental misconfigurations"
+  },
+  {
+    "q": "_____________________ divert all traffic or workload to a backup device in this scenario.",
+    "a": "Security analysts"
+  },
+  {
+    "q": "_____________________ hackers edit the HTML of a website for fun or ideological purposes to vandalize it.",
+    "a": "defacement assault"
+  },
+  {
+    "q": "_____________________ is also a theory of information assurance that mandates that he will experience some degree of protection that makes the data he needs unavailable regardless of where an opponent can stage his attack.",
+    "a": "Defense-in-depth"
+  },
+  {
+    "q": "_____________________ is also seen as the most critical aspect of a good information security policy as it is essentially the end-users that need to be able to use the data.",
+    "a": "Availability"
+  },
+  {
+    "q": "_____________________ may be called a specification that involves a structure and discusses the relation between the components of that structure.",
+    "a": "System architecture"
+  },
+  {
+    "q": "______________________ helps ensure that only approved people can view and make improvements to confidential information that remains there as you reach the internal company network.",
+    "a": "IT encryption"
+  },
+  {
+    "q": "______________________ is for corporate networks and IT divisions of business.",
+    "a": "IT network assurance"
+  },
+  {
+    "q": "______________________ monitors the effect of network transition on protection, availability, and enforcement as a supplement to IT application-level security and data-level security solutions and a subset of network management.",
+    "a": "Network assurance"
+  },
+  {
+    "q": "______________________ refers to shielding software, hardware and data from physical attacks, or stopping operating services from doing so.",
+    "a": "Physical security"
+  },
+  {
+    "q": "_________________________ is a data that may be used to classify a single individual.",
+    "a": "Personally identifiable information"
+  },
+  {
+    "q": "_________________________ is about not making information accessible to unauthorized persons, organizations or systems or exposed to them.",
+    "a": "Confidentiality"
+  },
+  {
+    "q": "_________________________ is one of the most valuable intangible assets of any company, and it is the duty of management to properly secure it, as all assets.",
+    "a": "Information"
+  },
+  {
+    "q": "______________________________ best practices and knowledge on techniques of social engineering can be additional facets of preparation to deter users from bending data-handling laws with good intentions and potentially devastating consequences.",
+    "a": "Strong passwords and password-related"
+  },
+  {
+    "q": "______________________________ of consumer and business information are the most important considerations.",
+    "a": "Security and privacy"
+  },
+  {
+    "q": "_______________deployed by using USB.",
+    "a": "Wired Personal Area Network"
+  },
+  {
+    "q": "__________is closely correlated with the control of risk.",
+    "a": "Information Assurance"
+  },
+  {
+    "q": "(IA) is the study of how to protect your information assets from destruction,degradation, manipulation and exploitation.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A ________________ is defined as information being used by someone who should not have seen it.",
+    "a": "lack of privacy"
+  },
+  {
+    "q": "A _________________ is a collection of interconnected computers that helps the computer to communicate and share its power, data, and applications with another computer.",
+    "a": "computer network"
+  },
+  {
+    "q": "A ____________________ must recognize the assets of an organization as well as all possible risks to those assets",
+    "a": "security strategy"
+  },
+  {
+    "q": "A ______________________ is the classical example of a lack of availability to a hostile attacker.",
+    "a": "denial-of-service attack"
+  },
+  {
+    "q": "A company that aims to establish a functioning information management program needs to have well-defined security and strategy goals",
+    "a": "Information Security Objective"
+  },
+  {
+    "q": "A crucial point to consider regarding the CIA Triad is that it may suggest the tradeoff with others to prioritize one or more concepts.",
+    "a": "True"
+  },
+  {
+    "q": "A cryptographic protocol usually incorporates at least some of these aspects except.",
+    "a": "Security authentication"
+  },
+  {
+    "q": "A domain name is an easy way to remember an address, but it has to be translated to its digital IP format.",
+    "a": "False"
+  },
+  {
+    "q": "A full inventory ofarchitecture elements that implement security services must be compiled inpreparation for a gap analysis. What phase is that?",
+    "a": "Phase C: Information System Architecture"
+  },
+  {
+    "q": "A gateway is sometimes called a network.",
+    "a": "False"
+  },
+  {
+    "q": "A limited number of missing devices will be retrieved by a large transport company, not to speak of devices misplaced in buses, airplanes, trams, rideshare cars, and so on.",
+    "a": "False"
+  },
+  {
+    "q": "A main and basic type of network protection firewall is a stateful packet-filtering firewall.",
+    "a": "False"
+  },
+  {
+    "q": "A network assurance technology called the _______________________ was launched by Cisco in January 2018.",
+    "a": "Network Assurance Engine"
+  },
+  {
+    "q": "A network topology describes the physical composition of a software.",
+    "a": "False"
+  },
+  {
+    "q": "A paradigm meant to direct information security practices within an enterprise.",
+    "a": "CIA"
+  },
+  {
+    "q": "A request to retrieve the value of a variable or list of variables.",
+    "a": "Get Request"
+  },
+  {
+    "q": "A residence would have a single wired Internet connection attached to a modem in a very traditional configuration.",
+    "a": "True"
+  },
+  {
+    "q": "A router port that links to the Internet needs to learn how to route contact messages to destinations across the globe effectively.",
+    "a": "True"
+  },
+  {
+    "q": "A simplified and more popular instance of an assault on data integrity will be a _____________.",
+    "a": "defacement assault"
+  },
+  {
+    "q": "A switch, running on the data link layer, is called:",
+    "a": "Layer 2 device"
+  },
+  {
+    "q": "A typical way of maintaining secrecy is _________________.",
+    "a": "data encryption"
+  },
+  {
+    "q": "A________________ basis is also used as a rule of thumb for access and exchange of knowledge in the military and other government agencies.",
+    "a": "\"need-to-know\""
+  },
+  {
+    "q": "Acceptance,avoidance, mitigation, transfer—are withrespect to a specific risk for a specific pary.",
+    "a": "The risk treatment"
+  },
+  {
+    "q": "According to Digital Guardian, information assurance and information security is:",
+    "a": "The words are fundamentally related and share an ultimate objective of protecting the integrity of the information"
+  },
+  {
+    "q": "According to many other cybersecurity experts, the CIA model is unlimited, and certain elements are not adequately shielded.",
+    "a": "False"
+  },
+  {
+    "q": "According to the National Security Agency, the maximum degree in information security would be ____________________________ along with technologies and clear organization procedural standards at all layers of the business model.",
+    "a": "achievable when bringing personnel skilled in information assurance"
+  },
+  {
+    "q": "According to the National Security Agency, the maximum degree in information security would be achievable when bringing __________________.",
+    "a": "personnel skilled in information assurance along with technologies and clear organization procedural standards at all layers of the business model"
+  },
+  {
+    "q": "According to the SANS Institute, information security refers to the procedures and methodologies planned and applied to deter unauthorized entry, use, abuse, dissemination, degradation, alteration or interruption of paper, electronic or some other form of classified, private and sensitive information or data.",
+    "a": "True"
+  },
+  {
+    "q": "Acronym for TCB?",
+    "a": "Trusted Computing Base"
+  },
+  {
+    "q": "Actions taken thatprotect and defend information and information systems by ensuring their availability, integrity, authentication, confidentialityand",
+    "a": "TRUE"
+  },
+  {
+    "q": "After completing a pen test, the testers report their results to the company's security manager so that solutions and patches can be created.",
+    "a": "True"
+  },
+  {
+    "q": "After the first six phases, an attacker can act to achieve the goals. These actions typically consist of collecting information, modifying data integrity, or attacking the availability of services and devices, but the victim system can also be used as a starting point for infecting other systems or for expanding access to the local network.",
+    "a": "Action on Objective"
+  },
+  {
+    "q": "After the weapon is delivered to the victim, follows the targetingof an application or vulnerability of the operating system. The infected filecan be used by the self-execution facility to launch the malware code, or itcan be executed by the user himself;",
+    "a": "Exploitation"
+  },
+  {
+    "q": "All vulnerabilities are in web services.",
+    "a": "False"
+  },
+  {
+    "q": "Although proxy firewalls secure clients in general, servers are secured by _____________.",
+    "a": "WAF"
+  },
+  {
+    "q": "An IP address is a human-friendly website URL.",
+    "a": "False"
+  },
+  {
+    "q": "Another provider that claims to have network assurance capabilities through continuous network verification in its platform is ____________________________.",
+    "a": "Veriflow Systems"
+  },
+  {
+    "q": "Any SNMP managers can automatically send an email or text message warning to the administrator if the threshold is surpassed.",
+    "a": "True"
+  },
+  {
+    "q": "APT means:",
+    "a": "Advanced Persistent Threats"
+  },
+  {
+    "q": "Are applicable toensuring that security requirements are addressed in subsequent phases of theADM",
+    "a": "Phase A: Architecture Vision"
+  },
+  {
+    "q": "Are applicable toensuring that security requirements are addressed in subsequent phases of theADM. What phase is that?",
+    "a": "Phase A: Architecture Vision"
+  },
+  {
+    "q": "Are the securityfeatures of a system that provideenforcement of a security policy.",
+    "a": "Trust mechanism"
+  },
+  {
+    "q": "Assess and baseline current security-specificarchitecture elements. What phase is that?",
+    "a": "Phase C: Information System Architecture"
+  },
+  {
+    "q": "Assess and baseline current security-specifictechnologies. What phase is that?",
+    "a": "Phase D: Technology Architecture"
+  },
+  {
+    "q": "Assess the impact of new security measures uponother new components or existing leveraged systems. What phase is that?",
+    "a": "Phase F: Migration Planning"
+  },
+  {
+    "q": "Assurance that the information is authentic and complete.",
+    "a": "Availability"
+  },
+  {
+    "q": "Assurance the sender of data is provided with proof of delivery. The recipient is provided with proof of the sender's identity, so neither can later deny having processed the data.",
+    "a": "Non-repudiation"
+  },
+  {
+    "q": "Assurancethat information is shared only among authorized persons or organizations.",
+    "a": "Confidentiality"
+  },
+  {
+    "q": "Authenticity must be _____________.",
+    "a": "accurate"
+  },
+  {
+    "q": "Availability is defined as the percentage of time during which a service can use for the purpose that it was originally designed and built for __________.",
+    "a": "Service Availability"
+  },
+  {
+    "q": "Availability such as data encryption and hashing is applied using authentication protocols.",
+    "a": "False"
+  },
+  {
+    "q": "Availability: Availability of information refers to ensuring that authorized parties are able to access the information when needed",
+    "a": "TRUE"
+  },
+  {
+    "q": "Availability:Assurance that the systems responsible for delivering, storing and processing information are accessible when needed, by those who need them.",
+    "a": "TRUE"
+  },
+  {
+    "q": "BGP means:",
+    "a": "Border Gateway Protocol"
+  },
+  {
+    "q": "BGP stands for _____________________________.",
+    "a": "Border Gateway Protocol"
+  },
+  {
+    "q": "Businesses are increasingly connecting software, customers, facilities, and so on to several networks",
+    "a": "True"
+  },
+  {
+    "q": "Cable network interconnected by a transmitting medium such as cable, wire, etc.",
+    "a": "False"
+  },
+  {
+    "q": "Changes in securityrequirements are often more disruptive than a simplification or incrementalchange. Changes in security policy can be driven by statute, regulation, orsomething that has gone wrong. What phase is that?",
+    "a": "Phase H: Architecture Change Management"
+  },
+  {
+    "q": "Changes in securitystandards are usually less disruptive since the trade-off for their adoption isbased on the value of the change. However, standards changes can also bemandated. What phase is that?",
+    "a": "Phase H: Architecture Change Mana"
+  },
+  {
+    "q": "Characterized by ______________________ cyberspace is more by the social connections involved than by its technological application.",
+    "a": "Randall Farmer"
+  },
+  {
+    "q": "Compliance without the checklist by persons who lack a basic Information Assurance experience, though, is a simple recipe for trouble.",
+    "a": "False"
+  },
+  {
+    "q": "Computer networking devices that allow one or more computers to be linked to other computers, networked devices, or other networks:",
+    "a": "routers and switches"
+  },
+  {
+    "q": "Conceptof Cybercrime",
+    "a": "TRUE"
+  },
+  {
+    "q": "Consists ofemployees, former employees and contractors.",
+    "a": "Insiders"
+  },
+  {
+    "q": "Controlling one's own actions.",
+    "a": "Action Control"
+  },
+  {
+    "q": "Converting datainto information thus requires knowledge",
+    "a": "Information"
+  },
+  {
+    "q": "Corporate secretary managers recognize and eliminate possible corporate risks.",
+    "a": "False"
+  },
+  {
+    "q": "Critical information is limited to military deployment schedules, internal organizational information, security measures, etc.",
+    "a": "False"
+  },
+  {
+    "q": "Cyber Crime Computer crime, or cybercrime, is any crime that involves a computer and a network. The computer may have been used in the commission of a crime, or it may be the target.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Cyber security, also referred to as information technology security, focuses on protecting computers, networks, programs and data from unintended or unauthorized access, change or destruction.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Cyber security, alsoreferred to as____________________, focuses on protectingcomputers, networks, programs and data from unintended or unauthorized access,change or destruction.",
+    "a": "information technology security"
+  },
+  {
+    "q": "Cyberinfrastructure consists of structures, data and knowledge processing, advanced tools, visualization environments, and individuals connected by software and advanced networks to enhance academic competitiveness and enable.",
+    "a": "True"
+  },
+  {
+    "q": "Cybersecurity is the collection of tools, policies,security concepts, security safeguards, guidelines, risk management approaches,actions, training, best practices, assurance and technologies that can be usedto protect the cyber environment and organization and user’s assets.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Cyberspace is \"the environment in whichcommunication over computer networks occurs.“",
+    "a": "TRUE"
+  },
+  {
+    "q": "Data and information assets must be confined to people who have authorized access and not disclosed to others",
+    "a": "Confidentiality"
+  },
+  {
+    "q": "Data is private if this can only be done for the individuals who are allowed to access it.",
+    "a": "True"
+  },
+  {
+    "q": "Data should be maintained in a correct state, and nobody should be able to modify it, either accidentally or maliciously improperly:",
+    "a": "Integrity"
+  },
+  {
+    "q": "Day-to-day processes, such as threat and vulnerability management and threat management.",
+    "a": "Operations and Monitoring"
+  },
+  {
+    "q": "DDoS means:",
+    "a": "Distributed Denial of Service"
+  },
+  {
+    "q": "Defense - in - depth barrier is only effective when the legislation on individuals, instruments, and knowledge assurance is present at any level of a company's structure.",
+    "a": "True"
+  },
+  {
+    "q": "Defense against arson, flooding, natural disasters, fraud, burglary, vandalism, and extremism are included as _______________.",
+    "a": "physical security"
+  },
+  {
+    "q": "Definition ofrelevant stakeholders and discovery of their concerns and objectives willrequire development of a high-level scenario. What phase is that?",
+    "a": "Phase A: Architecture Vision"
+  },
+  {
+    "q": "Determinewho are the legitimate actors who will interact with theproduct/service/process. What phase is that?",
+    "a": "Phase B: Business Architecture"
+  },
+  {
+    "q": "Development of thebusiness scenarios and subsequent high-level use-cases of the project concernedwill bring to attention the people actors and system actors involved. What phase is that?",
+    "a": "Phase B: Business Architecture"
+  },
+  {
+    "q": "During decision making on the acquisition of cybersecurity resources, these policies inform an organization. It also mandates the actions and duties of staff.",
+    "a": "True"
+  },
+  {
+    "q": "Each __________ is equipped with a particular routing protocol associated with the purpose of that port.",
+    "a": "router port"
+  },
+  {
+    "q": "Education will better familiarize authorized persons with risk factors and how to defend themselves from them.",
+    "a": "True"
+  },
+  {
+    "q": "Establish architecture artifact, design, andcode reviews and define acceptance criteria for the successful implementationof the findings. What phase is that?",
+    "a": "Phase G: Implementation Governance"
+  },
+  {
+    "q": "Establishing a security benchmark helps companies state that they do not have a managed atmosphere and have sound risk management.",
+    "a": "False"
+  },
+  {
+    "q": "Every system willrely upon resources that may be depleted in cases that may or may not beanticipated at the point of system design. What phase is that?",
+    "a": "Phase D: Technology Architecture"
+  },
+  {
+    "q": "Failure of themechanism may destroy the basis for trust.",
+    "a": "Trust"
+  },
+  {
+    "q": "Following a cyber riskassessment, develop and implement a plan to mitigate cyber risk and protect the“_____________” outlined in the assessment.",
+    "a": "crown jewels"
+  },
+  {
+    "q": "For example, a firewall law can cause packets containing port numbers higher than 1023 to be dropped since most servers respond to regular ports ranging from zero to 1023.",
+    "a": "True"
+  },
+  {
+    "q": "Four Security Domain",
+    "a": "Physical Security, Personnel Security, IT Security and Operational Security"
+  },
+  {
+    "q": "Four Security Domains",
+    "a": "Physical Security, Personnel Security, IT Security, Operational Security"
+  },
+  {
+    "q": "From the BaselineSecurity Architecture and the Enterprise Continuum, there will be existingsecurity infrastructure and security building blocks that can be applied to therequirements derived from this architecture development engagement. What phase is that?",
+    "a": "Phase E: Opportunities & Solutions"
+  },
+  {
+    "q": "FTP connection involves three parties to create and communicate on the network.",
+    "a": "False"
+  },
+  {
+    "q": "Functionality indicates that there are up and running networks, programs, and software.",
+    "a": "True"
+  },
+  {
+    "q": "How many pillars associated with information assurance?",
+    "a": "5"
+  },
+  {
+    "q": "Hubs are used to connect more than one computer and structure a network's architecture.",
+    "a": "True"
+  },
+  {
+    "q": "IA seeks to preserve integrity on all computer systems through anti-virus software and ensure that all workers have access to know how to use their systems properly to minimize malware or viruses accessing information systems.",
+    "a": "True"
+  },
+  {
+    "q": "Identifyexisting security services available for re-use",
+    "a": "Phase E: Opportunities & Solutions"
+  },
+  {
+    "q": "Identifyexisting security services available for re-use. What phase is that?",
+    "a": "Phase E: Opportunities & Solutions"
+  },
+  {
+    "q": "If one needs to access information of a particular employee to check whether an employee has withstood the number of leaves, in that case it requires collaboration from different organizational teams like network operations, development operations, incident response and policy/change management.",
+    "a": "True"
+  },
+  {
+    "q": "If security teams have to go back and reset the entire system to meet new parameters, _________________ occur, which can undermine the safety of the infrastructure.",
+    "a": "Disconnect"
+  },
+  {
+    "q": "If the extent of vulnerability is assessed to be high, and the adversary threat is apparent, adverse manipulation is expected, and the threats are assessed to be high.",
+    "a": "True"
+  },
+  {
+    "q": "In a phasedimplementation the new security components are usually part of theinfrastructure in which the new system is implemented. The securityinfrastructure needs to be in a first or early phase to properly support theproject. What phase is that?",
+    "a": "Phase F: Migration Planning"
+  },
+  {
+    "q": "In FTP, we need to complete all the operations to get the entire file.",
+    "a": "False"
+  },
+  {
+    "q": "In information security, data integrity meansmaintaining and assuring the accuracy and consistency of data over its entirelife-cycle.",
+    "a": "TRUE"
+  },
+  {
+    "q": "In network security, _______________________ have been the first line of protection for over 25 years.",
+    "a": "firewalls"
+  },
+  {
+    "q": "In science use, _________________________________ is a technical and sociological approach to the problem of linking labs, records, machines, and individuals effectively, with the intention of allowing new scientific theories and information to be derived.",
+    "a": "cyber infrastructure"
+  },
+  {
+    "q": "In Stateful Packet Filtering, the connection pairs is consists of the following parameters except ___________.",
+    "a": "The destination device"
+  },
+  {
+    "q": "In the direct sense of information protection, well-defined security mechanisms are developed to distribute information regardless of its state of presence-transit, stored, or rest.",
+    "a": "False"
+  },
+  {
+    "q": "In the information world, the National Institute of Standards and Technology has described cyberspace as:",
+    "a": "a global realm consisting of an interdependent network of infrastructures for information systems, including the internet, telephone networks, computer systems, and embedded processors and controllers"
+  },
+  {
+    "q": "In the_____________, as the use of the internet, networking, and automated media both grew significantly, the word became popular, and the term cyberspace was able to describe the many new concepts and trends that arose.",
+    "a": "1990s"
+  },
+  {
+    "q": "Infecting a victim system with a computer trojan, backdoor or other malware application of this type that ensures the attacker’s presence in the target environment;",
+    "a": "Installation"
+  },
+  {
+    "q": "Information and datamanipulation",
+    "a": "Information Infrastructure"
+  },
+  {
+    "q": "Information assurance guarantees the information in all ways and during all exchanges is confidential,________________, availability, ownership, utility, accuracy, non-repudiation, permitted use, and safety.",
+    "a": "confidentiality"
+  },
+  {
+    "q": "Information Assurance is at the heart of ____________________.",
+    "a": "Information Management"
+  },
+  {
+    "q": "Information can be physical or electronic, tangible, or intangible.",
+    "a": "True"
+  },
+  {
+    "q": "Information can be used to distinguish an individual's identity from another or be used to deanonymize anonymous data.",
+    "a": "PII"
+  },
+  {
+    "q": "Information Security and Cybersecurity have also been used interchangeably, although with some overlap, cybersecurity and information security address numerous goals and scopes.",
+    "a": "True"
+  },
+  {
+    "q": "Information security covers all steps taken in advance to stop adverse incidents arising in the knowledge, data and its meaning to depend on the knowledge, data and its meaning.",
+    "a": "True"
+  },
+  {
+    "q": "Information security is also known as:",
+    "a": "Infosec"
+  },
+  {
+    "q": "Information security is_____________________, and effective trained persons are essential for this reason in order to efficiently supervise the security systems.",
+    "a": "vital"
+  },
+  {
+    "q": "Information securitytechnical measures such as: encryption and key management,intrusion detection, anti-virussoftware, auditing, redundancy, firewalls, policies and standards.",
+    "a": "Defender's Operations"
+  },
+  {
+    "q": "Information technology ____________________ act as the framework for the application of the baseline of corporate information security.",
+    "a": "domains"
+  },
+  {
+    "q": "Involves theimplementation of standard operationalsecurity procedures that define the nature and frequency of the interaction between users, systems, and system resources, the purpose of which is to.",
+    "a": "Operational Security"
+  },
+  {
+    "q": "IP packets show where they originated.",
+    "a": "The source IP address of the incoming packets"
+  },
+  {
+    "q": "Is a collection ofall the trust mechanisms of a computersystem which collectively enforce the policy.",
+    "a": "TCB"
+  },
+  {
+    "q": "Is a generic termthat implies a mechanism in place to provide a basis for confidence in the reliability/security of the system.",
+    "a": "Trust"
+  },
+  {
+    "q": "Is a measure ofconfidence that the security features, practices, procedures, and architecture of a system accurately mediates and enforces the security policy.",
+    "a": "Assurance"
+  },
+  {
+    "q": "Is a process, not anend state",
+    "a": "Security"
+  },
+  {
+    "q": "Is data endowed with relevance and purpose.",
+    "a": "Information"
+  },
+  {
+    "q": "Is it true or false. An additional risk occurs when personal information is stored in client accounts on commercial websites, which may become the target of cyber-attacks anytime, so stored data becomes vulnerable is some basic steps in storing personal data",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false. Encrypting all personal information when saved on different storage media is some basic steps in storing personal data.",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false. Storage the minimum required data online and maximum discretion in providing them to a third party (users, companies) is some basic steps in storing personal data.",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false. The use of complex, unique, hard to guess or break passwords, consisting of numbers, upper/lower case letters and special characters is some basic steps in storing personal data.",
+    "a": "True"
+  },
+  {
+    "q": "Is it true or false. Using encrypted versions of protocols when sensitive information is exchanged so as to ensure data confidentiality and prevent identity theft is some basic steps in storing personal data.",
+    "a": "True"
+  },
+  {
+    "q": "Is roughly equivalent to privacy",
+    "a": "Confidentiality"
+  },
+  {
+    "q": "Is the inherenttechnical features and functions that collectively contribute to an IT infrastructure achieving and sustaining confidentiality, integrity,availability, accountability,",
+    "a": "IT Security"
+  },
+  {
+    "q": "Is the process by whichan asset is managed from its arrival orcreation to its termination or destruction.",
+    "a": "Lifecycle"
+  },
+  {
+    "q": "Is the process of maintaining an acceptable level of perceived risk",
+    "a": "Security"
+  },
+  {
+    "q": "Is thestudy of how to protect your informationassets from destruction, degradation, manipulation and exploitation.",
+    "a": "Information Assurance"
+  },
+  {
+    "q": "It applies to the credibility and the reality of the information's sources.",
+    "a": "Authenticity"
+  },
+  {
+    "q": "It can provide a collection of specifications and procedures that are not only documentable but also repeatable.",
+    "a": "Security Infrastructure"
+  },
+  {
+    "q": "It concerns the physical security of facilities, persons, and goods and the safety of information, networks, and telecommunications systems.",
+    "a": "Security Management"
+  },
+  {
+    "q": "It controls the preservation of information, which is one of the many things that a company wants to secure",
+    "a": "Security Policy"
+  },
+  {
+    "q": "It evaluates the business influence of vital business assets and the odds and effects of vulnerabilities and security threats.",
+    "a": "Architecture Risk Assessment"
+  },
+  {
+    "q": "It is a comprehensive strategy that helps business processes to restart or proceed despite a security incident.",
+    "a": "Catastrophe Recovery"
+  },
+  {
+    "q": "It is a critical method for efficient network management.",
+    "a": "SNMP"
+  },
+  {
+    "q": "It is a mechanism that defines the organizational configuration, protocols, rules, and functional behavior of a computer network, covering both protection and network functionality.",
+    "a": "Cybersecurity Architecture"
+  },
+  {
+    "q": "It is a person who anticipates possible cyber-attacks and is quick to develop mechanisms and programs to avoid them.",
+    "a": "Security Architect"
+  },
+  {
+    "q": "It is a support protocol used by network devices such as routers to transmit error messages and operations information.",
+    "a": "ICMP"
+  },
+  {
+    "q": "It is a type of OPSEC problem that is deliberate but varies in its degree of maliciousness.",
+    "a": "Deliberate Misconfiguration"
+  },
+  {
+    "q": "It is all about usefulness",
+    "a": "Utility"
+  },
+  {
+    "q": "It is the most frequent type of operational issues.",
+    "a": "Accidental Misconfiguration"
+  },
+  {
+    "q": "It is the use and set of hardware and software, including special tools.",
+    "a": "Computer Security"
+  },
+  {
+    "q": "It is where the intruder sends a ping greater than the actual acceptable size of the packet to the target computer, forcing the computer to freeze or crash.",
+    "a": "Ping of Death Attack"
+  },
+  {
+    "q": "It must recognize the assets of an organization as well as all possible risks to those assets.",
+    "a": "Security Strategies"
+  },
+  {
+    "q": "IT network assurance is for:",
+    "a": "corporate networks and IT divisions of a business"
+  },
+  {
+    "q": "It originated as a military term that described strategies to prevent potential adversaries from discovering critical operations-related data.",
+    "a": "Operations Security"
+  },
+  {
+    "q": "IT protection departments should follow an emergency response strategy before or after an accident as a _________________ to maintain control of the situation.",
+    "a": "risk management mechanism"
+  },
+  {
+    "q": "IT protection removes __________________ attacks and future __________________ of protection that can have a significant effect on the organization.",
+    "a": "malicious; violations"
+  },
+  {
+    "q": "It should be avoided, and writers should be careful to use the proper meaning of terms or generic words.",
+    "a": "Ambiguous sentences"
+  },
+  {
+    "q": "It should be: accurate, timely, complete, verifiable,consistent, available.",
+    "a": "Knowledge"
+  },
+  {
+    "q": "Jitter SLAs range from:",
+    "a": "2 ms and up to 10 ms"
+  },
+  {
+    "q": "Knowledge acquired through experience or study.",
+    "a": "Information"
+  },
+  {
+    "q": "Knowledge can be the result of _________________ produced from simple information facts",
+    "a": "inferences and implications"
+  },
+  {
+    "q": "Known as a procedural protection.",
+    "a": "OPSEC"
+  },
+  {
+    "q": "Logical security consists in software that are necessary to control theaccess to information and services of a system. The logical level is dividedinto two categories: access security level and service security level.",
+    "a": "Prevent Cyber-Attacks"
+  },
+  {
+    "q": "Making a malware application (for example, a computer trojan)that, combined with an exploitable security breach, allows remote access.Moreover, PDF (Portable Document Format) files or Microsoft Officesuite-specific files can be regarded as weapons available to the attacker;",
+    "a": "Weaponization"
+  },
+  {
+    "q": "MAN stands for ______________.",
+    "a": "Metropolitan Area Network"
+  },
+  {
+    "q": "Many major companies are now leading information security teams with a ________________________.",
+    "a": "Chief Information Officer"
+  },
+  {
+    "q": "Many securityvulnerabilities originate as design or code errors and the simplest and leastexpensive method to locate and find such errors is generally an early review byexperienced peers in the craft. What phase is that?",
+    "a": "Phase G: Implementation Governance"
+  },
+  {
+    "q": "Modem and data of consumer and business information are the most important considerations, particularly for all other reasons for information security in the e-commerce context.",
+    "a": "False"
+  },
+  {
+    "q": "Modern computing best practice typically allows more servers to be added to the cost-effective scale to accommodate these large volumes.",
+    "a": "True"
+  },
+  {
+    "q": "MTTR is the time that it takes for the service provider to repair the fault. Often this is defined in minutes.",
+    "a": "True"
+  },
+  {
+    "q": "Network ____________________ verify the best practices and skills needed by administrators of network security to execute their duties effectively.",
+    "a": "security certificates"
+  },
+  {
+    "q": "Network assurance organizations ensure the proper execution of ______________ during periods of dramatic network transition.",
+    "a": "protocols and defenses"
+  },
+  {
+    "q": "Network security architecture:",
+    "a": "Cybersecurity architecture"
+  },
+  {
+    "q": "Network vulnerabilities cause threats such as spyware and malware to become part of a company's network.",
+    "a": "Vulnerability Management"
+  },
+  {
+    "q": "new hires can have access to information that is critical, confidential and important, thereby increasing the _________________________ of the organizations within which they operate.",
+    "a": "risk profile"
+  },
+  {
+    "q": "Not performing an activitythat would incur risk.",
+    "a": "Risk Avoidance"
+  },
+  {
+    "q": "Notice that integrity goes hand and hand with the___________________.",
+    "a": "non-repudiation concept"
+  },
+  {
+    "q": "Once technology architects discover flaws in current networks, they create a new design to improve security frameworks.",
+    "a": "False"
+  },
+  {
+    "q": "Once this bidirectional communication has been made, an attacker has access inside the target environment and can usually control the activity by manually launching commands;",
+    "a": "command and control"
+  },
+  {
+    "q": "Only the current packet is looked at by stateful packet filtering.",
+    "a": "False"
+  },
+  {
+    "q": "Operational problems require operational solutions and operational competence of the organization.",
+    "a": "True"
+  },
+  {
+    "q": "OPSEC analyst determines what critical information the adversary cannot derive based on the known threat and assessed vulnerabilities.",
+    "a": "False"
+  },
+  {
+    "q": "OPSEC is both an ____________________ used in risk management to detect information that can be abused by the attacker and used to gather sensitive information that may harm the organization's plans or credibility.",
+    "a": "investigative process and a technique"
+  },
+  {
+    "q": "OPSEC is generally concerned with protecting against non-sensitive data being aggregated together. It often still uses technical countermeasures that are used to protect sensitive data.",
+    "a": "True"
+  },
+  {
+    "q": "OPSEC means:",
+    "a": "Operation Security"
+  },
+  {
+    "q": "OPSEC planning does not require a clear understanding of the activity's mission and organizational plans.",
+    "a": "False"
+  },
+  {
+    "q": "Organizations are investing in security protocols and digital frontiers to tackle the crisis.",
+    "a": "True"
+  },
+  {
+    "q": "OSPF means:",
+    "a": "Open Shortest Path First"
+  },
+  {
+    "q": "Physical attack anddestruction, including: electromagneticattack, visual spying, intrusion, scavenging and removal, wiretapping, interference, and eavesdropping.",
+    "a": "Attacker's Operations"
+  },
+  {
+    "q": "Physical security consist in the closure of IT equipment in a dedicated spaceand the provision of access control.",
+    "a": "Prevent Cyber-Attacks"
+  },
+  {
+    "q": "PoE stands for _________________.",
+    "a": "Power over Ethernet"
+  },
+  {
+    "q": "POLAN stands for ________________.",
+    "a": "Passive Optical Local Area Network"
+  },
+  {
+    "q": "Popular technological counter-measures include defending against various malware forms that result in a data breach and data leakage.",
+    "a": "True"
+  },
+  {
+    "q": "Possible acts of human incompetence or mistake, inadvertent acts, intentional acts of espionage or trespassing, possible improvements in service level by service providers, and natural disasters are not the key risks to physical protection.",
+    "a": "False"
+  },
+  {
+    "q": "Prerequisites for non-repudiation are data confidentiality and notification.",
+    "a": "False"
+  },
+  {
+    "q": "Primary application of the ICMP protocol is to ___________.",
+    "a": "Perform network diagnostic"
+  },
+  {
+    "q": "privacy, integrity can be directly violated by an attack vector such as:",
+    "a": "tampering for intrusion prevention devices"
+  },
+  {
+    "q": "Processed data",
+    "a": "Information"
+  },
+  {
+    "q": "Protocols for this purpose are referred to as ____________.",
+    "a": "interior routing protocols"
+  },
+  {
+    "q": "Proxy servers act as a firewall and web filter to speed up common requests, have shared network access, and cache data.",
+    "a": "True"
+  },
+  {
+    "q": "Redirect data packet requests to an alternative path.",
+    "a": "Redirection Message"
+  },
+  {
+    "q": "Regulation assurance is based on a simple review of the specifications.",
+    "a": "False"
+  },
+  {
+    "q": "Research, target identification and selection: it may be lookingfor e-mail addresses, social relationships, or data about a particulartechnology, information displayed on various websites;",
+    "a": "Reconnaissance"
+  },
+  {
+    "q": "Review the existing defenses to assess whether, if any, vulnerabilities or flaws exist that can be used to obtain access to your personal information.",
+    "a": "True"
+  },
+  {
+    "q": "Revisitassumptions regarding interconnecting systems beyond project control, Identify and evaluate applicable recognized guidelinesand standards and Identify methods to regulate consumption of resources. What phase is that?",
+    "a": "Phase D: Technology Architecture"
+  },
+  {
+    "q": "Risk Management Procedure consists of six steps.",
+    "a": "· Make risk management decisions · Prioritize countermeasure options · Assess risks · Assess vulnerabilities · Assess threats"
+  },
+  {
+    "q": "Risks not avoided ortransferred are retained by theorganization.",
+    "a": "Risk Acceptance"
+  },
+  {
+    "q": "Routers run on the OSI models ______________.",
+    "a": "Layer 3"
+  },
+  {
+    "q": "Rules cannot include IP addresses for the source/destination.",
+    "a": "False"
+  },
+  {
+    "q": "s a variety ofongoing measures taken to reduce thelikelihood and severity of accidental and intentional alteration, destruction, misappropriation,misuse, misconfiguration, unauthorizeddistribution, and unavailability of an organization’s logical and physical assets, as the result ofaction or inaction by insiders and knownoutsiders, such as business partners.”",
+    "a": "Personnel Security"
+  },
+  {
+    "q": "Safety engineers assess the capabilities and limitations of their IT and information infrastructure organizations.",
+    "a": "False"
+  },
+  {
+    "q": "Safety managers assess the capabilities and limitations of their IT and information infrastructure organizations.",
+    "a": "False"
+  },
+  {
+    "q": "Security analysts typically include the use of Hashing Algorithms such as MD5 and SHA1 to verify data integrity.",
+    "a": "False"
+  },
+  {
+    "q": "Security architecture is associated with IT architecture; however, it may take a variety of forms. It generally includes a catalog of conventional controls in addition to relationship diagrams, principles, and so on.",
+    "a": "Form"
+  },
+  {
+    "q": "Security Architecture tackles the following areas except __________.",
+    "a": "Security Analysis"
+  },
+  {
+    "q": "Security architectureaddresses non-normative flows through systems and among applications.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security architecturecalls for its own unique set of skills and competencies of the enterprise andIT architects.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security architecturecomposes its own discrete views and viewpoints.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security architecturehas its own discrete security methodology.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security architectureintroduces its own normative flows through systems and among applications.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security architectureintroduces unique, single-purpose components in the design.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Security control and network control should not be the responsibility of the same group.",
+    "a": "Dual Control"
+  },
+  {
+    "q": "Security environments are made up of several layers, ensuring that once attackers discover an entry point to obtain access, they are more likely to breach further layers to get deeper within.",
+    "a": "True"
+  },
+  {
+    "q": "Security is characterized as _________________.",
+    "a": "danger-free, damage-free"
+  },
+  {
+    "q": "Security management consists of cultivating a security-conscious corporate culture, designing concrete policies that promote security, and handling the multitude of components that make up the structure.",
+    "a": "True"
+  },
+  {
+    "q": "Security management experts must identify the key threat mechanisms in an organization so that they can be handled.",
+    "a": "True"
+  },
+  {
+    "q": "Security management has been developing since the beginning of the _________________________.",
+    "a": "20th Century"
+  },
+  {
+    "q": "Security management practitioners will vary from building guards to IT professionals who design high-tech network infrastructure and software applications.",
+    "a": "True"
+  },
+  {
+    "q": "Security services and processes are implemented, operated, and controlled.",
+    "a": "Implementations"
+  },
+  {
+    "q": "Security systems should help:",
+    "a": "detect, delay, respond"
+  },
+  {
+    "q": "Sent by the SNMP manager to the agent to issue configurations or commands.",
+    "a": "Set Request"
+  },
+  {
+    "q": "Sent by the SNMP manager to the agent to obtain large tables of data by performing multiple GetNext Request commands.",
+    "a": "GetBulk Request"
+  },
+  {
+    "q": "Service Availability is the percentage of time during which a service can be used to be designed and built for originally.",
+    "a": "True"
+  },
+  {
+    "q": "Seven Stages of lifecycle model",
+    "a": "Requirements, Design, Coding, Testing, Deployment, Production and Decommission"
+  },
+  {
+    "q": "Shift the risk tosomeone else.",
+    "a": "Risk Transfer"
+  },
+  {
+    "q": "Six Concept of CyberCrime",
+    "a": "Digital Underground, Underground Economy, Phishing, Hacktivism, Cyberwar:Estonia Case and Stuxnet"
+  },
+  {
+    "q": "SNMPv2 is defined in _______.",
+    "a": "RFC 1901"
+  },
+  {
+    "q": "Some of the data assurance tools are physical, such as combination locks or keyboard entries, paying guards, and ___________________.",
+    "a": "keycard-controlled access"
+  },
+  {
+    "q": "State-of-the-art inspections occur at all levels of the network and provide additional protection, especially in connected protocols",
+    "a": "False"
+  },
+  {
+    "q": "Stateful packet filtering firewalls cannot completely access higher-layer protocols and application services for inspection.",
+    "a": "True"
+  },
+  {
+    "q": "Taking actions toreduce the losses due to a risk; manytechnical countermeasures fall into this category.",
+    "a": "Risk mitigation"
+  },
+  {
+    "q": "TCP stands for _____________________.",
+    "a": "Transmission Control Protocol"
+  },
+  {
+    "q": "Tests and measurements\", \"aggressive monitoring\", \"network efficiency monitoring\" or simply \"network assurance\" are also referred to as ___________________.",
+    "a": "service assurance tools"
+  },
+  {
+    "q": "The ___________ is something that the remote user discovers because he does not know the name of the server with whom he is currently interacting.",
+    "a": "Proxy"
+  },
+  {
+    "q": "The ______________ can be deployed inside the house, which is also called a home network.",
+    "a": "offline network"
+  },
+  {
+    "q": "The _________________ is expanding the physical security sphere, as smart devices linked through the internet to business systems can be placed beyond the protected perimeters defined.",
+    "a": "IoT"
+  },
+  {
+    "q": "The ability of theenterprise to function without service interruption or depletion despiteabnormal or malicious events.",
+    "a": "Availability"
+  },
+  {
+    "q": "The ability to addand change security policies, add or change how policies are implemented in theenterprise, and add or change the persons or entities related to the systems.",
+    "a": "Administration"
+  },
+  {
+    "q": "The ability to testand prove that the enterprise architecture has the security attributes requiredto uphold the stated security policies.",
+    "a": "Assurance"
+  },
+  {
+    "q": "The ability toprovide forensic data attesting that the systems have been used in accordancewith stated security policies.",
+    "a": "Audit"
+  },
+  {
+    "q": "The accuracy of the data structures and the existence of the stored data.",
+    "a": "Integrity"
+  },
+  {
+    "q": "The amount of packet loss-related SLAs generally is:",
+    "a": "less than or equal to 01 percent"
+  },
+  {
+    "q": "The best way to find the vulnerable point of your device is to hire cyber insurance services.",
+    "a": "False"
+  },
+  {
+    "q": "The CIA model is too limited, according to many other cybersecurity experts as well, and certain elements are not adequately shielded. That is why Parker added the three extra elements.",
+    "a": "True"
+  },
+  {
+    "q": "The CIA Triad is so _________________________ that you can be confident that one or more of these values have been compromised. If data is leaked, a device is targeted, a user takes a phishing bait, an email is hacked, a website is maliciously shut offline, or any variety of other security events occur.",
+    "a": "central to information security"
+  },
+  {
+    "q": "The complex protocol contains the following three fields except ______________.",
+    "a": "The message containing the protocol used"
+  },
+  {
+    "q": "The Control Connection uses very complex rules as data types may vary.",
+    "a": "False"
+  },
+  {
+    "q": "The definition andenforcement of permitted capabilities for a person or entity whose identity hasbeen established.",
+    "a": "Authentication"
+  },
+  {
+    "q": "The emphasis should still be on retrofitting tools to meet current safety requirements, not development.",
+    "a": "False"
+  },
+  {
+    "q": "The end-user device is typically called the local host and communicates to the remote host over the Internet, and is the second computer running the FTP program.",
+    "a": "True"
+  },
+  {
+    "q": "The engineering method of formal verification, which explicitly correlates with concept checking, requires network cables",
+    "a": "False"
+  },
+  {
+    "q": "The firewall can ____________ any traffic or all traffic, depending on the firewall policy of the company.",
+    "a": "Absolutely disallow"
+  },
+  {
+    "q": "The focus of physical security is on the planning, _________________, and protection of countermeasures that can secure a company's physical capital.",
+    "a": "implementation"
+  },
+  {
+    "q": "The following are SNMP Agent's key functions except ____________.",
+    "a": "Acknowledges asynchronous events"
+  },
+  {
+    "q": "The following are SNMP Manager's key functions except ________.",
+    "a": "Signals an event"
+  },
+  {
+    "q": "The following are the types of firewalls except _________.",
+    "a": "Whitelisting"
+  },
+  {
+    "q": "The following securityspecifics appropriate to the security architecture must be addressed withineach phase in addition to the generic phase activities. What phase is that?",
+    "a": "Phase A: Architecture Vision"
+  },
+  {
+    "q": "The goal of this step is to understand what data could cause harm to your organization.",
+    "a": "Identification of Critical Information"
+  },
+  {
+    "q": "The ideas behind the CIA triad are influenced by industry-standard cybersecurity systems like those of NIST.",
+    "a": "True"
+  },
+  {
+    "q": "The infected file can be used by the self-execution facility tolaunch the malware code, or it can be executed by the user himself;",
+    "a": "Exploitation"
+  },
+  {
+    "q": "The level of secrecy effect of the PII varies from mild, moderate, or extreme to reflect the possible damage that could happen to a person or entity if the data is obtained, used, or released.",
+    "a": "True"
+  },
+  {
+    "q": "The main advantage of security architecture is its standardization, which makes it affordable. Security architecture is cost-effective due to the reuse of controls described in the architecture.",
+    "a": "Benefits"
+  },
+  {
+    "q": "The main ways of transport are e-mails (attachment of infected files), web platforms (running malware scripts), or removable USB memories;",
+    "a": "Delivery"
+  },
+  {
+    "q": "The management team applies a series of security measures on the basis of the assessment to___________________ within their climate.",
+    "a": "minimize risk"
+  },
+  {
+    "q": "The method of scanning an environment for weak points and prioritizing remediation based on risk is _____________.",
+    "a": "vulnerability management"
+  },
+  {
+    "q": "The more software an organization deploys, the more bugs it creates.",
+    "a": "True"
+  },
+  {
+    "q": "The OPSEC mechanism helps in the production of technological and non-technical steps to minimize cybersecurity threats, first-party threats, third-party risks, and fourth-party risks",
+    "a": "True"
+  },
+  {
+    "q": "The organization'sattitude and tolerance for risk.",
+    "a": "Risk Management"
+  },
+  {
+    "q": "The Parkerian Hexad added elements are:",
+    "a": "control, authenticity, utility"
+  },
+  {
+    "q": "The position of software in applications has also decreased, such that the majority of functionality is now managed by software, rendering the effect of multiple breaches more important.",
+    "a": "False"
+  },
+  {
+    "q": "The practice of avoiding unauthorized entry, use, dissemination, disturbance, alteration, inspection, monitoring or destruction of information is essentially __________________________.",
+    "a": "Information Security"
+  },
+  {
+    "q": "The probability of human error must also be taken into account, as demonstrated by the error committed by a power system worker that triggered an hour-long blackout in cities in the Pacific Southwest in 2013.",
+    "a": "False"
+  },
+  {
+    "q": "The process where individual pieces of data are grouped to form a bigger picture.",
+    "a": "Aggregation"
+  },
+  {
+    "q": "The protection ofinformation assets from loss or unintended disclosure, and resources fromunauthorized and unintended use.",
+    "a": "Asset Protection"
+  },
+  {
+    "q": "The purpose and role of information management can be broken down into three key categories include:",
+    "a": "making available data freely to those who need access to it"
+  },
+  {
+    "q": "The security architect needs to draft knowledge of the organization's infrastructure to learn who has access to where weak points can occur.",
+    "a": "False"
+  },
+  {
+    "q": "The security architecture must secure the entire IT infrastructure.",
+    "a": "True"
+  },
+  {
+    "q": "The Security Manager guarantees that the management and staff are aware of their security responsibilities, support security efforts, and accept small inconveniences that are invariably part of system transition and development.",
+    "a": "True"
+  },
+  {
+    "q": "The security manager is responsible for achieving balance and effectively supporting corporate security.",
+    "a": "True"
+  },
+  {
+    "q": "The smallest and most common type of network, consisting of a wireless modem, a computer or two, computers, printers, tablets, etc. In one building, it circles one person.",
+    "a": "PAN"
+  },
+  {
+    "q": "The state of beingprotected against the criminal or unauthorized use of electronic data, or themeasures taken to achieve this.",
+    "a": "cyber security"
+  },
+  {
+    "q": "The subdivision's fundamental principle is that the risk of compromise is more significant when the threat is very competent and committed, while friendly organizations are concurrently revealed.",
+    "a": "True"
+  },
+  {
+    "q": "The substantiation ofthe identity of a person or entity related to the enterprise or system in someway.",
+    "a": "Authentication"
+  },
+  {
+    "q": "The terms protection of information, cyber protection, and information assurance are also used interchangeably.",
+    "a": "True"
+  },
+  {
+    "q": "The transformation of wage data from one currency into an incorrect currency.",
+    "a": "Utility"
+  },
+  {
+    "q": "The vulnerability process is intended to find exploitable flaws in a company's data network.",
+    "a": "False"
+  },
+  {
+    "q": "The word __________________ was invented by the United States Army during the Vietnam War as a part of military operations led by a team called Purple Dragon.",
+    "a": "operation security"
+  },
+  {
+    "q": "The word cyberspace has become a ____________________________ and the complex society of the Internet.",
+    "a": "the standard way of representing everything related to the internet"
+  },
+  {
+    "q": "The_______________ is a symmetric key algorithm used to safeguard secret government records.",
+    "a": "AES"
+  },
+  {
+    "q": "There are ________ types of firewall policies which are widely used.",
+    "a": "2"
+  },
+  {
+    "q": "These actions typically consist of collecting information, modifyingdata integrity, or attacking the availability of services and devices, but thevictim system can also be used as a starting point for infecting other systemsor for expanding access to the local network.",
+    "a": "Action on objective"
+  },
+  {
+    "q": "These are constantly creating and implementing new securitytools to help enterprise users better secure their data.",
+    "a": "cloud providers"
+  },
+  {
+    "q": "These are the packet's intended location at the receiving end of a transmission.",
+    "a": "Destination IP addresses"
+  },
+  {
+    "q": "These network forms are developed and operated by organizations who want to link their separate locations and connect computing resources safely.",
+    "a": "EPN"
+  },
+  {
+    "q": "This acts as a deterrent against deliberate misconfigurations.",
+    "a": "Operational Security Policy"
+  },
+  {
+    "q": "This assured that theinformation is authentic and complete.",
+    "a": "integrity"
+  },
+  {
+    "q": "This involves enforcing security measures to ensure that data cannot be changed or destroyed by, or in an undetected way by, an unauthorized user.",
+    "a": "data integrity"
+  },
+  {
+    "q": "This involves ensuring that the are who they say are and one of the most famous method to secure this is by using",
+    "a": "authentication"
+  },
+  {
+    "q": "This involves preserving information in its right shape and avoiding it from being wrongly changed, either by mistake or maliciously.",
+    "a": "Integrity"
+  },
+  {
+    "q": "This is an assurance that the systems responsible fordelivering, storing, and processing information are accessible when needed, bythose who need them.",
+    "a": "availability"
+  },
+  {
+    "q": "This is not a type of application security.",
+    "a": "photo enhancement"
+  },
+  {
+    "q": "This is roughly equivalent to.",
+    "a": "confidentiality"
+  },
+  {
+    "q": "This keeps the potential enemies from discovering critical DOD information, such as when units are mobilizing, traveling, or what processes are involved.",
+    "a": "Operation Security"
+  },
+  {
+    "q": "This kind of network enables you to cover an area from few miles to tens of miles, depending on the kind of setup.",
+    "a": "MAN"
+  },
+  {
+    "q": "This means that only thoseauthorized to view information are allowed access to it.",
+    "a": "confidentiality"
+  },
+  {
+    "q": "This step uses multiple sources, such as intelligence activities, law enforcement, and open source information to identify likely adversaries to a planned operation and prioritize their degree of threat.",
+    "a": "Analysis of Threat"
+  },
+  {
+    "q": "This version improves security and privacy.",
+    "a": "SNMPv3"
+  },
+  {
+    "q": "This was the first implementation, which was carried out under the structure management information specification This was the first implementation, which was carried out under the structure management information specification.",
+    "a": "SNMPv1"
+  },
+  {
+    "q": "Those stakeholderswho will be affected by security capabilities and who are in groups ofcommunities",
+    "a": "Identify communities involved"
+  },
+  {
+    "q": "Those units outsidethe scoped enterprise who will need to enhance their security architecture forinteroperability purposes",
+    "a": "Identify extended enterprise"
+  },
+  {
+    "q": "Those who are mostaffected and achieve most value from the security work",
+    "a": "Identify core enterprise"
+  },
+  {
+    "q": "Those who will seechange to their capability and work with core units but are otherwise notdirectly affected",
+    "a": "Identify soft enterprise"
+  },
+  {
+    "q": "Threat assessments reflect the totality of the intelligence collection effort targeting the organization inaccurately.",
+    "a": "False"
+  },
+  {
+    "q": "Three distinct levels:",
+    "a": "Physical, Perceptual, Desired Effects"
+  },
+  {
+    "q": "Three Features of Security",
+    "a": "Confidentiality, Integrity and Availability"
+  },
+  {
+    "q": "To access the FTP server, we do not need to log in with the username and password. Therefore, we can say that FTP is vulnerable.",
+    "a": "False"
+  },
+  {
+    "q": "To affect thetechnical performance and the capabilityof physical systems, to disrupt the capabilitiesof the defender.",
+    "a": "Desired Effects"
+  },
+  {
+    "q": "To enforce the safety specifications, the engineers build the device verification to assure that the configuration satisfies the safety evidence.",
+    "a": "False"
+  },
+  {
+    "q": "Transmitting the weapon to the target environment.",
+    "a": "Delivery"
+  },
+  {
+    "q": "True or False: Identify coreenterprise (units) - those who are most affected and achieve most value fromthe security work",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Business rules regarding handling of data/information assets",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Codifieddata/information asset ownership and custody",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Data classificationpolicy documentation",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Identify communitiesinvolved (enterprises) - those stakeholders who will be affected by securitycapabilities and who are in groups of communities",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Identify extendedenterprise (units) - those units outside the scoped enterprise who will need toenhance their security architecture for interoperability purposes",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Identify softenterprise (units) - those who will see change to their capability and workwith core units but are otherwise not directly affected",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Identify the securitygovernance involved, including legal frameworks and geographies (enterprises)",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Risk analysisdocumentation",
+    "a": "TRUE"
+  },
+  {
+    "q": "True or False: Written and publishedsecurity policy",
+    "a": "TRUE"
+  },
+  {
+    "q": "Type of Concept for Cybercrime",
+    "a": "Digital Underground, Underground Economy, Phishing, Hacktivism, Cyberwar:Estonia Case and Stuxnet"
+  },
+  {
+    "q": "Using pathological system helps to manipulate people into giving knowledge or access to perpetrators requires psychological engineering.",
+    "a": "False"
+  },
+  {
+    "q": "Usually an infected host must be accessible outside of the local network to establish a command and control channel between the victim and the attacker. Once this bidirectional communication has been made, an attacker has access inside the target environment and can usually control the activity by manually launching commands;",
+    "a": "Command and Control"
+  },
+  {
+    "q": "Usually means ensuring that only people who are allowed have access to unique properties and that access is effectively prohibited from being obtained by those who are unauthorized.",
+    "a": "Confidentiality"
+  },
+  {
+    "q": "WAN network, data is _______.",
+    "a": "centralized"
+  },
+  {
+    "q": "WAN stands for ______________.",
+    "a": "Wide Area Network"
+  },
+  {
+    "q": "What are the steps in intrusion model?",
+    "a": "Recon, Weaponise, Deliver, Exploit, Install, C2 and Action"
+  },
+  {
+    "q": "What is AES means?",
+    "a": "Advanced Encryption Standard"
+  },
+  {
+    "q": "What is API means?",
+    "a": "application programming interfaces"
+  },
+  {
+    "q": "What raw facts with a known coding system?",
+    "a": "Data"
+  },
+  {
+    "q": "What was the team that led the military operation in coining the term \"operations security\"?",
+    "a": "Purple Dragon"
+  },
+  {
+    "q": "When a ________________________ happens, information security experts are interested in mitigating the breach's detrimental effects.",
+    "a": "cyber breach"
+  },
+  {
+    "q": "When a cyber breach happens, information security experts are interested in mitigating the breach's detrimental effects.",
+    "a": "True"
+  },
+  {
+    "q": "When a new server is added to the server group, the load balancer automatically starts to send requests to it.",
+    "a": "True"
+  },
+  {
+    "q": "When the company writes and develops the overall security strategies and mechanisms, the CIA triad can direct you.",
+    "a": "True"
+  },
+  {
+    "q": "When the packets arrive to the router, the measured header checksum would be equal to the received header checksum, and the router accepts only the packet.",
+    "a": "Parameter Problem"
+  },
+  {
+    "q": "When these measures are placed in place, the Information Assurance then calls for different monitoring and auditing mechanisms to help a company understand how well the controls it has introduced reduce the danger.",
+    "a": "True"
+  },
+  {
+    "q": "Which one is not a security threat in the IT world?",
+    "a": "cyber bullying"
+  },
+  {
+    "q": "Who created a collection of sculptures and photographs entitled 'sensory spaces' under this name, which were focused on the concept of open structures adaptable to diverse influences, such as human movement and the actions of new materials.",
+    "a": "Susanne Ussing; Carsten Hoff"
+  },
+  {
+    "q": "Who sets all the security controls against malicious actors, and how they apply to the overall device architecture?",
+    "a": "Cyber Protection Architecture Structure"
+  },
+  {
+    "q": "Within an effective information security unit, several different main functions are necessary for the CIA Triad to be effectively delivered.",
+    "a": "True"
+  },
+  {
+    "q": "XSS means:",
+    "a": "Cross-Site Scripting"
+  },
+  {
+    "q": "You can cascade hubs to create network blockage.",
+    "a": "False"
+  }
+]
