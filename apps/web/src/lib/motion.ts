@@ -65,10 +65,41 @@ export const heroTextReveal: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: ease.out } },
 };
 
-export const heroCtaReveal: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: ease.out } },
+export const heroCtaContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.16, delayChildren: 0.8 } },
 };
+
+export const heroCtaPrimaryReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.96,
+    width: 48,
+    height: 4,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    width: 'auto',
+    height: 'auto',
+    transition: {
+      duration: 0.22,
+      ease: ease.out,
+      opacity: { duration: 0.18, delay: 0.08 },
+    },
+  },
+};
+
+export const heroCtaSecondaryReveal: Variants = {
+  hidden: { opacity: 0, x: 12, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.18, ease: ease.out },
+  },
+};
+
 
 export const heroPanelReveal: Variants = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },

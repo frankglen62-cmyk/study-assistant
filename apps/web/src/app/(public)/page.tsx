@@ -25,7 +25,9 @@ import {
   buttonTap,
   heroBadgeReveal,
   heroContainer,
-  heroCtaReveal,
+  heroCtaContainer,
+  heroCtaPrimaryReveal,
+  heroCtaSecondaryReveal,
   heroHeadlineReveal,
   heroTextReveal,
   sectionReveal,
@@ -186,10 +188,15 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div
-            variants={heroCtaReveal}
+            variants={reduced ? undefined : heroCtaContainer}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <motion.div whileHover={reduced ? undefined : buttonHover} whileTap={reduced ? undefined : buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaPrimaryReveal}
+              style={{ transformOrigin: 'center center' }}
+              whileHover={reduced ? undefined : buttonHover}
+              whileTap={reduced ? undefined : buttonTap}
+            >
               <Link
                 href="/register"
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-colors hover:bg-neutral-100"
@@ -197,7 +204,11 @@ export default function HomePage() {
                 Get Started
               </Link>
             </motion.div>
-            <motion.div whileHover={reduced ? undefined : buttonHover} whileTap={reduced ? undefined : buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaSecondaryReveal}
+              whileHover={reduced ? undefined : buttonHover}
+              whileTap={reduced ? undefined : buttonTap}
+            >
               <Link
                 href="/#how-it-works"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
@@ -206,6 +217,7 @@ export default function HomePage() {
               </Link>
             </motion.div>
           </motion.div>
+
 
           <motion.div
             variants={trustStripReveal}
@@ -439,10 +451,15 @@ export default function HomePage() {
             study support.
           </motion.p>
           <motion.div
-            variants={heroCtaReveal}
+            variants={reduced ? undefined : heroCtaContainer}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <motion.div whileHover={reduced ? undefined : buttonHover} whileTap={reduced ? undefined : buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaPrimaryReveal}
+              style={{ transformOrigin: 'center center' }}
+              whileHover={reduced ? undefined : buttonHover}
+              whileTap={reduced ? undefined : buttonTap}
+            >
               <Link
                 href="/register"
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-colors hover:bg-neutral-100"
@@ -450,7 +467,11 @@ export default function HomePage() {
                 Get Started
               </Link>
             </motion.div>
-            <motion.div whileHover={reduced ? undefined : buttonHover} whileTap={reduced ? undefined : buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaSecondaryReveal}
+              whileHover={reduced ? undefined : buttonHover}
+              whileTap={reduced ? undefined : buttonTap}
+            >
               <Link
                 href="/#how-it-works"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
