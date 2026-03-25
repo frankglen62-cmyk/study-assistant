@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 import type { NavItem } from '@study-assistant/shared-types';
+import { cn } from '@study-assistant/ui';
 
 import { LogoMark } from '@/components/layout/logo-mark';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
@@ -16,7 +18,7 @@ import {
   footerStagger,
   buttonHover,
   buttonTap,
-  ease,
+  pageStage,
 } from '@/lib/motion';
 
 const footerColumns = [
@@ -63,12 +65,15 @@ export function PublicShell({
   navItems: NavItem[];
 }) {
   const reduced = useReducedMotion();
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* ── Header ── */}
       <motion.header
-        className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl"
+        className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0a0a0a]/82 backdrop-blur-xl"
         variants={navReveal}
         initial={reduced ? undefined : 'hidden'}
         animate={reduced ? undefined : 'visible'}
@@ -79,7 +84,7 @@ export function PublicShell({
           </motion.div>
 
           <motion.nav
-            className="hidden items-center gap-8 lg:flex"
+            className="hidden items-center gap-2 lg:flex"
             variants={navItemStagger}
             initial={reduced ? undefined : 'hidden'}
             animate={reduced ? undefined : 'visible'}
@@ -88,9 +93,29 @@ export function PublicShell({
               <motion.div key={item.href} variants={navItem}>
                 <Link
                   href={item.href as any}
-                  className="text-sm font-medium text-neutral-400 transition-colors hover:text-white"
+                  prefetch
+                  className={cn(
+                    'group relative inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300',
+                    isActive(item.href)
+                      ? 'text-white'
+                      : 'text-neutral-400 hover:text-white',
+                  )}
                 >
-                  {item.label}
+                  {isActive(item.href) ? (
+                    <motion.span
+                      layoutId="public-nav-indicator-desktop"
+                      className="absolute inset-0 rounded-full border border-white/[0.08] bg-white/[0.05] shadow-[0_0_34px_rgba(45,212,191,0.08)]"
+                      transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+                    />
+                  ) : null}
+                  <span className="relative z-10">{item.label}</span>
+                  <span className="pointer-events-none absolute inset-x-4 bottom-1 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-teal-300/80 to-transparent opacity-0 transition duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
+                  {isActive(item.href) ? (
+                    <motion.span
+                      layoutId="public-nav-line-desktop"
+                      className="pointer-events-none absolute inset-x-4 bottom-1 h-px bg-gradient-to-r from-transparent via-teal-300 to-transparent"
+                    />
+                  ) : null}
                 </Link>
               </motion.div>
             ))}
@@ -108,14 +133,20 @@ export function PublicShell({
             <motion.div variants={navItem}>
               <Link
                 href="/login"
+                prefetch
                 className="hidden rounded-lg px-4 py-2 text-sm font-medium text-neutral-300 transition-colors hover:text-white sm:inline-flex"
               >
                 Sign In
               </Link>
             </motion.div>
-            <motion.div variants={navItem} whileHover={reduced ? undefined : buttonHover} whileTap={reduced ? undefined : buttonTap}>
+            <motion.div
+              variants={navItem}
+              whileHover={reduced ? undefined : buttonHover}
+              whileTap={reduced ? undefined : buttonTap}
+            >
               <Link
                 href="/register"
+                prefetch
                 className="inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-colors hover:bg-neutral-100"
               >
                 Get Started
@@ -124,24 +155,45 @@ export function PublicShell({
           </motion.div>
         </div>
 
-        {/* Mobile nav */}
         <nav className="flex gap-3 overflow-x-auto px-6 pb-3 lg:hidden">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href as any}
-              className="whitespace-nowrap rounded-full border border-white/10 px-4 py-2 text-sm text-neutral-400 hover:text-white"
+              prefetch
+              className={cn(
+                'relative whitespace-nowrap rounded-full border px-4 py-2 text-sm transition-colors',
+                isActive(item.href)
+                  ? 'border-white/15 bg-white/[0.05] text-white'
+                  : 'border-white/10 text-neutral-400 hover:text-white',
+              )}
             >
-              {item.label}
+              {isActive(item.href) ? (
+                <motion.span
+                  layoutId="public-nav-indicator-mobile"
+                  className="absolute inset-0 rounded-full border border-white/[0.08] bg-white/[0.04]"
+                />
+              ) : null}
+              <span className="relative z-10">{item.label}</span>
             </Link>
           ))}
         </nav>
       </motion.header>
 
-      {/* ── Main ── */}
-      <main>{children}</main>
+      <main className="relative">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={pathname}
+            variants={pageStage}
+            initial={reduced ? undefined : 'hidden'}
+            animate={reduced ? undefined : 'visible'}
+            exit={reduced ? undefined : 'exit'}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </main>
 
-      {/* ── Footer ── */}
       <motion.footer
         className="border-t border-white/[0.06] bg-[#111111]"
         variants={footerReveal}
@@ -157,7 +209,6 @@ export function PublicShell({
             whileInView={reduced ? undefined : 'visible'}
             viewport={{ once: true, amount: 0.1 }}
           >
-            {/* Brand column */}
             <motion.div variants={footerReveal} className="lg:col-span-1">
               <LogoMark />
               <p className="mt-4 text-sm leading-relaxed text-neutral-500">
@@ -195,7 +246,6 @@ export function PublicShell({
               </div>
             </motion.div>
 
-            {/* Link columns */}
             {footerColumns.map((col) => (
               <motion.div key={col.title} variants={footerReveal}>
                 <h3 className="mb-4 text-sm font-semibold text-white">{col.title}</h3>

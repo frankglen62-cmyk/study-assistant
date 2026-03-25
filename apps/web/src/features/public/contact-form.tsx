@@ -44,10 +44,12 @@ export function ContactForm() {
   });
 
   return (
-    <Card className="rounded-[32px]">
-      <CardHeader>
-        <CardTitle>Contact support</CardTitle>
-        <CardDescription>Use this form for onboarding questions, support requests, and admin demos.</CardDescription>
+    <Card className="rounded-[30px] border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
+      <CardHeader className="border-b border-white/[0.05]">
+        <CardTitle className="text-white">Contact support</CardTitle>
+        <CardDescription className="text-neutral-500">
+          Use this form for onboarding questions, support requests, and admin demos.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form className="grid gap-5 md:grid-cols-2" onSubmit={onSubmit}>
@@ -71,7 +73,7 @@ export function ContactForm() {
             </FormField>
           </div>
           <div className="md:col-span-2 flex items-center justify-between gap-3">
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-neutral-500">
               Client-side validation is active. Secure submission wiring lands with the route handlers.
             </p>
             <Button type="submit" disabled={isSubmitting}>

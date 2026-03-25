@@ -90,6 +90,24 @@ export const heroPanelItem: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: ease.out } },
 };
 
+export const pageStage: Variants = {
+  hidden: { opacity: 0, y: 24, filter: 'blur(18px)', scale: 0.992 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    scale: 1,
+    transition: { duration: 0.58, ease: ease.out },
+  },
+  exit: {
+    opacity: 0,
+    y: -18,
+    filter: 'blur(12px)',
+    scale: 0.995,
+    transition: { duration: 0.28, ease: ease.snap },
+  },
+};
+
 /* ═══════════════════════════════════════════
    Trust / platform strip
    ═══════════════════════════════════════════ */
@@ -135,6 +153,12 @@ export const cardHover = {
 export const cardTap = {
   y: -1,
   transition: t.hover,
+};
+
+export const pricingCardHover = {
+  y: -14,
+  scale: 1.025,
+  transition: { type: 'spring', stiffness: 230, damping: 22, mass: 0.7 },
 };
 
 /* ═══════════════════════════════════════════

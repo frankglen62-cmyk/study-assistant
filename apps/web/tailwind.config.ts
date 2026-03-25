@@ -57,12 +57,29 @@ const config: Config = {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
         },
+        'marquee-left': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        aurora: {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '33%': { transform: 'translate3d(3%, -4%, 0) scale(1.06)' },
+          '66%': { transform: 'translate3d(-2%, 3%, 0) scale(0.98)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
       animation: {
         float: 'float 5s ease-in-out infinite',
         'float-delayed': 'float-delayed 6s ease-in-out 1s infinite',
         'float-slow': 'float-slow 7s ease-in-out 2s infinite',
         'marquee-right': 'marquee-right 30s linear infinite',
+        'marquee-left': 'marquee-left 28s linear infinite',
+        aurora: 'aurora 18s ease-in-out infinite',
+        shimmer: 'shimmer 9s ease infinite',
       },
       boxShadow: {
         glow: '0 18px 65px -28px rgba(9, 62, 70, 0.55)',
