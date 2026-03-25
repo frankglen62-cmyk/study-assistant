@@ -17,7 +17,7 @@ import {
   WalletCards,
   Zap,
 } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
 
 import { InteractiveCard } from '@/components/interactive-card';
 import { FaqAccordion } from '@/components/faq-accordion';
@@ -25,6 +25,7 @@ import { featureCards, faqItems, howItWorks, testimonials } from '@/features/pub
 import {
   buttonHover,
   buttonTap,
+  ease,
   heroBadgeReveal,
   heroContainer,
   heroCtaContainer,
@@ -101,6 +102,83 @@ function PlatformTicker() {
     </div>
   );
 }
+
+const heroTopCtaRow: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.16,
+    },
+  },
+};
+
+const heroTopPrimaryCtaWrap: Variants = {
+  hidden: {
+    opacity: 1,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+      ease: ease.out,
+      when: 'beforeChildren',
+      staggerChildren: 0.02,
+    },
+  },
+};
+
+const heroTopPrimaryCtaFill: Variants = {
+  hidden: {
+    scaleX: 0.22,
+    scaleY: 0.07,
+    borderRadius: 999,
+    opacity: 1,
+  },
+  visible: {
+    scaleX: 1,
+    scaleY: 1,
+    borderRadius: 10,
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: ease.out,
+    },
+  },
+};
+
+const heroTopPrimaryCtaLabel: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.12,
+      delay: 0.1,
+      ease: ease.out,
+    },
+  },
+};
+
+const heroTopSecondaryCta: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 10,
+    scale: 0.985,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.16,
+      ease: ease.out,
+    },
+  },
+};
 
 export default function HomePage() {
   const reduced = useReducedMotion();
@@ -190,24 +268,34 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div
-            variants={reduced ? undefined : heroCtaContainer}
+            variants={reduced ? undefined : heroTopCtaRow}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <motion.div
-              variants={reduced ? undefined : heroCtaPrimaryReveal}
-              style={{ transformOrigin: 'center center' }}
+              variants={reduced ? undefined : heroTopPrimaryCtaWrap}
               whileHover={reduced ? undefined : buttonHover}
               whileTap={reduced ? undefined : buttonTap}
+              className="relative"
             >
               <Link
                 href="/register"
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-colors hover:bg-neutral-100"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20"
               >
-                Get Started
+                <motion.span
+                  aria-hidden="true"
+                  variants={reduced ? undefined : heroTopPrimaryCtaFill}
+                  className="pointer-events-none absolute inset-0 origin-center rounded-lg bg-white transition-colors duration-200 group-hover:bg-neutral-100"
+                />
+                <motion.span
+                  variants={reduced ? undefined : heroTopPrimaryCtaLabel}
+                  className="relative z-10"
+                >
+                  Get Started
+                </motion.span>
               </Link>
             </motion.div>
             <motion.div
-              variants={reduced ? undefined : heroCtaSecondaryReveal}
+              variants={reduced ? undefined : heroTopSecondaryCta}
               whileHover={reduced ? undefined : buttonHover}
               whileTap={reduced ? undefined : buttonTap}
             >
