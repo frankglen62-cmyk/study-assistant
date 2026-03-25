@@ -19,7 +19,7 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
 
   const isAdmin = role === 'admin' || role === 'super_admin';
   const settingsHref = isAdmin ? '/admin/settings' : '/settings';
-  const accountHref = isAdmin ? '/admin/dashboard' : '/account';
+  const accountHref = isAdmin ? '/admin/account' : '/account';
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

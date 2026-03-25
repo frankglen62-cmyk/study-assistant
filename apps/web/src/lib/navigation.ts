@@ -27,5 +27,6 @@ export const adminNavItems: NavItem[] = [
   { href: '/admin/sessions', label: 'Sessions', iconName: 'sessions' },
   { href: '/admin/reports', label: 'Reports', iconName: 'reports' },
   { href: '/admin/audit-logs', label: 'Audit Logs', iconName: 'audit_logs' },
+  { href: '/admin/account', label: 'Account', iconName: 'account' },
   { href: '/admin/settings', label: 'Settings', iconName: 'settings' },
 ];
