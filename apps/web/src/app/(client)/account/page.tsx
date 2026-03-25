@@ -7,6 +7,7 @@ import { DataTable } from '@/components/data-table';
 import { PageHeading } from '@/components/page-heading';
 import { StatusBadge } from '@/components/status-badge';
 import { LogoutButton } from '@/features/auth/logout-button';
+import { MfaSecurityCard } from '@/features/auth/mfa';
 import { RevokeDeviceButton } from '@/features/client/revoke-device-button';
 import { getClientAccountData } from '@/features/client/server';
 import { requirePageUser } from '@/lib/auth/page-context';
@@ -34,53 +35,57 @@ export default async function AccountPage() {
       />
       
       <div className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
-        <Card className="h-fit">
-          <CardHeader>
-            <CardTitle>Profile Details</CardTitle>
-            <CardDescription>Your personal information and account status.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4 rounded-xl border border-border/50 bg-background/30 p-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
-                  <User className="h-5 w-5 text-accent" />
+        <div className="space-y-6">
+          <Card className="h-fit">
+            <CardHeader>
+              <CardTitle>Profile Details</CardTitle>
+              <CardDescription>Your personal information and account status.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4 rounded-xl border border-border/50 bg-background/30 p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
+                    <User className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{context.profile.full_name}</p>
+                    <p className="text-xs text-muted-foreground capitalize">Role: {context.profile.role.replace('_', ' ')}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-medium">{context.profile.full_name}</p>
-                  <p className="text-xs text-muted-foreground capitalize">Role: {context.profile.role.replace('_', ' ')}</p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+                    <Mail className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{context.profile.email}</p>
+                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-success inline-block"></span> Verified
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+                    <Clock className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Account Status</p>
+                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-success inline-block"></span> {context.profile.account_status.replace('_', ' ')}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                  <Mail className="h-5 w-5 text-muted-foreground" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium">{context.profile.email}</p>
-                  <p className="text-xs text-muted-foreground flex items-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-success inline-block"></span> Verified
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                  <Clock className="h-5 w-5 text-muted-foreground" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Account Status</p>
-                  <p className="text-xs text-muted-foreground flex items-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-success inline-block"></span> {context.profile.account_status.replace('_', ' ')}
-                  </p>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-3">
-              <Button asChild variant="secondary" className="w-full justify-start gap-2">
-                <Link href="/forgot-password"><KeyRound className="h-4 w-4" /> Change Password</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="flex flex-col gap-3">
+                <Button asChild variant="secondary" className="w-full justify-start gap-2">
+                  <Link href="/forgot-password"><KeyRound className="h-4 w-4" /> Change Password</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <MfaSecurityCard />
+        </div>
 
         <div className="space-y-6">
           <Card className="h-fit">

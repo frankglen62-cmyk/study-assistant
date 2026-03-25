@@ -14,6 +14,10 @@
 
 - [ ] admin routes require admin role checks
 - [ ] client routes require signed-in portal users
+- [ ] new passwords must meet the current strong-password policy
+- [ ] leaked password protection is enabled in Supabase Auth
+- [ ] CAPTCHA is enabled in Supabase Auth for sign in, sign up, and password recovery
+- [ ] optional TOTP MFA is enabled in Supabase Auth and tested end-to-end
 - [ ] extension routes validate paired installation ownership
 - [ ] revoked installations cannot continue using protected routes
 - [ ] unpaired extensions cannot access protected client APIs
@@ -45,6 +49,8 @@
 - extension updates require a rebuilt ZIP and manual reload of the unpacked extension
 - local editor files such as `.vscode/` and build caches should not be committed by accident
 - production visibility always depends on GitHub push plus Vercel deployment, not local edits
+- Turnstile needs `NEXT_PUBLIC_TURNSTILE_SITE_KEY` in Vercel plus the matching Cloudflare secret configured inside Supabase Auth
+- leaked password protection and built-in password rules are controlled in Supabase Auth settings, not by application code alone
 
 ## Incident Runbook
 

@@ -3,16 +3,18 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff } from 'lucide-react';
-import { useMemo, useState, type ReactNode } from 'react';
+import { Check, Eye, EyeOff } from 'lucide-react';
+import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { FormField } from '@/components/forms/form-field';
 import { useToast } from '@/components/providers/toast-provider';
+import { CaptchaWidget } from '@/features/auth/captcha-widget';
+import { evaluatePasswordPolicy, strongPasswordSchema } from '@/features/auth/password-policy';
 import { env } from '@/lib/env/client';
 import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
-import { Button, Input } from '@study-assistant/ui';
+import { Input } from '@study-assistant/ui';
 
 /* ═══════════════════════════════════════════
    Shared helpers
@@ -45,13 +47,14 @@ const styledInput = 'h-12 rounded-xl border-white/10 bg-white/[0.04] text-white 
 
 const loginSchema = z.object({
   email: z.string().email('Enter a valid email address.'),
-  password: z.string().min(8, 'Password must be at least 8 characters.'),
+  password: z.string().min(1, 'Enter your password.'),
 });
 
 const registerSchema = loginSchema
   .extend({
     fullName: z.string().min(2, 'Enter your full name.'),
-    confirmPassword: z.string().min(8, 'Confirm your password.'),
+    password: strongPasswordSchema,
+    confirmPassword: z.string().min(1, 'Confirm your password.'),
   })
   .refine((values) => values.password === values.confirmPassword, {
     path: ['confirmPassword'],
@@ -64,8 +67,8 @@ const emailSchema = z.object({
 
 const resetSchema = z
   .object({
-    password: z.string().min(8, 'Password must be at least 8 characters.'),
-    confirmPassword: z.string().min(8, 'Confirm your password.'),
+    password: strongPasswordSchema,
+    confirmPassword: z.string().min(1, 'Confirm your password.'),
   })
   .refine((values) => values.password === values.confirmPassword, {
     path: ['confirmPassword'],
@@ -110,8 +113,20 @@ function getReadableAuthError(error: unknown, fallback: string) {
   if (message.includes('email not confirmed')) {
     return 'Verify your email address first, then sign in again.';
   }
+  if (message.includes('weak_password') || message.includes('weak password')) {
+    return 'Use at least 12 characters with uppercase, lowercase, number, and symbol.';
+  }
+  if (message.includes('leaked') || message.includes('compromised') || message.includes('breached')) {
+    return 'This password appears in known breach datasets. Choose a different password.';
+  }
+  if (message.includes('captcha')) {
+    return 'Complete the security check and try again.';
+  }
   if (message.includes('same password')) {
     return 'Choose a different password than your current one.';
+  }
+  if (message.includes('mfa_totp_enroll_not_enabled') || message.includes('mfa_totp_verify_not_enabled')) {
+    return 'Authenticator MFA is still disabled in Supabase. Enable TOTP first.';
   }
   return error.message;
 }
@@ -131,17 +146,105 @@ function AuthNotice({ tone, message }: { tone: 'info' | 'success' | 'danger'; me
    Social Auth Buttons
    ═══════════════════════════════════════════ */
 
-function SocialAuthButtons({ label = 'Sign in' }: { label?: string }) {
+function buildMfaPath(nextPath: string) {
+  return `/mfa?next=${encodeURIComponent(nextPath)}`;
+}
+
+function useCaptchaState() {
+  const captchaEnabled = Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaResetKey, setCaptchaResetKey] = useState(0);
+
+  const handleCaptchaChange = useCallback((token: string | null) => {
+    setCaptchaToken(token);
+    if (token) {
+      setCaptchaError(null);
+    }
+  }, []);
+
+  const ensureCaptcha = useCallback(() => {
+    if (!captchaEnabled) {
+      return true;
+    }
+
+    if (captchaToken) {
+      return true;
+    }
+
+    setCaptchaError('Complete the security check first.');
+    return false;
+  }, [captchaEnabled, captchaToken]);
+
+  const resetCaptcha = useCallback(() => {
+    if (!captchaEnabled) {
+      return;
+    }
+
+    setCaptchaToken(null);
+    setCaptchaResetKey((value) => value + 1);
+  }, [captchaEnabled]);
+
+  return {
+    captchaEnabled,
+    captchaError,
+    captchaResetKey,
+    captchaToken,
+    ensureCaptcha,
+    handleCaptchaChange,
+    resetCaptcha,
+  };
+}
+
+function PasswordRequirements({ password }: { password: string }) {
+  const checks = evaluatePasswordPolicy(password);
+
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+      <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">Password requirements</p>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {checks.map((check) => (
+          <div key={check.id} className={`flex items-center gap-2 text-xs ${check.passed ? 'text-emerald-300' : 'text-neutral-500'}`}>
+            <span className={`flex h-4 w-4 items-center justify-center rounded-full border ${check.passed ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-white/10 bg-white/[0.02]'}`}>
+              {check.passed ? <Check className="h-3 w-3" /> : null}
+            </span>
+            <span>{check.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SocialAuthButtons({
+  label = 'Sign in',
+  nextPath = '/dashboard',
+  captchaRequired = false,
+  captchaToken,
+  onCaptchaRequired,
+}: {
+  label?: string;
+  nextPath?: string;
+  captchaRequired?: boolean;
+  captchaToken?: string | null;
+  onCaptchaRequired?: () => void;
+}) {
   const [loading, setLoading] = useState<string | null>(null);
 
   const handleSocialLogin = async (provider: 'google' | 'facebook') => {
+    if (captchaRequired && !captchaToken) {
+      onCaptchaRequired?.();
+      return;
+    }
+
     setLoading(provider);
     try {
       const supabase = getSupabaseBrowserClient();
       await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/dashboard`,
+          redirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(buildMfaPath(nextPath))}`,
+          ...(captchaToken ? { captchaToken } : {}),
         },
       });
     } catch {
@@ -199,10 +302,10 @@ function AuthDivider() {
    ═══════════════════════════════════════════ */
 
 export function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { pushToast } = useToast();
   const [formError, setFormError] = useState<string | null>(searchParams.get('error'));
+  const { captchaError, captchaResetKey, captchaToken, ensureCaptcha, handleCaptchaChange, resetCaptcha } = useCaptchaState();
   const {
     register,
     handleSubmit,
@@ -216,25 +319,39 @@ export function LoginForm() {
   return (
     <AuthCardShell title="Sign In" description="Welcome back! Please enter your details.">
       {/* Social buttons */}
-      <SocialAuthButtons label="Sign in" />
+      <SocialAuthButtons
+        label="Sign in"
+        nextPath={nextPath}
+        captchaRequired={Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY)}
+        captchaToken={captchaToken}
+        onCaptchaRequired={() => {
+          setFormError(null);
+          ensureCaptcha();
+        }}
+      />
       <AuthDivider />
 
       <form
         className="space-y-5"
         onSubmit={handleSubmit(async (values) => {
           setFormError(null);
+          if (!ensureCaptcha()) {
+            return;
+          }
           try {
             const supabase = getSupabaseBrowserClient();
             const { error } = await supabase.auth.signInWithPassword({
               email: values.email,
               password: values.password,
+              options: captchaToken ? { captchaToken } : undefined,
             });
             if (error) throw error;
-            window.location.assign(nextPath);
+            window.location.assign(buildMfaPath(nextPath));
             return;
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to sign in.');
             setFormError(message);
+            resetCaptcha();
             pushToast({ tone: 'danger', title: 'Login failed', description: message });
           }
         })}
@@ -250,6 +367,8 @@ export function LoginForm() {
         <FormField label="Password" error={errors.password?.message}>
           <PasswordInput {...register('password')} placeholder="Enter your password" />
         </FormField>
+
+        <CaptchaWidget action="login" resetKey={captchaResetKey} error={captchaError} onTokenChange={handleCaptchaChange} />
 
         <div className="flex items-center justify-between gap-3 text-sm">
           <Link href="/forgot-password" className="text-teal-400 hover:text-teal-300">
@@ -288,17 +407,29 @@ export function RegisterForm() {
   const { pushToast } = useToast();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
+  const { captchaError, captchaResetKey, captchaToken, ensureCaptcha, handleCaptchaChange, resetCaptcha } = useCaptchaState();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
   });
+  const passwordValue = watch('password', '');
 
   return (
     <AuthCardShell title="Create Account" description="Set up a client account and start studying.">
-      <SocialAuthButtons label="Sign up" />
+      <SocialAuthButtons
+        label="Sign up"
+        nextPath="/dashboard"
+        captchaRequired={Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY)}
+        captchaToken={captchaToken}
+        onCaptchaRequired={() => {
+          setFormError(null);
+          ensureCaptcha();
+        }}
+      />
       <AuthDivider />
 
       <form
@@ -306,6 +437,9 @@ export function RegisterForm() {
         onSubmit={handleSubmit(async (values) => {
           setFormError(null);
           setSuccessMessage(null);
+          if (!ensureCaptcha()) {
+            return;
+          }
           try {
             const supabase = getSupabaseBrowserClient();
             const { data, error } = await supabase.auth.signUp({
@@ -313,12 +447,13 @@ export function RegisterForm() {
               password: values.password,
               options: {
                 data: { full_name: values.fullName },
-                emailRedirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/dashboard`,
+                emailRedirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(buildMfaPath('/dashboard'))}`,
+                ...(captchaToken ? { captchaToken } : {}),
               },
             });
             if (error) throw error;
             if (data.session) {
-              router.replace('/dashboard');
+              window.location.assign(buildMfaPath('/dashboard'));
               router.refresh();
               return;
             }
@@ -329,6 +464,7 @@ export function RegisterForm() {
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to create your account.');
             setFormError(message);
+            resetCaptcha();
             pushToast({ tone: 'danger', title: 'Registration failed', description: message });
           }
         })}
@@ -348,6 +484,8 @@ export function RegisterForm() {
         <FormField label="Confirm password" error={errors.confirmPassword?.message}>
           <PasswordInput {...register('confirmPassword')} placeholder="Repeat your password" />
         </FormField>
+        <PasswordRequirements password={passwordValue} />
+        <CaptchaWidget action="register" resetKey={captchaResetKey} error={captchaError} onTokenChange={handleCaptchaChange} />
 
         <button
           type="submit"
@@ -376,6 +514,7 @@ export function ForgotPasswordForm() {
   const { pushToast } = useToast();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
+  const { captchaError, captchaResetKey, captchaToken, ensureCaptcha, handleCaptchaChange, resetCaptcha } = useCaptchaState();
   const {
     register,
     handleSubmit,
@@ -391,10 +530,14 @@ export function ForgotPasswordForm() {
         onSubmit={handleSubmit(async (values) => {
           setFormError(null);
           setSuccessMessage(null);
+          if (!ensureCaptcha()) {
+            return;
+          }
           try {
             const supabase = getSupabaseBrowserClient();
             const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
               redirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/reset-password`,
+              ...(captchaToken ? { captchaToken } : {}),
             });
             if (error) throw error;
             const message = 'If the account exists, a reset link has been sent.';
@@ -403,6 +546,7 @@ export function ForgotPasswordForm() {
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to send the reset email.');
             setFormError(message);
+            resetCaptcha();
             pushToast({ tone: 'danger', title: 'Reset failed', description: message });
           }
         })}
@@ -413,6 +557,8 @@ export function ForgotPasswordForm() {
         <FormField label="Email" error={errors.email?.message}>
           <Input {...register('email')} placeholder="name@school.edu" className={styledInput} />
         </FormField>
+
+        <CaptchaWidget action="forgot-password" resetKey={captchaResetKey} error={captchaError} onTokenChange={handleCaptchaChange} />
 
         <button
           type="submit"
@@ -445,10 +591,12 @@ export function ResetPasswordForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<z.infer<typeof resetSchema>>({
     resolver: zodResolver(resetSchema),
   });
+  const passwordValue = watch('password', '');
 
   return (
     <AuthCardShell title="New Password" description="Use a strong password you do not reuse elsewhere.">
@@ -464,7 +612,7 @@ export function ResetPasswordForm() {
             const message = 'Password updated. Redirecting to your dashboard...';
             setSuccessMessage(message);
             pushToast({ tone: 'success', title: 'Password updated', description: message });
-            router.replace('/dashboard');
+            window.location.assign(buildMfaPath('/dashboard'));
             router.refresh();
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to update the password.');
@@ -482,6 +630,7 @@ export function ResetPasswordForm() {
         <FormField label="Confirm password" error={errors.confirmPassword?.message}>
           <PasswordInput {...register('confirmPassword')} placeholder="Confirm new password" />
         </FormField>
+        <PasswordRequirements password={passwordValue} />
 
         <button
           type="submit"

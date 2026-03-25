@@ -42,7 +42,27 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+  const protectedPrefixes = ['/dashboard', '/buy-credits', '/sessions', '/usage-logs', '/settings', '/account', '/extension-guide', '/admin', '/audit-logs', '/categories', '/payments', '/reports', '/sources', '/subjects', '/users'];
+  const mfaBypassPrefixes = ['/login', '/register', '/forgot-password', '/reset-password', '/mfa', '/auth/callback'];
+
+  const isProtectedPath = protectedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  const isMfaBypassPath = mfaBypassPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+
+  if (user && isProtectedPath && !isMfaBypassPath) {
+    const { data: assuranceData, error: assuranceError } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+
+    if (!assuranceError && assuranceData.nextLevel === 'aal2' && assuranceData.currentLevel !== 'aal2') {
+      const target = request.nextUrl.clone();
+      target.pathname = '/mfa';
+      target.searchParams.set('next', `${pathname}${request.nextUrl.search}`);
+      return NextResponse.redirect(target);
+    }
+  }
 
   return response;
 }
