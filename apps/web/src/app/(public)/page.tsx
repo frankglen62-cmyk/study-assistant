@@ -1,4 +1,6 @@
 'use client';
+// v0.1.45 - Refined pricing and hero animations
+
 
 import type { ComponentType } from 'react';
 import Link from 'next/link';
