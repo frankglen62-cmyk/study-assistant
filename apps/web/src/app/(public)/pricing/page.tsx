@@ -7,7 +7,7 @@ import { ScrollReveal } from '@/components/scroll-reveal';
 const packages = [
   {
     name: 'Personal',
-    price: '$9',
+    price: '₱150',
     period: 'per hour',
     description: 'For focused solo review when you only need a compact session window.',
     highlighted: false,
@@ -21,7 +21,7 @@ const packages = [
   },
   {
     name: 'Pro',
-    price: '$24',
+    price: '₱200',
     period: '3 hours',
     description: 'For active students who need stronger weekly coverage across multiple subjects.',
     highlighted: true,
