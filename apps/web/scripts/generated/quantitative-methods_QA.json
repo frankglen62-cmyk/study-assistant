@@ -1,0 +1,1806 @@
+[
+  {
+    "q": "How does the shape of the t-distribution change as the sample size increases?",
+    "a": "It becomes more normal looking."
+  },
+  {
+    "q": "You obtained a significant test statistic when comparing three treatments in a one-way ANOVA. In words, how would you interpret the alternative hypothesis HA?",
+    "a": "At least two treatments are different from each other in terms of their effect on the mean response."
+  },
+  {
+    "q": "According to the text, which of the following is not another name for the correlated-groups design?",
+    "a": "repeated-measures design"
+  },
+  {
+    "q": "It is the non-parametric alternative test to the independent sample t-test.",
+    "a": "Mann-Whitney test"
+  },
+  {
+    "q": "Variables are central to any analysis and they do not need to be understood well by the researcher.",
+    "a": "False"
+  },
+  {
+    "q": "Conducting a single F test in one-way ANOVA protects us from Type II error.",
+    "a": "False"
+  },
+  {
+    "q": "These are measurements for which there is no natural numerical scale, but which consist of attributes, labels, or other non numerical characteristics.",
+    "a": "Qualitative Data"
+  },
+  {
+    "q": "You carried out an ANOVA on a preliminary sample of data. You then collected additional data from the same groups; the difference being that the sample sizes for each group were increased by a factor of 10, and the within-group variability has decreased substantially. Which of the following statements is NOT correct.",
+    "a": "The degrees of freedom associated with the treatment term has increased"
+  },
+  {
+    "q": "It is the measurement of average distance between each quantity and mean",
+    "a": "Standard Deviation"
+  },
+  {
+    "q": "Which of the following is a measure of degree of association?",
+    "a": "the probability value"
+  },
+  {
+    "q": "It is the value separating the higher half from the lower half of a data sample (a population or a probability distribution).",
+    "a": "Median"
+  },
+  {
+    "q": "Analysis of Variance",
+    "a": "ANOVA"
+  },
+  {
+    "q": "The formula for the Chi-Square is a ratio.",
+    "a": "False"
+  },
+  {
+    "q": "What is the conventional level of significance typically adopted in psychology?",
+    "a": "P < 0.05"
+  },
+  {
+    "q": "What should Levene's test be in order to use the 'equal variance assumed' row of a t-test?",
+    "a": "It should be significant (P < 0.01)"
+  },
+  {
+    "q": "The Jerome Light Bulb Company recently conducted a statistical test to determine whether the number of hours that light bulbs last is normally distributed with a mean of 500 and a standard deviation of 20. A sample of 300 light bulbs was divided into 8 groups to form a grouped data frequency distribution. The degrees of freedom for the test will be 299.",
+    "a": "False"
+  },
+  {
+    "q": "Which is not a level of measurement?",
+    "a": "Proportion"
+  },
+  {
+    "q": "Achievement is classified under what level of measurement?",
+    "a": "Interval"
+  },
+  {
+    "q": "Conducting multiple t-tests increases the likelihood of which of the following?",
+    "a": "Type I error"
+  },
+  {
+    "q": "It is commonly used for analyzing experiment results, testing their significance and displaying the results accordingly.",
+    "a": "Statistical Method"
+  },
+  {
+    "q": "The ANOVA structural model (X = + + ) maps sample scores in terms of populations, groups, and individual scores.",
+    "a": "True"
+  },
+  {
+    "q": "Pearson's Correlation Coefficient was designed just for linear relationships. Technically, if we get a low value, or a zero value, it does not mean that there is no relationship. It just means that there is no linear relationship.",
+    "a": "True"
+  },
+  {
+    "q": "The critical values for t will always be ______________ the critical values for z:",
+    "a": "More than extreme"
+  },
+  {
+    "q": "Which is not an importance of levels of measurements?",
+    "a": "Helps in solving complex mathematical problems"
+  },
+  {
+    "q": "Valid for both non-Normally distributed data and Normally distributed data",
+    "a": "Non Parametric Test"
+  },
+  {
+    "q": "It is a measurement where the difference between two values is meaningful.",
+    "a": "Interval"
+  },
+  {
+    "q": "It varies according to changes in other variables.",
+    "a": "Dependent Variable"
+  },
+  {
+    "q": "Why, in some cases, is a measure of association needed in addition to a p-value for a statistical test?",
+    "a": "There is no good reason to want a measure of association once you have a significant result."
+  },
+  {
+    "q": "What is the reason why it is not necessary to create a scatter chart?",
+    "a": "It is just for visualizing the data"
+  },
+  {
+    "q": "Visually represent the frequencies with which values of variables occur.",
+    "a": "Histograms"
+  },
+  {
+    "q": "This is a sampling technique where the samples are gathered in a process that does not give all the individuals in the population equal chances of being selected.",
+    "a": "Non Probability Sampling"
+  },
+  {
+    "q": "The population is not confined to people only, but it may also include animals, events, objects, buildings, etc.",
+    "a": "True"
+  },
+  {
+    "q": "If correlation is found between two variables it means that when there is _____________ change in one variable, there is systematic change in the other",
+    "a": "Systematic"
+  },
+  {
+    "q": "You want to know whether people in different regions of the country are equally likely to vote Democratic, Republican, Independent, or Libertarian in the next election. You would use a",
+    "a": "chi-square test of independence."
+  },
+  {
+    "q": "If I want to compare the performance of a particular group to an established, accepted average but information about the population standard deviation is not available. I should",
+    "a": "conduct a one-sample t-test"
+  },
+  {
+    "q": "After we use the original data to calculate the difference scores for a paired t-test, we no longer need the original data for the paired t-test calculations.",
+    "a": "True"
+  },
+  {
+    "q": "This particular type of analysis is useful when a researcher wants to establish if there are possible connectionsbetween variables.",
+    "a": "Correlation Analysis"
+  },
+  {
+    "q": "Analysis should reflect the design, and so a matched design should be followed by a matched analysis.",
+    "a": "True"
+  },
+  {
+    "q": "The _______, ___________ and ____________ are the three commonly used measures of central tendency",
+    "a": "Mean, Median, Mode"
+  },
+  {
+    "q": "The chi-square distribution (also called the chi-squared distribution) is a special case of the beta distribution",
+    "a": "False"
+  },
+  {
+    "q": "There is a subtype in ordinal scale with only two categories like one of the nominal scale and is known as dichotomous ordinal scale.",
+    "a": "False"
+  },
+  {
+    "q": "The total area under the normal curve is equal to 2.",
+    "a": "False"
+  },
+  {
+    "q": "The independent variables are called as predicated variable because independent variables predict or forecast the values of the dependent variable in the model.",
+    "a": "False"
+  },
+  {
+    "q": "The independent variables are called as predicator variable because independent variables predict or forecast the values of the dependent variable in the model.",
+    "a": "True"
+  },
+  {
+    "q": "What type of data is required for a Pearson's analysis which does not include a dichotomous variable?",
+    "a": "Interval or ratio"
+  },
+  {
+    "q": "We use inferential statistics to make judgments of the probability that an observed difference between groups is a dependable one or one that might have happened by chance in this study",
+    "a": "True"
+  },
+  {
+    "q": "Nominal provides the least amount of detail, and ratio provide the most amount of detail.",
+    "a": "True"
+  },
+  {
+    "q": "What is the mode of the scores of the subject Social Science?",
+    "a": "2"
+  },
+  {
+    "q": "A researcher finds a correlation of .40 between personal income and the number of years of college completed. Based upon this finding he can conclude that…",
+    "a": "more years of education are associated with higher income."
+  },
+  {
+    "q": "In this level of measurement, the numbers in the variable are used only to classify the data.",
+    "a": "Nominal"
+  },
+  {
+    "q": "The alternative hypothesis for the test is that the two means are equal.",
+    "a": "False"
+  },
+  {
+    "q": "A two way ANOVA is used to compare two means from two independent (unrelated) groups using the F-distribution.",
+    "a": "False"
+  },
+  {
+    "q": "If paired scores occupy the same positions within their own distributions (high with high and low with low)",
+    "a": "Pearson r will be high and positive."
+  },
+  {
+    "q": "On the negative side, findings of correlation does not indicate causations i.e. cause and effect relationships.",
+    "a": "True"
+  },
+  {
+    "q": "It is defined as the middle of a distribution in a ranked data",
+    "a": "Median"
+  },
+  {
+    "q": "The advantage of using probability sampling is the _______________ of the statistical methods after the experiment",
+    "a": "Accuracy"
+  },
+  {
+    "q": "The significance of statistical figures can be seen best when validating solid arguments or predictions out of hypotheses or conjectures that may seem overwhelming to a layman.",
+    "a": "True"
+  },
+  {
+    "q": "What is a number or attribute computed for each member of a population or a sample?",
+    "a": "Measurement"
+  },
+  {
+    "q": "If you have categorical data, you'll want to run a non-parametric ANOVA (usually found under a different heading in the software, like \"nonparametric tests\").",
+    "a": "False"
+  },
+  {
+    "q": "The null hypothesis of the Chi-Square test is that no relationship exists on the categorical variables in the population",
+    "a": "True"
+  },
+  {
+    "q": "It assesses whether an association exists between the two variables by comparing the observed pattern of responses in the cells to the pattern that would be expected if the variables were truly independent of each other",
+    "a": "Test of Independence"
+  },
+  {
+    "q": "Which of the following statistics are important when interpreting an independent samples t-test?",
+    "a": "All of these"
+  },
+  {
+    "q": "Percentile is a way to represent position of a values in data set.",
+    "a": "True"
+  },
+  {
+    "q": "This test is used to test for differences between groups with ordinal dependent variables.",
+    "a": "Friedman test"
+  },
+  {
+    "q": "Descriptive statistics are typically distinguished from ____________________________.",
+    "a": "Inferential Statistics"
+  },
+  {
+    "q": "If the independent had more than two levels, then we would use a one-way analysis of variance (ANOVA).",
+    "a": "True"
+  },
+  {
+    "q": "What is the median of the scores of the subject Science?",
+    "a": "3"
+  },
+  {
+    "q": "It is the scientific study of earthquakes.",
+    "a": "Seismology"
+  },
+  {
+    "q": "This method is a nonprobability sampling technique where existing study subjects recruit future subjects from among their acquaintances.",
+    "a": "Snowball Sampling"
+  },
+  {
+    "q": "A correlation coefficient that is applied to ranked variables was introduced by Spearman, whilst Pearson and Fisher introduced independently correlation coefficients that measure the strength of the relationship between non-ranked variables.",
+    "a": "True"
+  },
+  {
+    "q": "It is an accurate representation of the distribution of numerical data.",
+    "a": "Histograms"
+  },
+  {
+    "q": "The null hypothesis for the chi-square goodness-of-fit test states that the distribution of",
+    "a": "cases for each group is equal to the expected distribution based on theory/knowledge of the population."
+  },
+  {
+    "q": "As the number of observations increases the t-distribution gets to look more like the standard normal distribution.",
+    "a": "True"
+  },
+  {
+    "q": "What is commonly used for testing relationships between categorical variables?",
+    "a": "Chi-Square"
+  },
+  {
+    "q": "It can perform well with skewed and non-normal distributions.",
+    "a": "Parametric Test"
+  },
+  {
+    "q": "It is a computer system capable of capturing, storing, analyzing, and displaying geographically referenced information; that is, data identified according to location",
+    "a": "GIS"
+  },
+  {
+    "q": "If you have parametric data, you can run a Wilcoxon rank-sum test to compare means",
+    "a": "False"
+  },
+  {
+    "q": "Display the relationship between two quantitative or numeric variables by plotting one variable against the value of another variable",
+    "a": "Scatter Plots"
+  },
+  {
+    "q": "If the Pearson Product Moment Correlation Coefficient shows zero value, this definitely means that there is no relationship between the two variables",
+    "a": "False"
+  },
+  {
+    "q": "It is the most helpful for exploratory stages of studies such as a pilot survey.",
+    "a": "Non Probability Sampling"
+  },
+  {
+    "q": "The main purpose of an ANOVA is to test if two or more groups differ from each other significantly in one or more characteristics.",
+    "a": "True"
+  },
+  {
+    "q": "Descriptive statistics are very important because if we simply presented our raw data it would be hard to visualize what the data was showing, especially if there was a lot of it.",
+    "a": "True"
+  },
+  {
+    "q": "It involves the application of specific statistical techniques to disciplines in biology such as population genetics, epidemiology and public health.",
+    "a": "Biostatistics"
+  },
+  {
+    "q": "The null hypothesis in analysis of variance asks whether",
+    "a": "all groups are the same"
+  },
+  {
+    "q": "It means a subgroup of the members of population chosen for participation in the study",
+    "a": "Sample"
+  },
+  {
+    "q": "It is a variable that goes on the y-axis, or vertical axis.",
+    "a": "Dependent Variable"
+  },
+  {
+    "q": "It is commonly used for testing relationships between categorical variables.",
+    "a": "Chi-Square"
+  },
+  {
+    "q": "By which other name is the chi-square goodness of fit test known?",
+    "a": "One-sample chi-square"
+  },
+  {
+    "q": "Classify the level of measurement it belongs: Score in IQ Test",
+    "a": "Interval"
+  },
+  {
+    "q": "Use this test instead of the sign test when you have two independent samples.",
+    "a": "Mood's Median test"
+  },
+  {
+    "q": "Individuals are selected at regular intervals from the sampling frame.",
+    "a": "Systematic Sampling"
+  },
+  {
+    "q": "The ______ sum of squares measures the variability of the observed values around their respective treatment means.",
+    "a": "error"
+  },
+  {
+    "q": "7. Now that we have got Excel to calculate the correlation coefficient we need to interpret it to understand its true meaning. The value is always between -1 and +1. What is the value of the perfect negative correlation",
+    "a": "-1"
+  },
+  {
+    "q": "These are often used to communicate research findings and to support hypotheses and give credibility to research methodology and conclusions.",
+    "a": "Mean, median and mode"
+  },
+  {
+    "q": "It is the variable whose change isn’t affected by any other variable in the experiment.",
+    "a": "Independent Variable"
+  },
+  {
+    "q": "Use this test to compare differences between two independent groups when dependent variables are either ordinal or continuous.",
+    "a": "Mann-Whitney test"
+  },
+  {
+    "q": "The non-parametric test is the hypothesis test which provides generalizations for making statements about the mean of the parent population.",
+    "a": "False"
+  },
+  {
+    "q": "The degrees of freedom for a chi-square goodness-of-fit test are calculated as N-1.",
+    "a": "True"
+  },
+  {
+    "q": "Independent and dependent variables always go on the same places in a graph.",
+    "a": "True"
+  },
+  {
+    "q": "A Student's t-test will tell you if there is a significant variation between groups.",
+    "a": "True"
+  },
+  {
+    "q": "Data collection used for a population.",
+    "a": "Census"
+  },
+  {
+    "q": "To use a t-test the dependent variable must have",
+    "a": "Interval or Ratio Data"
+  },
+  {
+    "q": "C3: = B3-$B$9 Copy the formula up to C7. What is purpose of the $?",
+    "a": "Absolute Reference"
+  },
+  {
+    "q": "Compute the frequency of all nominal variables using what formula?",
+    "a": "=COUNTIF()"
+  },
+  {
+    "q": "The correlation coefficient is sensitive to outlying points therefore the correlation coefficient is resistant.",
+    "a": "False"
+  },
+  {
+    "q": "It is the science of uncertainty.",
+    "a": "Probability and Statistics"
+  },
+  {
+    "q": "Mean may be influenced profoundly by the extreme variables called _____________________.",
+    "a": "Outliers"
+  },
+  {
+    "q": "It is a hypothesis which the researcher tries to disprove, reject or nullify.",
+    "a": "Null Hypothesis"
+  },
+  {
+    "q": "To test equality of means of more than 2 populations which of the following techniques is used?",
+    "a": "ANOVA"
+  },
+  {
+    "q": "The more variables, the more complex the study and the more complex the statistical analysis.",
+    "a": "True"
+  },
+  {
+    "q": "A skewed distribution is one reason to run a parametric test.",
+    "a": "False"
+  },
+  {
+    "q": "Non parametric tests are used when your data is normal",
+    "a": "False"
+  },
+  {
+    "q": "The main difference between the z and t-tests is that",
+    "a": "for a z-test the population mean and standard deviation are needed"
+  },
+  {
+    "q": "Appropriate use of statistical methodology in data analysis means the data should be analyzed in a way that is both scientifically and statistically unreasonable.",
+    "a": "False"
+  },
+  {
+    "q": "If your measurement scale is nominal or",
+    "a": "Non Parametric Test"
+  },
+  {
+    "q": "Those that make assumptions about the parameters of the population distribution from which the sample is drawn",
+    "a": "Parametric Test"
+  },
+  {
+    "q": "It is generally assumed that the ANOVA is an 'analysis of dependencies.'",
+    "a": "True"
+  },
+  {
+    "q": "It is the test of association for ranked variables.",
+    "a": "Goodman Kruska's Gamma"
+  },
+  {
+    "q": "Enter the following data in you Microsoft Excel. What are the variables in this analysis?",
+    "a": "Unit Price and Units Sold"
+  },
+  {
+    "q": "Variables can be defined in terms of measurable factors through a process of _______________________________.",
+    "a": "Operationalization"
+  },
+  {
+    "q": "It is the attempt to apply the conclusions that have been obtained from one experimental study to more general populations.",
+    "a": "Inferential Statistics"
+  },
+  {
+    "q": "Use this test to estimate the median of a population and compare it to a reference value or target value",
+    "a": "1-sample sign test"
+  },
+  {
+    "q": "In this method, the population is first divided into subgroups (or strata) who all share a similar characteristic.",
+    "a": "Stratified Sampling"
+  },
+  {
+    "q": "Which of the following may have an adverse effect on a correlation coefficient?",
+    "a": "restricting the range of possible scores"
+  },
+  {
+    "q": "______________ correlation exists if one variable increases simultaneously with the other, i.e. the high numerical values of one variable relate to the high numerical values of the other.",
+    "a": "Positive"
+  },
+  {
+    "q": "Which of the following definition defines nominal scale?",
+    "a": "Have no order and thus only gives names or labels to various categories"
+  },
+  {
+    "q": "It is used to make predictions or comparisons about a larger group (a population) using information gathered about a small part of that population.",
+    "a": "Inferential Statistics"
+  },
+  {
+    "q": "It refers to a family of continuous probability distributions described by the normal equation",
+    "a": "Normal Distribution"
+  },
+  {
+    "q": "The Chi Square statistic compares the tallies or counts of categorical responses between two (or more) independent groups.",
+    "a": "True"
+  },
+  {
+    "q": "Which is classified as Ratio?",
+    "a": "Sibling"
+  },
+  {
+    "q": "The error sum of squares can be obtained from the equation in two way ANOVA",
+    "a": "SSE = SST – SSR - SSC"
+  },
+  {
+    "q": "We are rarely interested in a significance test alone; we would like to say something about the population from which the samples came, and this is best done with estimates of parameters and confidence intervals.",
+    "a": "True"
+  },
+  {
+    "q": "One use of chi-square distribution is Confidence interval estimation for a population standard deviation of a normal distribution from a sample standard deviation.",
+    "a": "True"
+  },
+  {
+    "q": "Homogeneity of variance is the assumption that:",
+    "a": "the two populations have different variances"
+  },
+  {
+    "q": "For an independent t-test, we assume that the populations of individual scores have the same variance.",
+    "a": "True"
+  },
+  {
+    "q": "Classify the level of measurement it belongs: Birth Order",
+    "a": "Ordinal"
+  },
+  {
+    "q": "Every individual in the population have equal chance of being selected as a subject for the research.",
+    "a": "Probability Sampling"
+  },
+  {
+    "q": "With all inferential statistics, we assume the dependent variable fits a normal distribution",
+    "a": "True"
+  },
+  {
+    "q": "A low standard deviation indicates that the data points are spread out over a wider range of values.",
+    "a": "False"
+  },
+  {
+    "q": "It is a method that allows researchers to infer information about a population based on results from a subset of the population, without having to investigate every individual",
+    "a": "Sampling"
+  },
+  {
+    "q": "It provides a visual representation of the data.",
+    "a": "Graphical Method"
+  },
+  {
+    "q": "Which of the following would most likely cause the confidence interval to become smaller?",
+    "a": "Decreasing the standard error"
+  },
+  {
+    "q": "It is important to study statistics in order to formulate well-advance predictions.",
+    "a": "True"
+  },
+  {
+    "q": "If there is correlation found, depending upon the numerical values measured, this can be either positive or negative.",
+    "a": "True"
+  },
+  {
+    "q": "It is used to understand the nature of relationships between two individual variables.",
+    "a": "Correlation Analysis"
+  },
+  {
+    "q": "It gives an indication of how close an individual observation clusters about the mean value",
+    "a": "Variance"
+  },
+  {
+    "q": "All measurements contain some uncertainty and error, and statistical methods help us quantify and characterize this uncertainty.",
+    "a": "True"
+  },
+  {
+    "q": "If your results say that the p value is < 0.001 what can you conclude?",
+    "a": "There was a significant result and this would have only arose 1/100 through chance"
+  },
+  {
+    "q": "Enter the following formula:",
+    "a": "Standard Deviation"
+  },
+  {
+    "q": "The normal distribution is a continuous probability distribution.",
+    "a": "True"
+  },
+  {
+    "q": "It is used when evaluating Tests of Independence under Chi-Square statistic .",
+    "a": "Crosstabulation"
+  },
+  {
+    "q": "What does the figure shows?",
+    "a": "Smaller Standard Deviation"
+  },
+  {
+    "q": "The assumptions of this test are that the data from each population is an independent random sample and the population distributions have the same shape.",
+    "a": "Mood's Median test"
+  },
+  {
+    "q": "A low standard deviation indicates that the data points tend to be close to the mean of the data set.",
+    "a": "True"
+  },
+  {
+    "q": "1: Use this test to estimate the median of a population and compare it to a reference value or target value",
+    "a": "1-sample sign test"
+  },
+  {
+    "q": "It uses a random sample of data taken from a population to describe and make inferences about the population",
+    "a": "Inferential Statistics"
+  },
+  {
+    "q": "It is a characteristic that varies from one individual member of population to another individual.",
+    "a": "Variable"
+  },
+  {
+    "q": "It is the process of taking a subset of subjects that is representative of the entire population.",
+    "a": "Population Sampling"
+  },
+  {
+    "q": "Calculate the correlation coefficient using the CORREL function. What is the format of the CORREL function?",
+    "a": "=CORREL(Array1, Array2)"
+  },
+  {
+    "q": "What assumption(s) must be met to conduct an independent-samples t-test?",
+    "a": "All of these"
+  },
+  {
+    "q": "There are four major characteristics of a single variable that we tend to look at",
+    "a": "False"
+  },
+  {
+    "q": "The F ratio is typically used to test differences between",
+    "a": "three or more means."
+  },
+  {
+    "q": "Enter data in A3:B7 the color of 5nips and their total. What are the variables of the activity?",
+    "a": "Color and Number of M&Ms/Nips"
+  },
+  {
+    "q": "Compute the average of all variables using what formula?",
+    "a": "=AVERAGE()"
+  },
+  {
+    "q": "Distributions cannot be displayed using percentages",
+    "a": "False"
+  },
+  {
+    "q": "The _________________ must have sufficient size to warrant statistical analysis.",
+    "a": "Sample"
+  },
+  {
+    "q": "In one-way ANOVA, which of the following is used within the F-ratio as a measurement of the variance of individual observations?",
+    "a": "SSE"
+  },
+  {
+    "q": "If the sample means for each of k treatment groups were identical (yes, this is extremely unlikely), what would be the observed value of the ANOVA test statistic?",
+    "a": "0.0"
+  },
+  {
+    "q": "When the number of units in a population are uncountable, and so it is impossible to observe all the items of the universe",
+    "a": "Infinite"
+  },
+  {
+    "q": "We use statistics when the number of cases that can occur are really small.",
+    "a": "False"
+  },
+  {
+    "q": "It is the simplest form of analyzing data. \"Uni\" means \"one\", so in other words your data has only one variable.",
+    "a": "Univariate Analysis"
+  },
+  {
+    "q": "How many levels of measurements were discussed?",
+    "a": "Four"
+  },
+  {
+    "q": "The coefficient of determination and the R-squared (R2) are not the same",
+    "a": "False"
+  },
+  {
+    "q": "Which among the set is bimodal?",
+    "a": "{12, 22, 43, 22, 12}"
+  },
+  {
+    "q": "It is a popular test; it is the test to use when conducting experiments",
+    "a": "ANOVA"
+  },
+  {
+    "q": "The parametric test is the hypothesis test which provides generalizations for making statements about the mean of the parent population",
+    "a": "True"
+  },
+  {
+    "q": "A one way ANOVA will tell you that at least two groups were different from each other.",
+    "a": "True"
+  },
+  {
+    "q": "It assesses whether the means of two groups are statistically different from each other",
+    "a": "T-Test"
+  },
+  {
+    "q": "It is the event expected to change when the independent variable is manipulated",
+    "a": "Dependent Variable"
+  },
+  {
+    "q": "Sampling is also done to waste time, money and effort while conducting the research.",
+    "a": "False"
+  },
+  {
+    "q": "It is any characteristics, number, or quantity that can be measured or counted",
+    "a": "It describes methods for analyzing quantitative data"
+  },
+  {
+    "q": "Incorrectly rejecting a true null hypothesis is an example of what?",
+    "a": "Type I error"
+  },
+  {
+    "q": "Descriptive statistics help us to simplify large amounts of data in a sensible way.",
+    "a": "True"
+  },
+  {
+    "q": "It is calculated by changing lagged data with the formula for the Pearson product-moment correlation coefficient.",
+    "a": "Autocorrelation Coefficient"
+  },
+  {
+    "q": "The value of statistics is strong because they cannot serve as predictions as well as probabilities in certain trends.",
+    "a": "False"
+  },
+  {
+    "q": "A small confidence interval is bad because few values are contained within it.",
+    "a": "False"
+  },
+  {
+    "q": "The significance of statistical figures can be seen best when invalidating solid arguments or predictions out of hypotheses or conjectures that may seem overwhelming to a layman.",
+    "a": "False"
+  },
+  {
+    "q": "As variability due to chance decreases, the value of F will",
+    "a": "Increase"
+  },
+  {
+    "q": "Measures of dispersion aim to provide an accurate description of the entire data",
+    "a": "False"
+  },
+  {
+    "q": "A nice thing about the correlated groups design is that it can still be done even if there are an uneven number of observations in the groups.",
+    "a": "False"
+  },
+  {
+    "q": "Which is considered as qualitative data?",
+    "a": "The texture of a rock"
+  },
+  {
+    "q": "The characteristic of population based on all units is called parameter while the measure of sample observation is called statistic.",
+    "a": "True"
+  },
+  {
+    "q": "ANOVA tests in statistics packages are run on parametric data.",
+    "a": "True"
+  },
+  {
+    "q": "It is a branch of science that deals with the collection, organization, analysis of data and drawing of inferences from the samples to the whole population.",
+    "a": "Statistics"
+  },
+  {
+    "q": "Parametric type of test.",
+    "a": "ANOVA Test"
+  },
+  {
+    "q": "In this, the hypotheses are not about population parameters",
+    "a": "Non Parametric Test"
+  },
+  {
+    "q": "The only permissible aspect related to numbers in a nominal scale is “counting.”",
+    "a": "False"
+  },
+  {
+    "q": "What is the mean of the scores of the subject Language?",
+    "a": "3.07"
+  },
+  {
+    "q": "Scientific research rarely leads to absolute certainty.",
+    "a": "True"
+  },
+  {
+    "q": "The degrees of freedom for k columns of size n will be..",
+    "a": "k-1"
+  },
+  {
+    "q": "It is the measurement of correlation and ranges (depending on the correlation) between +1 and -1. +1 indicates the strongest positive correlation possible, and -1 indicates the strongest negative correlation possible.",
+    "a": "Pearson's product-moment coefficient"
+  },
+  {
+    "q": "You obtain a sample chi-square value of X2 = -5.49. On the basis of this value, you know that",
+    "a": "you have made a calculation error; chi-square values cannot be negative."
+  },
+  {
+    "q": "Nominal is hardly measurement. It refers to quantity more than quality.",
+    "a": "False"
+  },
+  {
+    "q": "It is used to describe the basic features of the data in a study",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "The gamma distribution describes the square root of a variable distributed according to a chi-square distribution",
+    "a": "False"
+  },
+  {
+    "q": "What is the purpose of a goodness-of-fit test?",
+    "a": "To assesses whether the central tendency, variability and distribution of sample is different from that of the population"
+  },
+  {
+    "q": "It compares the means of two (and only two) groups when the variances are not equal.",
+    "a": "T-Test"
+  },
+  {
+    "q": "It has have no order and thus only gives names or labels to various categories.",
+    "a": "Nominal"
+  },
+  {
+    "q": "If the MSE of an ANOVA for six treatment groups is known, you can compute",
+    "a": "the pooled standard deviation"
+  },
+  {
+    "q": "When the expected values (E) are obtained by multiplying row totals by column totals",
+    "a": "a chi-square test of independence."
+  },
+  {
+    "q": "Which of the following definition defines interval scale?",
+    "a": "Have meaningful intervals between measurements, but there is no true starting point (zero)."
+  },
+  {
+    "q": "Correlation analysis as a research method offers a range of advantages",
+    "a": "True"
+  },
+  {
+    "q": "The most popular forms of Chi-Square used in business studies include Pearson product-moment correlation, Spearman Rank correlation and Autocorrelation.",
+    "a": "False"
+  },
+  {
+    "q": "The parametric test is the hypothesis test which provides generalizations for making statements about the ____________________ of the parent population.",
+    "a": "Mean"
+  },
+  {
+    "q": "Since a term including the standard error is added to and subtracted from the mean, if the standard error is smaller a smaller product will be added to and subtracted from the mean.",
+    "a": "True"
+  },
+  {
+    "q": "In ratio scale, variables can be systematically added, subtracted, multiplied and divided.",
+    "a": "True"
+  },
+  {
+    "q": "The number of rows in which total variance in a one way ANOVA partitioned is..",
+    "a": "2"
+  },
+  {
+    "q": "What is the null hypothesis in chi-square test?",
+    "a": "The rows and columns are not associated"
+  },
+  {
+    "q": "Which of the following would not allow you to calculate a correlation?",
+    "a": "a curvilinear relationship between X and Y"
+  },
+  {
+    "q": "The Chi Square statistic is commonly used for testing relationships between categorical variables.",
+    "a": "True"
+  },
+  {
+    "q": "It is the average of all the elements of a set",
+    "a": "Mean"
+  },
+  {
+    "q": "Use when you want to find a correlation between two sets of data.",
+    "a": "Spearman Rank Correlation"
+  },
+  {
+    "q": "Confidence interval estimation for a population standard deviation of a normal distribution from a sample standard deviation.",
+    "a": "False"
+  },
+  {
+    "q": "What name is given to data which is made up of frequencies?",
+    "a": "Categorical data"
+  },
+  {
+    "q": "It implies the correlation among the values of the same variables but at various times",
+    "a": "Autocorrelation"
+  },
+  {
+    "q": "Qualitative data are variables that cannot be ordered in a logical or natural way.",
+    "a": "True"
+  },
+  {
+    "q": "It has an absolute zero.",
+    "a": "Interval"
+  },
+  {
+    "q": "Which of the following is not a use for r?",
+    "a": "power analysis"
+  },
+  {
+    "q": "When conducting a one-way ANOVA, the _______ the between-treatment variability is when compared to the within-treatment variability, the _______ the value of FDATA will be tend to be.",
+    "a": "smaller, smaller"
+  },
+  {
+    "q": "If the sample data are consistent with the null hypothesis, then we do not reject it.",
+    "a": "True"
+  },
+  {
+    "q": "It is the term given to the analysis of data that helps describe, show or summarize data in a meaningful way such that, for example, patterns might emerge from the data.",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "You cannot use a Pearson's correlation to understand whether there is an association between exam performance and time spent revising",
+    "a": "False"
+  },
+  {
+    "q": "Scientific data rarely lead to absolute conclusions.",
+    "a": "True"
+  },
+  {
+    "q": "Parametric tests have no statistical power",
+    "a": "False"
+  },
+  {
+    "q": "In this level of measurement, the observations, in addition to having equal intervals, can have a value of zero as well.",
+    "a": "Ratio"
+  },
+  {
+    "q": "Nominal comes from the Latin root ‘name’ meaning nomen.",
+    "a": "False"
+  },
+  {
+    "q": "If data in two way classification id displayed in r rows and k columns, then the degrees of freedom for interaction will be…",
+    "a": "(r-1)(k-1)"
+  },
+  {
+    "q": "Which of the following indicates the strongest relationship?",
+    "a": "r = - .6"
+  },
+  {
+    "q": "The number of rows in which total variance in a two way ANOVA partitioned is..",
+    "a": "3"
+  },
+  {
+    "q": "With this test, you also estimate the population median and compare it to a reference/target value.",
+    "a": "1-sample Wilcoxon signed rank test"
+  },
+  {
+    "q": "The statistics are presented in a indefinite form so they also help in condensing the data into important figures.",
+    "a": "False"
+  },
+  {
+    "q": "By what alternative name is Pearson's Correlation Analysis also known?",
+    "a": "Pearson's Product-Moment"
+  },
+  {
+    "q": "Non Parametric tests can provide trustworthy results when the groups have different amounts of variability",
+    "a": "False"
+  },
+  {
+    "q": "It is defined as \"the statistical measure that identifies a single value as representative of an entire distribution.\"",
+    "a": "Central Tendency"
+  },
+  {
+    "q": "The sum of squares due to the column factor for one way analysis of variance is given by",
+    "a": "SST-SSE"
+  },
+  {
+    "q": "These are important in statistics and are often used in the natural and social sciences to represent real-valued random variables whose distributions are not known.",
+    "a": "Normal Distribution"
+  },
+  {
+    "q": "It is the study of how to collect, organize, analyze, and interpret numerical information from data.",
+    "a": "Statistics"
+  },
+  {
+    "q": "This analysis is appropriate whenever you want to compare the means of two groups, and especially appropriate as the analysis for the posttest-only two-group randomized experimental design.",
+    "a": "T-Test"
+  },
+  {
+    "q": "It is a summary statistic that quantitatively describes or summarizes features of a collection of information, while descriptive statistics in the mass noun sense is the process of using and analyzing those statistics",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "What is the result of the calculation?",
+    "a": "-0.96"
+  },
+  {
+    "q": "The only difference between the z and single sample t-test are the size of the samples.",
+    "a": "False"
+  },
+  {
+    "q": "What is the mode of the scores of the subject Mathematics?",
+    "a": "6"
+  },
+  {
+    "q": "It is often based on statements of statistical significance and probability.",
+    "a": "Modern science"
+  },
+  {
+    "q": "If we hold all other factors constant, then as the error term of a t-statistic becomes greater,",
+    "a": "the probability of making a Type II error increases."
+  },
+  {
+    "q": "Uses parametric scale",
+    "a": "Interval"
+  },
+  {
+    "q": "This method is a non probability sampling technique where existing study subjects recruit future subjects from among their acquaintances.",
+    "a": "Snowball Sampling"
+  },
+  {
+    "q": "It gives the ability to quantify and differentiate between options.",
+    "a": "Interval"
+  },
+  {
+    "q": "Say you want to figure out which brand of microwave popcorn pops the most kernels so you can get the most value for your money. You test different brands of popcorn to see which bag pops the most popcorn kernels. Which among the choices is the independent variable?",
+    "a": "Brand of popcorn bags"
+  },
+  {
+    "q": "This sampling method is usually employed in studies that are not interested in the parameters of the entire population.",
+    "a": "Non Probability Sampling"
+  },
+  {
+    "q": "Statistics provide a measure of proof that something is true.",
+    "a": "False"
+  },
+  {
+    "q": "It involves the examination across cases of one variable at a time.",
+    "a": "Univariate Analysis"
+  },
+  {
+    "q": "Identify what branch of statistics focus on the measures of central tendency and dispersion.",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "Measures of spread are ways of summarizing a group of data by describing how spread out the scores are",
+    "a": "True"
+  },
+  {
+    "q": "This test is used to test for differences between groups with ordinal dependent variables",
+    "a": "Friedman test"
+  },
+  {
+    "q": "Which is another term for dependent variable?",
+    "a": "Predicted Variable"
+  },
+  {
+    "q": "Use this test instead of a one-way ANOVA to find out if two or more medians are different.",
+    "a": "Kruskal- Wallis test"
+  },
+  {
+    "q": "An ANOVA test is a way to find out if survey or experiment results are significant",
+    "a": "True"
+  },
+  {
+    "q": "The straight line equation y=b0 + b1x is an example of a linear relationship. This means that the changes in one variable are accompanied by the proportional linear changes in another variable. If you increase one variable by 1 and the other by 0.5, this is a linear change.",
+    "a": "True"
+  },
+  {
+    "q": "Procedure Enter the following formula: D9: =sum(D3:D7) then B12: =D9/(B10-1) What are your expected outputs in this number?",
+    "a": "Get the variance"
+  },
+  {
+    "q": "Construct a conclusion based on the scale below: What is the interpretation of our computation?",
+    "a": "We have a strong negative correlation in the data"
+  },
+  {
+    "q": "When the difference between two population averages is being investigated, a t test is used",
+    "a": "True"
+  },
+  {
+    "q": "It is a measure of the strength of a linear association between two variables and is denoted by r.",
+    "a": "Pearson's product-moment coefficient"
+  },
+  {
+    "q": "What is the shortcut for getting the standard deviation?",
+    "a": "=stdev(B3:B7)"
+  },
+  {
+    "q": "Members of the population do not have equal chance of being selected.",
+    "a": "Non Probability Sampling"
+  },
+  {
+    "q": "Homoscedasticity can be checked using which type of graph?",
+    "a": "Scatter graph"
+  },
+  {
+    "q": "It is one of the measures of correlation which quantifies the strength as well as the direction of such relationship",
+    "a": "Pearson's product-moment correlation"
+  },
+  {
+    "q": "It comes from the Latin nomen, meaning 'name' and nominal data are items which are differentiated by a simple naming system.",
+    "a": "Nominal"
+  },
+  {
+    "q": "Statistics are powerful tools, but it's the analysis provided afterwards by inferential statistics that explicitly makes claims about what those results mean, why, and in what context",
+    "a": "True"
+  },
+  {
+    "q": "Variance is a square of average distance between each quantity and mean.",
+    "a": "True"
+  },
+  {
+    "q": "Which among the data is a sample?",
+    "a": "IT Department of University of Makati"
+  },
+  {
+    "q": "The formula of sample mean is",
+    "a": "False"
+  },
+  {
+    "q": "It is used to measure the strength of a linear association between two variables, where the value r = 1 means a perfect positive correlation and the value r = -1 means a perfect negative correlation.",
+    "a": "Pearson's product-moment correlation"
+  },
+  {
+    "q": "It is a measure of where the \"middle fifty\" is in a data set",
+    "a": "Interquartile Range"
+  },
+  {
+    "q": "Which of the following is an appropriate null hypothesis for this study?",
+    "a": "Problem-solving skills in open classrooms are equal to problem-solving skills in traditional classrooms."
+  },
+  {
+    "q": "What is the median of the scores of the subject Language?",
+    "a": "2.5"
+  },
+  {
+    "q": "What function is use to compute for the average in Excel?",
+    "a": "=AVERAGE()"
+  },
+  {
+    "q": "What is the formula for Chi-Square Statistics?",
+    "a": "Marked out of 1.00"
+  },
+  {
+    "q": "Residual plot in regression analysis is used to mean plot of regressors",
+    "a": "False"
+  },
+  {
+    "q": "The Chi-Square statistic is most commonly used to evaluate Tests of Independence when using a what?",
+    "a": "Crosstabulation"
+  },
+  {
+    "q": "It is most commonly applied when the test statistic would follow a normal distribution if the value of a scaling term in the test statistic were known.",
+    "a": "T-Test"
+  },
+  {
+    "q": "Quota sampling has the advantage of being time-and cost-effective to perform whilst resulting in a range of responses (particularly useful in qualitative research).",
+    "a": "False"
+  },
+  {
+    "q": "A bell shaped curve to a scatter graph would suggest what?",
+    "a": "There would be a non-linear relationship and a Pearson's product-moment should not be used"
+  },
+  {
+    "q": "Create a Scatter Chart of the data. Is it necessary to create a scatter chart?",
+    "a": "No"
+  },
+  {
+    "q": "Negative IQR is fine, if your data is in descending order",
+    "a": "True"
+  },
+  {
+    "q": "The error deviations within the SSE statistic measure distances:",
+    "a": "within groups"
+  },
+  {
+    "q": "Uses non parametric scale",
+    "a": "Ordinal"
+  },
+  {
+    "q": "What other solution can you do to compute for the average of the scores?",
+    "a": "=SUM()/COUNT()"
+  },
+  {
+    "q": "Which of the following is an assumption of one-way ANOVA comparing samples from three or more experimental treatments?",
+    "a": "All of the mentioned"
+  },
+  {
+    "q": "Parametric tests usually have more statistical power than their non-parametric equivalents.",
+    "a": "True"
+  },
+  {
+    "q": "It is a sampling technique where the samples are gathered in a process that does not give all the individuals in the population equal chances of being selected.",
+    "a": "Non Probability Sampling"
+  },
+  {
+    "q": "It is a method of statistical evaluation used to study the strength of a relationship between two, numerically measured, continuous variables (e.g. height and weight).",
+    "a": "Correlation Analysis"
+  },
+  {
+    "q": "Statisticians assume a cause effect relationship and say that one or more independent, controlled variables (the factors) cause the significant difference of one or more characteristics",
+    "a": "True"
+  },
+  {
+    "q": "The greater the value of the F ratio,",
+    "a": "the less the sample distributions overlap."
+  },
+  {
+    "q": "The intent is to determine whether there is enough evidence to \"reject\" a conjecture or hypothesis about the process. The conjecture is called the ______________________",
+    "a": "H0"
+  },
+  {
+    "q": "Descriptive Statistics are used to present _______________ descriptions in a manageable form.",
+    "a": "Quantitative"
+  },
+  {
+    "q": "Which of the following findings is not a correlation?",
+    "a": "Women scored higher than men on narcissism"
+  },
+  {
+    "q": "What name is given to data which can be ranked?",
+    "a": "Ordinal data"
+  },
+  {
+    "q": "It is a nominal level variable that can take only two values (yes/no, male/female, Hungarian/non-Hungarian).",
+    "a": "Dichotomy"
+  },
+  {
+    "q": "The nominal scale forms the basis for such analyses as the Chi-Square because those analyses require that some category is compared to at least one other category.",
+    "a": "False"
+  },
+  {
+    "q": "Measures of central tendency are ways of describing the central position of a frequency distribution for a group of data.",
+    "a": "True"
+  },
+  {
+    "q": "A set cannot have more than one mode.",
+    "a": "False"
+  },
+  {
+    "q": "Descriptive statistics therefore enables us to present the data in a more meaningful way, which allows simpler interpretation of the data",
+    "a": "True"
+  },
+  {
+    "q": "This industry use statistical approaches to estimate the number of depositors and their claims for a certain day",
+    "a": "Banking"
+  },
+  {
+    "q": "Descriptive Statistics simply summaries about the sample and the measures",
+    "a": "True"
+  },
+  {
+    "q": "Stratified sampling is used when we might reasonably expect the measurement of interest to vary between the different subgroups, and we want to ensure representation from all the subgroups",
+    "a": "True"
+  },
+  {
+    "q": "We use unplanned comparisons to determine",
+    "a": "which pair or combination of means are significantly different"
+  },
+  {
+    "q": "If we hold all other factors constant, then as the error term of a t-statistic becomes greater",
+    "a": "the probability of making a Type II error increases"
+  },
+  {
+    "q": "It tries to describe the relationship between variables in a sample or population and provides a summary of data in the form of mean, median and mode.",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "A population can be small or large, as long as it includes all the data you are interested in.",
+    "a": "True"
+  },
+  {
+    "q": "It is a measure of the strength and direction of association that exists between two variables measured on at least an interval scale.",
+    "a": "Pearson's product-moment correlation"
+  },
+  {
+    "q": "It is a classification that describes the nature of information within the values assigned to variables",
+    "a": "Levels of Measurement"
+  },
+  {
+    "q": "It is used to compare the mean of a population with a theoretical value.",
+    "a": "One-Sample"
+  },
+  {
+    "q": "The most complicated distribution would list every value of a variable and the number of persons who had each value",
+    "a": "False"
+  },
+  {
+    "q": "What type of data do you need for a chi-square test?",
+    "a": "Nominal"
+  },
+  {
+    "q": "When reporting a Pearson's product-moment in APA format, you would use x.",
+    "a": "False"
+  },
+  {
+    "q": "If all points cluster in an ascending line this would suggest there would be a strong positive relationship",
+    "a": "True"
+  },
+  {
+    "q": "The value of statistics is strong because they can serve as predictions as well as probabilities in certain trends.",
+    "a": "True"
+  },
+  {
+    "q": "What is the value of the standard error of the mean?",
+    "a": ".714"
+  },
+  {
+    "q": "To determine whether the test statistic of ANOVA is statistically significant, it can be compared to a critical value. What two pieces of information are needed to determine the critical value?",
+    "a": "sample size, number of groups"
+  },
+  {
+    "q": "A t-test compares means, while the ANOVA compares variances between populations. You could technically perform a series of t-tests on your data",
+    "a": "True"
+  },
+  {
+    "q": "Variable that always goes on the x-axis, or the horizontal axis",
+    "a": "Independent Variable"
+  },
+  {
+    "q": "The t-statistic rests on the underlying assumption that there is the normal distribution of variable and the mean in known or assumed to be known.",
+    "a": "True"
+  },
+  {
+    "q": "Interval scales are exactly like ratio scales, except that they have a true zero point",
+    "a": "False"
+  },
+  {
+    "q": "Subgroups of the population are used as the sampling unit, rather than individuals",
+    "a": "Clustered Sampling"
+  },
+  {
+    "q": "As the number of observations increases, the t-distribution looks more like the standard normal distribution.",
+    "a": "True"
+  },
+  {
+    "q": "What type of relationships does a Pearson's product-moment assess?",
+    "a": "It can only assess a linear relationship"
+  },
+  {
+    "q": "What must data be in order for a Pearson's product-moment to be conducted?",
+    "a": "All of these"
+  },
+  {
+    "q": "Negative correlation exists if one variable decreases when the other increases, i.e. the high numerical values of one variable relate to the low numerical values of the other.",
+    "a": "Negative"
+  },
+  {
+    "q": "It is is calculated by taking the ratio of the sample of the two variables to the product of the two standard deviations and illustrates the strength of linear relationships",
+    "a": "Pearson's product-moment coefficient"
+  },
+  {
+    "q": "It a characteristic or feature that varies, or changes within a study",
+    "a": "Variable"
+  },
+  {
+    "q": "These are numerical measurements that arise from a natural numerical scale.",
+    "a": "Quantitative Variable"
+  },
+  {
+    "q": "Correlation analysis can study a wide range of variables and their interrelations.",
+    "a": "True"
+  },
+  {
+    "q": "If correlation is found between two variables it means that when there is a systematic change in one variable, there is also a systematic change in the other",
+    "a": "True"
+  },
+  {
+    "q": "Statisticians now believe that if the expected value (E) falls below 5-10 our chi-square test is not valid.",
+    "a": "False"
+  },
+  {
+    "q": "It does not only classify and order the measurements, but it also specifies that the distances between each interval on the scale are equivalent along the scale from low interval to high interval.",
+    "a": "Interval"
+  },
+  {
+    "q": "The t distribution varies in shape based on:",
+    "a": "Sample Size"
+  },
+  {
+    "q": "The chi-square test is used when we have ordinal data.",
+    "a": "False"
+  },
+  {
+    "q": "Non parametric assume that the data is normally distributed",
+    "a": "False"
+  },
+  {
+    "q": "Numbers can be also used to order.",
+    "a": "True"
+  },
+  {
+    "q": "It provides a mechanism for making quantitative decisions about a process or processes.",
+    "a": "Statistical Test"
+  },
+  {
+    "q": "The ________ sum of squares measures the variability of the sample treatment means around the overall mean",
+    "a": "treatment"
+  },
+  {
+    "q": "You find a statistically significant ANOVA. In order to determine which groups are different, you must conduct",
+    "a": "either planned or unplanned comparisons"
+  },
+  {
+    "q": "What is a statistical test which is widely used to compare the mean of two groups of samples. It is therefore to evaluate whether the means of the two sets of data are statistically significantly different from each other?",
+    "a": "T-Test"
+  },
+  {
+    "q": "This method of sampling is a non-probability sampling technique wherein the assembled sample has the same proportions of individuals as the entire population with respect to known characteristics, traits or focused phenomenon.",
+    "a": "Quota Sampling"
+  },
+  {
+    "q": "It depends on physically measuring things.",
+    "a": "Experimental Method"
+  },
+  {
+    "q": "It is used to investigate whether distributions of categorical variables differ from one another.",
+    "a": "Chi-Square"
+  },
+  {
+    "q": "This method of sampling is often used by market researchers.",
+    "a": "Quota Sampling"
+  },
+  {
+    "q": "If the true means of the k populations are equal, then MSTR/MSE should be:",
+    "a": "close to 1.00"
+  },
+  {
+    "q": "Stratified sampling improves the accuracy and representativeness of the results by reducing sampling bias.",
+    "a": "True"
+  },
+  {
+    "q": "Classify the level of measurement it belongs: Gender",
+    "a": "Nominal"
+  },
+  {
+    "q": "What is the average of scores of the subject Social Science?",
+    "a": "2.8"
+  },
+  {
+    "q": "What is the value of the perfect positive correlation",
+    "a": "+1"
+  },
+  {
+    "q": "It is the most frequently occurring variable in a distribution.",
+    "a": "Mode"
+  },
+  {
+    "q": "Comparison is one of the main functions of economics as the absolute figures convey a very less meaning.",
+    "a": "False"
+  },
+  {
+    "q": "Display networks of relationships among variables, enabling researchers to identify the nature of relationships that would otherwise be too complex to conceptualize",
+    "a": "Sociograms"
+  },
+  {
+    "q": "What is the average of scores of the subject Mathematics?",
+    "a": "5"
+  },
+  {
+    "q": "What is the alternative name for a repeated-measures t-test?",
+    "a": "A paired-samples t-test"
+  },
+  {
+    "q": "It aims to describe various aspects of the data obtained in the study.",
+    "a": "Descriptive Statistics"
+  },
+  {
+    "q": "Age is under what level of measurements?",
+    "a": "Interval"
+  },
+  {
+    "q": "These are the two main branches of statistics",
+    "a": "Descriptive and Inferential"
+  },
+  {
+    "q": "When the number of elements of the population is fixed and thus making it possible to enumerate it in totality.",
+    "a": "Finite Population"
+  },
+  {
+    "q": "There are two key variables in every experiment: the dependent variable and the independent variable.",
+    "a": "True"
+  },
+  {
+    "q": "When the k population means are truly different from each other, it is likely that the average error deviation:",
+    "a": "is relatively small compared to the average treatment deviations"
+  },
+  {
+    "q": "Analyze the chart. What is your interpretation of the chart?",
+    "a": "As the price go up, the volume goes down"
+  },
+  {
+    "q": "The concept of measurement has been developed in conjunction with the concepts of numbers and units of measurement.",
+    "a": "True"
+  },
+  {
+    "q": "A potential source of confusion in working out what statistics to use in analysing data is whether your data allows for parametric or non-parametric statistics.",
+    "a": "True"
+  },
+  {
+    "q": "It is rare to find perfect correlation (+1 or -1).",
+    "a": "True"
+  },
+  {
+    "q": "Which is not a level of measurement in Statistics?",
+    "a": "Proportion"
+  },
+  {
+    "q": "In a chi-square test, the \"expected\" counts are the values we expect if there is an association between the variables.",
+    "a": "False"
+  },
+  {
+    "q": "Descriptive Statistics can be used to highlight potential relationships between variables.",
+    "a": "True"
+  },
+  {
+    "q": "One of the reasons that a correlated-groups design is more powerful than an independent-samples design is that in the correlated-groups design",
+    "a": "the error term is based on the difference scores"
+  },
+  {
+    "q": "Which of the following would produce related data?",
+    "a": "Testing the same participants on two occasions"
+  },
+  {
+    "q": "Pocedure: By now, you should have completed your table. For excel shortcuts:",
+    "a": "=var(B3:B7)"
+  },
+  {
+    "q": "Statistics help predicts the future course of action of the phenomena.",
+    "a": "Forecasting"
+  },
+  {
+    "q": "If the sample data are consistent with the null hypothesis, but consistent with the alternative, then we reject the null hypothesis and conclude that the alternative hypothesis is true.",
+    "a": "False"
+  },
+  {
+    "q": "Analysis of variance is a statistical method of comparing the ________ of several populations.",
+    "a": "means"
+  },
+  {
+    "q": "Which is not classified as Nominal?",
+    "a": "How Naughty or Nice?"
+  },
+  {
+    "q": "The central tendency of the ordinal scale is _______________________________.",
+    "a": "Median"
+  },
+  {
+    "q": "It arise out of the fact that sampling naturally incurs sampling error and thus a sample is not expected to perfectly represent the population",
+    "a": "Inferential Statistics"
+  },
+  {
+    "q": "Enter the following fomula: B9: =average(B3:B7) B10: =count(B3:B7) What does this line does? average(B3:B7)",
+    "a": "Get the mean of the scores"
+  },
+  {
+    "q": "It is a single value that attempts to describe a set of data by identifying the central position within that set of data.",
+    "a": "Central Tendency"
+  },
+  {
+    "q": "Depending on the statistical test you have chosen, you will calculate a probability of observing your sample results (or more extreme) given that the null hypothesis is true.",
+    "a": "True"
+  },
+  {
+    "q": "The mean is sensitive to any change in value, unlike the median and mode, where a change to an extreme or uncommon value usually has no effect.",
+    "a": "True"
+  },
+  {
+    "q": "Sex or Gender is classified under what level of measurement?",
+    "a": "Nominal"
+  },
+  {
+    "q": "Example of this are number of episodes of respiratory arrests or the number of re-intubations in an intensive care unit.",
+    "a": "Discrete Data"
+  },
+  {
+    "q": "Measures of central location include the range, quartiles and the interquartile range, variance and standard deviation",
+    "a": "False"
+  },
+  {
+    "q": "Why must you review the materials produced using statistics?",
+    "a": "To draw conclusions and attempt to answer the researcher's question/hypothesis"
+  },
+  {
+    "q": "The measures of central tendency are mean, median and mode.",
+    "a": "True"
+  },
+  {
+    "q": "All else being equal, as the subjects in a study become more homogenous, the value of the test statistic increases.",
+    "a": "True"
+  },
+  {
+    "q": "A repeated measures t-test can be used to assess which of the following?",
+    "a": "It assesses differences between scores obtained on two separate occasions from the same participants"
+  },
+  {
+    "q": "The t-test family is not based on the t-distribution, because the difference of mean score for two multivariate normal variables approximates the t-distribution.",
+    "a": "False"
+  },
+  {
+    "q": "If you are using interval or ratio scales you use _________________________________.",
+    "a": "Parametric Test"
+  },
+  {
+    "q": "It refers to the relationship among the values that are assigned to the attributes for a variable.",
+    "a": "Attributes"
+  },
+  {
+    "q": "Significance testing is based on which of the following principles?",
+    "a": "Falsification"
+  },
+  {
+    "q": "There are commonly two types of ANOVA tests for univariate analysis - One-Way ANOVA and Two-Way ANOVA.",
+    "a": "True"
+  },
+  {
+    "q": "One disadvantage of the mean is that a small number of extreme values can distort its value.",
+    "a": "True"
+  },
+  {
+    "q": "Statistical variables do not contain numerical values but rather something __________________________.",
+    "a": "Descriptive"
+  },
+  {
+    "q": "If most points depict a dispersed descending line this would suggest there would be a weak positive relationship",
+    "a": "True"
+  },
+  {
+    "q": "One-way ANOVA between groups is used when you want to test two groups to see if there's a difference between them.",
+    "a": "False"
+  },
+  {
+    "q": "The two-way ANOVA compares the means between the groups you are interested in and determines whether any of those means are statistically significantly different from each other.",
+    "a": "False"
+  },
+  {
+    "q": "The company you are working for wants to improve sales. Past sales data indicate that the average sale was P100 per transaction. After training, recent sales data (taken from a sample of 25 salesmen) indicates an average sale of P130, with a standard deviation of P15. Did the training work? Use alpha level at 5%.",
+    "a": "10"
+  },
+  {
+    "q": "Examples of ratio level data include distance and area (e.g., acreage).",
+    "a": "Ratio"
+  },
+  {
+    "q": "It is the difference between lowest and highest value.",
+    "a": "Range"
+  },
+  {
+    "q": "Which of the following assumptions of ANOVA can be discarded in case the sample size is large?",
+    "a": "Samples are drawn from the normal population"
+  },
+  {
+    "q": "Although in an interval scale, since there is an absence of the absolute 0 and it works on the principal of an arbitrary 0, the division of variables is not possible.",
+    "a": "True"
+  },
+  {
+    "q": "What does a Pearson's product-moment allow you to identify?",
+    "a": "Whether there is a relationship between variables"
+  },
+  {
+    "q": "Snowball sampling can be effective when a sampling frame is easy to identify.",
+    "a": "False"
+  },
+  {
+    "q": "If your data isn’t normally distributed, you can’t run the Kruskal-Wallis test., but you can run the nonparametric alternative–the ANOVA",
+    "a": "False"
+  },
+  {
+    "q": "It is referred to as such because it is a test to prove an assumed cause and effect relationships",
+    "a": "ANOVA"
+  },
+  {
+    "q": "The time invested often requires determination of the appropriate methodology to apply in analysis corresponding to the hypothesis and design of the investigation.",
+    "a": "True"
+  },
+  {
+    "q": "It is a software encompasses a broad range of applications which involve the use of a combination of digital maps and geo referenced data.",
+    "a": "GIS Program"
+  },
+  {
+    "q": "An independent t-test can be used to assess which of the following?",
+    "a": "It assesses differences between two groups of participants"
+  },
+  {
+    "q": "In ordinal measurement the numerical values just \"name\" the attribute uniquely.",
+    "a": "False"
+  },
+  {
+    "q": "Statistics is only the science of uncertainty and not the technology of extracting information from data.",
+    "a": "False"
+  },
+  {
+    "q": "The advantage of using non probability sampling is the accuracy of the statistical methods after the experiment",
+    "a": "False"
+  },
+  {
+    "q": "Parametric statistical procedures are less powerful because they use less information in their calculation.",
+    "a": "False"
+  },
+  {
+    "q": "Parametric tests can provide trustworthy results with distributions that are skewed and nonnormal",
+    "a": "True"
+  },
+  {
+    "q": "Methods of correlation and regression cannot be used in order to analyze the extent and the nature of relationships between different variables",
+    "a": "False"
+  },
+  {
+    "q": "In statistics and probability, quartiles are values that divide your data into quarters provided data is sorted in an ascending order.",
+    "a": "True"
+  },
+  {
+    "q": "By default, all variables fall in one of the four scales.",
+    "a": "True"
+  },
+  {
+    "q": "The null hypothesis for all chi-square tests asks whether the observed number of cases in a sample what we expect from knowledge of the population.",
+    "a": "True"
+  },
+  {
+    "q": "The degrees of freedom for a 2 x 2 cross-tabulation table for the chi-square test of independence equal",
+    "a": "1"
+  },
+  {
+    "q": "A researcher can create a map to represent data relationships visually using this",
+    "a": "GIS Program"
+  },
+  {
+    "q": "Non-parametric tests are \"distribution-free\" and, as such, can be used for non-Normal variables",
+    "a": "True"
+  },
+  {
+    "q": "Say youre interested in how rising sea temperatures impact algae life, so you design an experiment that measures the number of algae in a sample of water taken from a specific ocean site under varying temperatures. What is the independent variable?",
+    "a": "The temperature of the ocean"
+  },
+  {
+    "q": "Parametric tests are those that make assumptions about the parameters of the population distribution from which the sample is drawn.",
+    "a": "True"
+  },
+  {
+    "q": "Parametric test is mainly based on differences in medians",
+    "a": "False"
+  },
+  {
+    "q": "T-tests and other significance tests are frequently criticized. Over-representation of statistical significance in research may result in",
+    "a": "Publican Bias"
+  },
+  {
+    "q": "Descriptive Statistics is the branch of statistics that involves organizing, displaying and describing data.",
+    "a": "True"
+  },
+  {
+    "q": "The t-test assesses whether the means of two groups are statistically different from each other.",
+    "a": "True"
+  },
+  {
+    "q": "It is difficult to do flexible modelling with non-parametric tests, for example allowing for confounding factors using multiple regression.",
+    "a": "True"
+  },
+  {
+    "q": "Any difference among the population means in the analysis of variance will inflate the expected values of",
+    "a": "MS Columns"
+  },
+  {
+    "q": "T-test can help you to figure out if you need to reject the null hypothesis or accept the alternate hypothesis.",
+    "a": "False"
+  },
+  {
+    "q": "Every time you try to describe a large set of observations with a single indicator you run the risk of distorting the original data or losing important detail.",
+    "a": "True"
+  },
+  {
+    "q": "The randomly selected 100 students for a survey is called a population",
+    "a": "False"
+  },
+  {
+    "q": "With descriptive statistics you are simply ________________ what is or what the data shows",
+    "a": "Describing"
+  },
+  {
+    "q": "In ANOVA, 2 and 2",
+    "a": "estimate the size of the difference between groups"
+  },
+  {
+    "q": "Which is an example of interval scale?",
+    "a": "Time of the day on a 12-hour clock"
+  },
+  {
+    "q": "It is also a logical grouping of attributes.",
+    "a": "Variable"
+  },
+  {
+    "q": "Assuming that the null hypothesis being tested by ANOVA is false, the probability of obtaining a Fratio that exceeds the value reported in the F table as the 95th percentile is:",
+    "a": "< .05"
+  },
+  {
+    "q": "In this correlation the correlation coefficient is not robust due to the fact that strong linear relationships between the variables are not recognized",
+    "a": "Pearson's product-moment correlation"
+  }
+]

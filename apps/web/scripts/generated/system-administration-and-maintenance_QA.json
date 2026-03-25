@@ -1,0 +1,478 @@
+[
+  {
+    "q": "Which of the following is not usable for writing java source code?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is a series of graphical interface operating systems developed, marketed, and sold by Microsoft.",
+    "a": "Microsoft Windows"
+  },
+  {
+    "q": "Which of the following is a valid identifier?",
+    "a": "name"
+  },
+  {
+    "q": "A _____ is the administrator of a mail server",
+    "a": "postmaster"
+  },
+  {
+    "q": "Pertaining to the principles of mathematical logic developed by George Boole, a nineteenth century mathematician.",
+    "a": "boolean"
+  },
+  {
+    "q": "Which of the following is not a Java comment?",
+    "a": "Declaration Comments"
+  },
+  {
+    "q": "Windows Server server operating system by Microsoft, as part of the Windows ME family of operating systems",
+    "a": "False"
+  },
+  {
+    "q": "A manual testing technique in which program documents [specifications (requirements, design), source code or user's manuals] are examined in a very formal and disciplined manner to discover errors, violations of standards and other problems.",
+    "a": "inspection"
+  },
+  {
+    "q": "Which of the following is not the feature of java?",
+    "a": "Static"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? booleanResult = x && y || x;",
+    "a": "True"
+  },
+  {
+    "q": "A _____ distribution is a member of the family of Unix-like operating systems built on top of the Linux kernel.",
+    "a": "Linux"
+  },
+  {
+    "q": "Pertaining to the simultaneity of two or more processes.",
+    "a": "parallel"
+  },
+  {
+    "q": "A mathematical entity whose value, namely, the value of the dependent variable, depends in a specified manner on the values of one or more independent variables, with not more than one value of the dependent variable corresponding to each permissible combination of values from the respective ranges of the independent variables.",
+    "a": "function"
+  },
+  {
+    "q": "Why do we need to set the path for JavaC in command line?",
+    "a": "To make JavaC available or accessible in command line."
+  },
+  {
+    "q": "A character string that enables a user to have full or limited access to a system or to a set of data.",
+    "a": "password"
+  },
+  {
+    "q": "What will happen if we compile the statement below? ~System.out.println(“Hello World!”)",
+    "a": "There will be a syntax error after compilation."
+  },
+  {
+    "q": "An arrangement of nodes and interconnecting branches.",
+    "a": "network"
+  },
+  {
+    "q": "JVM is responsible for",
+    "a": "Interpreting bytecode"
+  },
+  {
+    "q": "Which is not a repetition control structure?",
+    "a": "switch"
+  },
+  {
+    "q": "High frequency electromagnetic waves that emanate from electronic devices such as chips and other electronic devices.",
+    "a": "radio frequency interference"
+  },
+  {
+    "q": "Which of the following a valid Java identifier?",
+    "a": "id_1"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? intResult = ++b * a + c;",
+    "a": "15"
+  },
+  {
+    "q": "What is the extension name of a Java Source code?",
+    "a": "java"
+  },
+  {
+    "q": "A computer program that creates a single load module from two or more independently translated object modules or load modules by resolving cross references among the modules and, possibly, by relocating elements.",
+    "a": "linkage editor"
+  },
+  {
+    "q": "Activities such as adjusting, cleaning, modifying, overhauling equipment to assure performance in accordance with requirements.",
+    "a": "maintenance"
+  },
+  {
+    "q": "Which of the following method reads input from the user and return String value?",
+    "a": "nextLine()"
+  },
+  {
+    "q": "Which statement will check if x is less than y?",
+    "a": "none of the above"
+  },
+  {
+    "q": "Which of the following is not a valid variable declaration in Java?",
+    "a": "None of these"
+  },
+  {
+    "q": "A language used to identify a sequence of jobs, describe their requirements to an operating system, and control their execution.",
+    "a": "Job Control Language"
+  },
+  {
+    "q": "what will be the output if you execute this code? int x=1; switch(x) { case 1: System.out.print(\"1\"); case 2: System.out.print(\"1\"); case 3: System.out.print(\"1\"); default: System.out.print(\"1\"); }",
+    "a": "display 1111"
+  },
+  {
+    "q": "Which of the following is a valid nexDouble() return value?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "This staff respond to individual users' difficulties with computer systems, provide instructions and sometimes training, and diagnose and solve common problems.",
+    "a": "Technical Support"
+  },
+  {
+    "q": "An instruction which causes program execution to jump to a new point in the program sequence, rather than execute the next instruction.",
+    "a": "branch"
+  },
+  {
+    "q": "Can we directly compile codes from notepad?",
+    "a": "No, We can only write codes in Notepad"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? intResult = a | b + c;",
+    "a": "10"
+  },
+  {
+    "q": "The planned systematic activities necessary to ensure that a component, module, or system conforms to established technical requirements.",
+    "a": "quality assurance"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? booleanResult = !((a + c) > b) && x;",
+    "a": "True"
+  },
+  {
+    "q": "Which of the following is not Java Literal?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Documentation of changes made to the system.",
+    "a": "record of change"
+  },
+  {
+    "q": "A software V&V task to determine the extent of V&V analysis and testing that must be repeated when changes are made to any previously examined software products.",
+    "a": "regression analysis and testing"
+  },
+  {
+    "q": "complex instruction set computer",
+    "a": "CISC"
+  },
+  {
+    "q": "A person who maintains web server services (such as Apache or IIS) that allow for internal or external access to web sites.",
+    "a": "Web Administrator"
+  },
+  {
+    "q": "What will happen if you use JOptionPane. showInputDialog statement in your program?",
+    "a": "The program will display an input dialog box that allows the user to input text and returns String value."
+  },
+  {
+    "q": "What will happen if you use JOptionPane.showMessageDialog statement in your program?",
+    "a": "The program will display message dialog box."
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? intResult = a & b;",
+    "a": "0"
+  },
+  {
+    "q": "What was the initial name for the Java programming language?",
+    "a": "Oak"
+  },
+  {
+    "q": "An assessment of the consequence of the worst credible mishap that could be caused by a specific hazard.",
+    "a": "hazard severity"
+  },
+  {
+    "q": "When was the officially released of Java?",
+    "a": "1995"
+  },
+  {
+    "q": "Which of the following is not an escape sequence?",
+    "a": "none of the choices"
+  },
+  {
+    "q": "A requirement that specifies an external item with which a system or system component must interact, or sets forth constraints on formats, timing, or other factors caused by such an interaction.",
+    "a": "Interface Requirement"
+  },
+  {
+    "q": "Which of the following we are not allowed to write java source code?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "A diagram of a software system or module, consisting of a rectangle on the left listing inputs, a rectangle in the center listing processing steps, a rectangle on the right listing outputs, and arrows connecting inputs to processing steps and processing steps to outputs.",
+    "a": "input-process-output chart"
+  },
+  {
+    "q": "Execution of programs serially with no interactive processing. Contrast with real time processing.",
+    "a": "batch processing"
+  },
+  {
+    "q": "What is the correct statement to compile Java program in command line?",
+    "a": "java HelloWorld.java"
+  },
+  {
+    "q": "An acronym for Beginners All-purpose Symbolic Instruction Code, a high-level programming language intended to facilitate learning to program in an interactive environment.",
+    "a": "BASIC"
+  },
+  {
+    "q": "A non-moving storage device utilizing one of a number of types of electronic circuitry to store information",
+    "a": "main memory"
+  },
+  {
+    "q": "Which is not a decision control structure?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "A technology for writing programs that are made up of self-sufficient modules that contain all of the information needed to manipulate a given data structure.",
+    "a": "object oriented programming"
+  },
+  {
+    "q": "What is the correct statement to run Java program in command line?",
+    "a": "java HelloWorld"
+  },
+  {
+    "q": "The period of time in the software life cycle during which a software product is employed in its operational environment, monitored for satisfactory performance, and modified as necessary to correct problems or to respond to changing requirements.",
+    "a": "operation and maintenance phase"
+  },
+  {
+    "q": "Can we directly compile codes from NetBeans?",
+    "a": "Yes, because we can call Java compiler from NetBeans"
+  },
+  {
+    "q": "What will be the output if you execute this code? do{System.out.println(\"Hello World!\");}while(true);",
+    "a": "print \"Hello World\" infinitely"
+  },
+  {
+    "q": "Which statement will check if x is equal to y?",
+    "a": "none of the choices"
+  },
+  {
+    "q": "A _____ operator performs routine maintenance and upkeep, such as changing backup tapes or replacing failed drives in a RAID.",
+    "a": "computer"
+  },
+  {
+    "q": "Which of the following is not a primitive data type?",
+    "a": "string"
+  },
+  {
+    "q": "Which of the following is a valid statement to accept String input?",
+    "a": "String str = JOptionPane.showInputDialog(\"\");"
+  },
+  {
+    "q": "The time interval between the instant at which a CPU's instruction control unit initiates a call for data and the instant at which the actual transfer of the data starts.",
+    "a": "latency"
+  },
+  {
+    "q": "Which of the following is true about syntax errors:",
+    "a": "All of the statements are true"
+  },
+  {
+    "q": "What is the input for Java Compiler?",
+    "a": "Source Code"
+  },
+  {
+    "q": "It is a person maintains a database system, and is responsible for the integrity of the data and the efficiency and performance of the system.",
+    "a": "Database Administrator"
+  },
+  {
+    "q": "The Java feature, \"write once, run anywhere\", is termed as",
+    "a": "Platform independent"
+  },
+  {
+    "q": "Data for which space is allocated but for which no value currently exists.",
+    "a": "null data"
+  },
+  {
+    "q": "A relational database programming system incorporating the SQL programming language.",
+    "a": "Oracle"
+  },
+  {
+    "q": "Which of the following is not a valid Float value?",
+    "a": "none of the choices"
+  },
+  {
+    "q": "Establishing confidence through appropriate testing that the finished product produced by a specified process meets all release requirements for functionality and safety.",
+    "a": "qualification, product performance"
+  },
+  {
+    "q": "Ensuring continuous adequate performance of sensing, measurement, and actuating equipment with regard to specified accuracy and precision requirements.",
+    "a": "calibration"
+  },
+  {
+    "q": "The process of determining the achieved level of reliability for an existing system or system component.",
+    "a": "reliability assessment"
+  },
+  {
+    "q": "The feature of Java which makes it possible to execute several tasks simultaneously.",
+    "a": "Multithreaded"
+  },
+  {
+    "q": "cathode ray tube",
+    "a": "CRT"
+  },
+  {
+    "q": "A variable that is set to a prescribed state, often \"true\" or \"false\", based on the results of a process or the occurrence of a specified condition.",
+    "a": "flag"
+  },
+  {
+    "q": "What did java generates after compiling the java source code?",
+    "a": "Byte Code"
+  },
+  {
+    "q": "Which of the following is true about Runtime errors:",
+    "a": "Runtime errors occur during run-time."
+  },
+  {
+    "q": "A high priority interrupt that cannot be disabled by another interrupt.",
+    "a": "non-maskable interrupt"
+  },
+  {
+    "q": "This is a computer with a high level of performance as compared to a general-purpose computer.",
+    "a": "supercomputer"
+  },
+  {
+    "q": "Pertaining to an actual configuration of software code resulting from a software development project.",
+    "a": "as built"
+  },
+  {
+    "q": "Which of the following is not a java keyword?",
+    "a": "name"
+  },
+  {
+    "q": "An organization involved in the generation and promulgation of standards. IEEE standards represent the formalization of current norms of professional practice through the process of obtaining the consensus of concerned, practicing professionals in the given field.",
+    "a": "Institute of Electrical and Electronic Engineers"
+  },
+  {
+    "q": "A sequence of program statements that can never be executed.",
+    "a": "infeasible path"
+  },
+  {
+    "q": "An object-oriented high-level programming language.",
+    "a": "C++"
+  },
+  {
+    "q": "The number of records in a block.",
+    "a": "blocking factor"
+  },
+  {
+    "q": "Which of the following is a valid nextInt() return value?",
+    "a": "1010"
+  },
+  {
+    "q": "Which of the following does not return numeric value?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? intResult = b % a;",
+    "a": "1"
+  },
+  {
+    "q": "What is the correct statement to set JavaC path in command line?",
+    "a": "C:Program FilesJavajdk1.6.0_23bin"
+  },
+  {
+    "q": "Communications systems that use optical fibers for transmission.",
+    "a": "fiber optics"
+  },
+  {
+    "q": "A source code instruction that is replaced by a predefined sequence of source instructions, usually in the same language as the rest of the program and usually during assembly or compilation.",
+    "a": "macroinstruction"
+  },
+  {
+    "q": "Which of the following is a valid statement to accept int input? Let us assume that we have declared scan as Scanner.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "What will be the value of x after you execute this statement int z=0; for(int x=0; x<10; x++) for(int y=0; y<x; y++) z*=(x*y);",
+    "a": "None of the above"
+  },
+  {
+    "q": "What is floating-point literal?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following has the correct form for an if statement?",
+    "a": "if (boolean_expression)"
+  },
+  {
+    "q": "What will be the output if you execute this code? do{System.out.println(\"Hello World!\");}while(false);",
+    "a": "print \"Hello World\""
+  },
+  {
+    "q": "A language used to express computer programs. See: computer language, high-level language, low-level language.",
+    "a": "programming language"
+  },
+  {
+    "q": "The complete set of instructions recognized by a given computer or provided by a given programming language.",
+    "a": "Instruction Set"
+  },
+  {
+    "q": "A measure of the reliability of a computer system, equal to average operating time of equipment between failures, as calculated on a statistical basis from the known failure rates of various components of the system.",
+    "a": "mean time between failures"
+  },
+  {
+    "q": "A standard interface for hard disks which provides for building most of the controller circuitry into the disk drive to save space.",
+    "a": "Integrated Drive Electronics"
+  },
+  {
+    "q": "A test case identification technique which produces enough test cases such that each decision has a true and a false outcome at least once.",
+    "a": "branch analysis"
+  },
+  {
+    "q": "What type of value does the nextLine() returns?",
+    "a": "String"
+  },
+  {
+    "q": "In image processing and pattern recognition, the smallest element of a digital image that can be assigned a gray level.",
+    "a": "pixel"
+  },
+  {
+    "q": "Let us assume that we have the following variables in our program: int a = 2; int b = 5; int c = 3; int intResult = 0; boolean x = true; boolean y = false; boolean booleanResult = false; What will be the value of intResult or booleanResult if we execute the following expressions? intResult = 1;",
+    "a": "1"
+  },
+  {
+    "q": "A programming language which requires little knowledge of the target computer, can be translated into several different machine languages, allows symbolic naming of operations and addresses, provides features designed to facilitate expression of data structures and program logic, and usually results in several machine instructions for each program statement.",
+    "a": "high-level language"
+  },
+  {
+    "q": "This computer became a significant OS market share category starting with Apple's iOS-based iPad in 2010",
+    "a": "Tablets"
+  },
+  {
+    "q": "This person maintains network infrastructure such as switches and routers, and diagnoses problems with these or with the behavior of network-attached computers",
+    "a": "Network Administrator"
+  },
+  {
+    "q": "Chips which can be called read/write memory, since the data stored in them may be read or new data may be written into any memory address on these chips.",
+    "a": "random access memory"
+  },
+  {
+    "q": "A sequence of instructions that may be performed in the execution of a computer program.",
+    "a": "path"
+  },
+  {
+    "q": "Computer instructions and definitions expressed in a form [binary code] that can be recognized by the CPU of a computer. All source code, regardless of the language in which it was programmed, is eventually converted to machine code.",
+    "a": "machine code"
+  },
+  {
+    "q": "It is a person employed to maintain and operate a computer system and/or network.",
+    "a": "System Administrator"
+  },
+  {
+    "q": "A measure of how closely the mean value in a series of replicate measurements approaches the true value.",
+    "a": "bias"
+  },
+  {
+    "q": "What will be the value of x after executing this code for(int x=0; x<=10; x++) {} is run?",
+    "a": "11"
+  },
+  {
+    "q": "A _____ administrator is a specialist in computer and network security, including the administration of security devices such as firewalls, as well as consulting on general security measures.",
+    "a": "security"
+  }
+]
