@@ -1,0 +1,1086 @@
+[
+  {
+    "q": "A ___ address is defined as a reserved address that routes packets back to the host",
+    "a": "loopback"
+  },
+  {
+    "q": "A ___ network is able to expand to accept new devices and applications without affecting performance.",
+    "a": "scalable"
+  },
+  {
+    "q": "A bus topology is connected via a single cable only.",
+    "a": "True"
+  },
+  {
+    "q": "A client is downloading a large file from a server using FTP. Many of the segments are lost during transit. What will most likely happen?",
+    "a": "The FTP client responds to the server with a smaller window size in the TCP header."
+  },
+  {
+    "q": "A collision fragment, also known as a ___ frame, is a frame of fewer than 64 bytes in length.",
+    "a": "runt"
+  },
+  {
+    "q": "A company is contemplating whether to use a client/server or a peer-to-peer network. What are three characteristics of a peer-to-peer network? (Choose three.)",
+    "a": "· lacks centralized administration · less cost to implement · easy to create"
+  },
+  {
+    "q": "A data center has recently updated a physical server to host multiple operating systems on a single CPU. The data center can now provide each customer with a separate web server without having to allocate an actual discrete server for each customer. What is the network trend that is being implemented by the data center in this situation?",
+    "a": "virtualization"
+  },
+  {
+    "q": "A LAN can span a small room with limited amount of computers",
+    "a": "True"
+  },
+  {
+    "q": "A MAN can span across cities and smaller than a WAN.",
+    "a": "True"
+  },
+  {
+    "q": "A network administer has forgotten the argument of an IOS command. How would the administrator get help from the IOS CLI to complete the command correctly?",
+    "a": "Type the command and then press the? key"
+  },
+  {
+    "q": "A network administrator needs to keep the user ID, password, and session contents private when establishing remote CLI connectivity with a switch to manage it. Which access method should be chosen?",
+    "a": "SSH"
+  },
+  {
+    "q": "A network administrator notices that the default gateway devices sends an ICMP Redirect message to the workstation when the workstation tries to connect to file server on another network. What is the purpose for this ICMP message?",
+    "a": "To notify the workstation, that another router on the same network, is the better defaultgateway to reach the remote server"
+  },
+  {
+    "q": "A network connection between two or more LAN over a potentially large geographic distance.",
+    "a": "WAN"
+  },
+  {
+    "q": "A router has a valid operating system and a configuration file stored in NVRAM. The configuration file contains an enable secret password but no console password. When the router boots up, which mode will display?",
+    "a": "user EXEC mode"
+  },
+  {
+    "q": "A router is considered as a layer-2 device.",
+    "a": "False"
+  },
+  {
+    "q": "A special address used to send data to all hosts in the network is called the network address",
+    "a": "False"
+  },
+  {
+    "q": "A technician configures a switch with these commands: SwitchA(config)# interface vlan 1 SwitchA(config-if)#ip address 192.168.1.1 255.255.255.0 SwitchA(config-if)# no shutdown What is the technician configuring?",
+    "a": "SVI"
+  },
+  {
+    "q": "A user is unable to access the company server from a computer. On issuing the ipconfig command, the user finds that the IP address of the computer is displayed as 169.254.0.2. What type of address is this?",
+    "a": "experimental"
+  },
+  {
+    "q": "A user who is unable to connect to the file server contacts the help desk. The helpdesk technician asks the user to ping the IP address of the default gateway that is configured on the workstation. What is the purpose for this command?",
+    "a": "to test if the workstation can communicate on the network"
+  },
+  {
+    "q": "A web client is sending a request for a webpage to a web server. From the perspective of the client, what is the correct order of the protocol stack that is used to prepare the request for transmission?",
+    "a": "HTTP, TCP, IP, Ethernet"
+  },
+  {
+    "q": "An ___ is a private connection of LANs and WANs that belongs to an organization, and is designed to be accessible only by the members and employees of the organization, or others with authorization",
+    "a": "intranet"
+  },
+  {
+    "q": "An administrator has just changed the IP address of an interface on an IOS device. What else must be done in order to apply those changes to the device?",
+    "a": "Nothing must be done. Changes to the configuration on an IOS device take effect as soon as the command is typed correctly and the Enter key has been pressed."
+  },
+  {
+    "q": "An administrator measured the transfer of usable data across a 100 Mb/s physical channel over a given period of time and obtained 60 Mb/s. Which kind of measurement did the administrator obtain",
+    "a": "latency"
+  },
+  {
+    "q": "An employee at a branch office is creating a quote for a customer. In order to do this, the employee needs to access confidential pricing information from internal servers at the Head Office. What type of network would the employee access?",
+    "a": "an intranet"
+  },
+  {
+    "q": "An IP address has two parts, the Network Number and the Host Number.",
+    "a": "True"
+  },
+  {
+    "q": "Application layer is the 6th layer in the Open Systems Interconnection (OSI) model",
+    "a": "False"
+  },
+  {
+    "q": "At which layers of the OSI model does Ethernet function? (Choose two.)",
+    "a": "· Physical · Data link"
+  },
+  {
+    "q": "Circuit Switchinga method which pre-allocates dedicated network bandwidth specifically for each communication session, each having a constant bit rate and latency between nodes.",
+    "a": "True"
+  },
+  {
+    "q": "Data Conversion is the conversion of information or data into a usable format",
+    "a": "True"
+  },
+  {
+    "q": "Decryption is the process of encoding message or information in such a way that only authorized parties can access it.",
+    "a": "False"
+  },
+  {
+    "q": "During a routine inspection, a technician discovered that software that was installed on a computer was secretly collecting data about websites that were visited by users of the computer. Which type of threat is affecting this computer",
+    "a": "spyware"
+  },
+  {
+    "q": "During the boot process, in what memory location will the router bootstrap program look for the IOS image if a TFTP server is not used?",
+    "a": "flash"
+  },
+  {
+    "q": "During troubleshooting procedures, from which location will most Cisco routers load a limited IOS",
+    "a": "ROM"
+  },
+  {
+    "q": "Encryption is used to compress the message and using its source coding, or bit-rate reduction which involves encoding information using fewer bits than the original representation.",
+    "a": "False"
+  },
+  {
+    "q": "Enterprise Router are the more sophisticated type of router.",
+    "a": "True"
+  },
+  {
+    "q": "For which three reasons was a packet switched connectionless data communications technology used when developing the Internet (Choose three.)",
+    "a": "· it can rapidly adapt to the failure of network devices and communication links · Data packets can travel through the network using multiple different paths · Network devices dynamically decide on the best available path to forward each packet."
+  },
+  {
+    "q": "FTP can be Passive Mode only.",
+    "a": "False"
+  },
+  {
+    "q": "FTP is a standard network protocol used for the transfer of computer files from a server to a client using the Client-server model on a computer network.",
+    "a": "True"
+  },
+  {
+    "q": "FTP stands for File transfer protocol",
+    "a": "True"
+  },
+  {
+    "q": "hich term describes the state of a network when the demand on the network resources exceeds the available capacity?",
+    "a": "congestion"
+  },
+  {
+    "q": "How does the network layer use the MTU value?",
+    "a": "The MTU is passed to the network layer by the data link layer"
+  },
+  {
+    "q": "How is the Cisco IOS generally accessed and navigated?",
+    "a": "Through the CLI using a terminal emulator"
+  },
+  {
+    "q": "HTTP stands for Hyper Text Transfer protocol",
+    "a": "True"
+  },
+  {
+    "q": "In a server client model, the client requests Information from the server",
+    "a": "True"
+  },
+  {
+    "q": "In a subnet mask, 255 represents the network while 0 represents the host",
+    "a": "True"
+  },
+  {
+    "q": "In Computer Network, it is not possible that the information to be congested within a network.",
+    "a": "False"
+  },
+  {
+    "q": "In data link layer frames, which of among the following is not included?",
+    "a": "Data flow control"
+  },
+  {
+    "q": "In fiber optic meda, the signals are represented as patterns of ­",
+    "a": "light"
+  },
+  {
+    "q": "In Host IP address, it cannot be all 0's",
+    "a": "True"
+  },
+  {
+    "q": "In the OSI Model, the physical layer provides services to exchange the individual pieces of data over the network between identified network devices.",
+    "a": "False"
+  },
+  {
+    "q": "In the OSI model, the presentation layer provides proper common data format that is sent across Application Layer services.",
+    "a": "True"
+  },
+  {
+    "q": "In the TCP/IP Model, this layer controls the hardware devices and media that make up the network.",
+    "a": "Network Access Layer"
+  },
+  {
+    "q": "In the TCP/IP model, this supports communication between diverse devices across diverse networks",
+    "a": "Transport Layer"
+  },
+  {
+    "q": "In which scenario would the use of a WISP be recommended",
+    "a": "a farm in rural area without wired broadband access"
+  },
+  {
+    "q": "In which scenario would the use of a WISP be recommended?",
+    "a": "a farm in a rural area without wired broadband access"
+  },
+  {
+    "q": "Internet Protocol version 6 (IPv6) is the most recent version of IP address.",
+    "a": "True"
+  },
+  {
+    "q": "IP address is written in binary",
+    "a": "False"
+  },
+  {
+    "q": "IP addresses are written in 0s and 1s.",
+    "a": "True"
+  },
+  {
+    "q": "IP stands for Intermission protocol.",
+    "a": "False"
+  },
+  {
+    "q": "It is a collection of computing devices that are connected in various ways in order to communicate using electronic means.",
+    "a": "Computer Networks"
+  },
+  {
+    "q": "It is a Common protocol that governs interaction between web server and a web client.",
+    "a": "HTTP"
+  },
+  {
+    "q": "It is the first layer of the OSI Model.",
+    "a": "Physical Layer"
+  },
+  {
+    "q": "It provides information and services, like e-mail or web pages, to other hosts on the network.",
+    "a": "Servers"
+  },
+  {
+    "q": "It refers to the sublayer that identify who is allowed to access the media at any one time Application Layer",
+    "a": "MAC"
+  },
+  {
+    "q": "LAN stands for Local Area Network.",
+    "a": "True"
+  },
+  {
+    "q": "Layer 2 of the TCP/IP Model is the Internet Layer.",
+    "a": "True"
+  },
+  {
+    "q": "MAN stands for Many Area Networks",
+    "a": "False"
+  },
+  {
+    "q": "Message forwarding is one of the functions of Network Layer.",
+    "a": "True"
+  },
+  {
+    "q": "Multiplexing is the combination of different signals for transmission utilizing single medium, or transmission path which provide multiple endpoints on a single node",
+    "a": "True"
+  },
+  {
+    "q": "On Ethernet networks, the hexadecimal address FF-FF-FF-FF-FF-FF represent the___ MAC address",
+    "a": "broadcast"
+  },
+  {
+    "q": "One of the services of Transport layer is the Flow control wherein Nodes are transmitted from one point to another, it should be properly managed to prevent a fast transmission of data from sending it more data that can be supported by the receiving data buffer causing a buffer overrun.",
+    "a": "True"
+  },
+  {
+    "q": "OSI Model stands for Open Systems Interconnect",
+    "a": "True"
+  },
+  {
+    "q": "Packet mode communication may be implemented with or without intermediate forwarding nodes like packet switches.",
+    "a": "True"
+  },
+  {
+    "q": "Packet switching is the transit of logically addressed network packets from one network interface to another.",
+    "a": "False"
+  },
+  {
+    "q": "Presentation Layer is responsible for Data Encryption/Decryption.",
+    "a": "True"
+  },
+  {
+    "q": "Presentation Layer is the 7th layer of the OSI model",
+    "a": "False"
+  },
+  {
+    "q": "Protocol model provides a common reference for maintaining consistency within all types of network protocols and services.",
+    "a": "False"
+  },
+  {
+    "q": "Protocols are rules that govern communications. It is made-up of a group of related protocols that are necessary to communicate via electronic means.",
+    "a": "Protocol"
+  },
+  {
+    "q": "Public Encryption Key is an encryption method.",
+    "a": "True"
+  },
+  {
+    "q": "RDP stands for Reliable Data Protocol under Transport layer.",
+    "a": "True"
+  },
+  {
+    "q": "Router can be considered as routers.",
+    "a": "True"
+  },
+  {
+    "q": "Routers and USBs are considered as network hardware devices.",
+    "a": "False"
+  },
+  {
+    "q": "Server provides data for a client.",
+    "a": "True"
+  },
+  {
+    "q": "Standards provide flexibility for manufacturers to create devices that comply with unique requirements",
+    "a": "Products from different manufacturers can interoperate successfully"
+  },
+  {
+    "q": "Subnet Mask used to define the Network portion and the Host portion",
+    "a": "True"
+  },
+  {
+    "q": "Subnetting is the process of borrowing bits from the HOST bits, in order to divide the larger network into small subnets.",
+    "a": "True"
+  },
+  {
+    "q": "TCP is used in HTTP web browsing and email transfer.",
+    "a": "True"
+  },
+  {
+    "q": "TCP stands for Transmission Center Protocol.",
+    "a": "False"
+  },
+  {
+    "q": "TCP/IP stands for?",
+    "a": "Transmission Control Protocol/Internet Protocol"
+  },
+  {
+    "q": "The 8-bit binary value for 41 is",
+    "a": "00101001"
+  },
+  {
+    "q": "The address by which we refer to the network is called broadcast address",
+    "a": "False"
+  },
+  {
+    "q": "The addresses assigned to the end devices in the network is called the host address",
+    "a": "True"
+  },
+  {
+    "q": "The Application layer is the topmost layer of the OSI Model.",
+    "a": "True"
+  },
+  {
+    "q": "The Ethernet ___ sublayer is responsible for communicating directly with the physical layer.",
+    "a": "MAC"
+  },
+  {
+    "q": "The farther you are from the central office when utilizing a DSL connection, the ___ connection speed",
+    "a": "slower"
+  },
+  {
+    "q": "The internet is an example of LAN.",
+    "a": "False"
+  },
+  {
+    "q": "The last host address on the 10.15.25.0/24 network is",
+    "a": "10.15.25.254"
+  },
+  {
+    "q": "The message received by the host usually contains multiple protocols, plus the actual data, which the Application Header (HTTP) may or may not exist.",
+    "a": "Multiple Protocols"
+  },
+  {
+    "q": "The Network Layer is responsible for packet switching including routing.",
+    "a": "False"
+  },
+  {
+    "q": "The Network Layer provides services to exchange the individual pieces of data over the network between identified end devices.",
+    "a": "True"
+  },
+  {
+    "q": "The OSI Model has 7 layers",
+    "a": "True"
+  },
+  {
+    "q": "The presentation layer can handle Character and String Conversion.",
+    "a": "True"
+  },
+  {
+    "q": "The presentation layer can handle Data Compression and Graphics Handling.",
+    "a": "True"
+  },
+  {
+    "q": "The relationship between clients and servers is known as the _____.",
+    "a": "Client-Server Model"
+  },
+  {
+    "q": "The router is a networking device that forwards data packets between computer networks.",
+    "a": "True"
+  },
+  {
+    "q": "The shortest compressed format of the IPv6 address 2001: 0DB8:0000:1470:0000:0000:0000:0200 is",
+    "a": "2001:DB8:0:1470::200"
+  },
+  {
+    "q": "The subnet mask has 32 bits of Contiguous set of 1's followed by a contiguous set of 0's",
+    "a": "True"
+  },
+  {
+    "q": "The TCIP/IP Model is mapped to the OSI Model.",
+    "a": "True"
+  },
+  {
+    "q": "The TCP/IP application layer effectively consists of which three OSI layers?",
+    "a": "Application, presentation, session"
+  },
+  {
+    "q": "The TCP/IP is also known as the DOD Model.",
+    "a": "True"
+  },
+  {
+    "q": "The TCP/IP Model has 7 layers.",
+    "a": "False"
+  },
+  {
+    "q": "The transport layer is responsible for receiving the information from the application process on the devices.",
+    "a": "False"
+  },
+  {
+    "q": "The Transport Layer provides a protocol for host-to-host connection.",
+    "a": "True"
+  },
+  {
+    "q": "The Transport Layeris a method of dividing the architectural protocols in the Internet Protocol Suite and Open System Interconnection",
+    "a": "True"
+  },
+  {
+    "q": "These are the computing device that interconnects which has an IP address that is unique for every computing device such as laptops, personal computers, printers, workstations, smart phones, IP Cameras, etc.",
+    "a": "End-devices"
+  },
+  {
+    "q": "These describe processes such as the format or structure of the message, the process by which networking devices share information about pathways with other networks.",
+    "a": "Network Protocols"
+  },
+  {
+    "q": "This interconnects a number of LANs using a high-capacity backbone technology, such as fiber-optical links, and provides up-link services to WANs and the Internet.",
+    "a": "MAN"
+  },
+  {
+    "q": "This is a device connecting multiple computers together and makes them perform the functions as a single unit.",
+    "a": "Hub"
+  },
+  {
+    "q": "This is a model that breaks down network function. This is the most popular type of internetwork reference model. Consist of seven layers.",
+    "a": "OSI Model"
+  },
+  {
+    "q": "This is a network topology in which every computer and network device is connected to single cable.",
+    "a": "Bus"
+  },
+  {
+    "q": "This is a topology that forms a ring as each computer is connected to another computer, with the last one connected to the first.",
+    "a": "Ring"
+  },
+  {
+    "q": "This is a type of topology all the computers are connected to a single hub through a cable.",
+    "a": "Star"
+  },
+  {
+    "q": "This is an individual network that usually spans a single geographical area, providing services and applications to people within a common organizational structure, such as a single business, campus or region.",
+    "a": "LAN"
+  },
+  {
+    "q": "This is Layer 1 of the TCP/IP model.",
+    "a": "Network Access Layer"
+  },
+  {
+    "q": "This is Layer 3 of the TCP/IP Model",
+    "a": "Transport Layer"
+  },
+  {
+    "q": "This is Layer 6 of the OSI Model.",
+    "a": "Presentation Layer"
+  },
+  {
+    "q": "This is the layer 7 of the OSI Model.",
+    "a": "Application Layer"
+  },
+  {
+    "q": "This is the topmost layer of the OSI Model.",
+    "a": "Application Layer"
+  },
+  {
+    "q": "This is the uppermost sublayer which manages the data flow control, acknowledgement and error notification.",
+    "a": "Logical Link Control Layer"
+  },
+  {
+    "q": "This layer in the OSI model describes the mechanical, electrical, functional, and procedural means to activate, maintain, and deactivate physical connections for bit transmission and to and from a network device.",
+    "a": "Physical Layer"
+  },
+  {
+    "q": "This layer in the OSI model provides proper common data format that is sent across Application Layer services.",
+    "a": "Presentation Layer"
+  },
+  {
+    "q": "This layer is concerned with the encoding, decoding and logical organization of data bits.",
+    "a": "Data Link Layer"
+  },
+  {
+    "q": "This model is also known as the DOD (Department of Defense) Model. This is the protocol that is used in the internet.",
+    "a": "TCP/IP Model"
+  },
+  {
+    "q": "This model provides a common reference for maintaining consistency within all types of network protocols and services.",
+    "a": "Reference Model"
+  },
+  {
+    "q": "This network type is much smaller than WAN and can span between cities.",
+    "a": "MAN"
+  },
+  {
+    "q": "This provides a model that is closely equivalent to the structure of a certain protocol.",
+    "a": "Protocol Model"
+  },
+  {
+    "q": "To save time, IOS commands may be partially entered and then completed by typing which key or key combination?",
+    "a": "Tab"
+  },
+  {
+    "q": "Transport Layer is identified as the 5th layer in OSI.",
+    "a": "False"
+  },
+  {
+    "q": "WAN stands for Wide Area Network.",
+    "a": "True"
+  },
+  {
+    "q": "What are the parts of an IPv4 address? (Choose two.)",
+    "a": "· Network · Host"
+  },
+  {
+    "q": "What are the primary functions associated with data encapsulation at the Ethernet MAC sublayer? (Choose three.)",
+    "a": "· Error detection · Frame delimiting · Addressing"
+  },
+  {
+    "q": "What are the primary purposes of the transport layer? (Choose three.)",
+    "a": "· Identifying the proper application for each communication stream · Segmenting data for and reassembling segmented data into streams of application data at the destination · Tracking the individual communication between applications on the source and destination hosts"
+  },
+  {
+    "q": "What are the primary requirements of information security? (Choose three.)",
+    "a": "Confidentiality Integrity Availability"
+  },
+  {
+    "q": "What are two benefits of collaboration and video-on-demand applications? (Choose two.)",
+    "a": "· providing better social media opportunities · providing a richer e-learning environment"
+  },
+  {
+    "q": "What are two functions of end devices on a network? (Choose two.)",
+    "a": "· They are the interface between humans and the communication network. · They originate the data that flows through the network."
+  },
+  {
+    "q": "What are two functions that are provided by the network layer? (Choose two.)",
+    "a": "· directing data packets to destination hosts on other networks · providing end devices with a unique network identifier"
+  },
+  {
+    "q": "What command will display a list of keywords available for viewing the status of an IOS switch?",
+    "a": "Switch# show?"
+  },
+  {
+    "q": "What command will prevent all unencrypted passwords from displaying in plain text in a configuration file?",
+    "a": "(config) # service password-encryption"
+  },
+  {
+    "q": "What does UDP do when receiving messages that are more than one datagram in length?",
+    "a": "UDP reassembles that data in the order it was received and passes it to the application."
+  },
+  {
+    "q": "What happens if part of an FTP message is not delivered to the destination?",
+    "a": "The part of the FTP message that was lost is re-sent"
+  },
+  {
+    "q": "What happens to frames that are too long or too short for the channel used?",
+    "a": "They are dropped."
+  },
+  {
+    "q": "What happens when a data collision occurs on an Ethernet bus?",
+    "a": "All devices stop transmitting and try again later."
+  },
+  {
+    "q": "What happens when two devices on the same subnet are communicating?",
+    "a": "The host portion of the IP addresses will be different"
+  },
+  {
+    "q": "What is a characteristic of a contention-based access method?",
+    "a": "It is as nondeterministic method"
+  },
+  {
+    "q": "What is a characteristic of a WAN hub-and-spoke topology?",
+    "a": "The branch sites are connected to a central site through point-point links"
+  },
+  {
+    "q": "What is a characteristic of UDP? What range of ports can either be used by TCP or UDP to identify the requested service on the destination device or as a client source port?",
+    "a": "1024 to 49151"
+  },
+  {
+    "q": "What is a converged network?",
+    "a": "A network where voice, video, and data move over the same infrastructure"
+  },
+  {
+    "q": "What is a fault-tolerant network?",
+    "a": "A network that can reroute traffic in case of device failure"
+  },
+  {
+    "q": "What is a group of web pages that groups of individuals can edit and view together called?",
+    "a": "Wiki"
+  },
+  {
+    "q": "What is a network infrastructure that provides access to other networks over a wide geographic area?",
+    "a": "WAN"
+  },
+  {
+    "q": "What is a wiki?",
+    "a": "a web page that groups of people can edit and review"
+  },
+  {
+    "q": "What is an advantage of UDP over TCP?",
+    "a": "UDP communication requires less overhead"
+  },
+  {
+    "q": "What is an advantage of using standards to develop and implement protocols?",
+    "a": "Products from different manufacturers can interoperate successfully"
+  },
+  {
+    "q": "What is an advantage that UDP has over TCP?",
+    "a": "Low overhead"
+  },
+  {
+    "q": "What is and advantage of using standards to develop and implement protocols?",
+    "a": "Products from different manufacturers can interoperate successfully"
+  },
+  {
+    "q": "What is assigned by the transport layer to identify an application or service?",
+    "a": "Port"
+  },
+  {
+    "q": "What is encrypted with the enable secret command?",
+    "a": "the privileged executive mode password"
+  },
+  {
+    "q": "What is initially entered at the CLI of the Cisco IOS when typing a command sequence?",
+    "a": "Command"
+  },
+  {
+    "q": "What is the Cisco IOS?",
+    "a": "The operating system for the Cisco network device"
+  },
+  {
+    "q": "What is the command netstat –r used for?",
+    "a": "to display the host routing table"
+  },
+  {
+    "q": "What is the function of the kernel of an operating software?",
+    "a": "The kernel provisions hardware resources to meet software requirements."
+  },
+  {
+    "q": "What is the minimum and maximum Ethernet frame size as defined by IEEE 802.3?",
+    "a": "64 bytes – 1518 bytes"
+  },
+  {
+    "q": "What is the name given to a one-to-many message delivery option?",
+    "a": "Multicast"
+  },
+  {
+    "q": "What is the name given to the Ethernet MAC sublayer PDU?",
+    "a": "Frame"
+  },
+  {
+    "q": "What is the primary defense against unauthorized remote access to network devices?",
+    "a": "Configuring a VTY password"
+  },
+  {
+    "q": "What is the purpose of protocols in data communications?",
+    "a": "providing the rules required for a specific type of communication to occur"
+  },
+  {
+    "q": "What is the purpose of the physical link control field in a data link layer header?",
+    "a": "to establish the media link"
+  },
+  {
+    "q": "What is the purpose of using a source port number in a TCP communication?",
+    "a": "to keep track of multiple conversations between devices"
+  },
+  {
+    "q": "What is the transport layer PDU?",
+    "a": "Segment"
+  },
+  {
+    "q": "What is true about the Ethernet MAC address? (Choose three.)",
+    "a": "· The first 6 hexadecimal digits of a MAC address represent the OUI. · The vendor is responsible for assigning the last 24 bits of the MAC address. · The MAC address is also known as a burned-in address."
+  },
+  {
+    "q": "What method can be used by two computers to ensure that packets are not dropped because too much data is being sent too quickly?",
+    "a": "flow control"
+  },
+  {
+    "q": "What name is given to a group of interrelated protocols necessary to perform a communication function?",
+    "a": "Protocol suite"
+  },
+  {
+    "q": "What organization is responsible for the overall management and development of Internet standards?",
+    "a": "IAB"
+  },
+  {
+    "q": "What process is used to place one message inside another message for transfer from the source to the destination?",
+    "a": "encapsulation"
+  },
+  {
+    "q": "What three functions are defined by network protocols to allow communication between known source and destination IP addresses? (Choose three.)",
+    "a": "· message size · data encoding · delivery options"
+  },
+  {
+    "q": "What three protocols do email users and servers use to process email? (Choose three.)",
+    "a": "· SMTP · POP3 · IMAP4"
+  },
+  {
+    "q": "What two criteria are used to help select a network medium from various network media? (Choose two.)",
+    "a": "· the distance the selected medium can successfully carry a signal · the environment where the selected medium is to be installed"
+  },
+  {
+    "q": "What type of address is 01-00-5E-0A-00-02?",
+    "a": "an address that reaches a specific group of hosts"
+  },
+  {
+    "q": "What type of communication will send a message to all devices on a local area network?",
+    "a": "broadcast"
+  },
+  {
+    "q": "What type of connection to a Cisco IOS switch is used to make the initial configuration?",
+    "a": "Console port"
+  },
+  {
+    "q": "What type of delivery uses data link layer addresses?",
+    "a": "local delivery"
+  },
+  {
+    "q": "What type of information would be found on a logical topology diagram?",
+    "a": "IP addressing scheme"
+  },
+  {
+    "q": "What type of protocol describes communication over a data link and the physical transmission of data on the network media?",
+    "a": "Network access protocol"
+  },
+  {
+    "q": "What will a network administrator use to modify a configuration on a Cisco router?",
+    "a": "IOS"
+  },
+  {
+    "q": "When a client connects to an HTTP server by the use of a randomly generated source port number, what destination port number will the HTTP server use when building a response?",
+    "a": "the original source port number that was randomly generated by the client"
+  },
+  {
+    "q": "When is a wired connection preffered to a wireless connection by an end-user device?",
+    "a": "when the end-user device will run an application that requires a dedicated connection to the network"
+  },
+  {
+    "q": "When the command “Switch(config)# hostname EaSt2+56” is entered in a Cisco IOS device using the CLI, what will be returned in the CLI?",
+    "a": "EaSt-2+56(config)#"
+  },
+  {
+    "q": "When transporting data from real-time applications, such as streaming audio and video, which field in the IPv6 header can be used to inform the routers and switches to maintain the same path for the packets in the same conversation?",
+    "a": "Flow Label"
+  },
+  {
+    "q": "Where is the configuration used during startup on Cisco IOS devices located?",
+    "a": "Startup config"
+  },
+  {
+    "q": "Which action is performed by a client when establishing communication with a server via the use of UDP at the transport layer?",
+    "a": "The client sends a synchronization segment to begin the session"
+  },
+  {
+    "q": "Which address is a multicast MAC address?",
+    "a": "01-00-5E-00-00-C8"
+  },
+  {
+    "q": "Which address is used as a destination address on a broadcast Ethernet frame?",
+    "a": "FF-FF-FF-FF-FF-FF"
+  },
+  {
+    "q": "Which among the following discuss about Layer 2 addresses?",
+    "a": "All of the above"
+  },
+  {
+    "q": "Which among the following sentences is CORRECT about Physical Layer?",
+    "a": "Physical Layer is assigned with the most of the network's physical connections"
+  },
+  {
+    "q": "Which application layer protocol allows users on one network to reliably transfer files to and from a host on another network?",
+    "a": "FTP"
+  },
+  {
+    "q": "Which application use UDP as the transport layer protocol?",
+    "a": "SMTP"
+  },
+  {
+    "q": "Which area of the network would a college IT staff most likely have to redesign as a direct result of many students bringing their own tablets and smartphones to school to access school",
+    "a": "wireless LAN"
+  },
+  {
+    "q": "Which command or key combination allows a user to return to the previous level in the command hierarchy?",
+    "a": "exit"
+  },
+  {
+    "q": "Which destination address is used in an ARP request frame?",
+    "a": "FFFF.FFFF.FFFF"
+  },
+  {
+    "q": "Which device acts as gateway to allow hosts to send traffic to remote IP networks?",
+    "a": "local router"
+  },
+  {
+    "q": "Which device performs the function of determining the path that messages should take through internet works?",
+    "a": "a router"
+  },
+  {
+    "q": "Which devices would be considered end devices on a network? (Choose four.)",
+    "a": "· IP phone · Tablet computer · Server · Printer"
+  },
+  {
+    "q": "Which entities are involve in a temporary communication that is established by the transport layer?",
+    "a": "applications"
+  },
+  {
+    "q": "Which entities are involved in a temporary communication that is established by the transport",
+    "a": "applications"
+  },
+  {
+    "q": "Which feature on a Cisco router permits the forwarding of traffic for which there is no specific route?",
+    "a": "gateway of last resort"
+  },
+  {
+    "q": "Which field in an Ethernet frame is used for error detection?",
+    "a": "Frame Check Sequence"
+  },
+  {
+    "q": "Which interface command must be entered in a Layer 3 switch before IPv4 address can be assigned to the interface?",
+    "a": "no switchport"
+  },
+  {
+    "q": "Which is a function of the Logical Link Control (LLC) sublayer?",
+    "a": "to identify which network layer protocol is being used"
+  },
+  {
+    "q": "Which logical address is used for delivery of data to a remote network?",
+    "a": "destination IP address"
+  },
+  {
+    "q": "Which message delivery option is used when all devices need to receive the same message simultaneously?",
+    "a": "broadcast"
+  },
+  {
+    "q": "Which message timing factor impacts how much information can be sent and the speed at which it can be delivered",
+    "a": "Flow control"
+  },
+  {
+    "q": "Which number or set of numbers represents a socket?",
+    "a": "192.168.1.1:80"
+  },
+  {
+    "q": "Which of the following are business-class Internet connection technologies normally supplied by a service provider? (Choose two.)",
+    "a": "Leased lines Metro Ethernet"
+  },
+  {
+    "q": "Which of the following are disadvantages of peer-to-peer networking? (Choose two.)",
+    "a": "Scalability No centralized administration"
+  },
+  {
+    "q": "Which of the following are examples of proprietary protocols? (Choose two.)",
+    "a": "Novell NetWare AppleTalk"
+  },
+  {
+    "q": "Which of the following elements do both human and computer communication systems have in common? (Choose three.)",
+    "a": "· Channel · Source · Receiver"
+  },
+  {
+    "q": "Which of the following is a protocol used in physical layer?",
+    "a": "All of the above"
+  },
+  {
+    "q": "Which of the following is not a service of Physical Later?",
+    "a": "It is concerned with the transmission of messages on a single local network"
+  },
+  {
+    "q": "Which of the following is NOT an application that uses a Network?",
+    "a": "Stand-alone application"
+  },
+  {
+    "q": "Which of the following OSI model layers have the same functionality as the network access layer in the TCP/IP model? (Choose two.)",
+    "a": "Data link Physical"
+  },
+  {
+    "q": "Which of the following statement is CORRECT?",
+    "a": "The physical layer converts a signal from one form to another so that it can be physically transmitted over a communication channel and the data layer is concerned with the transmission of messages on a single local network"
+  },
+  {
+    "q": "Which of the following statement is INCORRECT?",
+    "a": "The TCP/IP and OSI Model have the same number of layers"
+  },
+  {
+    "q": "Which of the following TCP/IP protocols exist at the transport layer of the TCP/IP reference model? (Choose two.)",
+    "a": "· UDP · TCP"
+  },
+  {
+    "q": "Which organization develops the 802 family of standard for wired and wireless LANs and MANs?",
+    "a": "IEEE"
+  },
+  {
+    "q": "Which organization is responsible for developing communications standards for Voice over IP (VoIP) devices?",
+    "a": "The Telecommunications Industry Association (TIA)"
+  },
+  {
+    "q": "Which organization is responsible for the standard that defines Media Access Control for wired Ethernet?",
+    "a": "IEEE"
+  },
+  {
+    "q": "Which OSI reference model layer is responsible for common representation of the data transferred between application layer services?",
+    "a": "Presentation"
+  },
+  {
+    "q": "Which PDU is processed when a host computer is de-encapsulating a message at the transport layer of the TCP/IP model?",
+    "a": "segment"
+  },
+  {
+    "q": "Which procedure is used to access a Cisco 2960 switch when performing an initial configuration in a secure environment?",
+    "a": "Use the console port to locally access the switch from a serial or USB interface of the PC."
+  },
+  {
+    "q": "Which standard specifies the Ethernet MAC sublayer functionality in a computer NIC?",
+    "a": "IEEE 802.3"
+  },
+  {
+    "q": "Which statement accurately describes public IP addresses?",
+    "a": "Public IP addresses must be unique across the entire Internet"
+  },
+  {
+    "q": "Which statement describes a characteristic of the frame header fields of the data link layer?",
+    "a": "They vary depending on protocols"
+  },
+  {
+    "q": "Which statement describes a feature of an IOS host name configuration?",
+    "a": "It does not allow spaces"
+  },
+  {
+    "q": "Which statement describes a network that supports QoS?",
+    "a": "The network provides predictable levels of service to different types of traffic"
+  },
+  {
+    "q": "Which statement is correct about network protocols?",
+    "a": "They define how messages are exchanged between the sources and the destination"
+  },
+  {
+    "q": "Which statement is true about an interface that is configured with the IPv6 address command?",
+    "a": "A link-local IPv6 address is automatically"
+  },
+  {
+    "q": "Which TCP header field specifies the number of bytes that can be accepted before an acknowledgement is required?",
+    "a": "Window size"
+  },
+  {
+    "q": "Which TCP/IP model layer is responsible for providing the best path through the network?",
+    "a": "Internet"
+  },
+  {
+    "q": "Which technology would be best to provide a home user with a highspeed, always-on Internet connection?",
+    "a": "DSL"
+  },
+  {
+    "q": "Which term defines the processing capabilities of a switch by rating how much data can be processed per second?",
+    "a": "forwarding rate"
+  },
+  {
+    "q": "Which three fields are used in a UDP segment header? (Choose three.)",
+    "a": "· Source Port · Checksum · Length"
+  },
+  {
+    "q": "Which two components are added to the PDU at the network access layer? (Choose two.)",
+    "a": "· frame header · Trailer"
+  },
+  {
+    "q": "Which two connection options provide an always-on, high-bandwidth Internet connection to computers in a home office? (Choose two.",
+    "a": "· Cable · DSL"
+  },
+  {
+    "q": "Which two engineering organizations define open standards and protocols that apply to the data link layer?",
+    "a": "International Telecommunication Union (ITU)"
+  },
+  {
+    "q": "Which two factors influence the method that is used for media access control? (Choose two.)",
+    "a": "· how connection between nodes appears to the data link layer · how nodes share the media"
+  },
+  {
+    "q": "Which two files are loaded into RAM by the router when it boots? (Choose two.)",
+    "a": "· startup configuration · IOS image"
+  },
+  {
+    "q": "Which two functions or operations are performed by the MAC sublayer? (Choose two.)",
+    "a": "· it adds a header and trailer to form an OSI Layer 2 PDU · It is responsible for Media Access Control"
+  },
+  {
+    "q": "Which two Internet connection options do not require that physical cables be run to the building? (Choose two.)",
+    "a": "· Cellular · satellite"
+  },
+  {
+    "q": "Which two message timing mechanisms are used in data communication? (Choose two.)",
+    "a": "· response timeout · flow control"
+  },
+  {
+    "q": "Which two statement describe broadcast transmissions on a wired network? (Choose two.)",
+    "a": "· Directed broadcasts are intended for all hosts on a local or remote network · Limited broadcasts are only intended for the hosts on a local network"
+  },
+  {
+    "q": "Which two statements are true of the deterministic access method?(Choose two.)",
+    "a": "· The throughput is predictable · Devices take turns transmitting"
+  },
+  {
+    "q": "Which two statements are true regarding the user EXEC mode? (Choose two.)",
+    "a": "· Only some aspects of the router configuration can be viewed · This is the default mode on an unconfigured router when first powered up."
+  },
+  {
+    "q": "Which two statements describe intermediary devices? (Choose two.)",
+    "a": "· Intermediary devices direct the path of the data. · Intermediary devices connect individual hosts to the network."
+  },
+  {
+    "q": "Which type of IPv6 address is not routable and used for communication on a single subnet?",
+    "a": "link-local address"
+  },
+  {
+    "q": "Which type of network design combines voice, video, and data on the same communication channel?",
+    "a": "a converged network"
+  },
+  {
+    "q": "Which type of traffic must receive the highest priority from QoS?",
+    "a": "VoIP"
+  },
+  {
+    "q": "Which value, that is contained in an IPv4 header field, is decremented by each router that receives a packet?",
+    "a": "Time-to-Live"
+  },
+  {
+    "q": "Why would a network administrator use the CLI of the Cisco IOS?",
+    "a": "to add a password to a Cisco network device"
+  },
+  {
+    "q": "Why would a technician enter the command copy startup-config running config?",
+    "a": "to copy an existing configuration into RAM"
+  },
+  {
+    "q": "Within a production network, what is the purpose of configuring a switch with a default gateway address?",
+    "a": "The default gateway address is used to forward packets originating from the switch to remote networks"
+  },
+  {
+    "q": "Your organization is issued the IPv6 prefix of 2001:0000:130F::/48 by your service provider. With this prefix, how many bits are available for your organization to create subnetworks?",
+    "a": "128"
+  }
+]

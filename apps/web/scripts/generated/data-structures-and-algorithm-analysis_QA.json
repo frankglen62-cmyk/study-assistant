@@ -1,0 +1,910 @@
+[
+  {
+    "q": "___________ sorting algorithm is frequently used when n is small, where n is the total number of elements.",
+    "a": "Insertion"
+  },
+  {
+    "q": "_____________ order is the best possible for array sorting algorithm which sorts n item.",
+    "a": "O(n+logn)"
+  },
+  {
+    "q": "____________________ is not the component of data structure.",
+    "a": "None of these"
+  },
+  {
+    "q": "____________________ level is where the model becomes compatible executable code.",
+    "a": "Implementation level"
+  },
+  {
+    "q": "\"The elements are removal from a stack in _________ order. \"",
+    "a": "Reverse"
+  },
+  {
+    "q": "\"This form of access is used to add/remove nodes from a stack. \"",
+    "a": "Dequeue"
+  },
+  {
+    "q": "A _______________ is a data structure that organizes data similar to a line in the supermarket, where the first one in line is the first one out.",
+    "a": "Queue linked list"
+  },
+  {
+    "q": "A bank simulation of its teller operation to see how waiting times would be affected by adding another teller.",
+    "a": "Queue"
+  },
+  {
+    "q": "A binary search cannot be applied to a tree.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A binary search tree is another name for a binary tree.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A binary search tree whose left subtree and right subtree differ in height by at most 1 unit is called ____________________.",
+    "a": "AVL tree"
+  },
+  {
+    "q": "A binary tree is a tree in which each node can have zero, one, or two children.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A Binary Tree that stores a collection of elementswith their associated keys at its nodes.",
+    "a": "Heap"
+  },
+  {
+    "q": "A connected graph T without any cycles is called ________________.",
+    "a": "free graph"
+  },
+  {
+    "q": "A connected graph T without any cycles is called a ____________.",
+    "a": "all of these"
+  },
+  {
+    "q": "A Data Structure that can be accessed only at one of its ends for storing and retrieving data.",
+    "a": "Stacks"
+  },
+  {
+    "q": "A dictionary of words used by a spelling checker to be built and maintained.",
+    "a": "Binary search tree"
+  },
+  {
+    "q": "A hierarchical data structure",
+    "a": "Trees"
+  },
+  {
+    "q": "A leaf in a tree is a node with no children.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A linear list in which the last node points to the first node.",
+    "a": "circular linked list"
+  },
+  {
+    "q": "A linear list in which the pointer points only to the successive node.",
+    "a": "singly linked list"
+  },
+  {
+    "q": "A list may be linear or nonlinear, depending on its implementation.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A NULL pointer does not always mean empty.",
+    "a": "False"
+  },
+  {
+    "q": "A pointer variable which contains the location at the top element of the stack.",
+    "a": "Top"
+  },
+  {
+    "q": "A program keeping track of where canned goods are located on a shelf.",
+    "a": "Stack"
+  },
+  {
+    "q": "A program to keep track of patients as they check into a medical clinic, assigning patients to doctors on a first-come, first-served basis.",
+    "a": "Queue"
+  },
+  {
+    "q": "A program to keep track of the soccer teams in a city tournament",
+    "a": "Tree"
+  },
+  {
+    "q": "A program to maintain the routes in an airline.",
+    "a": "Graph"
+  },
+  {
+    "q": "A program to receive data that is to be saved and processed in the reverse order.",
+    "a": "Stack"
+  },
+  {
+    "q": "A queue abstract data structure is a list of collection with the restriction that insertion and deletion can perform at the same end",
+    "a": "False"
+  },
+  {
+    "q": "A queue applies FIFO ordering",
+    "a": "True"
+  },
+  {
+    "q": "A queue displays LIFO behavior.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A simple sorting algorithm that works the way we sort playing cards in our hands.",
+    "a": "Insertion"
+  },
+  {
+    "q": "A stack and a queue are different names for the same ADT.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A stack displays FIFO behavior.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A structure that is showing some descendants is also a tree.",
+    "a": "True"
+  },
+  {
+    "q": "A tree can not be empty with no nodes",
+    "a": "False"
+  },
+  {
+    "q": "A tree is an example of a linear data structure",
+    "a": "False"
+  },
+  {
+    "q": "A word processor to have a PF key that causes the preceding command to be redisplayed. Every time the PF key is pressed, the program is to show the command that preceded the one currently displayed",
+    "a": "Stack"
+  },
+  {
+    "q": "Accessing a linked list from head node until the last node of the list is",
+    "a": "Traversing"
+  },
+  {
+    "q": "after creating a Max Heap we then swap the first node to the last node and delete ________________.",
+    "a": "last node"
+  },
+  {
+    "q": "Algorithm that finds the location of the smallest element in the unsorted portion of the list and moves it to the top of the unsorted portion of the list",
+    "a": "Selection Sort"
+  },
+  {
+    "q": "Algorithms that use a list must know whether the list is array based or linked.",
+    "a": "FALSE"
+  },
+  {
+    "q": "An Abstract Data Type that stores elements hierarchically.",
+    "a": "Trees"
+  },
+  {
+    "q": "An electronic address book ordered by name",
+    "a": "Binary search tree"
+  },
+  {
+    "q": "Another name for directed graph.",
+    "a": "Digraph"
+  },
+  {
+    "q": "Any node of a tree that has child node",
+    "a": "internal nodes"
+  },
+  {
+    "q": "Any node that does not have child nodes are also called",
+    "a": "leaf nodes"
+  },
+  {
+    "q": "Binary search algorithm cannot be applied to _______________.",
+    "a": "pointer array"
+  },
+  {
+    "q": "Binary search trees are ordered.",
+    "a": "TRUE"
+  },
+  {
+    "q": "C++ Stack Operation to push the element on the top of the stack",
+    "a": "push(el)"
+  },
+  {
+    "q": "Clr() is used to clear the stack.",
+    "a": "False"
+  },
+  {
+    "q": "Compare to Queue, In Heap you can __________ the whole collection.",
+    "a": "Access"
+  },
+  {
+    "q": "Deleting an element is only allowed in a singly linked list",
+    "a": "False"
+  },
+  {
+    "q": "Deletion operation is done using __________ in a queue.",
+    "a": "front"
+  },
+  {
+    "q": "dequeue() takes the last element from the queue.",
+    "a": "False"
+  },
+  {
+    "q": "Describe the following code",
+    "a": "A function that will insert a node in an arbitrary position"
+  },
+  {
+    "q": "Doubly linked list should have maximum size to managed the last node of the list",
+    "a": "False"
+  },
+  {
+    "q": "Each node in a linked list must contain at least ___________________.",
+    "a": "Two fields"
+  },
+  {
+    "q": "Each node in singly linked list has _______ fields.",
+    "a": "2"
+  },
+  {
+    "q": "Enqueue is also called push",
+    "a": "True"
+  },
+  {
+    "q": "Every node (except the last node) contains the _____________________?",
+    "a": "address of the next node"
+  },
+  {
+    "q": "Every node N in a binary tree T except the root has a unique parent called the ________ of N.",
+    "a": "Predecessor"
+  },
+  {
+    "q": "Explode is used to delete an element from the stack",
+    "a": "False"
+  },
+  {
+    "q": "Given an empty array with 5 in size and the following operations have been executedEnqueue(8)Enqueue(1)Enqueue(7)Enqueue(2)Enqueue(6)What will happen if an attempt to execute enqueue(3)?",
+    "a": "A queue overflow error will occur"
+  },
+  {
+    "q": "Given the code, the program will ____________",
+    "a": "Create a node"
+  },
+  {
+    "q": "Given the following code which contains THREE pushes and ONE POP, what will be output of the stack?stack<int> s;spush(1);spush(2);spush(3);cout<<spop;",
+    "a": "12"
+  },
+  {
+    "q": "Given the stack with elements AMAOED, D being the top of the stack What element(s) will remain in the stack after applying pop() four times?",
+    "a": "AM"
+  },
+  {
+    "q": "Graph G is _____________ if for any pair u, v of nodes in G, there is a path from u to v or path from v to u.",
+    "a": "Unliterally connected"
+  },
+  {
+    "q": "Graphs consists of the following :",
+    "a": "vertices and edges"
+  },
+  {
+    "q": "Herder node is used as sentinel in __________________.",
+    "a": "Binary tree"
+  },
+  {
+    "q": "Identify the data structure which allows deletions at both ends of the list but insertion at only one end.",
+    "a": "Input restricted dequeue"
+  },
+  {
+    "q": "If a graph has a directional flow, the graph is defined to be ______________",
+    "a": "directed"
+  },
+  {
+    "q": "If a linked list is unordered, we can insert a new item at either the end or the beginning.",
+    "a": "True"
+  },
+  {
+    "q": "If Priority queues can be implemented by Heaps, Heaps can be implemented by ___________?",
+    "a": "Array"
+  },
+  {
+    "q": "If the integers 3,6,9,12 are enqueued onto a queue in that order, what will be the result of the queue after running a dequeue?",
+    "a": "6,9,12"
+  },
+  {
+    "q": "If the number of records to be sorted is small, then __________ sorting can be efficient.",
+    "a": "Selection"
+  },
+  {
+    "q": "in _____________ the parent should always be greater or equal than the child nodes.",
+    "a": "max heap"
+  },
+  {
+    "q": "In a 2-tree, nodes with 0 children are called ___________.",
+    "a": "external node"
+  },
+  {
+    "q": "In a graph, if E=(u,v), it means _____________.",
+    "a": "e begins at processor u and ends at successor v"
+  },
+  {
+    "q": "In a graph, if e=[u,v], then u and v are called _______________",
+    "a": "All of the choices"
+  },
+  {
+    "q": "In a graph, the vertices represent the items being modeled.",
+    "a": "TRUE"
+  },
+  {
+    "q": "In a linked list, the ____________ contains the address of next element in the list.",
+    "a": "Link field"
+  },
+  {
+    "q": "In an extended binary tree, nodes with 2 children are called _________________.",
+    "a": "Internal node"
+  },
+  {
+    "q": "In binary trees, nodes with no successor are called _______________.",
+    "a": "Terminal nodes"
+  },
+  {
+    "q": "In C++ using positions() means to Return a position list of all the nodes of the tree.",
+    "a": "True"
+  },
+  {
+    "q": "In C++ using size() means to Return the number/size of nodes in the tree.",
+    "a": "True"
+  },
+  {
+    "q": "In data structure, a pop is when you remove an element in the stack",
+    "a": "True"
+  },
+  {
+    "q": "In linked lists, there are no NULL links in ______________",
+    "a": "circular linked list"
+  },
+  {
+    "q": "In linked representation of stack, ___________ fields hold the elements of the stack.",
+    "a": "INFO"
+  },
+  {
+    "q": "In linked representation of stack, the null pointer of the last node in the list signals ____________",
+    "a": "Bottom of the stack"
+  },
+  {
+    "q": "In order to indicate that an object is not present in the map, we assume that there exists a special sentinel ___________ called end.",
+    "a": "iterator"
+  },
+  {
+    "q": "In priority queue, items are removed according to time they entered",
+    "a": "False"
+  },
+  {
+    "q": "In sequential implementation, the stack stored in a one-dimensional array",
+    "a": "True"
+  },
+  {
+    "q": "In the linked representation of the stack, __________ pointer behaves as the top pointer variable of stack.",
+    "a": "Start"
+  },
+  {
+    "q": "In the stack, if the user try to remove element from the empty stack then it is called as",
+    "a": "Underflow of stack"
+  },
+  {
+    "q": "Indexing the ________________ element in the list is not possible in linked lists.",
+    "a": "middle"
+  },
+  {
+    "q": "Indicate which structure would be a more suitable choice for each of the following applications.",
+    "a": "Tree, Binary search tree"
+  },
+  {
+    "q": "Inserting an item into the stack when stack is not full is called ____________ while operation and deletion of item from the stack, when stack is not empty is called ________________ operation.",
+    "a": "push, pop"
+  },
+  {
+    "q": "It doesn't require a binary tree to be traverse when using insertion or deletion.",
+    "a": "False"
+  },
+  {
+    "q": "It is a pile in which items are added at one end and removed from the other.",
+    "a": "queue"
+  },
+  {
+    "q": "It uses a hash function to compute an index into an array of buckets",
+    "a": "Hash table"
+  },
+  {
+    "q": "LINK is the pointer pointing to the ____________________.",
+    "a": "predecessor node"
+  },
+  {
+    "q": "Linked lists are best suited _____________________.",
+    "a": "for the size of the structure and the data in the structure are constantly changing"
+  },
+  {
+    "q": "Linked representation of binary tree needs ______ parallel arrays.",
+    "a": "3"
+  },
+  {
+    "q": "Maps allows us to store elements so they can be located quickly using _________.",
+    "a": "keys"
+  },
+  {
+    "q": "Marked the birth of graph theory",
+    "a": "Ko\"nigsberg bridge problem"
+  },
+  {
+    "q": "Moving from one node to another is called _______________",
+    "a": "Link hopping or pointer hopping"
+  },
+  {
+    "q": "New nodes are added to the ________ of the queue.",
+    "a": "Back"
+  },
+  {
+    "q": "Nodes of a binary tree is in particular order",
+    "a": "False"
+  },
+  {
+    "q": "On average, searching in a binary search tree is faster than searching in a list.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Partition and exchange sort is ____________.",
+    "a": "quick sort"
+  },
+  {
+    "q": "pop() takes the first element of the stack.",
+    "a": "False"
+  },
+  {
+    "q": "Sequential implementation is represented as a linear list",
+    "a": "False"
+  },
+  {
+    "q": "Sorting algorithm can be characterized as ________________.",
+    "a": "Both of the choices"
+  },
+  {
+    "q": "Stack and Queue is a linear data structure.",
+    "a": "True"
+  },
+  {
+    "q": "Stack consists of five basic operations",
+    "a": "True"
+  },
+  {
+    "q": "Stack follows the strategy of ________________.",
+    "a": "LIFO"
+  },
+  {
+    "q": "Stack imposes the discipline of First In First Out",
+    "a": "False"
+  },
+  {
+    "q": "Stack is also called the ________________.",
+    "a": "Last in, first out"
+  },
+  {
+    "q": "Stack is stored in a single dimensional array",
+    "a": "True"
+  },
+  {
+    "q": "stack() creates an empty stack.",
+    "a": "True"
+  },
+  {
+    "q": "Stacks can only be implemented using a linked list",
+    "a": "False"
+  },
+  {
+    "q": "State True or False for internal sorting algorithms. i. Internal sorting are applied when the entire collection if data to be sorted is small enough that the sorting can take place within main memory. ii. The time required to read or write is considered significant in evaluating the performance of internal sorting.",
+    "a": "True, False"
+  },
+  {
+    "q": "State True or False for internal sorting algorithms.i. Internal sorting are applied when the entire collection if data to be sorted is small enough that the sorting can take place within main memory.ii. The time required to read or write is considered significant in evaluating the performance of internal sorting.",
+    "a": "True, False"
+  },
+  {
+    "q": "The address of the first node in the list is stored in a separate location called",
+    "a": "head"
+  },
+  {
+    "q": "the association of keys and values defines a ____________.",
+    "a": "mapping"
+  },
+  {
+    "q": "The average case occurs in linear search algorithm _______________.",
+    "a": "when item is somewhere in the middle of the array"
+  },
+  {
+    "q": "The complexity of bubble sort algorithm.",
+    "a": "O(n2)"
+  },
+  {
+    "q": "The complexity of linear search algorithm.",
+    "a": "O(n)"
+  },
+  {
+    "q": "The complexity of merge sort algorithm.",
+    "a": "O(n logn)"
+  },
+  {
+    "q": "The complexity of sorting algorithm measures the __________ as a function of the number n of items to be shorter.",
+    "a": "running time"
+  },
+  {
+    "q": "The converse notion of a child, an immediate ancestor",
+    "a": "Parent"
+  },
+  {
+    "q": "The data structure that consists of finite set of _____________which are also called nodes.",
+    "a": "vertices"
+  },
+  {
+    "q": "The data structure that stores data in the form of key and value pairs where every key is unique.",
+    "a": "Map"
+  },
+  {
+    "q": "The delete operation in the slack is called?",
+    "a": "Pop"
+  },
+  {
+    "q": "The depth of complete binary tree is given by ________________.",
+    "a": "Dn = log2n+1"
+  },
+  {
+    "q": "The dummy header in linked list contains ____________________.",
+    "a": "first record of the actual data"
+  },
+  {
+    "q": "The elements are removal from a stack in _________ order.",
+    "a": "Reverse"
+  },
+  {
+    "q": "The following are some of the applications of heaps except",
+    "a": "Stacks"
+  },
+  {
+    "q": "The following code illustrates __________________",
+    "a": "Traversing the linked list"
+  },
+  {
+    "q": "The heap is an efficient implementation of an abstract data type called _______________",
+    "a": "priority queue"
+  },
+  {
+    "q": "The item search, insertion, and deletion operations all require the binary tree to be traversed.",
+    "a": "True"
+  },
+  {
+    "q": "The last step when inserting an element at the tail of a singly linked list is to assign a tail reference itself to the new created node",
+    "a": "True"
+  },
+  {
+    "q": "The method used by card sorter.",
+    "a": "Radix sort"
+  },
+  {
+    "q": "The most important properties of Heap is that its _________________ is at its root.",
+    "a": "lowest element"
+  },
+  {
+    "q": "The operation commonly performed in graphs that store the graph in computer memory using a particular graph representation is called ________________",
+    "a": "Create the graph"
+  },
+  {
+    "q": "The operation of processing each element in the list is known as ________________.",
+    "a": "traversal"
+  },
+  {
+    "q": "The ordering of a linked list follows the rule ________________",
+    "a": "Follow the leader"
+  },
+  {
+    "q": "The rearranging of pairs of elements which are out of order, until no such pairs remain.",
+    "a": "Exchange"
+  },
+  {
+    "q": "The retrieval of items in a stack is ___________ operation.",
+    "a": "pop"
+  },
+  {
+    "q": "The root of a tree is the node that has no ancestors.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The situation when in a linked list START=NULL is ____________________.",
+    "a": "Underflow"
+  },
+  {
+    "q": "The term push and pop is related to _____________",
+    "a": "stacks"
+  },
+  {
+    "q": "The term push and pop is related to _____________.",
+    "a": "stacks"
+  },
+  {
+    "q": "The term used to insert an element into stack.",
+    "a": "push"
+  },
+  {
+    "q": "The terms depth-first and breadth-first are two most common graph ______________ algorithm",
+    "a": "traversal"
+  },
+  {
+    "q": "The top element of a tree is called the",
+    "a": "root"
+  },
+  {
+    "q": "The tree ADT stores elements at the nodes of the tree.",
+    "a": "True"
+  },
+  {
+    "q": "The upward movement of the newly inserted entry by means of swapping",
+    "a": "up-heap bubbling"
+  },
+  {
+    "q": "the upward movement of the newly inserted entry by means of swaps is conventionally called __________________",
+    "a": "up-heap bubbling"
+  },
+  {
+    "q": "The value in the left child of a node (if it exists) in a binary search tree will be greater than the value in the node itself.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The value in the right child of a node (if it exists) in a binary search tree will be greater than the value in the node itself.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The worst case occurs in linear search algorithm when ________________.",
+    "a": "Item is the last element in the array or item is not there at all"
+  },
+  {
+    "q": "There are 3 auxiliary operations of a stack",
+    "a": "True"
+  },
+  {
+    "q": "There are two types of linked lists; sorted lists and unsorted lists.",
+    "a": "True"
+  },
+  {
+    "q": "This form of access is used to add and remove nodes from a queue.",
+    "a": "FIFO, First In First Out"
+  },
+  {
+    "q": "This form of access is used to add/remove nodes from a stack.",
+    "a": "LIFO"
+  },
+  {
+    "q": "This indicates the end of the list.",
+    "a": "Sentinel"
+  },
+  {
+    "q": "This is a binary tree whose every node has either zero or two children.",
+    "a": "extended binary tree"
+  },
+  {
+    "q": "This is a linear list in which insertions and deletions are made to form either end of the structure.",
+    "a": "Dequeue"
+  },
+  {
+    "q": "This is a terminal node in a binary tree.",
+    "a": "Leaf"
+  },
+  {
+    "q": "This is the insertion operation in the stack.",
+    "a": "push"
+  },
+  {
+    "q": "This is the term used to delete an element from the stack.",
+    "a": "Pop"
+  },
+  {
+    "q": "This is very useful in situation when data have to be stored and then retrieved in reverse order.",
+    "a": "stack"
+  },
+  {
+    "q": "This may take place only when there is some minimum amount or no space left in free storage list.",
+    "a": "Garbage collection"
+  },
+  {
+    "q": "This refers to a linear collection of data items.",
+    "a": "List"
+  },
+  {
+    "q": "To delete an element, we get the data from the first node",
+    "a": "True"
+  },
+  {
+    "q": "To make heap from range we used ____________",
+    "a": "make_heap()"
+  },
+  {
+    "q": "To represent a graph (in computer memory), we can use _______________________.",
+    "a": "adjacency matrices"
+  },
+  {
+    "q": "To return the number of nodes of a Binary Tree ADT in C++ we use number()",
+    "a": "False"
+  },
+  {
+    "q": "To take the topmost element from a stack",
+    "a": "pop()"
+  },
+  {
+    "q": "Tree is usually visualized by connections between parents and children with straight lines.",
+    "a": "True"
+  },
+  {
+    "q": "TREE[1]=NULL indicates tree is _________",
+    "a": "Empty"
+  },
+  {
+    "q": "Trees are ________ if they are similar and have the same contents at corresponding nodes.",
+    "a": "copies"
+  },
+  {
+    "q": "Two nodes that are children of the same parents",
+    "a": "siblings"
+  },
+  {
+    "q": "Unlike an array, inserting an element on a particular node is not allowed in a linked list",
+    "a": "False"
+  },
+  {
+    "q": "Unsorted lists are elements arranged according to some criteria.",
+    "a": "False"
+  },
+  {
+    "q": "Using put() can perform",
+    "a": "replace key-value pair"
+  },
+  {
+    "q": "Value of first linked list index is _______________.",
+    "a": "0"
+  },
+  {
+    "q": "We can also define a binary tree in a recursive way",
+    "a": "True"
+  },
+  {
+    "q": "We use a ______________, which corresponds to a heap where the largest element is at the top.",
+    "a": "Comparator"
+  },
+  {
+    "q": "What are the basic operations performed on a stack?",
+    "a": "Push and pop, initialize, and test"
+  },
+  {
+    "q": "What does the sequential representation of binary trees use?",
+    "a": "Array with pointers"
+  },
+  {
+    "q": "What happens when you push a new node onto a stack?",
+    "a": "The new node is placed at the front of the linked list"
+  },
+  {
+    "q": "What is a queue?",
+    "a": "FIFO"
+  },
+  {
+    "q": "What is a run list?",
+    "a": "small batches of records from a file"
+  },
+  {
+    "q": "What is the 1st step in the algorithm for popping a data element?",
+    "a": "Check if stack is empty"
+  },
+  {
+    "q": "What is the minimum number of stacks needed to implement a queue?",
+    "a": "2"
+  },
+  {
+    "q": "What operation is used to check the number of objects in the queue?",
+    "a": "size()"
+  },
+  {
+    "q": "When the largest element is at its root it's called",
+    "a": "Max-heap"
+  },
+  {
+    "q": "When using single inheritance, the inheritance relation between classes in a C++ program forms a tree.",
+    "a": "True"
+  },
+  {
+    "q": "Which data structure allows deleting data elements from and inserting at rear?",
+    "a": "queues"
+  },
+  {
+    "q": "Which data structure is suitable to represent the hierarchal relationship between elements?",
+    "a": "Tree"
+  },
+  {
+    "q": "Which data structure is used in breadth first search of a graph to hold nodes?",
+    "a": "Queue"
+  },
+  {
+    "q": "Which indicates pre-order traversal?",
+    "a": "Root, Left sub-tree, Right sub-tree"
+  },
+  {
+    "q": "Which is the pointer associated with the availability list?",
+    "a": "AVAIL"
+  },
+  {
+    "q": "Which is the pointer associated with the stack?",
+    "a": "TOP"
+  },
+  {
+    "q": "Which of the following an application of a stack?",
+    "a": "Base conversion"
+  },
+  {
+    "q": "Which of the following best describes the code apush(10);",
+    "a": "The element 10 will be added in the stack"
+  },
+  {
+    "q": "Which of the following best describes the code spop(10);",
+    "a": "An error will occur"
+  },
+  {
+    "q": "Which of the following data structure can't store the non-homogeneous data elements?",
+    "a": "Arrays"
+  },
+  {
+    "q": "Which of the following data structure is non-linear type?",
+    "a": "Graph"
+  },
+  {
+    "q": "Which of the following data structures is linear type?",
+    "a": "Stack"
+  },
+  {
+    "q": "Which of the following is a pros of a sequential implementation of a stack?",
+    "a": "Easy to implement"
+  },
+  {
+    "q": "Which of the following is a two-way list?",
+    "a": "List traversed in two directions"
+  },
+  {
+    "q": "Which of the following is an application of stack?",
+    "a": "all of these"
+  },
+  {
+    "q": "Which of the following is non-linear data structure?",
+    "a": "Trees"
+  },
+  {
+    "q": "Which of the following is not a limitation of binary search algorithm?",
+    "a": "binary search algorithm is not efficient when the data elements more than 1500"
+  },
+  {
+    "q": "Which of the following is not the part of ADT description?",
+    "a": "None of these"
+  },
+  {
+    "q": "Which of the following is not the required condition for binary search algorithm?",
+    "a": "There must be mechanism to delete and/or insert elements in list"
+  },
+  {
+    "q": "Which of the following is two way lists?",
+    "a": "List traversed in two directions"
+  },
+  {
+    "q": "Which of the following is/are the levels of implementation of data structure?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following names does not relate to stacks?",
+    "a": "FIFO lists"
+  },
+  {
+    "q": "Which of the following sorting algorithm is of priority queue sorting type?",
+    "a": "Selection sort"
+  },
+  {
+    "q": "Which of the following you will use to remove an item to a queue?",
+    "a": "Dequeue"
+  },
+  {
+    "q": "You may insert an element in the middle of the linked list",
+    "a": "True"
+  }
+]

@@ -1,0 +1,578 @@
+[
+  {
+    "q": "A statement that is use to rename the table or change the existing name of the table.",
+    "a": "Rename"
+  },
+  {
+    "q": "A system used to concatenate one column to another column.",
+    "a": "||"
+  },
+  {
+    "q": "A type of DML statement that is use to update existing rows in a table.",
+    "a": "UPDATE"
+  },
+  {
+    "q": "A type of DML statement that is use to add new rows in a table.",
+    "a": "INSERT"
+  },
+  {
+    "q": "A type of DML statement that is use to remove existing rows in a table.",
+    "a": "DELETE"
+  },
+  {
+    "q": "A type of insert statement that omit the column from the column list.",
+    "a": "Implicit"
+  },
+  {
+    "q": "A type of insert statement that specify the NULL keyword in the VALUES clause.",
+    "a": "Explicit"
+  },
+  {
+    "q": "An alter statement that is used to add new column to the table.",
+    "a": "ADD"
+  },
+  {
+    "q": "An alter statement that is used to delete an existing column in the table.",
+    "a": "DROP"
+  },
+  {
+    "q": "An alter statement that is used to update an existing column datatype or datatype size.",
+    "a": "MODIFY"
+  },
+  {
+    "q": "Basic unit of storage composed of rows and columns",
+    "a": "Table"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below Table 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output? SELECT (LASTNAME||FIRSTNAME), JOB_IDFROM EMPLOYEESWHERE SUBSTR (JOB_ID,4)'REP';",
+    "a": "ABELELLEN SA_REPTALORJONATHAN SA_REPGRANTKIMBERLY SA_REPFAYPAT MK_REP"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT (LASTNAME||FIRSTNAME), JOB_IDFROM EMPLOYEESWHERE SUBSTR (JOB_ID,4)'REP';",
+    "a": "ABELELLEN SA_REPTALORJONATHAN SA_REPGRANTKIMBERLY SA_REPFAYPAT MK_REP"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT FIRSTNAME, SALARY, LPAD(SALARY * 0.10 + SALARY - 100, 8, =E2=80=98$') AS BONUSFROM EMPLOYEESWHERE DEPARTMENT_ID NOT IN (10, 110, 50AND SALARY=17000;",
+    "a": "NENA 17000 $$$18600LEX 17000 $$$18600"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT INITCAP(LASTNAME||','||FIRSTNAME) AS NAMEFROM EMPLOYEESWHERE JOB_ID LIKE '%PR%';",
+    "a": "King,StevenHunold,AlexanderErnst,BruceLorentz,Diana"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT LASTNAME,SALARY, RPAD(SALARY,4,'@')FROM EMPLOYEESWHERE SALARY BETWEEN 4000 AND 9000LASTNAME LIKE =E2=80=98%S';",
+    "a": "MOURGOS 5800 5800"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT LOWER(LASTNAME||'with a salary of'||SALARY) as Record, LENGTH(LASTNAME) as LnameFROM EMPLOYEESWHERE MANAGER_ID IS NULLOR SALARY IS NULL;",
+    "a": "kingwith a salary of 24000 4hunoldwith a salary of 2400 6"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT MOD(SALARY,10) AS \"EXCESS SALARY\"FROM EMPLOYEESWHERE SALARY < 5000;",
+    "a": "000000"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT TRIM(=E2=80=98K' FROM LASTNAME)AS TRIM, LASTNAME, DEPARTMENT_ID, MANAGER_IDFROM EMPLOYEESWHERE DEPARTMENT_ID = 50AND MANAGER_ID = 100;",
+    "a": "MOURGOS MOURGOS 50 100"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT TRUNC(563.396,-2) FROM DUAL;",
+    "a": "500"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT TRUNC(563.396,1)FROM DUAL;",
+    "a": "5633"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT TRUNC(563.396,2)FROM DUAL;",
+    "a": "56339"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order to display the employees lastname concatenated to salary. Format the salary column to 6 character long right padded with =E2=80=98*' as special character for all employees whose manager_id is null or salary between 4000 and 6000 Rename the column as employees and their Salaries",
+    "a": "SELECT (FIRSTNAME||RPAD(SALARY,6,'*')) AS \"EMPLOYEES AND THEIR SALARIES\"FROM EMPLOYEESWHERE MANAGER_ID IS NULLOR SALARY BETWEEN 4000 AND 6000;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order to display the employees lastname concatenated with firstname and with a =E2=80=98, (comma)' in between. A rename on the concatenated column as Complete Name. Note all values in Complete Name column should be in lowercase plus display the length of employees lastname for all employees whose lastname starts with letter M sort the lastname in its default order.",
+    "a": "SELECT LOWER(LASTNAME||','||FIRSTNAME) AS \"COMPLETE NAME\",LENGTH(LASTNAME)FROM EMPLOYEESWHERE LASTNAME LIKE 'M%';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order to display the firstname concatenated to salary with additional column salary that provides a computation of salary * 2. Rename the column as Increase of all employees whose lastname ends with N.",
+    "a": "SELECT (FIRSTNAME || 'SALARY OF' || SALARY || 'IF MULITPLY BY TWO THEN HE/SHE WLL GOT A NEW SALARY OF' || SALARY * 2)AS INCREASE FROM EMPLOYEES WHERE LASTNAME LIKE '%N';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order to display the lastname and salary of all employees whose department_id = 60 or job_id like =E2=80=98_T%'. Format the salary to be 15 character long, left padded with =E2=80=98$' as special character. Label the column Salary.",
+    "a": "SELECT LASTNAME, LPAD(SALARY,15,'$') AS SALARYFROM EMPLOYEESWHERE DEPARTMENT_ID = 60 OR JOB_ID LIKE '_T';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order to display the salary leftpadded with 15 character long and =E2=80=98$' as special character and another column salary right padded with 10 character long with =E2=80=98@' as special character used of all employees in 201, 176 and 144.",
+    "a": "SELECT LPAD(SALARY,15,'$'), RPAD(SALARY,10,'@')FROM EMPLOYEESWHERE EMPLOYEE_ID IN (201,176,144);"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order todisplay a report that trim the letter =E2=80=98A' from lastname of all employees whose department_id between 60 and 90.",
+    "a": "SELECT TRIM('A' FROM LASTNAME)FROM EMPLOYEESWHERE DEPARTMENT_ID BETWEEN 60 AND 90;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order todisplay the firstname and length of firstname rename the column length of firstname as Number of Character of all employees whose salary is between 4400 and 8300",
+    "a": "SELECT FIRSTNAME, LENGTH(FIRSTNAME) AS \"NUMBER OF CHARACTER\"FROM EMPLOYEESWHERE SALARY BETWEEN 4400 AND 8300;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order todisplay the Firstname concatenated to employees original salary plus concatenate again a new column salary that multiplies the original salary into three. Rename the column as Dream Salaries.Note sort the salary in descending order.",
+    "a": "SELECT (FIRSTNAME||' EARNS '|| SALARY || 'MONTHLY BUT WANTS' || SALARY * 3)AS \"DREAM SALARIES\"FROM EMPLOYEESORDER BY SALARY DESC;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order todisplay the firstname in capitalized format rename the column as pangalan whose job_id is equal to =E2=80=98SA_REP'.",
+    "a": "SELECT UPPER(FIRSTNAME) AS PANGALANFROM EMPLOYEESWHERE JOB_ID = 'SA_REP';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhat query should be used in order toget theSUBSTR function that returns the job_id = =E2=80=98REP'.",
+    "a": "SELECT JOB_ID FROM EMPLOYEESWHERE SUBSTR(JOB_ID,4)='REP';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that counts the number of ST_CLERK job_id? Rename the column as \"Total no. of ST_CLERK\".",
+    "a": "SELECT COUNT(JOB_ID), AS =E2=80=9CTOTAL NO OF ST_CLERK=E2=80=9DFROM EMPLOYEESWHERE JOB_ID = =E2=80=98ST_CLERK=E2=80=99;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that display the Job_id and add the ff: function:Count the total number of job_id per distinct values; Compute for the summary of salary per job_id; and Compute for the average salary per job_id",
+    "a": "SELECT DISTINCT(JOB_ID), COUNT(JOB_ID) AS =E2=80=9CNO OF JOB_ID=E2=80=9D, SUM(SALARY) AS =E2=80=9CTOTAL SALARY=E2=80=9D, AVG(SALARY) AS =E2=80=9CAVERAGE SALARY=E2=80=9D FROM EMPLOYEES GROUP BY JOB_ID;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that display the maximum lastname concatenated to firstname and rename the column as \"Employees Name\", Job_id and apply the ff. functions:Count the Job_id; Apply where condition whose lastname ends with letter =E2=80=98N'; Group the job_id; and Apply having clause of employees having average salary that is greater than 10000.",
+    "a": "SELECT MAX(LASTNAME||FIRSTNAME) AS \"EMPLOYEES NAME\", JOB_ID, COUNT(JOB_ID)FROM EMPLOYEESWHERE LASTNAME LIKE '%N'GROUP BY JOB_IDHAVING AVG(SALARY)>10000;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that display the Minimum firstname concatenated to lastname? Look for the maximum salary that is less than 10000 per department_id.",
+    "a": "SELECT MIN(FIRSTNAME||LASTNAME)FROM EMPLOYEESGROUP BY DEPARTMENT_IDHAVING MAX(SALARY)<10000;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that displays the lowest salary rename as \"LOWEST SALARY\", maximum salary rename as \"HIGHEST SALARY\" and department_id concatenated to job_id?",
+    "a": "SELECT CONCAT(DEPARTMENT_ID,JOB_ID),MIN(SALARY), MAX(SALARY)FROM EMPLOYEESGROUP BY JOB_ID,DEPARTMENT_ID;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that displays the maximum salary?",
+    "a": "SELECT MAX(SALARY) FROM EMPLOYEES;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that displays the minimum lastname?",
+    "a": "SELECT MIN(LASTNAME) FROM EMPLOYEES;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct query that displays the MINIMUM salary of employees per job_id? Note job_id should be in lowercase.",
+    "a": "SELECT MIN(SALARY) AS =E2=80=9CLOWEST SALARY=E2=80=9D, LOWER(JOB_ID)FROM EMPLOYEESGROUP BY JOB_ID;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct report that display the smallest (minimum) Surname.. and apply the ff. functions:Get the average salary; Group the data per job_id; Get only job_id with a keyword \"REP\"; and Apply having clause, which the max salary per job_id is greater than 5000.",
+    "a": "SELECT MIN(LASTNAME), AVG(SALARY)FROM EMPLOYEESWHERE JOB_ID LIKE =E2=80=98%REP%=E2=80=99GROUP BY JOB_IDHAVING MAX(SALARY)>500;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown below.Table 1.0 EMPLOYEESWhich of the following is the correct that display distinct job_id and the the total number per distinct (unique) job_id.",
+    "a": "SELECT DISTICT(JOB_ID), COUNT(JOB_ID) AS =E2=80=9CTOTAL NUMBER OF JOB_ID=E2=80=9DFROM EMPLOYEESGROUP BY JOB_ID;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT FIRSTNAME, SALARY, LPAD(SALARY * 010 + SALARY - 100, 8, =E2=80=98$') AS BONUSFROM EMPLOYEESWHERE DEPARTMENT_ID NOT IN (10, 110, 50AND SALARY=17000;",
+    "a": "NENA 17000 $$$18600LEX 17000 $$$18600"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT INITCAP(LASTNAME||','||FIRSTNAME) AS NAMEFROM EMPLOYEESWHERE JOB_ID LIKE '%PR%';",
+    "a": "King,StevenHunold,AlexanderErnst,BruceLorentz,Diana"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT LASTNAME,SALARY, RPAD(SALARY,4,'@')FROM EMPLOYEESWHERE SALARY BETWEEN 4000 AND 9000LASTNAME LIKE =E2=80=98%S';",
+    "a": "MOURGOS 5800 5800"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT LOWER(LASTNAME||'with a salary of'||SALARY) as Record, LENGTH(LASTNAME) as LnameFROM EMPLOYEESWHERE MANAGER_ID IS NULLOR SALARY IS NULL;",
+    "a": "kingwith a salary of 24000 4hunoldwith a salary of 2400 6"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESBased on the given SELECT statement below what would be the possible output?SELECT TRIM(=E2=80=98K' FROM LASTNAME)AS TRIM, LASTNAME, DEPARTMENT_ID, MANAGER_IDFROM EMPLOYEESWHERE DEPARTMENT_ID = 50AND MANAGER_ID = 100;",
+    "a": "MOURGOS MOURGOS 50 100"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhat query should be used in order to display the employees lastname concatenated to salary Format the salary column to 6 character long right padded with =E2=80=98*' as special character for all employees whose manager_id is null or salary between 4000 and 6000 Rename the column as employees and their Salaries",
+    "a": "SELECT (FIRSTNAME||RPAD(SALARY,6,'*')) AS \"EMPLOYEES AND THEIR SALARIES\"FROM EMPLOYEESWHERE MANAGER_ID IS NULLOR SALARY BETWEEN 4000 AND 6000;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhat query should be used in order to display the employees lastname concatenated with firstname and with a =E2=80=98, (comma)' in between A rename on the concatenated column as Complete Name Note all values in Complete Name column should be in lowercase plus display the length of employees lastname for all employees whose lastname starts with letter M sort the lastname in its default order",
+    "a": "SELECT LOWER(LASTNAME||','||FIRSTNAME) AS \"COMPLETE NAME\",LENGTH(LASTNAME)FROM EMPLOYEESWHERE LASTNAME LIKE 'M%';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhat query should be used in order to display the lastname and salary of all employees whose department_id = 60 or job_id like =E2=80=98_T%' Format the salary to be 15 character long, left padded with =E2=80=98$' as special character Label the column Salary",
+    "a": "SELECT LASTNAME, LPAD(SALARY,15,'$') AS SALARYFROM EMPLOYEESWHERE DEPARTMENT_ID = 60 OR JOB_ID LIKE '_T';"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhat query should be used in order to display the salary leftpadded with 15 character long and =E2=80=98$' as special character and another column salary right padded with 10 character long with=E2=80=98@' as special character used of all employees in 201, 176 and 144",
+    "a": "SELECT LPAD(SALARY,15,'$'), RPAD(SALARY,10,'@')FROM EMPLOYEESWHERE EMPLOYEE_ID IN (201,176,144);"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhat query should be used in order todisplay a report that trim the letter =E2=80=98A' from lastname of all employees whose department_id between 60 and 90",
+    "a": "SELECT TRIM('A' FROM LASTNAME)FROM EMPLOYEESWHERE DEPARTMENT_ID BETWEEN 60 AND 90;"
+  },
+  {
+    "q": "Choose the letter of the correct answer based on the table EMPLOYEES as shown belowTable 10 EMPLOYEESWhich of the following is the correct query that display the maximum lastname concatenated to firstname and rename the column as \"Employees Name\", Job_id and apply the ff functions:Count the Job_id; Apply where condition whose lastname ends with letter =E2=80=98N'; Group the job_id; and Apply having clause of employees having average salary that is greater than 10000",
+    "a": "SELECT MAX(LASTNAME||FIRSTNAME) AS \"EMPLOYEES NAME\", JOB_ID, COUNT(JOB_ID)FROM EMPLOYEESWHERE LASTNAME LIKE '%N'GROUP BY JOB_IDHAVING AVG(SALARY)>10000;"
+  },
+  {
+    "q": "Consists of a collection of DML statements that form a logical unit of work.",
+    "a": "Transaction"
+  },
+  {
+    "q": "Extracts a string of determined length.",
+    "a": "SUBSTR"
+  },
+  {
+    "q": "Given the output below. Which of the following is the correct PL/SQL to be used",
+    "a": "SELECT DISTINCT WAREHOUSE FROM PARTS;"
+  },
+  {
+    "q": "Given the output below. Which of the following is the correct PL/SQL to be used?",
+    "a": "SELECT DESCRIPTION, ONHAND,CLASSFROM PARTSWHERE CLASS = =E2=80=98HW=E2=80=99;"
+  },
+  {
+    "q": "He proposed the relational model for database systems in 1970.",
+    "a": "Dr EF Codd"
+  },
+  {
+    "q": "It is a character, a number, or a date that is included in the SELECT statement.",
+    "a": "Literal"
+  },
+  {
+    "q": "It is a collection of relations or two-dimensional tables controlled by the Oracle server.",
+    "a": "Relational database"
+  },
+  {
+    "q": "It is a table that is owned by the user SYS and can be accessed by all users.",
+    "a": "Dual"
+  },
+  {
+    "q": "It is a value that is unavailable, unassigned, unknown, or inapplicable.",
+    "a": "NULL"
+  },
+  {
+    "q": "It is use to accept numeric input and return numeric values.",
+    "a": "Number function"
+  },
+  {
+    "q": "It logically represents subsets of data from one or more table.",
+    "a": "View"
+  },
+  {
+    "q": "Refer to table 1.0 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITION, ID * (100 + 3)FROM ORGCHARWHERE ORG = =E2=80=98AMATHS'",
+    "a": "It will retrieve the record of ANNA with new ID of 1030"
+  },
+  {
+    "q": "Refer to table 1.0 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE NAME LIKE =E2=80=98%A';",
+    "a": "It retrieves the record of ANNA and MOJICA"
+  },
+  {
+    "q": "Refer to table 1.0 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE NAME LIKE =E2=80=98A%'AND POSITION = =E2=80=98SEC';",
+    "a": "It retrieves the record of AGAPITO"
+  },
+  {
+    "q": "Refer to table 1.0 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE ORG 'JPCS'OR POSITION = =E2=80=98SEC';",
+    "a": "It will retrieve the record of JOAN,ROAN and JUN"
+  },
+  {
+    "q": "Refer to table 1.0 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE ORG 'JPCS'OR POSITION = =E2=80=98SEC'AND NAME LIKE =E2=80=98%N';",
+    "a": "It will retrieve the record of JOAN,ROAN and JUN"
+  },
+  {
+    "q": "Refer to table 1.0, suppose that user insert the following values using the statement below what would be the possible output?INSERT INTO ORGCHART (ID, NAME)VALUES (11,'YAMBAO,JUN');",
+    "a": "The ORG and POSITION of YAMBAO will automatically sets to NULL"
+  },
+  {
+    "q": "Refer to table 1.0, suppose that user insert the following values using the statement below what would be the possible output?INSERT INTO ORGCHART VALUES (11,'YAMBAO,JUN', NULL, NULL);",
+    "a": "The ORG and POSITION of YAMBAO will automatically sets to NULL"
+  },
+  {
+    "q": "Refer to table 1.0, suppose that user update the table using the statement below what would be the possible output?UPDATE ORGCHARTSET ORG = =E2=80=98PCS'WHERE ORG IS NULL;",
+    "a": "1 row/s is updated"
+  },
+  {
+    "q": "Refer to table 10 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE NAME LIKE =E2=80=98A%'AND POSITION = =E2=80=98SEC';",
+    "a": "It retrieves the record of ANNA and MOJICA"
+  },
+  {
+    "q": "Refer to table 10 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE ORG 'JPCS'OR POSITION = =E2=80=98SEC';",
+    "a": "It will retrieve the record of JOAN,ROAN and JUN"
+  },
+  {
+    "q": "Refer to table 10 Using the SELECT statement below what would be the possible output:SELECT NAME, ORG, POSITIONFROM ORGCHARWHERE ORG 'JPCS'OR POSITION = =E2=80=98SEC'AND NAME LIKE =E2=80=98%N';",
+    "a": "It will retrieve the record of JOAN,ROAN and JUN"
+  },
+  {
+    "q": "Refer to table 10, suppose that user insert the following values using the statement below what would be the possible output?INSERT INTO ORGCHART (ID, NAME)VALUES (11,'YAMBAO,JUN');",
+    "a": "The ORG and POSITION of YAMBAO will automatically sets to NULL"
+  },
+  {
+    "q": "Refer to table 10, suppose that user insert the following values using the statement below what would be the possible output?INSERT INTO ORGCHART VALUES (11,'YAMBAO,JUN', NULL, NULL);",
+    "a": "The ORG and POSITION of YAMBAO will automatically sets to NULL"
+  },
+  {
+    "q": "Refer to table 10, suppose that user update the table using the statement below what would be the possible output?UPDATE ORGCHARTSET ORG = =E2=80=98PCS'WHERE ORG IS NULL;",
+    "a": "1 row/s is updated"
+  },
+  {
+    "q": "Suppose that a user uses the DELETE statement as shown below: what is/are the possible output. DELETE from STUDENT;",
+    "a": "All rows are deleted but the table is still intact"
+  },
+  {
+    "q": "Suppose that a user wanted to add a new column name as CITY datatype set to char size 10. Which of the following is the correct sql statement?",
+    "a": "ALTER TABLE STUDENTSADD CITY CHAR(10);"
+  },
+  {
+    "q": "Suppose that a user wanted to change the datatype of column ADDRESS from Varchar to Char which of the following is the correct example.",
+    "a": "ALTER TABLE STUDENTSMODIFY ADDRESS VARCHAR(20);"
+  },
+  {
+    "q": "Suppose that a user wanted to insert a new value using the explicit method which of the following is the correct example.",
+    "a": "INSERT INTO STUDENTS VALUES (10, NULL,=E2=80=99ELENA=E2=80=99,NULL);"
+  },
+  {
+    "q": "Suppose that a user wanted to insert a new value using the implicit method which of the following is the correct example.",
+    "a": "INSERT INTO STUDENST(USN_ID, FIRSTNAME)VALUES(10,=E2=80=99ELENA=E2=80=99)"
+  },
+  {
+    "q": "Suppose that the user wanted to add a new column name as CUST_NAME data type char size 6. What is the correct SQL statement to use?",
+    "a": "ALTER TABLE PARTSADD CUST_NAME CHAR(6);"
+  },
+  {
+    "q": "Suppose that the user wanted to add a new column name as CUST_NAME data type char size 6. What is the correct type of statement to use?",
+    "a": "ALTER"
+  },
+  {
+    "q": "Supposed that the user uses the ff SELECT statement: what will be the possible output.SELECT GRADE AS STUDENT MARK FROM GRADE_REPORT;",
+    "a": "Error because of missing =E2=80=9C=E2=80=9D mark"
+  },
+  {
+    "q": "This character is used to override the default precedence or to clarify the statement.",
+    "a": "( )"
+  },
+  {
+    "q": "This is use to accept character input and can return both character and number values.",
+    "a": "Character function"
+  },
+  {
+    "q": "This is use to create expression with number and date values.",
+    "a": "Arithmetic expression"
+  },
+  {
+    "q": "This is use to find the numeric position of a named character starting at character position n.",
+    "a": "INSTR"
+  },
+  {
+    "q": "This is use to return one result per group of row.",
+    "a": "Multiple row"
+  },
+  {
+    "q": "This is use to return one result per row.",
+    "a": "Single row"
+  },
+  {
+    "q": "This is use to Selects the columns in a table that are returned by a query. Selects a few or as many of the columns as required.",
+    "a": "Projection"
+  },
+  {
+    "q": "This is used to brings together data that is stored in different tables by specifying the link between them.",
+    "a": "Joins"
+  },
+  {
+    "q": "This is used to converts the first letter of each word to uppercase and the remaining letters to lowercase.",
+    "a": "INITCAT"
+  },
+  {
+    "q": "This is used to display rows based on a range of values.",
+    "a": "Between"
+  },
+  {
+    "q": "This is used to in conditions that compare one expression with another value or expression.",
+    "a": "Comparison"
+  },
+  {
+    "q": "This is used to perform wildcard searches of valid search string values.",
+    "a": "Like"
+  },
+  {
+    "q": "This is used to restrict the rows that are returned by a query.",
+    "a": "Where"
+  },
+  {
+    "q": "This is used to selects the rows in a table that are returned by a query. Various criteria can be used to restrict the rows that are retrieved.",
+    "a": "Selection"
+  },
+  {
+    "q": "This is used to test for values in a specified set of values.",
+    "a": "IN"
+  },
+  {
+    "q": "Trims leading or trailing characters (or both) from a character string.",
+    "a": "Trim"
+  },
+  {
+    "q": "What is the return value if the user try to do the following:SELECT TRUNC (65.73,-2) FROM DUAL;",
+    "a": "0"
+  },
+  {
+    "q": "Which of the following datatype is not being used in oracle?",
+    "a": "INT"
+  },
+  {
+    "q": "Which of the following is not part of advantage of database?",
+    "a": "Database instance"
+  },
+  {
+    "q": "Which of the following is not part of basic SELECT statement",
+    "a": "Logical condition"
+  },
+  {
+    "q": "Which of the following is not part of characteristics of database?",
+    "a": "Data Processing"
+  },
+  {
+    "q": "Which of the following is not part of common Comparison operator?",
+    "a": "LIKE"
+  },
+  {
+    "q": "Which of the following is not part of data control language?",
+    "a": "Insert"
+  },
+  {
+    "q": "Which of the following is not part of data manipulation language?",
+    "a": "Alter"
+  },
+  {
+    "q": "Which of the following is not part of DDL statement?",
+    "a": "DELETE"
+  },
+  {
+    "q": "Which of the following is not part of disadvantage of database?",
+    "a": "Data integrity"
+  },
+  {
+    "q": "Which of the following is not part of DML statement?",
+    "a": "CREATE table"
+  },
+  {
+    "q": "Which of the following is not part of handling data?",
+    "a": "Semi-Computerized"
+  },
+  {
+    "q": "Which of the following is not part of other Comparison Operator?",
+    "a": "<>"
+  },
+  {
+    "q": "Which of the following is not part of transaction control?",
+    "a": "CREATE"
+  },
+  {
+    "q": "Which of the following is not the correct example of entity?",
+    "a": "Phone_no"
+  },
+  {
+    "q": "Which of the following is not true about ALTER statement?",
+    "a": "Insert new row in a table"
+  },
+  {
+    "q": "Which of the following is not true about writing SQL statements?",
+    "a": "SQL statements are case sensitive"
+  },
+  {
+    "q": "Which of the following is the correct example inserting a new value to STUDENTS table that will only add new data to STUD_ID and LASTNAME? The stud_id is 10 and lastname is 'CRUZ' and the rest of the column is set to NULL.",
+    "a": "INSERT INTO STUDENTS VALUES (10,'CRUZ',NULL,NULL);"
+  },
+  {
+    "q": "Which of the following is the correct example inserting a new value to STUDENTS table that will only add new data to STUD_ID and LASTNAME? The stud_id is 10 and lastname is =E2=80=98CRUZ'",
+    "a": "INSERT INTO STUDENTS(STUD_ID,LASTNAME)VALUES(10,=E2=80=99CRUZ=E2=80=99);"
+  },
+  {
+    "q": "Which of the following is the correct example of adding a new column ADDRESS datatypevarchar size 20 to EMPLOYEES table?",
+    "a": "ALTER TABLE EMPLOYEESADD ADDRESS VARCHAR(20);"
+  },
+  {
+    "q": "Which of the following is the correct example of adding a new column CONTACT_NOdatatypeNUMBER size 11 to EMPLOYEES table?",
+    "a": "ALTER TABLE EMPLOYEESADD CONTACT_NO NUMBER(11);"
+  },
+  {
+    "q": "Which of the following is the correct example of creating a new table STUDENTS? The column STUD_ID is set to primary key.",
+    "a": "CREATE TABLE STUDENTS( STUD_ID NUMBER(3) PRIMARY KEY);"
+  },
+  {
+    "q": "Which of the following is the correct example of deleting a student record from STUDENTS table whose COURSE is equal to NULL;",
+    "a": "DELETE FROM STUDENTSWHERE COURSE IS NULL;"
+  },
+  {
+    "q": "Which of the following is the correct example of deleting all records in STUDENTS table;",
+    "a": "DELETE FROM STUDENTS;"
+  },
+  {
+    "q": "Which of the following is the correct example of dropping the table EMPLOYEES?",
+    "a": "DROP TABLE EMPLOYEES;"
+  },
+  {
+    "q": "Which of the following is the correct example of inserting new values to STUDENTS table where the course is set to NULL;",
+    "a": "INSERT INTO STUDENTS VALUES(1,'DELA CRUZ','JUANITO',NULL);"
+  },
+  {
+    "q": "Which of the following is the correct example of inserting new values to STUDENTS table?",
+    "a": "INSERT INTO STUDENTS VALUES(1,'DELA CRUZ','JUANITO','BSIT');"
+  },
+  {
+    "q": "Which of the following is the correct example of modifying the column JOB_ID? Change the datatype size to 10.",
+    "a": "ALTER TABLE EMPLOYEESMODIFY JOB_ID CHAR(10);"
+  },
+  {
+    "q": "Which of the following is the correct example of modifying the column lastname? Change the datatype size to 20.",
+    "a": "ALTER TABLE EMPLOYEESMODIFY LASTNAME VARCHAR(20);"
+  },
+  {
+    "q": "Which of the following is the correct example of removing a column FIRSTNAME from EMPLOYEES table?",
+    "a": "ALTER TABLE EMPLOYEESDROP COLUMN FIRSTNAME;"
+  },
+  {
+    "q": "Which of the following is the correct example of removing a column SALARY from EMPLOYEES table?",
+    "a": "ALTER TABLE EMPLOYEESDROP COLUMN SALARY;"
+  },
+  {
+    "q": "Which of the following is the correct example of renaming the table EMPLOYEES to WORKERS?",
+    "a": "RENAME EMPLOYEES TO WORKERS;"
+  },
+  {
+    "q": "Which of the following is the correct example of truncating the table EMPLOYEES?",
+    "a": "TRUNCATE TABLE EMPLOYEES;"
+  },
+  {
+    "q": "Which of the following is the correct example of updating the COURSE to =E2=80=98N/A' of all students from STUDENTS table whose course IS NULL;",
+    "a": "UPDATE STUDENTSSET COURSE = =E2=80=98N/A=E2=80=99WHERE COURSE IS NULL;"
+  },
+  {
+    "q": "Which of the following is the correct example of updating the COURSE to =E2=80=98N/A' of all students from STUDENTS table whose course IS NULL;",
+    "a": "UPDATE STUDENTSSET COURSE = =E2=80=98N/A'WHERE COURSE IS NULL;"
+  },
+  {
+    "q": "Which of the following is the correct example of updating the LASTNAME to =E2=80=98REYES' of all students from STUDENTS table whose STUD_ID is equal to 01020564?",
+    "a": "UPDATE STUDENTSSET LASTNAME = =E2=80=98REYES=E2=80=99WHERE STUD_ID = 01020564;"
+  },
+  {
+    "q": "Which of the following is the correct example of updating the LASTNAME to =E2=80=98REYES' of all students from STUDENTS table whose STUD_ID is equal to 01020564?",
+    "a": "UPDATE STUDENTSSET LASTNAME = =E2=80=98REYES'WHERE STUD_ID = 01020564;"
+  },
+  {
+    "q": "Which of the following is the correct example updating all student COURSE to =E2=80=98BSIT' from STUDENTS table?",
+    "a": "UPDATE STUDENTSSET COURSE = =E2=80=98BSIT=E2=80=99;"
+  },
+  {
+    "q": "Which of the following is the correct example updating all student COURSE to =E2=80=98BSIT' from STUDENTS table?",
+    "a": "UPDATE STUDENTSSET COURSE = =E2=80=98BSIT';"
+  },
+  {
+    "q": "Which of the following is the correct example updating the student LASTNAME TO =E2=80=98SANTOS' and course to =E2=80=98BSCS' whose STUD_ID is equal to 109?",
+    "a": "UPDATE EMPLOYEESSET LASTNAME = =E2=80=98SANTOS=E2=80=99, COURSE = =E2=80=98BSCS=E2=80=99WHERE STUD_ID = 109;"
+  },
+  {
+    "q": "Which of the following is the correct example updating the student LASTNAME TO =E2=80=98SANTOS' and course to =E2=80=98BSCS' whose STUD_ID is equal to 109?",
+    "a": "UPDATE EMPLOYEESSET LASTNAME = =E2=80=98SANTOS', COURSE = =E2=80=98BSCS'WHERE STUD_ID = 109;"
+  },
+  {
+    "q": "Which of the following query is correct which will display the same output as shown below?",
+    "a": "SELECT COUNT(DISTINCT MANAGER_ID) AS \"NO OF MANAGER_ID\" FROM EMPLOYEES;"
+  }
+]

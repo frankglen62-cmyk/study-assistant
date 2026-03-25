@@ -1,0 +1,1002 @@
+[
+  {
+    "q": "___________ uses artifacts to present data visually.",
+    "a": "data visualization"
+  },
+  {
+    "q": "_____________ includes identifying groups of data record.",
+    "a": "Cluster analysis"
+  },
+  {
+    "q": "_____________ is rated as the number one business analytics software",
+    "a": "Rapid miner"
+  },
+  {
+    "q": "_______________ is a data structure that every component has a unique processor and succesor.",
+    "a": "linear"
+  },
+  {
+    "q": "“ All models are wrong but some are useful “",
+    "a": "George E P Box"
+  },
+  {
+    "q": "A bell shaped curve that is symmetric about a vertical line.",
+    "a": "normal distribution"
+  },
+  {
+    "q": "A bell-shaped distribution that is symmetric about a vertical line.",
+    "a": "normal"
+  },
+  {
+    "q": "A data having the same number of occurrence in scores is said to be",
+    "a": "no mode"
+  },
+  {
+    "q": "A distribution where large distribution are displayed.",
+    "a": "Grouped frequency distribution"
+  },
+  {
+    "q": "A frequently used method as it enables binary variables, sum polytomous variable to be modelled.",
+    "a": "logistic regression"
+  },
+  {
+    "q": "A graph that is used to indicate frequency distribution.",
+    "a": "histogram"
+  },
+  {
+    "q": "A graph used to indicate intervals in a frequency distribution is refereed to as a______________.",
+    "a": "histogram"
+  },
+  {
+    "q": "A matrix that has the same number of rows and columns is called",
+    "a": "Square"
+  },
+  {
+    "q": "A model thatcorresponds to the case where the dependent variable has more than two categories.",
+    "a": "multinomial logit model"
+  },
+  {
+    "q": "A negative correlation exists when___________.",
+    "a": "x increases y decreases"
+  },
+  {
+    "q": "A network purpoting to describe family memberships",
+    "a": "network topology"
+  },
+  {
+    "q": "A new phenomenon for the explosion of _________data",
+    "a": "interaction"
+  },
+  {
+    "q": "A perfect positive correlation coefficient is equal to",
+    "a": "1"
+  },
+  {
+    "q": "A positive z-score means that the score is",
+    "a": "Higherthan the mean"
+  },
+  {
+    "q": "A score of 3 in2,4,4,4,5,5,6,8,9 is",
+    "a": "102 below the mean"
+  },
+  {
+    "q": "A score of 50 lies 2 standard deviations above a mean of 30.What is the value of the standard deviation?",
+    "a": "10"
+  },
+  {
+    "q": "A special type of function where the domain is a set of consecutive integers.",
+    "a": "sequence"
+  },
+  {
+    "q": "A survey of 100 consumers said that the price charged for a kilo of rice could be approximated by a normal distribution with a mean of 35 and a standard deviation of 4.How many are less than 39?",
+    "a": "84"
+  },
+  {
+    "q": "A survey of 100 consumers said that the price charged for a kilo of rice could be approximated by a normal distribution with a mean of 35 and a standard deviation of 4.How many of them lie between 27 and 43?",
+    "a": "95"
+  },
+  {
+    "q": "A vegetable distributor knows that during the month of August ,the weights of tomatoes are normally distributed with a mean of 0.61 lb and a standard deviation of 0.15 lb. How many can be expected to weigh between 0.31 to 0.91 in a shipment of 4500 tomatoes.",
+    "a": "4275"
+  },
+  {
+    "q": "A vegetable distributor knows that during the month of August ,the weights of tomatoes are normally distributed with a mean of 0.61 lb and a standard deviation of 0.15 lb. How many can be expected to weigh more than 0.31 lb in a shipment of 6000 tomatoes.",
+    "a": "150"
+  },
+  {
+    "q": "A vegetable distributor knows that during the month of August ,the weights of tomatoes are normally distributed with a mean of 0.61 lb and a standard deviation of 0.15 lb. What percent of the tomatoes weigh less than 0.71 lb?",
+    "a": "84"
+  },
+  {
+    "q": "According to Hilary Mason which is NOT a skill that a good data scientist must cultivate.",
+    "a": "critical thinking"
+  },
+  {
+    "q": "Addition and subtraction of matrices only is possible if two are more matrices.",
+    "a": "Have same sizes"
+  },
+  {
+    "q": "Adistribution with 4 modes is said to be a _________distribution",
+    "a": "multimodal"
+  },
+  {
+    "q": "Algorithm analysisis an important part of a broader_____________.",
+    "a": "computational complexity theory"
+  },
+  {
+    "q": "All representations are ________.",
+    "a": "imperfect"
+  },
+  {
+    "q": "An array is a good example of _________data structure.",
+    "a": "static"
+  },
+  {
+    "q": "An example of an abstract computer.",
+    "a": "Turing machine"
+  },
+  {
+    "q": "Another term for an empty set.",
+    "a": "null"
+  },
+  {
+    "q": "Another term for text analytics.",
+    "a": "text mining"
+  },
+  {
+    "q": "Another term for variability",
+    "a": "dispersion"
+  },
+  {
+    "q": "Any way to get new expressions from old ones",
+    "a": "inference"
+  },
+  {
+    "q": "As of 2014,there are _______million of tweets a day.",
+    "a": "500"
+  },
+  {
+    "q": "Classification table is also called ________",
+    "a": "confusion matrix"
+  },
+  {
+    "q": "Data involving two variables.",
+    "a": "bivariate"
+  },
+  {
+    "q": "Data is NOT information unless we add_________.",
+    "a": "analytics"
+  },
+  {
+    "q": "Displays the performance of a model and enables a comparison to be made with other models.",
+    "a": "ROC curve"
+  },
+  {
+    "q": "Earlier name fordata science.",
+    "a": "datalogy"
+  },
+  {
+    "q": "Empirical rule for a normal distribution lie ______% of data with 1 standard deviation below and above the mean.",
+    "a": "68"
+  },
+  {
+    "q": "Empirical rule for a normal distribution that is 2 standard deviations above and below the mean is ________% of data.",
+    "a": "95"
+  },
+  {
+    "q": "Empirical rule for a normal distribution that is 3 standard deviations above and below the mean covers ______% of the data.",
+    "a": "997"
+  },
+  {
+    "q": "Exabyte means ________bytes",
+    "a": "billionbillion"
+  },
+  {
+    "q": "Example of a data product.",
+    "a": "google map"
+  },
+  {
+    "q": "He coined the term \"data scientist\"",
+    "a": "DJ Patil"
+  },
+  {
+    "q": "He coined the term “analysis of algorithms”.",
+    "a": "Donald Knuth"
+  },
+  {
+    "q": "He is someone who asks interesting questions on formal and informal theory.",
+    "a": "data scientist"
+  },
+  {
+    "q": "He pointed out that until 2003 ,all of mankind had generated just 5 exabytes of data",
+    "a": "Eric Schmidt"
+  },
+  {
+    "q": "He proposed the use of a penalized likehood function.",
+    "a": "Firth"
+  },
+  {
+    "q": "He said that “ In mathematics the art of proposing a question must be held of higher value than solving it”.",
+    "a": "GeorgCantor"
+  },
+  {
+    "q": "How many bytes of data are generated every two days in today's world?",
+    "a": "5 exabytes"
+  },
+  {
+    "q": "If A={ 2,3} B={4,5},which of the following is a Cartesian product of the two sets?",
+    "a": "{ (3,4) (3,5) (2,4 ) {2,5) }"
+  },
+  {
+    "q": "If in a distribution all scores are distinctthen_____________",
+    "a": "thereis no mode"
+  },
+  {
+    "q": "If R= { (3,3), (3,6), (5,5),(5,10),(6.12)} is a binary relation in R which the domain is",
+    "a": "{3,5,6}"
+  },
+  {
+    "q": "If the standard deviation of a distribution is 3, the variance is",
+    "a": "9"
+  },
+  {
+    "q": "If the standard deviation of a distribution is 3.5, the variance is",
+    "a": "12.25"
+  },
+  {
+    "q": "If there are 101 scores the median is equal tothe _____ranked score",
+    "a": "51st"
+  },
+  {
+    "q": "If there are 103 scores the median is equal to the _____ranked score.",
+    "a": "52nd"
+  },
+  {
+    "q": "In 2,4,4,4,5,5,6,8,9 the range is",
+    "a": "7"
+  },
+  {
+    "q": "In the equation of the regression line represented by Y= 1.24 X + 6.9 if X=2 then Y =?",
+    "a": "9.38"
+  },
+  {
+    "q": "IOT means",
+    "a": "Internet of things"
+  },
+  {
+    "q": "It allows you to see which value of the explanatory variable corresponds a given probability success",
+    "a": "probability analysis table"
+  },
+  {
+    "q": "It corresponds to the case where the dependent variable has more than 2 categories.",
+    "a": "multinomial logit model"
+  },
+  {
+    "q": "It does NOT require the assumption that the parameters are normally distributed",
+    "a": "profile likehood"
+  },
+  {
+    "q": "It does NOT require the assumption that the parameters are normally distributed.",
+    "a": "profile likehood"
+  },
+  {
+    "q": "It enables the performance of a model and enables a comparison to be made with other models.",
+    "a": "ROC"
+  },
+  {
+    "q": "It expands available data enormously since there is so much more text being generated than numbers.",
+    "a": "Text mining"
+  },
+  {
+    "q": "It expands available data enormously.",
+    "a": "text mining"
+  },
+  {
+    "q": "It extracts meaningful numerical indices from information and make it available to statistical andmachine learning.",
+    "a": "Text analytics"
+  },
+  {
+    "q": "It has the goal of discovering useful information to support decision making.",
+    "a": "data analysis"
+  },
+  {
+    "q": "It includes identifying groups of data records",
+    "a": "data mining"
+  },
+  {
+    "q": "It involves a commitment in viewing the world in terms of individual entities and relations between them.",
+    "a": "logic"
+  },
+  {
+    "q": "It involves a commitment in viewing the world in terms of individual entities and relations.",
+    "a": "logic"
+  },
+  {
+    "q": "It is a collection of machine learning algorithms for data mining task",
+    "a": "WEKA"
+  },
+  {
+    "q": "It is a free software programming language.",
+    "a": "R-programming"
+  },
+  {
+    "q": "It is a language that we say things about the world",
+    "a": "Medium of human expression"
+  },
+  {
+    "q": "It is a method for discovering patterns in large data sets.",
+    "a": "Data Mining"
+  },
+  {
+    "q": "It is a module in rapid miner that considers the workflow",
+    "a": "studio"
+  },
+  {
+    "q": "It is a numerical description of the outcome of a statistical experiment",
+    "a": "random variable"
+  },
+  {
+    "q": "It is a numerical function of the outcome of a statistical experiment.",
+    "a": "random variable"
+  },
+  {
+    "q": "it is a perfect software for machine learning.",
+    "a": "orange"
+  },
+  {
+    "q": "It is a perfect software which is written in Python computing language",
+    "a": "Orange"
+  },
+  {
+    "q": "It is a powerful tool that shows the network of data.",
+    "a": "Knime"
+  },
+  {
+    "q": "It is a process of finding the computational complexity of algorithms.",
+    "a": "analysis of algorithms"
+  },
+  {
+    "q": "It is a process that goes on internally while most things it wishes about exists only externally.",
+    "a": "reasoning"
+  },
+  {
+    "q": "It is a theoretical classification that estimates and anticipates the increase increase in running time for algorithms.",
+    "a": "run time analysis"
+  },
+  {
+    "q": "It is a variety of formal calculation typically deduction",
+    "a": "Intelligent Reasoning"
+  },
+  {
+    "q": "It is often used as a model of the number of arrivals at a facility in a given period of time.",
+    "a": "poison probability distribution"
+  },
+  {
+    "q": "It is often used as model of of the number arrivals at a facility in a given period of time",
+    "a": "poison probability distribution"
+  },
+  {
+    "q": "It is popular among financial data analysts.",
+    "a": "Knime"
+  },
+  {
+    "q": "It is used for prototyping in Rapid miner.",
+    "a": "studio"
+  },
+  {
+    "q": "It is used in organization’s strategic and tactical business decision making.",
+    "a": "business intelligence"
+  },
+  {
+    "q": "It is used to discover patterns in large data sets",
+    "a": "Data mining"
+  },
+  {
+    "q": "It is used to enable an entity to determine consequences by thinking rather than acting.",
+    "a": "Knowledge Representation"
+  },
+  {
+    "q": "It list the percent of data in a distribution.",
+    "a": "relative frequency distribution"
+  },
+  {
+    "q": "It makes complex data more understandable and usable.",
+    "a": "data visualization"
+  },
+  {
+    "q": "It offers a way to examine trends from collected data and derive insights from it.",
+    "a": "Business Intelligence"
+  },
+  {
+    "q": "It partitions a ranked data into four equal groups.",
+    "a": "quartile"
+  },
+  {
+    "q": "It provides the height or the value of the function at any particular value of x",
+    "a": "probability density function"
+  },
+  {
+    "q": "It refers to a data structure that grows and shrinks at execution time.",
+    "a": "dynamic"
+  },
+  {
+    "q": "It refers to a frequently used method as it enables binary or polytomous variables to be modelled.",
+    "a": "logistic regression"
+  },
+  {
+    "q": "It refers to the degree of relationship between two variables?",
+    "a": "Correlation"
+  },
+  {
+    "q": "It refers to well based theories and sound business judgement.",
+    "a": "DataScience"
+  },
+  {
+    "q": "It relates the length of an algorithm to the number of storage location it uses.",
+    "a": "space complexity"
+  },
+  {
+    "q": "It relates the length of an algorithm’s input to the number of steps it takes.",
+    "a": "time complexity"
+  },
+  {
+    "q": "It sees a set of prototypes in particular prototypical diseases to be matched against the case at hand.",
+    "a": "INTERNIST"
+  },
+  {
+    "q": "It sees the medical world as made of empirical associations connecting symptoms to diseases.",
+    "a": "MYCIN"
+  },
+  {
+    "q": "It shows a high correlation between the incidence of flu and searches about flu on google.",
+    "a": "GoogleFlu trends"
+  },
+  {
+    "q": "It transforms data into actionable intelligence for business purposes.",
+    "a": "Business Intelligence"
+  },
+  {
+    "q": "It views the world in terms of attribute -object value triples",
+    "a": "rule-based"
+  },
+  {
+    "q": "It views the world in terms of attributes object value triples.",
+    "a": "rule based"
+  },
+  {
+    "q": "It views the world in thinking of prototypical objects.",
+    "a": "frame"
+  },
+  {
+    "q": "KR as a _________is a substitute for the thing itself",
+    "a": "surrogate"
+  },
+  {
+    "q": "KR is a set of __________commitments.",
+    "a": "ontological"
+  },
+  {
+    "q": "KR means __________________________.",
+    "a": "Knowledge Representation"
+  },
+  {
+    "q": "Lists the percent of data in each distribution.",
+    "a": "relative frequency distribution"
+  },
+  {
+    "q": "MatrixB is",
+    "a": "invertible"
+  },
+  {
+    "q": "ML means:",
+    "a": "Machine Learning"
+  },
+  {
+    "q": "Null strings are indicated by",
+    "a": "λ"
+  },
+  {
+    "q": "On an examination given to 1000 students, Jef’s score of 80 was higher than the score of 480 students who took the exam. What is the percentile for Jef’s score?",
+    "a": "48th"
+  },
+  {
+    "q": "PAW means____________.",
+    "a": "PredictiveAnalytics World"
+  },
+  {
+    "q": "Primarily used for data pre-processing",
+    "a": "Knime"
+  },
+  {
+    "q": "Refers to using tools of statistics to present data visually.",
+    "a": "data visualization"
+  },
+  {
+    "q": "ROC comes from ______theory.",
+    "a": "signal detection"
+  },
+  {
+    "q": "SBC means_________",
+    "a": "Schwar's Bayesian Criterion"
+  },
+  {
+    "q": "The _______value is the weighted average of the value the random variable may assume",
+    "a": "Expected"
+  },
+  {
+    "q": "The area of the standard normal curve to the right of z=0.82 is _______.",
+    "a": "0206"
+  },
+  {
+    "q": "The classification table that XLSTAT can display",
+    "a": "confusion matrix"
+  },
+  {
+    "q": "The constant multiplicative factor in which algorithms are related are_______ constants.",
+    "a": "hidden"
+  },
+  {
+    "q": "The creation of a data product contains 3 components EXCEPT",
+    "a": "time"
+  },
+  {
+    "q": "The creation of data from varied sources and its qualification into information.",
+    "a": "datafication"
+  },
+  {
+    "q": "The creation of data from varied sources and its quantification into information.",
+    "a": "Datafication"
+  },
+  {
+    "q": "The developer of farmville, a famous game in the internet.",
+    "a": "Zynga Incorporated"
+  },
+  {
+    "q": "The difference between the highest and lowest value.",
+    "a": "range"
+  },
+  {
+    "q": "The distribution2,4,4,4,5,5,6,8,9 is saidto be",
+    "a": "unimodal"
+  },
+  {
+    "q": "The equation of the _______line predicts the value of Y given X.",
+    "a": "Regression"
+  },
+  {
+    "q": "The expected value or mean of a random variable in discrete case",
+    "a": "probability mass distribution"
+  },
+  {
+    "q": "The explosion of _______data is the main reason why every 2 days 5 exabytes of data are generated.",
+    "a": "interaction"
+  },
+  {
+    "q": "The following are abstract notions EXCEPT",
+    "a": "casualty"
+  },
+  {
+    "q": "The following are artifacts used indata analysisEXCEPT:",
+    "a": "ANOVA"
+  },
+  {
+    "q": "The following are continuous distributions EXCEPT",
+    "a": "geometric"
+  },
+  {
+    "q": "The following are data mining techniques EXCEPT:",
+    "a": "Collection"
+  },
+  {
+    "q": "The following are discrete distributions EXCEPT",
+    "a": "chi-square"
+  },
+  {
+    "q": "The following are distinct roles that KR plays EXCEPT",
+    "a": "Medium for pragmatically diligent interpretation"
+  },
+  {
+    "q": "The following are elements in an analytic plan EXCEPT",
+    "a": "graphs"
+  },
+  {
+    "q": "The following are large inputs EXCEPT",
+    "a": "Big beta notation"
+  },
+  {
+    "q": "The following are softwares used in data mining EXCEPT",
+    "a": "SPSS"
+  },
+  {
+    "q": "The following are the 3V's of big data EXCEPT",
+    "a": "veracity"
+  },
+  {
+    "q": "The following processes are used indata analysisEXCEPT:",
+    "a": "collecting"
+  },
+  {
+    "q": "The following provided inspirations of what constitute intelligent reasoning EXCEPT",
+    "a": "philosophy"
+  },
+  {
+    "q": "The following provided inspirations of what constitutes intelligent reasoning EXCEPT",
+    "a": "Sociology"
+  },
+  {
+    "q": "The function describing the performance of an algorithm is usually an upper bound determined from ______inputs.",
+    "a": "worst case"
+  },
+  {
+    "q": "The goal is to transform raw data into understandable business information.",
+    "a": "Data mining"
+  },
+  {
+    "q": "The integral of all the values of a random variable in a probability density function is equal to______.",
+    "a": "One"
+  },
+  {
+    "q": "The intersection of the two sets A={ 2,3} B={4,5} is a What is the size of the product of a 5x 6 and a 6x 8 matrices?",
+    "a": "null set"
+  },
+  {
+    "q": "The major outcome of correlation.",
+    "a": "prediction"
+  },
+  {
+    "q": "The method of correlation used for ranked score is ________.",
+    "a": "Spearman rho"
+  },
+  {
+    "q": "The method that does NOT require t he assumption that the parameters are normally distributed.",
+    "a": "profile likehood"
+  },
+  {
+    "q": "The method used to iteratively find a solution to a multinomial legit model.",
+    "a": "Newton-Raphson algorithm"
+  },
+  {
+    "q": "The middle-most value in a ranked list of numbers.",
+    "a": "median"
+  },
+  {
+    "q": "The most common function used to link probability to explanatory variables",
+    "a": "logit model"
+  },
+  {
+    "q": "The most common functions used to link probability to the explanatory variables are the LOGIT model and ________model.",
+    "a": "PROBIT"
+  },
+  {
+    "q": "The most commonly used continuous probability distribution",
+    "a": "normal"
+  },
+  {
+    "q": "The most frequent score",
+    "a": "mode"
+  },
+  {
+    "q": "The most widely used continuous probability distribution",
+    "a": "normal probability distribution"
+  },
+  {
+    "q": "The normal distribution with a mean of 0 and standard deviation of 1.",
+    "a": "Standard"
+  },
+  {
+    "q": "The number that occurs most frequently is called________.",
+    "a": "Mode"
+  },
+  {
+    "q": "The person who said that “ The future is not google-able”.",
+    "a": "William Gibson"
+  },
+  {
+    "q": "The process of inspecting,cleansing,transforming and modelling data with the goal of discovering useful information.",
+    "a": "data analysis"
+  },
+  {
+    "q": "The product of a 2x5 and 5x3 matrices is a ______matrix",
+    "a": "2x3"
+  },
+  {
+    "q": "The proportion of a well-classified negative event.",
+    "a": "specificity"
+  },
+  {
+    "q": "The proportion of a well-defined classified positive events.",
+    "a": "sensitivity"
+  },
+  {
+    "q": "The quantification of data into information.",
+    "a": "Datafication"
+  },
+  {
+    "q": "The range in R={ (3,3), (3,6), (5,5),(5,10),(6.12)} is a binary relation in R is",
+    "a": "{3,5,6,10,12}"
+  },
+  {
+    "q": "The score NOT easily affected by extreme values.",
+    "a": "Median"
+  },
+  {
+    "q": "The setsA= { x/x is a distinct letter in the word \"MATHEMATICS\"} and B={x/x is a distinct letter in the word\"STATISTICS\"} , the two sets are",
+    "a": "Equal (not sure)"
+  },
+  {
+    "q": "The standard deviation for the datain2,4,4,4,5,5,6,8,9",
+    "a": "217"
+  },
+  {
+    "q": "The symbol used to indicate strings with no elements.",
+    "a": "λ"
+  },
+  {
+    "q": "The two sets If A={ 2,3} B={4,5} are said to be",
+    "a": "disjoint"
+  },
+  {
+    "q": "The value of X in the regression equation Y= 1.24 X + 6.9 if Y=13.1 is",
+    "a": "5"
+  },
+  {
+    "q": "There are how many data mining techniques?",
+    "a": "7"
+  },
+  {
+    "q": "Thescore easily affected by extreme values is the _________",
+    "a": "Mean"
+  },
+  {
+    "q": "These are the data skills that a good data scientist need to cultivate EXCEPT",
+    "a": "speaking"
+  },
+  {
+    "q": "To estimate the parameters of the model ,the ________function is maximized",
+    "a": "likehood"
+  },
+  {
+    "q": "Two of the most widely used discrete probability distribution",
+    "a": "poisson and binomial"
+  },
+  {
+    "q": "What conditions must be satisfied in the development of a probability function for a discrete random variable?a must be nonnegativebsum of the probabilities for each value must be equal to 1c may assume any valuedassumes specific values",
+    "a": "a and b"
+  },
+  {
+    "q": "What does GLM means?",
+    "a": "Generalized Linear model"
+  },
+  {
+    "q": "What does ROC mean?",
+    "a": "Receiver Operating Characteristics"
+  },
+  {
+    "q": "What increases data volume?",
+    "a": "velocity"
+  },
+  {
+    "q": "What is a data structure that has a fixed size?",
+    "a": "static"
+  },
+  {
+    "q": "What is a great example of data product?",
+    "a": "google maps"
+  },
+  {
+    "q": "What is an organized collection of information and set of information used to manage that operation?",
+    "a": "ADT"
+  },
+  {
+    "q": "What is the correct meaning of ADT?",
+    "a": "Abstract Data Type"
+  },
+  {
+    "q": "What is the earlier name fordata science?",
+    "a": "datalogy"
+  },
+  {
+    "q": "What is the focus ofdata science?",
+    "a": "manipulate data efficiently and effectively"
+  },
+  {
+    "q": "What is the mean for a standard normal distribution?",
+    "a": "0"
+  },
+  {
+    "q": "What is the process of deriving useful information from text?",
+    "a": "Text Analytics"
+  },
+  {
+    "q": "What is the shape of a normal probability distribution?",
+    "a": "bell-shaped"
+  },
+  {
+    "q": "What is the value of the mean and standard deviation in a normal probability density function",
+    "a": "mean-50 s=5"
+  },
+  {
+    "q": "What is the value of the mean if a score of 110 is 3 standard deviation above the mean?",
+    "a": "95"
+  },
+  {
+    "q": "What is the value of the mean in a normal probability density function?",
+    "a": "50"
+  },
+  {
+    "q": "What is the value of the standard deviation in a standard normal distribution?",
+    "a": "1"
+  },
+  {
+    "q": "What is the value when it is 2 standard deviations above the mean in a normal probability distribution?",
+    "a": "60"
+  },
+  {
+    "q": "What is value of quartile 3 in2,4,4,4,5,5,6,8,9 ?",
+    "a": "7"
+  },
+  {
+    "q": "What percent of data will lie within 2 standard deviation of the mean?",
+    "a": "95"
+  },
+  {
+    "q": "What programming language doe Orange use?",
+    "a": "python"
+  },
+  {
+    "q": "What programming language is used in Rapid miner?",
+    "a": "Java"
+  },
+  {
+    "q": "What range of values 3 SD below and above the mean in a normal distribution if the mean is 10 and standard deviation is 2?",
+    "a": "4-16"
+  },
+  {
+    "q": "What range of values lie between 3 standard deviations above and below the mean if the mean is 80 and the standard deviation is 3?",
+    "a": "71-89"
+  },
+  {
+    "q": "What type of text are processed in Text analytics?",
+    "a": "unstructured"
+  },
+  {
+    "q": "Which belong to the GLM family?",
+    "a": "logistic and linear"
+  },
+  {
+    "q": "Which function provides the value of a function at any particular value of x but does NOT directly give the probability of the random variable?",
+    "a": "Probability density"
+  },
+  {
+    "q": "Which is an example of a discrete random variable?",
+    "a": "number of book"
+  },
+  {
+    "q": "Which is NOT a basic representation technologies?",
+    "a": "graph"
+  },
+  {
+    "q": "Which is NOT a basic representation technology?",
+    "a": "graph"
+  },
+  {
+    "q": "Which is NOT a component of KR?",
+    "a": "it adheres to the function"
+  },
+  {
+    "q": "Which is NOT a correct correlation Coefficient?",
+    "a": "1.2"
+  },
+  {
+    "q": "Which is NOT a KR technology?",
+    "a": "roles"
+  },
+  {
+    "q": "Which is NOT a measure of central tendency?",
+    "a": "standard deviation"
+  },
+  {
+    "q": "Which is NOT a measure of variability?",
+    "a": "quartile"
+  },
+  {
+    "q": "Which is NOT a value of r ?",
+    "a": "1.02"
+  },
+  {
+    "q": "Which is Not an interaction data?",
+    "a": "data base"
+  },
+  {
+    "q": "Which is primarily written in C and in Fortran?",
+    "a": "R-programming"
+  },
+  {
+    "q": "Which isNOTa characteristic feature of data structure?",
+    "a": "It contains a fixed structure"
+  },
+  {
+    "q": "Which of the following data mining techniques is predictive?",
+    "a": "classification"
+  },
+  {
+    "q": "Which of the following does NOT use continuous distribution?",
+    "a": "hypergeometric"
+  },
+  {
+    "q": "Which of the following does not use discrete distribution ?",
+    "a": "chi=square"
+  },
+  {
+    "q": "Which of the following is a continuous distribution?",
+    "a": "Chi-square"
+  },
+  {
+    "q": "Which of the following is a discrete distribution?",
+    "a": "Hypergeometric"
+  },
+  {
+    "q": "Which of the following is a predictive data mining technique?",
+    "a": "regression"
+  },
+  {
+    "q": "Which of the following is NOT a data mining tool?",
+    "a": "Python"
+  },
+  {
+    "q": "Which of the following is NOT a goal in data mining?",
+    "a": "collecting data"
+  },
+  {
+    "q": "Which of the following is NOT a method used indata analysis?",
+    "a": "Statistics Analytics"
+  },
+  {
+    "q": "Which of the following is NOT a module in rapid Miner?",
+    "a": "loop"
+  },
+  {
+    "q": "Which of the following is the transpose of B?",
+    "a": "a"
+  },
+  {
+    "q": "Which of the following is TRUE when a distribution is normal?",
+    "a": "Mean=Median=Mode"
+  },
+  {
+    "q": "Which of the following is TRUE?",
+    "a": "A + B = B+ A"
+  },
+  {
+    "q": "Which of the following is used as a method for Correlation?",
+    "a": "Pearson r"
+  },
+  {
+    "q": "Which of the following pertains to predictive data mining technique?",
+    "a": "Regression"
+  },
+  {
+    "q": "Which of the following statements is TRUE?",
+    "a": "Q2=median"
+  },
+  {
+    "q": "Which of the following type of text is processed in text analytics?",
+    "a": "unstructured"
+  },
+  {
+    "q": "Which of the matrices is singular?",
+    "a": "A"
+  },
+  {
+    "q": "Which pair belongs to the same family of models called GLM ? i) logistic ii) linear regression iii) multinomial regression iv)probability",
+    "a": "I and ii"
+  },
+  {
+    "q": "Which pair belongs to the same family of models called GLM ?",
+    "a": "Logistic and linear regression"
+  },
+  {
+    "q": "Who said that \"The future is not google-able \" ?",
+    "a": "William Gillason"
+  }
+]

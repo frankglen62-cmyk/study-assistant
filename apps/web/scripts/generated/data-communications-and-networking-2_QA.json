@@ -1,0 +1,1446 @@
+[
+  {
+    "q": "\"Refer to the exhibit. According to the routing table, where will the router send a packet destined for 10.1.5.65? Network Interface Next-hop 10.1.1.0/24 e0 directly connected 10.1.2.0/24 e1 directly connected 10.1.3.0/25 s0 directly connected 10.1.4.0/24 s1 directly connected 10.1.5.0/24 e0 10.1.1.2 10.1.5.64/28 e1 10.1.2.2 10.1.5.64/29 s0 10.1.3.3 10.1.5.64/27 s1 10.1.4.4\"",
+    "a": "10.1.3.3"
+  },
+  {
+    "q": "\"Router On Stick\" is a method used for communicating inter-vlan using a router.",
+    "a": "True"
+  },
+  {
+    "q": "\"To enable network access to a remote destination, what three pieces of information must be configured on a host? 1. default gateway 2. hostname 3. DNS server address 4. DHCP server address 5. IP address 6. subnet mask\"",
+    "a": "1, 5, 2006"
+  },
+  {
+    "q": "\"True of False. Ingress is used to describe frames leaving the device through a particular port.\"",
+    "a": "The correct answer is 'False'."
+  },
+  {
+    "q": "\"Which of the following are 2 primary functions of a router? 1. Packet switching 2. Microsegmentation 3. Domain name resolution 4. Path selection 5. Flow control\"",
+    "a": "2 & 4"
+  },
+  {
+    "q": "\"Which three elements must be used when you configure a router interface for VLAN trunking? 1. one physical interface for each subinterface 2. one IP network or subnetwork for each subinterface 3. a management domain for each subinterface 4. subinterface encapsulation identifiers that match VLAN tags 5. one subinterface per VLAN 6. subinterface numbering that matches VLAN tags\"",
+    "a": "2, 4, 5"
+  },
+  {
+    "q": "\"Which two features are characteristics of flash memory? 1. Flash receives a copy of the IOS from RAM when a device is powered on. 2. Flash provides nonvolatile storage. 3. The contents of flash may be overwritten. 4. Flash is a component in Cisco switches but not in Cisco routers. 5. The contents of flash may be lost during a power cycle.\"",
+    "a": "2 & 3"
+  },
+  {
+    "q": "\"Which two features are characteristics of flash memory? 1. The contents of flash may be lost during a power cycle. 2. Flash provides nonvolatile storage. 3. The contents of flash may be overwritten. 4. Flash is a component in Cisco switches but not in Cisco routers. 5. Flash receives a copy of the IOS from RAM when a device is powered on.\"",
+    "a": "2 & 3"
+  },
+  {
+    "q": "\"Which two link protocols are used to carry multiple VLANs over a single link? 1. VTP 2. 802.1q 3. IGP 4. ISL 5. 802.3u\"",
+    "a": "2 & 4"
+  },
+  {
+    "q": "\"Which two network parameters are used by EIGRP as metrics to select the best path to reach a network? 1. Jitter 2. bandwidth 3. resiliency 4. hop count 5. delay 6. confidentiality\"",
+    "a": "2 & 5"
+  },
+  {
+    "q": "\"Which two statements correctly describe the components of a router? 1. RAM permanently stores the configuration file used during the boot sequence. 2. ROM contains diagnostics executed on hardware modules. 3. NVRAM stores a backup copy of the IOS used during the boot sequence. 4. Flash memory does not lose its contents during a reboot. 5. ROM contains the most current and most complete version of the IOS. 6. Flash contains boot system commands to identify the location of the IOS\"",
+    "a": "2 & 4"
+  },
+  {
+    "q": "\"Which two statements correctly describe the concepts of administrative distance and metric? (Choose two.) 1. The metric varies depending which Layer 3 protocol is being routed, such as IP. 2. A router first installs routes with higher administrative distances. 3. The value of the administrative distance can not be altered by the network administrator. 4. Routes with the smallest metric to a destination indicate the best path. 5. Administrative distance refers to the trustworthiness of a particular route. 6. The metric is always determined based on hop count.\"",
+    "a": "4 & 5"
+  },
+  {
+    "q": "\"Which two statements correctly describe the concepts of administrative distance and metric? 1. The metric varies depending which Layer 3 protocol is being routed, such as IP. 2. A router first installs routes with higher administrative distances. 3. The value of the administrative distance can not be altered by the network administrator. 4. Routes with the smallest metric to a destination indicate the best path. 5. Administrative distance refers to the trustworthiness of a particular route. 6. The metric is always determined based on hop count.\"",
+    "a": "4 & 5"
+  },
+  {
+    "q": "7. )) Refer to the exhibit. A network administrator has configured R1 as shown. When the administrator checks the status of the serial interface, the interface is shown as being administratively down. What additional command must be entered on the serial interface of R1 to bring the interface up?",
+    "a": "no shutdown"
+  },
+  {
+    "q": "A collection of interconnected switches forms a _______________________.",
+    "a": "Broadcast domain"
+  },
+  {
+    "q": "A company has deployed four 48-port access layer switches to a switch block. For redundancy each access layer switch will connect to two distribution layer switches. Additionally, link aggregation will be used to combine 10 Gbps interfaces to form 20 Gbps trunk links from the access layer switches to the distribution layer switches. How many switch ports on the access layer switches will be available in the switch block to support end devices?",
+    "a": "176"
+  },
+  {
+    "q": "a data center has recently updated a physical server to host multiple operating systems on a single cpu. the data center can now provide each customer with a separate web server without having to allocate an actual discrete server for each customer. what is the networking trend that is being implemented by the data center in this situation?",
+    "a": "virtualization"
+  },
+  {
+    "q": "A network administrator configured an EtherChannel link with three interfaces between two switches. What is the result if one of the three interfaces is down?",
+    "a": "The remaining two interfaces continue to load balance traffic."
+  },
+  {
+    "q": "A network administrator configures the interface fa0/0 on the router R1 with the command ip address 172.16.1.254 255.255.255.0. However, when the administrator issues the command show ip route, the routing table does not show the directly connected network. What is the possible cause of the problem?",
+    "a": "The interface fa0/0 has not been activated"
+  },
+  {
+    "q": "A network administrator enters the following command sequence on a Cisco 3560 switch. What is the purpose of these commands? Switch(config)# interface gigabitethernet 0/1 Switch(config-if)# no switchport",
+    "a": "to make the Gi0/1 port a routed port"
+  },
+  {
+    "q": "A network administrator has examined the routing table of a router and noted that the entry for the destination network 172.16.4.0/24 begins with the letter D. What does this letter signify?",
+    "a": "The route source was learned dynamically"
+  },
+  {
+    "q": "A network administrator in XYZ Telecom is troubleshooting an EIGRP problem on a router and needs to confirm the IP addresses of the devices with which the router has established adjacency. The retransmit interval and the queue counts for the adjacent routers also need to be checked. What command will display the required information?",
+    "a": "Router#showipeigrp neighbors"
+  },
+  {
+    "q": "A network administrator is analyzing first-hop router redundancy protocols. What is a characteristic of VRRPv3?",
+    "a": "It supports IPv6 and IPv4 addressing."
+  },
+  {
+    "q": "A network administrator is analyzing the features that are supported by different first-hop router redundancy protocols. Which statement describes a feature that is associated with HSRP?",
+    "a": "HSRP uses active and standby routers."
+  },
+  {
+    "q": "A network administrator is analyzing the features that are supported by different first-hop router redundancy protocols. Which statement is a feature that is associated with GLBP?",
+    "a": "GLBP allows load balancing between routers."
+  },
+  {
+    "q": "A network administrator is trying to add a new router into an established OSPF network. The networks attached to the new router do not appear in the routing tables of the other OSPF routers. Given the information in the partial configuration shown below, what configuration error is causing this problem?",
+    "a": "The network wildcard mask is configured improperly."
+  },
+  {
+    "q": "A network administrator is trying to add a new router into an established OSPF network. The networks attached to the new router do not appear in the routing tables of the other OSPF routers. Given the information in the partial configuration shown below, what configuration error is causing this problem?Router(config)# router ospf 1Router(config-router)# network 10.0.0.0 255.0.0.0 area 0",
+    "a": "The network wildcard mask is configured improperly"
+  },
+  {
+    "q": "A network administrator needs to configure a standard ACL so that only the workstation of the administrator with the IP address 192.168.15.23 can access the virtual terminal of the main router. Which two configuration commands can achieve the task?Router1(config)# access-list 10 permit host 192.168.15.23Router1(config)# access-list 10 permit 192.168.15.23 0.0.0.0Router1(config)# access-list 10 permit 192.168.15.23 0.0.0.255Router1(config)# access-list 10 permit 192.168.15.23 255.255.255.0Router1(config)# access-list 10 permit 192.168.15.23 255.255.255.255",
+    "a": "1 & 2"
+  },
+  {
+    "q": "A network administrator of Stark Industries has examined the routing table of a router and noted that the entry for the destination network 172.16.4.0/24 begins with the letter D. What does this letter signify?",
+    "a": "The route source was learned dynamically"
+  },
+  {
+    "q": "A network associate in Genesis Aerospace Industries has configured OSPF with the command:",
+    "a": "2, 3, 2006"
+  },
+  {
+    "q": "A network engineer for a semiconductor company wants to use the primary ISP connection for all external connectivity. Refer at the diagram below. The backup ISP connection is used only if the primary ISP connection fails. Which set of commands would accomplish this goal?",
+    "a": "ip route 0000 0000 s0/0/0ip route 0000 0000 s0/1/0 10"
+  },
+  {
+    "q": "A PC is to access a web server on another network. Which inter-VLAN method will provide the highest bandwidth at Layer 3 and also provide a default gateway for the PC?",
+    "a": "router-on-a-stick"
+  },
+  {
+    "q": "A protocol that provides an encrypted connection to a remote device.",
+    "a": "SSH"
+  },
+  {
+    "q": "A router has two FastEthernet interfaces and needs to connect to four vlans in the local network. How can you accomplish this task, using the fewest physical interfaces and without decreasing network performance?",
+    "a": "Implement a router-on-a-stick configuration"
+  },
+  {
+    "q": "A switch forwarding method that begins the forwarding process after the destination MAC address of an incoming frame and the egress port has been determined.",
+    "a": "Cut-through switch method"
+  },
+  {
+    "q": "A switch forwarding method that makes a forwarding decision on a frame after it has received the entire frame and then checked the frame for errors.",
+    "a": "Store-and-forward switching"
+  },
+  {
+    "q": "A switch is configured with all ports assigned to vlan 2 with full duplex FastEthernet to segment existing departmental traffic. What is the effect of adding switch ports to a new VLAN on the switch?",
+    "a": "An additional broadcast domain will be created"
+  },
+  {
+    "q": "A type of VLAN that is configured to carry user-generated traffic.",
+    "a": "Data VLAN"
+  },
+  {
+    "q": "A type of VLAN that is defined in the IEEE 802.1Q specification to maintain backward compatibility with untagged traffic common to legacy LAN scenarios.",
+    "a": "Native VLAN"
+  },
+  {
+    "q": "After pinging 192.168.1.10. Using show mac address. How many MAC addresses are there in total?",
+    "a": "1"
+  },
+  {
+    "q": "After typing show interface vlan 99 at the switch, What is the bandwidth on this interface?",
+    "a": "BW 1000000 kbit"
+  },
+  {
+    "q": "After typing show interface vlan 99 at the switch, What is the line protocol state?",
+    "a": "Up"
+  },
+  {
+    "q": "After typing show mac address-table ? , How many options are available for the show mac address-table command?",
+    "a": "4"
+  },
+  {
+    "q": "All hosts in the networks have been operational for several hours when the DHCP server goes down. What happens to the hosts that have obtained service from the DHCP server?",
+    "a": "The hosts will continue to communicate normally for a period of time"
+  },
+  {
+    "q": "An administrator is investigating a failure on a trunk link between a Cisco switch and a switch from another vendor. After a few show commands, the administrator notices that the the switches are not negotiating a trunk. What is a probable cause for this issue?",
+    "a": "Switches from other vendors do not support DTP."
+  },
+  {
+    "q": "As a network administrator of RMS Aerospace Industries, you have been instructed to prevent all traffic originating on the LAN from entering the R2 router. Which the following command would implement the access list on the interface of the R2 router?",
+    "a": "ip access-group 101 in"
+  },
+  {
+    "q": "As a network administrator, you have been instructed to prevent all traffic originating on the LAN from entering the R2 router. Which the following command would implement the access list on the interface of the R2 router?",
+    "a": "ip access-group 101 in"
+  },
+  {
+    "q": "As the network administrator you have been asked to implement EtherChannel on the corporate network. What does this configuration consist of?",
+    "a": "grouping multiple physical ports to increase bandwidth between two switches"
+  },
+  {
+    "q": "Assuming all configurations for this Lab are all correct as required. If I connect an additional PC to the sw and configured the PC 192.168.15 with the correct subnet and gateway, correct dns server and making sure there will be no conflict will it work?",
+    "a": "Yes"
+  },
+  {
+    "q": "Assuming all configurations for this Lab are all correct as required. If I connect an additional PC to the sw will I ever have a chance to get the ip of 192.168.1.20?",
+    "a": "No"
+  },
+  {
+    "q": "Configurations are stored within a VLAN database file, called",
+    "a": "vlandat"
+  },
+  {
+    "q": "Do you think static routes are still used even with dynamic routing (RIP, OSPF, etc.)?",
+    "a": "Yes"
+  },
+  {
+    "q": "During the initial configuration of the switch. What is the default name of VLAN 1?",
+    "a": "Default"
+  },
+  {
+    "q": "During the initial configuration of the switch. What is the duplex setting of the interface FastEthernet 0/6?",
+    "a": "Full-Duplex"
+  },
+  {
+    "q": "Fill in the blank. Among the beneficial functions of a router are enhanced network security and containment of ________ traffic",
+    "a": "broadcast"
+  },
+  {
+    "q": "Fill in the blank. The number of ports available on a single switch is referred to as _____________",
+    "a": "Port Density"
+  },
+  {
+    "q": "For DHCP clients(PCs) what should be the default-gateway configured in each PCs?",
+    "a": "19216811"
+  },
+  {
+    "q": "For DHCP clients(PCs) what should be the DNS server configured in each PCs? To check do ipconfig /all to one of the dhcpclients(PCs).",
+    "a": "19216815"
+  },
+  {
+    "q": "For DHCP clients(PCs) what should be the subnet configured in each PCs?",
+    "a": "2552552550"
+  },
+  {
+    "q": "From PC11 ping 10.1.2.1. Observe the result. Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From PC12 ping 10.1.2.1. Observe the result. Is it successful?",
+    "a": "No"
+  },
+  {
+    "q": "From PC21 ping 10.1.1.11. Observe the result. Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From PC31 ping 10.1.2.1. Observe the result. Is it successful?",
+    "a": "No"
+  },
+  {
+    "q": "From PC32 ping 10.1.2.1. Observe the result. Is it successful?",
+    "a": "No"
+  },
+  {
+    "q": "From R1 do show ip int brief. Observe each line. Take note GigabitEthernet0/1.10. Which status is true?",
+    "a": "GigabitEthernet0/110 1921681001 YES manual up up"
+  },
+  {
+    "q": "From R1 do show ip route command, which statement is true at GigabitEthernet0/1.10?",
+    "a": "C 1921681000/24 is directly connected, GigabitEthernet0/110"
+  },
+  {
+    "q": "From R1 do the \"show ipint brief\" command. Select the status for FastEthernet0/1.",
+    "a": "FastEthernet0/1 unassigned YES unset administratively down down"
+  },
+  {
+    "q": "From R1 do the \"show running-config\" command. Select the statusthe correct configuration for FastEthernet0/0.",
+    "a": "interface FastEthernet0/0ip address 19216811 2552552550duplex autospeed auto"
+  },
+  {
+    "q": "From R1 do the show ip route command. Select the correct connection protocol used for FastEthernet0/0.",
+    "a": "C 19216810/24 is directly connected, FastEthernet0/0"
+  },
+  {
+    "q": "From R1 do the show ipinterface briefcommand. Select the status for Serial0/0/0",
+    "a": "Serial0/0/0 19216821 YES manual up up"
+  },
+  {
+    "q": "From R1 is there any default gateway configured?",
+    "a": "No"
+  },
+  {
+    "q": "From R4 do ping test to R1 Loobackip (10.10.10.1). Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From R4 do ping test to R2 Loopback ip (10.10.20.1). Is it unsuccessful?",
+    "a": "No"
+  },
+  {
+    "q": "From R4 do traceroute test to R1 Loobackip (10.10.10.1). Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From R4 do traceroute test to R3 Loopback ip (10.10.30.1). Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From R4 do traceroute test to R3 Loopback ip (10.10.30.1). Is it unsuccessful?",
+    "a": "No"
+  },
+  {
+    "q": "From S1 do show ip interface brief. What is the status of FastEthernet0/5 and FastEthernet0/6?",
+    "a": "FastEthernet0/5 unassigned YES manual up upFastEthernet0/6 unassigned YES manual up up"
+  },
+  {
+    "q": "From S1 do show ip interface brief. What is the status of GigabitEthernet0/1?",
+    "a": "GigabitEthernet0/1 unassigned YES manual down down"
+  },
+  {
+    "q": "From S1 do show ip interface brief. What is the status of Vlan 1?",
+    "a": "Vlan1 192168111 YES manual up up"
+  },
+  {
+    "q": "From S1 do show running-config. Observe FastEthernet0/1. Which configuration is true",
+    "a": "interface FastEthernet0/1switchport mode trunk"
+  },
+  {
+    "q": "From S2 do show ip interface brief. What is the status of FastEthernet0/18?",
+    "a": "FastEthernet0/18 unassigned YES manual up up"
+  },
+  {
+    "q": "From S2 do show ip interface brief. What is the status of Vlan 1?",
+    "a": "Vlan1 192168112 YES manual up up"
+  },
+  {
+    "q": "From the following list of IP addresses configured on R1, which address will the OSPF process select as the router ID?",
+    "a": "192.168.0.1"
+  },
+  {
+    "q": "From VTP-CLIENT1 do show vlan brief. What is the status of VLAN 10 STUDENTS?",
+    "a": "Active"
+  },
+  {
+    "q": "From VTP-CLIENT2 do show vlan brief .What is the status of VLAN 1?",
+    "a": "Active"
+  },
+  {
+    "q": "From VTP-CLIENT3 do ping test to PC1 ip (10.168.10.10). Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "From VTP-CLIENT3 do ping test to VTP-SERVERVLAN 1 ip (10.168.10.1). Is it Unsuccessful?",
+    "a": "No"
+  },
+  {
+    "q": "From VTP-SERVER do ping test to PC1 ip (192.168.10.10). Is it successful?",
+    "a": "Yes"
+  },
+  {
+    "q": "Global configuration mode is used to configure system globally, or to enter specific configuration modes to configure specific elements such as protocols. What is the command to enter global configuration mode?",
+    "a": "configure terminal"
+  },
+  {
+    "q": "Host is able to ping a web server but it is not able to do HTTP request.",
+    "a": "ACL blocking port 80"
+  },
+  {
+    "q": "How can a network administrator reduce SPF overhead on OSPF routers?",
+    "a": "Implement multiple areas of OSPF."
+  },
+  {
+    "q": "How can you prevent passwords from being sent in plain text?",
+    "a": "Configure service password-encryption"
+  },
+  {
+    "q": "How does a DHCP server dynamically assign IP address to host?",
+    "a": "Addresses are leased to host A host will usually keep the same address by periodically contacting the DHCP sever to renew the lease"
+  },
+  {
+    "q": "How many FastEthernet interfaces does a Cisco 2960 switch have?",
+    "a": "24"
+  },
+  {
+    "q": "How much traffic is a 48-port gigabit switch capable of switching when operating at full wire speed?",
+    "a": "48 Gb/s, by providing full bandwidth to each port"
+  },
+  {
+    "q": "If a router has two interfaces and is routing both IPv4 and IPv6 traffic, how many ACLs could be created and applied to it?",
+    "a": "8"
+  },
+  {
+    "q": "If all OSPF routers in a single area are configured with the same priority value, what value does a router use for the OSPF router ID in the absence of a loopback interface?",
+    "a": "the highest IP address among its active interfaces"
+  },
+  {
+    "q": "If an error occurs while loading the operating system because of missing or damaged system files, the load loader can be access through a console connection. What button in the switch you need to press while reconnecting the power cord?",
+    "a": "Mode"
+  },
+  {
+    "q": "If the port is assigned to the wrong VLAN, what command to be command to change the VLAN membership on a particular port?",
+    "a": "switchport access vlan"
+  },
+  {
+    "q": "If your routing table has a static, a RIP, and an IGRP route to the same network, which route will be used to route packets by default?",
+    "a": "Static route"
+  },
+  {
+    "q": "If your routing table has a static, a RIP, and an OSPF route to the same network, which route will be used to route packets by default?",
+    "a": "Static route"
+  },
+  {
+    "q": "In reference with the network diagram of RMS Defence Industries. What routing solution will allow both PC A and PC B to access the Internet with the minimum amount of router CPU and network bandwidth utilization?",
+    "a": "Configure a static default route from R1 to Edge, a default route from Edge to the Internet, and a static route from Edge to R1"
+  },
+  {
+    "q": "In the Switch port LED status, if the LED is blinking green what is the status of switch?",
+    "a": "There is activity and the port is sending or receiving data"
+  },
+  {
+    "q": "In this attack, the attacker exploits a flaw in the Telnet server software running on the switch that renders the Telnet service unavailable. This sort of attack prevents an administrator from remotely accessing switch management functions. This can be combined with other direct attacks on the network as part of a coordinated attempt to prevent the network administrator from accessing core devices during the breach.",
+    "a": "Telnet DoS attack"
+  },
+  {
+    "q": "In troubleshooting VLANs, what command should be used to check whether the port belongs to the expected VLAN?",
+    "a": "show vlan"
+  },
+  {
+    "q": "Is there any way to summarize several static routes to multiple subnets into a single static route?",
+    "a": "Yes"
+  },
+  {
+    "q": "Match the design model layer to the appropriate network function. (Not all options are used.)",
+    "a": "1. Core Layer: provides a high-speed backbone link between dispersed networks 2. Distribution Layer: forwards traffic from one local network to another 3. Access Layer: provides connectivity for users"
+  },
+  {
+    "q": "Network infrastructure devices require IP addresses to enable remote management. Using the device IP address, the network administrator can remotely connect to the device using any of the following EXCEPT",
+    "a": "None in the choices"
+  },
+  {
+    "q": "OSPF is configured using default classful addressing. With all routers and interfaces operational, how many networks will be in the routing table of R1 that are indicated to be learned by OSPF ?",
+    "a": "4"
+  },
+  {
+    "q": "OSPF is configured using default classful addressing. With all routers and interfaces operational, how many networks will be in the routing table of R1 that are indicated to be learned by OSPF?",
+    "a": "4"
+  },
+  {
+    "q": "OSPF routing uses the concept of areas. What are the characteristics of OSPF areas?1. Each OSPF area requires a loopback interface to be configured.2. Areas may be assigned any number from 0 to 65535.3. Area 0 is called the backbone area.4. Hierarchical OSPF networks do not require multiple areas.5. Multiple OSPF areas must connect to area 0.6. Single area OSPF networks must be configured in area 1.",
+    "a": "2, 3, 5"
+  },
+  {
+    "q": "OSPF routing uses the concept of areas. What are the three characteristics of OSPF areas?",
+    "a": "2, 3, 2005"
+  },
+  {
+    "q": "OSPF routing uses the concept of areas. What are the three characteristics of OSPF areas?1. Each OSPF area requires a loopback interface to be configured 2. Areas may be assigned any number from 0 to 65535 3. Area 0 is called the backbone area 4. Hierarchical OSPF networks do not require multiple areas 5. Multiple OSPF areas must connect to area 0 6. Single area OSPF networks must be configured in area 1",
+    "a": "2, 3, 5"
+  },
+  {
+    "q": "PAT Address Translation is also termed what?",
+    "a": "NAT Overload"
+  },
+  {
+    "q": "Refer to the diagram below. The network administrator of RMS Overseas and Employment Agency that has the IP address of 10.0.70.23/25 needs to have access to the corporate FTP server (10.0.54.5/28). The FTP server is also a web server that is accessible to all internal employees on networks within the 10.x.x.x address. No other traffic should be allowed to this server. Which extended ACL would be used to filter this traffic, and how would this ACL be applied?",
+    "a": "3 & 5"
+  },
+  {
+    "q": "Refer to the diagram below. The network administrator of RMS Overseas and Employment Agency that has the IP address of 10.0.70.23/25 needs to have access to the corporate FTP server (10.0.54.5/28). The FTP server is also a web server that is accessible to all internal employees on networks within the 10.x.x.x address. No other traffic should be allowed to this server. Which extended ACL would be used to filter this traffic, and how would this ACL be applied?access-list 105 permit ip host 10.0.70.23 host 10.0.54.5access-list 105 permit tcp any host 10.0.54.5 eq wwwaccess-list 105 permit ip any anyaccess-list 105 permit tcp host 10.0.54.5 any eq www access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21 access-list 105 permit tcp 10.0.0.0 0.255.255.255 host 10.0.54.5 eq www access-list 105 deny ip any host 10.0.54.5 access-list 105 permit ip any anyR2(config)# interface gi0/0 R2(config-if)# ip access-group 105 inR1(config)# interface gi0/0 R1(config-if)# ip access-group 105 outR1(config)# interface s0/0/0 R1(config-if)# ip access-group 105 out",
+    "a": "3 & 5"
+  },
+  {
+    "q": "Refer to the exhibit below. The network engineer for the company that is shown wants to use the primary ISP connection for all external connectivity. The backup ISP connection is used only if the primary ISP connection fails. Which set of commands would accomplish this goal?",
+    "a": "ip route 0000 0000 s0/0/0ip route 0000 0000 s0/1/0 10"
+  },
+  {
+    "q": "Refer to the exhibit below. What routing solution will allow both PC A and PC B to access the Internet with the minimum amount of router CPU and network bandwidth utilization?",
+    "a": "Configure a static default route from R1 to Edge, a default route from Edge to the Internet, and a static route from Edge to R1"
+  },
+  {
+    "q": "Refer to the exhibit below. Which two statements about the configuration of the switch interface are correct?",
+    "a": "1 & 5"
+  },
+  {
+    "q": "Refer to the exhibit below. Which two statements about the configuration of the switch interface are correct? SwitchA(config)#interface fa0/0SwitchA(config-if)#switchport access vlan 2 The switchport belongs only to VLAN 2.By default, all switch ports are members of VLAN 1005.Interface fa0/0 will be in both VLAN 1 (by default) and VLAN 2.The exhibit shows interface fa0/0 to be dynamically mapped to VLAN 2.A network host can be connected to this interface.",
+    "a": "1 & 5"
+  },
+  {
+    "q": "Refer to the exhibit. A junior network engineer in one of the biggest telecom company in the Philippines has prepared the exhibited configuration file. What two statements are true of the planned configuration for interface fa0/1?",
+    "a": "2 & 5"
+  },
+  {
+    "q": "Refer to the exhibit. A junior network engineer in one of the biggest telecom company in the Philippines has prepared the exhibited configuration file. What two statements are true of the planned configuration for interface fa0/1?1. The two FastEthernet interfaces will require NAT configured on two outside serial interfaces. 2. Address translation on fa0/1 is not required for DMZ Devices to access the Internet. 3. The fa0/1 IP address overlaps with the space used by s0/0. 4. The fa0/1 IP address is invalid for the IP subnet on which it resides. 5. Internet hosts may not initiate connections to DMZ Devices through the configuration that is shown.",
+    "a": "2 & 5"
+  },
+  {
+    "q": "Refer to the exhibit. A network administrator has configured R1 as shown. When the administrator checks the status of the serial interface, the interface is shown as being administratively down. What additional command must be entered on the serial interface of R1 to bring the interface up?",
+    "a": "no shutdown"
+  },
+  {
+    "q": "Refer to the exhibit. A network administrator has configured router CiscoVille with the above commands to provide inter-VLAN routing. What type of port will be required on a switch that is connected to Gi0/0 on router CiscoVille to allow inter-VLAN routing?",
+    "a": "trunk port"
+  },
+  {
+    "q": "Refer to the exhibit. A network administrator is configuring RT1 for inter-VLAN routing. The switch is configured correctly and is functional. Host1, Host2, and Host3 cannot communicate with each other. Based on the router configuration, what is causing the problem?",
+    "a": "IP addresses on the subinterfaces are incorrectly matched to the VLANs"
+  },
+  {
+    "q": "Refer to the exhibit. A network administrator is reviewing the configuration of switch S1. Which protocol has been implemented to group multiple physical ports into one logical link?",
+    "a": "PAgP"
+  },
+  {
+    "q": "Refer to the exhibit. A router-on-a-stick configuration was implemented for VLANs 15, 30, and 45, according to the show running-config command output. PCs on VLAN 45 that are using the 172.16.45.0 /24 network are having trouble connecting to PCs on VLAN 30 in the 172.16.30.0 /24 network. Which error is most likely causing this problem?",
+    "a": "There is an incorrect IP address configured on GigabitEthernet 0/030"
+  },
+  {
+    "q": "Refer to the exhibit. Access1 is a new switch that is to be connected as a VTP client to the network once it has been configured. Given the output generated by the VTP server switch Dist-2, which series of configuration commands would successfully introduce the client switch into the VTP domain?",
+    "a": "Access1(config)# vtp mode client Access1(config)# vtp domain MYCORP Access1(config)# vtp version 2 Access1(config)# vtp password ITrustYou"
+  },
+  {
+    "q": "Refer to the exhibit. According to the routing table, where will the router send a packet destined for 10.1.5.65?Network Interface Next-hop10.1.1.0/24 e0 directly connected10.1.2.0/24 e1 directly connected10.1.3.0/25 s0 directly connected10.1.4.0/24 s1 directly connected10.1.5.0/24 e0 10.1.1.210.1.5.64/28 e1 10.1.2.210.1.5.64/29 s0 10.1.3.310.1.5.64/27 s1 10.1.4.4",
+    "a": "10133"
+  },
+  {
+    "q": "Refer to the exhibit. After you apply the give configurations to R1 and R2 you notice that OSPFv3 fails to start. Which reason for the problem is most likely true?",
+    "a": "The area numbers on R1 and R2 are mismatched"
+  },
+  {
+    "q": "Refer to the exhibit. An administrator is troubleshooting a router-on-a-stick network that should have the following requirements: VLAN ID Network Subnet mask Subinterface Default Gateway 10 172.17.10.0 255.255.255.0 Fa 0/0.10 172.17.10.1 20 172.17.20.0 255.255.255.0 Fa 0/0.20 172.17.20.1 30 172.17.30.0 255.255.255.0 Fa 0/0.30 172.17.30.1 Which two errors can be identified from the show running-config command output from the router? (Choose two.)",
+    "a": "1. The VLAN ID for VLAN 30 is wrongly configured.​ 2. The IP address and subnet mask are wrongly configured for VLAN 20.​"
+  },
+  {
+    "q": "Refer to the exhibit. R1 receives a packet destined for the IP address 192.168.2.10. Out which interface will R1 forward the packet?",
+    "a": "Serial0/0/0"
+  },
+  {
+    "q": "Refer to the exhibit. Switch SW2 was tested in a lab environment and later inserted into the production network. Before the trunk link was connected between SW1 and SW2, the network administrator issued the show vtp status command as displayed in the exhibit. Immediately after the switches were interconnected, all users lost connectivity to the network. What could be a possible reason for the problem?",
+    "a": "Switch SW2 has a higher VTP revision number, which causes deletion of the VLAN information in the VTP domain."
+  },
+  {
+    "q": "Refer to the exhibit. The network administrator that has the IP address of 10.0.70.23/25 needs to have access to the corporate FTP server (10.0.54.5/28). The FTP server is also a web server that is accessible to all internal employees on networks within the 10.x.x.x address. No other traffic should be allowed to this server. Which extended ACL would be used to filter this traffic, and how would this ACL be applied?",
+    "a": "3 & 5"
+  },
+  {
+    "q": "Refer to the exhibit. The network administrator that has the IP address of 10.0.70.23/25 needs to have access to the corporate FTP server (10.0.54.5/28). The FTP server is also a web server that is accessible to all internal employees on networks within the 10.x.x.x address. No other traffic should be allowed to this server. Which extended ACL would be used to filter this traffic, and how would this ACL be applied?access-list 105 permit ip host 10.0.70.23 host 10.0.54.5access-list 105 permit tcp any host 10.0.54.5 eq wwwaccess-list 105 permit ip any anyaccess-list 105 permit tcp host 10.0.54.5 any eq www access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21 access-list 105 permit tcp 10.0.0.0 0.255.255.255 host 10.0.54.5 eq www access-list 105 deny ip any host 10.0.54.5 access-list 105 permit ip any anyR2(config)# interface gi0/0 R2(config-if)# ip access-group 105 inR1(config)# interface gi0/0 R1(config-if)# ip access-group 105 outR1(config)# interface s0/0/0 R1(config-if)# ip access-group 105 out",
+    "a": "3 & 5"
+  },
+  {
+    "q": "Refer to the exhibit. The two connected ports on the switch are not turning orange or green. What would be the most effective steps to troubleshoot this physical layer problem?",
+    "a": "2, 4, 6"
+  },
+  {
+    "q": "Refer to the exhibit. The user at Workstation B reports that Server A cannot be reached. What is preventing Workstation B from reaching Server A?",
+    "a": "The gateway for Server A is not on the same subnet"
+  },
+  {
+    "q": "Refer to the exhibit. What commands must be configured on the 2950 switch and the router to allow communication between host 1 and host 2? (Choose two.)",
+    "a": "The option wherein there’s the encapsulation dot1q and switchport mode trunk"
+  },
+  {
+    "q": "Refer to the exhibit. What routing solution will allow both PC A and PC B to access the Internet with the minimum amount of router CPU and network bandwidth utilization?",
+    "a": "Configure a static default route from R1 to Edge, a default route from Edge to the Internet, and a static route from Edge to R1"
+  },
+  {
+    "q": "Refer to the exhibit. What will happen to HTTP traffic coming from the Internet that is destined for 172.12.12.10 if the traffic is processed by this ACL?",
+    "a": "Traffic will be dropped, because of the implicit deny all at the end of the ACL."
+  },
+  {
+    "q": "Refer to the exhibit. What will happen to HTTP traffic coming from the Internet that is destined for 172.12.12.10 if the traffic is processed by this ACL?router#show access-lists Extended IP access list 110 10 deny tcp 172.16.12.0 0.0.255.255 any eq telnet 20 deny tcp 172.16.12.0 0.0.255.255 any eq smtp 30 deny tcp 172.16.12.0 0.0.255.255 any eq http 40 permit tcp 172.16.12.0 0.0.255.255 any",
+    "a": "Traffic will be dropped, because of the implicit deny all at the end of the ACL"
+  },
+  {
+    "q": "Refer to the exhibit. Which option correctly describes the function of a switch that is configured in VTP transparent mode?",
+    "a": "option 4"
+  },
+  {
+    "q": "Refer to the exhibit. Which rule does the DHCP server use when there is an IP address conflict?",
+    "a": "The address is removed from the pool until the conflict is resolved."
+  },
+  {
+    "q": "Refer to the exhibit. Which rule does the DHCP server use when there is an IP address conflict?Router# show ipdhcp conflictIP address Detection method Detection time172.16.1.32 Ping Feb 16 1998 12:28 PM172.16.1.64 Gratuitous ARP Feb 23 1998 08:12 AM",
+    "a": "The address is removed from the pool until the conflict is resolved"
+  },
+  {
+    "q": "Refer to the exhibit. Which statement are true about interVLAN routing in the topology that is shown in the exhibit?",
+    "a": "The FastEthernet 0/0 interface on Router1 must be configured with subinterfaces"
+  },
+  {
+    "q": "Refer to the exhibit. Which switching technology would allow data to be transmitted over each access layer switch link and prevent the port from being blocked by spanning tree due to the redundant link?",
+    "a": "EtherChannel"
+  },
+  {
+    "q": "Refer to the exhibit. Which two statements about the configuration of the switch interface are correct?SwitchA(config)#interface fa0/0SwitchA(config-if)#switchport access vlan 2The switchport belongs only to VLAN 2.By default, all switch ports are members of VLAN 1005.Interface fa0/0 will be in both VLAN 1 (by default) and VLAN 2.The exhibit shows interface fa0/0 to be dynamically mapped to VLAN 2.A network host can be connected to this interface.",
+    "a": "1, 5"
+  },
+  {
+    "q": "Refer to the exhibit. Which two statements are true about interVLAN routing in the topology that is shown in the exhibit?Host E and host F use the same IP gateway address. Router1 and Switch2 should be connected via a crossover cable. Router1 will not play a role in communications between host A and host D. The FastEthernet 0/0 interface on Router1 must be configured with subinterfaces. Router1 needs more LAN interfaces to accommodate the VLANs that are shown in the exhibit. The FastEthernet 0/0 interface on Router1 and the FastEthernet 0/1 interface on Switch2 trunk ports must be configured using the same encapsulation type.1. Host E and host F use the same IP gateway address. 2. Router1 and Switch2 should be connected via a crossover cable. 3. Router1 will not play a role in communications between host A and host D. 4. The FastEthernet 0/0 interface on Router1 must be configured with subinterfaces. 5. Router1 needs more LAN interfaces to accommodate the VLANs that are shown in the exhibit. 6. The FastEthernet 0/0 interface on Router1 and the FastEthernet 0/1 interface on Switch2 trunk ports must be configured using the same encapsulation type.",
+    "a": "4, 6"
+  },
+  {
+    "q": "Refer to the exhibit. Which two statements are true about the loopback address that is configured on RouterB?",
+    "a": "2 & 3"
+  },
+  {
+    "q": "Refer to the given network diagram. Which command would be used on router A to configure a static route to direct traffic from LAN A that is destined for LAN C?",
+    "a": "A(config)# ip route 19216840 2552552550 19216832"
+  },
+  {
+    "q": "Refer to the graphic. It has been decided that PC1 should be denied access to Server. Which 2 of the following commands are required to prevent only PC1 from accessing Server1 while allowing all other traffic to flow normally?",
+    "a": "2 & 3"
+  },
+  {
+    "q": "Refer to the graphic. It has been decided that PC1 should be denied access to Server. Which 2 of the following commands are required to prevent only PC1 from accessing Server1 while allowing all other traffic to flow normally?1 - Router(config)# interface fa0/0 Router(config-if)# ip access-group 101 out 2 - Router(config)# interface fa0/0 Router(config-if)# ip access-group 101 in 3 - Router(config)# access-list 101 deny ip host 172.16.161.150 host 172.16.162.163 Router(config)# access-list 101 permit ip any any 4 - Router(config)# access-list 101 deny ip 172.16.161.150 0.0.0.255 172.16.162.163 0.0.0.05 - Router(config)# access-list 101 permit ip any any",
+    "a": "2 & 3"
+  },
+  {
+    "q": "Refer to the sample configuration below. Which (config-router) command will allow the network represented on the interface to be advertised by RIP?router rip version 2 no auto summary ! interface ethernet0 ip address 10.12.6.1 255.255.0.0",
+    "a": "Network 101200"
+  },
+  {
+    "q": "Router On Stick is a method used for communicating inter-vlan using a router.",
+    "a": "The correct answer is 'True'."
+  },
+  {
+    "q": "RouterA#debugip rip RIP protocol debugging is on00:34:32: RIP: sending v2 flash update to 224.0.0.9 via FastEthernet8/0 (172.16.1.1) 00:34:32: RIP: build flash update entries 00:34:32: 10.10.1.0/24 via 0.0.0.6, metric 1, tag 0 00:34:32: RIP: sending v2 flash update to 224.0.0.9 via Loopback (10.10.1.1) 00:34:32: RIP: build flash update entries 00:34:32: 10.0.0.0/8 via 0.6.0.0, metric 2, tag 0 00:34:32: 172.16.1.0/24 via 0.0.0.0, metric 1, tag 0 00:34:32: RIP: ignored v2 packet from 16.10.1.1 (sourced from one of our addresses) 06:34:33: RIP: received v2 update from 172.16.1.2 on FastEthernet0/6 66:34:33: 16.6.0.0/8 via 6.0.6.6 in 1 hops 66:34:44: RIP: sending v2 update to 224.6.6.9 via FastEthernet0/0 (172.16.1.1) 66:34:44: RIP: build update entries 66:34:44: 10.10.1.0/24 via 0.0.0.0, metric 1, tag 0Refer to the exhibit. What information can be gathered from the output?",
+    "a": "Network 101010 is reachable"
+  },
+  {
+    "q": "Routers support three packet-forwarding mechanisms. These are",
+    "a": "Process, Fast, Cisco Express Forwarding"
+  },
+  {
+    "q": "Sometimes switch ports must manually have their duplex mode manually configured. This duplex mode increases effective bandwidth by allowing both ends of a connection to transmit and receive data simultaneously.",
+    "a": "Full duplex mode"
+  },
+  {
+    "q": "SSH protocol by default uses Port ______.",
+    "a": "22"
+  },
+  {
+    "q": "Stackable that are arranged one on top of the other with cables linking the switches in a _____________ connection.",
+    "a": "Daisy Chain"
+  },
+  {
+    "q": "Telnet protocol by default uses Port ______.",
+    "a": "23"
+  },
+  {
+    "q": "The _____ switches typically come with different sized chassis that allow for the installation of different numbers of line card.",
+    "a": "Modular configuration"
+  },
+  {
+    "q": "The _____________ parameter can be added to the show interfaces interface_id command to display the administrative and operational switch interface mode.​",
+    "a": "switchport"
+  },
+  {
+    "q": "The ________________ switches do not support features or options beyond those that originally came with the switch.",
+    "a": "Fixed configuration"
+  },
+  {
+    "q": "The AJ company has a small network. The network consists of one switch and one router. The switch has been configured with two VLANs. The router has been configured as a router-on- a-stick to allow inter-VLAN routing. A trunk is configured to connect the switch to the router. Whatis the minimum number of router subinterfaces that are required for all the VLANs to communicate?",
+    "a": "two"
+  },
+  {
+    "q": "The default VLAN for Cisco switches is ____________________.",
+    "a": "VLAN 1"
+  },
+  {
+    "q": "The extended range of VLAN ID is",
+    "a": "between 1006 and 4094"
+  },
+  {
+    "q": "The following access list below was applied outbound on the E0 interface connected to the 192.169.1.8/29 LAN:",
+    "a": "All traffic exiting E0 will be denied"
+  },
+  {
+    "q": "The following are switch port modes that DTP offers EXCEPT",
+    "a": "Remote"
+  },
+  {
+    "q": "The following are VLAN best practices EXCEPT?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "The following configuration line was added to router R1Access-list 101 permit ip 10.25.30.0 0.0.0.255 anyWhat is the effect of this access list configuration?",
+    "a": "Permit all packets matching the first three octets of the source address to all destinations"
+  },
+  {
+    "q": "The ip helper-address command does what?",
+    "a": "Relays a DHCP request across networks"
+  },
+  {
+    "q": "The network segments that share the same bandwidth between devices.",
+    "a": "Collision domain"
+  },
+  {
+    "q": "The OSPF Hello protocol performs which of the following 2 tasks?",
+    "a": "1 & 3"
+  },
+  {
+    "q": "The OSPF Hello protocol performs which of the following tasks?",
+    "a": "1 & 3"
+  },
+  {
+    "q": "The OSPF Hello protocol performs which of the following tasks?It provides dynamic neighbor discovery.It detects unreachable neighbors in 90 second intervals.It maintains neighbor relationships.It negotiates correctness parameters between neighboring interfaces.It uses timers to elect the router with the fastest links as the designated router.It broadcasts hello packets throughout the internetwork to discover all routers that are running OSPF1. It provides dynamic neighbor discovery. 2. It detects unreachable neighbors in 90 second intervals. 3. It maintains neighbor relationships. 4. It negotiates correctness parameters between neighboring interfaces. 5. It uses timers to elect the router with the fastest links as the designated router.It broadcasts hello packets throughout the internetwork to discover all routers that are running OSPF.",
+    "a": "1 & 3"
+  },
+  {
+    "q": "The primary function of this layer is to provide network access to the user.",
+    "a": "Access layer"
+  },
+  {
+    "q": "The primary functions of a router are the following? 1. Packet switching 2. Flow control 3. Domain name resolution 4. Path selection 5. Microsegmentation",
+    "a": "1 & 4"
+  },
+  {
+    "q": "The primary functions of a router are the following?1. Packet switching2. Flow control3. Domain name resolution4. Path selection5. Microsegmentation",
+    "a": "1 & 4"
+  },
+  {
+    "q": "There are two advantages of static routing over dynamic routing among these choices. What are these?Static routing is more secure because it does not advertise over the network.Static routing scales well with expanding networks.Static routing requires very little knowledge of the network for correct implementation.Static routing uses fewer router resources than dynamic routingStatic routing is relatively easy to configure for large networks.",
+    "a": "1, 4"
+  },
+  {
+    "q": "This attack tries to crack a password on another device. The first phase of this attack starts with the attacker using a list of common passwords and a program designed to try to establish a Telnet session using each word on the dictionary list.",
+    "a": "Brute force password attack"
+  },
+  {
+    "q": "This is a conduit for multiple VLANs between switches and routers.",
+    "a": "Trunks"
+  },
+  {
+    "q": "This is a point-to-point link between two network devices that carries more than one VLAN.",
+    "a": "Trunks"
+  },
+  {
+    "q": "This is a proprietary protocol that all Cisco devices can be configured to use. This checks other Cisco devices that are directly connected, which allows the devices to auto-configure their connection.",
+    "a": "Cisco Discovery Protocol"
+  },
+  {
+    "q": "This is a protocol that is used to synchronize the clocks of computer systems over packet-switched, variable-latency data networks.",
+    "a": "Network Time Protocol"
+  },
+  {
+    "q": "This is a security technology that determines which devices attached to switch ports can respond to DHCP requests. This can be used to prevent unauthorized DHCP messages that contain information such as IP address related data being provided to legitimate network devices.",
+    "a": "DHCP Snooping"
+  },
+  {
+    "q": "This is the arrangement of the cables, network devices, and end systems. It describes how the network devices are actually interconnected with wires and cables.",
+    "a": "physical topology"
+  },
+  {
+    "q": "This is the path over which the data is transferred in a network. It describes how the network devices appear connected to network users.",
+    "a": "logical topology"
+  },
+  {
+    "q": "This is the practice of inserting a VLAN ID into a packet header in order to identify which VLAN (Virtual Local Area Network) the packet belongs to.",
+    "a": "VLAN tagging"
+  },
+  {
+    "q": "This is used between a network device and server or other device that is equipped with an appropriate 802.1Q-capable NIC.",
+    "a": "Trunks"
+  },
+  {
+    "q": "This is used to connect a PC to the console port of a switch for configuration.",
+    "a": "Console cable"
+  },
+  {
+    "q": "This layer is considered as the network backbone.",
+    "a": "Core layer"
+  },
+  {
+    "q": "This layer provide fault isolation and high-speed backbone connectivity.",
+    "a": "Core layer"
+  },
+  {
+    "q": "This layer provide fault isolation and high-speed backbone onnectivity.",
+    "a": "Core layer"
+  },
+  {
+    "q": "This layer provides intelligent switching, routing, and network access policy functions to access the rest of the network.",
+    "a": "Distribution layer"
+  },
+  {
+    "q": "This memory provides temporary storage for various applications and processes, including the running IOS, the running configuration file, IP routing table, Ethernet ARP table.",
+    "a": "RAM"
+  },
+  {
+    "q": "This memory stores router bootup instructions and basic diagnostic software.",
+    "a": "ROM"
+  },
+  {
+    "q": "This type of attack takes advantage of the way that hardware on most switches operates. Most switches perform only one level of 802.1Q de- encapsulation, which allows an attacker to embed a hidden 802.1Q tag inside the frame.",
+    "a": "Double Tagging Attack"
+  },
+  {
+    "q": "To troubleshoot issues when a trunk is not forming or when VLAN leaking is occurring, what command to be used to check whether the local and peer native VLANs match?",
+    "a": "show interfaces trunk"
+  },
+  {
+    "q": "True of False. VLAN IDs 1 to 1005 are automatically created. ID 1 cannot be removed while VLAN IDs 1002 to 1005 can still be removed.",
+    "a": "False"
+  },
+  {
+    "q": "True of False.Ingress is used to describe frames leaving the device through a particular port.",
+    "a": "False"
+  },
+  {
+    "q": "TRUE or FALSE. Cut-through switching has two primary characteristics: rapid frame forwarding and invalid frame processing.",
+    "a": "True"
+  },
+  {
+    "q": "TRUE or FALSE. Store-and-forward switching has two primary characteristics that distinguish it from cut-through: error checking and automatic buffering.",
+    "a": "True"
+  },
+  {
+    "q": "True or False.If two devices in the same VLAN have different subnet addresses, they cannot communicate.",
+    "a": "True"
+  },
+  {
+    "q": "TRUE or FALSE.Most network interfaces have one or two LED link indicators next to the interface. Typically, a blinking green LED means a good connection.",
+    "a": "False"
+  },
+  {
+    "q": "True or False.The best way to prevent a basic switch spoofing attack is to turn off trunking on all ports, except the ones that specifically require trunking.",
+    "a": "True"
+  },
+  {
+    "q": "Using show run command at R1, at \"interface GigabitEthernet0/1\" what are the configurations under this interface?",
+    "a": "interface GigabitEthernet0/1no ip addressduplex autospeed auto"
+  },
+  {
+    "q": "Using show run command at R1, observe the first 6 lines of R1 running-configuration what does it shows?",
+    "a": "c"
+  },
+  {
+    "q": "VLAN IDs 1002 through 1005 are reserved for",
+    "a": "All of the Choices"
+  },
+  {
+    "q": "VLAN is a switching technology that reduces the size of a broadcast domain.",
+    "a": "True"
+  },
+  {
+    "q": "VLANis a switching technology that reduces the size of a broadcast domain.",
+    "a": "The correct answer is 'True'."
+  },
+  {
+    "q": "What are the 3 layers of the distribution access?",
+    "a": "Access, distribution and Core layer"
+  },
+  {
+    "q": "What are the two main types of access control lists (ACLs)?",
+    "a": "1 and 3"
+  },
+  {
+    "q": "What are two advantages of EtherChannel? (Choose two.)",
+    "a": "1. Configuring the EtherChannel interface provides consistency in the configuration of the physical links. 2. Spanning Tree Protocol views the physical links in an EtherChannel as one logical connection."
+  },
+  {
+    "q": "What are two benefits of using NAT?",
+    "a": "1 & 5"
+  },
+  {
+    "q": "What are two characteristics of link-state protocols compared to distance vector protocols? (Choose two.)",
+    "a": "1. They require a lot of hardware resources. 2. They compute their own knowledge of the network topology."
+  },
+  {
+    "q": "What are two functions of dynamic routing protocols?1. to maintain routing tables2. to assure low router overhead3. to avoid exposing network information4. to discover the network5. to choose the path that is specified by the administrator",
+    "a": "1 & 4"
+  },
+  {
+    "q": "What are two load-balancing methods in the EtherChannel technology? (Choose two.)",
+    "a": "1. source IP to destination IP 2. source MAC to destination MAC"
+  },
+  {
+    "q": "What are two situations where an OSPF router would send out a link-state packet (LSP)? (Choose two.)",
+    "a": "1. during the initial startup of the routing protocol process 2. when a neighbor adjacency changes"
+  },
+  {
+    "q": "What command sequence will configure a router to run OSPF and add network 10.1.1.0 /24 to area 0?",
+    "a": "\"router ospf 1 network 10.1.1.0 0.0.0.255 area 0\""
+  },
+  {
+    "q": "What does administrative distance refer to?",
+    "a": "A measure of the trustworthiness of a routing information source"
+  },
+  {
+    "q": "What happens to a static route entry in a routing table when the outgoing interface associated with that route goes into a down state?",
+    "a": "The Static route is removed from the routing table"
+  },
+  {
+    "q": "What is a characteristic of an IPv4 loopback interface on a Cisco IOS router?",
+    "a": "It is a logical interface internal to the router."
+  },
+  {
+    "q": "What is a characteristic of out-of-band device management?",
+    "a": "It requires a terminal emulation client."
+  },
+  {
+    "q": "What is an advantage of OSPF compared to RIP?",
+    "a": "Fast convergence"
+  },
+  {
+    "q": "What is one feature that distinguishes routers from Layer 2 switches?",
+    "a": "Routers support a variety of interface types Switches typically support Ethernet interfaces"
+  },
+  {
+    "q": "What is the administrative distance for a directly connected network?",
+    "a": "0"
+  },
+  {
+    "q": "What is the administrative distance for a static route?",
+    "a": "1"
+  },
+  {
+    "q": "What is the best practice relative to switch port modes?",
+    "a": "Do not use the dynamic auto or dynamic desirable"
+  },
+  {
+    "q": "What is the command to assign the port to a particular VLAN when the interface is in access mode?",
+    "a": "switchport access vlanvlan-id"
+  },
+  {
+    "q": "What is the command to configure the interface to automatically negotiate speed with the connected device?",
+    "a": "speed auto"
+  },
+  {
+    "q": "What is the command to create a VLAN with a valid VLAN ID number 30?",
+    "a": "Vlan 30"
+  },
+  {
+    "q": "What is the command to set the IP address (192.168.10.2) and subnet mask (255.255.0.0) for specific Fast Ethernet interface?",
+    "a": "ip address 192.168.10.2 255.255.0.0"
+  },
+  {
+    "q": "What is the command used to determine the status of both physical and virtual interfaces including IP address?",
+    "a": "show ip interface brief"
+  },
+  {
+    "q": "What is the correct syntax of a floating static route?",
+    "a": "Ip route 209165200228 255255255248 10001 120"
+  },
+  {
+    "q": "What is the default administrative distance of OSPF?",
+    "a": "110"
+  },
+  {
+    "q": "What is the default administrative distance of the OSPF routing protocol?",
+    "a": "110"
+  },
+  {
+    "q": "What is the default number of equal-cost paths that can be placed into the routing of a Cisco OSPF router?",
+    "a": "4"
+  },
+  {
+    "q": "What is the function of PoE pass-through?",
+    "a": "function of PoE pass-through? allows switches, phones, and wireless access points to receive power over existing Ethernet cables from an upstream switch"
+  },
+  {
+    "q": "What is the purpose of the DHCP server?",
+    "a": "To provide an IP configuration information to hosts"
+  },
+  {
+    "q": "What is the purpose of VTP?",
+    "a": "It provides centralized management of VLANs in a multi-switch environment."
+  },
+  {
+    "q": "What is the range of values shown for the vty lines?",
+    "a": "0 - 15"
+  },
+  {
+    "q": "What is the status of the Port speed LED if the LED light is blinking green?",
+    "a": "The port is operating at 1000 Mbps"
+  },
+  {
+    "q": "What is the status of the Port speed LED if the LED light is green?",
+    "a": "The port is operating at 100 Mbps"
+  },
+  {
+    "q": "What is the term that is used for the area of a network that is affected when a device or network service experiences problems?",
+    "a": "Failure domain"
+  },
+  {
+    "q": "What loop prevention technique is implemented by distance vector routing protocols?",
+    "a": "split horizon"
+  },
+  {
+    "q": "What route would have the lowest administrative distance?",
+    "a": "A directly connected network"
+  },
+  {
+    "q": "What two functions describe uses of an access control list?",
+    "a": "3 & 5"
+  },
+  {
+    "q": "What type of DHCP attack where in an attacker configures a fake DHCP server on the network to issue DHCP addresses to clients. The normal reason for this attack is to force the clients to use false Domain Name System (DNS) or Windows Internet Naming Service (WINS) servers and to make the clients use the attacker, or a machine under the control of the attacker, as their default gateway.",
+    "a": "DHCP spoofing attack"
+  },
+  {
+    "q": "What type of DHCP attack where in an attacker floods the DHCP server with DHCP requests to use all the available IP addresses that the DHCP server can issue. After these IP addresses are issued, the server cannot issue any more addresses, and this situation produces a denial-of-service (DoS) attackas new clients cannot obtain network access.",
+    "a": "DHCP starvation attack"
+  },
+  {
+    "q": "What type of route allows a router to forward packets even though its routing table contains no specific route to the destination network?",
+    "a": "Default route"
+  },
+  {
+    "q": "What type of VLAN is the default VLAN?",
+    "a": "enet"
+  },
+  {
+    "q": "When a DHCP server is configured, which two IP addresses should never be assignable to hosts?",
+    "a": "4 & 6"
+  },
+  {
+    "q": "When a DHCP server is configured, which two IP addresses should never be assignable to hosts?Designated IP address to the DHCP serverIP address leased to the LANNetwork or subnetwork IP addressManually assigned address to the clientsIP address used by the interfacesBroadcast address on the network",
+    "a": "3 & 6"
+  },
+  {
+    "q": "When a DHCP server is configured, which two IP addresses should never be assignable to hosts?IP address used by the interfacesManually assigned address to the clientsDesignated IP address to the DHCP serverBroadcast address on the networkIP address leased to the LANNetwork or subnetwork IP address (Missed)",
+    "a": "4 & 6"
+  },
+  {
+    "q": "When a range of ports is being configured for EtherChannel, which mode will configure LACP on a port only if the port receives LACP packets from another device?",
+    "a": "passive"
+  },
+  {
+    "q": "When EtherChannel is configured, which mode will force an interface into a port channel without exchanging aggregation protocol packets?",
+    "a": "on"
+  },
+  {
+    "q": "When EtherChannel is implemented, multiple physical interfaces are bundled into which type of logical connection?",
+    "a": "port channel"
+  },
+  {
+    "q": "Which 3 series of commands will configure router R1 for LAN-to-LAN communication with router R2? The enterprise network address is 192.1.1.0/24 and the routing protocol in use is RIP.1. R1 (config)# interface ethernet 0 R1 (config-if)# ip address 192.1.1.129 255.255.255.192 R1 (config-if)# no shutdown2. R1 (config)# interface ethernet 0 R1(config-if)#ip address 192.1.1.97 255.255.255.192 R1 (config-if)# no shutdown3. R1 (config)# interface serial 0 R1 (config-if)# ip address 192.1.1.4 255.255.255.252 R1 (config-if)# clock rate 560004. R1 (config)# interface serial 0 R1(config-if)#ip address 192.1.1.6 255.255.255.252 R1 (config-it)# no shutdown5. R1 (config)# router rip R1 (config-router)# network 192.1.1.4 R1 (config-router)# network 192.1.1.1286. R1 (config)# router rip R1 (config-router)# version 2 R1 (config-router)# network 192.1.1.0",
+    "a": "1, 4, 6"
+  },
+  {
+    "q": "Which 3 statements describe the routing protocol OSPF?",
+    "a": "1, 3, 2005"
+  },
+  {
+    "q": "Which 3 statements describe the routing protocol OSPF?It supports VLSM.It is used to route between autonomous systems.It confines network instability to one area of the network.It increases routing overhead on the network.It allows extensive control of routing updatesIt is simpler to configure than RIPv2.",
+    "a": "1, 3, 5"
+  },
+  {
+    "q": "Which algorithm is used by the OSPF routing process to construct the SPF tree on a router?",
+    "a": "Dijkstra's algorithm"
+  },
+  {
+    "q": "Which are the 2 trunking protocols?",
+    "a": "ISL & IEEE 8021q"
+  },
+  {
+    "q": "Which classless routing protocol supports VLSM and CIDR, bounded and triggered updates, and uses the multicast address of 224.0.0.10?",
+    "a": "EIGRP"
+  },
+  {
+    "q": "Which classless routing protocol supports VLSM and CIDR, supports manual route summarization, and uses the multicast address 224.0.0.9?",
+    "a": "RIPv2"
+  },
+  {
+    "q": "Which combination of DTP modes set on adjacent switches will cause the link to become an access link instead of a trunk link?",
+    "a": "dynamic auto - dynamic auto"
+  },
+  {
+    "q": "Which command can you use to manually assign a static IPV6 address to a router interface?",
+    "a": "ipv6 address 2001:db8:2222:7272::72/64"
+  },
+  {
+    "q": "Which command is used to configure an IPv6 address on a router interface so that the router will combine a manually specified network prefix with an automatically generated interface identifier?",
+    "a": "ipv6 address ipv6-address/prefix-length eui-64"
+  },
+  {
+    "q": "Which command is used to determine if an IP access list is enabled on a particular interface?",
+    "a": "Show ip interface"
+  },
+  {
+    "q": "Which command is used to display the collection of OSPF link states?",
+    "a": "show ipospf database"
+  },
+  {
+    "q": "Which command will allow you to see real-time translations on your router?",
+    "a": "debug ipnat"
+  },
+  {
+    "q": "Which command will create a dynamic pool named Todd that will provide you with 30 global addresses?",
+    "a": "ip nat pool Todd 171.16.10.65 171.16.10.94 net 255.255.255.224"
+  },
+  {
+    "q": "Which command will show you all the translations active on your router?",
+    "a": "show ip nat translations"
+  },
+  {
+    "q": "Which command will show you the summary of the NAT configuration?",
+    "a": "show ipnat statistics"
+  },
+  {
+    "q": "Which command will start the process to bundle two physical interfaces to create an EtherChannel group via LACP?",
+    "a": "channel-group 2 mode auto"
+  },
+  {
+    "q": "Which command would you place on interface connected to the Internet?",
+    "a": "ipnat outside"
+  },
+  {
+    "q": "Which command would you place on interface on a private network?",
+    "a": "ipnat inside"
+  },
+  {
+    "q": "Which commands are required to properly configure a router to run OSPF and to add network 192.168.16.0/24 to OSPF area 0?",
+    "a": "1 & 4"
+  },
+  {
+    "q": "Which commands are required to properly configure a router to run OSPF and to add network 192.168.16.0/24 to OSPF area 0?1. Router(config)#router ospf 1 2. Router(config)#router ospf 0 3. Router(config)#router ospf area 0 4. Router(config-router)#network 192.168.16.0 0.0.0.255 area 0 5. Router(config-router)#network 192.168.16.0 0.0.0.255 0 6. Router(config-router)#network 192.168.16.0 255.255.255.0 area 0",
+    "a": "1 & 4"
+  },
+  {
+    "q": "Which factor directly affects the time to convergence?",
+    "a": "Size of the network"
+  },
+  {
+    "q": "Which feature could be used in a network design to increase the bandwidth by combining multiple physical links into a single logical link?",
+    "a": "EtherChannel"
+  },
+  {
+    "q": "Which interior routing protocol uses protocol-dependent modules (PDMs)?",
+    "a": "EIGRP"
+  },
+  {
+    "q": "Which IPv4 address range covers all IP addresses that match the ACL filter specified by 172.16.2.0 with wildcard mask 0.0.1.255?",
+    "a": "1721620 to 172163255"
+  },
+  {
+    "q": "Which IPv6 ACL command entry will permit traffic from any host to an SMTP server on network 2001:DB8:10:10::/64?",
+    "a": "Permit tcp any host 2001:DB8:10:10::100 eq 25"
+  },
+  {
+    "q": "Which is the VLAN not tagged by 802.1q?",
+    "a": "Native VLAN"
+  },
+  {
+    "q": "Which item represents the standard IP ACL?",
+    "a": "access-list 50 deny 192.168.1.1 0.0.0.255"
+  },
+  {
+    "q": "Which mode configuration setting would allow formation of an EtherChannel link between switches SW1 and SW2 without sending negotiation traffic?",
+    "a": "SW1: on SW2: on"
+  },
+  {
+    "q": "Which network design solution will best extend access layer connectivity to host devices?",
+    "a": "implementing wireless connectivity"
+  },
+  {
+    "q": "Which of the following 3 methods/types of NAT?",
+    "a": "1, 3, 2005"
+  },
+  {
+    "q": "Which of the following 3 methods/types of NAT?1. Static2. IP NAT pool3. Dynamic4. NAT double-translation5. Overload",
+    "a": "1, 3, 5"
+  },
+  {
+    "q": "Which of the following are 2 primary functions of a router?1. Packet switching2. Microsegmentation3. Domain name resolution4. Path selection5. Flow control",
+    "a": "1 & 4"
+  },
+  {
+    "q": "Which of the following are 3 disadvantages of using NAT?",
+    "a": "1, 3, 2005"
+  },
+  {
+    "q": "Which of the following describes a VLAN?",
+    "a": "VLANs are based on logical connections, instead of physical connections"
+  },
+  {
+    "q": "Which of the following describes Dynamic Trunking Protocol?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following HSRP router states does an active router enter when it is preempted by a higher priority router?",
+    "a": "Speak"
+  },
+  {
+    "q": "Which of the following is an element of converged network?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is NOT a benefit of VLAN?",
+    "a": "Dividing Layer 1,2 and 3 networks into multiple physical workgroups reduces unnecessary traffic on the network and boosts performance"
+  },
+  {
+    "q": "Which of the following is NOT a characteristics of a network?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is NOT a feature of a Switched Network",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following is NOT an element of converged network?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following is the command to configure the IP domain name of the network (mycompany.com)",
+    "a": "Ip domain-name mycompanycom"
+  },
+  {
+    "q": "Which of the following is the command to configure the switch default gateway with IP address of 172.10.90.1?",
+    "a": "ip default-gateway 17210901"
+  },
+  {
+    "q": "Which of the following is the command to specify a VLAN name? Name of VLAN is employee.",
+    "a": "name employee"
+  },
+  {
+    "q": "Which of the following statement is INCORRECT?",
+    "a": "A switch populates the MAC address table based on destination MAC addresses."
+  },
+  {
+    "q": "Which of the following would be a good starting point for troubleshooting if your router is not translating?",
+    "a": "Check your interfaces for the correct configuration"
+  },
+  {
+    "q": "Which of the following would be good reasons to run NAT?",
+    "a": "1, 2 and 4"
+  },
+  {
+    "q": "Which of the following would be good reasons to run NAT?You need to connect to the Internet and your hosts don't have globally unique IP addresses.You change to a new ISP that requires you to renumber your network.You don't want any hosts connecting to the Internet.You require two intranets with duplicate addresses to merge.",
+    "a": "1, 2 and 4"
+  },
+  {
+    "q": "Which of the statements describe characteristic of load balancing?",
+    "a": "Load balancing allows a router to forward packets over multiple paths to the same destination network"
+  },
+  {
+    "q": "Which operation feature is different between EIGRP and RIP?",
+    "a": "EIGRP stores all routes learned from neighbors in a topology table."
+  },
+  {
+    "q": "Which parameter can be tuned to affect the selection of a static route as a backup when a dynamic protocol is also being used?",
+    "a": "administrative distance"
+  },
+  {
+    "q": "Which parameter or parameters are used to calculate OSPF cost in Cisco routers?",
+    "a": "Bandwidth"
+  },
+  {
+    "q": "Which parameter would you tune to affect the selection of a static route as a backup, when a dynamic protocol is also being used?",
+    "a": "Administrative distance"
+  },
+  {
+    "q": "Which protocolis used to configure trunking on a switch?",
+    "a": "8021q"
+  },
+  {
+    "q": "Which protocols are used to configure trunking on a switch?",
+    "a": "802.1q"
+  },
+  {
+    "q": "Which router command allows you to view the entire contents of all access lists?",
+    "a": "Show access-lists"
+  },
+  {
+    "q": "Which routing protocol uses both bandwidth and delay to determine the best pathway to reach a remote network?",
+    "a": "EIGRP"
+  },
+  {
+    "q": "Which routing protocol uses the Diffusing Update Algorithm to install routes into the routing table?",
+    "a": "EIGRP"
+  },
+  {
+    "q": "Which routing protocol uses the DUAL algorithm and sends multicast messages to propagate routing updates?",
+    "a": "EIGRP"
+  },
+  {
+    "q": "Which routing protocol was designed by the International Organization for Standardization (ISO)?",
+    "a": "IS-IS"
+  },
+  {
+    "q": "Which scalable method must be implemented in order to provide inter-VLAN routing on a switched network with more than 1000 VLANs?",
+    "a": "routing traffic internally to a Layer 3 switch device"
+  },
+  {
+    "q": "Which sentence correctly describes the SVI inter-VLAN routing method?",
+    "a": "An SVI is needed for each VLAN."
+  },
+  {
+    "q": "Which series of commands will configure router R1 for LAN-to-LAN communication with router R2? The enterprise network address is 192.1.1.0/24 and the routing protocol in use is RIP. (Choose three.)",
+    "a": "A. R1(config)# interface ethernet 0 R1(config-if)# ip address 192.1.1.129 255.255.255.192 R1(config-if)# no shutdown D. R1(config)# interface serial 0 R1(config-if)# ip address 192.1.1.6 255.255.255.252 R1(config-if)# no shutdown F. R1(config)# router rip R1(config-router)# version 2 R1(config-router)# network 192.1.1.0"
+  },
+  {
+    "q": "Which statement about access lists that are applied to an interface is true?",
+    "a": "You can configure one access list, per direction, per layer 3 protocol"
+  },
+  {
+    "q": "Which statement are generally considered to be best practices in the placement of ACLs? (Choose three.)",
+    "a": "Place standard ACLs close to the destination IP address of the traffic."
+  },
+  {
+    "q": "Which statement describe a characteristicof load balancing?",
+    "a": "Load balancing allows a router to forward packets over multiple paths to the same destination network."
+  },
+  {
+    "q": "Which statement describes a characteristic of standard IPv4 ACLs?",
+    "a": "They filter traffic based on source IP addresses only"
+  },
+  {
+    "q": "Which statement describes a difference between the operation of inbound and outbound ACLs?",
+    "a": "Inbound ACLs are processed before the packets are routed while outbound ACLs are processed after the routing is completed"
+  },
+  {
+    "q": "Which statement is correct regarding the operation of DHCP?",
+    "a": "If an address conflict is detected, the address is removed from the pool and will not be reused until the server is rebooted"
+  },
+  {
+    "q": "Which statement is true regarding routing metrics?",
+    "a": "Routers compare metrics to determine the best path"
+  },
+  {
+    "q": "Which task does the Dynamic Host Configuration Protocol perform?",
+    "a": "Assign and renew IP address from the default pool"
+  },
+  {
+    "q": "Which technology is required when switched networks are designed to include redundant links?",
+    "a": "Spanning Tree Protocol (STP)"
+  },
+  {
+    "q": "Which three elements must be used when you configure a router interface for VLAN trunking?1. one physical interface for each subinterface2. one IP network or subnetwork for each subinterface3. a management domain for each subinterface4. subinterface encapsulation identifiers that match VLAN tags5. one subinterface per VLAN6. subinterface numbering that matches VLAN tags",
+    "a": "2, 4, 5"
+  },
+  {
+    "q": "Which three features are of OSPF routing protocol?",
+    "a": "1, 3, 2005"
+  },
+  {
+    "q": "Which three statements about routed ports on a multilayer switch are true?1. A routed port can support VLAN subinterfaces. 2. A routed port takes an IP address assignment. 3. A routed port can be configured with routing protocols. 4. A routed port is a virtual interface on the multilayer switch. 5. A routed port is associated only with one VLAN. 6. A routed port is a physical interface on the multilayer switch.",
+    "a": "2, 3, 6"
+  },
+  {
+    "q": "Which three statements about VTP features are true? (Choose three.)",
+    "a": "When properly configured, VTP minimizes VLAN misconfigurations and configuration inconsistencies. VTP pruning is used to increase available bandwidth in trunk links."
+  },
+  {
+    "q": "Which three statements describe the routing protocol OSPF?",
+    "a": "1, 3, 2005"
+  },
+  {
+    "q": "Which two channel group modes would place an interface in a negotiating state using PAgP? (Choose two.)",
+    "a": "1. desirable 2. auto"
+  },
+  {
+    "q": "Which two characteristics are shared by both standard and extended ACLs?",
+    "a": "3 & 5"
+  },
+  {
+    "q": "Which two commands are required to properly configure a router to run OSPF and to add network 192.168.16.0/24 to OSPF area 0?",
+    "a": "1 & 4"
+  },
+  {
+    "q": "Which two link protocols are used to carry multiple VLANs over a single link?",
+    "a": "8021q & ISL"
+  },
+  {
+    "q": "Which two link protocols are used to carry multiple VLANs over a single link?1. VTP2. 802.1q3. IGP4. ISL5. 802.3u",
+    "a": "2 & 4"
+  },
+  {
+    "q": "Which two methods help to prevent the disruption of network services? (Choose two.)",
+    "a": "1. installing duplicate equipment to provide failover services 2. using redundant connections to provide alternate physical paths"
+  },
+  {
+    "q": "Which two network parameters are used by EIGRP as metrics to select the best path to reach a network?1. Jitter2. bandwidth3. resiliency4. hop count5. delay6. confidentiality",
+    "a": "2 & 5"
+  },
+  {
+    "q": "Which two parameters are used by EIGRP as metrics to select the best path to reach a network?",
+    "a": "2, 5"
+  },
+  {
+    "q": "Which two parameters must match on the ports of two switches to create a PAgP EtherChannel between the switches? (Choose two.)",
+    "a": "1. speed 2. VLAN Information"
+  },
+  {
+    "q": "Which two routing protocols are classified as link-state protocols? (Choose two.)",
+    "a": "1. OSPF 2. IS-IS"
+  },
+  {
+    "q": "Which two statements about static NAT translations are true?",
+    "a": "1 & 2"
+  },
+  {
+    "q": "Which two statements about static NAT translations are true?1. They are always present in the NAT table. 2. They allow connection to be initiated from the outside. 3. They can be configured with access lists, to allow two or more connections to be initiated from the outside. 4. They require no inside or outside interface markings because addresses are statically defined.",
+    "a": "1 & 2"
+  },
+  {
+    "q": "Which two statements are true for OSPF Hello packets? (Choose two.)",
+    "a": "1. They are used to maintain neighbor relationships. 2. They are used for dynamic neighbor discovery."
+  },
+  {
+    "q": "Which two statements correctly describe the components of a router?1. RAM permanently stores the configuration file used during the boot sequence.2. ROM contains diagnostics executed on hardware modules.3. NVRAM stores a backup copy of the IOS used during the boot sequence.4. Flash memory does not lose its contents during a reboot.5. ROM contains the most current and most complete version of the IOS.6. Flash contains boot system commands to identify the location of the IOS",
+    "a": "2 & 4"
+  },
+  {
+    "q": "Which two statements correctly describe the concepts of administrative distance and metric? (Choose two.)1. The metric varies depending which Layer 3 protocol is being routed, such as IP.2. A router first installs routes with higher administrative distances.3. The value of the administrative distance can not be altered by the network administrator.4. Routes with the smallest metric to a destination indicate the best path.5. Administrative distance refers to the trustworthiness of a particular route.6. The metric is always determined based on hop count.",
+    "a": "4 & 5"
+  },
+  {
+    "q": "Which two statements describe a routed switch port on a multilayer switch? (Choose two)",
+    "a": "The port is not associated with any VLAN The routed switch port is used when a switch has only one port per VLAN or subnet"
+  },
+  {
+    "q": "Which two statements describe a routed switch port on a multilayer switch?1. Layer 2 switching and Layer 3 routing are mutually supported. 2. The port is not associated with any VLAN. 3. The routed switch port supports VLAN subinterfaces. 4. The routed switch port is used when a switch has only one port per VLAN or subnet. 5. The routed switch port ensures that STP remains in the forwarding state.",
+    "a": "2, 4"
+  },
+  {
+    "q": "Which two statements describe characteristics of IPv6 unicast addressing? (Choose two.)",
+    "a": "Global addresses start with 2000::/3. There is only one loopback address and it is ::1."
+  },
+  {
+    "q": "Which two statements describe the process identifier that is used in the command to configure OSPF on a router?",
+    "a": "3 & 4"
+  },
+  {
+    "q": "Which two types of connections can be used for out-of-band configuration for a Cisco IOS network device? (Choose two.)",
+    "a": "1. console 2. AUX"
+  },
+  {
+    "q": "Which type of router would an enterprise use to allow customers to access content anytime and anyplace, regardless of whether they are at home or work?",
+    "a": "network edge routers"
+  },
+  {
+    "q": "Which type of VLAN is identified by a VLAN ID between 1006 and 4094 and not contained in updates of switches participating in a VTP domain?",
+    "a": "extended"
+  },
+  {
+    "q": "Which version of NAT allows many hosts inside a private network to simultaneously use a single inside global address for connecting to the Internet?",
+    "a": "PAT"
+  },
+  {
+    "q": "Why is a single summary static route an advantage regarding the size of the routing table?",
+    "a": "A smaller routing table converges faster and takes less processing power from the router"
+  },
+  {
+    "q": "Why would a floating static route be configured with an administrative distance that is higher than the administrative distance of a dynamic routing protocol that is running on the same router?",
+    "a": "To be used as a backup route"
+  },
+  {
+    "q": "Why would a floating static route be configured with an administrative distance that is highierthan the administrative distance of a dynamic routing protocol that is running on the same router?",
+    "a": "To be used as a backup route"
+  }
+]

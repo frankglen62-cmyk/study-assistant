@@ -3,39 +3,60 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Euthenics 2',
-    slug: 'euthenics-2',
-    expectedCount: 239,
+    name: 'Data Analysis',
+    slug: 'data-analysis',
+    expectedCount: 251,
     pages: 4,
-    baseUrl: 'https://amauoed.com/courses/ethns/euthenics-2-6102-ethns'
+    baseUrl: 'https://amauoed.com/courses/math/data-analysis-6200-math'
   },
   {
-    name: 'The Contemporary World',
-    slug: 'the-contemporary-world',
-    expectedCount: 226,
+    name: 'Data Communications and Networking 1',
+    slug: 'data-communications-and-networking-1',
+    expectedCount: 271,
     pages: 4,
-    baseUrl: 'https://amauoed.com/courses/ge/the-contemporary-world-6102-ge'
+    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-1-6201-it'
   },
   {
-    name: 'Application Development and Emerging Technology',
-    slug: 'application-development-and-emerging-technology',
-    expectedCount: 570,
-    pages: 8,
-    baseUrl: 'https://amauoed.com/courses/ite/application-development-and-emerging-technology-6200-ite'
+    name: 'Data Communications and Networking 2',
+    slug: 'data-communications-and-networking-2',
+    expectedCount: 361,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-2-6223-it'
   },
   {
-    name: 'Current Trends and Issues',
-    slug: 'current-trends-and-issues',
-    expectedCount: 453,
-    pages: 7,
-    baseUrl: 'https://amauoed.com/courses/comp/current-trends-and-issues-6103-comp'
+    name: 'Data Communications and Networking 3',
+    slug: 'data-communications-and-networking-3',
+    expectedCount: 247,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/it/data-communications-and-networking-3-6224-it'
   },
   {
-    name: 'Computer Programming 1',
-    slug: 'computer-programming-1',
-    expectedCount: 752,
-    pages: 11,
-    baseUrl: 'https://amauoed.com/courses/ite/computer-programming-1-6102-ite'
+    name: 'Data Structures and Algorithm Analysis',
+    slug: 'data-structures-and-algorithm-analysis',
+    expectedCount: 228,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/ite/data-structures-and-algorithm-analysis-6201-ite'
+  },
+  {
+    name: 'Database Management System 1 (Oracle)',
+    slug: 'database-management-system-1-oracle',
+    expectedCount: 150,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/it/database-management-system-1-oracle-6202-it'
+  },
+  {
+    name: 'Environmental Science',
+    slug: 'environmental-science',
+    expectedCount: 269,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/ge/environmental-science-6200-ge'
+  },
+  {
+    name: 'Euthenics 1',
+    slug: 'euthenics-1',
+    expectedCount: 151,
+    pages: 3,
+    baseUrl: 'https://amauoed.com/courses/ethns/euthenics-1-6101-ethns'
   }
 ];
 
