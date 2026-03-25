@@ -16,9 +16,10 @@ export function InteractiveCard({
   className,
   accent = 'rgba(45, 212, 191, 0.16)',
   borderAccent = 'rgba(125, 211, 252, 0.2)',
-  hoverLift = 10,
-  hoverScale = 1.018,
+  hoverLift = 12,
+  hoverScale = 1.05,
 }: {
+
   children: ReactNode;
   className?: string;
   accent?: string;
@@ -82,10 +83,15 @@ export function InteractiveCard({
           : {
               y: -hoverLift,
               scale: hoverScale,
-              boxShadow: '0 28px 90px rgba(0, 0, 0, 0.34)',
+              boxShadow: '0 32px 100px rgba(0, 0, 0, 0.45)',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
             }
       }
-      transition={{ type: 'spring', stiffness: 230, damping: 24, mass: 0.7 }}
+      transition={{
+        duration: 0.24,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+
     >
       {!reduced ? (
         <>

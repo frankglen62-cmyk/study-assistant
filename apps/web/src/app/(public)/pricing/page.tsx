@@ -95,15 +95,14 @@ export default function PricingPage() {
           {packages.map((pkg, index) => (
             <ScrollReveal key={pkg.name} delay={index * 0.06}>
               <InteractiveCard
-                hoverLift={pkg.highlighted ? 18 : 12}
-                hoverScale={pkg.highlighted ? 1.035 : 1.022}
                 accent={pkg.highlighted ? 'rgba(45,212,191,0.2)' : 'rgba(45,212,191,0.12)'}
-                className={`rounded-[30px] border p-8 transition-all ${
+                className={`flex h-full flex-col rounded-[30px] border p-8 transition-all ${
                   pkg.highlighted
-                    ? 'relative z-10 border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-2xl shadow-black/40 lg:-my-4 lg:py-12'
+                    ? 'relative z-10 border-white/20 bg-white/[0.04] shadow-2xl shadow-black/40'
                     : 'border-white/[0.06] bg-white/[0.02]'
                 }`}
               >
+
                 {pkg.highlighted ? (
                   <div className="mb-4 inline-flex rounded-full border border-teal-400/20 bg-teal-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">
                     Most chosen
@@ -140,16 +139,19 @@ export default function PricingPage() {
                   </ul>
                 </div>
 
-                <Link
-                  href="/register"
-                  className={`block w-full rounded-xl py-3 text-center text-sm font-semibold transition-all ${
-                    pkg.highlighted
-                      ? 'bg-white text-black hover:bg-neutral-200'
-                      : 'border border-white/10 bg-white/[0.04] text-white hover:bg-white/10'
-                  }`}
-                >
-                  Get Started
-                </Link>
+                <div className="mt-auto">
+                  <Link
+                    href="/register"
+                    className={`block w-full rounded-xl py-3 text-center text-sm font-semibold transition-all ${
+                      pkg.highlighted
+                        ? 'bg-white text-black hover:bg-neutral-200'
+                        : 'border border-white/10 bg-white/[0.04] text-white hover:bg-white/10'
+                    }`}
+                  >
+                    Get Started
+                  </Link>
+                </div>
+
               </InteractiveCard>
             </ScrollReveal>
           ))}
