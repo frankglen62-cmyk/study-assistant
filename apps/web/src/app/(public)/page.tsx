@@ -108,7 +108,7 @@ const heroTopCtaRow: Variants = {
   visible: {
     transition: {
       delayChildren: 0.54,
-      staggerChildren: 0.18,
+      staggerChildren: 0.16,
     },
   },
 };
@@ -116,50 +116,15 @@ const heroTopCtaRow: Variants = {
 const heroTopPrimaryCtaWrap: Variants = {
   hidden: {
     opacity: 0,
-    y: 18,
-    scale: 0.96,
+    y: 20,
+    scale: 0.985,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.2,
-      ease: ease.out,
-      when: 'beforeChildren',
-      staggerChildren: 0.02,
-    },
-  },
-};
-
-const heroTopPrimaryCtaFill: Variants = {
-  hidden: {
-    scaleX: 0.38,
-    scaleY: 0.065,
-    borderRadius: 999,
-    opacity: 1,
-  },
-  visible: {
-    scaleX: 1,
-    scaleY: 1,
-    borderRadius: 8,
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-      ease: ease.out,
-    },
-  },
-};
-
-const heroTopPrimaryCtaLabel: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.12,
-      delay: 0.08,
+      duration: 0.18,
       ease: ease.out,
     },
   },
@@ -168,7 +133,7 @@ const heroTopPrimaryCtaLabel: Variants = {
 const heroTopSecondaryCta: Variants = {
   hidden: {
     opacity: 0,
-    x: 22,
+    x: -26,
     scale: 0.98,
   },
   visible: {
@@ -176,7 +141,7 @@ const heroTopSecondaryCta: Variants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.14,
+      duration: 0.16,
       ease: ease.out,
     },
   },
@@ -277,23 +242,12 @@ export default function HomePage() {
               variants={reduced ? undefined : heroTopPrimaryCtaWrap}
               whileHover={reduced ? undefined : buttonHover}
               whileTap={reduced ? undefined : buttonTap}
-              className="relative"
             >
               <Link
                 href="/register"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20"
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-colors hover:bg-neutral-100"
               >
-                <motion.span
-                  aria-hidden="true"
-                  variants={reduced ? undefined : heroTopPrimaryCtaFill}
-                  className="pointer-events-none absolute inset-0 origin-center rounded-lg bg-white transition-colors duration-200 group-hover:bg-neutral-100"
-                />
-                <motion.span
-                  variants={reduced ? undefined : heroTopPrimaryCtaLabel}
-                  className="relative z-10"
-                >
-                  Get Started
-                </motion.span>
+                Get Started
               </Link>
             </motion.div>
             <motion.div
