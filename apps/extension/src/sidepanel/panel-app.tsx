@@ -527,6 +527,17 @@ export function SidePanelApp() {
     setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
     setSubjectSearch(getSubjectDisplayLabel(subject));
     setSubjectPickerOpen(false);
+    
+    // Auto-apply selection slightly after state update
+    setTimeout(() => {
+       void confirmOverride().then(() => {
+         const nextSubject = availableSubjects.find((s) => s.name === subject.name) ?? null;
+         setSubjectSearch(nextSubject ? getSubjectDisplayLabel(nextSubject) : '');
+         if (canAnalyze) {
+           setWorkspaceView('answering');
+         }
+       });
+    }, 50);
   }
 
   function updateSubjectSearch(value: string) {

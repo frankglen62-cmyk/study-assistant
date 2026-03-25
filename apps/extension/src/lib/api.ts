@@ -11,7 +11,7 @@ import {
   walletResponseSchema,
 } from './validators';
 
-const ANALYZE_REQUEST_TIMEOUT_MS = 15_000;
+const ANALYZE_REQUEST_TIMEOUT_MS = 60_000;
 
 interface FetchOptions {
   method?: 'GET' | 'POST';
