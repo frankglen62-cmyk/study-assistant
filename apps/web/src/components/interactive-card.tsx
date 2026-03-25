@@ -18,6 +18,9 @@ export function InteractiveCard({
   borderAccent = 'rgba(125, 211, 252, 0.2)',
   hoverLift = 12,
   hoverScale = 1.05,
+  hoverShadow = '0 32px 100px rgba(0, 0, 0, 0.45)',
+  hoverBackgroundColor = 'rgba(255, 255, 255, 0.05)',
+  tiltIntensity = 7,
 }: {
 
   children: ReactNode;
@@ -26,6 +29,9 @@ export function InteractiveCard({
   borderAccent?: string;
   hoverLift?: number;
   hoverScale?: number;
+  hoverShadow?: string;
+  hoverBackgroundColor?: string;
+  tiltIntensity?: number;
 }) {
   const reduced = useReducedMotion();
   const pointerX = useMotionValue(180);
@@ -46,7 +52,7 @@ export function InteractiveCard({
     const rect = event.currentTarget.getBoundingClientRect();
     const localX = event.clientX - rect.left;
     const localY = event.clientY - rect.top;
-    const rotateBound = 7;
+    const rotateBound = tiltIntensity;
 
     pointerX.set(localX);
     pointerY.set(localY);
@@ -83,8 +89,8 @@ export function InteractiveCard({
           : {
               y: -hoverLift,
               scale: hoverScale,
-              boxShadow: '0 32px 100px rgba(0, 0, 0, 0.45)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              boxShadow: hoverShadow,
+              backgroundColor: hoverBackgroundColor,
             }
       }
       transition={{

@@ -96,13 +96,14 @@ export default function PricingPage() {
             <ScrollReveal key={pkg.name} delay={index * 0.06}>
               <InteractiveCard
                 accent={pkg.highlighted ? 'rgba(45,212,191,0.2)' : 'rgba(45,212,191,0.12)'}
-                className={`flex h-full flex-col rounded-[30px] border p-8 transition-all ${
-                  pkg.highlighted
-                    ? 'relative z-10 border-white/20 bg-white/[0.04] shadow-2xl shadow-black/40'
-                    : 'border-white/[0.06] bg-white/[0.02]'
-                }`}
+                borderAccent={pkg.highlighted ? 'rgba(94, 234, 212, 0.22)' : 'rgba(255,255,255,0.16)'}
+                hoverLift={10}
+                hoverScale={1.045}
+                tiltIntensity={4}
+                hoverShadow="0 28px 84px rgba(0, 0, 0, 0.42)"
+                hoverBackgroundColor="rgba(255, 255, 255, 0.055)"
+                className="flex h-full flex-col rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-8 shadow-[0_14px_48px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 group-hover:border-white/[0.18]"
               >
-
                 {pkg.highlighted ? (
                   <div className="mb-4 inline-flex rounded-full border border-teal-400/20 bg-teal-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">
                     Most chosen
@@ -144,8 +145,8 @@ export default function PricingPage() {
                     href="/register"
                     className={`block w-full rounded-xl py-3 text-center text-sm font-semibold transition-all ${
                       pkg.highlighted
-                        ? 'bg-white text-black hover:bg-neutral-200'
-                        : 'border border-white/10 bg-white/[0.04] text-white hover:bg-white/10'
+                        ? 'bg-white text-black group-hover:bg-neutral-100 hover:bg-neutral-200'
+                        : 'border border-white/10 bg-white/[0.04] text-white group-hover:border-white/20 group-hover:bg-white/[0.09] hover:bg-white/10'
                     }`}
                   >
                     Get Started
