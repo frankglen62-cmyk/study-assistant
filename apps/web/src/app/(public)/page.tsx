@@ -107,8 +107,8 @@ const heroTopCtaRow: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.16,
+      delayChildren: 0.46,
+      staggerChildren: 0.14,
     },
   },
 };
@@ -116,13 +116,13 @@ const heroTopCtaRow: Variants = {
 const heroTopPrimaryCtaWrap: Variants = {
   hidden: {
     opacity: 1,
-    scale: 0.98,
+    scale: 0.96,
   },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.2,
+      duration: 0.18,
       ease: ease.out,
       when: 'beforeChildren',
       staggerChildren: 0.02,
@@ -132,15 +132,15 @@ const heroTopPrimaryCtaWrap: Variants = {
 
 const heroTopPrimaryCtaFill: Variants = {
   hidden: {
-    scaleX: 0.22,
-    scaleY: 0.07,
+    scaleX: 0.38,
+    scaleY: 0.065,
     borderRadius: 999,
     opacity: 1,
   },
   visible: {
     scaleX: 1,
     scaleY: 1,
-    borderRadius: 10,
+    borderRadius: 8,
     opacity: 1,
     transition: {
       duration: 0.2,
@@ -157,7 +157,7 @@ const heroTopPrimaryCtaLabel: Variants = {
     opacity: 1,
     transition: {
       duration: 0.12,
-      delay: 0.1,
+      delay: 0.08,
       ease: ease.out,
     },
   },
@@ -166,15 +166,15 @@ const heroTopPrimaryCtaLabel: Variants = {
 const heroTopSecondaryCta: Variants = {
   hidden: {
     opacity: 0,
-    x: 10,
-    scale: 0.985,
+    x: 12,
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.16,
+      duration: 0.14,
       ease: ease.out,
     },
   },
