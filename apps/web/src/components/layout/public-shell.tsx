@@ -181,7 +181,7 @@ export function PublicShell({
       </motion.header>
 
       <main className="relative">
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence initial={!reduced} mode="wait">
           <motion.div
             key={pathname}
             variants={pageStage}
