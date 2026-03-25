@@ -1,0 +1,2278 @@
+[
+  {
+    "q": "_____________ is defines the structure of the document, default values, and validators.",
+    "a": "Mongoose schema"
+  },
+  {
+    "q": "_construct() method executes when a class is created or instantiated.",
+    "a": "True"
+  },
+  {
+    "q": "$(document).ready() function calls if the browser contents has properly loaded its contents and is browsing.",
+    "a": "False"
+  },
+  {
+    "q": "$that->db->insert_id() function returns the auto incremented or last inserted id from the query.",
+    "a": "False"
+  },
+  {
+    "q": "$this->db->insert_id() inserts an id in the database.",
+    "a": "False"
+  },
+  {
+    "q": "$this->session->set_userdata() is also used to set or change an existing session variable value",
+    "a": "True"
+  },
+  {
+    "q": "1The Control Appendfunction of the URL helperreturns the $config[‘base_url’] value defined on application/config/config.php.",
+    "a": "False"
+  },
+  {
+    "q": "4.Helpers differs from the model methods because it doesn’t require database intervention.",
+    "a": "True"
+  },
+  {
+    "q": "A cart library method that displays the total number of items in the cart.",
+    "a": "total_items()"
+  },
+  {
+    "q": "A cart library method that permits you to destroy the cart.",
+    "a": "destroy()"
+  },
+  {
+    "q": "A cart library method that returns the total amount",
+    "a": "total()"
+  },
+  {
+    "q": "A cart library method used to update the information of a specific cart item.",
+    "a": "update()"
+  },
+  {
+    "q": "A child pseudoclass may represent the second, third, fourth, and so on elements.",
+    "a": "Nth child"
+  },
+  {
+    "q": "A class contained within the header, main, and footer elements which will carry the content elements.",
+    "a": "container"
+  },
+  {
+    "q": "A Cloud Foundry command is used to specify a target API endpoint, login credentials, an org, and space.",
+    "a": "cf login"
+  },
+  {
+    "q": "A Cloud Foundry command that set or view the targeted org or space.",
+    "a": "target"
+  },
+  {
+    "q": "A collection of data elements organized in terms of rows and columns.",
+    "a": "Relational table"
+  },
+  {
+    "q": "A command is used in the command-line interface to create a new directory.",
+    "a": "mkdir"
+  },
+  {
+    "q": "A command module that appears to be available on the global scope is ___________________.",
+    "a": "Require module"
+  },
+  {
+    "q": "A command that allows us to make a new directory on your current or specific directory location.",
+    "a": "mkdir"
+  },
+  {
+    "q": "A command that allows you to move from your current directory to an inner directory.",
+    "a": "cd"
+  },
+  {
+    "q": "A command that can be used to restart Vagrant once it stopped.",
+    "a": "vagrant up"
+  },
+  {
+    "q": "A command that is used to load up the intuitive Redis clients.",
+    "a": "Redis-cli"
+  },
+  {
+    "q": "A command that is used to make a new directory thru the command line interface.",
+    "a": "mkdir"
+  },
+  {
+    "q": "A command which allows you to create a new directory.",
+    "a": "mkdir"
+  },
+  {
+    "q": "A command which refers to the print working directory.",
+    "a": "pwd"
+  },
+  {
+    "q": "A command-line tool used to interact with Cloud Foundry.",
+    "a": "cf"
+  },
+  {
+    "q": "A common open standard for authorization.",
+    "a": "Oauth"
+  },
+  {
+    "q": "A common XML-based open data format for authentication.",
+    "a": "security assertion markup language(saml)"
+  },
+  {
+    "q": "A component that packages a non-native app so that it is viable for native distribution.",
+    "a": "native wrapper"
+  },
+  {
+    "q": "A configuration variables contain full URL to the controller class/function containing your pagination",
+    "a": "base_url"
+  },
+  {
+    "q": "A configuration variables represents the total rows in the result set you are creating pagination for",
+    "a": "total_rows"
+  },
+  {
+    "q": "A configuration variables that set number of items you intend to show per page.",
+    "a": "per_page"
+  },
+  {
+    "q": "A cross-platform and language-independent interface treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document.",
+    "a": "Document Object Model"
+  },
+  {
+    "q": "A CSS feature that is intended to eliminate all browser defaults.",
+    "a": "CSS reset"
+  },
+  {
+    "q": "A database that can be utilized for more impenetrable data storage needs.",
+    "a": "Mongodb"
+  },
+  {
+    "q": "A development process that works on a very short development cycle.",
+    "a": "est-driven development(TDD)"
+  },
+  {
+    "q": "A development tool, sometimes including a mobile middleware server, that builds hybrid or native apps for each mobile platform from a single codebase. IncludesMEAPs and MCAPs.",
+    "a": "mobile application development platform(MADP)"
+  },
+  {
+    "q": "A device that helps fabricate a development environment utilizing a virtual machine.",
+    "a": "Vagrant"
+  },
+  {
+    "q": "A feature for access control systems that allows users to log in to (or log out of) multiple, independent software systems using one set of credentials.",
+    "a": "single ign-on(SSO)"
+  },
+  {
+    "q": "A file that contains a single JSON object that incorporates your Twitter credentials",
+    "a": "credentialsjson"
+  },
+  {
+    "q": "A for loop comprises of four things, three of them are in the parenthesis that follow the word for and we allude to those as the initialization statement, the continuation condition, the update statement, and the fourth is the loop body,",
+    "a": "True"
+  },
+  {
+    "q": "A function from a selector which will eliminate the chosen element(s) from the DOM.",
+    "a": "remove"
+  },
+  {
+    "q": "A function that carries or executes the callback after the predefined number of milliseconds have passed.",
+    "a": "setTimeout"
+  },
+  {
+    "q": "A function that creates contentions such as a string signifying the kind of stream and an object that contains data about our filter rules.",
+    "a": "stream function"
+  },
+  {
+    "q": "A function that finishes the response by including \"Hi World.\"",
+    "a": "resend"
+  },
+  {
+    "q": "A function that is used to gain access to the JSON files in our program locally.",
+    "a": "getJSON"
+  },
+  {
+    "q": "A function that makes the HTTP header that sets the attributes of the response.",
+    "a": "reqwriteHead"
+  },
+  {
+    "q": "A function that returns all the values of all specified keys in Redis.",
+    "a": "mget"
+  },
+  {
+    "q": "A function that runs as the system user rather than an application user.",
+    "a": "System function"
+  },
+  {
+    "q": "A function that sets the time when a function will be called.",
+    "a": "setInterval"
+  },
+  {
+    "q": "A function used in asynchronous programming where it is executed at the later part being an argument.",
+    "a": "callback"
+  },
+  {
+    "q": "A Git command that is only used to start or initialize the repository.",
+    "a": "Git init"
+  },
+  {
+    "q": "A git command which initializes your repository.",
+    "a": "Git init"
+  },
+  {
+    "q": "A JavaScript object that is created by a standard JavaScript object constructor.",
+    "a": "controller"
+  },
+  {
+    "q": "A JavaScript string where strings are declared inside a string using single quotes outwardly and double quotes within.",
+    "a": "jsonString"
+  },
+  {
+    "q": "A JSON file that resides from the root base of a JavaScript Node project",
+    "a": "packagejson"
+  },
+  {
+    "q": "A kind of schema that characterizes the structure of the archive, predefined values, and validators.",
+    "a": "Mongoose schema"
+  },
+  {
+    "q": "A language that is used to present requests from a database saved in a relational format.",
+    "a": "SQL"
+  },
+  {
+    "q": "A library that enables real-time, bidirectional and event-based communication between the browser and the server.",
+    "a": "socketio"
+  },
+  {
+    "q": "A lightweight format in JavaScript for storing and transporting data.",
+    "a": "json"
+  },
+  {
+    "q": "A method in jQuery that is used to create a serialized representation of an object.",
+    "a": "param()"
+  },
+  {
+    "q": "A method that can be used on jQuery collections that wrap plain JavaScript objects similar to a pub/ sub mechanism.",
+    "a": "trigger()"
+  },
+  {
+    "q": "A method that loads data from the server using an HTTP POST request",
+    "a": "$post()"
+  },
+  {
+    "q": "A method that sends back all the values of all predetermined keys in Redis.",
+    "a": "mget"
+  },
+  {
+    "q": "A method under the calendar library that will display the calendar",
+    "a": "generate()"
+  },
+  {
+    "q": "A mobile application developed using web standards and accessed through a browser.",
+    "a": "web app"
+  },
+  {
+    "q": "A mobile application that is written in a programming language that is directly compatible with the target platform.",
+    "a": "native app"
+  },
+  {
+    "q": "A mobile application written in HTML, CSS, and JavaScript that uses a web-to-native abstraction layer, allowing the application to access mobile device APIs that pure web applications cannot access.",
+    "a": "hybrid app"
+  },
+  {
+    "q": "A mobile phone with internet access and music playback that lacks the full functionality of a smartphone.",
+    "a": "Feature phone"
+  },
+  {
+    "q": "A mobile platform-specific API that lets applications access specific mobile hardware functionality.",
+    "a": "Device API"
+  },
+  {
+    "q": "A module that makes a layer on above the center http module that handles a great deal of complex things such as presenting static HTML, CSS, and client side JavaScript files.",
+    "a": "Express module"
+  },
+  {
+    "q": "A multi-cloud environment allows developers to use the cloud platform that suits specific application workloads and move those workloads as necessary within minutes with no changes to the application.",
+    "a": "Cloud foundry"
+  },
+  {
+    "q": "A network of physical objects embedded with electronics, software, sensors, and connectivity to enable it to achieve greater value and service by exchanging data with other connected devices.",
+    "a": "internet of things"
+  },
+  {
+    "q": "A program that actualizes the File Transfer Protocol.",
+    "a": "FTP server"
+  },
+  {
+    "q": "A programming API for HTML and XML documents defines the logical structure of documents and how a document is accessed and manipulated.",
+    "a": "Document Object Model"
+  },
+  {
+    "q": "A property of an object that can integrate a linkage to a specific image.",
+    "a": "m"
+  },
+  {
+    "q": "A property that can be used to alter and specify the spacing between the elements' content.",
+    "a": "Padding property"
+  },
+  {
+    "q": "A property that can be used to alter and specify the spacing between the margin and padding.",
+    "a": "border"
+  },
+  {
+    "q": "A Queriesis a formatted result of database queries and contain useful data for decision making and analysis.",
+    "a": "False"
+  },
+  {
+    "q": "A Query is a formatted result of database queries and contain useful data for decision making and analysis",
+    "a": "False"
+  },
+  {
+    "q": "A query method used to returns the query result as an array of objects, or an empty array on failure",
+    "a": "result()"
+  },
+  {
+    "q": "A query module contains a form that will pass parameters to the controller suggesting on how you want the data to be showed",
+    "a": "True"
+  },
+  {
+    "q": "A Redis module is required to be installed to make our Node.js program communicate with Redis.",
+    "a": "Node-redis"
+  },
+  {
+    "q": "A reference is utilized as a placeholder for an object.",
+    "a": "null"
+  },
+  {
+    "q": "A report module is typically a front-end web page that contains various figures of interpreted database table records.",
+    "a": "False"
+  },
+  {
+    "q": "A rule reference that returns FALSE if the form element contains anything other than numeric characters.",
+    "a": "numeric"
+  },
+  {
+    "q": "A rule reference that returns FALSE if the form element is empty.",
+    "a": "required"
+  },
+  {
+    "q": "A rule reference that returns FALSE if the form element is not unique to the table and field name in the parameter.",
+    "a": "is_unique"
+  },
+  {
+    "q": "A segment of a web application that refers to the aspect of the program that runs in your internet browser.",
+    "a": "Customer-side segment"
+  },
+  {
+    "q": "A selector function that allows you to delete a specific element(s) from within the DOM.",
+    "a": "remove"
+  },
+  {
+    "q": "A sensor that measures the acceleration (change in velocity) of an object in order to determine movement of a mobile device.",
+    "a": "Accelerometer"
+  },
+  {
+    "q": "A server that is fundamentally designed to respond to browser's request and responding with them thru a text.",
+    "a": "HTTP server"
+  },
+  {
+    "q": "A set of programming codes known as API enables data transmission between one software product to another.",
+    "a": "True"
+  },
+  {
+    "q": "A set of programming tools and resources built specifically to aid software development on a particular platform or technology.",
+    "a": "software developmentkit (SDK)"
+  },
+  {
+    "q": "A sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+    "a": "bootstrap"
+  },
+  {
+    "q": "A software design pattern is usually utilized for developing UIs that partitions the interrelated program logic.",
+    "a": "Model-View-Controller"
+  },
+  {
+    "q": "A specific procedure or instruction that is executed when a user clicks a button.",
+    "a": "Click events"
+  },
+  {
+    "q": "A specific program runs and executes most of its resources via the netfunction where various client programs pass through.",
+    "a": "Server program"
+  },
+  {
+    "q": "A specification that defines the fifth major revision of HTML.",
+    "a": "HTML5"
+  },
+  {
+    "q": "A string representation of a JavaScript object that can be prepared by any programming language.",
+    "a": "JSON"
+  },
+  {
+    "q": "A string whose format resembles very much on the JavaScript object literal format.",
+    "a": "JSON string"
+  },
+  {
+    "q": "A structure that is used to capture certain characteristics about an individual user.",
+    "a": "User model"
+  },
+  {
+    "q": "A subcommand that is executed alongside the name of the application you'd prefer to refresh in Cloud Foundry.",
+    "a": "push"
+  },
+  {
+    "q": "A superset of JSON with some more data types, most importantly binary byte array.",
+    "a": "BSON"
+  },
+  {
+    "q": "A tag that is used as a container for a substructure.",
+    "a": "<div>"
+  },
+  {
+    "q": "A tag that specifies the main content area of your document.",
+    "a": "<main>"
+  },
+  {
+    "q": "A technique applied on an element before we can apply blurring to any object from a DOM.",
+    "a": "hide"
+  },
+  {
+    "q": "A term is utilized for both the statements coded in a specific programming language and the statements after it has been prepared by a compiler and prepared to run in a P~",
+    "a": "code"
+  },
+  {
+    "q": "A term to describe all aspects of the end user’s interaction with an application.",
+    "a": "User Experience"
+  },
+  {
+    "q": "A term to describe the ways in which the end user directly interacts with a device or application.",
+    "a": "User interface (UI)"
+  },
+  {
+    "q": "A text messaging service component of a phone using standardized communication protocols to send short text messages.",
+    "a": "simple message service (SMS)"
+  },
+  {
+    "q": "A type of CSS comment that is common to use when we want to disregard multiple lines on codes from being executed.",
+    "a": "multiline"
+  },
+  {
+    "q": "A variable declared outside a function.",
+    "a": "Global"
+  },
+  {
+    "q": "A variety of different style rules that are applied to other elements within the DOM.",
+    "a": "ruleset"
+  },
+  {
+    "q": "A view that displays web pages within an application.",
+    "a": "webview"
+  },
+  {
+    "q": "A vital part of a website or system UI because it accepts inputs as data parameters",
+    "a": "Forms"
+  },
+  {
+    "q": "A website layout based on a fluid grid, allowing the site to have hundreds of dynamically generated states with mostly minor differences based on browser window size.",
+    "a": "responsive layout"
+  },
+  {
+    "q": "A website layout that uses media queries to change the site’s design for specified devices or window sizes.",
+    "a": "Adaptive layout"
+  },
+  {
+    "q": "A wireless local area network that allows smartphones, computers, and other devices to connect to the internet.",
+    "a": "wi-fi"
+  },
+  {
+    "q": "A wireless technology networking protocol used to exchange data over short distances.",
+    "a": "Bluetooth"
+  },
+  {
+    "q": "Account registration can be approved through activation link sent from user's email or by an admin approval.",
+    "a": "True"
+  },
+  {
+    "q": "Addresses an error condition and will be set to a certain error object if there's such an issue within the request.",
+    "a": "Err parameter"
+  },
+  {
+    "q": "AJAX engine is an XMLHttpRequest object and jQuery makes it a lot more easier for us because of its AJAX development API.",
+    "a": "True"
+  },
+  {
+    "q": "Ajax engine uses what type of object",
+    "a": "XMLHttpRequest"
+  },
+  {
+    "q": "AJAX stands for Asynchronous Java",
+    "a": "False"
+  },
+  {
+    "q": "An abstraction layer that gives a non-application access to mobile device APIs.",
+    "a": "native bridge"
+  },
+  {
+    "q": "An algorithm that is used in security hashing that transforms data into a 128 bit string",
+    "a": "MD5"
+  },
+  {
+    "q": "An application developed for use on small, wireless devices such as tablets and smartphones.",
+    "a": "mobile app"
+  },
+  {
+    "q": "An application programming interface for either a web server or a web browser.",
+    "a": "Web API"
+  },
+  {
+    "q": "An application that duplicates the functionality of hardware or operating systems for testing purposes.",
+    "a": "Emulator"
+  },
+  {
+    "q": "An architecture style that uses discrete software services (each with one clearly defined business task) with well-defined, loosely-coupled interfaces that are orchestrated to work as a complete system by sharing functionality.",
+    "a": "service-oriented architecture(soa)"
+  },
+  {
+    "q": "An array of DOM elements and not jQuery objects are the functions created by jQuery.",
+    "a": "False"
+  },
+  {
+    "q": "An assortment of various variables that are connected almost everywhere within the application.",
+    "a": "Object"
+  },
+  {
+    "q": "An element that integrates the app.js script containing the JavaScript codes we've created.",
+    "a": "Second script element"
+  },
+  {
+    "q": "An element that signifies an input text box and doesn't need an end tag.",
+    "a": "Input element"
+  },
+  {
+    "q": "An elements which normally highlight JavaScript files.",
+    "a": "script"
+  },
+  {
+    "q": "An email preference for mail sending protocol",
+    "a": "protocol"
+  },
+  {
+    "q": "An environment variable that contains information that you can use to interact with a service instance in clouds.",
+    "a": "Vcap_services"
+  },
+  {
+    "q": "An Express functional configuration wherein we can make HTML, CSS, and client side JavaScript files.",
+    "a": "Static file server"
+  },
+  {
+    "q": "An HTML attribute that is incorporates a textual depiction of an image.",
+    "a": "Alt attribute"
+  },
+  {
+    "q": "An HTML attribute that plays a critical role in making web pages accessible by visually impaired users and needs to use screen readers when using the Web.",
+    "a": "Alt attribute"
+  },
+  {
+    "q": "An HTML element that is enclosed by an open and close angle bracket.",
+    "a": "tags"
+  },
+  {
+    "q": "An HTML meta tag that tells the browser how to behave when it renders the web page. The viewport is also a term for the section of the web page in view.",
+    "a": "viewport"
+  },
+  {
+    "q": "An HTML5 standard that allows a web application to be cached and available offline.",
+    "a": "Appcache"
+  },
+  {
+    "q": "An innovation that permits us to determine the structure of the visual components of a web application.",
+    "a": "HTML"
+  },
+  {
+    "q": "An instrument that measures the orientation of a device in order to orient display.",
+    "a": "Gryoscope"
+  },
+  {
+    "q": "An online library containing various JavaScript queries to which the initial script tag is usually linked",
+    "a": "jQuery"
+  },
+  {
+    "q": "An open-source, in-memory data structure store, used as a database, cache, and message broker.",
+    "a": "redis"
+  },
+  {
+    "q": "An operating system designed specifically to run on mobile devices.",
+    "a": "mobile OS"
+  },
+  {
+    "q": "An operator that returns the first value in a rundown of values that are not falsy such as false, 0, or NaN.",
+    "a": "OR"
+  },
+  {
+    "q": "An upload helper method that returns an array containing all of the data related to the file you uploaded.",
+    "a": "data"
+  },
+  {
+    "q": "application to help the program perform small or simple task such as formatting a parameter, computation or series of commands",
+    "a": "single report page"
+  },
+  {
+    "q": "Applying multiple JSON objects on a single file means we can have as many set of objects as we want and not just a single object.",
+    "a": "False"
+  },
+  {
+    "q": "are templates for reports",
+    "a": "queries"
+  },
+  {
+    "q": "Arranges data as documents which we can be considered as JSON objects.",
+    "a": "Mongo"
+  },
+  {
+    "q": "At some point, it is essential to refer a DOM to a tree since it represents parent, child, and descendant relationships among elements.",
+    "a": "True"
+  },
+  {
+    "q": "bcc stands for Black Carbon Copy",
+    "a": "False"
+  },
+  {
+    "q": "Block elements usually incorporate the p, nav, main, and div elements.",
+    "a": "True"
+  },
+  {
+    "q": "Building a web environment that provisions building database-driven applications can be an overwhelming undertaking and portraying the Windows, Macintosh operating system, and Linux technique.",
+    "a": "False"
+  },
+  {
+    "q": "CAPTCHA is very useful on web forms security against online bots, crawlers and spammers",
+    "a": "True"
+  },
+  {
+    "q": "CAPTCHA uses randomly generated text on an image which users type to confirm",
+    "a": "True"
+  },
+  {
+    "q": "Chrome Developer Tool is an instrument that is like CSS Lint or the HTML validator-it shields you from falling into basic JavaScript traps.",
+    "a": "False"
+  },
+  {
+    "q": "CI file directory where autoload classes and functions are defined.",
+    "a": "Application/config/autoload.php"
+  },
+  {
+    "q": "CI file directory where the database configuration settings and database groups is found.",
+    "a": "Application/config/database.php"
+  },
+  {
+    "q": "CI function code to load the database class.",
+    "a": "$this->load->database();"
+  },
+  {
+    "q": "CI method or code that display/echo error messages when form_validation->run() returns false.",
+    "a": "validation_errors()"
+  },
+  {
+    "q": "CI method or code to load the form validation library.",
+    "a": "$this->load->library('form_validation')"
+  },
+  {
+    "q": "CI method or code to set a rule in form validation.",
+    "a": "$this->form_validation->set_rules()"
+  },
+  {
+    "q": "CI method or code to set an error message in form validation.",
+    "a": "$this->form_validation->set_message()"
+  },
+  {
+    "q": "CI uses Model-Viewable-Controller architecture",
+    "a": "False"
+  },
+  {
+    "q": "CI, basically contains 4 main folders Application, System, User, Help Guide",
+    "a": "False"
+  },
+  {
+    "q": "Code Igniter Query Builders (Active Records) allows safer queries.",
+    "a": "True"
+  },
+  {
+    "q": "CodeIgniter allows us to send email in a neat and simple way. We can load the email class by Declaring $this->load->library('email');",
+    "a": "True"
+  },
+  {
+    "q": "CodeIgniter constants are defined in application/viewer/constants.php",
+    "a": "False"
+  },
+  {
+    "q": "CodeIgniter constants are defined in what folder",
+    "a": "config"
+  },
+  {
+    "q": "CodeIgniter is developed PHP.org",
+    "a": "False"
+  },
+  {
+    "q": "CodeIgniter provides rich set of libraries for commonly needed tasks.",
+    "a": "True"
+  },
+  {
+    "q": "CodeIgniter's Image Manipulation class lets you perform Image Thumbnail Creation",
+    "a": "True"
+  },
+  {
+    "q": "CodeIgniter's Image Manipulation class lets you perform Image Watermaking.",
+    "a": "False"
+  },
+  {
+    "q": "CodeIgniter's Pagination class is very easy to use, but it is not 100% customizable, either dynamically or via stored preferences.",
+    "a": "False"
+  },
+  {
+    "q": "Constants are like variables that store values but it can only contain strings and numbers",
+    "a": "True"
+  },
+  {
+    "q": "Constructors are useful if you need to set some default values, or run a default process when your class is instantiated.",
+    "a": "False"
+  },
+  {
+    "q": "Constructors do return a value and they can do some default work.",
+    "a": "False"
+  },
+  {
+    "q": "Contrasting with C++ and Java, functions are known first-class citizens because functions can be replaced by variables.",
+    "a": "False"
+  },
+  {
+    "q": "Controller is also knows as the data access layer.",
+    "a": "False"
+  },
+  {
+    "q": "CRUD is an architectural style for giving guidelines between PC systems from the web, making it simpler for systems to interact with one another.",
+    "a": "False"
+  },
+  {
+    "q": "CSS selectors provide a considerably large number of warnings compare to HTML's validation tools.",
+    "a": "False"
+  },
+  {
+    "q": "Data Access Layer or Persistence Layer of the MVC Layered Architecture.",
+    "a": "Model"
+  },
+  {
+    "q": "Database group configuration in CI is stored in a multi-dimensional array.",
+    "a": "True"
+  },
+  {
+    "q": "Database Normalization is the process of organizing records to minimize redundancy.",
+    "a": "True"
+  },
+  {
+    "q": "Database Normalization is the process of organizing the columns/records or attributes and tables of the database to minimize data redundancy.",
+    "a": "True"
+  },
+  {
+    "q": "DataTable jQuery plugin helps us enable sorting, pagination and search to our table data.",
+    "a": "True"
+  },
+  {
+    "q": "Define styles for your documents, including the design, layout and variations in display for different devices and screen sizes.",
+    "a": "CSS"
+  },
+  {
+    "q": "Defines a multi-line text input control.",
+    "a": "//< textarea > tag"
+  },
+  {
+    "q": "Delimiter symbol for rules in form validation.",
+    "a": "\"|\" or pipe symbol"
+  },
+  {
+    "q": "Despite placing get and post requests, jQuery can also execute put and delete requests by means of using the general jQuery.ajax() function. $.ajax",
+    "a": "False"
+  },
+  {
+    "q": "Different web browsers use the DOM to show and create a visual display of a web page.",
+    "a": "True"
+  },
+  {
+    "q": "Element can be placed onto a web page in a pre-checked fashion by setting the checked attribute.",
+    "a": "Checkbox"
+  },
+  {
+    "q": "Elements from a config.php file are only locally accessible.",
+    "a": "False"
+  },
+  {
+    "q": "encrypted email as a key",
+    "a": "md5"
+  },
+  {
+    "q": "Express allows the developer to highly serve the client-side thru HTML, CSS, and JavaScript files.",
+    "a": "True"
+  },
+  {
+    "q": "File that will automatically route the index.php next to the Controller",
+    "a": ".htaccess"
+  },
+  {
+    "q": "File upload directory should set its file permission to ____",
+    "a": "777"
+  },
+  {
+    "q": "Flashinfo are session variables that are only available until the next request.",
+    "a": "False"
+  },
+  {
+    "q": "For mobile applications, this refers to anything that encourages the user to stay active in the app for a longer period of time.",
+    "a": "stickiness"
+  },
+  {
+    "q": "Form Helper method or code to return an HTML button.",
+    "a": "form_button()"
+  },
+  {
+    "q": "Form Helper method or code to return an HTML checkbox input type.",
+    "a": "form_checkbox()"
+  },
+  {
+    "q": "Form Helper method or code to return an HTML password input type.",
+    "a": "form_password()"
+  },
+  {
+    "q": "Form Helper method or code to return an HTML radio input type",
+    "a": "form_radio()"
+  },
+  {
+    "q": "Form Helper method or code to return an HTML text input type.",
+    "a": "form_input()"
+  },
+  {
+    "q": "formatted result of database queries and contain useful data for decision making and analysis",
+    "a": "reports"
+  },
+  {
+    "q": "function returns the auto incremented or last inserted id from the query",
+    "a": "$this->db->insert_id()"
+  },
+  {
+    "q": "Function that fetch the data as a multi-dimentional array",
+    "a": "result_array()"
+  },
+  {
+    "q": "Function that redirect to other pages.",
+    "a": "redirect"
+  },
+  {
+    "q": "Function when showing errors in CI page",
+    "a": "show_404"
+  },
+  {
+    "q": "functions that accepts input parameters and returns an HTML input form element.",
+    "a": "form helper class"
+  },
+  {
+    "q": "Get() is a built-in method in jQuery used to retrieve data from the server using the HTTP GET request.",
+    "a": "True"
+  },
+  {
+    "q": "Get() method is utilized to recover and request data from a predetermined resource in a server.",
+    "a": "True"
+  },
+  {
+    "q": "Git adds [file(s)] refers to a Git command that prepares specific files to succeed for the next commit operation.",
+    "a": "True"
+  },
+  {
+    "q": "Git commits -m[msg] is a git command which allows you to execute your staged files with a message.",
+    "a": "True"
+  },
+  {
+    "q": "Git Hub is a program that emulates a terminal of Unix in Windows, which can provide you access to Git commands.",
+    "a": "False"
+  },
+  {
+    "q": "Git is the most common and highly recommended free version control program at present.",
+    "a": "True"
+  },
+  {
+    "q": "Given the URL http://www.abc.com/student/record/201512345 State the following 201512345",
+    "a": "data (ex. id)"
+  },
+  {
+    "q": "Given the URL http://www.abc.com/student/record/201512345 State the following record",
+    "a": "method"
+  },
+  {
+    "q": "Given the URL http://www.abc.com/student/record/201512345 State the following student",
+    "a": "controller"
+  },
+  {
+    "q": "Given the URL http://www.abc.com/student/record/201512345 State the following www.abc.com",
+    "a": "base_url"
+  },
+  {
+    "q": "How do you get the value of a config file item named 'author'.",
+    "a": "//$this->config->load('author');"
+  },
+  {
+    "q": "How JavaScript stores object properties?",
+    "a": "Key-value design"
+  },
+  {
+    "q": "How many parameters does CAPCHA requires",
+    "a": "3"
+  },
+  {
+    "q": "htaccess file that will automatically route the index.php next to the Controller",
+    "a": "True"
+  },
+  {
+    "q": "HTML Helper is a codeigniter 3 helper class",
+    "a": "True"
+  },
+  {
+    "q": "HTML is all about the origin of a document, this implies despite the fact that we see various stylistic elements here such as the different textual styles, the hues, and even the format.",
+    "a": "False"
+  },
+  {
+    "q": "IDENTIFICATION: CSS stands for",
+    "a": "Cascading style sheets"
+  },
+  {
+    "q": "IDENTIFICATION: Name the university that created MaterialDesign CSS",
+    "a": "Carnegie Mellon University"
+  },
+  {
+    "q": "If an element has two child elements, and we float one child element to the left side and one to the right side, they will appear next to each other, expecting they don't cover.",
+    "a": "True"
+  },
+  {
+    "q": "If set to true, if a file with the same name as the one you are uploading exists, it will be overwritten. If set to false, a number will be appended to the filename if another with the same name exists.",
+    "a": "overwrite"
+  },
+  {
+    "q": "If the browser is altered, the sized to viewport a little smaller than 855 px, the rest of the part of the page will be avoided from viewing.",
+    "a": "Min-width property"
+  },
+  {
+    "q": "If we need to tackle excess lines of codes and how they can be extracted, we need to apply the function organizeByTags to keep the objects in our program well arranged.",
+    "a": "True"
+  },
+  {
+    "q": "In case there are two child elements, and we float one of the child elements on to the left side and the other to the right side, they will appear on top of each other.",
+    "a": "False"
+  },
+  {
+    "q": "In CI what does URI stands for",
+    "a": "uniform resource identifier"
+  },
+  {
+    "q": "In Codeigniter 3 helpers are all located in system/helper.",
+    "a": "False"
+  },
+  {
+    "q": "In CodeIgniter the Calendar class enables you to dynamically create calendars.",
+    "a": "False"
+  },
+  {
+    "q": "In CodeIgniter the validation system supports callforward to your own validation methods.",
+    "a": "False"
+  },
+  {
+    "q": "In file upload the maximum size are set in _________ that the file can be. Set to zero for no limit",
+    "a": "kilobytes"
+  },
+  {
+    "q": "In file upload you'll need a destination directory for your uploaded images.",
+    "a": "True"
+  },
+  {
+    "q": "In Java, objects are first-class citizens since they can also be characterize as unknown functions or functions without names.",
+    "a": "False"
+  },
+  {
+    "q": "In jQuery the scr tag is use for linking.",
+    "a": "False"
+  },
+  {
+    "q": "In NoSQL, a data model comprises a schema, which depicts the structure of the entirety of the objects of that type.",
+    "a": "False"
+  },
+  {
+    "q": "In order for the image class to be allowed to do any processing, the folder containing the image files be write protected",
+    "a": "False"
+  },
+  {
+    "q": "In order to use and access session variables on webpages, we must put the session_start()",
+    "a": "True"
+  },
+  {
+    "q": "In shopping cart if the quantity is set to negative value, the item will be removed from the cart.",
+    "a": "True"
+  },
+  {
+    "q": "In the event that you type in an invalid Object value, the previous code will toss an error that says you've utilized an invalid Id.",
+    "a": "False"
+  },
+  {
+    "q": "In the JavaScript environment, a triple equal sign is used to compare two expressions that return a true or false value.",
+    "a": "True"
+  },
+  {
+    "q": "In the Macintosh operating system, you usually use CTRL+R to reopen a page.",
+    "a": "False"
+  },
+  {
+    "q": "In the MVC design, the model abstracts the database utilizing a type of data modeling tool.",
+    "a": "True"
+  },
+  {
+    "q": "In Windows and the majority of Linux environment, Ctrl+Tab is utilized to shift from one active window to another faster.",
+    "a": "True"
+  },
+  {
+    "q": "Information that is delivered immediately after collecting it without any delay.",
+    "a": "Real-time data"
+  },
+  {
+    "q": "Is a complete development and deployment environment in the cloud, with resources that enables you to deliver everything from simple cloud-based apps to sophisticated, cloud-enabled enterprise applications.",
+    "a": "Platform-as-a-Service (PaaS)"
+  },
+  {
+    "q": "Is a type of challenge-response test used in computing to ensure that the response is not generated by a computer.",
+    "a": "captcha"
+  },
+  {
+    "q": "is the process of organizing the columns/records or attributes and tables of the database to minimize data redundancy.",
+    "a": "database normalization"
+  },
+  {
+    "q": "is the process of redirecting or remapping a controller class or method.",
+    "a": "Routing"
+  },
+  {
+    "q": "is_unique requires table and field name as parameter.",
+    "a": "True"
+  },
+  {
+    "q": "is_uniques form validation rule checks if the input is unique from the table.",
+    "a": "False"
+  },
+  {
+    "q": "It allows web developers to identify elements within the DOM using CSS selectors and takes over those elements using JavaScript.",
+    "a": "jQuery"
+  },
+  {
+    "q": "It allows you to trigger small JavaScript programs from the command line without any browser involved.",
+    "a": "Nodejs"
+  },
+  {
+    "q": "It can be said as the entry point of application.",
+    "a": "Controller"
+  },
+  {
+    "q": "It characterizes a division or a portion and is utilized mainly as a container for HTML elements that are then styled with CSS or controlled with JavaScript.",
+    "a": "div"
+  },
+  {
+    "q": "It chooses which controller and action to send the request to.",
+    "a": "Serverjs"
+  },
+  {
+    "q": "It contains meta-information about the document.",
+    "a": "<head>"
+  },
+  {
+    "q": "It contains the content that will be rendered in the browser.",
+    "a": "<body>"
+  },
+  {
+    "q": "It executes the callback function once for each array element that usually returns the value undefined and is not chainable.",
+    "a": "forEach()"
+  },
+  {
+    "q": "It flushes data and information to disk, and for the most part, you may likewise think of it as an in-memory data stockpiling.",
+    "a": "Redis"
+  },
+  {
+    "q": "It gives a significantly bigger number of warnings compare to the HTML validation tools.",
+    "a": "CSS Lint"
+  },
+  {
+    "q": "It grants access to the DOM nodes underlying each jQuery objects.",
+    "a": "get()"
+  },
+  {
+    "q": "It is a configuration file that is used for configuration of site-access issues, such as URL redirect, URL shortening, Access-security control.",
+    "a": ".htaccess"
+  },
+  {
+    "q": "It is a function that overrides the normal behavior in which the URI determines which function is called, allowing you to define your own function routing rules.",
+    "a": "//_remap()"
+  },
+  {
+    "q": "It is a JavaScript object that contains attributes/properties and functions.",
+    "a": "Controller"
+  },
+  {
+    "q": "It is a line that is not read/executed as part of the program.",
+    "a": "comment"
+  },
+  {
+    "q": "It is a programming tool we require, which doesn't need too much feature in formatting text.",
+    "a": "Text editor"
+  },
+  {
+    "q": "It is a software framework that is designed to support the development of dynamic websites, web applications, web services and web resources.",
+    "a": "Web Application Framework"
+  },
+  {
+    "q": "It is a URI Component that locates the path or address.",
+    "a": "Web Address"
+  },
+  {
+    "q": "It is a URI Component that serve as persistent, location-independent identifiers",
+    "a": "URN"
+  },
+  {
+    "q": "It is a way in which an HTML element are shown, applies to elements that have the type a or span.",
+    "a": "inline"
+  },
+  {
+    "q": "It is an Application Development Framework - a toolkit - for people who build web sites using PHP",
+    "a": "CodeIgniter"
+  },
+  {
+    "q": "It is an inherent function in node.js with a particular use, and that is to load modules.",
+    "a": "require()"
+  },
+  {
+    "q": "It is any process or technology that allows users who forgot their passwords authenticate and reset the passwords of their account",
+    "a": "Self-service password reset"
+  },
+  {
+    "q": "It is applicable to use function as parameters to another function.",
+    "a": "True"
+  },
+  {
+    "q": "It is applied to select all elements within the DOM and sets the elements' background to different recognizable shades of gray.",
+    "a": "Universal selector"
+  },
+  {
+    "q": "It is best for information that should be accessed rapidly or for temporary storing frequently used data to progress our applications' response time.",
+    "a": "True"
+  },
+  {
+    "q": "It is highly recommended to use underscore(_) in the absence of space when working with the command-line interface.",
+    "a": "True"
+  },
+  {
+    "q": "It is intended for the enormous scope of cooperation among numerous programmers.",
+    "a": "Git"
+  },
+  {
+    "q": "It is quite ideal to disregard web programming in JavaScript since it mainly involves monstrous techniques and approaches by and by.",
+    "a": "False"
+  },
+  {
+    "q": "It is set in the body ruleset for the document before you scale all different font styles comparative with that one.",
+    "a": "Base text size"
+  },
+  {
+    "q": "It is the Data Access Layer or Persistence Layer of the MVC Layered Architecture.",
+    "a": "Model"
+  },
+  {
+    "q": "It is the Presentation Layer of the MVC Architecture.",
+    "a": "View"
+  },
+  {
+    "q": "It is the process of redirecting or remapping a controller class or method.",
+    "a": "Routing"
+  },
+  {
+    "q": "It is used to alter how a connection is shown when a client hovers over it.",
+    "a": "pseudoclasses"
+  },
+  {
+    "q": "It is used to check the error from the Chrome Developer Tool which is brought about by an empty p element.",
+    "a": "Element"
+  },
+  {
+    "q": "It is used to get or set values from and to an input element particularly textboxes.",
+    "a": "val"
+  },
+  {
+    "q": "It is used to increment the integer value of a key in Redis by one.",
+    "a": "INCR"
+  },
+  {
+    "q": "It is used to present explicit elements of the HTML to be shown with uniformity in the browser.",
+    "a": "CSS file"
+  },
+  {
+    "q": "It is used to produce a fading in effect within a given time on a selected element",
+    "a": "fadeIn(interval)"
+  },
+  {
+    "q": "It is used to specify a data as an element of a list.",
+    "a": "<li>"
+  },
+  {
+    "q": "It is utilized to move information between the internet browser (the customer) and the server.",
+    "a": "JSON"
+  },
+  {
+    "q": "It is very useful on web forms security against online bots, crawlers and spammers",
+    "a": "CAPTCHA"
+  },
+  {
+    "q": "It is where AJAX functions are attached within a JavaScript program.",
+    "a": "jQuery"
+  },
+  {
+    "q": "It means your web server is experiencing problems, but it can't pinpoint the specific error or its root cause.",
+    "a": "500"
+  },
+  {
+    "q": "It permits the styling for different pages to be characterized in a similar spot.",
+    "a": "CSS"
+  },
+  {
+    "q": "It pertains to a specific JavaScript object that purely consists and is intentionally designed for as a string.",
+    "a": "JSON"
+  },
+  {
+    "q": "It provides convenient access to your instance's credentials and location should you want to use a GUI to access your instance.",
+    "a": "Redis: Credentials"
+  },
+  {
+    "q": "It refers to a class attribute that is adopted to separate multiple tags of the same or different types.",
+    "a": "<div> tag"
+  },
+  {
+    "q": "It refers to a cloud platform service that facilitates cloud components to some other software utilized mainly for applications.",
+    "a": "PaaS"
+  },
+  {
+    "q": "It refers to a command that creates a new directory on your current location.",
+    "a": "mkdir"
+  },
+  {
+    "q": "It refers to a common example of a configurable HTTP server program intended to host enormous sites.",
+    "a": "Apache"
+  },
+  {
+    "q": "It refers to a function you write to control your data.",
+    "a": "Controller"
+  },
+  {
+    "q": "It refers to a polyglot platform as it has features for a developer to build, run, and scale applications in a similar manner across most languages.",
+    "a": "Heroku"
+  },
+  {
+    "q": "It refers to a small, powerful editor program which can handle codes readable by various programming language.",
+    "a": "Text editor"
+  },
+  {
+    "q": "It refers to a typical text editor with a few features and is dedicated to web development.",
+    "a": "Sublime Text"
+  },
+  {
+    "q": "It refers to a Unix command that permits a user to view all file contents of a particular directory, which also includes all hidden files",
+    "a": "ls -a"
+  },
+  {
+    "q": "It refers to all the process in the styles of writing computer programs.",
+    "a": "Asynchronous programming"
+  },
+  {
+    "q": "It refers to an event handler procedure executed each time a client clicks within the app page.",
+    "a": "jQuery click handler"
+  },
+  {
+    "q": "It refers to an event that is executed when a user clicks a button from your app.",
+    "a": "Click events"
+  },
+  {
+    "q": "It refers to an HTML tag that is utilized for linking images on an HTML web page",
+    "a": "img"
+  },
+  {
+    "q": "It refers to application software that runs on a web server and is accessed through a web browser with an active network application.",
+    "a": "web application"
+  },
+  {
+    "q": "It refers to code description in CSS that is technically set aside and bypassed by the program while it is being executed.",
+    "a": "CSS comments"
+  },
+  {
+    "q": "It refers to how an application's endpoints (URIs) respond to client requests.",
+    "a": "routing"
+  },
+  {
+    "q": "It refers to JSON's data property, which is a variety of pictures.",
+    "a": "items"
+  },
+  {
+    "q": "It refers to our local PC that is running the virtual machine. It pertains to a physical server or computer having a virtual machine running inside.",
+    "a": "Host machine"
+  },
+  {
+    "q": "It refers to tags that can be used to describes elements that reside within the DOM.",
+    "a": "HTML Tags"
+  },
+  {
+    "q": "It refers to the command for printing or displaying you're working directory",
+    "a": "pwd"
+  },
+  {
+    "q": "It refers to the developer tool where our web program output runs.",
+    "a": "Browser"
+  },
+  {
+    "q": "It refers to the digits having the values 0 to 9 and A to F.",
+    "a": "Hexadecimal digits"
+  },
+  {
+    "q": "It refers to the horizontal dimension of the grid system",
+    "a": "rows"
+  },
+  {
+    "q": "It refers to the immediate descendants in the tree diagram.",
+    "a": "Child elements"
+  },
+  {
+    "q": "It refers to the lower elements of a tree that adopt an ancestor's properties such as styles and formats.",
+    "a": "descendant"
+  },
+  {
+    "q": "It refers to the page's essential layout, which may be utilized in the reset function as its new default after resetting.",
+    "a": "style"
+  },
+  {
+    "q": "It refers to the primary components that comprise the structure of a web application.",
+    "a": "Codes"
+  },
+  {
+    "q": "It revolves around a resource where every component is a resource, and a resource is accessed by a common interface using HTTP standard methods.",
+    "a": "Representational State Transfer"
+  },
+  {
+    "q": "It was initially developed way back in 2009 and was planned and created by a VMware group to which they initially call Project B29.",
+    "a": "Cloud Foundry"
+  },
+  {
+    "q": "It's a javascript library that makes web scripting easier",
+    "a": "JQuery"
+  },
+  {
+    "q": "Java is the full-highlighted programming language upheld by almost all internet browsers.",
+    "a": "False"
+  },
+  {
+    "q": "JavaScript Function is a snippet of code intended to play out a specific task in JavaScript.",
+    "a": "True"
+  },
+  {
+    "q": "JavaScript grants us to communicate with the database through objects within our program.",
+    "a": "False"
+  },
+  {
+    "q": "javascript library that makes web scripting easier for us In jQuery the scr tag is use for linking.",
+    "a": "jQuery"
+  },
+  {
+    "q": "jQuery gives us the if function, which permits us to test a selector against the current jQuery object.",
+    "a": "False"
+  },
+  {
+    "q": "jQuery is a java library that makes web scripting easier for us.",
+    "a": "False"
+  },
+  {
+    "q": "Like most things in Node, the get function is nonconcurrent, so we need to deal with it a little carefully.",
+    "a": "True"
+  },
+  {
+    "q": "Look Up methods is very useful on getting pieces of data, one at a time particularly on multiple",
+    "a": "True"
+  },
+  {
+    "q": "Many different rules comprise the HTML tags and determine the width property value.",
+    "a": "False"
+  },
+  {
+    "q": "Many rulesets are opposed, which implies that when applied to a specific element in the DOM, they follow the ancestors' ruleset.",
+    "a": "False"
+  },
+  {
+    "q": "matches form validation rule checks 3 fields that should have an equal or same value.",
+    "a": "False"
+  },
+  {
+    "q": "Meaning of URL.",
+    "a": "Uniform Resource Locator"
+  },
+  {
+    "q": "Method that accepts 'secondary recipients' that receives the mail just to keep them informed",
+    "a": "cc()"
+  },
+  {
+    "q": "Method that accepts recipients that are not visible to the other recipients",
+    "a": "Bcc()"
+  },
+  {
+    "q": "Method that accepts the email's body or content",
+    "a": "Message()"
+  },
+  {
+    "q": "Method that accepts the email's title or heading text",
+    "a": "Subject()"
+  },
+  {
+    "q": "Method that accepts the sender's email address",
+    "a": "From()"
+  },
+  {
+    "q": "Method that triggers the sending of email",
+    "a": "send()"
+  },
+  {
+    "q": "Method will execute codes once the class is created or instantiated.",
+    "a": "__construct"
+  },
+  {
+    "q": "methods is very useful on getting pieces of data, one at a time particularly on multiple tables and databases",
+    "a": "look up"
+  },
+  {
+    "q": "MongoDB allows us to pool resources with it totally in JavaScript.",
+    "a": "True"
+  },
+  {
+    "q": "Most web application frameworks are based on the model-view-controller (MVC) pat tern.",
+    "a": "True"
+  },
+  {
+    "q": "MVC is a software architecture and architectural. pattern used in software engineering",
+    "a": "True"
+  },
+  {
+    "q": "Name the configuration file needed to set helper",
+    "a": "autoload config"
+  },
+  {
+    "q": "Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside a web browser.",
+    "a": "True"
+  },
+  {
+    "q": "Null keywords should be written in",
+    "a": "Uppercase"
+  },
+  {
+    "q": "Object characteristic as attributes can be used to include importance to the nonexclusiveand tags.",
+    "a": "False"
+  },
+  {
+    "q": "Objects use the reference as placeholders.",
+    "a": "null"
+  },
+  {
+    "q": "On the off chance that everything has gone easily, our following procedure to do is to push our application to Cloud Foundry using the Push command.",
+    "a": "True"
+  },
+  {
+    "q": "Once the application is running, we ought to have the option to visit our application by opening Chrome and entering localhost: 8888/directory.html in the address bar.",
+    "a": "False"
+  },
+  {
+    "q": "One fascinating result of the way that variables are first-class objects in JavaScript and that we can utilize different functions as inputs to functions.",
+    "a": "False"
+  },
+  {
+    "q": "One regular use case for CSS Lint is altering how a connection is shown when a client hovers over it.",
+    "a": "False"
+  },
+  {
+    "q": "One that determines the type of DOM element that it signifies is the original name of the tag.",
+    "a": "True"
+  },
+  {
+    "q": "Organization that sponsors CI",
+    "a": "Ellislab"
+  },
+  {
+    "q": "Other term used for Option buttons?",
+    "a": "Radio Buttons"
+  },
+  {
+    "q": "PDO stands for Personal Data Objects.",
+    "a": "False"
+  },
+  {
+    "q": "Permits you to set the value of an input form or textarea and used in form validation.",
+    "a": "set_value"
+  },
+  {
+    "q": "PHP development began in 1995.",
+    "a": "False"
+  },
+  {
+    "q": "PHP is one of the most widely used and recognizable web technology used on the Internet.",
+    "a": "True"
+  },
+  {
+    "q": "PHP varianbles start with what symbol?",
+    "a": "$"
+  },
+  {
+    "q": "PHP version currently in use on most websites and included several new features such as support for object-oriented programming",
+    "a": "5"
+  },
+  {
+    "q": "PHP version that enabled the filter extension by default Native JSON default",
+    "a": "5.2"
+  },
+  {
+    "q": "PHP version that uses void return type, class constant visibility modifiers, null types.",
+    "a": "7.1"
+  },
+  {
+    "q": "php.org is the official php resource.",
+    "a": "False"
+  },
+  {
+    "q": "Process.env represents the state of the system environment your application is in when it starts.",
+    "a": "True"
+  },
+  {
+    "q": "Properties of stored objects allow a designer to compose data into standard data structures, making it seem like a trademark extension to storing data in our programs.",
+    "a": "True"
+  },
+  {
+    "q": "Provides an interface to the database for creating, querying, updating, and deleting records.",
+    "a": "Mongoose model"
+  },
+  {
+    "q": "Provides cloud computing and virtualization software and services and was one of the first commercially successful companies to virtualize the x86 architecture.",
+    "a": "VMware"
+  },
+  {
+    "q": "Query Builder class method that inserts record on the database.",
+    "a": "$this->db->insert()"
+  },
+  {
+    "q": "Query Builder or Active Record pattern in CI replaces the traditional query string in php coding.",
+    "a": "True"
+  },
+  {
+    "q": "Redis is a key-value store that offers a quick and adaptable solution for storing basic data.",
+    "a": "True"
+  },
+  {
+    "q": "Redis is a Node.js module that fills-in two fundamental necessities.",
+    "a": "False"
+  },
+  {
+    "q": "Redis is a Node.js module that grants us to connect with MongoDB, yet it likewise allows us to create data models.",
+    "a": "False"
+  },
+  {
+    "q": "Redis is a Node.js module that permits us to interface with MongoDB, yet it likewise permits us to make data models.",
+    "a": "False"
+  },
+  {
+    "q": "Reestablishing the browser to force contents to remain at a dynamic width can be a valid statement to drop the program to the terminal window and commit the changes on our Git repository.",
+    "a": "False"
+  },
+  {
+    "q": "Regardless of whether you're on Windows, Macintosh operating system, or Linux, you can establish Google Chrome on your PC effectively by setting off to the Google Chrome site page.",
+    "a": "True"
+  },
+  {
+    "q": "Registration is an activity of deleting user information on the database.",
+    "a": "False"
+  },
+  {
+    "q": "Report Module (the module) are templates for reports.",
+    "a": "False"
+  },
+  {
+    "q": "Representational state transfer (REST) is an accepted norm in software architecture for interactive applications that ordinarily utilize numerous Web services.",
+    "a": "True"
+  },
+  {
+    "q": "returns a string containing any server messages, email header and the email message.",
+    "a": "$this->email->print_debugger()"
+  },
+  {
+    "q": "Returns a validation error message from the Form Validation Library, associated with the specified field name",
+    "a": "form_error()"
+  },
+  {
+    "q": "row_array() fetch the data as a single row and result_array() fetch the data as a multi-dimensional array.",
+    "a": "True"
+  },
+  {
+    "q": "runs a back-end database query and displays the information in organized and informational manner",
+    "a": "constant"
+  },
+  {
+    "q": "Runs the selection query and returns the result.",
+    "a": "$this->db->get()"
+  },
+  {
+    "q": "SEARCH methods is very useful on getting pieces of data, one at a time particularly on multiple tables and databases.",
+    "a": "False"
+  },
+  {
+    "q": "Segment is the process of redirecting or remapping a controller class or method.",
+    "a": "False"
+  },
+  {
+    "q": "Self-survey password reset (SSPR) is defined as any process or technology that allows users who forgot their password authenticate their account and reset their passwords without calling the help desk.",
+    "a": "False"
+  },
+  {
+    "q": "Sessions in native PHP are the “superglobal” variables that can not be accessed anywhere on the web application because it is stored on the browser session. Can f",
+    "a": "True"
+  },
+  {
+    "q": "Setting up columns on a content area characterizes a styling grid over the content, which is one essential way to deal with design layouts.",
+    "a": "True"
+  },
+  {
+    "q": "Short messages that mobile applications can send to users even if the application isn’t open.",
+    "a": "Push notification"
+  },
+  {
+    "q": "Similar to Nodes, by and by, the function get() is nonconcurrent; therefore we need to manage it a little cautiously.",
+    "a": "True"
+  },
+  {
+    "q": "SSL is defined as any process or technology that allows users who forgot their password authenticate their account and reset their passwords without falling the help des",
+    "a": "False"
+  },
+  {
+    "q": "SSPR stands for",
+    "a": "self-service password reset"
+  },
+  {
+    "q": "Staging_task.log incorporates the console.log statement that you utilized in your program.",
+    "a": "False"
+  },
+  {
+    "q": "Storage data in PHP",
+    "a": "variables"
+  },
+  {
+    "q": "Stored object properties permit a designer to write data into customary information structures, which causes it to feel like a characteristic expansion to storing data in our programs.",
+    "a": "True"
+  },
+  {
+    "q": "Successful - this will be triggered upon the AJAX request and usually accepts the parameter response response contains the loaded content from the URL requested.",
+    "a": "False"
+  },
+  {
+    "q": "Taking an AJAX string and changing it over into an object that a PC program can utilize is simple in most programming languages. JSON string",
+    "a": "False"
+  },
+  {
+    "q": "text() is used to get or set values from and to a non-input element like divs.",
+    "a": "True"
+  },
+  {
+    "q": "The | symbol is directly on top of the Enter key from the keyboard, co-situated with the backslash.",
+    "a": "True"
+  },
+  {
+    "q": "The $to parameter can be an email address string, a comma delimited email addresses string or an array containing email addresses strings.",
+    "a": "True"
+  },
+  {
+    "q": "The a element can be customized simply like any other DOM element through CSS.",
+    "a": "True"
+  },
+  {
+    "q": "The application creates a development environment by providing a virtual machine.",
+    "a": "Vagrant"
+  },
+  {
+    "q": "The attribute that indicates the sort of the element.",
+    "a": "class"
+  },
+  {
+    "q": "The character symbol that refers to the JavaScript's OR operators.",
+    "a": "||"
+  },
+  {
+    "q": "The command in Vagrant that you need to trigger or type if you want the server to stop.",
+    "a": "Vagrant halt"
+  },
+  {
+    "q": "The console.log statement accomplishes tasks by outputting messages to the web console, but it cannot evaluate any inputs. This is the reason why as a result, Chrome only displays undefined.",
+    "a": "True"
+  },
+  {
+    "q": "The controller interprets the request into an action, which usually facilitates a database action through the model and sends the response through a view.",
+    "a": "True"
+  },
+  {
+    "q": "The controller maps requests from the view to actions on the model and reacts with data that can be utilized to reload the view.",
+    "a": "True"
+  },
+  {
+    "q": "The controller's $data[\"title\"] variable will be delivered in a view as $title.",
+    "a": "True"
+  },
+  {
+    "q": "The data modeling tool allows us to show documents as objects in our application.",
+    "a": "True"
+  },
+  {
+    "q": "The data modeling tool permits us to indicate documents as objects in our programs.",
+    "a": "True"
+  },
+  {
+    "q": "The default controller assigned to CodeIgniter when first setup is set to ________.",
+    "a": "Welcome"
+  },
+  {
+    "q": "The default file extension for PHP file is \".php\"",
+    "a": "True"
+  },
+  {
+    "q": "The default in Rails generally acts in the same way as mongoose does.",
+    "a": "Active File"
+  },
+  {
+    "q": "The default port for redis-cli connection when running on local host.",
+    "a": "port 6379"
+  },
+  {
+    "q": "The default tab name in sublime when initially created is Untitled.",
+    "a": "True"
+  },
+  {
+    "q": "The DOM elements' string property can be used on both left and right, which technically realigns the element from its original flow and pushes it to the container's left or right side.",
+    "a": "False"
+  },
+  {
+    "q": "The domain-specific representation of the information on which the application operates.",
+    "a": "Model"
+  },
+  {
+    "q": "The error is the one that we're generally inspired by and is the one that we'll go to the calling function's callback.",
+    "a": "True"
+  },
+  {
+    "q": "The fail() method can be affixed from an AJAX call on account of a guarantee type API.",
+    "a": "True"
+  },
+  {
+    "q": "The first URI segment",
+    "a": "controller"
+  },
+  {
+    "q": "The function of ci code to return a URI segment",
+    "a": "$this->uri->segment"
+  },
+  {
+    "q": "The function or ci code to load a view.",
+    "a": "$this->load->view"
+  },
+  {
+    "q": "The function or ci code to show or call the client-side \"non-existing page\" error",
+    "a": "show_404()"
+  },
+  {
+    "q": "The helper is used as a function library that we can just load to the controller or view.",
+    "a": "True"
+  },
+  {
+    "q": "The HTTP Delete method is usually used to remove a resource from the server.",
+    "a": "True"
+  },
+  {
+    "q": "The idea of exposing to the end user the change of data, provided the data is changing quite a lot.",
+    "a": "Data animation"
+  },
+  {
+    "q": "The initial line in our code imports the HTTP module and stores it in the HTTP variable.",
+    "a": "require statement"
+  },
+  {
+    "q": "The initialization statement runs each time the loop body finishes.",
+    "a": "False"
+  },
+  {
+    "q": "The keyboard shortcut Ctrl+N is the fastest way to create a new file in any application.",
+    "a": "True"
+  },
+  {
+    "q": "The keyboard shortcut for loading a file in Chrome in case you're in Macintosh operating system.",
+    "a": "Command+o"
+  },
+  {
+    "q": "The localhost:8080 is the predefined port executed from your PC for the response app, which can be modified anytime within the package.json.",
+    "a": "False"
+  },
+  {
+    "q": "The lone way we can affirm that the counts are stores in Redis.",
+    "a": "Ctrl-C"
+  },
+  {
+    "q": "The method content() sends back all direct children, including comment nodes and text of the selected element.",
+    "a": "True"
+  },
+  {
+    "q": "The Model-View-Controller (MVC) plan design is a way to deal with an application architecture that generally directs the plan of a database-driven application. It has gotten the true norm for composing web applications.",
+    "a": "True"
+  },
+  {
+    "q": "The MongoDb module permits us to collaborate with Redis in nearly a similar manner we associate with Redis from the command line.",
+    "a": "False"
+  },
+  {
+    "q": "The most common version control program today, which can be used for free, is CVS.",
+    "a": "False"
+  },
+  {
+    "q": "The most general base class from which all element objects in a Document inherit.",
+    "a": "element"
+  },
+  {
+    "q": "The most outstanding non-inherited properties are identified with block-style elements.",
+    "a": "True"
+  },
+  {
+    "q": "The nav element clasps a specific connection is enclosed by the <> symbol.",
+    "a": "False"
+  },
+  {
+    "q": "The need to write synchronous codes was because the nature of all UIs running from the browsers is event-driven.",
+    "a": "False"
+  },
+  {
+    "q": "The official website of Sublime, where you can download a copy of the installer for free, is http://www.sublimetext.com.",
+    "a": "True"
+  },
+  {
+    "q": "The only way we could gain full access to the JSON files locally was to disable Chrome's solicited scripting security limitations.",
+    "a": "False"
+  },
+  {
+    "q": "The original name of the tag is the thing that determines the kind of DOM element that it speaks to.",
+    "a": "True"
+  },
+  {
+    "q": "The page that displays a message that the requested page was not found.",
+    "a": "Error 404"
+  },
+  {
+    "q": "The person that introduce MVC.",
+    "a": "Trygve Reenskaug"
+  },
+  {
+    "q": "The principal contention to the $.get function is the route that we need to post to, the second is the data that we need to send, and the third is the callback for the server response.",
+    "a": "False"
+  },
+  {
+    "q": "The segment index value for the controller.",
+    "a": "1"
+  },
+  {
+    "q": "The server requests with a particular URL, some information, and an HTTP verb, which the application router guides to a controller activity.",
+    "a": "False"
+  },
+  {
+    "q": "The shift attribute encompasses a textual depiction of an image.",
+    "a": "False"
+  },
+  {
+    "q": "The specific and default localhost address used by Vagrant.",
+    "a": "127001"
+  },
+  {
+    "q": "The specific command in Redis displays varieties of Redis command details.",
+    "a": "Command"
+  },
+  {
+    "q": "The tag that is used as a container for HTML elements - which is then styled with CSS or manipulated with JavaScript.",
+    "a": "<div>"
+  },
+  {
+    "q": "The term referred to inputs that are indicated inside the open and close parenthesis of the function definition.",
+    "a": "parameter"
+  },
+  {
+    "q": "The usage of a semi-colon (;) to create a variable allows the course to react to any course that begins with our /ToDos/.",
+    "a": "False"
+  },
+  {
+    "q": "The vagrant command you need to send off if you want to stop the server.",
+    "a": "Vagrant halt"
+  },
+  {
+    "q": "The vast majority of the rulesets are acquired or credited, implying that we apply them to a specific element in the DOM.",
+    "a": "False"
+  },
+  {
+    "q": "There are certain common functions or small snippets of code used in every or most Information Systems. We call them controllers.",
+    "a": "False"
+  },
+  {
+    "q": "These are functions which are passed to another function and takes this \"other function\" as a parameter.",
+    "a": "Callbacks"
+  },
+  {
+    "q": "These presenting objects can be characterized through HTML and afterward communicated using a scripting language such as JavaScript.",
+    "a": "Document Object Model"
+  },
+  {
+    "q": "This allows us to collect data from the htm file and display to the php script.",
+    "a": "$_POST"
+  },
+  {
+    "q": "This application can be best described as this can allow web pages to view the real-time or updated page without refreshing the page.",
+    "a": "AJAX"
+  },
+  {
+    "q": "This Class provides a means to retrieve configuration preferences and it is automatically initialized by the system.",
+    "a": "Config"
+  },
+  {
+    "q": "This function retrieves the URL to your site, along with the \"index\" value you've specified in the config file.",
+    "a": "//$this->config->site_url();"
+  },
+  {
+    "q": "This function will be called if the browser contents has properly loaded its contents and is ready.",
+    "a": "//$(document).ready()"
+  },
+  {
+    "q": "This generally implies doing it viably and proficiently; you will have to expand your abstract reasoning abilities.",
+    "a": "Intangible"
+  },
+  {
+    "q": "This helper file contains functions that assist in working with forms.",
+    "a": "Form"
+  },
+  {
+    "q": "This is one of the primary programming tools, where we write our codes.",
+    "a": "Text editor"
+  },
+  {
+    "q": "This is used to emphasize a quote or citation by putting a colored left border to the text",
+    "a": "Blockquote"
+  },
+  {
+    "q": "This means in which a person controls a software application or hardware device.",
+    "a": "User Interface"
+  },
+  {
+    "q": "This method returns a single result row",
+    "a": "row()"
+  },
+  {
+    "q": "This pattern allows information to be retrieved, inserted, and updated in your database with minimal scripting",
+    "a": "Query Builder"
+  },
+  {
+    "q": "This permits you to extend the validation class to meet your needs.",
+    "a": "Callbacks"
+  },
+  {
+    "q": "This refers to the data access layer.",
+    "a": "Model"
+  },
+  {
+    "q": "This refers to the presentation layer",
+    "a": "View"
+  },
+  {
+    "q": "This validation method permits you to set validation rules.",
+    "a": "set_rules"
+  },
+  {
+    "q": "This wildcard type use to match a segment containing only numbers.",
+    "a": "(:num)"
+  },
+  {
+    "q": "To avoid repetitive function declarations on controllers and modules, we should use Helper classes.",
+    "a": "True"
+  },
+  {
+    "q": "To get an application running with Redis services, it is vital to both make the services cf program and afterward separate our application to it.",
+    "a": "False"
+  },
+  {
+    "q": "To infuse new JavaScript features, we have to include jQuery code that peruses our JSON file, but since our main function is reliant, we'll have to change it and call getJSON before having the main to be called.",
+    "a": "True"
+  },
+  {
+    "q": "To load the view, the function is like this: $this->load->view('name');",
+    "a": "True"
+  },
+  {
+    "q": "To make a function private, simply add an ________ as the name prefix and it will not be served via a URL request.",
+    "a": "underscore"
+  },
+  {
+    "q": "Unlike other link tags, this JavaScript tag consistently require an end tag.",
+    "a": "<script>"
+  },
+  {
+    "q": "URI is the historical name that serve as persistent, location-independent identifiers allowing the simple mapping of namespaces into a single URN namespace",
+    "a": "False"
+  },
+  {
+    "q": "URI stands for Uniform Resource Identity",
+    "a": "False"
+  },
+  {
+    "q": "URI stands for?",
+    "a": "Uniform Resources Identifier"
+  },
+  {
+    "q": "URN stands for?",
+    "a": "Uniform Resource Name"
+  },
+  {
+    "q": "used as a function library that we can just load to the controller or view.",
+    "a": "helper"
+  },
+  {
+    "q": "Using custom routing rules, you have the power to map any URI to any controller and method, and break free from the normal convention.",
+    "a": "True"
+  },
+  {
+    "q": "Using ftpencoded plug-ins of Express will convert JSON sent by jQuery to a javaScript object that the server can understood and use.",
+    "a": "False"
+  },
+  {
+    "q": "Using jQuery's jsonString function just like any other JavaScript instance, makes it asynchronous, therefore, callback must be included.",
+    "a": "False"
+  },
+  {
+    "q": "Utilizing a semi-colon (;) to make a variable permits the course to respond to any course that starts off with our /ToDos/.",
+    "a": "False"
+  },
+  {
+    "q": "valid_email form validation rule is used to check if an e-mail is valid or not.",
+    "a": "True"
+  },
+  {
+    "q": "vals() It is used to get or set values from and to an input element particularly textboxes.",
+    "a": "False"
+  },
+  {
+    "q": "variables are session variables that expires with a given time limit.",
+    "a": "tempdata"
+  },
+  {
+    "q": "Variables that can be accessed anywhere on the web application because it is stored on the browser session",
+    "a": "superglobal"
+  },
+  {
+    "q": "variables that store values but it can only contain strings and numbers",
+    "a": "constant"
+  },
+  {
+    "q": "Version of PHP that introduces the use of superglobals.",
+    "a": "4.1"
+  },
+  {
+    "q": "Version of PHP that uses namespace support late static binding. URN stands for?",
+    "a": "5.3"
+  },
+  {
+    "q": "VirtualBox and Vagrant make an unmistakable division between the developers and the app.",
+    "a": "False"
+  },
+  {
+    "q": "We can have a more perplexing JSON object in a file, meaning it can comprise a set of objects rather than a solitary object. array of items.",
+    "a": "False"
+  },
+  {
+    "q": "We can likewise make object literals, which are full objects characterized in code.",
+    "a": "True"
+  },
+  {
+    "q": "We can load the email class by: declaring $this-> retrieve->library(‘email’);",
+    "a": "False"
+  },
+  {
+    "q": "We can practically utilize the setInterval function to refresh a web page dynamically.",
+    "a": "True"
+  },
+  {
+    "q": "We can set up basic document layouts on a grid utilizing CSS reset properties.",
+    "a": "False"
+  },
+  {
+    "q": "We used the base_url() function to return our domain or application path",
+    "a": "True"
+  },
+  {
+    "q": "We usually adopt JSON to write HTTP servers that technically communicate with different client applications that run from the browser.",
+    "a": "False"
+  },
+  {
+    "q": "We utilize this function to shield from including copies to our tags array.",
+    "a": "indexOf"
+  },
+  {
+    "q": "Web applications that use the WebForm approach commingle Program Code and Page Design Code only.",
+    "a": "False"
+  },
+  {
+    "q": "What another object that is contained within every element of an array?",
+    "a": "media"
+  },
+  {
+    "q": "What application-layer protocol for transmitting hypermedia documents and is designed for communication between web browsers and web servers?",
+    "a": "HTTP"
+  },
+  {
+    "q": "What do you call a structure made up of series of intersecting straight (vertical, horizontal and angular) or curved guide lines used to structure content?",
+    "a": "grid"
+  },
+  {
+    "q": "What do you call common functions or small snippets of code used in every or most Information Systems",
+    "a": "helpers"
+  },
+  {
+    "q": "What do you call the 1st segment of the URI?",
+    "a": "Controller"
+  },
+  {
+    "q": "What do you call variables are just like session variables except it is only available on the next request",
+    "a": "Flashdata"
+  },
+  {
+    "q": "What file you need to edit so that a given config file are automatically loaded.",
+    "a": "autoload.php"
+  },
+  {
+    "q": "What function can be used to access session variables on webpages?",
+    "a": "session_start()"
+  },
+  {
+    "q": "What function can be used to plot the tags array to an ideal object by repeating over and locating the ones with tags?",
+    "a": "map"
+  },
+  {
+    "q": "What function passed as an argument to another function?",
+    "a": "callback"
+  },
+  {
+    "q": "What function takes an array and makes another array from it by applying a function to every element?",
+    "a": "map function"
+  },
+  {
+    "q": "What functionality was added to PHP 5.1 as interface for accessing databases?",
+    "a": "PDO"
+  },
+  {
+    "q": "What is a novel characteristic of hypertext since they can connect to other information?",
+    "a": "Anchor tags"
+  },
+  {
+    "q": "What is the meaning of URL?",
+    "a": "Uniform Resource Locator"
+  },
+  {
+    "q": "What method is also given with a different function as a parameter?",
+    "a": "Fail function"
+  },
+  {
+    "q": "What set of instruction that naturally verifies whether your code adjusts to specific fundamental guidelines?",
+    "a": "Validation program"
+  },
+  {
+    "q": "What year did PHP began its development?",
+    "a": "1994"
+  },
+  {
+    "q": "When uploading file the form must be of type \"file\".",
+    "a": "False"
+  },
+  {
+    "q": "When we adopt or inherit descendant's rulesets, they can be applied to various descendants' elements in DOM.",
+    "a": "False"
+  },
+  {
+    "q": "When you no longer need the session variable you have set, you can remove it by using $this->session->unset_userdata()",
+    "a": "True"
+  },
+  {
+    "q": "Which is the right code for loading models",
+    "a": "//$this->load->model('model_name');"
+  },
+  {
+    "q": "Which of the following do you think that is useful for searching?",
+    "a": "//$this->db->like()"
+  },
+  {
+    "q": "Which of the following has the correct syntax of active records.",
+    "a": "//this->db->select();"
+  },
+  {
+    "q": "Which of the following is correct from given the statement below: //$this->db->select('title, content, date'); //$query = $this->db->get('mytable'); //return $query->result();",
+    "a": "It will return only the given fields title, content, and date of the records"
+  },
+  {
+    "q": "Which of the following is correct from the given statement below:",
+    "a": "//$this->db->limit(10);"
+  },
+  {
+    "q": "Which of the following refers to the business logic",
+    "a": "Controller"
+  },
+  {
+    "q": "Which of the following statements will create a form that points to your base URL plus the \"x/y\"",
+    "a": "//form_open('x/y');"
+  },
+  {
+    "q": "Who first use the term AJAX?",
+    "a": "Jesse James Garrett"
+  },
+  {
+    "q": "Who is the inventor of PHP?",
+    "a": "Rasmus lerdorf"
+  },
+  {
+    "q": "Writing this address would affirm you if your server is running or not.",
+    "a": "localhost:3000"
+  },
+  {
+    "q": "XCode is the most generally utilized version control system that has a command-line interface.",
+    "a": "False"
+  },
+  {
+    "q": "Yahoo!'s famous image-sharing service online.",
+    "a": "Flckr"
+  },
+  {
+    "q": "Year that PHP 3 was released",
+    "a": "1998"
+  },
+  {
+    "q": "Year that PHP was officially called Personal Home Page Tools.",
+    "a": "1995"
+  },
+  {
+    "q": "You can declare your own session variable on the $_SESSION superglobal.",
+    "a": "True"
+  },
+  {
+    "q": "You can display the error 404 page by using what function",
+    "a": "show_404()"
+  },
+  {
+    "q": "You can manually remove the index.php in CodeIgniter by .htaccess file",
+    "a": "True"
+  },
+  {
+    "q": "You cannot add a URL suffix in CodeIgniter.",
+    "a": "False"
+  }
+]

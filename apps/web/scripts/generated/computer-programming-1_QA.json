@@ -1,0 +1,3002 @@
+[
+  {
+    "q": "________ is defined as part of an entire code.",
+    "a": "Snippet"
+  },
+  {
+    "q": "________ statement is used to output a string to inform the user about the conditions need.",
+    "a": "std::cout"
+  },
+  {
+    "q": "_________ values are the values that changed from original to the current value.",
+    "a": "Processed"
+  },
+  {
+    "q": "__________ is a component of the function which itemizes the input values of the function.",
+    "a": "Parameter"
+  },
+  {
+    "q": "__________ keyword accepts user values.",
+    "a": "INPUT"
+  },
+  {
+    "q": "__________ statement is used in undefined conditional expressions.",
+    "a": "else"
+  },
+  {
+    "q": "___________ enabled developers to repeat a sequence of statements given the right conditions.",
+    "a": "Loops"
+  },
+  {
+    "q": "___________ is the result of incorrect action committed unexpectedly.",
+    "a": "Exception"
+  },
+  {
+    "q": "___________ scope limits the access to the properties and methods under it to the class itself and to all classes that inherit them.",
+    "a": "Protected"
+  },
+  {
+    "q": "____________ are also known as procedures.",
+    "a": "Functions"
+  },
+  {
+    "q": "______________ are used to point to multiple addresses in the memory.",
+    "a": "Pointers"
+  },
+  {
+    "q": "______________ is used to hide the internal working of an application.",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "______________ variables are bound to only one type of values.",
+    "a": "Explicit"
+  },
+  {
+    "q": "_______________ are created using word-processing applications.",
+    "a": "Flowcharts"
+  },
+  {
+    "q": "_______________ is the phase in looping statements that are evaluated.",
+    "a": "Condition"
+  },
+  {
+    "q": "_______________ programming languages are easiest to work with.",
+    "a": "High-level"
+  },
+  {
+    "q": "________________ principle ensures that only the necessary methods are presented outside of the current class.",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "________________ programming languages exhibit both strong abstraction and access to memory.",
+    "a": "Mid-level"
+  },
+  {
+    "q": "_________________ is a graphical representation that shows a series of actions in computer programming.",
+    "a": "Flowchart"
+  },
+  {
+    "q": "__________________ allows developer to support scenarios in the application.",
+    "a": "Conditionals"
+  },
+  {
+    "q": "__________________ is a looping statement where the body is executed first before the condition is evaluated.",
+    "a": "do-while"
+  },
+  {
+    "q": "__________________ is defined as a systematic approach to solve the main problem.",
+    "a": "Problem Solving"
+  },
+  {
+    "q": "____________________ are assigned to variables.",
+    "a": "Actual Value"
+  },
+  {
+    "q": "-9 is treated as TRUE",
+    "a": "FALSE"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. Compared to the rest of the setup, this installation process will take several steps to complete.\"",
+    "a": "MinGW"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. Considering the low number of files that are processed for small projects this is optional.\"",
+    "a": "Version Control"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It is a user-friendly interface and easy navigation operating system.\"",
+    "a": "Microsoft Windows"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It is here where we develop and run our software.\"",
+    "a": "Operating System"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It is made using Native Windows Application.\"",
+    "a": "GUI"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It is needed to be enabled to compile our selected compiled programming language to executables.\"",
+    "a": "IDE"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It presents minimalistic approach in presenting tools and libraries necessary to develop application for Microsoft Windows.\"",
+    "a": "MinGW"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. It was made to allow developers in the Open Source Community to publicly share software by Microsoft.\"",
+    "a": "CodePlex"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. What domain deals with analytics?\"",
+    "a": "Data Science"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. What domain deals with microcontrollers?\"",
+    "a": "Embedded Systems Development"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. What domain deals with server configurations?\"",
+    "a": "Back-end Development"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. What domain deals with web applications?\"",
+    "a": "Cloud Development"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. What is needed to be set up before adding a license?\"",
+    "a": "Gitlgnore"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. Which is not a version of Shell?\"",
+    "a": "PSH"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. Which of the following is not used in API Development?\"",
+    "a": "HTML"
+  },
+  {
+    "q": "\"Direction : Choose the best answer. Which platform do C# not yet support as of 2016?\"",
+    "a": "Automation"
+  },
+  {
+    "q": "\"Given the following work item(s) \"\"To ask user for age\"\" \"\"To ask user for item price\"\" The most probable problem being addressed is \"\"write a program to determine the discounted price of an item given the item price and age as entered by the user.\"\"\"",
+    "a": "TRUE"
+  },
+  {
+    "q": "\"Given the problem below, that is the most probable last work item of the solution? \"\"Write a program that displays the section of the user\"\"\"",
+    "a": "\"To display section\""
+  },
+  {
+    "q": "\"Given the problem below, what is the most probable last work item of the solution? \"\"Write a program to calculate the age of the user based on his birth year\"\"\"",
+    "a": "\"To display age\""
+  },
+  {
+    "q": "\"Given the problem, \"\"Write a program to calculate the BMI of the user\"\", is the following work item(s) appropriate? \"\"To ask the user for blood type\"\"\"",
+    "a": "FALSE"
+  },
+  {
+    "q": "\"Given the problem, \"\"Write a program to categorize bills by denomination\"\", is the following work item(s) appropriate? \"\"To ask the user for nickname\"\"\"",
+    "a": "FALSE"
+  },
+  {
+    "q": "\"Given the work item below, what is its most probable problem that it answers? \"\"To display appendFirstLastname\"\"\"",
+    "a": "\"Write a program to display the complete name of the user\""
+  },
+  {
+    "q": "\"What is the minimum number of flowchart symbols for this problem? \"\"Write a program that displays 'Hello World'.\"\"\"",
+    "a": "3"
+  },
+  {
+    "q": "\"What is the minimum number of flowchart symbols is needed for the following problem (excluding the terminator symbols)? \"\"Write a program to display the quotient of two numbers.\"\"\"",
+    "a": "1"
+  },
+  {
+    "q": "\"What is the minimum number of pseudocode for this problem? \"\"Write a program that displays 'Hello World'.\"\"\"",
+    "a": "1"
+  },
+  {
+    "q": "#include is the act of a function saying everything inside is belongs to it.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A ______ statement ends the execution of the entire loop.",
+    "a": "break"
+  },
+  {
+    "q": "A _________ storage in the computer that is randomly accessed is called RAM.",
+    "a": "Temporary"
+  },
+  {
+    "q": "A __________ can call several other functions.",
+    "a": "Procedure"
+  },
+  {
+    "q": "A ___________ are assigned to enable the assignment of values to our properties hidden by scopes.",
+    "a": "Mutators"
+  },
+  {
+    "q": "A _______________ is created to initialize several properties or perform operations for the class upon declaration.",
+    "a": "Constructor"
+  },
+  {
+    "q": "A characteristic of Problem Solving that focuses on the quantity of test data is called Verifiable.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A class can contain at least ______ constructor(s).",
+    "a": "One"
+  },
+  {
+    "q": "A class cannot contain more than one constructor.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A computer component that deals with miscellaneous instructions of software is called ____________.",
+    "a": "Central Processing Unit/CPU"
+  },
+  {
+    "q": "A condition where it evaluated right before the body executes is called While Loop.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A conditional is used to perform specific actions depending on the evaluated expressions.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A constructor is created to initialize several properties or perform operations for the class upon declaration.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A copy of the value is the result of retrieving a value from a variable?",
+    "a": "True"
+  },
+  {
+    "q": "A Decision Symbol is the flowchart equivalent of switch keyword in pseudocode",
+    "a": "FALSE"
+  },
+  {
+    "q": "A form of polymorphism that generally occurs during compile time is called _______________.",
+    "a": "Overriding"
+  },
+  {
+    "q": "A form of polymorphism that generally occurs during compile time is called overloading.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A function can call several other functions.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A function shall return as its final execution is called reoccurrence data type.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A group of related statements are called code blocks.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A mutators are assigned to enable the assignment of values to our properties hidden by scopes.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A problem wherein the values of given array is being arranged.",
+    "a": "Sorting"
+  },
+  {
+    "q": "A programming centered in the use of _____________ is called Object-Oriented Programming.",
+    "a": "Objects"
+  },
+  {
+    "q": "A programming centered in the use of objects is called Object-Oriented Program.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A programming language specialized in simulations is called Simula.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A programming language that defines an error in a specific action is called exception.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A property that states if a value cannot be changed is called immutability.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A property that states if a value cannot be changed is called. _____________.",
+    "a": "Immutability"
+  },
+  {
+    "q": "A scheme that focuses on entertainment and activities is called _________ Development",
+    "a": "Game"
+  },
+  {
+    "q": "A scheme that focuses on entertainment and activities is called _________ Development.",
+    "a": "Game"
+  },
+  {
+    "q": "A sector of array which contains a _________ is called element.",
+    "a": "Value"
+  },
+  {
+    "q": "A sector of array which contains a value is called element.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A separate C++ files that contains supplementary codes for applications is called Header files.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A series of statement repeated when a specific condition is met is called looping.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A statement where the body is executed first before the condition is evaluated is called do while statement.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A statement wherein the increment/decrement always occurs after the statements of the body is called ________ statement.",
+    "a": "for"
+  },
+  {
+    "q": "A statement wherein the increment/decrement always occurs after the statements of the body is called FOR statement.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A statement wherein the increment/decrement can occur before the other statements of the body is called While statement.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A statement wherein the used is to terminates the execution of the entire loop is called Continue statement.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A storage of _________________ is called variables.",
+    "a": "Values"
+  },
+  {
+    "q": "A symbol used to identify which of the possible approaches will be taken based on the conditions called _____________.",
+    "a": "Decision"
+  },
+  {
+    "q": "A typical initialization of a counter is set to 0.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A variable is used to store permanent value in a program.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A variation in the conditions keyword is IF ... THEN ... ELSE ... WEND.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A way to organize configurations is called Repository.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Abstraction generalizes the properties and methods of classes in such a way that the implementations are hidden from outside the class.",
+    "a": "True"
+  },
+  {
+    "q": "Accessor is a method which enables the retrieval of values hidden by scopes.",
+    "a": "True"
+  },
+  {
+    "q": "Accessors are methods with the return type like the data type of the _________.",
+    "a": "Properties"
+  },
+  {
+    "q": "Accessors are prefixed with _________ in their function name.",
+    "a": "get"
+  },
+  {
+    "q": "Accessors is a method that enables the retrieval of _______________ hidden by scopes.",
+    "a": "Values"
+  },
+  {
+    "q": "Accessors should _____________ assign values to its referenced properties.",
+    "a": "Never"
+  },
+  {
+    "q": "Accessors should be prefixed with \"get\" in their function name.",
+    "a": "True"
+  },
+  {
+    "q": "Accessors should never assign values to its referenced properties.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Actual values are assigned with the pointers which are done by appending an ampersand, the address of operator, before the variable name.",
+    "a": "False"
+  },
+  {
+    "q": "All _______________ are convertible to ________________.",
+    "a": "Pseudocodes, Flowcharts"
+  },
+  {
+    "q": "All flowcharts are convertible to pseudocodes.",
+    "a": "TRUE"
+  },
+  {
+    "q": "All pseudocodes are convertible to flowcharts.",
+    "a": "TRUE"
+  },
+  {
+    "q": "All variables can go away without declaring the data types.",
+    "a": "False"
+  },
+  {
+    "q": "All word processing applications can create flowcharts.",
+    "a": "FALSE"
+  },
+  {
+    "q": "An application can process, _______ and be developed within an operating system.",
+    "a": "Run"
+  },
+  {
+    "q": "An application is made to run for platforms.",
+    "a": "TRUE"
+  },
+  {
+    "q": "An array can contain ___________ values of the same data type.",
+    "a": "One or more"
+  },
+  {
+    "q": "An array can contain only one value of data type",
+    "a": "FALSE"
+  },
+  {
+    "q": "An array dictates what element of array is being called.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Anonymous Variables are labeled by the _____________.",
+    "a": "Computer"
+  },
+  {
+    "q": "Anonymous Variables are labeled by the Computer.",
+    "a": "True"
+  },
+  {
+    "q": "As of 2016, Cloud Computing is not yet supported by C#.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Aside from machine languages, these are programming languages that exhibit the weakest abstraction of all the programming languages.",
+    "a": "Low-level Programming Languages"
+  },
+  {
+    "q": "Bjourne Stroustrup designed the programming language.",
+    "a": "False"
+  },
+  {
+    "q": "Body is the phase in looping where it dictates whether the loop will start or continue.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Boolean use only one bit.",
+    "a": "TRUE"
+  },
+  {
+    "q": "C# is a ________ programming language.",
+    "a": "High-level"
+  },
+  {
+    "q": "C++ does not allow array of ________ sizes.",
+    "a": "Dynamic"
+  },
+  {
+    "q": "C++ enables the developers to get in-detail the ________ sector of the computer.",
+    "a": "Memory"
+  },
+  {
+    "q": "C++ enables the developers to get in-detail the memory sector of the computer.",
+    "a": "FALSE"
+  },
+  {
+    "q": "C++ is, by extension, an extended version of _______________________ without the support for Object-Oriented Programming.",
+    "a": "C Programming Language"
+  },
+  {
+    "q": "C++ is, by extension, an extended version of C without the support for Object-Oriented Programming.",
+    "a": "FALSE"
+  },
+  {
+    "q": "C++ Programming Language was designed by _______________.",
+    "a": "Bjarne Stroustrup"
+  },
+  {
+    "q": "Cis as what type of programming language?",
+    "a": "Low-level Programming Languages"
+  },
+  {
+    "q": "Cis considered as a Mid-level programming Language.",
+    "a": "False"
+  },
+  {
+    "q": "Class-based is a subset of Object-Object Programming that focuses in reusability of the objects.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Classes are part of ____________________ Data Types.",
+    "a": "Referenced"
+  },
+  {
+    "q": "Client computers that sends requests to a ________ is processed in transmissions.",
+    "a": "Server"
+  },
+  {
+    "q": "Code Block is a series of programming statement that is located outside of curly brackets/braces; opened by \"{\", and closed by \"}\".",
+    "a": "FALSE"
+  },
+  {
+    "q": "Compared to the rest of the setup, this installation process will take several steps to complete.",
+    "a": "MinGW"
+  },
+  {
+    "q": "Compilers build the application from source codes.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Condition is the phase in looping statement where the statements inside the loop are executed.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Conditional means to set a different set of statements based on conditions.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Conditionals do not let us to expand the capabilities of our applications through scenarios.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Conditions within a while loop are evaluated after the execution.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Considering the low number of files that are processed for small projects this is optional.",
+    "a": "Version Control"
+  },
+  {
+    "q": "Constructors can have at least _______ base constructor from its parent class.",
+    "a": "Zero"
+  },
+  {
+    "q": "Converting a data type to another data type is called ___________.",
+    "a": "Casting"
+  },
+  {
+    "q": "Converting a value from a data type to another is called ____________.",
+    "a": "Casting"
+  },
+  {
+    "q": "Converting a value from a data type to another is called changes.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Converting long to int introduces naming problems.",
+    "a": "False"
+  },
+  {
+    "q": "cout is used to output a string to inform the user about the conditions need",
+    "a": "TRUE"
+  },
+  {
+    "q": "Data is a symbol used to compare two discrete values.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Data Types limit the naming convention in variables.",
+    "a": "False"
+  },
+  {
+    "q": "Database applications can create pseudocodes.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Descending is the usual arrangement for numerical values",
+    "a": "FALSE"
+  },
+  {
+    "q": "Direction : Choose the best answer.",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Direction : Choose the best answer. What do you call the distribution of information when stored on a physical disk?",
+    "a": "Fragmentation"
+  },
+  {
+    "q": "Direction : Choose the best answer. Which is not a subdomain of Application Development?",
+    "a": "UI Applications"
+  },
+  {
+    "q": "Direction : Choose the best answer. Which of the following was not helped by technology to advance further in their respective fields?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Direction : Choose the best answer.Compared to the rest of the setup, this installation process will take several steps to complete.",
+    "a": "MinGW"
+  },
+  {
+    "q": "Direction : Choose the best answer.It is here where we develop and run our software.",
+    "a": "Operating System"
+  },
+  {
+    "q": "Direction : Choose the best answer.It is made using Native Windows Application.",
+    "a": "GUI"
+  },
+  {
+    "q": "Direction : Choose the best answer.It presents minimalistic approach in presenting tools and libraries necessary to develop application for Microsoft Windows.",
+    "a": "MinGW"
+  },
+  {
+    "q": "Direction : Choose the best answer.It was made to allow developers in the Open Source Community to publicly share software by Microsoft.",
+    "a": "CodePlex"
+  },
+  {
+    "q": "Direction : Choose the best answer.Open Source Community's most famous and most used online version control repository since 2016.",
+    "a": "Github"
+  },
+  {
+    "q": "Direction : Choose the best answer.They organize source codes and development artifacts.",
+    "a": "IDE"
+  },
+  {
+    "q": "Direction : Choose the best answer.To test if you correctly performed the steps in configuring the Microsoft windows path what is to be opened first?",
+    "a": "Command prompt"
+  },
+  {
+    "q": "Direction : Choose the best answer.What domain deals with analytics?",
+    "a": "Data Science"
+  },
+  {
+    "q": "Direction : Choose the best answer.What domain deals with server configurations?",
+    "a": "Back-end Development"
+  },
+  {
+    "q": "Direction : Choose the best answer.What domain deals with web applications?",
+    "a": "Cloud Development"
+  },
+  {
+    "q": "Direction : Choose the best answer.What is needed to be installed to support C and C++ applications for Visual Studio?",
+    "a": "C++"
+  },
+  {
+    "q": "Direction : Choose the best answer.What is needed to be set up before adding a license?",
+    "a": "Gitlgnore"
+  },
+  {
+    "q": "Direction : Choose the best answer.What web browser used the first versions of JavaScript?",
+    "a": "Netscape Navigator"
+  },
+  {
+    "q": "Direction : Choose the best answer.Which is not a version of Shell?",
+    "a": "PSH"
+  },
+  {
+    "q": "Direction : Choose the best answer.Which is not an application of Embedded Systems Development?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Direction : Choose the best answer.Which is not the file extension of Linux applications?",
+    "a": "Not applicable"
+  },
+  {
+    "q": "Direction : True or False #include <iostream> is the act of a function saying everything inside belongs to it.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or False A programming centered in the use of objects is called Object-Oriented Programming.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or False C++ enables the developers to get in-detail the memory sector of the computer.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or False Function calls can be pointers.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or False The \"for\" statement is range-based.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or False The #include <cstdlib> is not used for system functions.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or False The #include <cstdlib> statement is used for string input and output of C++.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or False The #include <iostream> statement is used for the system function.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseA class cannot contain more than one constructor.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseA condition where it evaluated right before the body executes is called While Loop.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA function shall return as its final execution is called reoccurrence data type.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseA group of statements within a code block is called body of the function.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA programming language specialized in simulations is called Simula.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA programming language that defines an error in a specific action is called exception.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA property that states if a value cannot be changed is called immutability.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA statement wherein the increment/decrement can occur before the other statements of the body is called While statement.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA statement wherein the used is to terminates the execution of the entire loop is called Continue statement.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseA typical initialization of a counter is set to 0.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseA variable is used to store permanent value in a program.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseAccessors are methods with the return type like the data type of the property.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseAccessors are prefixed with \"set\" in their function name.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseAccessors should never assign values to its referenced properties.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseActual values are assigned to variables.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseAn array can contain only one value of data type.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseAre accessors and mutators similar in terms of limiting an action done.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseBody is the phase in looping where it dictates whether the loop will start or continue.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseChanges done to the value of the reference will change the value of the variable it points to.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseCode Block is a series of programming statement that is located outside of curly brackets/braces; opened by \"{\", and closed by \"}\".",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseCondition is the phase in looping statement where the statements inside the loop are executed.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseConditionals do not let us to expand the capabilities of our applications through scenarios.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseConverting a value from a data type to another is called changes.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseDoes C++ allow array of dynamic sizes?",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseDoes counting problem means that the values of given array is being arranged.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseEncapsulation is used to hide the internal working of an application.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseException is the result of incorrect action committed unexpectedly.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseFunction name and variable name are similar?",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseFunction parameters are pointer.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseFunction parameters can be references.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseFunctions are also called procedures.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseHigh-level programming language allows developer to focus on the logic of the application they are developing.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseIn a series of statements, looping in C++ is not allowed to repeat.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIn C++, the abstract representation of objects is called class.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseIn Low-level programming languages, developers are given indirect access to the memory of the computer, particularly the random-access memory.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIn sorting problems, it is not allowed to arrange numerical values in ascending forms.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIn the discussion, the allocated size for a double data type is 8 bits.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIs it possible for a constructor to have a same number of parameters?",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIs it possible to create a nested conditional depending on the need?",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseIt is possible to create multiple pointers pointing to the same variable.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseIt limits the access to the properties and methods under it to the class itself and to all classes that inherit it is called private scope.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseIt makes the properties and methods under it accessible to anywhere within and outside the class is called public scope.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseLocal Variables are variables declared outside of \"int main ( )\" function and can only be accessed outside.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseLow-level programming languages are the easiest to manage of all the categories of programming languages.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseMutators are prefixed with \"get\" in their function name.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalsePointers are used to point to addresses in the memory.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalsePointers are variables.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalsePrinciple of OOP that deals with different variations of the same method is called Polymorphism.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseReferences are used to point to multiple addresses in the memory.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseReferences are used to refer to one existing address in the memory.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseReferences returns the address of the variable it points to when using Address Of operator.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseSmalltalk was the Object-Oriented Programming Language built for Dynabook.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseSnippet is defined as part of an entire code.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseSwitch statement is a conditional that compares one specific variable with a set of constants.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe & symbol is used to retrieve the value of references.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe abstraction principle ensures that only the necessary methods are presented outside of the current class.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe Case Statement is part of IF Statement.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe counters are separated by open and close parenthesis.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe easiest category of programming languages to work with are the high-level programming languages",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe first personal computer created using Object-Oriented Programming is PC DOS by IBM.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe go-in-between of the other programming languages are the mid-level programming languages.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe main function serves as an entry point of any C++ application.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe Methods [Class] is used to give primary information centered on the object.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe one that dictates the maximum value stored by an array is called proportions.",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe programming language designed by Bjarne Stroustrup in 1976 was initially proposed as a high-level programming language",
+    "a": "False"
+  },
+  {
+    "q": "Direction : True or FalseThe programming languages that showcase user-friendly implementations and structures are the mid-level programming languages.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe return EXIT_SUCCESS statement is used for closing remarks.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe syntax for the parameter is dataType variableName.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseThe use of breaks is to prevent next conditions to be executed causing the switch statement to be executes.",
+    "a": "True"
+  },
+  {
+    "q": "Direction : True or FalseUnprocessed values are the values that changed from original to the current value.",
+    "a": "False"
+  },
+  {
+    "q": "Direction: True or False. Initialization use a special variable called counter.",
+    "a": "True"
+  },
+  {
+    "q": "Does C++ allow array of dynamic sizes?",
+    "a": "FALSE"
+  },
+  {
+    "q": "DynaBuk is the first computer created using Object-Oriented Programming?",
+    "a": "FALSE"
+  },
+  {
+    "q": "Else statement is used in undefined conditional expressions.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Encapsulation extends the features and functionalities of existing classes and interfaces.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Encapsulation is used to hide the internal working of an application.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Exception is the result of an incorrect action or operation",
+    "a": "TRUE"
+  },
+  {
+    "q": "Exception is the result of incorrect action committed unexpectedly.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Explicit Data Types are also called Variants.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Explicit Variables are declared outside the context of the application.",
+    "a": "False"
+  },
+  {
+    "q": "Float can store up to -9.10 x 1030.",
+    "a": "False"
+  },
+  {
+    "q": "Flowcharts are created using spreadsheet applications.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Flowcharts do not support multi-paged configuration.",
+    "a": "FALSE"
+  },
+  {
+    "q": "For Loops is a statement in C++ where the body phases occur within the parenthesis of the statement.",
+    "a": "FALSE"
+  },
+  {
+    "q": "for(i=5; i>0; i--){ cout << endl; }",
+    "a": "TRUE"
+  },
+  {
+    "q": "Function ______________ are pointer in a pointer function.",
+    "a": "Parameters"
+  },
+  {
+    "q": "Function calls can be pointers.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Function is used as an alias as reference to the function.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Function name and variable name are similar?",
+    "a": "FALSE"
+  },
+  {
+    "q": "Function name and variable name are____________.",
+    "a": "Dissimilar"
+  },
+  {
+    "q": "Function name is a separate code block that performs a specific task.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Function parameters can be references.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Functions are also called procedures.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Functions are declared with parameters.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Functions are essentially a code block of related statements that allow varying values of its variables.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Functions can use ___________ in its parameters.",
+    "a": "Pointers"
+  },
+  {
+    "q": "Fundamentals of computer programming are learned easily through the use of GUI.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Given the following work items (a) \"To ask user for age\" and (b) \"To ask user for item price\", the problem being addressed is about prices and interests",
+    "a": "FALSE"
+  },
+  {
+    "q": "Given the problem below, that is the most probable last work item of the solution?",
+    "a": "To display section"
+  },
+  {
+    "q": "Given the problem below, that is the most probable last work item of the solution?\"Write a program that displays the section of the user\"",
+    "a": "\"To display section\""
+  },
+  {
+    "q": "Given the problem below, what is the most probable last work item of the solution?",
+    "a": "To display age"
+  },
+  {
+    "q": "Given the problem below, what is the most probable last work item of the solution?\"Write a program to calculate the age of the user based on his birth year\"",
+    "a": "\"To display age\""
+  },
+  {
+    "q": "Given the work item below, what is its most probable problem that it answers?\"To display appendFirstLastname\"",
+    "a": "\"Write a program to display the complete name of the user\""
+  },
+  {
+    "q": "Global variables are variables declared _____________ int main() code block.",
+    "a": "After"
+  },
+  {
+    "q": "Global variables are variables declared inside of \"int main ( )\" functions.",
+    "a": "FALSE"
+  },
+  {
+    "q": "He is one of the creators of the open source programming language, Go, at Google, Inc in 2007.",
+    "a": "Ken Thompson"
+  },
+  {
+    "q": "Header files are separate C++ files which contain supplementary codes for the application.",
+    "a": "True"
+  },
+  {
+    "q": "How many components build up the phases that a looping statement need to undergo internally?",
+    "a": "Four (4)"
+  },
+  {
+    "q": "Immutability is a property that states that the value cannot be changed.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Implicit Data Types can contain either integer or character.",
+    "a": "True"
+  },
+  {
+    "q": "Implicit Data Types can store _____ type of values.",
+    "a": "Any"
+  },
+  {
+    "q": "Implicit Variables are declared within the context of the application.",
+    "a": "False"
+  },
+  {
+    "q": "In 1967, the practice of Object-Oriented Programming started.",
+    "a": "True"
+  },
+  {
+    "q": "In 3,000 B.C., the Greek Abacus was invented.",
+    "a": "FALSE"
+  },
+  {
+    "q": "In a series of statements, looping in C++ is not allowed to repeat.",
+    "a": "FALSE"
+  },
+  {
+    "q": "In C++, the abstract representation of objects is called ______________.",
+    "a": "Classes"
+  },
+  {
+    "q": "In Low-level programming languages, developers are _________ access to the memory of the computer, particularly the random-access memory?",
+    "a": "Direct"
+  },
+  {
+    "q": "In sorting problems, it is not allowed to arrange numerical values in ascending forms.",
+    "a": "FALSE"
+  },
+  {
+    "q": "In the discussion, the allocated size for a _________ data type is 1 bit.",
+    "a": "Bool"
+  },
+  {
+    "q": "In the discussion, the allocated size for a double data type is___________.",
+    "a": "64 bits (floating point)"
+  },
+  {
+    "q": "In the discussion, what is the allocated size for a char data type?",
+    "a": "8 bits"
+  },
+  {
+    "q": "In the discussion, what is the allocated size for a double data type?",
+    "a": "64 bits"
+  },
+  {
+    "q": "In the discussion, what is the allocated size for an int data type?",
+    "a": "32 bits"
+  },
+  {
+    "q": "In this discussion, how many principles does OOP have?",
+    "a": "Four (4)"
+  },
+  {
+    "q": "In what year does the practice of Object-Oriented Programming started?",
+    "a": "1967"
+  },
+  {
+    "q": "Inheritance ensures that only the necessary methods are presented outside of the current class.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Initialization used a special variable called count.",
+    "a": "TRUE"
+  },
+  {
+    "q": "int b[2] = { 1, 2 }; cout << b[2];",
+    "a": "The statement will induce array out of index."
+  },
+  {
+    "q": "Is for statement a range-based?",
+    "a": "TRUE"
+  },
+  {
+    "q": "Is it possible to create a nested conditional depending on the need?",
+    "a": "TRUE"
+  },
+  {
+    "q": "Is the given conditional statement correct? if (cout << endl);",
+    "a": "TRUE"
+  },
+  {
+    "q": "Is the given looping statement correct? for(i=5; i>0; i--){ cout << endl; }",
+    "a": "TRUE"
+  },
+  {
+    "q": "is the phase in looping statements that are evaluated.",
+    "a": "Condition"
+  },
+  {
+    "q": "It dictates the maximum number of values stored by an array.",
+    "a": "Size"
+  },
+  {
+    "q": "It focuses on Native libraries hence even its Graphical User Interface (GUI) is made using Native Windows Application",
+    "a": "Minimalist GNU for Windows"
+  },
+  {
+    "q": "It focuses on Native libraries hence even its Graphical User Interface (GUI) is made using Native Windows Application.",
+    "a": "Minimalist GNU for Windows"
+  },
+  {
+    "q": "It informs the application that the function shall not return any data.",
+    "a": "Void/Void Return Type"
+  },
+  {
+    "q": "It is a conditional that compares one specific variable with a set of constants.",
+    "a": "Switch"
+  },
+  {
+    "q": "It is a data type where the function shall return as its execution.",
+    "a": "Return Type"
+  },
+  {
+    "q": "It is a free and public web-based repository that allows distributed version control and source control management tool that uses extended Git functionalities.",
+    "a": "GitHub"
+  },
+  {
+    "q": "It is a group of statements contained by a code block.",
+    "a": "Body/Body of Code Blocks"
+  },
+  {
+    "q": "It is a keyword or group of keywords in writing a pseudocode which only executes contained statements if all the conditions are met.",
+    "a": "IF THEN END"
+  },
+  {
+    "q": "It is a keyword that accepts values from the user.",
+    "a": "INPUT"
+  },
+  {
+    "q": "It is a keyword that calls user-defined functions.",
+    "a": "CALL"
+  },
+  {
+    "q": "It is a keyword that specifies a condition to repeat a block of statements",
+    "a": "WHILE DO LOOP"
+  },
+  {
+    "q": "It is a keyword that specifies a condition to repeat a block of statements.",
+    "a": "WHILE DO LOOP"
+  },
+  {
+    "q": "It is a keyword used to call user-defined functions",
+    "a": "CALL"
+  },
+  {
+    "q": "It is a method that enables the assignment of values to our properties hidden by scopes.",
+    "a": "Mutators"
+  },
+  {
+    "q": "It is a method which enables the retrieval of values hidden by scopes.",
+    "a": "Accessors"
+  },
+  {
+    "q": "It is a phase in looping where the statements inside the loop are executed.",
+    "a": "Body"
+  },
+  {
+    "q": "It is a programming centered in the use of objects.",
+    "a": "Object-Oriented Programming"
+  },
+  {
+    "q": "It is a programming language specialized in simulations.",
+    "a": "Simula"
+  },
+  {
+    "q": "It is a representation of tangible and intangible materials in Object-Oriented Programming.",
+    "a": "Objects"
+  },
+  {
+    "q": "It is a separate C++ file which contains supplementary codes for applications.",
+    "a": "Header Files"
+  },
+  {
+    "q": "It is a separate code block that performs a specific task.",
+    "a": "Function"
+  },
+  {
+    "q": "It is a special lightweight software that organizes and manages the different changes done to our source codes and related files.",
+    "a": "Version Control"
+  },
+  {
+    "q": "It is a special variable wherein set of initial value are place.",
+    "a": "Counter"
+  },
+  {
+    "q": "It is a special variable wherein set of initial values are placed.",
+    "a": "Counter"
+  },
+  {
+    "q": "It is a specific device running a specific operating system.",
+    "a": "Platforms"
+  },
+  {
+    "q": "It is a subset in the internet where documents are relating to other documents using hypertext links.",
+    "a": "World Wide Web"
+  },
+  {
+    "q": "It is a subset Object-Object Programming which focuses in abstract representations of the objects.",
+    "a": "Class-based"
+  },
+  {
+    "q": "It is a subset Object-Object Programming which focuses in reusability of the objects.",
+    "a": "Prototype-based"
+  },
+  {
+    "q": "It is a symbol in flowcharting used to display value to the user.",
+    "a": "Data"
+  },
+  {
+    "q": "It is a symbol in flowcharting used to initialize values and routines.",
+    "a": "Preparation"
+  },
+  {
+    "q": "It is a symbol in flowcharting used to retrieve value from the user",
+    "a": "Data"
+  },
+  {
+    "q": "It is a symbol in flowcharting used to retrieve value from the user.",
+    "a": "Data"
+  },
+  {
+    "q": "It is a symbol of Flowcharting used to initialize something.",
+    "a": "Preparation"
+  },
+  {
+    "q": "It is a symbol used to connect parts of the flowcharts from different pages.",
+    "a": "Off-page Connector"
+  },
+  {
+    "q": "It is a symbol used to indicate a specific action to be done.",
+    "a": "Process"
+  },
+  {
+    "q": "It is a symbol used to set values.",
+    "a": "Data"
+  },
+  {
+    "q": "It is a symbol with two and only two out-going paths possible",
+    "a": "Decision"
+  },
+  {
+    "q": "It is a symbol with two and only two out-going paths possible.",
+    "a": "Decision"
+  },
+  {
+    "q": "It is a user-friendly interface and easy navigation operating system.",
+    "a": "Microsoft Windows"
+  },
+  {
+    "q": "It is a variant of the IF-THEN-END keywords wherein there can be more than one condition, and a separate block if none of the conditions specified matched.",
+    "a": "IF ... THEN ... ELSE IF ... THEN ... ELSE ... END"
+  },
+  {
+    "q": "It is an abstract representation of objects",
+    "a": "Class"
+  },
+  {
+    "q": "It is an abstract representation of objects.",
+    "a": "Class"
+  },
+  {
+    "q": "It is an array of characters.",
+    "a": "String"
+  },
+  {
+    "q": "It is an integrated development environment (IDE) which houses mono develop as its base framework.",
+    "a": "Xamarin"
+  },
+  {
+    "q": "It is an open source cross-platform IDE that supports a series of programming language.",
+    "a": "Visual Studio Code"
+  },
+  {
+    "q": "It is assigned with the pointers which are done by appending an ampersand, the address of operator, before the variable name.",
+    "a": "Address of the variable"
+  },
+  {
+    "q": "It is created to initialize operations for the class upon declaration.",
+    "a": "Constructor"
+  },
+  {
+    "q": "It is equivalent to one cycle of repetition.",
+    "a": "Iteration"
+  },
+  {
+    "q": "It is here where we develop and run our software.",
+    "a": "Operating System"
+  },
+  {
+    "q": "It is impossible to create ________________ arrays because it is resource expensive.",
+    "a": "Five-dimensional"
+  },
+  {
+    "q": "It is impossible to create five-dimensional arrays because its resource expensive.",
+    "a": "FALSE"
+  },
+  {
+    "q": "It is located within a curly brackets/braces; opened by \"{\", and closed by \"}\".",
+    "a": "Code Blocks"
+  },
+  {
+    "q": "It is made using Native Windows Application",
+    "a": "GUI"
+  },
+  {
+    "q": "It is needed to be enabled to compile our selected compiled programming language to executables.",
+    "a": "IDE"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving in computer programming that aims to meet one specific path.",
+    "a": "Goal-oriented"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving in computer programming that deals with assessing the validity of the solutions.",
+    "a": "Verifiable"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving in computer programming that deals with the feasibility of the problem in terms of time",
+    "a": "Doable in a finite step"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving in computer programming that deals with the feasibility of the problem in terms of time.",
+    "a": "Doable in a finite step"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving where the practicality of the solution is counterchecked against a range of test data.",
+    "a": "Verifiable"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving where the problem can be processed by the computer given a specific conversion scale.",
+    "a": "Quantifiable"
+  },
+  {
+    "q": "It is one of the characteristics of problem solving where the problem is non-quality oriented.",
+    "a": "Solvable"
+  },
+  {
+    "q": "It is one of the characteristics of technical work item that deals with being clear in nature.",
+    "a": "Classifiable"
+  },
+  {
+    "q": "It is one of the characteristics of technical work item that deals with process statements.",
+    "a": "Classifiable"
+  },
+  {
+    "q": "It is one of the characteristics of technical work item that deals with pseudocodes.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is one of the characteristics of technical work item that deals with the simplicity of the statement.",
+    "a": "Concise"
+  },
+  {
+    "q": "It is one of the characteristics of technical work items to be distinctive in purpose or aim.",
+    "a": "Classifiable"
+  },
+  {
+    "q": "It is one of the characteristics of technical work items to be written direct to the point.",
+    "a": "Unambiguous"
+  },
+  {
+    "q": "It is one of the characteristics of technical work items to be written shortly.",
+    "a": "Concise"
+  },
+  {
+    "q": "It is one of the main thing we consider when undergoing Software Development.",
+    "a": "Operating System"
+  },
+  {
+    "q": "It is phase in looping where the counter in increasing or decreasing.",
+    "a": "Increment/Decrement"
+  },
+  {
+    "q": "It is the characteristic of Problem Solving that focuses on the practicality to provide a solution that takes a finite number of resources.",
+    "a": "Doable in finite steps"
+  },
+  {
+    "q": "It is the characteristic of Problem Solving that focuses on the solution to meet a specific singular end.",
+    "a": "Goal-oriented"
+  },
+  {
+    "q": "It is the characteristic of Problem Solving that focuses on the testability of the identified solution.",
+    "a": "Verifiable"
+  },
+  {
+    "q": "It is the characteristic of Problem Solving that states there should exist at least one probable solution.",
+    "a": "Solvable"
+  },
+  {
+    "q": "It is the characteristic of Technical Work Items that ensures the work item falls into a specific action.",
+    "a": "Classifiable as INPUT, PROCESS, or OUTPUT"
+  },
+  {
+    "q": "It is the characteristic of Technical Work Items that focuses on shortly written work items.",
+    "a": "Concise"
+  },
+  {
+    "q": "It is the characteristic of Technical Work Items that focuses on the precision of the given work item.",
+    "a": "Unambiguous"
+  },
+  {
+    "q": "It is the characteristic of Technical Work Items that talks about a single entity being manipulated or task being accomplished.",
+    "a": "Specific"
+  },
+  {
+    "q": "It is the classification of Technical Work Items for \"all displayed information\".",
+    "a": "OUTPUT"
+  },
+  {
+    "q": "It is the classification of Technical Work Items for \"to accept a user input and add the value to a variable\".",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is the classification of Technical Work Items for \"to clear all values stored in the variables\".",
+    "a": "PROCESS"
+  },
+  {
+    "q": "It is the classification of Technical Work Items for \"to display the account number in masked text\".",
+    "a": "OUTPUT"
+  },
+  {
+    "q": "It is the classification of Technical Work Items for \"to imitate a user input\".",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is the complex, fully functional software where we write, organize and manages our source codes and related files.",
+    "a": "Integrated Development Environment"
+  },
+  {
+    "q": "It is the equivalent of the DATA symbol of Flowcharts in Pseudocodes.",
+    "a": "SET"
+  },
+  {
+    "q": "It is the equivalent of the INPUT symbol of Pseudocodes in Flowcharts.",
+    "a": "DATA"
+  },
+  {
+    "q": "It is the equivalent of the OUTPUT symbol of Pseudocodes in Flowcharts.",
+    "a": "DISPLAY"
+  },
+  {
+    "q": "It is the keyword in Pseudocodes that indicates a value being stored to a temporary storage from any source excluding user entry.",
+    "a": "SET ... AS …"
+  },
+  {
+    "q": "It is the operator used to retrieve the address of the variable.",
+    "a": "Address Of (&)"
+  },
+  {
+    "q": "It is the part of Visual Studio Code where the contents of the files are previewed and edited.",
+    "a": "Editor"
+  },
+  {
+    "q": "It is the part of Visual Studio Code where the project structure is displayed.",
+    "a": "Explorer"
+  },
+  {
+    "q": "It is the phase in looping statements where a variable called counter.",
+    "a": "Condition"
+  },
+  {
+    "q": "It is the phase of looping statements where a variable called counter is set an initial value.",
+    "a": "Initialization"
+  },
+  {
+    "q": "It is the programming language that ranked as the Top 3 most used language in 2016 based from GitHub research.",
+    "a": "Python"
+  },
+  {
+    "q": "It is the programming languages that exhibit strong abstraction and mid-range access to the memory and operating system.",
+    "a": "Mid-level Programming Languages"
+  },
+  {
+    "q": "It is the programming languages that exhibit the strongest abstraction of its programming schema.",
+    "a": "High-level Programming Languages"
+  },
+  {
+    "q": "It is the result of an incorrect action or operation.",
+    "a": "Exception"
+  },
+  {
+    "q": "It is used as an alias as reference to the function.",
+    "a": "Function Name"
+  },
+  {
+    "q": "It is used to itemize the input values of the function.",
+    "a": "Parameter"
+  },
+  {
+    "q": "It limits the access to the properties and methods under it to only the class where they are defined is called protected scope.",
+    "a": "FALSE"
+  },
+  {
+    "q": "It repeats a series of statement that aim to reach a certain condition.",
+    "a": "Looping"
+  },
+  {
+    "q": "It serves as an entry point of any C++ application.",
+    "a": "int main( )"
+  },
+  {
+    "q": "It was made to allow developers in the Open Source Community to publicly share software by Microsoft.",
+    "a": "CodePlex"
+  },
+  {
+    "q": "It's a special type of variable that stores the address permanently in the memory.",
+    "a": "References"
+  },
+  {
+    "q": "Iteration is the special variable that controls the flow of loops.",
+    "a": "FALSE"
+  },
+  {
+    "q": "James Gosling developed the ________ programming language.",
+    "a": "Java"
+  },
+  {
+    "q": "James Gosling developed the programming language.",
+    "a": "Java"
+  },
+  {
+    "q": "Local variables are accessible throughout the code.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Local Variables are variables declared outside of \"int main ( )\" function and can only be accessed outside.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Long can store up to 65,535 in value.",
+    "a": "False"
+  },
+  {
+    "q": "Low-level Programming Languages exhibit the strongest abstraction of its programming schema.",
+    "a": "False"
+  },
+  {
+    "q": "Machine Languages are Low-level Programming Languages.",
+    "a": "True"
+  },
+  {
+    "q": "Majority of the features available to mid-level programming languages are hidden in the background and are usually taken for granted",
+    "a": "FALSE"
+  },
+  {
+    "q": "Mid-level Programming Languages exhibit _______ abstraction.",
+    "a": "Strong"
+  },
+  {
+    "q": "Mid-level Programming Languages exhibit abstraction.",
+    "a": "Strong"
+  },
+  {
+    "q": "Mid-level Programming Languages exhibit strong abstraction and mid-range access to the memory and operating system.",
+    "a": "True"
+  },
+  {
+    "q": "Mirror Images of the variables are created by pointers.",
+    "a": "True"
+  },
+  {
+    "q": "Mutator is a method that enables the assignment of values to our properties hidden by scopes.",
+    "a": "True"
+  },
+  {
+    "q": "Mutator's main purpose is to store values in hidden properties.",
+    "a": "True"
+  },
+  {
+    "q": "Mutators are prefixed with \"get\" in their function name.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Mutators should be prefixed with \"sets\" in their function name.",
+    "a": "False"
+  },
+  {
+    "q": "Object is an abstract representation of actual objects.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Object-Oriented Programming is programming centered in the use of objects.",
+    "a": "True"
+  },
+  {
+    "q": "One characteristic of Technical Work Items is Classifiable - being able to distinctively classify the purpose or aim.",
+    "a": "TRUE"
+  },
+  {
+    "q": "One cycle of repetition using loops is called an iteration.",
+    "a": "TRUE"
+  },
+  {
+    "q": "One possible application of Embedded Systems Development is in Home Automation",
+    "a": "TRUE"
+  },
+  {
+    "q": "Open Source Communitys most famous and most used online version control repository since 2016.",
+    "a": "Github"
+  },
+  {
+    "q": "Overlapping arrows are _______________ in flowcharts.",
+    "a": "Not Allowed"
+  },
+  {
+    "q": "Overlapping arrows are in flowcharts.",
+    "a": "Not Allowed"
+  },
+  {
+    "q": "Parameter code block can adopt input from another code block.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Parameter is a component of the function which _______ the input values of the function.",
+    "a": "Itemizes"
+  },
+  {
+    "q": "Pointers are a special type of",
+    "a": "Variables"
+  },
+  {
+    "q": "Pointers are a special type of __________________.",
+    "a": "Variables"
+  },
+  {
+    "q": "Pointers are the special variables in C++ that points to a sector in the memory.",
+    "a": "True"
+  },
+  {
+    "q": "Pointers are used to point to ___________ in the memory.",
+    "a": "Address"
+  },
+  {
+    "q": "Pointers are variables.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Pointers retrieve the values assigned to it and stores it to the _____________ it points to.",
+    "a": "Variables"
+  },
+  {
+    "q": "Pointers retrieve the values assigned to it and stores it to the it points to.",
+    "a": "Variables"
+  },
+  {
+    "q": "Pointers retrieve the values assigned to it and stores it to the reference it points to.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Pointers used in function calls that store addresses in the memory?",
+    "a": "False"
+  },
+  {
+    "q": "Principle of OOP that deals with different variations of the same method is called Polymorphism.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Process is an instance that indicates a specific action done in the ________________ activity.",
+    "a": "Current"
+  },
+  {
+    "q": "Prototype-based is a subset Object-Object Programming that focuses in abstract representations of the objects.",
+    "a": "False"
+  },
+  {
+    "q": "References are ____________ variables.",
+    "a": "Constant"
+  },
+  {
+    "q": "References are containers that are preceded with an asterisk.",
+    "a": "False"
+  },
+  {
+    "q": "References are special types of variables that store the address in the memory rather than the actual value or constant.",
+    "a": "True"
+  },
+  {
+    "q": "References are used to point to multiple addresses in the memory.",
+    "a": "FALSE"
+  },
+  {
+    "q": "References are used to refer to _________ existing address in the memory.",
+    "a": "One"
+  },
+  {
+    "q": "References as variables stores ____________ as their value.",
+    "a": "Address"
+  },
+  {
+    "q": "References returns the address of the variable it points to when using _________ operator(s).",
+    "a": "Address of"
+  },
+  {
+    "q": "References returns the address of the variable it points to when using Address Of operator.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Server configurations are dealt using Data Science.",
+    "a": "FALSE"
+  },
+  {
+    "q": "shortc[1] = { 32768 };",
+    "a": "The statement will induce integer overflow."
+  },
+  {
+    "q": "Simu is a programming language specialized in simulations.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Snippet is defined as part of an entire code.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Some word processing applications can create _______________ and pseudocodes.",
+    "a": "Flowcharts"
+  },
+  {
+    "q": "Sorting problems are problems where the values of given array is being arranged in a decremental order.",
+    "a": "FALSE"
+  },
+  {
+    "q": "statement is used in undefined conditional expressions.",
+    "a": "Else"
+  },
+  {
+    "q": "Statement wherein it terminates the execution of the current iteration is called Break Statement.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Statements found inside of the ___________ are called code block.",
+    "a": "Curly Braces"
+  },
+  {
+    "q": "Structures are part of Referenced Data Types.",
+    "a": "False"
+  },
+  {
+    "q": "Switch statement is a conditional that compares one specific variable with a set of constants.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Technical Work Items is an ___________ step prior creating flowcharts.",
+    "a": "Optional"
+  },
+  {
+    "q": "Terminator is always the _________ symbol that can be found at the top-most of all flowcharts.",
+    "a": "First"
+  },
+  {
+    "q": "The ________ rights allow users to escalate the permission granted.",
+    "a": "Administrator"
+  },
+  {
+    "q": "The ________ statement mainly uses integers as value to be evaluated.",
+    "a": "switch"
+  },
+  {
+    "q": "The _________ programming language is mainly used by OSX and iOS",
+    "a": "Objective-C"
+  },
+  {
+    "q": "The _________ programming language is mainly used by OSX and iOS.",
+    "a": "Objective-C"
+  },
+  {
+    "q": "The _________ responsible for sending data to computers are called Input Devices.",
+    "a": "Hardware"
+  },
+  {
+    "q": "The ___________ statement is used for the system function.",
+    "a": "#include <cstdlib>"
+  },
+  {
+    "q": "The ____________ looping statement evaluates the condition before executing the body and the increment/decrement.",
+    "a": "while"
+  },
+  {
+    "q": "The ____________ serves as an entry point of any C++ application.",
+    "a": "int main()"
+  },
+  {
+    "q": "The ____________ statement uses defined constants in evaluating conditions.",
+    "a": "switch"
+  },
+  {
+    "q": "The _____________ header file is used for string input with no space on it in C++.",
+    "a": "#include <iostream>"
+  },
+  {
+    "q": "The _____________ statement is used for general input and output of C++.",
+    "a": "#include"
+  },
+  {
+    "q": "The _____________ statement is used for string input and output of C++.",
+    "a": "#include"
+  },
+  {
+    "q": "The _________________ phase decreases the value of the counter.",
+    "a": "Decrement"
+  },
+  {
+    "q": "The ________________________ tool enables better code management through backups and source control.",
+    "a": "Version Control"
+  },
+  {
+    "q": "The * symbol stands for _______________ operator.",
+    "a": "Dereferencing"
+  },
+  {
+    "q": "The * symbol stands for Address Of operator.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The #include is not used for system functions.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The #include statement is used for string input and output of C++.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The #include statement is used for the system function.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The abstraction principle ensures that only the necessary methods are presented outside of the current class.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The act where it is declared inside of a specific code block and can only be access inside of the said code block.",
+    "a": "Local Variables"
+  },
+  {
+    "q": "The act where it is declared outside of the function.",
+    "a": "Global variables"
+  },
+  {
+    "q": "The Address Of operator is used to retrieve the physical address of a variable.",
+    "a": "False"
+  },
+  {
+    "q": "The allocated size for an int data type is 64 bits",
+    "a": "FALSE"
+  },
+  {
+    "q": "The allocated size if a chartype is 8 bits.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The body of code blocksis the set of statements found inside the curly braces.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The body of the function is a group of statements contained by a code block.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The Case Statement is part of IF Statement.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The category in pseudocodes that deal with decision making is IF ... THEN ... ENDF.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The characteristic of Technical Work Items that deal with consistency is called Nonce.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The compiler that presents a minimalistic approach for Windows is called _________________.",
+    "a": "MinGW"
+  },
+  {
+    "q": "The computer can only understand ____ languages.",
+    "a": "One"
+  },
+  {
+    "q": "The counters are separated by open and close parenthesis.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The Default Statement is used when the execution of the case statement fails.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The END terminator is placed as the _______________ symbol in the entire flowchart.",
+    "a": "End of the last page"
+  },
+  {
+    "q": "The free and web-based repository that allows distributed version control is called GitOpen.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The go-in-between of the other programming languages are the mid-level programming languages.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The increment/decrement happen at the start of the body.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The index _________ which element of the array is on being process.",
+    "a": "Declares"
+  },
+  {
+    "q": "The index declares which element of the array is on being process.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The int main()function serves as an entry point of any C++ application.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The looping statement in C++ where the condition appears on the last part of the statement is called ________________ loop.",
+    "a": "do-while"
+  },
+  {
+    "q": "The main purpose of mutators is to ________ values to our hidden properties.",
+    "a": "Assign"
+  },
+  {
+    "q": "The Methods [Class] is used to give primary information centered on the object.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The most efficient data type to use for flags like gender is _________________.",
+    "a": "Boolean"
+  },
+  {
+    "q": "The newly developed IDE from Microsoft that supports various programming languages and acts as a subset of Visual Studio is called ________________.",
+    "a": "Visual Studio Code"
+  },
+  {
+    "q": "The one that dictates the maximum value stored by an array is called proportions",
+    "a": "FALSE"
+  },
+  {
+    "q": "The only data type that can store large values until 65,535 is _________________ _______.",
+    "a": "Unsigned Short"
+  },
+  {
+    "q": "The open source community of Microsoft to share software publicly is called ________________.",
+    "a": "CodePlex"
+  },
+  {
+    "q": "The original C is a ____________ programming language.",
+    "a": "Low-level"
+  },
+  {
+    "q": "The OUTPUT keyword in pseudocodes ____________________.",
+    "a": "Displays a value"
+  },
+  {
+    "q": "The phase in looping that indicates the statements under the loop is called _________.",
+    "a": "Body"
+  },
+  {
+    "q": "The phase in loops where the counter is changed is called Variation.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The practical result involving more than one programming language is called __________________.",
+    "a": "Development"
+  },
+  {
+    "q": "The practice of Object-Oriented Programming came as early as the year _______.",
+    "a": "1967"
+  },
+  {
+    "q": "The principle of OOP that deals with different variations of the same method is called __________________.",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "The programming language designed by Bjarne Stroustrup in ____ was initially proposed as a high-level programming language",
+    "a": "1979"
+  },
+  {
+    "q": "The programming language designed by Bjarne Stroustrup in 1976 was initially proposed as a high-level programming language",
+    "a": "FALSE"
+  },
+  {
+    "q": "The programming languages that showcase user-friendly implementations and structures are the mid-level programming languages.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The pseudocode for accepting user values is called INPUT",
+    "a": "TRUE"
+  },
+  {
+    "q": "The return ___________ statement is used for closing remarks.",
+    "a": "EXIT_SUCCESS"
+  },
+  {
+    "q": "The return EXIT_SUCCESS statement is used for_____________.",
+    "a": "Closing Remarks"
+  },
+  {
+    "q": "The symbol used for Data is shaped like a ______________.",
+    "a": "Rhombus"
+  },
+  {
+    "q": "The symbol used to set or retrieve values is called ___________.",
+    "a": "Data"
+  },
+  {
+    "q": "The syntax for the ______________ is dataType variableName.",
+    "a": "Parameter"
+  },
+  {
+    "q": "The syntax for the parameter is dataType variableName.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The top most terminator uses ___________ arrow.",
+    "a": "Out-going"
+  },
+  {
+    "q": "The two (2) pseudocode keywords that are the equivalent for the Data symbol in flowcharts are INPUT",
+    "a": "TRUE"
+  },
+  {
+    "q": "The use of breaks is to prevent next conditions to be executed causing the switch statement to be executes.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The use of the statement \"using namespace std;\" is to ask permission in C++ that we will use std.",
+    "a": "FALSE"
+  },
+  {
+    "q": "There are ______ terminator symbols per flowchart",
+    "a": "Two/2"
+  },
+  {
+    "q": "There are _______ programming languages that are categorized in terms of complexity.",
+    "a": "Three"
+  },
+  {
+    "q": "There are _______ scenarios per decision symbol in flowcharts.",
+    "a": "Two/2"
+  },
+  {
+    "q": "There are at least ______________ arrows in Decision Symbols of flowcharts.",
+    "a": "Two/2"
+  },
+  {
+    "q": "There are six (6) principles of C++.",
+    "a": "False"
+  },
+  {
+    "q": "There are three (3) components that build up the phases of looping statements.",
+    "a": "FALSE"
+  },
+  {
+    "q": "There exists a multi-paged pseudocode",
+    "a": "TRUE"
+  },
+  {
+    "q": "There is only one data type that can handle textual values.",
+    "a": "TRUE"
+  },
+  {
+    "q": "These are also called Variants.",
+    "a": "Implicit Data Types"
+  },
+  {
+    "q": "These are conditionals that extend the functionality of if where in several other scenarios are accounted.",
+    "a": "If ... Else If ... Else"
+  },
+  {
+    "q": "These are conditionals that matches the value of the variable-under-check with their literal counterpart.",
+    "a": "Switch"
+  },
+  {
+    "q": "These are conditionals that provide an alternative scenario should the condition-under-check fails.",
+    "a": "If ... Else"
+  },
+  {
+    "q": "These are container objects in C++ that can be applied with pointers.",
+    "a": "Variables"
+  },
+  {
+    "q": "These are container objects in C++ that can be applied with references.",
+    "a": "Variables"
+  },
+  {
+    "q": "These are containers that are assigned an actual value (e.g. not an address in the memory).",
+    "a": "Variables"
+  },
+  {
+    "q": "These are containers that are preceded with an ampersand.",
+    "a": "References"
+  },
+  {
+    "q": "These are containers that are preceded with an asterisk.",
+    "a": "Pointers"
+  },
+  {
+    "q": "These are data types that are declared and defined.",
+    "a": "Explicit Data Types"
+  },
+  {
+    "q": "These are data types that are objective by nature.",
+    "a": "Referenced Data Types"
+  },
+  {
+    "q": "These are data types that are taken depending on how they are stored or used.",
+    "a": "Implicit Data Types"
+  },
+  {
+    "q": "These are declared variables.",
+    "a": "Explicit Variables"
+  },
+  {
+    "q": "These are declared with parameters.",
+    "a": "Functions"
+  },
+  {
+    "q": "These are fully-integrated software that contains various features dedicated to software development.",
+    "a": "Integrated Development Environment"
+  },
+  {
+    "q": "These are functions in C++ that allows varying sizes of arrays.",
+    "a": "Dynamic Memory Allocation"
+  },
+  {
+    "q": "These are functions in C++ that changes the address of a variable to another address.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "These are high-level description of the processes in Computer Programming.",
+    "a": "Pseudocode"
+  },
+  {
+    "q": "These are limits placed to handle specific data",
+    "a": "Data Types"
+  },
+  {
+    "q": "These are limits placed to handle specific data.",
+    "a": "Data Types"
+  },
+  {
+    "q": "These are looping statements where only the initialization, condition and increment phases occur within the parentheses of the statement.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "These are looping statements where the condition is evaluated right before the body is executed.",
+    "a": "While"
+  },
+  {
+    "q": "These are looping statements where the increment/decrement is evaluated right after the condition is executed.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "These are non-constant containers that may only be assigned a value once.",
+    "a": "References"
+  },
+  {
+    "q": "These are temporary storage of data.",
+    "a": "Variables"
+  },
+  {
+    "q": "These are the only data type to handle textual values.",
+    "a": "Characters"
+  },
+  {
+    "q": "These are the parts of Object-Oriented Programming that deals with extended functionality of the class.",
+    "a": "Methods"
+  },
+  {
+    "q": "These are the parts of Object-Oriented Programming that deals with the constraint placed in variables and functions regarding where they can be accessed.",
+    "a": "Scopes"
+  },
+  {
+    "q": "These are the parts of Object-Oriented Programming that deals with the different internal variables of the class.",
+    "a": "Properties"
+  },
+  {
+    "q": "These are the parts of Object-Oriented Programming that deals with the initialization of various forms of the class.",
+    "a": "Constructors"
+  },
+  {
+    "q": "These are the parts of Object-Oriented Programming that gives meaning to the classes through the availability of accessible data.",
+    "a": "Properties"
+  },
+  {
+    "q": "These are the restriction we place to variables to handle only specified data.",
+    "a": "Data Types"
+  },
+  {
+    "q": "These are the set of statements found inside the curly braces.",
+    "a": "Body/Body of Code Blocks"
+  },
+  {
+    "q": "These are the strong-typed data types.",
+    "a": "Explicit Data Types"
+  },
+  {
+    "q": "These are the two types of conditionals in C++.",
+    "a": "If-Switch"
+  },
+  {
+    "q": "These are undeclared variables that are used by the computer.",
+    "a": "Anonymous Variables"
+  },
+  {
+    "q": "These are unnamed variables.",
+    "a": "Anonymous Variables"
+  },
+  {
+    "q": "These variables that may not declare their data types are called ____________ Data Types.",
+    "a": "Implicit"
+  },
+  {
+    "q": "They are special type of variables that store the address in the memory rather than the actual value or constant.",
+    "a": "References"
+  },
+  {
+    "q": "They organize source codes and development artifacts.",
+    "a": "IDE"
+  },
+  {
+    "q": "This act means to create a different set of statement based on conditions.",
+    "a": "Conditionals"
+  },
+  {
+    "q": "This allow you to revert and secure copies of changes that you will commit to the repository",
+    "a": "Version Control"
+  },
+  {
+    "q": "This allow you to revert and secure copies of changes that you will commit to the repository.",
+    "a": "Version Control"
+  },
+  {
+    "q": "This code block can adopt input from another code block.",
+    "a": "Function"
+  },
+  {
+    "q": "This code block is the entry point of C++ applications.",
+    "a": "int main( )"
+  },
+  {
+    "q": "This command prompt-like window that will help build fundamentals in computer programming",
+    "a": "Console"
+  },
+  {
+    "q": "This command prompt-like window that will help build fundamentals in computer programming.",
+    "a": "Console"
+  },
+  {
+    "q": "This integer dictates what element of array is being process.",
+    "a": "Index"
+  },
+  {
+    "q": "This is a part of a function that can indicate the function will not pass a value.",
+    "a": "Return Type"
+  },
+  {
+    "q": "This is a part of a function that indicates the alias of the function.",
+    "a": "Function Name"
+  },
+  {
+    "q": "This is a way to organize the development files and configurations in a centralized repository.",
+    "a": "Version Control"
+  },
+  {
+    "q": "This is the act of getting stored values from variables.",
+    "a": "Retrieving"
+  },
+  {
+    "q": "This is the act of saying we will be using a variable of a specific data type.",
+    "a": "Declaring"
+  },
+  {
+    "q": "This is the act of storing values to variables.",
+    "a": "Assigning"
+  },
+  {
+    "q": "This is the maximum value for booldata type.",
+    "a": "1"
+  },
+  {
+    "q": "This is the minimum value for booldata type.",
+    "a": "0"
+  },
+  {
+    "q": "This is the minimum value for long data type.",
+    "a": "-9.22337E+18"
+  },
+  {
+    "q": "This is the minimum value for signed shortdata type.",
+    "a": "-32768"
+  },
+  {
+    "q": "This is the minimum value for unsigned short data type.",
+    "a": "0"
+  },
+  {
+    "q": "This is the value for \"NUL (null)\" character of char data type.",
+    "a": "0"
+  },
+  {
+    "q": "This looping statement in C++ where the condition is evaluated right before the execution.",
+    "a": "While Loop"
+  },
+  {
+    "q": "This method has a prefixed with \"get\" in their function name.",
+    "a": "Accessors"
+  },
+  {
+    "q": "This method has a prefixed with \"set\" in their function name.",
+    "a": "Mutators"
+  },
+  {
+    "q": "This method's main purpose is to store values in hidden properties.",
+    "a": "Mutators"
+  },
+  {
+    "q": "This phase in looping statements that dictates whether the loop should stop or continue.",
+    "a": "Condition"
+  },
+  {
+    "q": "This principle ensures that only the necessary methods are presented outside of the current class.",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "This principle extends the features and functionalities of existing classes and interfaces.",
+    "a": "Inheritance"
+  },
+  {
+    "q": "This principle generalizes the properties and methods of classes in such a way that the implementations are hidden from outside the class.",
+    "a": "Abstraction"
+  },
+  {
+    "q": "This principle is used to hide the internal working of an application.",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "This property states that the value cannot be changed.",
+    "a": "Immutability"
+  },
+  {
+    "q": "This special variable manages the flow of the loop.",
+    "a": "Counter"
+  },
+  {
+    "q": "This statement is used in undefined conditional expressions.",
+    "a": "If Statements"
+  },
+  {
+    "q": "This statement is used to perform different actions per its condition.",
+    "a": "If-Else"
+  },
+  {
+    "q": "This tool varies mainly on how they support internal libraries, up-to-date third-party libraries and code optimization.",
+    "a": "Compilers"
+  },
+  {
+    "q": "This will not need to reference MinGW compiler and libraries per project by inserting our newly",
+    "a": "Visual Studio"
+  },
+  {
+    "q": "To test if you correctly performed the steps in configuring the Microsoft windows path what is to be opened first?",
+    "a": "Command prompt"
+  },
+  {
+    "q": "True or False: DECLARE keyword is the equivalent for the Preparation symbol of flowcharts in pseudocode.",
+    "a": "False"
+  },
+  {
+    "q": "True or False: Parameter code block can adopt input from another code block.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:A Decision Symbol is the flowchart equivalent of switch keyword in pseudocode.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:A group of related statements are called code blocks.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:A series of statement repeated when a specific condition is met is called looping.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:All flowcharts are convertible to pseudocodes.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:All pseudocodes are convertible to flowcharts.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:All word processing applications can create flowcharts.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:As of 2016, Cloud Computing is not yet supported by C#.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Conditions within a while loop are evaluated after the execution.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Data is a symbol used to compare two discrete values.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Database applications can create pseudocodes.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Descending is the usual arrangement for numerical values.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Explicit Data Types are also called Variants.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Flowcharts are created using spreadsheet applications.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Flowcharts can start with other symbol aside from a START terminator.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Function is used as an alias as reference to the function.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Function name is a separate code block that performs a specific task.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Given the following work item(s):\"To ask user for basic salary\"\"To ask user for total deductions\"The most probable problem being addressed is \"write a program to determine interest rate.\"",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Given the following work items: (a) \"To ask user for age\" and (b) \"To ask user for item price\", the problem being addressed is about prices and interests.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Given the problem, \"Write a program to calculate the BMI of the user\", is the following work item(s) appropriate?\"To ask the user for blood type\"",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Given the problem, \"Write a program to categorize bills by denomination\", is the following work item(s) appropriate?\"To ask the user for nickname\"",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Given the problem, \"Write a program to organize paper bills by their corresponding denomination\", a possible work item would be \"to ask the user for nickname and address\".",
+    "a": "False"
+  },
+  {
+    "q": "True or False:In 3,000 B.C., the Greek Abacus was invented.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Iteration is the special variable that controls the flow of loops.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Local variables are accessible throughout the code.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:One cycle of repetition using loops is called an iteration.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:One possible application of Embedded Systems Development is in Home Automation.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:Parameter is used to itemize the input values of the function.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:Server configurations are dealt using Data Science.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Sorting problems are problems where the values of given array is being arranged in a decremental order.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:string is an array of text.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The allocated size for a double data type is 64 bits (integer).",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The allocated size for an int data type is 64 bits",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The allocated size if a chartype is 8 bits.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:The body of the function is a group of statements contained by a code block.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:The category in pseudocodes that deal with decision making is IF ... THEN ... ENDF.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The characteristic of Technical Work Items that deal with consistency is called Nonce.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The characteristic of Technical Work Items that deals with clarity is called Clear.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The free and web-based repository that allows distributed version control is called GitOpen.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:The int main()function serves as an entry point of any C++ application.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:The two (2) pseudocode keywords that are the equivalent for the Data symbol in flowcharts are INPUT and OUTPUT.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:There are three (3) components that build up the phases of looping statements.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:There exists a multi-paged pseudocode.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:Unnamed variables are accessible using the unmarked symbol.",
+    "a": "False"
+  },
+  {
+    "q": "True or False:Unnamed variables are called Anonymous Variables.",
+    "a": "True"
+  },
+  {
+    "q": "True or False:Visual Studio Code is an IDE that supports multiple programming languages under multitude of operating systems.",
+    "a": "True"
+  },
+  {
+    "q": "Unnamed variables are accessible using the unmarked symbol.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Unnamed variables are called Anonymous Variables.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Usually ignored and not to be earnestly read before installing.",
+    "a": "License agreement"
+  },
+  {
+    "q": "Values are limited by their data types.",
+    "a": "TRUE"
+  },
+  {
+    "q": "variableName an alias used to remark an ___________.",
+    "a": "Conditional"
+  },
+  {
+    "q": "Variables are appended with ___________ operator(s).",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Variables are container objects in C++ that can be applied with pointers.",
+    "a": "True"
+  },
+  {
+    "q": "Variables are container objects in C++ that can be applied with references.",
+    "a": "True"
+  },
+  {
+    "q": "Variables are pointers.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Variables can be reassigned a new address without redeclaring the variable.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Variables can go away without declaring the data types.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Variables defined within a code block is called ____________ variables.",
+    "a": "Local"
+  },
+  {
+    "q": "Variables store any type of values.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Version Control allows users to revert changes and download copies of the changes from the client.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Visual Studio Code is an IDE that supports multiple programming languages under multitude of operating systems.",
+    "a": "TRUE"
+  },
+  {
+    "q": "voidreturn type informs the application that the function shall not return any data.",
+    "a": "TRUE"
+  },
+  {
+    "q": "We use ___________________ to test the system path if defined.",
+    "a": "Command Prompt"
+  },
+  {
+    "q": "We used __________to get user input.",
+    "a": "std::cin"
+  },
+  {
+    "q": "What are the result of retrieving a value from a variable?",
+    "a": "Copy of the value"
+  },
+  {
+    "q": "What are the special variables in C++ that points to a sector in the memory?",
+    "a": "Pointers"
+  },
+  {
+    "q": "What are the tangible components of Computers?",
+    "a": "Hardware"
+  },
+  {
+    "q": "What are used in function calls that store addresses in the memory?",
+    "a": "References"
+  },
+  {
+    "q": "What are used in function's parameters that store addresses in the memory?",
+    "a": "Pointers"
+  },
+  {
+    "q": "What do you call a device where an application was made to run into?",
+    "a": "Platform"
+  },
+  {
+    "q": "What do you call the distribution of information when stored on a physical disk?",
+    "a": "Fragmentation"
+  },
+  {
+    "q": "What domain deals with analytics?",
+    "a": "Data Science"
+  },
+  {
+    "q": "What domain deals with both software and hardware configurations?",
+    "a": "Embedded System Development"
+  },
+  {
+    "q": "What domain deals with microcontrollers?",
+    "a": "Embedded Systems Development"
+  },
+  {
+    "q": "What domain deals with server configurations and setups?",
+    "a": "Back-end Development"
+  },
+  {
+    "q": "What domain deals with web applications?",
+    "a": "Cloud Development"
+  },
+  {
+    "q": "What flowchart symbol is the equivalent for the pseudocode CALL keyword?",
+    "a": "Process"
+  },
+  {
+    "q": "What flowchart symbol is the equivalent for the pseudocode IF ... THEN ... END keyword?",
+    "a": "Conditional"
+  },
+  {
+    "q": "What flowchart symbol is the equivalent for the pseudocode SET ... TO keyword?",
+    "a": "Process"
+  },
+  {
+    "q": "What general part of Computers that performs calculations to accomplish tasks?",
+    "a": "Process"
+  },
+  {
+    "q": "What is needed to be downloaded for the convenience of users working different Microsoft Windows Architecture?",
+    "a": "Visual Studio Code"
+  },
+  {
+    "q": "What is needed to be installed to support C and C++ applications for Visual Studio?",
+    "a": "C++"
+  },
+  {
+    "q": "What is needed to be set up before adding a license?",
+    "a": "Gitlgnore"
+  },
+  {
+    "q": "What is needed to be set up before adding a license? TRUE or False The pseudocode for accepting user values is called INPUT.",
+    "a": "TRUE"
+  },
+  {
+    "q": "What is needed to be verified correct and accurate before creating a repository?",
+    "a": "Fields"
+  },
+  {
+    "q": "What is the allocated size of a 3D double array with size 2, 4, 8?",
+    "a": "4,096 bits"
+  },
+  {
+    "q": "What is the allocated size of a 3D int array with size 2, 4, 8?",
+    "a": "2,048 bits (integral)"
+  },
+  {
+    "q": "What is the allocated size of a 3D long array with size 2, 4, 8?",
+    "a": "4,096 bits (integral)"
+  },
+  {
+    "q": "What is the allocated size of a 3D short array with size 2, 3 and 4 respectively?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "What is the allocated size of a 3D string array with size 12, 4, 10?",
+    "a": "Insufficient Data"
+  },
+  {
+    "q": "What is the allocated size of a 5D bool array with size 2, 5, 10, 1?",
+    "a": "100 bits"
+  },
+  {
+    "q": "What is the equivalence of the flowchart DISPLAY in pseudocodes?",
+    "a": "OUTPUT"
+  },
+  {
+    "q": "What is the equivalence of the pseudo code IF ... THEN ... END in flowcharts?",
+    "a": "CONDITION"
+  },
+  {
+    "q": "What is the equivalence of the pseudocode IF ... THEN ... END in flowcharts?",
+    "a": "CONDITION"
+  },
+  {
+    "q": "What is the first computer created using Object-Oriented Programming?",
+    "a": "DynaBook"
+  },
+  {
+    "q": "What is the minimum number of flowchart symbols for this problem?",
+    "a": "3"
+  },
+  {
+    "q": "What is the minimum number of flowchart symbols for this problem?\"Write a program that displays 'Hello World'.\"",
+    "a": "3"
+  },
+  {
+    "q": "What is the minimum number of flowchart symbols is needed for the following problem (excluding the terminator symbols)?\"Write a program to display the quotient of two numbers.\"",
+    "a": "1"
+  },
+  {
+    "q": "What is the minimum number of pseudocode for this problem?\"Write a program that displays 'Hello World'.\"",
+    "a": "1"
+  },
+  {
+    "q": "What is the scripting language used in Linux Operating Systems?",
+    "a": "Shell"
+  },
+  {
+    "q": "What is the usual arrangement for a numerical value?",
+    "a": "Ascending"
+  },
+  {
+    "q": "What kind of somewhat image does pointer create with the variable they are pointed to?",
+    "a": "Mirror Image"
+  },
+  {
+    "q": "What type of software that acts as translators for the hardware components of the computer?",
+    "a": "Firmwares"
+  },
+  {
+    "q": "What variable contains more than one value of similar data types?",
+    "a": "Array"
+  },
+  {
+    "q": "What web browser used the first versions of JavaScript?",
+    "a": "Netscape Navigator"
+  },
+  {
+    "q": "When determining the gender of a person, the most practical data type to use is Boolean or Integer Values; even when displaying the value directly,without helping texts, to the user.",
+    "a": "FALSE"
+  },
+  {
+    "q": "When was the Chinese abacus invented?",
+    "a": "3,000 BC"
+  },
+  {
+    "q": "Which is not a subdomain of Application Development?",
+    "a": "UI Applications"
+  },
+  {
+    "q": "Which is not a version of Shell?",
+    "a": "PSH"
+  },
+  {
+    "q": "Which is not an application of Embedded Systems Development?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which is not attributable to Computers?",
+    "a": "Political Science"
+  },
+  {
+    "q": "Which language ranked Top 5 of the most used languages in GitHub as of 2016?",
+    "a": "PHP"
+  },
+  {
+    "q": "Which of the following is not used in API Development?",
+    "a": "HTML"
+  },
+  {
+    "q": "Which of the following was not helped by technology to advance further in their respective fields?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which one was not made possible because of Computers?",
+    "a": "Electricity"
+  },
+  {
+    "q": "Which platform do C# not yet support as of 2016?",
+    "a": "Automation"
+  },
+  {
+    "q": "Who designed the programming language that initially proposed as a high-level programming language?",
+    "a": "Bjarne Stroustrup"
+  },
+  {
+    "q": "Who single-handedly designed and developed the Java programming language?",
+    "a": "James Gosling"
+  }
+]

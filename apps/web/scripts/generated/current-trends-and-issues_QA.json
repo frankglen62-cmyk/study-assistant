@@ -1,0 +1,1802 @@
+[
+  {
+    "q": "_____ includes Age Group, Gender, and Ethnicity.",
+    "a": "Demographics"
+  },
+  {
+    "q": "_____ is a category of Big Data that has a fixed length and format",
+    "a": "Structured Data"
+  },
+  {
+    "q": "_____ is a combination of two other cloud types.",
+    "a": "Hybrid could"
+  },
+  {
+    "q": "_____ is a company that is a subsidiary of Amazon.com",
+    "a": "Amazon Web Services"
+  },
+  {
+    "q": "_____ is a cross between two other categories of Big Data",
+    "a": "Semi-structured data"
+  },
+  {
+    "q": "_____ is a data format used to provide frequently updated contents to users.",
+    "a": "Feed"
+  },
+  {
+    "q": "_____ is a metadata tag used to identify contents related to a specific topic.",
+    "a": "Hashtag"
+  },
+  {
+    "q": "_____ is a type of sensor used in devices that detect motion",
+    "a": "Proximity sensor"
+  },
+  {
+    "q": "_____ is an online journal that's updated on a regular basis with entries that appear in reverse chronological order",
+    "a": "Blog"
+  },
+  {
+    "q": "_____ is the interpretation of historical data to understand past events or the current state of things.",
+    "a": "Descriptive analytics"
+  },
+  {
+    "q": "_____ is the practice of broadcasting the audio and video of an event over the Internet as it happens.",
+    "a": "Live Streaming"
+  },
+  {
+    "q": "_____ is the practice of sharing short messages in a web platform.",
+    "a": "Microblogging"
+  },
+  {
+    "q": "_____ is the practice of soliciting money usually through the Internet to support a cause or project.",
+    "a": "Crowdfunding"
+  },
+  {
+    "q": "_____ is the process of recording information and a main factor in Big Data.",
+    "a": "Data storage"
+  },
+  {
+    "q": "_____ is used to come up with the best course of action.",
+    "a": "Prescriptive analytics"
+  },
+  {
+    "q": "_____ is used to examine data in order to determine the reason behind an event.",
+    "a": "Diagnostic analytics"
+  },
+  {
+    "q": "_____is a cloud computing service provider owned and operated by Microsoft.",
+    "a": "Microsoft Azure"
+  },
+  {
+    "q": "_____is the cloud-based version of Microsoft Office.",
+    "a": "Microsoft Office 365"
+  },
+  {
+    "q": "_____is the name given to Google Apps for paid business use.",
+    "a": "G Suite"
+  },
+  {
+    "q": "\"<h1>What is this?</h1>: is an example of a _____",
+    "a": "Heading tag"
+  },
+  {
+    "q": "\"Homepage >> Product Reviews >> Best Hiking Shoes 2017 >> CAT Hiking Boots\" is an example of a",
+    "a": "Breadcrumb list"
+  },
+  {
+    "q": "“<h1>What is this?</h1>: is an example of a",
+    "a": "Heading tag"
+  },
+  {
+    "q": "A _____as a row of internal links at the top or bottom of the page that allows visitors to quickly navigate back to a previous section or the root (home) page",
+    "a": "Breadcrumb list"
+  },
+  {
+    "q": "A as a row of internal links at the top or bottom of the page that allows visitors to quickly navigate back to a previous section or the root (home) page",
+    "a": "Breadcrumb list"
+  },
+  {
+    "q": "A gives search engines a summary of what the page is about.",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "A is equipped with IoT-connected appliances",
+    "a": "Smart home"
+  },
+  {
+    "q": "A utilizes IoT in Urban Development",
+    "a": "Smart city"
+  },
+  {
+    "q": "A block is defined as?",
+    "a": "This is a file wherein successfully verified transactions are recorded"
+  },
+  {
+    "q": "A branch of Machine Learning that uses algorithms based on artificial neural networks.",
+    "a": "Deep learning"
+  },
+  {
+    "q": "A client is defined as?",
+    "a": "A computer that requests for a task"
+  },
+  {
+    "q": "A cloud is defined as?",
+    "a": "It refers to the network of servers that contain the computing resources that are made available to the users"
+  },
+  {
+    "q": "A computer-controlled process of creating three- dimensional objects",
+    "a": "3D printing"
+  },
+  {
+    "q": "A computer-controlled process of creating three-dimensional objects",
+    "a": "3D printing"
+  },
+  {
+    "q": "A consensus network that enables a new payment system and a completely digital money.",
+    "a": "Bitcoin"
+  },
+  {
+    "q": "A in the Smart Criteria stands for",
+    "a": "Attainable"
+  },
+  {
+    "q": "A in the Smart Criteria stands for _____",
+    "a": "Attainable"
+  },
+  {
+    "q": "A product is defined as?",
+    "a": "Something that you purchased once"
+  },
+  {
+    "q": "A server is defined as?",
+    "a": "A computer that performs a task for other computers in a network"
+  },
+  {
+    "q": "A service is _______",
+    "a": "the task that is performed in the client-server model"
+  },
+  {
+    "q": "A shared public ledger",
+    "a": "Blockchain"
+  },
+  {
+    "q": "A three-dimensional, computer generated environment which can be explored and interacted with by a person",
+    "a": "Virtual reality"
+  },
+  {
+    "q": "A type of cloud that is available to many users",
+    "a": "Public cloud"
+  },
+  {
+    "q": "A type of cloud used solely by a single organization",
+    "a": "Private cloud"
+  },
+  {
+    "q": "ABC Corp. is a small company. They subscribe to both public and private cloud applications such as emailing, teleconferencing and data storage. What type of cloud are they using?",
+    "a": "Hybrid Cloud"
+  },
+  {
+    "q": "ABC Corp. is a small company. They subscribe to third party cloud applications such as emailing, teleconferencing and data storage. What type of cloud are they using?",
+    "a": "Hybrid Cloud"
+  },
+  {
+    "q": "According to Google's Search Engine Optimization Starter Guide: \"The for your homepage can list the name of your website/",
+    "a": "Title"
+  },
+  {
+    "q": "According to Google's Search Engine Optimization Starter Guide: \"The _____ for your homepage can list the name of your website/ business and could include other bits of important information like the physical location of the business or maybe a few of its main focuses or offerings\"",
+    "a": "Title"
+  },
+  {
+    "q": "Acquiring knowledge and skills through experience or study",
+    "a": "Learning"
+  },
+  {
+    "q": "Additive manufacturing is another term for",
+    "a": "3D printing"
+  },
+  {
+    "q": "Additive manufacturing is another term for _____",
+    "a": "3D printing"
+  },
+  {
+    "q": "All information concerning bitcoin are available to the public",
+    "a": "Transparency and Neutrality"
+  },
+  {
+    "q": "All of these are true about Search Engine Optimization, EXCEPT;",
+    "a": "It looks for information in the internet."
+  },
+  {
+    "q": "All these benefits of cloud computing can give a business a competitive advantage",
+    "a": "Strategic edge"
+  },
+  {
+    "q": "Allow VR users to walk in all directions",
+    "a": "Omnidirectional treadmills"
+  },
+  {
+    "q": "Allows for 3.4 x 10(38) addresses",
+    "a": "IPv6"
+  },
+  {
+    "q": "Allows for 3.4=C3=971038 addresses",
+    "a": "IPv6"
+  },
+  {
+    "q": "Allows for 4 billion addresses",
+    "a": "IPv6"
+  },
+  {
+    "q": "Allows the machine to determine the ideal behavior within a specific context in order to maximize its performance",
+    "a": "Reinforcement learning"
+  },
+  {
+    "q": "An electronic device which can connect to other devices and networks",
+    "a": "Smart device"
+  },
+  {
+    "q": "Analysis is defined as?",
+    "a": "It is concerned about how data is studied"
+  },
+  {
+    "q": "Analytics is defined as?",
+    "a": "II. It focuses more on insights extracted through analysis (mali)"
+  },
+  {
+    "q": "Any physical object that can connect to the internet",
+    "a": "Thing"
+  },
+  {
+    "q": "Artificial intelligence is? I: The capability of a machine to imitate intelligent human behaviour II: A branch of computer science dealing with the simulation of intelligent behaviour in computers",
+    "a": "Both I and II"
+  },
+  {
+    "q": "Artificial intelligence is?I: The capability of a machine to imitate intelligent human behaviourII: A branch of computer science dealing with the simulation of intelligent behaviour in computers",
+    "a": "Both I and II"
+  },
+  {
+    "q": "Available to many users",
+    "a": "Public Cloud"
+  },
+  {
+    "q": "Based on the network of cells found in human and animal brains",
+    "a": "Artificial neural network"
+  },
+  {
+    "q": "Because of this, Bitcoin can be more secure, more accessible, and more stable.",
+    "a": "Ongoing development"
+  },
+  {
+    "q": "Bitcoin boasts a state-of-the-art security and verification system with the blockchain",
+    "a": "Security"
+  },
+  {
+    "q": "Bitcoin mining is",
+    "a": "The process of spending computing power to process transactions"
+  },
+  {
+    "q": "Bitcoin mining is _____",
+    "a": "All of these"
+  },
+  {
+    "q": "Bitcoin offers because it operates in the Internet and is not subject to national and transnational monetary regulations.",
+    "a": "Transparency and neutrality"
+  },
+  {
+    "q": "Bitcoin runs on an open-source peer-to-peer network. This means that all information concerning bitcoin are available to the public",
+    "a": "Transparency and neutrality"
+  },
+  {
+    "q": "Bitcoin still has a lot of room for improvement",
+    "a": "Ongoing development"
+  },
+  {
+    "q": "Blockchain is defined as?",
+    "a": "A shared public ledger on which the entire Bitcoin network relies"
+  },
+  {
+    "q": "Business Analytics Process",
+    "a": "Step 1. Defining the business needs Step 2: Explore the Data Step 3: Analyse the data Step 4: Predict what is likely to hapoen Step 5: Optimise Step 6: Make a decision and measure the outcome Step 7: Update the system with the results of the decision"
+  },
+  {
+    "q": "Can access online weather data to better manage the home's temperature",
+    "a": "Smart air conditioning"
+  },
+  {
+    "q": "Can be owned and operated by the organization that uses it",
+    "a": "Private Cloud"
+  },
+  {
+    "q": "Can be owned by a third-party provider and leased to a single organization",
+    "a": "Private Cloud"
+  },
+  {
+    "q": "Can be programmed to react to its environment's lighting conditions",
+    "a": "Smart lighting"
+  },
+  {
+    "q": "Can be used to interact with VR environments while wearing a VR headset",
+    "a": "Wearable controllers"
+  },
+  {
+    "q": "Can be used to pay for goods and services but it does not have a physical form",
+    "a": "Digital currency"
+  },
+  {
+    "q": "Can monitor its contents and remind the user when an item is about to expire",
+    "a": "Smart fridge"
+  },
+  {
+    "q": "Cloud based infrastructures are easier to upgrade and downgrade",
+    "a": "Scalability"
+  },
+  {
+    "q": "Cloud resources are usually well-organized",
+    "a": "Manageability"
+  },
+  {
+    "q": "Cloud resources are usually well-organized because they are offered as service packages",
+    "a": "Manageability"
+  },
+  {
+    "q": "Combination of two kinds of cloud services",
+    "a": "Hybrid Cloud"
+  },
+  {
+    "q": "Complete this quote: \" is where I expect much of the real money will be made on the Internet, just as it was in broadcasting.\"",
+    "a": "Content"
+  },
+  {
+    "q": "Component that detects a specific physical input",
+    "a": "Sensor"
+  },
+  {
+    "q": "Concerned with competing technologies and lack of standardization",
+    "a": "Compatibility"
+  },
+  {
+    "q": "Concerned with the collection and handling of sensitive personal information",
+    "a": "Privacy"
+  },
+  {
+    "q": "Concerned with the need for more affordable and more powerful Internet service",
+    "a": "Connectivity"
+  },
+  {
+    "q": "Concerned with what happens if IoT system are attacked",
+    "a": "Security"
+  },
+  {
+    "q": "Connects to a Cloud-based virtual assistant service",
+    "a": "Smart speaker"
+  },
+  {
+    "q": "Converts light energy into digital signals",
+    "a": "Optical sensor"
+  },
+  {
+    "q": "Converts light energy into signals",
+    "a": "Optical Sensor"
+  },
+  {
+    "q": "Converts physical power into electronic signals",
+    "a": "Pressure sensor"
+  },
+  {
+    "q": "Cryptocurrency is defined as?",
+    "a": "A type of digital currency that uses secure communication techniques called cryptography to regulate the creation of new units of currency of currency and verify transactions"
+  },
+  {
+    "q": "Data is refined into more usable forms",
+    "a": "Explore the data"
+  },
+  {
+    "q": "Dealing with highly sensitive information is",
+    "a": "Security"
+  },
+  {
+    "q": "Dealing with highly sensitive information is _____",
+    "a": "Security"
+  },
+  {
+    "q": "Define 3D Printing",
+    "a": "Three-dimensional printing or additive manufacturing"
+  },
+  {
+    "q": "Define Augmented Reality",
+    "a": "A technology that superimposes digital information on the user's view of the real world"
+  },
+  {
+    "q": "Define bitcoin mining",
+    "a": "The process of spending computing power to process transaction"
+  },
+  {
+    "q": "Define Machine Learning",
+    "a": "Field of study that gives computers the ability to learn without being explicitly programmed"
+  },
+  {
+    "q": "Detects motion",
+    "a": "Proximity sensor"
+  },
+  {
+    "q": "Detects the temperature of an object or an environment",
+    "a": "Temperature sensor"
+  },
+  {
+    "q": "Detects the temperature of an object or an environment.",
+    "a": "Temperature sensor"
+  },
+  {
+    "q": "Do not set goals that exceed your capabilities.",
+    "a": "Attainable"
+  },
+  {
+    "q": "During this step, you have to decide which ones suit your needs.",
+    "a": "Choose your platforms"
+  },
+  {
+    "q": "Economic and social activities where consumers gain immediate access to goods and services through online transactions",
+    "a": "Sharing economy"
+  },
+  {
+    "q": "EFG Inc has their own cloud to manage sensitive financial information. What type of cloud is it?",
+    "a": "Hybrid Cloud"
+  },
+  {
+    "q": "Electronic device that can be attached to the user's body or clothing",
+    "a": "Wearable"
+  },
+  {
+    "q": "Equipped with IoT-connected appliances and can be accessed and controlled remotely",
+    "a": "Smart home"
+  },
+  {
+    "q": "Everything-as-a-Service is defined as",
+    "a": "It is the umbrella term for all Cloud-based computing resources that are made available to users in an on-demand basis"
+  },
+  {
+    "q": "examines data from the past to create forecasts or predictions about future events.",
+    "a": "Predictive analytics"
+  },
+  {
+    "q": "Field of study that gives computers the ability to learn without being explicitly programmed",
+    "a": "Machine learning"
+  },
+  {
+    "q": "For cities, it helps strengthen local economies, improve access to transportation, and make streets safer.",
+    "a": "Uber"
+  },
+  {
+    "q": "Fraud can be easily detected because of the blockchain's peer-to-peer nature",
+    "a": "Security"
+  },
+  {
+    "q": "Future developments can make bitcoin more secure, more accessible, and more stable.",
+    "a": "Ongoing development"
+  },
+  {
+    "q": "Google Drive is an example of _____",
+    "a": "Public Cloud"
+  },
+  {
+    "q": "has a speaker and microphone and connects to a Cloud-based virtual assistant service",
+    "a": "Smart speaker"
+  },
+  {
+    "q": "has cameras and it can monitor its contents and remind the user when an item is about to expire",
+    "a": "Smart fridge"
+  },
+  {
+    "q": "Has no defined output.",
+    "a": "Unsupervised learning"
+  },
+  {
+    "q": "has no metadata",
+    "a": "Unstructured data"
+  },
+  {
+    "q": "He coined the word \"Internet of Things\"",
+    "a": "Kevin Ashton"
+  },
+  {
+    "q": "Head-mounted device that displays virtual reality to the user",
+    "a": "Virtual reality headset"
+  },
+  {
+    "q": "How many sizes of heading tags are there?",
+    "a": "6"
+  },
+  {
+    "q": "HTML Stands for",
+    "a": "Hypertext Markup Language"
+  },
+  {
+    "q": "HTML Stands for _____",
+    "a": "Hypertext Markup Language"
+  },
+  {
+    "q": "IaaS stands for",
+    "a": "Infrastructure as a service"
+  },
+  {
+    "q": "Identify the correct web page for each rank from highest to lowest. For pages with the same ranking, follow the alphabetical order.",
+    "a": "B 38.4 C 34.9 E 8.1 D 3.9/ F 3.9 A 3.3 G H I J K"
+  },
+  {
+    "q": "IETF developed this",
+    "a": "IPv6"
+  },
+  {
+    "q": "If the web page appears in Google search results, the contents of the will serve as the clickable link to your website.",
+    "a": "Title tag"
+  },
+  {
+    "q": "In here, you will be required to pay for advanced services",
+    "a": "Freemium"
+  },
+  {
+    "q": "In this module, what is the file type that we created?",
+    "a": ".html"
+  },
+  {
+    "q": "includes Age Group, Gender, and Ethnicity.",
+    "a": "Demographics"
+  },
+  {
+    "q": "includes hobbies and political beliefs.",
+    "a": "Psychographics"
+  },
+  {
+    "q": "Inputs and outputs are clearly defined.",
+    "a": "Supervised learning"
+  },
+  {
+    "q": "Internet of Things is defined as?",
+    "a": "A computing concept in which everyday objects are connected to the Internet"
+  },
+  {
+    "q": "IoT can also improve the way drugs are manufactured, prescribed and administered",
+    "a": "Enhanced Management of Drugs"
+  },
+  {
+    "q": "is a category of Big Data that has a fixed length and format",
+    "a": "Structured Data"
+  },
+  {
+    "q": "is a company that is a subsidiary of Amazon.com",
+    "a": "Amazon Web Services"
+  },
+  {
+    "q": "is a cross between two other categories of Big Data",
+    "a": "Semi-structured data"
+  },
+  {
+    "q": "is a data format used to provide frequently updated contents to users.",
+    "a": "Feed"
+  },
+  {
+    "q": "is a type of sensor used in touch screen devices",
+    "a": "Pressure sensor"
+  },
+  {
+    "q": "is an online journal that's updated on a regular basis with entries that appear in reverse chronological order",
+    "a": "Blog"
+  },
+  {
+    "q": "is the cloud-based version of Microsoft Office.",
+    "a": "Microsoft Office 365"
+  },
+  {
+    "q": "is the interpretation of historical data to understand past events or the current state of things.",
+    "a": "Descriptive analytics"
+  },
+  {
+    "q": "is the name given to Google Apps for paid business use.",
+    "a": "G Suite"
+  },
+  {
+    "q": "is the practice of broadcasting the audio and video of an event over the Internet as it happens.",
+    "a": "Live Streaming"
+  },
+  {
+    "q": "is the practice of sharing short messages in a web platform.",
+    "a": "Microblogging"
+  },
+  {
+    "q": "is the practice of soliciting contributions in the form of ideas, content, and skills from Internet users to achieve a goal.",
+    "a": "Crowdsourcing"
+  },
+  {
+    "q": "is the practice of soliciting money usually through the Internet to support a cause or project.",
+    "a": "Crowdfunding"
+  },
+  {
+    "q": "is the process of recording information and a main factor in Big Data.",
+    "a": "Data storage"
+  },
+  {
+    "q": "is the process used by search engines to find information in the Internet.",
+    "a": "CrawlingIoT"
+  },
+  {
+    "q": "is the simplest type of analytics",
+    "a": "Descriptive analytics"
+  },
+  {
+    "q": "is used to come up with the best course of action.",
+    "a": "Prescriptive analytics"
+  },
+  {
+    "q": "is used to examine data in order to determine the reason behind an event.",
+    "a": "Diagnostic analytics"
+  },
+  {
+    "q": "It is not organized in a readily recognizable way",
+    "a": "Unstructured data"
+  },
+  {
+    "q": "It means that all information concerning bitcoin are available to the public",
+    "a": "Transparency and neutrality"
+  },
+  {
+    "q": "It allows people to rent short-term lodging in hotels, apartments, private homes, etc",
+    "a": "Airbnb"
+  },
+  {
+    "q": "It allows users way in to virtual versions of these resources.",
+    "a": "Infrastructure as a Service"
+  },
+  {
+    "q": "It allows visitors to quickly navigate back to a previous section or the root (home) page",
+    "a": "Breadcrumb list"
+  },
+  {
+    "q": "It can also be used in SEO because search engine algorithms tend to pay more attention to texts in heading tags than normal text.",
+    "a": "Heading tag"
+  },
+  {
+    "q": "It can be accessed and controlled remotely by the owner through devices such as laptops, smart phones, and tablets and is equipped with IoT-connected appliances.",
+    "a": "Smart homes"
+  },
+  {
+    "q": "It can be defined structured or organized information that creates awareness or understanding",
+    "a": "Knowledge"
+  },
+  {
+    "q": "It can be programmed to react to its environment's lighting conditions.",
+    "a": "Smart lighting"
+  },
+  {
+    "q": "It can be used to interact with VR environments while wearing a VR headset and omnidirectional treadmills which allow VR users to walk in all directions.I : Handheld and wearable controllersII : Virtual reality headset",
+    "a": "I only"
+  },
+  {
+    "q": "It can be used to interact with VR environments while wearing a VR headset I: Handheld and wearable controllers II: Virtual reality headset",
+    "a": "I only"
+  },
+  {
+    "q": "It can be used to interact with VR environments while wearing a VR headsetI: Handheld and wearable controllersII: Virtual reality headset",
+    "a": "I only"
+  },
+  {
+    "q": "It can be used to predict the behaviour of the stock market and foreign exchange market.",
+    "a": "Financial trading"
+  },
+  {
+    "q": "It can connect to other devices and networks through different wireless technologies",
+    "a": "Smart Device"
+  },
+  {
+    "q": "It can list the name of your website/business and could include other bits of important information like the physical location of the business or maybe a few of its main focuses or offerings.",
+    "a": "Title tag (mali)"
+  },
+  {
+    "q": "It comes from people's online social interactions.",
+    "a": "Social data"
+  },
+  {
+    "q": "It comprise the \"moving parts\" of a smart object",
+    "a": "Actuator"
+  },
+  {
+    "q": "It connects customers with freelance workers",
+    "a": "Taskrabbit"
+  },
+  {
+    "q": "It converts physical power in electronic signal",
+    "a": "Pressure sensor"
+  },
+  {
+    "q": "It converts physical power in electronic signal.",
+    "a": "Pressure sensor"
+  },
+  {
+    "q": "It could include other bits of important information like the physical location of the business or maybe a few of its main focuses or offerings",
+    "a": "Title tag"
+  },
+  {
+    "q": "It could include other bits of important information like the physical location of the business or maybe a few of its main focuses or offerings.",
+    "a": "Homepage title"
+  },
+  {
+    "q": "It detects a specific physical input",
+    "a": "Sensor"
+  },
+  {
+    "q": "It detects motion",
+    "a": "Proximity sensor"
+  },
+  {
+    "q": "It determines the ideal behaviour within a specific context, in order to maximize its performance.",
+    "a": "Reinforcement learning"
+  },
+  {
+    "q": "It does not use wires in connecting between network nodes.",
+    "a": "Wireless"
+  },
+  {
+    "q": "It doesn't have metadata and is not organized in a readily recognizable way",
+    "a": "Unstructured data"
+  },
+  {
+    "q": "It examines data from the past to create forecasts or predictions about future events",
+    "a": "Predictive analytics"
+  },
+  {
+    "q": "It gives search engines a summary of what the page is about.",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "It gives users access to virtual versions of these resources.",
+    "a": "Infrastructure as a Service"
+  },
+  {
+    "q": "It has a touch-screen interface, internet connection, and cameras and it can monitor its contents and remind the user when an item is about to expire",
+    "a": "Smart fridge"
+  },
+  {
+    "q": "It has metadata and a fixed length and format",
+    "a": "Structured Data"
+  },
+  {
+    "q": "It has sensors that measure temperature, humidity and sunlight and can access online weather data to manage the home's temperature",
+    "a": "Smart air conditioning"
+  },
+  {
+    "q": "It identifies contents related to a specific topic.",
+    "a": "Hashtag"
+  },
+  {
+    "q": "It improves access to transportation, and make streets safer.",
+    "a": "Uber"
+  },
+  {
+    "q": "It is a company that is a subsidiary of Amazon.com that offers many cloud based services. It is mainly an IaaS provider but many of its services fall under the PaaS category. They also offer tools that fall inder SaaS",
+    "a": "Amazon Web Services"
+  },
+  {
+    "q": "It is a component that detects a specific physical input.",
+    "a": "Sensor"
+  },
+  {
+    "q": "It is a computer process that is used to determine which web pages in a search engine's index are the most relevant",
+    "a": "Search Engine Algorithm"
+  },
+  {
+    "q": "It is a data format used to provide frequently updated contents to users.",
+    "a": "Feed"
+  },
+  {
+    "q": "It is a data plus context or meaning",
+    "a": "Information"
+  },
+  {
+    "q": "It is a lot like Uber but the vehicle used is a motorcycle",
+    "a": "Angkas"
+  },
+  {
+    "q": "It is a marketplace for people to list, discover, and book unique accommodations around the world.",
+    "a": "Airbnb"
+  },
+  {
+    "q": "It is a metadata tag used to identify contents related to a specific topic.",
+    "a": "Hashtag"
+  },
+  {
+    "q": "It is a model where applications are made available by vendors to users over the Internet.",
+    "a": "Software as a Service"
+  },
+  {
+    "q": "It is a procedure or formula used to rank web pages",
+    "a": "Algorithm"
+  },
+  {
+    "q": "It is a process used by search engines to find information in the Internet.",
+    "a": "Crawling"
+  },
+  {
+    "q": "It is a row of internal links at the top or bottom of the page that allows visitors to quickly navigate back to a previous section or the root (home) page",
+    "a": "Breadcrumb list"
+  },
+  {
+    "q": "It is a structured or organized information that creates awareness or understanding",
+    "a": "Knowledge"
+  },
+  {
+    "q": "It is a terms used in improving security measures such as malware detection, spam filtering, and risk assessment.",
+    "a": "Cybersecurity"
+  },
+  {
+    "q": "It is a wireless technology designed for machine to machine or M2M communication",
+    "a": "Zigbee"
+  },
+  {
+    "q": "It is a word used to describe anything that is IoT- based.",
+    "a": "Smart"
+  },
+  {
+    "q": "It is a word used to describe anything that is IoT-based.",
+    "a": "Smart"
+  },
+  {
+    "q": "It is an audio file or a collection of audio files",
+    "a": "Podcast"
+  },
+  {
+    "q": "It is an audio file or a collection of audio files made available for download or playback through the Internet.",
+    "a": "Podcast"
+  },
+  {
+    "q": "It is an electronic device which can connect to other devices and networks through different wireless technologies",
+    "a": "Smart Device"
+  },
+  {
+    "q": "It is an online journal that's updated on a regular basis with entries that appear in reverse chronological order",
+    "a": "Blog"
+  },
+  {
+    "q": "It is an online labour marketplace that connects customers with freelance workers who do for everyday tasks such as plumbing, delivery, cleaning, yard work, etc.",
+    "a": "Taskrabbit"
+  },
+  {
+    "q": "It is anything that can be stored and processed by a computer",
+    "a": "Data"
+  },
+  {
+    "q": "It is defined as anything that can be stored and processed by a computer",
+    "a": "Data"
+  },
+  {
+    "q": "It is defined as the usefulness of data",
+    "a": "Value"
+  },
+  {
+    "q": "It is designed for machine to machine or M2M communication",
+    "a": "Zigbee"
+  },
+  {
+    "q": "It is developed by IETF",
+    "a": "IPv6"
+  },
+  {
+    "q": "It is done before clicking your file to open in your default web browser",
+    "a": "None of these (mali)"
+  },
+  {
+    "q": "It is equipped with IoT-connected appliances and can be accessed and controlled remotely by the owner through devices such as laptops, smart phones, and tablets",
+    "a": "Smart homes"
+  },
+  {
+    "q": "It is ideal for exchanging information over short distances",
+    "a": "Bluetooth"
+  },
+  {
+    "q": "It is is a trusted community marketplace for people to list, discover, and book unique accommodations around the world - online or from a mobile phone or tablet.",
+    "a": "Airbnb"
+  },
+  {
+    "q": "It is mainly an IaaS provider but many of its services fall under the PaaS category. They also offer tools that fall inder SaaS",
+    "a": "Amazon Web Services"
+  },
+  {
+    "q": "It is not completely organized but it has some recognizable parts",
+    "a": "Semi-structured data"
+  },
+  {
+    "q": "It is not visible on the web page itself but it is visible to search engines.",
+    "a": "Meta tag"
+  },
+  {
+    "q": "It is not visible on the web page itself.",
+    "a": "Meta tag"
+  },
+  {
+    "q": "It is one of the defining characteristics of Cloud Computing",
+    "a": "Utility computing"
+  },
+  {
+    "q": "It is one of the most important characteristics of Cloud Computing",
+    "a": "Utility computing"
+  },
+  {
+    "q": "It is predicted that bitcoin will decrease in price and increase in stability as more and more people use it",
+    "a": "Volatility"
+  },
+  {
+    "q": "It is the ability to improve or add value to something",
+    "a": "Wisdom"
+  },
+  {
+    "q": "It is the application of knowledge",
+    "a": "Wisdom"
+  },
+  {
+    "q": "It is the first step in adding basic SEO to HTML Files",
+    "a": "Open Notepad or Testpad in your computer"
+  },
+  {
+    "q": "It is the first step in creating social media marketing plan.",
+    "a": "Set your goals"
+  },
+  {
+    "q": "It is the interpretation of historical data to understand past events or the current state of things",
+    "a": "Descriptive analytics"
+  },
+  {
+    "q": "It is the last step in creating a social media marketing plan",
+    "a": "Manage your social media presence"
+  },
+  {
+    "q": "It is the main characteristic of Big Data",
+    "a": "Volume"
+  },
+  {
+    "q": "It is the main factor that makes big data possible.",
+    "a": "Data storage"
+  },
+  {
+    "q": "It is the main source of revenue for the biggest social media sites.",
+    "a": "Advertising"
+  },
+  {
+    "q": "It is the most well-known algorithm.",
+    "a": "PageRank"
+  },
+  {
+    "q": "It is the name given to Google Apps for paid business use",
+    "a": "G Suite"
+  },
+  {
+    "q": "It is the practice of creating a virtual or software version of a device and resource",
+    "a": "Virtualization"
+  },
+  {
+    "q": "It is the predecessor of the Internet",
+    "a": "ARPANET"
+  },
+  {
+    "q": "It is the process used by search engines to organize information about websites.",
+    "a": "Indexing"
+  },
+  {
+    "q": "It is the recipient of data or input that enters the artificial neural network",
+    "a": "Input layer"
+  },
+  {
+    "q": "It is the sharing of short messages in a web platform.",
+    "a": "Microblogging"
+  },
+  {
+    "q": "It is the trustworthiness of data",
+    "a": "Veracity"
+  },
+  {
+    "q": "It is used by search engines to find information in the Internet.",
+    "a": "Crawling"
+  },
+  {
+    "q": "It is used by search engines to organize information about websites.",
+    "a": "Indexing"
+  },
+  {
+    "q": "It is used the same way as supervised learning.",
+    "a": "Semi-supervised method"
+  },
+  {
+    "q": "It is used to come up with the best course of action",
+    "a": "Prescriptive analytics"
+  },
+  {
+    "q": "It is used to create forecasts or predictions about future events",
+    "a": "Predictive analytics"
+  },
+  {
+    "q": "It is used to rank web pages",
+    "a": "Algorithm"
+  },
+  {
+    "q": "It is used to understand past events or the current state of things",
+    "a": "Descriptive analytics"
+  },
+  {
+    "q": "It is wireless technology that is ideal for exchanging information over short distances.",
+    "a": "Bluetooth"
+  },
+  {
+    "q": "It lets users and search engines read the topic of your web page.",
+    "a": "Title tag"
+  },
+  {
+    "q": "It makes the ordeal less frustrating for the patients",
+    "a": "Enhanced Patient Experience"
+  },
+  {
+    "q": "It may appear as a snippet",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "It may appear as a snippet which can be seen below the title.",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "It means anything that is IoT-based.",
+    "a": "Smart"
+  },
+  {
+    "q": "It provides collaboration tools and services for businesses. Its main feature is team collaboration",
+    "a": "Slack"
+  },
+  {
+    "q": "It provides on-demand transportation service by connecting commuters with private car drivers who are willing to give rides for a fee",
+    "a": "Uber"
+  },
+  {
+    "q": "It receives data or input that enters the artificial neural network",
+    "a": "Input layer"
+  },
+  {
+    "q": "It refer to mental characteristics",
+    "a": "Psychographics"
+  },
+  {
+    "q": "It refers to data plus context or meaning",
+    "a": "Information"
+  },
+  {
+    "q": "It refers to how many operations a processor can perform in a given amount of time",
+    "a": "Processing capability"
+  },
+  {
+    "q": "It refers to the different types of data",
+    "a": "Variety"
+  },
+  {
+    "q": "It refers to the frequency of incoming data",
+    "a": "Velocity"
+  },
+  {
+    "q": "It refers to the process of making data accessible to users and applications whenever it is needed",
+    "a": "Data availability"
+  },
+  {
+    "q": "It serves as the address of a web page",
+    "a": "Website URL"
+  },
+  {
+    "q": "It takes into account the results of descriptive and predictive analytics and suggests decision options",
+    "a": "Prescriptive analytics"
+  },
+  {
+    "q": "It uses algorithms based on artificial neural networks.",
+    "a": "Deep learning"
+  },
+  {
+    "q": "It uses both private and public cloud services from different providers",
+    "a": "Hybrid could"
+  },
+  {
+    "q": "It uses different wireless technologies to connect to other devices and networks.",
+    "a": "Smart Device"
+  },
+  {
+    "q": "It uses IoT technologies in Urban Development",
+    "a": "Smart city"
+  },
+  {
+    "q": "It utilizes IoT technologies in Urban Development",
+    "a": "Smart city"
+  },
+  {
+    "q": "It works a lot like Uber but instead of cars, commuters ride motorcycles.",
+    "a": "Angkas"
+  },
+  {
+    "q": "Its main feature is team collaboration",
+    "a": "Slack"
+  },
+  {
+    "q": "Its most common example is social media",
+    "a": "Social data"
+  },
+  {
+    "q": "Its purpose is to create rules and measures to use against attacks over the Internet",
+    "a": "Security"
+  },
+  {
+    "q": "Key Enablers of Big Data",
+    "a": "Data Storage Processing Capacity Data Availability"
+  },
+  {
+    "q": "Last step in adding basic SEO to HTML files?",
+    "a": "Double click your file to open it in your default web browser"
+  },
+  {
+    "q": "Learning is defined as ______",
+    "a": "Acquiring knowledge and skills through experience or study"
+  },
+  {
+    "q": "Machine learning can be used in to predict the behaviour of the stock market and foreign exchange market.",
+    "a": "Financial trading"
+  },
+  {
+    "q": "Machine learning is a vital element of driverless cars",
+    "a": "Transportation"
+  },
+  {
+    "q": "Machine learning is a vital element of driverless cars which are currently being developed and are foreseen to revolutionize transportation.",
+    "a": "Transportation"
+  },
+  {
+    "q": "Machine learning is used in _ to improve search results.",
+    "a": "Online search"
+  },
+  {
+    "q": "Machine learning is used in _____ to improve search results.",
+    "a": "Online search"
+  },
+  {
+    "q": "Main categories of Big Data",
+    "a": "Structured Data Unstructured Data Semi-Structured Data"
+  },
+  {
+    "q": "Main Defining characteristics of big data",
+    "a": "Volume Variety Velocity"
+  },
+  {
+    "q": "Main Source of big Data",
+    "a": "Social Data Transactional Data Machine Data"
+  },
+  {
+    "q": "Main source of revenue for the biggest social media sites.",
+    "a": "Advertising"
+  },
+  {
+    "q": "Makes it possible to send and receive bitcoin anywhere in the world",
+    "a": "Payment freedom"
+  },
+  {
+    "q": "Many of those who do understand it are still unwilling to use it as an alternative to physical money",
+    "a": "Degree of acceptance"
+  },
+  {
+    "q": "Many people are unwilling to use bitcoin as an alternative to physical money",
+    "a": "Degree of acceptance"
+  },
+  {
+    "q": "Many people are still not convinced to use Bitcoin as an alternative money",
+    "a": "Degree of acceptance"
+  },
+  {
+    "q": "Measures acceleration",
+    "a": "Accelerometer"
+  },
+  {
+    "q": "Measures the amount of water vapor in the atmosphere",
+    "a": "Humidity sensor"
+  },
+  {
+    "q": "Measures the amount of water vapour in the atmosphere",
+    "a": "Humidity sensor"
+  },
+  {
+    "q": "More accurate data collection and the automation of medical processes can greatly minimize errors",
+    "a": "Reduced errors"
+  },
+  {
+    "q": "Most used virtual reality device I: Virtual reality headset II: Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "Most used virtual reality deviceI: Virtual reality headsetII: Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "Naas stands for _____",
+    "a": "Network as a Service"
+  },
+  {
+    "q": "On-demand economy is another term for",
+    "a": "Sharing economy"
+  },
+  {
+    "q": "On-demand economy is another term for _____",
+    "a": "Sharing economy"
+  },
+  {
+    "q": "PaaS stands for",
+    "a": "Platform as a service"
+  },
+  {
+    "q": "PaaS stands for _____",
+    "a": "Platform as a service"
+  },
+  {
+    "q": "Phillips Hue is an example of",
+    "a": "Smart lighting"
+  },
+  {
+    "q": "Phillips Hue is an example of _____",
+    "a": "Smart lighting"
+  },
+  {
+    "q": "Processed information exits the neural network through this layer",
+    "a": "Output layer"
+  },
+  {
+    "q": "Programming is the",
+    "a": "Process of writing instructions in a computer's memory"
+  },
+  {
+    "q": "R in the Smart Criteria stands for",
+    "a": "Relevant"
+  },
+  {
+    "q": "Real time and more comprehensive data gathering will help doctors make informed decisions and this can increase the chances of success of medical treatments",
+    "a": "Improved Outcomes of Treatment"
+  },
+  {
+    "q": "Reducing the time and effort needed to provide and receive medical treatment will make the ordeal less frustrating for the patients",
+    "a": "Enhanced Patient Experience"
+  },
+  {
+    "q": "Refined data is further examined to extract more actionable insights",
+    "a": "Analyse the data"
+  },
+  {
+    "q": "S in the Smart Criteria stands for _____",
+    "a": "Specific"
+  },
+  {
+    "q": "SaaS stands for",
+    "a": "Software as a service"
+  },
+  {
+    "q": "SaaS stands for _____",
+    "a": "Software as a service"
+  },
+  {
+    "q": "Search Engine is defined as?",
+    "a": "It is a software system that is designed to look for information on the Internet"
+  },
+  {
+    "q": "Search Engine Optimization is defined as?",
+    "a": "Practices that aim to improve the ranking of a website in search engine results"
+  },
+  {
+    "q": "SECaaS stands for",
+    "a": "Security as a service"
+  },
+  {
+    "q": "SECaaS stands for _____",
+    "a": "Security as a service"
+  },
+  {
+    "q": "Sharing Economy is?",
+    "a": "Refers to economic and social activities where consumers gain immediate access to goods and services through online transactions"
+  },
+  {
+    "q": "Social media sites are examples of _____",
+    "a": "Public Cloud"
+  },
+  {
+    "q": "STaas stands for",
+    "a": "Storage as a Service"
+  },
+  {
+    "q": "STaas stands for _____",
+    "a": "Storage as a Service"
+  },
+  {
+    "q": "started using TCP/IP in January 1 1983",
+    "a": "ARPANET"
+  },
+  {
+    "q": "Subscribing to cloud services is usually cheaper than purchasing resources and employing people to build and maintain these resources",
+    "a": "Cost savings"
+  },
+  {
+    "q": "Superimposes digital information on the user's view of the real world",
+    "a": "Augmented Reality"
+  },
+  {
+    "q": "T in the Smart Criteria stands for _____",
+    "a": "Time bound"
+  },
+  {
+    "q": "The is known as the \"moving parts\" of a smart object",
+    "a": "Actuator"
+  },
+  {
+    "q": "The it is not visible on the web page itself but it is visible to search engines.",
+    "a": "Meta tag"
+  },
+  {
+    "q": "The lets users and search engines read the topic of your web page.",
+    "a": "Title tag"
+  },
+  {
+    "q": "The may appear as a snippet.",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "The _____ it is not visible on the web page itself but it is visible to search engines.",
+    "a": "Meta tag"
+  },
+  {
+    "q": "The _____ lets users and search engines read the topic of your web page.",
+    "a": "Title tag"
+  },
+  {
+    "q": "The _____ serves as the address of a web page.",
+    "a": "Uniform Resource Locator"
+  },
+  {
+    "q": "The basic Dropbox account is free but only has gigabytes of storage",
+    "a": "2"
+  },
+  {
+    "q": "The bitcoin operates in the Internet and are not subject to national and transnational monetary regulations.",
+    "a": "Payment freedom"
+  },
+  {
+    "q": "The capability of a machine to imitate human behavior",
+    "a": "Artificial intelligence"
+  },
+  {
+    "q": "The machine or program",
+    "a": "Agent"
+  },
+  {
+    "q": "The machine receives an input but there is no clearly defined output.",
+    "a": "Unsupervised learning"
+  },
+  {
+    "q": "The main advantage of this device is it monitors its contents and remind the user when an item is about to expire.",
+    "a": "Smart fridge"
+  },
+  {
+    "q": "The moving parts of a smart object is comprised of ______",
+    "a": "Actuator"
+  },
+  {
+    "q": "The predictions and other insights are used to find the best solution to the business goal or problem",
+    "a": "Optimize"
+  },
+  {
+    "q": "The price of bitcoin can easily fluctuate",
+    "a": "Volatility"
+  },
+  {
+    "q": "The price of bitcoin will decrease and its stability will increase as more people use it",
+    "a": "Volatility"
+  },
+  {
+    "q": "The process of creating new bitcoins",
+    "a": "Mining"
+  },
+  {
+    "q": "The process of writing instructions in a computer's memory",
+    "a": "Programming"
+  },
+  {
+    "q": "The result of the decisions, the insights and actions from all the previous steps are recorded and integrated into the system.",
+    "a": "Update the system with the results of the decision"
+  },
+  {
+    "q": "The spread of communicable diseases can be closely monitored and this can be an indispensable tool in preventing the outbreak of diseases.",
+    "a": "Improved Disease Management"
+  },
+  {
+    "q": "The use of IoT in the healthcare industry",
+    "a": "Connected healthcare"
+  },
+  {
+    "q": "There are already _____ active internet users in 2017.",
+    "a": "38 Billion"
+  },
+  {
+    "q": "These are digital records of business transactions, even the ones that are done offline.",
+    "a": "Transactional data"
+  },
+  {
+    "q": "These are the characteristics of people who belong in a particular group or population.",
+    "a": "Demographics"
+  },
+  {
+    "q": "This involves understanding what problem needs to be solved or what goal needs to be achieved",
+    "a": "Defining the business needs"
+  },
+  {
+    "q": "This is a machine learning method wherein the machine receives an input but there is no clearly defined output.",
+    "a": "Unsupervised learning"
+  },
+  {
+    "q": "This is a major concern for businesses that deal with highly sensitive information.",
+    "a": "Security"
+  },
+  {
+    "q": "This is a method that allows the machine to determine the ideal behaviour within a specific context, in order to maximize its performance.",
+    "a": "Reinforcement learning"
+  },
+  {
+    "q": "This is a method that is used the same way as supervised learning.",
+    "a": "Semi-supervised method"
+  },
+  {
+    "q": "This is a type of cloud that is available to many users",
+    "a": "Public cloud"
+  },
+  {
+    "q": "This is a type of cloud used exclusively by a particular organization",
+    "a": "Private cloud"
+  },
+  {
+    "q": "This is done by creating a customer profile which is a generalized description of a business' ideal customer.",
+    "a": "Do some research"
+  },
+  {
+    "q": "This is made available by vendors to users over the Internet.",
+    "a": "Software as a Service"
+  },
+  {
+    "q": "This is the most popular virtual reality device I : Virtual reality headset II : Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "This is the most popular virtual reality deviceI : Virtual reality headsetII : Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "This is the recipient of the information from the input layer",
+    "a": "Hidden layer"
+  },
+  {
+    "q": "This is the result when a data is defined.",
+    "a": "Information"
+  },
+  {
+    "q": "This is used to display tiles, subtitles, and other important texts in the web page.",
+    "a": "Heading tag"
+  },
+  {
+    "q": "This layer serves as the exit point of processed information in the neutral network.",
+    "a": "Output layer"
+  },
+  {
+    "q": "This step is the culmination of your social media marketing venture.",
+    "a": "Publish content"
+  },
+  {
+    "q": "This the most popular method of machine learning",
+    "a": "Supervised learning"
+  },
+  {
+    "q": "Upgrading and downgrading cloud based infrastructures are easier",
+    "a": "Scalability"
+  },
+  {
+    "q": "Used solely by a single organization",
+    "a": "Private Cloud"
+  },
+  {
+    "q": "Uses cryptography to regulate the creation of new currency and verify transactions",
+    "a": "Cryptocurrency"
+  },
+  {
+    "q": "Uses Earth's gravity to detect the position or orientation of an object",
+    "a": "Gyroscope"
+  },
+  {
+    "q": "Uses Earth’s gravity to detect the position or orientation of an object",
+    "a": "Gyroscope"
+  },
+  {
+    "q": "uses machine learning to improve search results.",
+    "a": "Online search"
+  },
+  {
+    "q": "Utilizes IoT technologies in Urban Development",
+    "a": "Smart city"
+  },
+  {
+    "q": "Virtual reality is defined as?",
+    "a": "A three-dimensional, computer generated environment which can be explored and interacted with by a person"
+  },
+  {
+    "q": "Wearable device that adds information to what the wearer sees",
+    "a": "Smartglasses"
+  },
+  {
+    "q": "Web Traffic is defined as",
+    "a": "It refers to the number of users that visit a website"
+  },
+  {
+    "q": "Web Traffic is defined as _______",
+    "a": "It refers to the number of users that visit a website"
+  },
+  {
+    "q": "What does ARPANET mean?",
+    "a": "Advanced Research Projects Agency Network"
+  },
+  {
+    "q": "What is a bitcoin?",
+    "a": "-A consensus network that enables a new payment system and a completely digital money -It is the first decentralized peer-to-peer payment network that is powered by its users with no central authority or middlemen -Bitcoin is pretty much like cash for the Internet"
+  },
+  {
+    "q": "What is a block?",
+    "a": "This is a file wherein successfully verified transactions are recorded"
+  },
+  {
+    "q": "What is a blockchain?",
+    "a": "A shared public ledger on which the entire Bitcoin network relies"
+  },
+  {
+    "q": "What is a Client?",
+    "a": ". A computer that requests for a task"
+  },
+  {
+    "q": "What is a Cloud?",
+    "a": "It refers to the network of servers that contain the computing resources that are made available to the users"
+  },
+  {
+    "q": "What is a conversion?",
+    "a": "It refers to the instance when a website visitor performs a desired action"
+  },
+  {
+    "q": "What is a Crawler Bot?",
+    "a": "It collects data about the web pages that they visit"
+  },
+  {
+    "q": "What is a PageRank?",
+    "a": "It works by counting the number and quality of links to a page to determine a rough estimate of how important the website is"
+  },
+  {
+    "q": "What is a Server?",
+    "a": "A computer that performs a task for other computers in a network."
+  },
+  {
+    "q": "What is a Service?",
+    "a": "The task that is performed in the client-server model"
+  },
+  {
+    "q": "What is Analysis?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "What is Analytics?",
+    "a": "Both I and II"
+  },
+  {
+    "q": "What is artificial intelligence?",
+    "a": "Both I and II A branch of computer science dealing with the simulation of intelligent behaviour in computers The capability of a machine to imitate intelligent human behaviour"
+  },
+  {
+    "q": "What is Augmented Reality?",
+    "a": "A technology that superimposes digital information on the user's view of the real world"
+  },
+  {
+    "q": "What is Big Data?",
+    "a": "An accumulation of data that is too large and complex for processing by traditional database management tools"
+  },
+  {
+    "q": "What is Cloud Computing?",
+    "a": "The practice of storing, accessing, and processing data in remote locations through the Internet"
+  },
+  {
+    "q": "What is cryptocurrency?",
+    "a": "A type of digital currency that uses secure communication techniques called cryptography to regulate the creation of new units of currency of currency and verify transactions"
+  },
+  {
+    "q": "What is digital currency?",
+    "a": "It can be used to pay for goods and services but it does not have a physical form like a coin or a paper bill"
+  },
+  {
+    "q": "What is Everything-as-a-Service?",
+    "a": "It is the umbrella term for all Cloud-based computing resources that are made available to users in an on-demand basis"
+  },
+  {
+    "q": "What is Internet of Things?",
+    "a": "A computing concept in which everyday objects are connected to the Internet"
+  },
+  {
+    "q": "What is programming?",
+    "a": "Process of writing instructions in a computer's memory"
+  },
+  {
+    "q": "What is Search Engine Optimization?",
+    "a": "Practices that aim to improve the ranking of a website in search engine results"
+  },
+  {
+    "q": "What is Sharing Economy?",
+    "a": "Refers to economic and social activities where consumers gain immediate access to goods and services through online transactions"
+  },
+  {
+    "q": "What is social media?Statement I : An online platform used by people to build social networks or make social connections with other peopleStatement II : An offline platform used by people to build social networks or make social connections with other people",
+    "a": "Statement I"
+  },
+  {
+    "q": "What is Step 1 in the business analytics process?",
+    "a": "Defining the business needs"
+  },
+  {
+    "q": "What is Step 2 in Business Analytics according to Dr. Carol Anne Hargreaves?",
+    "a": "Explore the data"
+  },
+  {
+    "q": "What is Step 2 in the business analytics process?",
+    "a": "Explore the data"
+  },
+  {
+    "q": "What is Step 3 in the business analytics process?",
+    "a": "Analyse the data"
+  },
+  {
+    "q": "What is Step 4 in the business analytics process?",
+    "a": "Predict what is likely to happen"
+  },
+  {
+    "q": "What is Step 5 in Business Analytics according to Dr. Carol Anne Hargreaves?",
+    "a": "Optimize"
+  },
+  {
+    "q": "What is Step 6 in the business analytics process?",
+    "a": "Make a decision and measure the outcome"
+  },
+  {
+    "q": "What is Step 7 in the business analytics process?",
+    "a": "Update the system with the results of the decision"
+  },
+  {
+    "q": "What is the 3rd step in creating a basic HTML file",
+    "a": "Save your file"
+  },
+  {
+    "q": "What is the first step in adding basic SEO to HTML Files?",
+    "a": "Open Notepad or Testpad in your computer"
+  },
+  {
+    "q": "What is the last step in adding basic SEO to HTML files?",
+    "a": "Double click your file to open it in your default web browser"
+  },
+  {
+    "q": "What is the result when information is used to come up with an answer?",
+    "a": "Knowledge"
+  },
+  {
+    "q": "What is the title of the essay written by Bill Gates in 1996?",
+    "a": "Content is king"
+  },
+  {
+    "q": "What is virtual reality?",
+    "a": "A three-dimensional, computer generated environment which can be explored and interacted with by a person"
+  },
+  {
+    "q": "What the machine can do",
+    "a": "Action"
+  },
+  {
+    "q": "When was the word \"Internet of Things\" coined?",
+    "a": "1999"
+  },
+  {
+    "q": "When your Internet connection gets interrupted, you will lose control of your resources.",
+    "a": "Internet dependence"
+  },
+  {
+    "q": "Which advantage of cloud computing gives business a competitive advantage",
+    "a": "Strategic edge"
+  },
+  {
+    "q": "Which is one of the defining characteristics of Cloud Computing?",
+    "a": "Utility computing"
+  },
+  {
+    "q": "Which of the following displays the names of the folders and documents that make up the web page?",
+    "a": "Website URL"
+  },
+  {
+    "q": "Which of the following is a category of Big Data?",
+    "a": "Structured Data"
+  },
+  {
+    "q": "Which of the following is a key enabler of Big Data?",
+    "a": "Processing Capacity"
+  },
+  {
+    "q": "Which of the following is a main source of Big Data?",
+    "a": "Transactional Data"
+  },
+  {
+    "q": "Which of the following is a type of virtual reality device worn over eyes. : Virtual reality headset : Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "Which of the following is a type of virtual reality device worn over eyes.I : Virtual reality headsetII : Handheld and wearable controllers",
+    "a": "I only"
+  },
+  {
+    "q": "Which of the following is main defining characteristic of Big Data?",
+    "a": "Velocity"
+  },
+  {
+    "q": "Which of the following is the first step in adding basic SEO to HTML Files",
+    "a": "Open Notepad or Testpad in your computer"
+  },
+  {
+    "q": "Which of the following is the predecessor of the Internet?",
+    "a": "ARPANET"
+  },
+  {
+    "q": "Which of the following is used to display tiles, subtitles, and other important texts in the web page?",
+    "a": "Heading tag"
+  },
+  {
+    "q": "Which of the following may appear as a snippet in search engine results?",
+    "a": "Description meta tag"
+  },
+  {
+    "q": "Which of the following refers to Cloud? is a model where applications are made available over the Internet.",
+    "a": "It refers to the network of servers that contain the computing resources that are made available to the users Software as a Service"
+  },
+  {
+    "q": "Which of the following should you use if you are looking for a place to stay in Cebu?",
+    "a": "Airbnb"
+  },
+  {
+    "q": "Which of the following would you use if you are looking for a room to rent?",
+    "a": "Airbnb"
+  },
+  {
+    "q": "Which one of the following is used to determine the relevance of web pages?",
+    "a": "Search Engine Algorithm"
+  },
+  {
+    "q": "Which type of sensor converts light energy into digital signals",
+    "a": "Optical sensor"
+  },
+  {
+    "q": "Which type of sensor uses Earth's gravity to detect the orientation of an object",
+    "a": "Gyroscope"
+  },
+  {
+    "q": "XaaS stands for",
+    "a": "Everything-as-a-Service"
+  },
+  {
+    "q": "XaaS stands for _____",
+    "a": "Everything-as-a-Service"
+  },
+  {
+    "q": "XYZ Company built their own cloud to manage internal data. They also subscribe to third party cloud services. What type of cloud are they using?",
+    "a": "Hybrid Cloud"
+  },
+  {
+    "q": "You need an exact objective, not an abstract idea of success.",
+    "a": "Specific"
+  },
+  {
+    "q": "You need to have a way to measure success",
+    "a": "Measurable"
+  }
+]

@@ -3,11 +3,39 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'Cloud Computing and the Internet of Things',
-    slug: 'cloud-computing-and-the-internet-of-things',
-    expectedCount: 292,
+    name: 'Euthenics 2',
+    slug: 'euthenics-2',
+    expectedCount: 239,
     pages: 4,
-    baseUrl: 'https://amauoed.com/courses/ite/cloud-computing-and-the-internet-of-things-6300-ite'
+    baseUrl: 'https://amauoed.com/courses/ethns/euthenics-2-6102-ethns'
+  },
+  {
+    name: 'The Contemporary World',
+    slug: 'the-contemporary-world',
+    expectedCount: 226,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/ge/the-contemporary-world-6102-ge'
+  },
+  {
+    name: 'Application Development and Emerging Technology',
+    slug: 'application-development-and-emerging-technology',
+    expectedCount: 570,
+    pages: 8,
+    baseUrl: 'https://amauoed.com/courses/ite/application-development-and-emerging-technology-6200-ite'
+  },
+  {
+    name: 'Current Trends and Issues',
+    slug: 'current-trends-and-issues',
+    expectedCount: 453,
+    pages: 7,
+    baseUrl: 'https://amauoed.com/courses/comp/current-trends-and-issues-6103-comp'
+  },
+  {
+    name: 'Computer Programming 1',
+    slug: 'computer-programming-1',
+    expectedCount: 752,
+    pages: 11,
+    baseUrl: 'https://amauoed.com/courses/ite/computer-programming-1-6102-ite'
   }
 ];
 
