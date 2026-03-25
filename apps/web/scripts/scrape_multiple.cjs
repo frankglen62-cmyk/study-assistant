@@ -3,95 +3,39 @@ const { createClient } = require('@supabase/supabase-js');
 
 const TARGETS = [
   {
-    name: 'National Service Training Program 2',
-    slug: 'national-service-training-program-2',
-    expectedCount: 198,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/nstp/national-service-training-program-2-6102-nstp'
+    name: 'Computer Programming 2',
+    slug: 'computer-programming-2',
+    expectedCount: 146,
+    pages: 2,
+    baseUrl: 'https://amauoed.com/courses/ite/computer-programming-2-6104-ite'
   },
   {
-    name: 'Object Oriented Programming',
-    slug: 'object-oriented-programming',
-    expectedCount: 155,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/cs/object-oriented-programming-6203-cs'
+    name: 'Foreign Language',
+    slug: 'foreign-language',
+    expectedCount: 278,
+    pages: 4,
+    baseUrl: 'https://amauoed.com/courses/fln/foreign-language-6300-fln'
   },
   {
-    name: 'Principles of Operating Systems and its Applications',
-    slug: 'principles-of-operating-systems-and-its-applications',
+    name: 'Introduction to Multimedia',
+    slug: 'introduction-to-multimedia',
+    expectedCount: 366,
+    pages: 5,
+    baseUrl: 'https://amauoed.com/courses/it/introduction-to-multimedia-6209-it'
+  },
+  {
+    name: 'Load Testing',
+    slug: 'load-testing',
     expectedCount: 189,
     pages: 3,
-    baseUrl: 'https://amauoed.com/courses/cs/principles-of-operating-systems-and-its-applications-6206-cs'
+    baseUrl: 'https://amauoed.com/courses/cs/load-testing-6303-cs'
   },
   {
-    name: 'Readings in Philippine History',
-    slug: 'readings-in-philippine-history',
-    expectedCount: 214,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/ge/readings-in-philippine-history-6101-ge'
-  },
-  {
-    name: 'Science, Technology and Society',
-    slug: 'science-technology-and-society',
-    expectedCount: 358,
-    pages: 5,
-    baseUrl: 'https://amauoed.com/courses/ge/science-technology-and-society-6116-ge'
-  },
-  {
-    name: 'Understanding the Self',
-    slug: 'understanding-the-self',
-    expectedCount: 204,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/ge/understanding-the-self-6100-ge'
-  },
-  {
-    name: 'System Integration and Architecture 1',
-    slug: 'system-integration-and-architecture-1',
-    expectedCount: 160,
-    pages: 3,
-    baseUrl: 'https://amauoed.com/courses/it/system-integration-and-architecture-1-6208-it'
-  },
-  {
-    name: '2D/3D Digital Animation',
-    slug: '2d3d-digital-animation',
-    expectedCount: 108,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/cs/2d3d-digital-animation-6211-cs'
-  },
-  {
-    name: 'Mathematics in the Modern World',
-    slug: 'mathematics-in-the-modern-world',
-    expectedCount: 111,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/ge/mathematics-in-the-modern-world-6114-ge'
-  },
-  {
-    name: 'Audio and Video Production (Digital Imaging)',
-    slug: 'audio-and-video-production',
-    expectedCount: 370,
-    pages: 5,
-    baseUrl: 'https://amauoed.com/courses/cs/audio-and-video-production-6321-cs'
-  },
-  {
-    name: 'Living in the IT Era',
-    slug: 'living-in-the-it-era',
-    expectedCount: 135,
-    pages: 2,
-    baseUrl: 'https://amauoed.com/courses/ge/living-in-the-it-era-6221-ge'
-  },
-  {
-    name: 'Physical Fitness',
-    slug: 'physical-fitness',
-    expectedCount: 537,
-    pages: 8,
-    baseUrl: 'https://amauoed.com/courses/phyed/physical-fitness-6101-phyed'
-  },
-  {
-    name: 'Team Sports',
-    slug: 'team-sports',
-    expectedCount: 281,
-    pages: 4,
-    baseUrl: 'https://amauoed.com/courses/phyed/team-sports-6200-phyed'
+    name: 'Social and Professional Issues',
+    slug: 'social-and-professional-issues',
+    expectedCount: 436,
+    pages: 6,
+    baseUrl: 'https://amauoed.com/courses/ite/social-and-professional-issues-6202-ite'
   }
 ];
 

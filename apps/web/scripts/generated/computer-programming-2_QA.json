@@ -1,0 +1,578 @@
+[
+  {
+    "q": "__________ is implemented in at least two classes with inheritance relationship.",
+    "a": "Overriding"
+  },
+  {
+    "q": "Can we directly compile codes from NetBeans?",
+    "a": "Yes, because we can call Java compiler from NetBeans"
+  },
+  {
+    "q": "Can we directly compile codes from notepad?",
+    "a": "No, We can only write codes in Notepad"
+  },
+  {
+    "q": "Declare a two-dimensional integer array named values of size 6 columns and 4 rows.",
+    "a": "int[ ][ ] values=new int[4][6];"
+  },
+  {
+    "q": "Declare and initialize a double data type array named numbers with the following values: 23.35, 34.45, 56.77.",
+    "a": "double[ ] numbers={2335, 3445, 5677};"
+  },
+  {
+    "q": "From the array int[] intArray = { 1, 2, 3, 5, 6, 7 };, what is the value of intArray[2]?",
+    "a": "3"
+  },
+  {
+    "q": "From the array int[] intArray = { 1, 2, 3, 5, 6, 7 };, what is the value of intArray[3]?",
+    "a": "5"
+  },
+  {
+    "q": "How many elements could be assigned to an array location with 5 columns and 3 rows?",
+    "a": "15"
+  },
+  {
+    "q": "It is a template for creating an object?",
+    "a": "Class"
+  },
+  {
+    "q": "It is the ability of an object to have many forms?",
+    "a": "Polymorphism"
+  },
+  {
+    "q": "It is the method of hiding certain elements of the implementation of a certain class?",
+    "a": "Encapsulation"
+  },
+  {
+    "q": "It is used to access the instance variables shadowed by the parameters.",
+    "a": "this"
+  },
+  {
+    "q": "It used to read values from class variables?",
+    "a": "Accessor"
+  },
+  {
+    "q": "JVM is responsible for",
+    "a": "Interpreting bytecode"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question. What will be the result if you execute this expression x=true ? 1 : 0;?",
+    "a": "1"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.What will be the value of x after you execute this statement int z=0; for(int x=0; x<10; x++) for(int y=0; y<x; y++) z*=(x*y);?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which is not a decision control structure?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which is not a repetition control structure?",
+    "a": "loop"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which of the following a valid Java identifier?",
+    "a": "id_1"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which of the following has the correct form for an if statement?",
+    "a": "if (boolean_expression)"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which of the following is not a Java Literal?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which of the following is not a primitive data type?",
+    "a": "String"
+  },
+  {
+    "q": "Multiple-Choice. Please select the best answer for the question.Which statement will check if x is less than y?",
+    "a": "if (x<y);"
+  },
+  {
+    "q": "Since Java uses a virtual machine, what does that mean about the versatility of Java?",
+    "a": "It can run most anywhere without modification"
+  },
+  {
+    "q": "The __________ keyword allocates memory for the array being declared.",
+    "a": "new"
+  },
+  {
+    "q": "The feature of Java which makes it possible to execute several tasks simultaneously.",
+    "a": "Multithreaded"
+  },
+  {
+    "q": "The Java feature, \"write once, run anywhere\", is termed as",
+    "a": "Platform independent"
+  },
+  {
+    "q": "The length of an array is established when the array is created at __________.",
+    "a": "runtime"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.byte, short, int, and for are one of Java's Primitive data types.",
+    "a": "False"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.float is one of Java's Primitive data types",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.for, while and do-while is part of Java's Repetition Control Structures",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Java is a simple, object-oriented, portable and robust computer language.",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Java is architecture neutral",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Java is secured",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Java SE is a Java Platform",
+    "a": "True"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Java's control structures are branching, decision, and multithreaded.",
+    "a": "False"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Portable is one of Java's control structures",
+    "a": "False"
+  },
+  {
+    "q": "True or False. Please select the best answer for the question.Repetition is one of Java's control structures",
+    "a": "True"
+  },
+  {
+    "q": "Use the __________ statement when traversing through arrays.",
+    "a": "for loop"
+  },
+  {
+    "q": "What did java generates after compiling the java source code?",
+    "a": "Byte Code"
+  },
+  {
+    "q": "What do you call a blueprint of an object?",
+    "a": "Class"
+  },
+  {
+    "q": "What do you call a class that inherits a class?",
+    "a": "Subclass"
+  },
+  {
+    "q": "What do you call a variable that belong to the whole class?",
+    "a": "Class Variable"
+  },
+  {
+    "q": "What does Java generate after compiling the java source code?",
+    "a": "Byte Code"
+  },
+  {
+    "q": "What is floating-point literal?",
+    "a": "All of the above"
+  },
+  {
+    "q": "What is the correct statement to compile Java program in command line?",
+    "a": "javac HelloWorldjava"
+  },
+  {
+    "q": "What is the correct statement to run Java program in command line?",
+    "a": "java HelloWorld"
+  },
+  {
+    "q": "What is the correct statement to set javac path in command line?",
+    "a": "path=C:\\Program Files\\Java\\jdk160_23\\bin"
+  },
+  {
+    "q": "What is the extension name of a Java Source code?",
+    "a": "java"
+  },
+  {
+    "q": "What is the index number of the last element of an array with 20 elements?",
+    "a": "19"
+  },
+  {
+    "q": "What is the index number of the last element of an array with 30 elements?",
+    "a": "29"
+  },
+  {
+    "q": "What is the input for Java Compiler?",
+    "a": "Source Code"
+  },
+  {
+    "q": "What is the length of the array: int[] intArray = { 1, 2, 3, 5, 6, 7 };",
+    "a": "6"
+  },
+  {
+    "q": "What is the maximum index of the array: int[] intArray = { 1, 2, 3, 5, 6, 7 };",
+    "a": "5"
+  },
+  {
+    "q": "What is the name of this method: int test(){return 1;} ?",
+    "a": "test"
+  },
+  {
+    "q": "What is the output of the code snippet below: int[] intArray = { 1, 2, 3, 5, 6, 7 }; for(int x = intArray.length-1; x>=0; x--){System.out.print(intArray[x]);}",
+    "a": "765321"
+  },
+  {
+    "q": "What is the output of the code snippet below: int[] intArray = new int[10];for(int x = 0; x<intArray.length; x++){System.out.print(intArray[x]);}",
+    "a": "0000000000"
+  },
+  {
+    "q": "What is the output of the code snippet below: void main(){test(\"11\");test(\"1\");} void test(String x){System.out.print(x + x);}",
+    "a": "111111"
+  },
+  {
+    "q": "What is the output of the code snippet below: int[] intArray = new int[10]; for(int x = 0; x <intArray.length; x++) {System.out.print(intArray[x]);}",
+    "a": "0000000000"
+  },
+  {
+    "q": "What is the output of the code snippet below: void main(){test(“11”);test(“1”);} void test(String x){System.out.print(x + x);}",
+    "a": "111111"
+  },
+  {
+    "q": "What is the output of the code snippet below: void main(){test();test();} void test(){System.out.print(\"1\");}",
+    "a": "11"
+  },
+  {
+    "q": "What is the output of the code snippet below: void main(){test();test();} void test(){System.out.print(“1”);}",
+    "a": "11"
+  },
+  {
+    "q": "What is the output of the code snippet below: void main(){test(1.0); test(1);} void test(double x){ System.out.print(x); } void test(int x){ System.out.print(x);}",
+    "a": "1.01"
+  },
+  {
+    "q": "What is the output of the code snippet below:void main(){test(1.0);test(1);}void test(double x){System.out.print(x); }void test(int x){System.out.print(x);}",
+    "a": "101"
+  },
+  {
+    "q": "What is the result if we execute this: \"a\" instanceof String; ?",
+    "a": "true"
+  },
+  {
+    "q": "What is the result if we execute this: \"a\".equals(\"a\");?",
+    "a": "true"
+  },
+  {
+    "q": "What is the result if we execute this: “a” instanceof String; ?",
+    "a": "true"
+  },
+  {
+    "q": "What is the result if we execute this: “a”.equals(“a”);?",
+    "a": "true"
+  },
+  {
+    "q": "What is the return type of this method: int test(){return 1;} ?",
+    "a": "int"
+  },
+  {
+    "q": "What is the return value of this method: int test(){return 1;} ?",
+    "a": "1"
+  },
+  {
+    "q": "What is the return value of this method: public void sum(){int x=1;} ?",
+    "a": "void"
+  },
+  {
+    "q": "What keyword is used to perform class inheritance?",
+    "a": "extends"
+  },
+  {
+    "q": "What type of value does the nextLine() returns?",
+    "a": "String"
+  },
+  {
+    "q": "What was the initial name for the Java programming language?",
+    "a": "Oak"
+  },
+  {
+    "q": "What will be the output if you execute this code: int a[] = new int[1]; System.out.println(a[1]);",
+    "a": "It will produce an exception."
+  },
+  {
+    "q": "What will be the output if you execute this code? do{System.out.println(\"Hello World!\");}while(false);",
+    "a": "print \"Hello World\""
+  },
+  {
+    "q": "What will be the output if you execute this code? do{System.out.println(\"Hello World!\");}while(true);",
+    "a": "print \"Hello World\" infinitely"
+  },
+  {
+    "q": "what will be the output if you execute this code? int x=1; switch(x){ case 1: System.out.print(“1”); case 2: System.out.print(“1”); case 3: System.out.print(“1”); default: System.out.print(“1”); }",
+    "a": "display 1111"
+  },
+  {
+    "q": "what will be the output if you execute this code? int x=2; switch(x){ case 1: System.out.print(“1”); case 2: System.out.print(“1”); case 3: System.out.print(“1”); default: System.out.print(“1”); }",
+    "a": "display 111"
+  },
+  {
+    "q": "What will be the output if you execute this code?do{System.out.println(\"Hello World!\");}while(false);",
+    "a": "print \"Hello World\""
+  },
+  {
+    "q": "What will be the output if you execute this code?do{System.out.println(\"Hello World!\");}while(true);",
+    "a": "print \"Hello World\" infinitely"
+  },
+  {
+    "q": "what will be the output if you execute this code?int x=1;switch(x){case 1: System.out.print(\"1\");case 2: System.out.print(\"1\");case 3: System.out.print(\"1\");default: System.out.print(\"1\");}",
+    "a": "display 1111"
+  },
+  {
+    "q": "What will be the value of x after executing this code for(int x=0; x<=10; x++) {} is run?",
+    "a": "11"
+  },
+  {
+    "q": "What will be the value of x after executing this code for(int x=0; x<=11; x++) {} is run?",
+    "a": "12"
+  },
+  {
+    "q": "What will be the value of x after executing this codefor(int x=0; x<=10; x++) {} is run?",
+    "a": "11"
+  },
+  {
+    "q": "What will be the value of x after you execute this statement int z=0; for(int x=0; x",
+    "a": "None of these"
+  },
+  {
+    "q": "What will be the value of x after you execute this statement int z=0; for(int x=0; x<10; x++) for(int y=0; y<x; y++) z*=(x*y);",
+    "a": "None of the Choice"
+  },
+  {
+    "q": "What will be the value of x after you execute this statementint z=0; for(int x=0; x<10; x++) for(int y=0; y<x; y++) z*=(x*y);",
+    "a": "None of the above"
+  },
+  {
+    "q": "What will be the value of x if we execute this: String s = \"25\"; int x = Integer.parseInt(s); ?",
+    "a": "int 25"
+  },
+  {
+    "q": "What will happen if we compile the statement below? ~System.out.println(“Hello World!”)",
+    "a": "There will be a syntax error after compilation."
+  },
+  {
+    "q": "What will happen if we compile the statement below?~System.out.println(\"Hello World!\")",
+    "a": "There will be a syntax error after compilation"
+  },
+  {
+    "q": "What will happen if you use JOptionPane. showInputDialog statement in your program?",
+    "a": "The program will display an input dialog box that allows the user to input text and returns String value"
+  },
+  {
+    "q": "What will happen if you use JOptionPane.showMessageDialog statement in your program?",
+    "a": "The program will display message dialog box"
+  },
+  {
+    "q": "When was the officially released of Java?",
+    "a": "1995"
+  },
+  {
+    "q": "Which is not a decision control structure?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Which is not a repetition control structure?",
+    "a": "switch"
+  },
+  {
+    "q": "Which of the following a valid Java identifier?",
+    "a": "all of the above"
+  },
+  {
+    "q": "Which of the following array declarations is correct?",
+    "a": "double[ ] grades;grades = new double[2];"
+  },
+  {
+    "q": "Which of the following class declaration is not allowed to be inherited?",
+    "a": "public final class Person {}"
+  },
+  {
+    "q": "Which of the following class declaration is not allowed to be instantiated?",
+    "a": "public abstract class Person {}"
+  },
+  {
+    "q": "Which of the following correctly accesses the sixth element stored in an array of 10 elements?",
+    "a": "stringArray[5];"
+  },
+  {
+    "q": "Which of the following creates an instance of a class?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following declares an array of int named intArray?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following does not return numeric value?",
+    "a": "None of these"
+  },
+  {
+    "q": "Which of the following has the correct form for an if statement?",
+    "a": "if (boolean_expression)"
+  },
+  {
+    "q": "Which of the following is a correct declaration of an array?",
+    "a": "EmployeeRecord[ ][ ] er=new EmployeeRecord[10][10];"
+  },
+  {
+    "q": "Which of the following is a jump statement in java?",
+    "a": "break"
+  },
+  {
+    "q": "Which of the following is a valid editor for java source code?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is a valid identifier?",
+    "a": "name"
+  },
+  {
+    "q": "Which of the following is a valid method name:",
+    "a": "compute"
+  },
+  {
+    "q": "Which of the following is a valid multidimensional array?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following is a valid nexDouble() return value?",
+    "a": "All of the above"
+  },
+  {
+    "q": "Which of the following is a valid nextByte() return value?",
+    "a": "3"
+  },
+  {
+    "q": "Which of the following is a valid nextInt() return value?",
+    "a": "1010"
+  },
+  {
+    "q": "Which of the following is a valid statement to accept int input? Let us assume that we have declared scan as Scanner.",
+    "a": "None of the above"
+  },
+  {
+    "q": "Which of the following is a valid statement to accept String input?",
+    "a": "String str = JOptionPaneshowInputDialog(\"\");"
+  },
+  {
+    "q": "Which of the following is not a Java comment?",
+    "a": "Declaration Comments"
+  },
+  {
+    "q": "Which of the following is not a java keyword?",
+    "a": "name"
+  },
+  {
+    "q": "Which of the following is not a primitive data type?",
+    "a": "String"
+  },
+  {
+    "q": "Which of the following is not a valid Float value?",
+    "a": "none of the above"
+  },
+  {
+    "q": "Which of the following is not a valid variable declaration in Java?",
+    "a": "float x = 20D;"
+  },
+  {
+    "q": "Which of the following is not an escape sequence?",
+    "a": "none of the above"
+  },
+  {
+    "q": "Which of the following is not Java Literal?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Which of the following is not the feature of java?",
+    "a": "Static"
+  },
+  {
+    "q": "Which of the following is the correct syntax to define a method?",
+    "a": "package ;"
+  },
+  {
+    "q": "Which of the following is the correct way to call the constructor of the parent class?",
+    "a": "super()"
+  },
+  {
+    "q": "Which of the following is the correct way to define an interface?",
+    "a": "public interface [InterfaceName] {}"
+  },
+  {
+    "q": "Which of the following is the correct way to use an interface?",
+    "a": "public class Person implements [InterfaceName] {}"
+  },
+  {
+    "q": "Which of the following is true about constructor?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following is true about Interface?",
+    "a": "All of the above"
+  },
+  {
+    "q": "Which of the following is true about Runtime errors:",
+    "a": "Runtime errors occur during run-time"
+  },
+  {
+    "q": "Which of the following is true about syntax errors:",
+    "a": "All of the above"
+  },
+  {
+    "q": "Which of the following method is allowed to be overriden?",
+    "a": "public final void setName(){}"
+  },
+  {
+    "q": "Which of the following method reads input from the user and return String value?",
+    "a": "nextLine()"
+  },
+  {
+    "q": "Which of the following methods is allowed to be overriden?",
+    "a": "public void setName(){}"
+  },
+  {
+    "q": "Which of the following scenarios where an exception may occur?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following show casting object?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following shows a valid Overloading method?",
+    "a": "void test(char x, int y){} void test(int x, char y){}"
+  },
+  {
+    "q": "Which of the following shows Overloading method?",
+    "a": "void test(int x){} void test(double x){}"
+  },
+  {
+    "q": "Which of the following we are not allowed to write java source code?",
+    "a": "None of the Above"
+  },
+  {
+    "q": "Which of the following will do implicit cast?",
+    "a": "short x=1; int y = x;"
+  },
+  {
+    "q": "Which statement will check if x is equal to y?",
+    "a": "none of the above"
+  },
+  {
+    "q": "Which statement will check if x is less than y?",
+    "a": "if (x<y);"
+  },
+  {
+    "q": "Why do we need to set the path for javac in command line?",
+    "a": "To make javac available or accessible in command line"
+  }
+]

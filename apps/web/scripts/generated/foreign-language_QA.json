@@ -1,0 +1,1106 @@
+[
+  {
+    "q": "___ pensar (yo)",
+    "a": "pienso"
+  },
+  {
+    "q": "___ poner (yo)",
+    "a": "pongo"
+  },
+  {
+    "q": "___ querer (yo)",
+    "a": "quiero"
+  },
+  {
+    "q": "___ salir (yo)",
+    "a": "salgo"
+  },
+  {
+    "q": "_____ estar (yo)",
+    "a": "estoy"
+  },
+  {
+    "q": "_____ gata",
+    "a": "esa"
+  },
+  {
+    "q": "_____ jugar (yo)",
+    "a": "juego"
+  },
+  {
+    "q": "_____ luz",
+    "a": "esta"
+  },
+  {
+    "q": "_____ mensajes",
+    "a": "los"
+  },
+  {
+    "q": "_____ ser (yo)",
+    "a": "soy"
+  },
+  {
+    "q": "_____ tener (yo)",
+    "a": "tengo"
+  },
+  {
+    "q": "_____ vaca",
+    "a": "la"
+  },
+  {
+    "q": "______ llave",
+    "a": "la"
+  },
+  {
+    "q": "_________ programa",
+    "a": "el"
+  },
+  {
+    "q": "_______________ el corazón mucho Acabo de separar con José",
+    "a": "Me duele"
+  },
+  {
+    "q": "_____perro",
+    "a": "el"
+  },
+  {
+    "q": "?Qu=C3=A9tal?",
+    "a": "<What's up?>"
+  },
+  {
+    "q": "¿Cuánto tiempo hace que Javier tiene pelo largo?",
+    "a": "Hace treinta y seis años que lo tiene"
+  },
+  {
+    "q": "¿Cuánto tiempo hace que somos amigos?",
+    "a": "Hace dos años que somos amigos"
+  },
+  {
+    "q": "¿Cuánto tiempo hace que trabajas en este restaurante?",
+    "a": "Hace un año que trabajo aquí"
+  },
+  {
+    "q": "¿Cuánto tiempo hace que Ud está preocupado?",
+    "a": "Hace poco tiempo que estoy preocupado"
+  },
+  {
+    "q": "¿En cuánto tiempo (prepararse) Catalina para salir?",
+    "a": "se prepara"
+  },
+  {
+    "q": "¿Qué ___tú, Jorge? (leer)",
+    "a": "estás leyendo"
+  },
+  {
+    "q": "¿Que____ (tú) en el almuerzo?",
+    "a": "comes"
+  },
+  {
+    "q": "¿Soledad,a vos, __________ la moda japonesa?",
+    "a": "te gusta"
+  },
+  {
+    "q": "'Brother' is the English translation of 'hermanas'",
+    "a": "False"
+  },
+  {
+    "q": "'Come el bocadillo' exactly means 'I eat the sandwich'",
+    "a": "False"
+  },
+  {
+    "q": "'Come' is the verb conjugation of 'he eats'",
+    "a": "True"
+  },
+  {
+    "q": "'Dormir is a stem-chnging verb'",
+    "a": "True"
+  },
+  {
+    "q": "'Ella' habla is the correct translation of 'she speaks'",
+    "a": "True"
+  },
+  {
+    "q": "'I am seven years old' is the English translation of the statement \"yo tengo siete años\"",
+    "a": "True"
+  },
+  {
+    "q": "'La chica anda' is the Spanish statement of 'The girl walks'",
+    "a": "True"
+  },
+  {
+    "q": "'Nosotras hablamos' is the correct translation of we (a group of 99 females and one male) speak'",
+    "a": "False"
+  },
+  {
+    "q": "'Pedir' is a stem changing verb (e to i)'",
+    "a": "True"
+  },
+  {
+    "q": "'SEÑOR is abbreviated 'Sr'",
+    "a": "True"
+  },
+  {
+    "q": "'SEÑORITA is abbreviated 'Srta'",
+    "a": "True"
+  },
+  {
+    "q": "'Tienes la razón' exactly means 'We have a reason'",
+    "a": "False"
+  },
+  {
+    "q": "'Usted habla' is the correct translation of 'you (formal) speak",
+    "a": "False"
+  },
+  {
+    "q": "'You open' is the English translation of 'Usted abre'",
+    "a": "True"
+  },
+  {
+    "q": "\"Hace 2 semanas que estudio español\" is correct",
+    "a": "True"
+  },
+  {
+    "q": "\"Hace 8 años que tienen una casa grande\" can be understood by the natives that you are talking about a future context",
+    "a": "False"
+  },
+  {
+    "q": "\"Hace 8 años que viajas a California\" can be understood by the natives that you are talking about a future context",
+    "a": "False"
+  },
+  {
+    "q": "\"I am studying\" is Yo está estudando",
+    "a": "False"
+  },
+  {
+    "q": "\"In the Philippine BPO, English is the only language that is being outsourced by foreign companies\"",
+    "a": "False"
+  },
+  {
+    "q": "\"Pera\" has the same meaning and context in both Spanish and Tagalog",
+    "a": "False"
+  },
+  {
+    "q": "=C2=A1Buenas tardes! In Spanish means thank you",
+    "a": "False"
+  },
+  {
+    "q": "12:00 am in Spanish is \"medianoche\"",
+    "a": "True"
+  },
+  {
+    "q": "A lot of nouns that end in -ud, -z, and -cion are feminine",
+    "a": "True"
+  },
+  {
+    "q": "A María_______ la pizza de jamón",
+    "a": "le gusta"
+  },
+  {
+    "q": "A mí no me_____ la espalda",
+    "a": "duele"
+  },
+  {
+    "q": "A nosotros no nos_____ tejer para nada",
+    "a": "interesa"
+  },
+  {
+    "q": "A nosotros nos gustan_______ pan tostado",
+    "a": "el"
+  },
+  {
+    "q": "A ti, ____________ lasorejas No puedesoir nada después de atender el concierto rock",
+    "a": "teduelen"
+  },
+  {
+    "q": "A ti, _____________ España",
+    "a": "Teencanta"
+  },
+  {
+    "q": "A ustedes, _____________ las canciones de pop",
+    "a": "Lesencantan"
+  },
+  {
+    "q": "abuela",
+    "a": "grandmother"
+  },
+  {
+    "q": "Acabar de + infinitive can indicate future context",
+    "a": "False"
+  },
+  {
+    "q": "Adjectives in Spanish follows the gender and number of what is being described",
+    "a": "¿Que?"
+  },
+  {
+    "q": "Ahora, los alumnos _________________ para preparar por examen final para el lunes",
+    "a": "estánpracticando"
+  },
+  {
+    "q": "Alejendra _______ ahora (beber) = está bebando",
+    "a": "False"
+  },
+  {
+    "q": "Alfonso ______ (doler) la garganta y no puede trabajar esta noche= le dole",
+    "a": "False"
+  },
+  {
+    "q": "Aside from the 5 vowels in Spanish which of the following consonants can sound as a vowel?",
+    "a": "Y"
+  },
+  {
+    "q": "BEBER Él beb______ He drinks",
+    "a": "e"
+  },
+  {
+    "q": "Beber is a stem-changing verb (O- UE)",
+    "a": "False"
+  },
+  {
+    "q": "Both Tú and Usted literally mean you, but there is a significative difference between them",
+    "a": "True"
+  },
+  {
+    "q": "CANTAR Ella cant___ She sings",
+    "a": "a"
+  },
+  {
+    "q": "Carmen, ¿tú_____ a la profesora? (escuchar) = estás escuchando",
+    "a": "True"
+  },
+  {
+    "q": "Choose correct translation of ' nosotros tomamos",
+    "a": "We drink"
+  },
+  {
+    "q": "Choose correct translation of 'He runs'",
+    "a": "Corre"
+  },
+  {
+    "q": "Choose correct translation of 'He/She lives'",
+    "a": "vive"
+  },
+  {
+    "q": "Choose the best translation of 'he'",
+    "a": "él"
+  },
+  {
+    "q": "Choose the best translation of 'you (familiar)'",
+    "a": "tú"
+  },
+  {
+    "q": "Choose the correct translation of 'Usted toma'",
+    "a": "You drink"
+  },
+  {
+    "q": "COMER Yo= com__ I eat",
+    "a": "o"
+  },
+  {
+    "q": "Cuantos a=C3=B1os tienes?",
+    "a": "Tengo 19 a=C3=B1os"
+  },
+  {
+    "q": "Después de nadar, vos (secarse)",
+    "a": "te secás"
+  },
+  {
+    "q": "Él ___ (deber) estudiar más",
+    "a": "debe"
+  },
+  {
+    "q": "El agente de aduana________ las maletas (abrir) = está abriendo",
+    "a": "está abriendo"
+  },
+  {
+    "q": "El avión ____ (salir) = está saliendo",
+    "a": "True"
+  },
+  {
+    "q": "El avión ___________en la pista (aterrizar) = está aterrizando",
+    "a": "True"
+  },
+  {
+    "q": "Él estudi__ He studies",
+    "a": "a"
+  },
+  {
+    "q": "El miembro del equipo _________________ muy bien",
+    "a": "juega"
+  },
+  {
+    "q": "El Recursos Humanos ____________ a los empleados nuevos luego el nuevas policías",
+    "a": "va a discutir"
+  },
+  {
+    "q": "Ella ______________ el jugo de coco ahora porque hace calor mucho",
+    "a": "estábebiendo"
+  },
+  {
+    "q": "Ella va ____ leer libros",
+    "a": "a"
+  },
+  {
+    "q": "Ellas (pintarse) las uñas con la pintura de uñas =se pintan",
+    "a": "True"
+  },
+  {
+    "q": "Ellos vas a comprar un helado nuevo",
+    "a": "False"
+  },
+  {
+    "q": "En español, abuelo se dice 'uncle'",
+    "a": "False"
+  },
+  {
+    "q": "En español, nieta se dice 'daughter'",
+    "a": "False"
+  },
+  {
+    "q": "encontrar (yo)",
+    "a": "encuentro"
+  },
+  {
+    "q": "Ese restaurante ____________ flan excelente",
+    "a": "sirve"
+  },
+  {
+    "q": "Estoy enamorado exactly means 'We are in love'",
+    "a": "False"
+  },
+  {
+    "q": "Even in -rse verbs, there are still irregular verbs and it needs to be conjugated properly",
+    "a": "True"
+  },
+  {
+    "q": "For verbs that end in -cer and -cir, change the c to zc for the yo form (eg crecer to crezco; parecer to parezco)",
+    "a": "True"
+  },
+  {
+    "q": "Frecuentemente, Sr Oro___________ té por la mañana",
+    "a": "compra"
+  },
+  {
+    "q": "Generally tú and vos have the same usage when it comes to informal/ familiar context",
+    "a": "True"
+  },
+  {
+    "q": "Generally, in Mexico, Y is pronounced as Sh (eg shore)",
+    "a": "False"
+  },
+  {
+    "q": "Generally, You use Usted when writing a letter to your best friend",
+    "a": "False"
+  },
+  {
+    "q": "Gustar, doler and encantar is a verb that describes the subject who is doing the action",
+    "a": "False"
+  },
+  {
+    "q": "H is always silent when at the first part of the sentence beside the vowel",
+    "a": "True"
+  },
+  {
+    "q": "He has just eaten the salad",
+    "a": "Acaba de comer la ensalada"
+  },
+  {
+    "q": "He has just taken the important newsAcaba de anotar las noticias importantes",
+    "a": "Acaba de anotar las noticias importantes"
+  },
+  {
+    "q": "How do we say /Ce or Ci/ in the Spanish alphabet in Spain?",
+    "a": "It has a soft TH sound in English"
+  },
+  {
+    "q": "How do we say /Z/ in the Spanish alphabet in Spain?",
+    "a": "has a soft TH sound in English"
+  },
+  {
+    "q": "How do we say 03:45 am",
+    "a": "Son lascuatromenoscuarto de la madrugada"
+  },
+  {
+    "q": "How do we say 07:37 pm?",
+    "a": "Son las ocho menos veintitr=C3=A9s de la noche"
+  },
+  {
+    "q": "How do we say 1:15?",
+    "a": "Sonlas once y cuarto"
+  },
+  {
+    "q": "How do we say letter /I/ in Spanish?",
+    "a": "EE; Chip in English"
+  },
+  {
+    "q": "How do we write 16 in Spanish?",
+    "a": "diecis=C3=A9is"
+  },
+  {
+    "q": "How do we write 26 in Spanish?",
+    "a": "Veintis=C3=A9is"
+  },
+  {
+    "q": "How do you pronounce Tagalog \"Ki\" in Spanish?",
+    "a": "Qui"
+  },
+  {
+    "q": "How do you write 23 in Spanish?",
+    "a": "Veintitr=C3=A9s"
+  },
+  {
+    "q": "How many vowels are there in the Spanish alphabet?",
+    "a": "5"
+  },
+  {
+    "q": "I (with emphasis) love to swim",
+    "a": "A mi, me encanta nadar"
+  },
+  {
+    "q": "If someone asks you \"¿Cuántos años tienes?\" what are they asking you?",
+    "a": "How old are you?"
+  },
+  {
+    "q": "If someone says \"Yo llevo una falda rosada\" he/she is telling you 'I'm wearing a pink skirt'",
+    "a": "True"
+  },
+  {
+    "q": "If someone tells 'He/She is busy in Spanish that person would say 'Estoy libre'",
+    "a": "False"
+  },
+  {
+    "q": "If we want to say 08:00 sharp, we say a lasocho en punto",
+    "a": "True"
+  },
+  {
+    "q": "In Colombia, Y and LL are pronounced as Dj/(eg juice in English)",
+    "a": "True"
+  },
+  {
+    "q": "In conjugating Uds/Ellos/as, transform it by eliminating the -93ar, -er/ -93ir , then, replace it with -93an/ -en",
+    "a": "True"
+  },
+  {
+    "q": "In Latin America, whether formal or informal, if there are two second persons or more, Ustedes must be used",
+    "a": "True"
+  },
+  {
+    "q": "In places like Spain and Mexico, LL and Y sound like?",
+    "a": "/Y/ for Yo-yo"
+  },
+  {
+    "q": "In regular verbs in Yo, to conjugate, we replace the -ar/-er/-ir to -amos, -emos, -imos",
+    "a": "False"
+  },
+  {
+    "q": "In Spain, Z, Ce and Ci are pronounced with English S (eg salt)",
+    "a": "False"
+  },
+  {
+    "q": "In Spain, Z, Ce and Ci are pronounced with English TH (eg Thanks)",
+    "a": "ba=C3=B1o"
+  },
+  {
+    "q": "In Spanish 12:00 pm is hasta luego",
+    "a": "False"
+  },
+  {
+    "q": "In Spanish 2:36 pm is said as \"Son lastresmenosveinticuatro de la tarde",
+    "a": "cocina"
+  },
+  {
+    "q": "In Spanish when telling someone about your age (eg 20) you say \"Soy 20 a=C3=B1os\"",
+    "a": "False"
+  },
+  {
+    "q": "In Spanish, 29 is written as one word",
+    "a": "True"
+  },
+  {
+    "q": "In Spanish, 55 consist of how many words?",
+    "a": "3"
+  },
+  {
+    "q": "In Spanish, to describe the actual events, we only have to use the verb estar+GERUND form of the verbs",
+    "a": "True"
+  },
+  {
+    "q": "In telling time in Spanish, when we are referring to the minutes of the 31stto 59, we get the clock in advance and deduct it from 30",
+    "a": "True"
+  },
+  {
+    "q": "In the Spanish name; Angela, how do we pronounce GE?",
+    "a": "Tagalog \"He\" or English health"
+  },
+  {
+    "q": "In the Spanish name: Gerardo, how do we pronounce ge?",
+    "a": "Tagalog \"He\" or English health"
+  },
+  {
+    "q": "In the Spanish name: Helen, how do we pronounce He?",
+    "a": "Silent letter; does not need to be pronounced"
+  },
+  {
+    "q": "In the Spanish-speaking world, regardless of country, Usted is used formally",
+    "a": "True"
+  },
+  {
+    "q": "In, some countries in Latin America, instead of using \"de la ma=C3=B1ana\" for 1:00 to 5:00, they use?",
+    "a": "madrugada"
+  },
+  {
+    "q": "INSISTIR El maestro insist______The teacher insists",
+    "a": "e"
+  },
+  {
+    "q": "Instead of using 15 at the 15thminute, we use?",
+    "a": "cuarto"
+  },
+  {
+    "q": "Irene _____ (doler) la cabeza y no va a venir al trabajo luego",
+    "a": "False"
+  },
+  {
+    "q": "Isabel y yo _____________ patinar esta noche",
+    "a": "vamos a"
+  },
+  {
+    "q": "It is not recommended to use games as a method in learning Spanish",
+    "a": "False"
+  },
+  {
+    "q": "Juana ___ (gustar) la Navidad = me gusta",
+    "a": "False"
+  },
+  {
+    "q": "K is one of the mostly often used letters in Spanish",
+    "a": "False"
+  },
+  {
+    "q": "Ka when said in Tagalog is the same as \"Ca\"",
+    "a": "True"
+  },
+  {
+    "q": "la cabeza",
+    "a": "head"
+  },
+  {
+    "q": "la cara",
+    "a": "face"
+  },
+  {
+    "q": "La cocinera (poner) ________ el quesosobre la carbonara",
+    "a": "pone"
+  },
+  {
+    "q": "La profesora _______________ la frase",
+    "a": "repite"
+  },
+  {
+    "q": "Las personas que no están de acuerdo del gobierno, protestan",
+    "a": "True"
+  },
+  {
+    "q": "Letters are masculine",
+    "a": "False"
+  },
+  {
+    "q": "Like English, there are 26 letters in the Spanish alphabet",
+    "a": "False"
+  },
+  {
+    "q": "Like in English, the use of correct adjectives when it comes to gender are not necessary",
+    "a": "False"
+  },
+  {
+    "q": "Like, Filipino, there are 28 letters in the Spanish alphabet",
+    "a": "False"
+  },
+  {
+    "q": "Los alumnos ______ composiciones (escribir) = están escribiendo",
+    "a": "True"
+  },
+  {
+    "q": "Los hombres se afeitanla barbacon la afeitadora",
+    "a": "True"
+  },
+  {
+    "q": "Los niños ___ (beber) el agua con su comida",
+    "a": "beben"
+  },
+  {
+    "q": "Los pasajeros_______sus maletas (recoger) = están recogiendo",
+    "a": "True"
+  },
+  {
+    "q": "Malgastas el dinero",
+    "a": "Tú"
+  },
+  {
+    "q": "Maria ___________ a estudiar conmigo",
+    "a": "va"
+  },
+  {
+    "q": "María bail__ Maria dances",
+    "a": "a"
+  },
+  {
+    "q": "Me gusta las comidas francesas= I like French foods",
+    "a": "True"
+  },
+  {
+    "q": "Mi amiga Lupis___________ en la cafetería?(ahora, solamente por este momento)",
+    "a": "estáesperando"
+  },
+  {
+    "q": "Mi padre (bañarse)",
+    "a": "se baña"
+  },
+  {
+    "q": "Mi padre (lavarse) las manos antes de cocinar",
+    "a": "se lava"
+  },
+  {
+    "q": "Mis amigos y yo_________________",
+    "a": "encontramos"
+  },
+  {
+    "q": "Most Filipino loanwords from Spanish have the same spelling (written from)",
+    "a": "False"
+  },
+  {
+    "q": "My name in Spanish is said as \" Tenemos (your name)\"",
+    "a": "False"
+  },
+  {
+    "q": "nieta",
+    "a": "granddaughter"
+  },
+  {
+    "q": "nieto",
+    "a": "grandson"
+  },
+  {
+    "q": "No estoy en la casa, en este momento, __________________ por taxi para volver a la casa",
+    "a": "estoyviajando"
+  },
+  {
+    "q": "No me gusta nada correr",
+    "a": "I don't like to run"
+  },
+  {
+    "q": "No, nosotros________(beber)=estamos bebiendo",
+    "a": "True"
+  },
+  {
+    "q": "Nos duele la mano would mean his hands are in pain",
+    "a": "False"
+  },
+  {
+    "q": "Nosotros ___ (beber) horchata en México",
+    "a": "bebemos"
+  },
+  {
+    "q": "Nosotros _______________ el juego de futbol americano",
+    "a": "estamos viendo"
+  },
+  {
+    "q": "Nosotros ______el avión por la puerta seis (abordar) = estamos abordando",
+    "a": "True"
+  },
+  {
+    "q": "Nosotros + work = trabajo",
+    "a": "False"
+  },
+  {
+    "q": "Numbers, when used as subject, is masculine",
+    "a": "True"
+  },
+  {
+    "q": "Oceans and rivers are feminine",
+    "a": "False"
+  },
+  {
+    "q": "PATINAR Usted no patin_ You (formal don't skate)",
+    "a": "a"
+  },
+  {
+    "q": "poder (yo)",
+    "a": "puedo"
+  },
+  {
+    "q": "Preposition 'a' is a very common preposition can mean to, at, by, or for, among other translations Indicate motion (to)",
+    "a": "True"
+  },
+  {
+    "q": "Preposition 'de' can mean of, from, or with, among other translations It can be used toIndicate possession (translations: of or possessive 's or s')",
+    "a": "True"
+  },
+  {
+    "q": "present participle for corer is corriendo",
+    "a": "True"
+  },
+  {
+    "q": "Present participle for escuchar",
+    "a": "escuchando"
+  },
+  {
+    "q": "Pues, a mí me gusta escuchar música ¿Y tú ?",
+    "a": "a ti"
+  },
+  {
+    "q": "Regardless of any country, when in business meetings you use Vos",
+    "a": "False"
+  },
+  {
+    "q": "REZAR Nosotros ______ We pray",
+    "a": "rezamos"
+  },
+  {
+    "q": "Sandra y ellos ___ (vivir) en Dallas",
+    "a": "viven"
+  },
+  {
+    "q": "She has just finished cooking:Celsa ___________ tamál, una comida latina",
+    "a": "acaba de cocinar"
+  },
+  {
+    "q": "She is dancing at this moment:Shantal, todavía está en la discoteca ___________ salsa",
+    "a": "estábailando"
+  },
+  {
+    "q": "Simple future, uses just one word, the informal future uses a combination of the verb ir, the preposition a, and an infinitive",
+    "a": "True"
+  },
+  {
+    "q": "Sobrina is the Spanish translation of niece",
+    "a": "True"
+  },
+  {
+    "q": "Spanish is an important language in the United Stage due to its proximity to Latin America",
+    "a": "True"
+  },
+  {
+    "q": "Spanish was used to be an official language in the Philippines until was abolished in the 1987 constitution",
+    "a": "True"
+  },
+  {
+    "q": "Spanish, French, Italian and Portuguese belongs to the Germanic languages",
+    "a": "False"
+  },
+  {
+    "q": "Sra Galvez______________ a Singapurel jueves (plano en el futuro)",
+    "a": "va a viajar"
+  },
+  {
+    "q": "Sra Santibañez, qué_______ ahora? (hacer) = está haciendo",
+    "a": "True"
+  },
+  {
+    "q": "Television is feminine because it is a form of communication",
+    "a": "True"
+  },
+  {
+    "q": "The appropriate response for \"=C2=BFD=C3=B3nde est=C3=A1s?\"",
+    "a": "Estoy ac=C3=A1 en la estaci=C3=B3n"
+  },
+  {
+    "q": "The conjugation of Él and Ella are different from Usted",
+    "a": "False"
+  },
+  {
+    "q": "The days of the week are feminine (eg martes)",
+    "a": "True"
+  },
+  {
+    "q": "The following Tagalog can be used interchangeably in Spanish because in terms of meaning except __?",
+    "a": "piso"
+  },
+  {
+    "q": "The most commonly irregular verbs in Nosotros are \"vamos\" and \"somos\"",
+    "a": "True"
+  },
+  {
+    "q": "The Verb/Linking verb AM, IS and ARE in English is represented by verbs SER y ESTAR",
+    "a": "True"
+  },
+  {
+    "q": "There are instances where a noun can be masculine or feminine (eg -ante, ista)",
+    "a": "True"
+  },
+  {
+    "q": "There are less vowel sounds in Spanish than English",
+    "a": "True"
+  },
+  {
+    "q": "There are places in the Spanish-speaking world where some letters are pronounced differently",
+    "a": "True"
+  },
+  {
+    "q": "There is no difference between Tu and Tú (with tilde/ accent)",
+    "a": "False"
+  },
+  {
+    "q": "They have just left the office",
+    "a": "Acaban de dejar la oficina"
+  },
+  {
+    "q": "To spell out a word in Spanish, the sentence would be \"Se escribe...\"",
+    "a": "True"
+  },
+  {
+    "q": "TOCAR Usted toc______ You (formal) touch",
+    "a": "a"
+  },
+  {
+    "q": "Todos los días(ella) ______________",
+    "a": "se maquilla"
+  },
+  {
+    "q": "Tomar is a stem changing verb",
+    "a": "False"
+  },
+  {
+    "q": "Tú ______________ la química luego para nuestro examen esta noche",
+    "a": "vas a repasar"
+  },
+  {
+    "q": "Tú ___(sacar) fotos de los animales",
+    "a": "sacas"
+  },
+  {
+    "q": "Tú (levantarse) a las seis de la mañana",
+    "a": "al gimnasio"
+  },
+  {
+    "q": "Tú debes (secarse) el pelo antes de salir en el invierno",
+    "a": "secarte"
+  },
+  {
+    "q": "Tú y yo__________________",
+    "a": "preferimos"
+  },
+  {
+    "q": "Tú, tú, tú y tú _________ a comer tacos",
+    "a": "vais"
+  },
+  {
+    "q": "Twenty one in Spanish is only written in one word",
+    "a": "True"
+  },
+  {
+    "q": "Twenty seven in Spanish is only written in two words",
+    "a": "False"
+  },
+  {
+    "q": "Ud _____________ ahora, ¿verdad?",
+    "a": "empieza"
+  },
+  {
+    "q": "Usted _______ casa de Anita",
+    "a": "va a la"
+  },
+  {
+    "q": "Usted is a more respectful way of talking to someone, such as a new acquaintance, an older person, or someone you consider to be of higher rank or anyone to whom you wish to show respect Use Usted with authority figures and most strangers",
+    "a": "juego"
+  },
+  {
+    "q": "USTED is abbreviated 'Ud'",
+    "a": "True"
+  },
+  {
+    "q": "Usted is used to show respect to someone",
+    "a": "True"
+  },
+  {
+    "q": "Usted, Tu and Vos can be all used interchangeably",
+    "a": "prefiere"
+  },
+  {
+    "q": "Ustedes ___(creer) en Santa Claus = creen",
+    "a": "True"
+  },
+  {
+    "q": "Ustedes, ____________________ a nuestra oficina nueva el martés",
+    "a": "van a ir"
+  },
+  {
+    "q": "Ustedescompartimos, is conjugated correctly",
+    "a": "False"
+  },
+  {
+    "q": "Vamos a la playa después de desayunar talks about a past context",
+    "a": "False"
+  },
+  {
+    "q": "Vas al parque",
+    "a": "Tú"
+  },
+  {
+    "q": "Verb Poder ('can') could also be use together with an infinitive verb",
+    "a": "True"
+  },
+  {
+    "q": "verbs like gustar are conjugated with Gusto, gustamos, gusustaís",
+    "a": "False"
+  },
+  {
+    "q": "Vos ___________ (You share)",
+    "a": "compartís"
+  },
+  {
+    "q": "Vos _____buenos libros",
+    "a": "leés"
+  },
+  {
+    "q": "Vos (vender) _____ frutas",
+    "a": "vendés"
+  },
+  {
+    "q": "Vos are only used in selected Latin American countries (2nd person singular informal like Tú)",
+    "a": "True"
+  },
+  {
+    "q": "Vos escribís does not have the same meaning with Tú escribes",
+    "a": "False"
+  },
+  {
+    "q": "Vosotros is commonly used in Mexico",
+    "a": "False"
+  },
+  {
+    "q": "Vosotros is only used in Spain (2nd person plural informal/ familiar)",
+    "a": "True"
+  },
+  {
+    "q": "Voy _____una película (mirar) = voy a mirar",
+    "a": "True"
+  },
+  {
+    "q": "We use el/la for indefinite articles",
+    "a": "False"
+  },
+  {
+    "q": "We use los for female definite plural articles",
+    "a": "la"
+  },
+  {
+    "q": "What is 10:45 am in Spanish?",
+    "a": "Son las once menoscuarto"
+  },
+  {
+    "q": "What is 5:50 in Spanish?",
+    "a": "Son las se=C3=ADs menos diez de la ma=C3=B1ana"
+  },
+  {
+    "q": "When /D/ is on the last letter of the word, we pronounce it as soft /d/",
+    "a": "False"
+  },
+  {
+    "q": "When C is combined with H (example: China, churros), the H will be pronounced",
+    "a": "True"
+  },
+  {
+    "q": "When Ce, Cj, Zi and Ze are used in Latin America, the following in Spanish will be pronounced as ______",
+    "a": "S"
+  },
+  {
+    "q": "When H in the first letter, there is no sound",
+    "a": "True"
+  },
+  {
+    "q": "When in Spain (Europe), Z can be pronounced interchangeably with S",
+    "a": "False"
+  },
+  {
+    "q": "When N is beside p/b/f or v the pronunciation converts into /m/ (eg investigador)",
+    "a": "True"
+  },
+  {
+    "q": "When someone asks you \"?C=C3=B3moest=C3=A1s ?\", the appropriate response would be \"Me llamo...\"",
+    "a": "False"
+  },
+  {
+    "q": "When someone would like to ask your age, the question to you would be?",
+    "a": "<?cuantosa=C3=B1ostienes?>"
+  },
+  {
+    "q": "When you want to spell a word in Spanish, the question would be?",
+    "a": "=C2=BFC=C3=B3mo se escribe?"
+  },
+  {
+    "q": "Which following country where /Y/ is pronounced as Sh/(Sh for shoes)",
+    "a": "Argentina"
+  },
+  {
+    "q": "Which of the following countries do not speak Spanish officially?",
+    "a": "Belize"
+  },
+  {
+    "q": "Which of the following countries do not speak Spanish?",
+    "a": "Jamaica"
+  },
+  {
+    "q": "Which of the following country where /Y/ is pronounced as /Sh/ (Sh for shoe or sure in English)",
+    "a": "Argentina"
+  },
+  {
+    "q": "Which of the following country where /Y/ is pronounced as Dj/(Dj for Jackson)",
+    "a": "Colombia"
+  },
+  {
+    "q": "Which of the following term does not have the same meaning in Tagalog or Spanish?",
+    "a": "red"
+  },
+  {
+    "q": "Which of the following tourist sites where you do NOT need to speak in Spanish",
+    "a": "Big Ben"
+  },
+  {
+    "q": "Which of the following tourist sites where you need to speak in Spanish?",
+    "a": "Sagrada Familia, Barcelona"
+  },
+  {
+    "q": "Which? What one?",
+    "a": "¿Cual?"
+  },
+  {
+    "q": "Who?",
+    "a": "¿Quien?"
+  },
+  {
+    "q": "Why?",
+    "a": "¿Por que?"
+  },
+  {
+    "q": "Write the correct ending of ' cantar, for 'Usted/El/ Ella cant____",
+    "a": "-a"
+  },
+  {
+    "q": "Write the correct ending of 'comer' for 'usted com___'",
+    "a": "-e"
+  },
+  {
+    "q": "Yo ___ (correr) en la calle",
+    "a": "corro"
+  },
+  {
+    "q": "Yo ____la lección (estudiar)",
+    "a": "estoy estudiando"
+  },
+  {
+    "q": "Yo________una película (mirar)",
+    "a": "estoy mirando"
+  },
+  {
+    "q": "Yo_____una película (mirar) = estamos mirando",
+    "a": "False"
+  },
+  {
+    "q": "You should use tú to address: Friends, Children, Classmates, Family, Pets & In general anyone who addresses to you using youTu is a possessive adjective and goes before a noun",
+    "a": "True"
+  },
+  {
+    "q": "You use tú and vos when talking and writing to a very close friend",
+    "a": "True"
+  }
+]

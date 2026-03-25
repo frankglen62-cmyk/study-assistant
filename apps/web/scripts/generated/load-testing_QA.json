@@ -1,0 +1,758 @@
+[
+  {
+    "q": "__________ enables functional tests to be carried out automatically to increase the speed and cost effectiveness of application development and delivery.",
+    "a": "Micro Focus Unified Functional Testing"
+  },
+  {
+    "q": "A constant is a named entity that sometimes represent the same value and cannot be changed",
+    "a": "False"
+  },
+  {
+    "q": "A variable is a named entity that can represent different values at different times",
+    "a": "True"
+  },
+  {
+    "q": "A Web application generally uses a greater variety of objects as compared to a Windows-based application.",
+    "a": "True"
+  },
+  {
+    "q": "A Web design uses Web classes and Web object.",
+    "a": "False"
+  },
+  {
+    "q": "Accessibility checkpoint identifies area of a web site to check for section 598 compliancy.",
+    "a": "False"
+  },
+  {
+    "q": "After a test is recorded, run the test to verify the test results.",
+    "a": "True"
+  },
+  {
+    "q": "After creating tests, you must determine exactly what you want to test in your application",
+    "a": "False"
+  },
+  {
+    "q": "After every recording, the script requires correlation You can continue to correlate using the script after using the recording correlation method",
+    "a": "True"
+  },
+  {
+    "q": "After playback, the replay summary advises as to whether the script should be correlated because dynamic server values were found",
+    "a": "True"
+  },
+  {
+    "q": "All test objects are stored in the object repository.",
+    "a": "True"
+  },
+  {
+    "q": "An action can be divided into logical sections such as the Login process, Create New Order process, and Logoff process.",
+    "a": "Test with Multiple Actions"
+  },
+  {
+    "q": "An action inside another action.",
+    "a": "Nested"
+  },
+  {
+    "q": "ANSI C functions allow you to add:CommentsControl flow statementsConditional statements",
+    "a": "True"
+  },
+  {
+    "q": "Automated testing is to verify if the AUT performs the designated tasks, you automate a series of tests that run without human intervention.",
+    "a": "True"
+  },
+  {
+    "q": "Base Filter properties is the most fundamental properties of a particular test object class.",
+    "a": "True"
+  },
+  {
+    "q": "Before a record session is initiated, you must set the record and run settings for the Web application that you want to test.",
+    "a": "True"
+  },
+  {
+    "q": "Before you begin creating tests, you must determine exactly what you want to test in your application.",
+    "a": "True"
+  },
+  {
+    "q": "Begins the run sessions",
+    "a": "Run"
+  },
+  {
+    "q": "Benefits of Automated Testing where automated tests are significantly faster than human users.",
+    "a": "Fast"
+  },
+  {
+    "q": "Benefits of Automated Testing where you can build a suite of tests that covers every feature in your Web site or application.",
+    "a": "comprehensive"
+  },
+  {
+    "q": "Benefits of Automated Testing where you can program sophisticated tests that bring out hidden information",
+    "a": "Programmable"
+  },
+  {
+    "q": "Benefits of Automated testing where you can test how the Web site or application reacts after repeated execution of the same operations",
+    "a": "Repeatable"
+  },
+  {
+    "q": "Brackets matches a range of character.",
+    "a": "True"
+  },
+  {
+    "q": "Business processes that are crucial in day-to-day operations",
+    "a": "Mission-Critical Process"
+  },
+  {
+    "q": "Check stability of system under extended periods of load",
+    "a": "volume testing"
+  },
+  {
+    "q": "Checkpoints can be inserted even while you are in recording mode.",
+    "a": "True"
+  },
+  {
+    "q": "Checkpoints do not need to be managed in single tests.",
+    "a": "False"
+  },
+  {
+    "q": "Checkpoints include the following type EXCEPT.",
+    "a": "Java"
+  },
+  {
+    "q": "Class is the selected name of the selected object.",
+    "a": "False"
+  },
+  {
+    "q": "Community Links is the community button to open news about UFT GUI Testing.",
+    "a": "False"
+  },
+  {
+    "q": "Comprehension can build a suite of tests that covers every feature in your Web site or application",
+    "a": "False"
+  },
+  {
+    "q": "Correlation is used when a dynamic script includes a recorded value",
+    "a": "False"
+  },
+  {
+    "q": "Data driven functionally without which users could not operate.",
+    "a": "False"
+  },
+  {
+    "q": "Default is a normal object based recording mode for UFT recording sessions",
+    "a": "True"
+  },
+  {
+    "q": "Determine whether the system handles anticipated real-world load",
+    "a": "load testing"
+  },
+  {
+    "q": "Displays the image that UFT for GUI Testing uses to identify the object in the application.",
+    "a": "Test Object Image area(Insight Test Objects)"
+  },
+  {
+    "q": "Double Action Test is an action in UFT for GUI Testing refers to a set of steps that are run as a group.",
+    "a": "False"
+  },
+  {
+    "q": "During your regular working process, you can add checkpoints to any test.",
+    "a": "True"
+  },
+  {
+    "q": "During your test creation, you must determine exactly what you want to test in your application.",
+    "a": "False"
+  },
+  {
+    "q": "Dynamic Content is the process of unique identifiers.",
+    "a": "True"
+  },
+  {
+    "q": "Enables you to associate one or more shared object repositories with one or more actions in a test.",
+    "a": "Dialog Box"
+  },
+  {
+    "q": "Enables you to create a test or component or a solution by clicking the New or Open buttons after selecting a test, component or solution name",
+    "a": "Recent Test/Components and Recent Solutions"
+  },
+  {
+    "q": "Enables you to define a new internal environment variable and add it to the list.",
+    "a": "Add"
+  },
+  {
+    "q": "Enables you to define related objects according to their distance or hierarchical location relative to the object to identify.",
+    "a": "Distance and hierarchy"
+  },
+  {
+    "q": "Enables you to open multiple shared object repositories and modify them as required.",
+    "a": "Object Repository Manager dialog box"
+  },
+  {
+    "q": "Enables you to open multiple shared object repositories and modify them as required. Object Repository Manager dialog box",
+    "a": "Object Repository Manager dialog box"
+  },
+  {
+    "q": "Enables you to verify the following features of Application Under test",
+    "a": "Functional Testing"
+  },
+  {
+    "q": "Enables you to view the properties of a checkpoint object, the same way as you do in the relevant Checkpoint Properties dialog box.",
+    "a": "Object Details area (Checkpoint Objects)"
+  },
+  {
+    "q": "Expands or collapses the dialog box to show the Results Location and Input Parameters tabs.",
+    "a": "Options"
+  },
+  {
+    "q": "File content checkpoint check the image in a document generated during a run session.",
+    "a": "False"
+  },
+  {
+    "q": "Filtering data using the legend provides a fast and easy way to hide unwanted data",
+    "a": "True"
+  },
+  {
+    "q": "Find system's breaking point; measure whether system's environment is properly configured for unexpected, high-transaction volume",
+    "a": "stress testing"
+  },
+  {
+    "q": "Find the behaviour and performance of each tier",
+    "a": "Component Testing"
+  },
+  {
+    "q": "Global Sheet enables you to insert data that applies only to that action.",
+    "a": "Global sheet"
+  },
+  {
+    "q": "Highlights the visual relation between all related objects and the objects matching the test object to identify (main UFT window is hidden).",
+    "a": "Preview"
+  },
+  {
+    "q": "HPE has the hardware which functions using an interactive, visual system and lets developers and testers view, manipulate, and assess the application's graphical user interface.",
+    "a": "False"
+  },
+  {
+    "q": "If a test for a ________________is selected, HPE Unified Functional Testing allows users to install or push their developed mobile apps to real Android, iOS or Windows devices and interact with both the device and the app from within the platform.",
+    "a": "mobile app"
+  },
+  {
+    "q": "If a test for a desktop or web app is to be performed, users select the proper settings on an _________________ and begin the test by hitting the Record button",
+    "a": "in-platform prompt"
+  },
+  {
+    "q": "If server-generated data gets reused by the client, VuGen automatically correlates it",
+    "a": "True"
+  },
+  {
+    "q": "In exporting and importing rules, scripter 1 will export the custom rules to a file with cor extension",
+    "a": "True"
+  },
+  {
+    "q": "In exporting and importing rules, scripter 2 will import the custom rules from cor extension file to his machine",
+    "a": "True"
+  },
+  {
+    "q": "In recording a new script, after creating the rule, when you record a new script, the rule is automatically applied and correlates the script",
+    "a": "True"
+  },
+  {
+    "q": "In regenerating the script, if you have already recorded the script, create the rules, and then regenerate the script to apply the newly created correlation rule",
+    "a": "True"
+  },
+  {
+    "q": "In the initial stages, ________________ goals that cannot be measured will allow later filtering to create more focused goals",
+    "a": "Documenting"
+  },
+  {
+    "q": "Indicates that the value of the property is currently a parameter.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Indicates that the value of the property is currently an environment variable parameter.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It checks the contents of a data based accessed by an application.",
+    "a": "Database Checkpoint"
+  },
+  {
+    "q": "It Click the Community button to open news about UFT GUI Testing.",
+    "a": "Community Area"
+  },
+  {
+    "q": "It Click the Links button to open links to the UFT for GUI Testing Help.",
+    "a": "Links Area"
+  },
+  {
+    "q": "It Click the Support button to open links to UFT for GUI Testing support",
+    "a": "Support Area"
+  },
+  {
+    "q": "It is a browsers-based application.",
+    "a": "Mercury Tours"
+  },
+  {
+    "q": "It is a checkpoint that can check for any value generated at run time.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It is a file that defines the script to execute, the number of Vusers to run, the goals of the test, the computer that will host the Vusers, and the condition under which the load test runs",
+    "a": "Scenario"
+  },
+  {
+    "q": "It is a normal object based recording mode for UFT recording sessions.",
+    "a": "Default"
+  },
+  {
+    "q": "It is a reusable action stored with another test.",
+    "a": "It is a reusable action stored with another test."
+  },
+  {
+    "q": "It is a set of all actions or user steps performed within an application to accomplish a business goal",
+    "a": "Business process"
+  },
+  {
+    "q": "It is a set of users acting upon an application in a similar manner at the same time",
+    "a": "Concurrency"
+  },
+  {
+    "q": "It is a value of a property captured from the the AUT during the test execution.",
+    "a": "Output Parameter"
+  },
+  {
+    "q": "It is a web_submit_data records all data that was actually sent from the browser to the server",
+    "a": "URL"
+  },
+  {
+    "q": "It is a windows- based application.",
+    "a": "Flight Reservation"
+  },
+  {
+    "q": "It is an end-to-end measurement of time elapsed when one or more steps in a business process have been completed",
+    "a": "LoadRunner Transaction"
+  },
+  {
+    "q": "It is aweb_submit_form only records options that an end user is allowed to see and change",
+    "a": "HTML"
+  },
+  {
+    "q": "It is one that can be called multiple times by the local test.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "It matches one to any number of occurrences of the preceding character.",
+    "a": "Plus"
+  },
+  {
+    "q": "Itconsists of server requests that are customized for each user",
+    "a": "Dynamic Content"
+  },
+  {
+    "q": "Item refers to the object in the AUT that was interacted with.",
+    "a": "True"
+  },
+  {
+    "q": "Itis a set of actions or user steps performed within an application to accomplish a business goal",
+    "a": "Business Process"
+  },
+  {
+    "q": "Itis the administrative centre for creating, maintaining and executing scenarios The machine you designate to manage and maintain your scenarios",
+    "a": "Controller"
+  },
+  {
+    "q": "Ituses the load test results to create graphs and reports that correlate system information, identify bottlenecks and performance issues",
+    "a": "Analysis Tool"
+  },
+  {
+    "q": "Jenkins is a tool that evaluates the functionality and load performance of any created or deployed APIs present in the app being tested.",
+    "a": "False"
+  },
+  {
+    "q": "Lines between /*/* are comments",
+    "a": "False"
+  },
+  {
+    "q": "Links Area is the Links button to open links to the UFT for GUI Testing Help.",
+    "a": "True"
+  },
+  {
+    "q": "LoadRunner offers a wide range of performance monitors for isolating bottlenecksPerformance monitors:Gather data for online/offline analysisDisplay real-time data during testingGather data for online root cause analysis after testing",
+    "a": "False"
+  },
+  {
+    "q": "Low Recording recognizes objects based on their appearance rather than their native properties",
+    "a": "False"
+  },
+  {
+    "q": "Manual Testing enables you to verify the following features of Application Under test.",
+    "a": "False"
+  },
+  {
+    "q": "Mercury Tools is a browsers-based application.",
+    "a": "False"
+  },
+  {
+    "q": "Multiple shared object repositories can store in data sheets.",
+    "a": "False"
+  },
+  {
+    "q": "Names and their values are located in the Data Table.",
+    "a": "Input Parameter"
+  },
+  {
+    "q": "Non-reusable action is one that can be called only in the local test.",
+    "a": "True"
+  },
+  {
+    "q": "Number field value is dynamic and requires correlation",
+    "a": "True"
+  },
+  {
+    "q": "One advantage of exporting and importing correlation rules is that it allows other scripts to use rules that were already created",
+    "a": "True"
+  },
+  {
+    "q": "Operation refers to data that you specify for the operation performed on the object.",
+    "a": "False"
+  },
+  {
+    "q": "Optional Filter properties is the other properties that can help identify objects of a particular class.",
+    "a": "True"
+  },
+  {
+    "q": "Page checkpoint checks the characteristics of a web page",
+    "a": "True"
+  },
+  {
+    "q": "Property name enables you to specify the property value for which UFT for GUI Testing should wait before continuing to the next step in the test.",
+    "a": "False"
+  },
+  {
+    "q": "Recognizes objects based on their appearance rather than their native properties.",
+    "a": "Insight Recording"
+  },
+  {
+    "q": "Records additional detail into some steps, such as the coordinates of a mouse click on an object so that UFT may use that additional data.",
+    "a": "Low level recording"
+  },
+  {
+    "q": "Refers to data that you specify for the operation performed on the object.",
+    "a": "Value"
+  },
+  {
+    "q": "Refers to the action that you perform on the object during the recording session. This is also called the method.",
+    "a": "Operation"
+  },
+  {
+    "q": "Refers to the object in the AUT that was interacted with.",
+    "a": "Item"
+  },
+  {
+    "q": "Result Details is a high-level results overview report, containing general information about the test.",
+    "a": "True"
+  },
+  {
+    "q": "Reusable action is one that can be called multiple times by the local test.",
+    "a": "True"
+  },
+  {
+    "q": "software features various important legacy products such as QuickTest Professional, WinRunner, and HP Service Test.",
+    "a": "HP Unified Functional Testing"
+  },
+  {
+    "q": "Special character Period in UFT matches any single character.",
+    "a": "True"
+  },
+  {
+    "q": "Stage 2 of GUI Testing Workflow",
+    "a": "Preparing the Testing Infrastructure"
+  },
+  {
+    "q": "Stage 6 GUI Testing Workflow",
+    "a": "Analyzing Run Results and Reporting Defects"
+  },
+  {
+    "q": "Synchronization is used to instruct UFT for GUI Testing to wait for the application process to complete before proceeding to the next step in the test.",
+    "a": "True"
+  },
+  {
+    "q": "Table checkpoint checks the property values of an image",
+    "a": "False"
+  },
+  {
+    "q": "Test object name is the test object class of the selected object.",
+    "a": "False"
+  },
+  {
+    "q": "Tests perform precisely the same operations each time they are run, thereby eliminating human error",
+    "a": "Reliable"
+  },
+  {
+    "q": "Text checkpoints the text string is displayed within a defined area in a window based application according to specified criteria.",
+    "a": "False"
+  },
+  {
+    "q": "The ______________ allows for both keyword-driven and objectbased automated functional testing commands, but also provides manual scripting tools for users who want a more hands-on approach.",
+    "a": "platform"
+  },
+  {
+    "q": "The amount of time that a real user pauses between steps",
+    "a": "LoadRunner think time"
+  },
+  {
+    "q": "The Browser Navigation Timeout allows 90 seconds for a page to load by default.",
+    "a": "False"
+  },
+  {
+    "q": "The details of the visual relation for the selected related object.",
+    "a": "Relation details"
+  },
+  {
+    "q": "The environment variable xml file to load and use when your test runs.",
+    "a": "File"
+  },
+  {
+    "q": "The first step in isolating the problem in a specific subsystem is to understand how the network performed during the test",
+    "a": "True"
+  },
+  {
+    "q": "The HPE Unified Functional Testing platform is available as on-premises software (for _______) or as software as a service available for use on today's most popular web browsers",
+    "a": "windows-based machines"
+  },
+  {
+    "q": "The HPE Unified Functional Testing tool offers integration with Jenkins and other HPE and third-party app development tools such as HP Quality Center and HPE Application Lifecycle Management suite.",
+    "a": "True"
+  },
+  {
+    "q": "The LoadRunner tool used to create VuGen scripts that emulate user behaviour on an application",
+    "a": "Virtual User Generation"
+  },
+  {
+    "q": "The most fundamental properties of a particular test object class.",
+    "a": "None of the choices"
+  },
+  {
+    "q": "The name of the test object as it appears in the object repository (read-only).",
+    "a": "Test Object to Identify"
+  },
+  {
+    "q": "The Object Repository System enables you to open multiple shared object repositories and modify them as needed",
+    "a": "False"
+  },
+  {
+    "q": "The platform is best suited for organizations that intend to develop and launch one or more complex desktop, mobile, or web applications intended for use on a variety of devices and",
+    "a": "operating systems"
+  },
+  {
+    "q": "The platform will automatically record any ______________ or keyword-based on-screen actions and commands undertaken by the user.",
+    "a": "interactive"
+  },
+  {
+    "q": "The Programming language used for VuGen scripts",
+    "a": "ANSI-C"
+  },
+  {
+    "q": "The second step in the Script Creation Phase is?",
+    "a": "Virtual User Creation"
+  },
+  {
+    "q": "The target location for the results, as specified in the Results Location tab.",
+    "a": "Results Location"
+  },
+  {
+    "q": "The test or component to run. You can select any open item from the drop- down list.",
+    "a": "Test Name"
+  },
+  {
+    "q": "The UFT platform from HPE allows users to create and execute automated functionality and performance tests on native and cross-platform mobile apps developed for Android, iOS, and Windows devices.",
+    "a": "True"
+  },
+  {
+    "q": "The Unified Functional Testing platform from HPE is suitable for use by development, testing and ______ individuals and teams due to its range of automated functionality and performance testing tools.",
+    "a": "quality assurance"
+  },
+  {
+    "q": "There is a manual script writing involved when creating automated test(s) using UFT from HPE.",
+    "a": "False"
+  },
+  {
+    "q": "This a geographically dispersed network",
+    "a": "WAN"
+  },
+  {
+    "q": "This allows data to be written, read, and destroyed without affecting production users and allows the test system to be rebooted during test runs without affecting production users",
+    "a": "Test Environment"
+  },
+  {
+    "q": "This allows you to control all the Vusers for the scenario from a single location",
+    "a": "Controller"
+  },
+  {
+    "q": "This allows you to decide which business processes to record, isolate peak loads and peak load times, and document user actions and valid input data for each business process",
+    "a": "Gathering information"
+  },
+  {
+    "q": "This is an end-to-end measurement of time elapsed when one or more steps in a business proves have been completed",
+    "a": "LoadRunner transaction"
+  },
+  {
+    "q": "This is the administrative center for creating, maintaining, and executing scenarios",
+    "a": "Controller"
+  },
+  {
+    "q": "This is the identifier that applicable only to web applications.",
+    "a": "Creation Time"
+  },
+  {
+    "q": "This is the identifier that indicates the order which the order appears in the application code.",
+    "a": "Index"
+  },
+  {
+    "q": "This is the identifier which object appears within the frame or dialog box.",
+    "a": "Location"
+  },
+  {
+    "q": "This records the scripts that emulate the steps of the real users using the application",
+    "a": "Virtual User Generator"
+  },
+  {
+    "q": "This should outline all of your load test objectives",
+    "a": "Conceptual Goals"
+  },
+  {
+    "q": "To create a new _______________, users open a new project and select what type of app (Windows desktop, mobile or web) the test is to be performed on.",
+    "a": "test script"
+  },
+  {
+    "q": "To update an object, perform the following steps:",
+    "a": "All of the choices"
+  },
+  {
+    "q": "To verify if the AUT performs the designated tasks, you automate a series of tests that run without human intervention.",
+    "a": "Automated Testing"
+  },
+  {
+    "q": "To verify if the AUT performs the designated tasks, you manually execute a series of tests.",
+    "a": "Manual Testing"
+  },
+  {
+    "q": "To work correctly, automatic correlation requires at least two playbacks",
+    "a": "False"
+  },
+  {
+    "q": "UFT stands for United Functional Testing.",
+    "a": "False"
+  },
+  {
+    "q": "Use a shared object repository, when: You are creating tests or components using keyworddriven methodologies (not by recording)",
+    "a": "True"
+  },
+  {
+    "q": "Various Name is the test or component to run.",
+    "a": "False"
+  },
+  {
+    "q": "Very Popular",
+    "a": "Heavy throughput"
+  },
+  {
+    "q": "VuGen can correlate dynamic data based on predefined rules in the Recording Options",
+    "a": "True"
+  },
+  {
+    "q": "What objective of Load Testing tries to identify the best server for 100 users?",
+    "a": "Product Evaluation"
+  },
+  {
+    "q": "What should you do to indicate that you would like to ask a question?",
+    "a": "Raise your hand"
+  },
+  {
+    "q": "When a local data sheet is used, values specific to an action appear in the action data sheets that are available to that action only.",
+    "a": "True"
+  },
+  {
+    "q": "When running a script, what settings can be changed to allow you to control the behavior of a Vuser?",
+    "a": "Runtime Settings"
+  },
+  {
+    "q": "When the Web add-in is loaded, the Test Settings displays a Web tab.",
+    "a": "True"
+  },
+  {
+    "q": "When you open an object repository, it opens in a read-only format by default.",
+    "a": "True"
+  },
+  {
+    "q": "When you run a test, your application might not always respond with the same speed.",
+    "a": "True"
+  },
+  {
+    "q": "With Correlation Studio you can add and edit rules",
+    "a": "True"
+  },
+  {
+    "q": "With Correlation Studio you can scan for correlations using rules, record-based engines, and replay-based engines",
+    "a": "True"
+  },
+  {
+    "q": "With Correlation Studio you cannot review details pertaining to a specific dynamic value in a snapshot",
+    "a": "False"
+  },
+  {
+    "q": "XML checkpoint checks the data content of XML documents.",
+    "a": "True"
+  },
+  {
+    "q": "You can add an object to the object repository directly from the Object Spy.",
+    "a": "True"
+  },
+  {
+    "q": "You can also merge objects from the local object repository directly to a shared object repository that is associated with the same action or component.",
+    "a": "True"
+  },
+  {
+    "q": "You can check the object property values in your application using standard checkpoints.",
+    "a": "True"
+  },
+  {
+    "q": "You can create a custom correlation rule to correlate during recording if you know the context in advance This is a one-time task After setup, all future recordings add the correlation in the script during recording",
+    "a": "True"
+  },
+  {
+    "q": "You can define correlation options before you record a script",
+    "a": "True"
+  },
+  {
+    "q": "You can insert a synchronization point that instructs the tool to wait until the Update Order button's enabled property equals.",
+    "a": "True"
+  },
+  {
+    "q": "You can insert a synchronization point that instructs the UFT for GUI Testing tool to wait until the Update Order button is enabled.",
+    "a": "True"
+  },
+  {
+    "q": "You can insert a synchronization point, which instructs the UFT for GUI Testing tool to pause the test until an object property achieves the value you specify.",
+    "a": "True"
+  },
+  {
+    "q": "You can insert Exist or Wait statements that instruct the UFT for GUI Testing tool to wait until an object exists or to wait a specified amount of time before continuing the test.",
+    "a": "True"
+  },
+  {
+    "q": "You can modify the default amount of time that the UFT for GUI Testing tool waits for a Web page to load.",
+    "a": "True"
+  },
+  {
+    "q": "You can not delete objects from the object repository.",
+    "a": "False"
+  },
+  {
+    "q": "You can open as many shared object repositories as you want.",
+    "a": "True"
+  },
+  {
+    "q": "You can use only one shared object repositories.",
+    "a": "False"
+  },
+  {
+    "q": "You can use the shared object repository for multiple tests.",
+    "a": "True"
+  }
+]
