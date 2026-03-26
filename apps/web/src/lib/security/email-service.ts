@@ -1,11 +1,55 @@
 import { Resend } from 'resend';
 
+const brevoApiKey = process.env.BREVO_API_KEY;
 const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'Study Assistant <noreply@resend.dev>';
+const fromEmail =
+  process.env.BREVO_FROM_EMAIL ??
+  process.env.RESEND_FROM_EMAIL ??
+  'Study Assistant <noreply@resend.dev>';
 
 function getResendClient(): Resend | null {
   if (!resendApiKey) return null;
   return new Resend(resendApiKey);
+}
+
+async function sendWithBrevo(to: string, subject: string, html: string): Promise<void> {
+  if (!brevoApiKey) {
+    throw new Error('Brevo API key is not configured.');
+  }
+
+  const match = fromEmail.match(/^(.*?)<(.+)>$/);
+  const sender = (() => {
+    if (!match) {
+      return { name: 'Study Assistant', email: fromEmail.trim() };
+    }
+
+    const [, rawName = 'Study Assistant', rawEmail = fromEmail] = match;
+    return {
+      name: rawName.trim().replace(/^"|"$/g, '') || 'Study Assistant',
+      email: rawEmail.trim(),
+    };
+  })();
+
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'api-key': brevoApiKey,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      sender,
+      to: [{ email: to }],
+      subject,
+      htmlContent: html,
+    }),
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    const details = await response.text();
+    console.error('Failed to send OTP email via Brevo:', details);
+    throw new Error('Unable to send verification email. Please try again.');
+  }
 }
 
 function buildOtpEmailHtml(code: string, purpose: string): string {
@@ -65,14 +109,21 @@ export async function sendOtpEmail(to: string, code: string, purpose: string): P
       : purpose === 'email_change_current'
         ? 'Verify your email change request'
         : purpose === 'email_change_new'
-          ? 'Verify your new email address'
-          : 'Your security verification code';
+        ? 'Verify your new email address'
+        : 'Your security verification code';
+
+  const html = buildOtpEmailHtml(code, purpose);
+
+  if (brevoApiKey) {
+    await sendWithBrevo(to, subject, html);
+    return;
+  }
 
   const { error } = await client.emails.send({
     from: fromEmail,
     to,
     subject,
-    html: buildOtpEmailHtml(code, purpose),
+    html,
   });
 
   if (error) {
