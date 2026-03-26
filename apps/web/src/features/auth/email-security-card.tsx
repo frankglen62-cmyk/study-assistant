@@ -7,7 +7,6 @@ import { Loader2, Mail, ShieldCheck } from 'lucide-react';
 import { Badge, Button, Input } from '@study-assistant/ui';
 
 import { useToast } from '@/components/providers/toast-provider';
-import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { SettingRow } from '@/features/account/setting-row';
 
 function getReadableError(error: unknown, fallback: string) {
@@ -89,23 +88,13 @@ export function EmailSecurityCard({
         throw new Error(requestPayload?.error ?? 'Unable to start email change request.');
       }
 
-      const supabase = getSupabaseBrowserClient();
-      const { error } = await supabase.auth.signInWithOtp({
-        email: currentEmail,
-        options: {
-          shouldCreateUser: false,
-          emailRedirectTo: requestPayload.redirectTo,
-        },
-      });
-
-      if (error) throw error;
-
       setTargetEmail('');
       pushToast({
         tone: 'success',
-        title: 'Verification Sent',
-        description: 'Check your current inbox to approve this change.',
+        title: 'Code sent',
+        description: 'A 6-digit verification code was sent to your current email.',
       });
+      window.location.assign(requestPayload.redirectTo);
     } catch (error) {
       pushToast({ tone: 'danger', title: 'Change failed', description: getReadableError(error, 'Unable to request an email change.') });
     } finally {

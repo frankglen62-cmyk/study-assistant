@@ -8,6 +8,7 @@ import {
 } from '@/lib/auth/email-challenge';
 import { env } from '@/lib/env/server';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { generateAndSendOtp } from '@/lib/security/otp-service';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 
 const requestSchema = z.object({
@@ -41,8 +42,9 @@ export async function POST(request: Request) {
       targetEmail: body.targetEmail,
       nextPath,
     });
-    const redirectTo = `${env.NEXT_PUBLIC_APP_URL}/auth/callback?flow=email-change-approval&next=${encodeURIComponent(nextPath)}`;
-    const response = jsonOk({ redirectTo }, requestId);
+    const otp = await generateAndSendOtp(user.id, user.email, 'email_change_current');
+    const redirectTo = `${env.NEXT_PUBLIC_APP_URL}/email-approval?purpose=email_change_current&sent=1&cooldown=${otp.cooldownSeconds}&next=${encodeURIComponent(nextPath)}`;
+    const response = jsonOk({ redirectTo, cooldownSeconds: otp.cooldownSeconds }, requestId);
 
     response.cookies.set(EMAIL_CHANGE_REQUEST_COOKIE, token, buildEmailChallengeCookieOptions(30 * 60));
 
