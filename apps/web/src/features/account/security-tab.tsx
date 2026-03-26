@@ -58,7 +58,7 @@ export function SecurityTab({
       <SettingRow
         icon={<Info className="h-4 w-4 text-accent" />}
         title="Sensitive Action Verification"
-        description="For sensitive account changes like updating your email, changing your password, or disabling two-factor authentication, we may ask you to verify with a code sent to your registered email or authenticator app."
+        description="If Email 2FA or an authenticator app is enabled, sign-in and sensitive account changes can require one more approval step before they continue."
       />
     </div>
   );

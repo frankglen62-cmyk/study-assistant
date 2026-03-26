@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import type { Route } from 'next';
-import { Loader2, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Loader2, Mail, ShieldCheck } from 'lucide-react';
 
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input } from '@study-assistant/ui';
 
@@ -106,7 +106,7 @@ export function EmailSecurityCard({
   } = useCaptchaState();
 
   const toggleLabel = useMemo(
-    () => (enabled ? 'Email sign-in approval is on.' : 'Email sign-in approval is off.'),
+    () => (enabled ? 'Sign-in and secure email updates require approval through your current inbox.' : 'Password or social sign-in will continue directly unless your inbox needs approval for an email change.'),
     [enabled],
   );
 
@@ -131,13 +131,13 @@ export function EmailSecurityCard({
       setEnabled(nextValue);
       pushToast({
         tone: 'success',
-        title: nextValue ? 'Email approval enabled' : 'Email approval disabled',
+        title: nextValue ? 'Email 2FA enabled' : 'Email 2FA disabled',
         description: nextValue
-          ? 'Future sign-ins will require an approval email after password or social login.'
-          : 'Sign-ins will no longer pause for email approval.',
+          ? 'Future sign-ins and protected email actions will require approval through your current inbox.'
+          : 'Password and social sign-ins will no longer pause for inbox approval.',
       });
     } catch (error) {
-      const message = getReadableError(error, 'Unable to update email sign-in approval.');
+      const message = getReadableError(error, 'Unable to update email 2FA.');
       setToggleError(message);
       pushToast({ tone: 'danger', title: 'Update failed', description: message });
     } finally {
@@ -174,7 +174,7 @@ export function EmailSecurityCard({
 
       const requestPayload = (await requestResponse.json().catch(() => null)) as { redirectTo?: string; error?: string } | null;
       if (!requestResponse.ok || !requestPayload?.redirectTo) {
-        throw new Error(requestPayload?.error ?? 'Unable to start the email change request.');
+        throw new Error(requestPayload?.error ?? 'Unable to start the secure email change request.');
       }
 
       const supabase = getSupabaseBrowserClient();
@@ -192,11 +192,13 @@ export function EmailSecurityCard({
       }
 
       setTargetEmail('');
-      setEmailChangeNotice('Approval email sent to your current inbox. Approve it first to start the secure email change flow.');
+      setEmailChangeNotice(enabled
+        ? 'A verification email was sent to your current inbox. Approve it there first before the new email can replace this one.'
+        : 'A secure confirmation email was sent. Approve it from your current inbox to continue the email update.');
       pushToast({
         tone: 'success',
-        title: 'Approval email sent',
-        description: 'Check your current email and approve the email change request.',
+        title: 'Email change started',
+        description: 'Check your current inbox first before the email change can continue.',
       });
     } catch (error) {
       const message = getReadableError(error, 'Unable to request an email change.');
@@ -211,18 +213,18 @@ export function EmailSecurityCard({
   return (
     <Card className="h-fit">
       <CardHeader>
-        <CardTitle>Email Security</CardTitle>
-        <CardDescription>Control email-based sign-in approval and secure email change requests for this account.</CardDescription>
+        <CardTitle>Email 2-Factor Authentication</CardTitle>
+        <CardDescription>Protect sign-ins and important email changes with one more approval step through your current inbox.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Current email</p>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Primary email</p>
             <p className="mt-2 text-base font-semibold text-foreground break-all">{currentEmail}</p>
-            <p className="mt-2 text-sm text-muted-foreground">This is the inbox used for sign-in, approval emails, and secure account recovery.</p>
+            <p className="mt-2 text-sm text-muted-foreground">This inbox receives sign-in approvals, secure email-change approvals, and account recovery messages.</p>
           </div>
           <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Email sign-in approval</p>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Email 2FA</p>
             <p className="mt-2 text-lg font-semibold text-foreground">{enabled ? 'Enabled' : 'Disabled'}</p>
             <p className="mt-2 text-sm text-muted-foreground">{toggleLabel}</p>
           </div>
@@ -239,9 +241,9 @@ export function EmailSecurityCard({
             </div>
             <div className="flex-1 space-y-3">
               <div>
-                <p className="text-sm font-medium text-foreground">Email-based sign-in approval</p>
+                <p className="text-sm font-medium text-foreground">Email 2-Factor Authentication</p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Add an email approval step after password or social login. This is separate from the authenticator app.
+                  Turn this on to require inbox approval after password or social sign-in. It also keeps secure email updates tied to your registered inbox.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -251,7 +253,7 @@ export function EmailSecurityCard({
                   disabled={workingMode === 'toggle'}
                 >
                   {workingMode === 'toggle' ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
-                  {enabled ? 'Disable email approval' : 'Enable email approval'}
+                  {enabled ? 'Disable Email 2FA' : 'Enable Email 2FA'}
                 </Button>
               </div>
             </div>
@@ -263,18 +265,32 @@ export function EmailSecurityCard({
             <div>
               <p className="text-sm font-medium text-foreground">Change sign-in email</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Request a secure email change. We will first send an approval email to your current inbox before applying the change.
+                Enter the new email you want to use. Before it changes, your current inbox must approve the request.
               </p>
             </div>
 
-            <FormField label="New email address" description="Use an inbox you control. A secure email change can require confirming both old and new addresses.">
-              <Input
-                value={targetEmail}
-                onChange={(event) => setTargetEmail(event.target.value)}
-                placeholder="new-email@example.com"
-                className="h-12 rounded-xl border-white/10 bg-white/[0.04] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20"
-              />
-            </FormField>
+            <div className="rounded-2xl border border-border/70 bg-background/60 p-4">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Email change flow</p>
+              <div className="mt-3 flex flex-col gap-3 lg:flex-row lg:items-center">
+                <div className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Current email</p>
+                  <p className="mt-2 truncate text-sm font-semibold text-foreground">{currentEmail}</p>
+                </div>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]">
+                  <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <FormField label="New email" description="Use an inbox you control. We will not replace the current email until approval is completed.">
+                    <Input
+                      value={targetEmail}
+                      onChange={(event) => setTargetEmail(event.target.value)}
+                      placeholder="new-email@example.com"
+                      className="h-12 rounded-xl border-white/10 bg-white/[0.04] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20"
+                    />
+                  </FormField>
+                </div>
+              </div>
+            </div>
 
             <CaptchaWidget
               action="email-change"
@@ -285,7 +301,7 @@ export function EmailSecurityCard({
 
             <Button type="button" onClick={handleEmailChange} disabled={workingMode === 'change'}>
               {workingMode === 'change' ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
-              Send approval email
+              Change Email
             </Button>
           </div>
         </div>

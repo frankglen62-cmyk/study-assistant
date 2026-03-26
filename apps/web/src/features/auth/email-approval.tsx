@@ -75,7 +75,7 @@ export function EmailApprovalCard({ currentEmail, nextPath, backPath }: EmailApp
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { captchaError, captchaResetKey, captchaToken, ensureCaptcha, resetCaptcha, setCaptchaToken } = useCaptchaState();
 
-  const buttonLabel = useMemo(() => (isWorking ? 'Sending approval email...' : 'Send approval email'), [isWorking]);
+  const buttonLabel = useMemo(() => (isWorking ? 'Sending verification email...' : 'Send verification email'), [isWorking]);
 
   const handleSend = async () => {
     setErrorMessage(null);
@@ -116,9 +116,9 @@ export function EmailApprovalCard({ currentEmail, nextPath, backPath }: EmailApp
         throw error;
       }
 
-      const message = 'Approval email sent. Open the latest email we sent to finish sign-in.';
+      const message = 'Verification email sent. Open the latest email we sent to finish sign-in.';
       setNotice(message);
-      pushToast({ tone: 'success', title: 'Approval email sent', description: message });
+      pushToast({ tone: 'success', title: 'Verification email sent', description: message });
     } catch (error) {
       const message = getReadableError(error, 'Unable to send the email approval request.');
       setErrorMessage(message);
@@ -132,8 +132,8 @@ export function EmailApprovalCard({ currentEmail, nextPath, backPath }: EmailApp
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-[#111111] p-8 shadow-2xl shadow-black/30">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Approve Sign-In</h2>
-        <p className="mt-1 text-sm text-neutral-500">Your account uses email-based sign-in approval. We will send a secure approval email to your inbox before you continue.</p>
+        <h2 className="text-2xl font-bold text-white">Confirm Email 2FA</h2>
+        <p className="mt-1 text-sm text-neutral-500">Your account uses email-based two-factor authentication. We will send a secure verification email to your inbox before you continue.</p>
       </div>
 
       <div className="space-y-5">
@@ -143,9 +143,9 @@ export function EmailApprovalCard({ currentEmail, nextPath, backPath }: EmailApp
               <ShieldCheck className="h-5 w-5 text-teal-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Approval email destination</p>
+              <p className="text-sm font-medium text-white">Verification email destination</p>
               <p className="mt-1 text-sm text-neutral-400">{currentEmail}</p>
-              <p className="mt-2 text-sm text-neutral-500">Open the latest approval email on this inbox. Clicking the secure link will finish the sign-in flow.</p>
+              <p className="mt-2 text-sm text-neutral-500">Open the latest verification email on this inbox. Clicking the secure link will finish the sign-in flow.</p>
             </div>
           </div>
         </div>
@@ -170,7 +170,7 @@ export function EmailApprovalCard({ currentEmail, nextPath, backPath }: EmailApp
             Back
           </Link>
           <button type="button" className="font-medium text-teal-400 transition-colors hover:text-teal-300" onClick={handleSend} disabled={isWorking}>
-            Resend email
+            Resend verification
           </button>
         </div>
       </div>

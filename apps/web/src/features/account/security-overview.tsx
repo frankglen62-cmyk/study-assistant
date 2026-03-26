@@ -54,13 +54,13 @@ export function SecurityOverview({
         />
         <OverviewItem
           icon={<Mail className="h-4 w-4 text-muted-foreground" />}
-          label="Email"
+          label="Primary Email"
           value={emailVerified ? 'Verified' : 'Not verified'}
           tone={emailVerified ? 'success' : 'warning'}
         />
         <OverviewItem
           icon={<Mail className="h-4 w-4 text-muted-foreground" />}
-          label="Email Verification"
+          label="Email 2FA"
           value={emailTwoFactorEnabled ? 'On' : 'Off'}
           tone={emailTwoFactorEnabled ? 'success' : 'neutral'}
         />
