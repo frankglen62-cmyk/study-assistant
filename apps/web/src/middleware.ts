@@ -9,6 +9,17 @@ type MiddlewareCookie = {
   options?: Parameters<ReturnType<typeof NextResponse.next>['cookies']['set']>[2];
 };
 
+function withSafeSessionCookieDefaults(options: MiddlewareCookie['options']) {
+  const secure = typeof options?.secure === 'boolean' ? options.secure : process.env.NODE_ENV === 'production';
+
+  return {
+    path: '/',
+    sameSite: 'lax' as const,
+    ...options,
+    secure,
+  };
+}
+
 export async function middleware(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -24,6 +35,7 @@ export async function middleware(request: NextRequest) {
   });
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookieOptions: withSafeSessionCookieDefaults(undefined),
     cookies: {
       getAll() {
         return request.cookies.getAll();
@@ -36,9 +48,11 @@ export async function middleware(request: NextRequest) {
         response = NextResponse.next({
           request,
         });
+        response.headers.set('Cache-Control', 'private, no-store, max-age=0');
+        response.headers.set('Pragma', 'no-cache');
 
         cookiesToSet.forEach(({ name, value, options }) => {
-          response.cookies.set(name, value, options);
+          response.cookies.set(name, value, withSafeSessionCookieDefaults(options));
         });
       },
     },
