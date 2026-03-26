@@ -89,20 +89,6 @@ function buildOtpEmailHtml(code: string, purpose: string): string {
 }
 
 export async function sendOtpEmail(to: string, code: string, purpose: string): Promise<void> {
-  const client = getResendClient();
-
-  if (!client) {
-    // Dev mode fallback — log to console
-    console.log('');
-    console.log('══════════════════════════════════════════');
-    console.log(`  OTP CODE for ${to}`);
-    console.log(`  Purpose: ${purpose}`);
-    console.log(`  Code: ${code}`);
-    console.log('══════════════════════════════════════════');
-    console.log('');
-    return;
-  }
-
   const subject =
     purpose === 'login_2fa'
       ? 'Your sign-in verification code'
@@ -116,6 +102,20 @@ export async function sendOtpEmail(to: string, code: string, purpose: string): P
 
   if (brevoApiKey) {
     await sendWithBrevo(to, subject, html);
+    return;
+  }
+
+  const client = getResendClient();
+
+  if (!client) {
+    // Dev mode fallback — log to console
+    console.log('');
+    console.log('══════════════════════════════════════════');
+    console.log(`  OTP CODE for ${to}`);
+    console.log(`  Purpose: ${purpose}`);
+    console.log(`  Code: ${code}`);
+    console.log('══════════════════════════════════════════');
+    console.log('');
     return;
   }
 
