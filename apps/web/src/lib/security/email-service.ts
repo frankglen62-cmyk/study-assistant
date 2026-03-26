@@ -12,23 +12,106 @@ function getResendClient(): Resend | null {
   return new Resend(resendApiKey);
 }
 
+type BrevoSender = {
+  name: string;
+  email: string;
+};
+
+let brevoSenderCache:
+  | {
+      fetchedAt: number;
+      senders: BrevoSender[];
+    }
+  | null = null;
+
+function parseSenderAddress(rawValue: string): BrevoSender {
+  const match = rawValue.match(/^(.*?)<(.+)>$/);
+
+  if (!match) {
+    return { name: 'Study Assistant', email: rawValue.trim() };
+  }
+
+  const [, rawName = 'Study Assistant', rawEmail = rawValue] = match;
+  return {
+    name: rawName.trim().replace(/^"|"$/g, '') || 'Study Assistant',
+    email: rawEmail.trim(),
+  };
+}
+
+async function listBrevoSenders(): Promise<BrevoSender[]> {
+  const now = Date.now();
+  if (brevoSenderCache && now - brevoSenderCache.fetchedAt < 10 * 60 * 1000) {
+    return brevoSenderCache.senders;
+  }
+
+  if (!brevoApiKey) {
+    return [];
+  }
+
+  const response = await fetch('https://api.brevo.com/v3/senders', {
+    headers: {
+      'api-key': brevoApiKey,
+    },
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    const details = await response.text();
+    console.error('Failed to list Brevo senders:', details);
+    return [];
+  }
+
+  const payload = (await response.json()) as {
+    senders?: Array<{ name?: string; email?: string; active?: boolean }>;
+  };
+
+  const senders = (payload.senders ?? [])
+    .filter((sender) => sender.active && sender.email)
+    .map((sender) => ({
+      name: sender.name?.trim() || 'Study Assistant',
+      email: sender.email!.trim(),
+    }));
+
+  brevoSenderCache = {
+    fetchedAt: now,
+    senders,
+  };
+
+  return senders;
+}
+
+async function resolveBrevoSender(): Promise<BrevoSender> {
+  const configuredSender = parseSenderAddress(fromEmail);
+  const activeSenders = await listBrevoSenders();
+
+  if (activeSenders.length === 0) {
+    return configuredSender;
+  }
+
+  const exactMatch = activeSenders.find(
+    (sender) => sender.email.toLowerCase() === configuredSender.email.toLowerCase(),
+  );
+
+  if (exactMatch) {
+    return {
+      name: configuredSender.name || exactMatch.name,
+      email: exactMatch.email,
+    };
+  }
+
+  const fallbackSender = activeSenders[0]!;
+  console.warn(
+    `Configured Brevo sender "${configuredSender.email}" is not active. Falling back to "${fallbackSender.email}".`,
+  );
+  return fallbackSender;
+}
+
 async function sendWithBrevo(to: string, subject: string, html: string): Promise<void> {
   if (!brevoApiKey) {
     throw new Error('Brevo API key is not configured.');
   }
 
-  const match = fromEmail.match(/^(.*?)<(.+)>$/);
-  const sender = (() => {
-    if (!match) {
-      return { name: 'Study Assistant', email: fromEmail.trim() };
-    }
-
-    const [, rawName = 'Study Assistant', rawEmail = fromEmail] = match;
-    return {
-      name: rawName.trim().replace(/^"|"$/g, '') || 'Study Assistant',
-      email: rawEmail.trim(),
-    };
-  })();
+  const sender = await resolveBrevoSender();
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
