@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { Route } from 'next';
-import { Loader2, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Loader2, Mail, ShieldCheck } from 'lucide-react';
 
 import { Badge, Button, Input } from '@study-assistant/ui';
 
@@ -24,6 +24,7 @@ type EmailSecurityCardProps = {
   emailTwoFactorEnabled: boolean;
   accountPath: Route;
   emailChangeStatus?: 'requested' | 'confirmed' | null;
+  pendingEmail?: string | null;
 };
 
 export function EmailSecurityCard({
@@ -31,8 +32,12 @@ export function EmailSecurityCard({
   emailTwoFactorEnabled,
   accountPath,
   emailChangeStatus = null,
+  pendingEmail = null,
 }: EmailSecurityCardProps) {
   const { pushToast } = useToast();
+  const normalizedCurrentEmail = currentEmail.trim().toLowerCase();
+  const normalizedPendingEmail = pendingEmail?.trim().toLowerCase() ?? null;
+  const showComparison = Boolean(normalizedPendingEmail && normalizedPendingEmail !== normalizedCurrentEmail);
   const [enabled, setEnabled] = useState(emailTwoFactorEnabled);
   const [workingMode, setWorkingMode] = useState<'toggle' | 'change' | null>(null);
   const [targetEmail, setTargetEmail] = useState('');
@@ -107,7 +112,7 @@ export function EmailSecurityCard({
       <SettingRow
         icon={<ShieldCheck className="h-4 w-4 text-accent" />}
         title="Email 2-Factor Authentication"
-        description="Require a 6-digit code sent to your inbox when signing in."
+        description="Require a 6-digit code sent to your inbox when signing in and before a protected email change can continue."
         status={
           <Badge tone={enabled ? 'success' : 'neutral'} className="text-xs">
             {enabled ? 'Active' : 'Off'}
@@ -132,7 +137,60 @@ export function EmailSecurityCard({
         title="Email Address"
         description="Used for sign-in, recovery, and security codes. Change your email below."
       >
-        <span className="mb-4 block text-white font-medium">{currentEmail}</span>
+        <div className="mb-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-500">Current email</p>
+              <p className="mt-2 truncate text-base font-medium text-white">{currentEmail}</p>
+            </div>
+
+            {showComparison ? (
+              <>
+                <div className="flex items-center justify-center text-neutral-500">
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-500">
+                    {emailChangeStatus === 'confirmed' ? 'Confirmed email' : 'Pending new email'}
+                  </p>
+                  <p className="mt-2 truncate text-base font-medium text-white">{pendingEmail}</p>
+                </div>
+              </>
+            ) : null}
+          </div>
+
+          {emailChangeStatus === 'requested' && pendingEmail ? (
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/8 px-4 py-3">
+              <Badge tone="warning" className="mt-0.5 text-[10px] uppercase">Pending</Badge>
+              <div className="space-y-1 text-sm text-neutral-300">
+                <p className="font-medium text-white">Verification pending</p>
+                <p>
+                  Your current email was verified. We sent a confirmation button to
+                  {' '}
+                  <span className="font-medium text-white">{pendingEmail}</span>
+                  {' '}
+                  to finish the email change.
+                </p>
+              </div>
+            </div>
+          ) : null}
+
+          {emailChangeStatus === 'confirmed' && pendingEmail ? (
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/8 px-4 py-3">
+              <Badge tone="success" className="mt-0.5 text-[10px] uppercase">Verified</Badge>
+              <div className="space-y-1 text-sm text-neutral-300">
+                <p className="font-medium text-white">Email change confirmed</p>
+                <p>
+                  Your new sign-in email is now
+                  {' '}
+                  <span className="font-medium text-white">{pendingEmail}</span>
+                  . Sign in with the new email if you were signed out during the update.
+                </p>
+              </div>
+            </div>
+          ) : null}
+        </div>
+
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Input
             value={targetEmail}

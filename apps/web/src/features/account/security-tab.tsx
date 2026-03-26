@@ -18,6 +18,7 @@ export function SecurityTab({
   activeDeviceCount,
   accountPath,
   emailChangeStatus,
+  pendingEmail,
 }: {
   currentEmail: string;
   emailTwoFactorEnabled: boolean;
@@ -25,6 +26,7 @@ export function SecurityTab({
   activeDeviceCount: number;
   accountPath: Route;
   emailChangeStatus: 'requested' | 'confirmed' | null;
+  pendingEmail: string | null;
 }) {
   return (
     <div className="space-y-6">
@@ -51,6 +53,7 @@ export function SecurityTab({
         emailTwoFactorEnabled={emailTwoFactorEnabled}
         accountPath={accountPath}
         emailChangeStatus={emailChangeStatus}
+        pendingEmail={pendingEmail}
       />
 
       <MfaSecurityCard />

@@ -16,6 +16,8 @@ export default async function AdminAccountPage({
   const params = await searchParams;
   const context = await requirePageUser(['admin', 'super_admin']);
   const emailChangeStatus = Array.isArray(params['email-change']) ? params['email-change'][0] : params['email-change'];
+  const pendingEmail = Array.isArray(params['pending-email']) ? params['pending-email'][0] : params['pending-email'];
+  const defaultTab = emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? 'security' : 'profile';
 
   return (
     <div className="space-y-8 pb-12">
@@ -37,6 +39,7 @@ export default async function AdminAccountPage({
       />
 
       <AccountSettingsShell
+        defaultTab={defaultTab}
         variant="admin"
         profile={{
           fullName: context.profile.full_name,
@@ -49,6 +52,7 @@ export default async function AdminAccountPage({
           mfaEnabled: false,
           accountPath: '/admin/account',
           emailChangeStatus: emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null,
+          pendingEmail: pendingEmail ?? null,
         }}
       />
     </div>

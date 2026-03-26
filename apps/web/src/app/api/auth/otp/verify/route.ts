@@ -9,11 +9,13 @@ import {
   EMAIL_LOGIN_SESSION_COOKIE,
   buildEmailChallengeCookieOptions,
   buildExpiredEmailChallengeCookieOptions,
+  createSignedEmailChangeRequestToken,
   createSignedEmailLoginSessionToken,
   getSafeNextPath,
   verifySignedEmailChangeRequestToken,
 } from '@/lib/auth/email-challenge';
 import { env } from '@/lib/env/server';
+import { sendEmailChangeConfirmationEmail } from '@/lib/security/email-service';
 
 const requestSchema = z.object({
   code: z.string().length(6, 'Enter the 6-digit code.'),
@@ -24,6 +26,12 @@ const requestSchema = z.object({
 function appendStatus(path: string, key: string, value: string) {
   const url = new URL(path, 'https://study-assistant.local');
   url.searchParams.set(key, value);
+  return `${url.pathname}${url.search}`;
+}
+
+function appendPendingEmail(path: string, pendingEmail: string) {
+  const url = new URL(path, 'https://study-assistant.local');
+  url.searchParams.set('pending-email', pendingEmail);
   return `${url.pathname}${url.search}`;
 }
 
@@ -79,22 +87,33 @@ export async function POST(request: NextRequest) {
         return response;
       }
 
-      const redirectTo = `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(
+      const confirmedPath = appendPendingEmail(
         appendStatus(approvalPayload.nextPath, 'email-change', 'confirmed'),
-      )}`;
-      const { error: updateError } = await supabase.auth.updateUser(
-        { email: approvalPayload.targetEmail },
-        { emailRedirectTo: redirectTo },
+        approvalPayload.targetEmail,
       );
+      const confirmationToken = await createSignedEmailChangeRequestToken({
+        userId: approvalPayload.userId,
+        currentEmail: approvalPayload.currentEmail,
+        targetEmail: approvalPayload.targetEmail,
+        nextPath: approvalPayload.nextPath,
+      });
+      const confirmUrl = `${env.NEXT_PUBLIC_APP_URL}/auth/callback?flow=email-change-complete&change_token=${encodeURIComponent(
+        confirmationToken,
+      )}&next=${encodeURIComponent(confirmedPath)}`;
 
-      if (updateError) {
-        throw new RouteError(400, 'email_change_failed', updateError.message || 'Unable to start the email change flow.');
-      }
+      await sendEmailChangeConfirmationEmail({
+        currentEmail: approvalPayload.currentEmail,
+        newEmail: approvalPayload.targetEmail,
+        confirmUrl,
+      });
 
       const response = jsonOk(
         {
           verified: true,
-          redirectTo: appendStatus(approvalPayload.nextPath, 'email-change', 'requested'),
+          redirectTo: appendPendingEmail(
+            appendStatus(approvalPayload.nextPath, 'email-change', 'requested'),
+            approvalPayload.targetEmail,
+          ),
         },
         requestId,
       );

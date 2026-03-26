@@ -30,6 +30,7 @@ type AccountSettingsShellProps = {
     mfaEnabled: boolean;
     accountPath: Route;
     emailChangeStatus: 'requested' | 'confirmed' | null;
+    pendingEmail: string | null;
   };
   devices?: Device[];
   extensionData?: {
@@ -84,6 +85,7 @@ export function AccountSettingsShell({
           activeDeviceCount={devices.filter((d) => d.status === 'active').length}
           accountPath={security.accountPath}
           emailChangeStatus={security.emailChangeStatus}
+          pendingEmail={security.pendingEmail}
         />
       )}
 

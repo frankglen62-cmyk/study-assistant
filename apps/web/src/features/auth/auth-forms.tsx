@@ -301,6 +301,7 @@ export function LoginForm() {
   const searchParams = useSearchParams();
   const { pushToast } = useToast();
   const [formError, setFormError] = useState<string | null>(searchParams.get('error'));
+  const flowMessage = searchParams.get('message');
   const { captchaError, captchaResetKey, captchaToken, ensureCaptcha, handleCaptchaChange, resetCaptcha } = useCaptchaState();
   const {
     register,
@@ -355,6 +356,7 @@ export function LoginForm() {
         {searchParams.get('registered') === 'true' ? (
           <AuthNotice tone="success" message="Registration successful! Please check your email and click the verification link before signing in." />
         ) : null}
+        {flowMessage ? <AuthNotice tone="success" message={flowMessage} /> : null}
         {formError ? <AuthNotice tone="danger" message={formError} /> : null}
 
         <FormField label="Email" error={errors.email?.message}>

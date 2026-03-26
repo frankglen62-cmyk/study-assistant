@@ -145,7 +145,7 @@ export function EmailApprovalCard({
         title: 'Verified',
         description:
           purpose === 'email_change_current'
-            ? 'Current email confirmed. Check the rest of the email-change flow in your inbox.'
+            ? 'Current email verified. We sent a confirmation button to your new email.'
             : 'Two-step verification complete.',
       });
 
