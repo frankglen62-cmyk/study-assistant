@@ -9,6 +9,7 @@ import {
 import { env } from '@/lib/env/server';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { generateAndSendOtp } from '@/lib/security/otp-service';
+import { findAuthUserByEmail } from '@/lib/supabase/auth-users';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 
 const requestSchema = z.object({
@@ -33,6 +34,12 @@ export async function POST(request: Request) {
 
     if (user.email.toLowerCase() === body.targetEmail.toLowerCase()) {
       throw new RouteError(400, 'same_email', 'Enter a different email address.');
+    }
+
+    const existingAccount = await findAuthUserByEmail(body.targetEmail);
+
+    if (existingAccount && existingAccount.id !== user.id) {
+      throw new RouteError(409, 'email_taken', 'That email address is already in use by another account.');
     }
 
     const nextPath = getSafeNextPath(body.next, '/account');

@@ -11,6 +11,7 @@ import {
   verifySignedEmailChangeRequestToken,
   verifySignedEmailLoginRequestToken,
 } from '@/lib/auth/email-challenge';
+import { findAuthUserByEmail } from '@/lib/supabase/auth-users';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 
@@ -61,15 +62,41 @@ export async function GET(request: NextRequest) {
 
     const currentAuthEmail = userResult.user.email?.toLowerCase() ?? '';
     const targetEmail = approvalPayload.targetEmail.toLowerCase();
+    const targetOwner = await findAuthUserByEmail(approvalPayload.targetEmail);
+
+    if (targetOwner && targetOwner.id !== approvalPayload.userId) {
+      return redirectWithError(url.origin, '/login', 'That email address is already in use by another account.');
+    }
+
+    const nextUserMetadata = {
+      ...(userResult.user.user_metadata ?? {}),
+      email: approvalPayload.targetEmail,
+      email_verified: true,
+    };
 
     if (currentAuthEmail !== targetEmail) {
       const { error: updateError } = await admin.auth.admin.updateUserById(approvalPayload.userId, {
         email: approvalPayload.targetEmail,
         email_confirm: true,
+        user_metadata: nextUserMetadata,
       });
 
       if (updateError) {
-        return redirectWithError(url.origin, '/login', updateError.message || 'Unable to confirm your new email.');
+        return redirectWithError(
+          url.origin,
+          '/login',
+          updateError.message?.includes('already')
+            ? 'That email address is already in use by another account.'
+            : updateError.message || 'Unable to confirm your new email.',
+        );
+      }
+    } else if ((userResult.user.user_metadata?.email ?? '').toLowerCase() !== targetEmail) {
+      const { error: metadataError } = await admin.auth.admin.updateUserById(approvalPayload.userId, {
+        user_metadata: nextUserMetadata,
+      });
+
+      if (metadataError) {
+        return redirectWithError(url.origin, '/login', 'Your email was confirmed, but the account metadata could not be synced.');
       }
     }
 

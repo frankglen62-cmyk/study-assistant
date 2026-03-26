@@ -16,6 +16,9 @@ function getReadableError(error: unknown, fallback: string) {
   const message = error.message.toLowerCase();
   if (message.includes('same email')) return 'Enter a different email address.';
   if (message.includes('invalid email')) return 'Enter a valid email address.';
+  if (message.includes('already in use') || message.includes('email_taken')) {
+    return 'That email address is already in use by another account.';
+  }
   return error.message;
 }
 
