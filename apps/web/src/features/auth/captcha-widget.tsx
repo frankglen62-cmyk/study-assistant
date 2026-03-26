@@ -144,9 +144,9 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
   }
 
   return (
-    <div className="space-y-2">
-      <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-        <div ref={containerRef} className="min-h-[70px]" />
+    <div className="space-y-2 text-center">
+      <div className="flex min-h-[70px] items-center justify-center">
+        <div ref={containerRef} className="mx-auto" />
       </div>
       {isLoading ? <p className="text-xs text-neutral-500">Loading security check…</p> : null}
       {loadError ? <p className="text-xs text-red-300">{loadError}</p> : null}

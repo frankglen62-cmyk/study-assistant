@@ -146,10 +146,6 @@ function AuthNotice({ tone, message }: { tone: 'info' | 'success' | 'danger'; me
    Social Auth Buttons
    ═══════════════════════════════════════════ */
 
-function buildMfaPath(nextPath: string) {
-  return `/mfa?next=${encodeURIComponent(nextPath)}`;
-}
-
 function useCaptchaState() {
   const captchaEnabled = Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -243,7 +239,7 @@ function SocialAuthButtons({
       await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(buildMfaPath(nextPath))}`,
+          redirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(nextPath)}`,
           ...(captchaToken ? { captchaToken } : {}),
         },
       });
@@ -346,7 +342,7 @@ export function LoginForm() {
               options: captchaToken ? { captchaToken } : undefined,
             });
             if (error) throw error;
-            window.location.assign(buildMfaPath(nextPath));
+            window.location.assign(nextPath);
             return;
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to sign in.');
@@ -447,13 +443,13 @@ export function RegisterForm() {
               password: values.password,
               options: {
                 data: { full_name: values.fullName },
-                emailRedirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent(buildMfaPath('/dashboard'))}`,
+                emailRedirectTo: `${env.NEXT_PUBLIC_APP_URL}/auth/callback?next=${encodeURIComponent('/dashboard')}`,
                 ...(captchaToken ? { captchaToken } : {}),
               },
             });
             if (error) throw error;
             if (data.session) {
-              window.location.assign(buildMfaPath('/dashboard'));
+              window.location.assign('/dashboard');
               router.refresh();
               return;
             }
@@ -612,7 +608,7 @@ export function ResetPasswordForm() {
             const message = 'Password updated. Redirecting to your dashboard...';
             setSuccessMessage(message);
             pushToast({ tone: 'success', title: 'Password updated', description: message });
-            window.location.assign(buildMfaPath('/dashboard'));
+            window.location.assign('/dashboard');
             router.refresh();
           } catch (error) {
             const message = getReadableAuthError(error, 'Unable to update the password.');

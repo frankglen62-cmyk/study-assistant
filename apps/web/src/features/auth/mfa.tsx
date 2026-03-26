@@ -120,12 +120,36 @@ export function MfaChallengeForm() {
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-[#111111] p-8 shadow-2xl shadow-black/30">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">Confirm Authenticator</h2>
+        <h2 className="text-2xl font-bold text-white">{isLoading ? 'Finishing Sign In' : 'Confirm Authenticator'}</h2>
         <p className="mt-1 text-sm text-neutral-500">
-          Your account uses two-step verification. Enter the current code to continue.
+          {isLoading
+            ? 'Checking your account security settings before redirecting you.'
+            : 'Your account uses two-step verification. Enter the current code to continue.'}
         </p>
       </div>
 
+      {isLoading ? (
+        <div className="space-y-5">
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-neutral-400">
+            Checking whether this account needs an authenticator challenge...
+          </div>
+
+          <button
+            type="button"
+            disabled
+            className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black opacity-60"
+          >
+            Checking MFA status...
+          </button>
+
+          <p className="text-center text-sm text-neutral-600">
+            Lost access?{' '}
+            <Link href="/login" className="font-medium text-teal-400 hover:text-teal-300">
+              Back to sign in
+            </Link>
+          </p>
+        </div>
+      ) : (
       <form
         className="space-y-5"
         onSubmit={async (event) => {
@@ -171,10 +195,10 @@ export function MfaChallengeForm() {
 
         <button
           type="submit"
-          disabled={isLoading || isVerifying || code.trim().length < 6}
+          disabled={isVerifying || code.trim().length < 6}
           className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black transition-all hover:bg-neutral-200 disabled:opacity-50"
         >
-          {isLoading ? 'Checking MFA status...' : isVerifying ? 'Verifying...' : 'Verify and Continue'}
+          {isVerifying ? 'Verifying...' : 'Verify and Continue'}
         </button>
 
         <p className="text-center text-sm text-neutral-600">
@@ -184,6 +208,7 @@ export function MfaChallengeForm() {
           </Link>
         </p>
       </form>
+      )}
     </div>
   );
 }
