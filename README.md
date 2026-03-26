@@ -6,7 +6,7 @@ Production monorepo for a study platform with:
 - client portal
 - admin portal
 - Chrome side panel extension
-- paired browser/device workflow
+- paired browser and device workflow
 - admin-managed subject and Q&A library
 - session-based usage tracking and billing
 - server-side subject detection and answer retrieval
@@ -15,42 +15,67 @@ Production monorepo for a study platform with:
 
 - Production web app: `https://study-assistant-web.vercel.app`
 - GitHub repo: `https://github.com/frankglen62-cmyk/study-assistant.git`
-- Active branch for production: `main`
+- Production branch: `main`
 - Vercel project: `study-assistant-web`
-- Current extension release: `v0.1.44`
+- Current extension release: `v0.1.45`
 
 ## Current Shipped Features
 
-### Web app
+### Public website
 
-- public marketing pages, auth, client portal, and admin portal
-- client dashboard with extension download/status card
-- simplified Extension Guide with highlighted pairing mode and latest ZIP release info
-- account page cleaned up to focus on account and extension status actions
-- admin Sources area with subject folders, stored Q&A library, add/edit/delete/toggle flows, and subject/category management
-- Stripe checkout flow and payment history pages
+- dark landing pages for `Home`, `Features`, `Pricing`, and `Contact`
+- animated hero, pricing, and section transitions
+- Google sign-in and Facebook sign-in
+- Turnstile security check on sign-in, sign-up, and password recovery
+- pricing in PHP with hover-driven card emphasis
+
+### Client portal
+
+- dashboard with extension status, paired browser state, and current ZIP version
+- Extension Guide with highlighted pairing mode and current download release
+- account page with password change, authenticator app MFA, email approval security, and email change flow
+- session, wallet, settings, and usage pages
+
+### Admin portal
+
+- dashboard, users, payments, reports, audit logs, sessions, subjects, categories, and sources
+- admin account page with password change, authenticator app MFA, email approval security, and email change flow
+- admin-managed subject folders, subject library, stored Q&A CRUD, and source processing flows
 
 ### Extension
 
 - sidepanel-first pairing flow
-- request portal permission, paste pairing code, pair directly in the sidepanel
-- manual `Unpair Browser` action
-- session controls with start, pause, resume, end, and countdown display
+- request portal permission, paste pairing code, and pair directly in the sidepanel
+- manual `Unpair Browser`
+- session controls with start, pause, resume, end, and countdown
 - split sidepanel workflow:
-  - `Controls` workspace for setup, session, subject mode, activity log
-  - `Answering` workspace for `Find All Answers`, Study Results, quick actions
-- subject picker with live suggestions and manual subject lock
-- auto detect fallback when no manual subject is locked
-- `New Exam`, `Full Auto`, and `Select All`
-- Study Results cards with confidence and click status
+  - `Controls` for setup, subject mode, session, and logs
+  - `Answering` for actions, detection summary, and Study Results
+- subject picker with live suggestions and refresh behavior
+- auto detect fallback and manual subject lock
+- `New Exam`, `Full Auto`, `Select All`, and `Find All Answers`
+- current subject shown at the top of the Answering workspace
 
-### Retrieval and matching improvements already shipped
+### Retrieval and matching improvements
 
 - blank-aware matching for fill-in-the-blank questions
-- better repeated-question disambiguation
-- option filtering that ignores LMS control text such as `Clear my choice`
+- repeated-question disambiguation
+- LMS control text filtering such as `Clear my choice`
 - LMS header and course-code aware subject detection
-- fresher subject/Q&A cache behavior so admin changes appear faster
+- fresher subject and Q&A cache behavior so admin changes appear faster
+- safer MFA handling so users without MFA do not flash through the authenticator screen
+
+### Security
+
+- Supabase Auth for portal users
+- Google and Facebook OAuth
+- strong password rules
+- leaked-password protection in Supabase
+- Turnstile CAPTCHA for auth flows
+- optional authenticator app MFA
+- optional email approval security flow
+- hardened security headers
+- safer Supabase session cookie defaults
 
 ## Workspace
 
@@ -67,6 +92,7 @@ Production monorepo for a study platform with:
 - the portal controls subject and source data
 - unpacked extension updates are distributed through the web app ZIP downloads
 - extension changes are not visible online until the ZIP is rebuilt, committed, pushed, and deployed
+- subject and Q&A changes should surface to the extension after refresh without rebuilding the extension
 
 ## Local Setup
 
@@ -124,4 +150,4 @@ If a change should appear online:
 - [LAUNCH_CHECKLIST.md](/c:/Users/glenn/Documents/NEW%20PROJECT/LAUNCH_CHECKLIST.md)
 - [QA_CHECKLIST.md](/c:/Users/glenn/Documents/NEW%20PROJECT/QA_CHECKLIST.md)
 - [SECURITY_CHECKLIST.md](/c:/Users/glenn/Documents/NEW%20PROJECT/SECURITY_CHECKLIST.md)
-- [PROJECT_MASTER_HANDOFF_PRIVATE.md](/c:/Users/glenn/Documents/NEW%20PROJECT/PROJECT_MASTER_HANDOFF_PRIVATE.md)
+- [AMAUOED_Scraping_Explanation.md](/c:/Users/glenn/Documents/NEW%20PROJECT/AMAUOED_Scraping_Explanation.md)
