@@ -11,4 +11,5 @@ export function setTestEnv() {
   process.env.PAYMONGO_WEBHOOK_SECRET = 'paymongo-webhook-for-tests-1234567890';
   process.env.PAYMONGO_API_BASE_URL = 'https://api.paymongo.test/v1';
   process.env.EXTENSION_PAIRING_SECRET = 'pairing-secret-for-tests-1234567890';
+  process.env.AUTH_EMAIL_CHALLENGE_SECRET = 'auth-email-secret-for-tests-1234567890';
 }

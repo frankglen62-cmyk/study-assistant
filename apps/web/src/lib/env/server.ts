@@ -27,6 +27,7 @@ const serverEnvSchema = z.object({
   PAYMONGO_WEBHOOK_SECRET: z.string().min(20).optional(),
   PAYMONGO_API_BASE_URL: z.string().url().optional(),
   EXTENSION_PAIRING_SECRET: z.string().min(20),
+  AUTH_EMAIL_CHALLENGE_SECRET: z.string().min(20).optional(),
   SESSION_IDLE_SECONDS: z.string().optional(),
   LOW_CREDIT_THRESHOLD_SECONDS: z.string().optional(),
   MAX_UPLOAD_SIZE_MB: z.string().optional(),

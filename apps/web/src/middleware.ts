@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
+import { EMAIL_LOGIN_SESSION_COOKIE, getSafeNextPath, verifySignedEmailLoginSessionToken } from '@/lib/auth/email-challenge';
+
 type MiddlewareCookie = {
   name: string;
   value: string;
@@ -48,7 +50,7 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
   const protectedPrefixes = ['/dashboard', '/buy-credits', '/sessions', '/usage-logs', '/settings', '/account', '/extension-guide', '/admin', '/audit-logs', '/categories', '/payments', '/reports', '/sources', '/subjects', '/users'];
-  const mfaBypassPrefixes = ['/login', '/register', '/forgot-password', '/reset-password', '/mfa', '/auth/callback'];
+  const mfaBypassPrefixes = ['/login', '/register', '/forgot-password', '/reset-password', '/mfa', '/email-approval', '/auth/callback'];
 
   const isProtectedPath = protectedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const isMfaBypassPath = mfaBypassPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
@@ -61,6 +63,40 @@ export async function middleware(request: NextRequest) {
       target.pathname = '/mfa';
       target.searchParams.set('next', `${pathname}${request.nextUrl.search}`);
       return NextResponse.redirect(target);
+    }
+
+    const { data: profileData, error: profileError } = await supabase
+      .from('profiles')
+      .select('email_2fa_enabled')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (!profileError && profileData?.email_2fa_enabled) {
+      const loginSessionToken = request.cookies.get(EMAIL_LOGIN_SESSION_COOKIE)?.value;
+      const loginSession = loginSessionToken ? await verifySignedEmailLoginSessionToken(loginSessionToken) : null;
+      const currentSignInAt = user.last_sign_in_at ?? '';
+      const hasValidEmailApprovalSession =
+        loginSession?.userId === user.id &&
+        loginSession.signInAt === currentSignInAt;
+
+      if (!hasValidEmailApprovalSession) {
+        const target = request.nextUrl.clone();
+        target.pathname = '/email-approval';
+        target.searchParams.set('next', getSafeNextPath(`${pathname}${request.nextUrl.search}`));
+        const approvalResponse = NextResponse.redirect(target);
+
+        if (loginSessionToken) {
+          approvalResponse.cookies.set(EMAIL_LOGIN_SESSION_COOKIE, '', {
+            httpOnly: true,
+            maxAge: 0,
+            path: '/',
+            sameSite: 'lax',
+            secure: process.env.NODE_ENV === 'production',
+          });
+        }
+
+        return approvalResponse;
+      }
     }
   }
 

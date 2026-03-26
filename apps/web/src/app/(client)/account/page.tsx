@@ -7,16 +7,23 @@ import { DataTable } from '@/components/data-table';
 import { PageHeading } from '@/components/page-heading';
 import { StatusBadge } from '@/components/status-badge';
 import { LogoutButton } from '@/features/auth/logout-button';
+import { EmailSecurityCard } from '@/features/auth/email-security-card';
 import { MfaSecurityCard } from '@/features/auth/mfa';
 import { RevokeDeviceButton } from '@/features/client/revoke-device-button';
 import { getClientAccountData } from '@/features/client/server';
 import { requirePageUser } from '@/lib/auth/page-context';
 import { extensionDownloadFileName, extensionDownloadPath, extensionVersion } from '@/lib/extension-distribution';
 
-export default async function AccountPage() {
+export default async function AccountPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
   const context = await requirePageUser(['client']);
   const account = await getClientAccountData(context.userId);
   const latestDevice = account.devices[0] ?? null;
+  const emailChangeStatus = Array.isArray(params['email-change']) ? params['email-change'][0] : params['email-change'];
 
   return (
     <div className="space-y-8 pb-12">
@@ -83,6 +90,13 @@ export default async function AccountPage() {
               </div>
             </CardContent>
           </Card>
+
+          <EmailSecurityCard
+            currentEmail={context.profile.email}
+            emailTwoFactorEnabled={context.profile.email_2fa_enabled}
+            accountPath="/account"
+            emailChangeStatus={emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null}
+          />
 
           <MfaSecurityCard />
         </div>

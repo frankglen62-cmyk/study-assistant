@@ -4,12 +4,19 @@ import { Clock, KeyRound, Mail, Settings, ShieldCheck, User } from 'lucide-react
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@study-assistant/ui';
 
 import { PageHeading } from '@/components/page-heading';
+import { EmailSecurityCard } from '@/features/auth/email-security-card';
 import { LogoutButton } from '@/features/auth/logout-button';
 import { MfaSecurityCard } from '@/features/auth/mfa';
 import { requirePageUser } from '@/lib/auth/page-context';
 
-export default async function AdminAccountPage() {
+export default async function AdminAccountPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
   const context = await requirePageUser(['admin', 'super_admin']);
+  const emailChangeStatus = Array.isArray(params['email-change']) ? params['email-change'][0] : params['email-change'];
 
   return (
     <div className="space-y-8 pb-12">
@@ -99,6 +106,13 @@ export default async function AdminAccountPage() {
               </Button>
             </CardContent>
           </Card>
+
+          <EmailSecurityCard
+            currentEmail={context.profile.email}
+            emailTwoFactorEnabled={context.profile.email_2fa_enabled}
+            accountPath="/admin/account"
+            emailChangeStatus={emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null}
+          />
 
           <Card className="h-fit">
             <CardHeader>
