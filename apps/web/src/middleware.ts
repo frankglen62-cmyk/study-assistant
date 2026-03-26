@@ -65,7 +65,19 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(target);
     }
 
-    const emailTwoFactorEnabled = user.user_metadata?.email_2fa_enabled === true;
+    let emailTwoFactorEnabled = user.user_metadata?.email_2fa_enabled === true;
+
+    if (typeof user.user_metadata?.email_2fa_enabled !== 'boolean') {
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('email_2fa_enabled')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      if (!profileError && profileData?.email_2fa_enabled) {
+        emailTwoFactorEnabled = true;
+      }
+    }
 
     if (emailTwoFactorEnabled) {
       const loginSessionToken = request.cookies.get(EMAIL_LOGIN_SESSION_COOKIE)?.value;

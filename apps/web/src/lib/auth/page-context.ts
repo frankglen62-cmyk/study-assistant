@@ -26,11 +26,17 @@ export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
     redirect('/login');
   }
 
+  const authEmailTwoFactorValue = data.user.user_metadata?.email_2fa_enabled;
+  const emailTwoFactorEnabled =
+    typeof authEmailTwoFactorValue === 'boolean'
+      ? authEmailTwoFactorValue
+      : context.profile.email_2fa_enabled === true;
+
   return {
     userId: data.user.id,
     authUser: data.user as User,
     authEmail: data.user.email ?? context.profile.email,
-    emailTwoFactorEnabled: data.user.user_metadata?.email_2fa_enabled === true,
+    emailTwoFactorEnabled,
     profile: context.profile,
     wallet: context.wallet,
   };

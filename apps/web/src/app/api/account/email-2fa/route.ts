@@ -7,6 +7,7 @@ import {
   createSignedEmailLoginSessionToken,
 } from '@/lib/auth/email-challenge';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 
 const requestSchema = z.object({
@@ -37,6 +38,16 @@ export async function POST(request: Request) {
 
     if (updateError) {
       throw new RouteError(500, 'profile_update_failed', 'Unable to update email approval settings.', updateError);
+    }
+
+    const admin = getSupabaseAdmin();
+    const { error: profileSyncError } = await admin
+      .from('profiles')
+      .update({ email_2fa_enabled: body.enabled })
+      .eq('id', user.id);
+
+    if (profileSyncError) {
+      throw new RouteError(500, 'profile_sync_failed', 'Auth setting updated but profile sync failed.', profileSyncError);
     }
 
     const response = jsonOk({ enabled: body.enabled }, requestId);
