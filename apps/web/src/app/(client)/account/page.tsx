@@ -64,7 +64,7 @@ export default async function AccountPage({
                     <Mail className="h-5 w-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">{context.profile.email}</p>
+                    <p className="text-sm font-medium">{context.authEmail}</p>
                     <p className="text-xs text-muted-foreground flex items-center gap-1">
                       <span className="h-1.5 w-1.5 rounded-full bg-success inline-block"></span> Verified
                     </p>
@@ -92,8 +92,8 @@ export default async function AccountPage({
           </Card>
 
           <EmailSecurityCard
-            currentEmail={context.profile.email}
-            emailTwoFactorEnabled={context.profile.email_2fa_enabled}
+            currentEmail={context.authEmail}
+            emailTwoFactorEnabled={context.emailTwoFactorEnabled}
             accountPath="/account"
             emailChangeStatus={emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null}
           />

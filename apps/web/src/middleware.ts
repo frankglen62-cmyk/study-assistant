@@ -65,13 +65,9 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(target);
     }
 
-    const { data: profileData, error: profileError } = await supabase
-      .from('profiles')
-      .select('email_2fa_enabled')
-      .eq('id', user.id)
-      .maybeSingle();
+    const emailTwoFactorEnabled = user.user_metadata?.email_2fa_enabled === true;
 
-    if (!profileError && profileData?.email_2fa_enabled) {
+    if (emailTwoFactorEnabled) {
       const loginSessionToken = request.cookies.get(EMAIL_LOGIN_SESSION_COOKIE)?.value;
       const loginSession = loginSessionToken ? await verifySignedEmailLoginSessionToken(loginSessionToken) : null;
       const currentSignInAt = user.last_sign_in_at ?? '';

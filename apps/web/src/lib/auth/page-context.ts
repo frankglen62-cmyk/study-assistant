@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { redirect } from 'next/navigation';
+import type { User } from '@supabase/supabase-js';
 
 import type { UserRole } from '@study-assistant/shared-types';
 
@@ -27,6 +28,9 @@ export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
 
   return {
     userId: data.user.id,
+    authUser: data.user as User,
+    authEmail: data.user.email ?? context.profile.email,
+    emailTwoFactorEnabled: data.user.user_metadata?.email_2fa_enabled === true,
     profile: context.profile,
     wallet: context.wallet,
   };

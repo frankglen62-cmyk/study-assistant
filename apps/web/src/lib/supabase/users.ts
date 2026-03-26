@@ -20,7 +20,7 @@ export async function getProfileByUserId(userId: string) {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('profiles')
-    .select('id, email, full_name, role, account_status, email_2fa_enabled')
+    .select('id, email, full_name, role, account_status')
     .eq('id', userId)
     .maybeSingle();
 

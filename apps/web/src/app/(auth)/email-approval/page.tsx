@@ -23,13 +23,13 @@ export default async function EmailApprovalPage({
   const fallbackPath: Route = context.profile.role === 'client' ? '/dashboard' : '/admin/dashboard';
   const nextPath = getSafeNextPath(params.next, fallbackPath);
 
-  if (!context.profile.email_2fa_enabled) {
+  if (!context.emailTwoFactorEnabled) {
     redirect(nextPath);
   }
 
   return (
     <EmailApprovalCard
-      currentEmail={context.profile.email}
+      currentEmail={context.authEmail}
       nextPath={nextPath}
       backPath={fallbackPath}
     />

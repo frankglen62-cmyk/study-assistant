@@ -6,7 +6,6 @@ export const profileRecordSchema = z.object({
   full_name: z.string(),
   role: z.enum(['super_admin', 'admin', 'client']),
   account_status: z.enum(['active', 'suspended', 'pending_verification', 'banned']),
-  email_2fa_enabled: z.boolean().default(false),
   created_at: z.string().optional(),
 });
 

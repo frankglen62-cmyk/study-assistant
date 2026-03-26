@@ -67,7 +67,7 @@ export default async function AdminAccountPage({
                     <Mail className="h-5 w-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">{context.profile.email}</p>
+                    <p className="text-sm font-medium">{context.authEmail}</p>
                     <p className="text-xs text-muted-foreground">Primary sign-in address</p>
                   </div>
                 </div>
@@ -108,8 +108,8 @@ export default async function AdminAccountPage({
           </Card>
 
           <EmailSecurityCard
-            currentEmail={context.profile.email}
-            emailTwoFactorEnabled={context.profile.email_2fa_enabled}
+            currentEmail={context.authEmail}
+            emailTwoFactorEnabled={context.emailTwoFactorEnabled}
             accountPath="/admin/account"
             emailChangeStatus={emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null}
           />

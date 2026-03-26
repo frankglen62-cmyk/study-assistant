@@ -28,10 +28,12 @@ export async function POST(request: Request) {
       throw new RouteError(401, 'unauthorized', 'You must be signed in to update email security.');
     }
 
-    const { error: updateError } = await supabase
-      .from('profiles')
-      .update({ email_2fa_enabled: body.enabled })
-      .eq('id', user.id);
+    const { error: updateError } = await supabase.auth.updateUser({
+      data: {
+        ...user.user_metadata,
+        email_2fa_enabled: body.enabled,
+      },
+    });
 
     if (updateError) {
       throw new RouteError(500, 'profile_update_failed', 'Unable to update email approval settings.', updateError);
