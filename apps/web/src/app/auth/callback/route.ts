@@ -109,11 +109,9 @@ export async function GET(request: NextRequest) {
       return redirectWithError(url.origin, '/login', 'Your email was updated, but the profile mirror could not be synced.');
     }
 
-    return redirectToLoginWithNext(
-      url.origin,
-      getSafeNextPath(url.searchParams.get('next'), approvalPayload.nextPath),
-      'Email confirmed. Sign in with your new email to continue.',
-    );
+    const successUrl = new URL('/email-change-success', url.origin);
+    successUrl.searchParams.set('email', approvalPayload.targetEmail);
+    return NextResponse.redirect(successUrl);
   }
 
   if (code) {

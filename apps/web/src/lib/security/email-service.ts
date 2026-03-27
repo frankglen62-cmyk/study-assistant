@@ -128,22 +128,38 @@ async function sendBrevoMessage(input: {
     throw new Error('Brevo API key is not configured.');
   }
 
+  const payload = {
+    sender: input.sender,
+    to: [{ email: input.to }],
+    subject: input.subject,
+    htmlContent: input.html,
+  };
+
+  console.log('[Brevo] Sending email:', {
+    sender: input.sender,
+    to: input.to,
+    subject: input.subject,
+    apiKeyPrefix: brevoApiKey.substring(0, 12) + '...',
+  });
+
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
       'api-key': brevoApiKey,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      sender: input.sender,
-      to: [{ email: input.to }],
-      subject: input.subject,
-      htmlContent: input.html,
-    }),
+    body: JSON.stringify(payload),
     cache: 'no-store',
   });
 
-  return response;
+  const responseText = await response.text();
+  console.log('[Brevo] Response:', {
+    status: response.status,
+    statusText: response.statusText,
+    body: responseText,
+  });
+
+  return { ok: response.ok, status: response.status, text: responseText };
 }
 
 function isInvalidBrevoSender(details: string) {
@@ -152,45 +168,24 @@ function isInvalidBrevoSender(details: string) {
 }
 
 async function sendWithBrevo(to: string, subject: string, html: string): Promise<void> {
-  const configuredSender = parseSenderAddress(fromEmail);
-  let response = await sendBrevoMessage({
-    sender: configuredSender,
+  // Proactively resolve the verified active sender from Brevo instead of
+  // relying on the configured BREVO_FROM_EMAIL which may not be verified.
+  const sender = await resolveBrevoSender();
+  console.log('[Brevo] Starting email send to:', to, 'with verified sender:', sender);
+
+  const result = await sendBrevoMessage({
+    sender,
     to,
     subject,
     html,
   });
 
-  if (!response.ok) {
-    const details = await response.text();
-
-    if (isInvalidBrevoSender(details)) {
-      const fallbackSender = await resolveBrevoSender();
-      const sameSender =
-        fallbackSender.email.toLowerCase() === configuredSender.email.toLowerCase() &&
-        fallbackSender.name === configuredSender.name;
-
-      if (!sameSender) {
-        console.warn(
-          `Configured Brevo sender "${configuredSender.email}" rejected. Retrying with active sender "${fallbackSender.email}".`,
-        );
-        response = await sendBrevoMessage({
-          sender: fallbackSender,
-          to,
-          subject,
-          html,
-        });
-      }
-    } else {
-      console.error('Failed to send email via Brevo:', details);
-      throw new Error('Unable to send verification email. Please try again.');
-    }
-  }
-
-  if (!response.ok) {
-    const details = await response.text();
-    console.error('Failed to send email via Brevo:', details);
+  if (!result.ok) {
+    console.error('[Brevo] Failed to send email:', result.text);
     throw new Error('Unable to send verification email. Please try again.');
   }
+
+  console.log('[Brevo] Email sent successfully to:', to);
 }
 
 async function sendWithResend(to: string, subject: string, html: string): Promise<void> {

@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
   const protectedPrefixes = ['/dashboard', '/buy-credits', '/sessions', '/usage-logs', '/settings', '/account', '/extension-guide', '/admin', '/audit-logs', '/categories', '/payments', '/reports', '/sources', '/subjects', '/users'];
-  const mfaBypassPrefixes = ['/login', '/register', '/forgot-password', '/reset-password', '/mfa', '/email-approval', '/auth/callback'];
+  const mfaBypassPrefixes = ['/login', '/register', '/forgot-password', '/reset-password', '/mfa', '/email-approval', '/email-change-success', '/auth/callback'];
 
   const isProtectedPath = protectedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   const isMfaBypassPath = mfaBypassPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
