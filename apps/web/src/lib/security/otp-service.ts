@@ -17,6 +17,12 @@ function generateCode(): string {
 
 export type OtpPurpose = 'login_2fa' | 'email_change_current' | 'email_change_new' | 'sensitive_action';
 
+type OtpDeliveryState = {
+  step: 'initial' | 'code-sent';
+  cooldownSeconds: number;
+  errorMessage?: string;
+};
+
 /**
  * Generate a 6-digit OTP, store it hashed, and send it via email.
  * Enforces a 60-second resend cooldown.
@@ -78,6 +84,56 @@ export async function generateAndSendOtp(
   await sendOtpEmail(email, code, purpose);
 
   return { sent: true, cooldownSeconds: RESEND_COOLDOWN_SECONDS };
+}
+
+export async function ensureOtpDeliveryState(
+  userId: string,
+  email: string,
+  purpose: OtpPurpose,
+): Promise<OtpDeliveryState> {
+  const admin = getSupabaseAdmin();
+  const now = Date.now();
+
+  const { data: recent } = await admin
+    .from('otp_codes')
+    .select('created_at, expires_at')
+    .eq('user_id', userId)
+    .eq('purpose', purpose)
+    .is('used_at', null)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (recent) {
+    const createdAt = new Date(recent.created_at).getTime();
+    const expiresAt = new Date(recent.expires_at).getTime();
+    const ageSeconds = (now - createdAt) / 1000;
+    const cooldownSeconds = Math.max(0, Math.ceil(RESEND_COOLDOWN_SECONDS - ageSeconds));
+
+    if (expiresAt > now) {
+      return {
+        step: 'code-sent',
+        cooldownSeconds,
+      };
+    }
+  }
+
+  try {
+    const result = await generateAndSendOtp(userId, email, purpose);
+    return {
+      step: 'code-sent',
+      cooldownSeconds: result.cooldownSeconds,
+    };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unable to send verification code. Please try again.';
+
+    return {
+      step: 'initial',
+      cooldownSeconds: 0,
+      errorMessage,
+    };
+  }
 }
 
 /**
