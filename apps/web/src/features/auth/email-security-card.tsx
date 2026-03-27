@@ -1,13 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Route } from 'next';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, Loader2, Mail, ShieldCheck } from 'lucide-react';
 
 import { Badge, Button, Input } from '@study-assistant/ui';
+import { createBrowserClient } from '@supabase/ssr';
 
 import { useToast } from '@/components/providers/toast-provider';
 import { SettingRow } from '@/features/account/setting-row';
+import { env } from '@/lib/env/client';
 
 function getReadableError(error: unknown, fallback: string) {
   if (!(error instanceof Error) || !error.message) {
@@ -38,12 +41,62 @@ export function EmailSecurityCard({
   pendingEmail = null,
 }: EmailSecurityCardProps) {
   const { pushToast } = useToast();
+  const router = useRouter();
   const normalizedCurrentEmail = currentEmail.trim().toLowerCase();
   const normalizedPendingEmail = pendingEmail?.trim().toLowerCase() ?? null;
   const showComparison = Boolean(normalizedPendingEmail && normalizedPendingEmail !== normalizedCurrentEmail);
   const [enabled, setEnabled] = useState(emailTwoFactorEnabled);
   const [workingMode, setWorkingMode] = useState<'toggle' | 'change' | null>(null);
   const [targetEmail, setTargetEmail] = useState('');
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Poll for email change completion when status is 'requested'
+  useEffect(() => {
+    if (emailChangeStatus !== 'requested') {
+      return;
+    }
+
+    const checkEmailChange = async () => {
+      try {
+        const response = await fetch('/api/account/check-email', { cache: 'no-store' });
+
+        if (!response.ok) {
+          // Session expired or invalidated — sign out
+          const supabase = createBrowserClient(
+            env.NEXT_PUBLIC_SUPABASE_URL,
+            env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+          );
+          await supabase.auth.signOut();
+          window.location.assign('/login?message=' + encodeURIComponent('Your email has been changed. Please sign in with your new email.'));
+          return;
+        }
+
+        const data = await response.json() as { email?: string };
+        const serverEmail = data.email?.trim().toLowerCase();
+
+        if (serverEmail && serverEmail !== normalizedCurrentEmail) {
+          // Email has changed — sign out this session
+          const supabase = createBrowserClient(
+            env.NEXT_PUBLIC_SUPABASE_URL,
+            env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+          );
+          await supabase.auth.signOut();
+          window.location.assign('/login?message=' + encodeURIComponent('Your email has been changed. Please sign in with your new email.'));
+        }
+      } catch {
+        // Network error — ignore and retry next poll
+      }
+    };
+
+    pollingRef.current = setInterval(checkEmailChange, 5000);
+
+    return () => {
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
+    };
+  }, [emailChangeStatus, normalizedCurrentEmail]);
 
   const handleToggle = async (nextValue: boolean) => {
     setWorkingMode('toggle');
