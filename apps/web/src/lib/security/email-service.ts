@@ -194,6 +194,12 @@ async function sendWithResend(to: string, subject: string, html: string): Promis
   const client = getResendClient();
 
   if (!client) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(
+        'OTP email delivery is not configured in production. Add BREVO_API_KEY or RESEND_API_KEY to Vercel environment variables.',
+      );
+    }
+
     console.log('');
     console.log('==========================================');
     console.log(`  EMAIL FALLBACK for ${to}`);

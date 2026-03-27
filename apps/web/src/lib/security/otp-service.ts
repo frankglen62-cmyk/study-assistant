@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
-import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { sendOtpEmail } from '@/lib/security/email-service';
+import { getSupabaseAdmin } from '@/lib/supabase/server';
 
 const OTP_EXPIRY_MINUTES = 5;
 const MAX_ATTEMPTS = 5;
@@ -15,7 +15,11 @@ function generateCode(): string {
   return crypto.randomInt(100000, 999999).toString();
 }
 
-export type OtpPurpose = 'login_2fa' | 'email_change_current' | 'email_change_new' | 'sensitive_action';
+export type OtpPurpose =
+  | 'login_2fa'
+  | 'email_change_current'
+  | 'email_change_new'
+  | 'sensitive_action';
 
 type OtpDeliveryState = {
   step: 'initial' | 'code-sent';
@@ -25,8 +29,7 @@ type OtpDeliveryState = {
 
 /**
  * Generate a 6-digit OTP, store it hashed, and send it via email.
- * Enforces a 60-second resend cooldown.
- * Returns the cooldown info.
+ * Enforces a 60-second resend cooldown per user+email+purpose.
  */
 export async function generateAndSendOtp(
   userId: string,
@@ -35,11 +38,11 @@ export async function generateAndSendOtp(
 ): Promise<{ sent: true; cooldownSeconds: number }> {
   const admin = getSupabaseAdmin();
 
-  // Check cooldown — find the most recent code for this user+purpose
   const { data: recent } = await admin
     .from('otp_codes')
     .select('created_at')
     .eq('user_id', userId)
+    .eq('email', email)
     .eq('purpose', purpose)
     .is('used_at', null)
     .order('created_at', { ascending: false })
@@ -48,40 +51,48 @@ export async function generateAndSendOtp(
 
   if (recent) {
     const elapsedSeconds = (Date.now() - new Date(recent.created_at).getTime()) / 1000;
+
     if (elapsedSeconds < RESEND_COOLDOWN_SECONDS) {
       const remaining = Math.ceil(RESEND_COOLDOWN_SECONDS - elapsedSeconds);
       throw new Error(`Please wait ${remaining} seconds before requesting another code.`);
     }
   }
 
-  // Invalidate all previous unused codes for this user+purpose
   await admin
     .from('otp_codes')
     .delete()
     .eq('user_id', userId)
+    .eq('email', email)
     .eq('purpose', purpose)
     .is('used_at', null);
 
-  // Generate and store
   const code = generateCode();
   const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
 
-  const { error: insertError } = await admin.from('otp_codes').insert({
-    user_id: userId,
-    email,
-    code_hash: hashCode(code),
-    purpose,
-    max_attempts: MAX_ATTEMPTS,
-    expires_at: expiresAt.toISOString(),
-  });
+  const { data: insertedOtp, error: insertError } = await admin
+    .from('otp_codes')
+    .insert({
+      user_id: userId,
+      email,
+      code_hash: hashCode(code),
+      purpose,
+      max_attempts: MAX_ATTEMPTS,
+      expires_at: expiresAt.toISOString(),
+    })
+    .select('id')
+    .single();
 
-  if (insertError) {
+  if (insertError || !insertedOtp?.id) {
     console.error('Failed to store OTP:', insertError);
     throw new Error('Unable to generate verification code.');
   }
 
-  // Send the email
-  await sendOtpEmail(email, code, purpose);
+  try {
+    await sendOtpEmail(email, code, purpose);
+  } catch (error) {
+    await admin.from('otp_codes').delete().eq('id', insertedOtp.id);
+    throw error;
+  }
 
   return { sent: true, cooldownSeconds: RESEND_COOLDOWN_SECONDS };
 }
@@ -98,6 +109,7 @@ export async function ensureOtpDeliveryState(
     .from('otp_codes')
     .select('created_at, expires_at')
     .eq('user_id', userId)
+    .eq('email', email)
     .eq('purpose', purpose)
     .is('used_at', null)
     .order('created_at', { ascending: false })
@@ -120,6 +132,7 @@ export async function ensureOtpDeliveryState(
 
   try {
     const result = await generateAndSendOtp(userId, email, purpose);
+
     return {
       step: 'code-sent',
       cooldownSeconds: result.cooldownSeconds,
@@ -138,8 +151,7 @@ export async function ensureOtpDeliveryState(
 
 /**
  * Verify a 6-digit OTP code.
- * Checks hash, enforces max attempts, checks expiry.
- * Marks code as used on success.
+ * Checks hash, enforces max attempts, checks expiry, and marks code as used on success.
  */
 export async function verifyOtp(
   userId: string,
@@ -148,7 +160,6 @@ export async function verifyOtp(
 ): Promise<{ verified: true }> {
   const admin = getSupabaseAdmin();
 
-  // Find the latest unused, non-expired code
   const { data: otpRecord, error: findError } = await admin
     .from('otp_codes')
     .select('*')
@@ -165,20 +176,18 @@ export async function verifyOtp(
   }
 
   if (otpRecord.attempts >= otpRecord.max_attempts) {
-    // Delete the exhausted code
     await admin.from('otp_codes').delete().eq('id', otpRecord.id);
     throw new Error('Too many failed attempts. Please request a new code.');
   }
 
-  // Increment attempts
   await admin
     .from('otp_codes')
     .update({ attempts: otpRecord.attempts + 1 })
     .eq('id', otpRecord.id);
 
-  // Check hash
   if (otpRecord.code_hash !== hashCode(code)) {
     const remaining = otpRecord.max_attempts - (otpRecord.attempts + 1);
+
     throw new Error(
       remaining > 0
         ? `Invalid code. ${remaining} attempt${remaining === 1 ? '' : 's'} remaining.`
@@ -186,7 +195,6 @@ export async function verifyOtp(
     );
   }
 
-  // Mark as used
   await admin
     .from('otp_codes')
     .update({ used_at: new Date().toISOString() })
