@@ -16,7 +16,7 @@ import {
   Zap, WifiOff, FileSearch, Sparkles, MousePointerClick,
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
-  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft,
+  RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft, Clock, Pause, Square,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -411,7 +411,7 @@ export function SidePanelApp() {
   const siteAccessGranted = access?.status === 'granted';
   const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
   const isFullAutoOn = state?.autoPilotEnabled ?? false;
-  const subjectSuggestions = getSubjectSuggestions(availableSubjects, subjectSearch, 10);
+  const subjectSuggestions = getSubjectSuggestions(availableSubjects, subjectSearch, 100);
   const selectedSubjectEntry =
     availableSubjects.find((subject) => subject.name === overrideDraft.subject)
     ?? availableSubjects.find((subject) => subject.name === manualSubject)
@@ -527,17 +527,6 @@ export function SidePanelApp() {
     setOverrideDraft((current) => ({ ...current, subject: subject.name, category: '' }));
     setSubjectSearch(getSubjectDisplayLabel(subject));
     setSubjectPickerOpen(false);
-    
-    // Auto-apply selection slightly after state update
-    setTimeout(() => {
-       void confirmOverride().then(() => {
-         const nextSubject = availableSubjects.find((s) => s.name === subject.name) ?? null;
-         setSubjectSearch(nextSubject ? getSubjectDisplayLabel(nextSubject) : '');
-         if (canAnalyze) {
-           setWorkspaceView('answering');
-         }
-       });
-    }, 50);
   }
 
   function updateSubjectSearch(value: string) {
@@ -1273,100 +1262,6 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
-      {showControlsWorkspace && nextPrimaryAction === 'ready' && (
-        <SectionCard
-          title="Ready To Answer"
-          subtitle="Lock a subject here if you want, then move into a cleaner answering workspace."
-          icon={Sparkles}
-          className="panel-card--primary"
-          actions={(
-            <button
-              className="link-button text-xs flex-center-gap"
-              onClick={() => setWorkspaceView('answering')}
-            >
-              <Sparkles size={11} />
-              Open Answering
-            </button>
-          )}
-        >
-          <div className="workspace-launch">
-            <div className="workspace-launch__summary">
-              <div className="metric-tile">
-                <span>Current subject</span>
-                <strong>{activeSubjectLabel}</strong>
-              </div>
-              <div className="metric-tile">
-                <span>Mode</span>
-                <strong>{manualSubject ? 'Manual lock' : 'Auto Detect'}</strong>
-              </div>
-              <div className="metric-tile">
-                <span>Questions</span>
-                <strong>{detectedQuestionCount > 0 ? detectedQuestionCount : 'Ready to scan'}</strong>
-              </div>
-              <div className="metric-tile">
-                <span>Assessment</span>
-                <strong>{quizTitle ?? 'Current page'}</strong>
-              </div>
-            </div>
-
-            <div className="workspace-launch__actions">
-              <button
-                className="action-button"
-                onClick={() => void sendAnalyze('detect', 'current')}
-                disabled={!canAnalyze || pendingAction !== null}
-              >
-                {state.uiStatus === 'detecting_subject'
-                  ? <><Loader2 size={15} className="animate-spin" /> Detecting...</>
-                  : <><FileSearch size={15} /> {cachedSubject ? 'Re-detect Subject' : 'Detect Subject'}</>
-                }
-              </button>
-              <button
-                className="action-button action-button--primary"
-                onClick={() => setWorkspaceView('answering')}
-                disabled={!canAnalyze}
-              >
-                <Sparkles size={15} />
-                Start Answering
-              </button>
-            </div>
-          </div>
-        </SectionCard>
-      )}
-
-      {/* ======== QUICK ACTION BAR ======== */}
-      {false && isPaired && nextPrimaryAction === 'ready' && (
-        <section className="quick-action-bar">
-          <button
-            className="quick-action-btn quick-action-btn--reset"
-            onClick={() => void sendSimple('EXTENSION/RESET_EXAM')}
-            disabled={pendingAction !== null}
-            title="Clear everything and start a new exam/subject"
-          >
-            <RotateCcw size={14} />
-            <span>New Exam</span>
-          </button>
-
-          <button
-            className={`quick-action-btn ${isFullAutoOn ? 'quick-action-btn--active' : 'quick-action-btn--auto'}`}
-            onClick={() => void toggleFullAuto(!isFullAutoOn)}
-            disabled={pendingAction !== null || !siteAccessGranted}
-            title="Auto Pilot: analyze → click answer → next page (repeat)"
-          >
-            <BotMessageSquare size={14} />
-            <span>{isFullAutoOn ? 'Auto: ON' : 'Full Auto'}</span>
-          </button>
-
-          <button
-            className="quick-action-btn quick-action-btn--select"
-            onClick={() => void triggerAutoClickAll()}
-            disabled={pendingAction !== null || suggestions.length === 0 || isAnalyzing}
-            title="Click all matched answers on the page at once"
-          >
-            <ListChecks size={14} />
-            <span>Select All</span>
-          </button>
-        </section>
-      )}
 
       {showAnswerWorkspace && (
         <SectionCard
@@ -1663,88 +1558,83 @@ export function SidePanelApp() {
         </div>
       )}
 
-      {/* ======== SESSION CONTROLS (collapsible) ======== */}
+      {/* ======== SESSION CONTROLS ======== */}
       {showControlsWorkspace && (
-        <details className="panel-disclosure" open={state.session.status !== 'session_active'}>
-          <summary className="panel-disclosure__summary">
-            <div>
-              <strong>Session Controls</strong>
-              <p>{state.session.status === 'session_active' ? 'Session is live' : 'Start a session to analyze'}</p>
+        <SectionCard
+          title="Session Controls"
+          subtitle={state.session.status === 'session_active' ? 'Session is live' : 'Start a session to analyze'}
+          icon={Clock}
+          actions={(
+            <div className="flex-center-gap">
+               <span style={{ fontSize: 12, fontWeight: 600, color: displayRemainingSeconds < 1800 ? 'var(--sa-danger)' : 'var(--sa-accent)' }}>
+                 {formatDurationDetailed(displayRemainingSeconds)}
+               </span>
             </div>
-            <ChevronDown size={14} />
-          </summary>
-          <div className="panel-disclosure__content">
-            <div className="session-timer-card">
-              <span>Remaining credits</span>
-              <strong>{formatDurationDetailed(displayRemainingSeconds)}</strong>
-              <p>
-                {state.session.status === 'session_active'
-                  ? 'Timer is running while the current session is active.'
-                  : 'Timer freezes whenever the session is paused or ended.'}
-              </p>
-            </div>
-
-            <div className="action-grid">
-              <button
-                className="action-button action-button--primary"
-                onClick={() => void sendSimple('EXTENSION/START_SESSION')}
-                disabled={pendingAction !== null || state.session.status === 'session_active' || state.creditsRemainingSeconds === 0}
-              >
-                Start
-              </button>
-              <button
-                className="action-button"
-                onClick={() => void sendSimple('EXTENSION/PAUSE_SESSION')}
-                disabled={pendingAction !== null || state.session.status !== 'session_active'}
-              >
-                Pause
-              </button>
-              <button
-                className="action-button"
-                onClick={() => void sendSimple('EXTENSION/RESUME_SESSION')}
-                disabled={pendingAction !== null || state.session.status !== 'session_paused' || state.creditsRemainingSeconds === 0}
-              >
-                Resume
-              </button>
-              <button
-                className="action-button action-button--danger"
-                onClick={() => void sendSimple('EXTENSION/END_SESSION')}
-                disabled={pendingAction !== null || state.session.status === 'session_inactive'}
-              >
-                End Session
-              </button>
-            </div>
-
-            {state.creditsRemainingSeconds === 0 && (
-              <div className="notice notice--danger mt-2">
-                <strong>No credits remaining</strong>
-                <p>Top up your account in the web portal.</p>
-              </div>
-            )}
-
+          )}
+        >
+          <div className="action-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 6 }}>
             <button
-              className="link-button flex-center-gap mt-1"
+              className="action-button action-button--primary action-button--sm"
+              onClick={() => void sendSimple('EXTENSION/START_SESSION')}
+              disabled={pendingAction !== null || state.session.status === 'session_active' || state.creditsRemainingSeconds === 0}
+              title="Start"
+              style={{ padding: '6px' }}
+            >
+              <Play size={14} /> Start
+            </button>
+            <button
+              className="action-button action-button--sm"
+              onClick={() => void sendSimple('EXTENSION/PAUSE_SESSION')}
+              disabled={pendingAction !== null || state.session.status !== 'session_active'}
+              title="Pause"
+              style={{ padding: '6px' }}
+            >
+              <Pause size={14} /> Pause
+            </button>
+            <button
+              className="action-button action-button--sm"
+              onClick={() => void sendSimple('EXTENSION/RESUME_SESSION')}
+              disabled={pendingAction !== null || state.session.status !== 'session_paused' || state.creditsRemainingSeconds === 0}
+              title="Resume"
+              style={{ padding: '6px' }}
+            >
+              <Play size={14} /> Resume
+            </button>
+            <button
+              className="action-button action-button--danger action-button--sm"
+              onClick={() => void sendSimple('EXTENSION/END_SESSION')}
+              disabled={pendingAction !== null || state.session.status === 'session_inactive'}
+              title="End session"
+              style={{ padding: '6px' }}
+            >
+              <Square size={14} /> End
+            </button>
+          </div>
+
+          {state.creditsRemainingSeconds === 0 && (
+            <div className="notice notice--danger mt-2" style={{ padding: '6px 8px' }}>
+              <p style={{ fontSize: 11 }}>No credits remaining. Top up in portal.</p>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>
+            <button
+              className="link-button flex-center-gap"
               onClick={() => void sendSimple('EXTENSION/REFRESH_CREDITS')}
               style={{ fontSize: 11 }}
             >
               <RefreshCw size={11} /> Refresh Credits
             </button>
-
-            <div className="session-danger-zone">
-              <div>
-                <strong>Unpair this browser</strong>
-                <p>Use this when you want to disconnect this browser from your account and go back to pairing mode.</p>
-              </div>
-              <button
-                className="action-button action-button--danger"
-                onClick={() => void unpairBrowser()}
-                disabled={pendingAction !== null}
-              >
-                <XCircle size={14} /> Unpair Browser
-              </button>
-            </div>
+            <button
+              className="link-button flex-center-gap"
+              onClick={() => void unpairBrowser()}
+              disabled={pendingAction !== null}
+              style={{ fontSize: 11, color: 'var(--sa-danger)' }}
+            >
+              <XCircle size={11} /> Unpair
+            </button>
           </div>
-        </details>
+        </SectionCard>
       )}
 
       {/* ======== ACTIVITY LOG (collapsible) ======== */}
