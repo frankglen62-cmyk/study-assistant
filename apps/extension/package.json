@@ -1,7 +1,8 @@
 {
   "name": "@study-assistant/extension",
   "private": true,
-  "version": "0.1.45",
+  "version": "0.1.46",
+  "description": "Chrome extension for Admin-Managed Study Assistant",
   "type": "module",
   "scripts": {
     "dev": "vite build --watch",
