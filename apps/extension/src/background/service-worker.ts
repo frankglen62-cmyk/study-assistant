@@ -1641,7 +1641,31 @@ async function performAutoClickAll(state: ExtensionState) {
 
         const response = (await chrome.tabs.sendMessage(tabId, {
           type: 'EXTENSION/AUTO_CLICK_NEXT_PAGE',
-        })) as ExtensionResponse<{ clicked: boolean }>;
+        })) as ExtensionResponse<{ clicked: boolean; isLastPage?: boolean }>;
+
+        if (response?.ok && response.data?.clicked) {
+          if (response.data.isLastPage) {
+            // We just clicked "Finish attempt", mark the quiz as done
+            await updateState(
+              (current) =>
+                appendNotice(
+                  {
+                    ...current,
+                    autoPilotEnabled: false,
+                    uiStatus: 'suggestion_ready',
+                  },
+                  {
+                    tone: 'success',
+                    title: 'Done Answering!',
+                    message: 'All questions have been answered. Auto Pilot has reached the summary page and stopped automatically.',
+                  },
+                ),
+              browserName,
+              extensionVersion,
+            );
+          }
+          return;
+        }
 
         if (!response?.ok || !response.data?.clicked) {
           // No next button found — this might be the last page or a multi-question page

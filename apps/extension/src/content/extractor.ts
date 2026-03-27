@@ -1426,23 +1426,35 @@ export function installExtractorContentScript() {
     }
   });
 
-  function autoClickNextPage(): { clicked: boolean } {
-    const candidates = Array.from(document.querySelectorAll<HTMLElement>('button, input[type="submit"], input[type="button"], a.btn'));
+  function autoClickNextPage(): { clicked: boolean; isLastPage?: boolean } {
+    const candidates = Array.from(document.querySelectorAll<HTMLElement>('button, input[type="submit"], input[type="button"], a.btn, a[href*="summary"]'));
     
-    // Moodle specific IDs and classes first
+    // Moodle specific IDs and classes first (Next button)
     const moodleNext = candidates.find(el => el.id === 'mod_quiz-next-nav' || el.getAttribute('name') === 'next');
     if (moodleNext && isElementVisible(moodleNext)) {
       moodleNext.click();
-      return { clicked: true };
+      return { clicked: true, isLastPage: false };
     }
 
+    // Try finding "next page" by text priority
     for (const el of candidates) {
       if (!isElementVisible(el)) continue;
 
       const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
       if (text === 'next' || text === 'next page' || text === 'forward' || text.includes('next page')) {
         el.click();
-        return { clicked: true };
+        return { clicked: true, isLastPage: false };
+      }
+    }
+
+    // If no Next button found, look for "finish attempt" to mark the end of the quiz
+    for (const el of candidates) {
+      if (!isElementVisible(el)) continue;
+
+      const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
+      if (text === 'finish attempt' || text === 'finish attempt ...' || text.includes('finish attempt')) {
+        el.click();
+        return { clicked: true, isLastPage: true }; // Flag that this is the last page
       }
     }
 
