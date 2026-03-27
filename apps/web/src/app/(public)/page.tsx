@@ -327,7 +327,7 @@ export default function HomePage() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    Extension v0.1.50 is live
+                    Extension v0.1.51 is live
                   </span>
                     <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400 transition-colors group-hover:bg-teal-500/20">
                       <Icon className="h-6 w-6" />

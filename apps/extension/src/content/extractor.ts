@@ -1667,9 +1667,9 @@ export function installExtractorContentScript() {
     }
 
     if (targetSelects.length > 0) {
-      // For dropdown questions, the answerText might describe the correct option.
-      // Try to match the answer text against the option labels in each dropdown.
-      const answerForDropdown = payload.answerText || targetText;
+      // For dropdown questions, use targetText which prioritizes the explicitly matched
+      // suggestedOption from the backend algorithms over the raw answerText.
+      const answerForDropdown = targetText;
       const normalizedDropdownAnswer = normalizeForMatch(answerForDropdown);
       let dropdownFilled = false;
 
