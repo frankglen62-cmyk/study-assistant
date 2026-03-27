@@ -1620,32 +1620,10 @@ async function performAutoClickAll(state: ExtensionState) {
     extensionVersion,
   );
 
-  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && failedCount > 0) {
-    const pauseMessage =
-      blockingFailures > 0
-        ? `${blockingFailures} detected answer${blockingFailures > 1 ? 's were' : ' was'} found but could not be inserted into the page. Review the current question before continuing.`
-        : `${failedCount} question${failedCount > 1 ? 's still do' : ' still does'} not have a confirmed answer inserted on the page. Auto Pilot paused to avoid skipping unanswered items.`;
-
-    return updateState(
-      (current) =>
-        appendNotice(
-          {
-            ...current,
-            autoPilotEnabled: false,
-            uiStatus: 'suggestion_ready',
-          },
-          {
-            tone: 'warning',
-            title: 'Auto Pilot paused',
-            message: pauseMessage,
-          },
-        ),
-      browserName,
-      extensionVersion,
-    );
-  }
-
-  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active' && clickedCount > 0 && failedCount === 0) {
+  // In Full Auto mode, ALWAYS proceed to the next page regardless of click success.
+  // The user wants Auto Pilot to skip no-match / failed questions and keep going
+  // until it reaches "Finish attempt" (last question).
+  if (finalState.autoPilotEnabled && finalState.session.status === 'session_active') {
     // Wait briefly, then attempt to click Next Page
     setTimeout(async () => {
       try {
@@ -1678,8 +1656,8 @@ async function performAutoClickAll(state: ExtensionState) {
                   },
                   {
                     tone: 'success',
-                    title: 'Done Answering!',
-                    message: 'All questions have been answered. Auto Pilot has reached the summary page and stopped automatically.',
+                    title: '✅ Done Answering!',
+                    message: 'All questions have been processed. Auto Pilot has reached the end of the quiz and stopped automatically.',
                   },
                 ),
               browserName,
