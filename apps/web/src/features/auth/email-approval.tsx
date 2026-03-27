@@ -38,6 +38,7 @@ export function EmailApprovalCard({
   const [cooldown, setCooldown] = useState(initialCooldown);
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const codeInputRef = useRef<HTMLInputElement>(null);
+  const autoSendStartedRef = useRef(false);
 
   useEffect(() => {
     if (step !== 'code-sent') {
@@ -115,6 +116,15 @@ export function EmailApprovalCard({
       setIsSending(false);
     }
   }, [currentEmail, purpose, pushToast]);
+
+  useEffect(() => {
+    if (purpose !== 'login_2fa' || step !== 'initial' || autoSendStartedRef.current) {
+      return;
+    }
+
+    autoSendStartedRef.current = true;
+    void handleSendCode();
+  }, [handleSendCode, purpose, step]);
 
   const handleVerifyCode = useCallback(async () => {
     if (code.length !== 6) {
@@ -205,7 +215,7 @@ export function EmailApprovalCard({
         {step === 'initial' ? (
           <Button type="button" className="h-12 w-full" onClick={handleSendCode} disabled={isSending}>
             {isSending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
-            {isSending ? 'Sending code...' : 'Send Verification Code'}
+            {isSending ? 'Sending code...' : purpose === 'login_2fa' ? 'Send code again' : 'Send Verification Code'}
           </Button>
         ) : (
           <>
