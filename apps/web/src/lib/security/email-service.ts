@@ -37,10 +37,10 @@ function parseSenderAddress(rawValue: string): BrevoSender {
     };
   }
 
-  const [, rawName = 'Study Assistant', rawEmail = rawValue] = match;
+  const [, , rawEmail = rawValue] = match;
 
   return {
-    name: rawName.trim().replace(/^"|"$/g, '') || 'Study Assistant',
+    name: 'Study Assistant',
     email: rawEmail.trim(),
   };
 }
@@ -102,7 +102,7 @@ async function resolveBrevoSender(): Promise<BrevoSender> {
 
   if (exactMatch) {
     return {
-      name: configuredSender.name || exactMatch.name,
+      name: 'Study Assistant',
       email: exactMatch.email,
     };
   }
@@ -112,7 +112,10 @@ async function resolveBrevoSender(): Promise<BrevoSender> {
     `Configured Brevo sender "${configuredSender.email}" is not active. Falling back to "${fallbackSender.email}".`,
   );
 
-  return fallbackSender;
+  return {
+    name: 'Study Assistant',
+    email: fallbackSender.email,
+  };
 }
 
 async function sendBrevoMessage(input: {
@@ -268,6 +271,28 @@ function buildOtpEmailHtml(code: string, purpose: string): string {
 </html>`.trim();
 }
 
+function buildOtpEmailSubject(purpose: string): string {
+  const sentAtLabel = new Intl.DateTimeFormat('en-PH', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Manila',
+  }).format(new Date());
+
+  const prefix =
+    purpose === 'login_2fa'
+      ? 'Study Assistant sign-in code'
+      : purpose === 'email_change_current'
+        ? 'Study Assistant email change verification'
+        : purpose === 'email_change_new'
+          ? 'Study Assistant new email verification'
+          : 'Study Assistant security verification';
+
+  return `${prefix} • ${sentAtLabel}`;
+}
+
 function buildEmailChangeConfirmationHtml(currentEmail: string, newEmail: string, confirmUrl: string): string {
   return `
 <!DOCTYPE html>
@@ -304,15 +329,7 @@ function buildEmailChangeConfirmationHtml(currentEmail: string, newEmail: string
 }
 
 export async function sendOtpEmail(to: string, code: string, purpose: string): Promise<void> {
-  const subject =
-    purpose === 'login_2fa'
-      ? 'Your sign-in verification code'
-      : purpose === 'email_change_current'
-        ? 'Verify your email change request'
-        : purpose === 'email_change_new'
-          ? 'Verify your new email address'
-          : 'Your security verification code';
-
+  const subject = buildOtpEmailSubject(purpose);
   const html = buildOtpEmailHtml(code, purpose);
   await sendWithConfiguredProvider(to, subject, html);
 }

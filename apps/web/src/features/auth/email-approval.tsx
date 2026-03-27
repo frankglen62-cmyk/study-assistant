@@ -232,6 +232,10 @@ export function EmailApprovalCard({
               <p className="mt-2 text-xs text-neutral-500">
                 Code expires in 5 minutes. {cooldown > 0 ? `Resend available in ${cooldown}s.` : ''}
               </p>
+              <p className="mt-2 text-xs text-neutral-600">
+                If the code is not visible right away, check Primary, Promotions, and Spam, or search
+                for “Study Assistant sign-in code”.
+              </p>
             </div>
 
             <button
