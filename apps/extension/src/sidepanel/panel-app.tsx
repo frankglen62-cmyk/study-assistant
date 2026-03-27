@@ -993,42 +993,39 @@ export function SidePanelApp() {
           <div className="pairing-code-spotlight">
             <div className="pairing-code-spotlight__header">
               <div>
-                <span className="pairing-code-spotlight__eyebrow">Paste this first</span>
-                <strong>Pairing Code</strong>
-                <p>Generate the code from the client portal, then paste it here before you continue.</p>
+                <span className="pairing-code-spotlight__eyebrow">Required action</span>
+                <strong>Enter Pairing Code</strong>
+                <p>Generate a 6-letter code from your web portal and paste it below.</p>
               </div>
-              <div className="pairing-code-spotlight__step">Step 1</div>
             </div>
 
             <label className="pairing-field pairing-field--code">
-              <span>Short-lived portal code</span>
               <input
                 value={pairingCode}
                 onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
                 spellCheck={false}
-                placeholder="Paste code from the client portal"
+                placeholder="Ex. ABCDEF"
               />
             </label>
 
-            <div className="pairing-code-spotlight__hint">
-              Paste the code here, request permission for your portal host, then click Pair Extension.
-            </div>
+            <button
+              className="action-button action-button--primary"
+              onClick={() => void pairCurrentBrowser()}
+              disabled={pendingAction !== null || !pairingCode.trim()}
+              style={{ padding: '14px', fontSize: '14px' }}
+            >
+              <Link2 size={16} />
+              {pendingAction === 'pair-browser' ? 'Pairing...' : 'Pair Extension'}
+            </button>
           </div>
 
-          <div className="pairing-state-grid">
-            <div className="metric-tile">
-              <span>Installed build</span>
-              <strong>{`v${state.extensionVersion}`}</strong>
+          <div className="pairing-form-grid" style={{ marginTop: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--sa-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Connection Settings</span>
             </div>
-            <div className="metric-tile">
-              <span>Current state</span>
-              <strong>{state.pairingStatus === 'revoked' ? 'Revoked' : 'Not paired'}</strong>
-            </div>
-          </div>
-
-          <div className="pairing-form-grid pairing-form-grid--secondary">
+            
             <label className="pairing-field">
-              <span>App URL</span>
+              <span>Host URL</span>
               <input
                 value={appBaseUrl}
                 onChange={(event) => setAppBaseUrl(event.target.value)}
@@ -1046,22 +1043,14 @@ export function SidePanelApp() {
             </label>
           </div>
 
-          <div className="pairing-button-row">
+          <div className="pairing-button-row" style={{ marginTop: 16 }}>
             <button
               className="action-button"
               onClick={() => void requestConnectionPermission()}
               disabled={pendingAction !== null}
             >
               <ShieldCheck size={15} />
-              {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Request Connection Permission'}
-            </button>
-            <button
-              className="action-button action-button--primary"
-              onClick={() => void pairCurrentBrowser()}
-              disabled={pendingAction !== null || !pairingCode.trim()}
-            >
-              <Share2 size={15} />
-              {pendingAction === 'pair-browser' ? 'Pairing...' : 'Pair Extension'}
+              {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Approve Connection Access'}
             </button>
           </div>
 
