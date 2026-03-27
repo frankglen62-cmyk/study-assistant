@@ -1453,7 +1453,7 @@ export function installExtractorContentScript() {
 
       const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
       if (text === 'finish attempt' || text === 'finish attempt ...' || text.includes('finish attempt')) {
-        el.click();
+        setTimeout(() => el.click(), 50);
         return { clicked: true, isLastPage: true }; // Flag that this is the last page
       }
     }

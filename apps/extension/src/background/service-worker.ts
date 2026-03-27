@@ -84,6 +84,28 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             try {
               const currentState = await readState(browserName, extensionVersion);
               if (currentState.autoPilotEnabled && currentState.session.status === 'session_active') {
+                // Safety net: If we unexpectedly land on the summary or review page, stop Auto Pilot immediately.
+                if (tab.url && (tab.url.includes('/mod/quiz/summary.php') || tab.url.includes('/mod/quiz/review.php'))) {
+                  await updateState(
+                    (current) =>
+                      appendNotice(
+                        {
+                          ...current,
+                          autoPilotEnabled: false,
+                          uiStatus: 'suggestion_ready',
+                        },
+                        {
+                          tone: 'success',
+                          title: 'Done Answering!',
+                          message: 'All questions have been answered. Auto Pilot has reached the summary page and stopped automatically.',
+                        },
+                      ),
+                    browserName,
+                    extensionVersion,
+                  );
+                  return;
+                }
+                
                 await analyzeWithAutoRetry(2, AUTO_PILOT_ANALYZE_TIMEOUT_MS);
               }
             } catch (err) {

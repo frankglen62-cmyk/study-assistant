@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Admin-Managed AI Study Assistant",
   "description": "Admin-controlled AI study assistance with secure pairing, side panel answers, and explicit active-tab analysis.",
-  "version": "0.1.48",
+  "version": "0.1.49",
   "minimum_chrome_version": "116",
   "action": {
     "default_title": "Open Study Assistant",
