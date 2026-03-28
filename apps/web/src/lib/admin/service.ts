@@ -445,8 +445,27 @@ export async function deleteSubjectLibrary(input: AuditContext & { subjectId: st
     assertSupabaseResult(deletedSourceFiles.error, 'Failed to delete subject source files.');
   }
 
-  const deletedQaPairs = await supabase.from('subject_qa_pairs').delete().eq('subject_id', input.subjectId);
-  assertSubjectQaPairsAvailable(deletedQaPairs.error, 'Failed to delete subject Q&A pairs.');
+  // Step 1: Soft-delete all Q&A pairs for this subject (required by the
+  // protect_qa_pair_hard_delete_trigger which blocks hard-deletes on rows
+  // where deleted_at IS NULL).
+  const softDeletedQaPairs = await supabase
+    .from('subject_qa_pairs')
+    .update({
+      deleted_at: new Date().toISOString(),
+      deleted_by: input.actorUserId,
+      is_active: false,
+    })
+    .eq('subject_id', input.subjectId)
+    .is('deleted_at', null);
+  assertSubjectQaPairsAvailable(softDeletedQaPairs.error, 'Failed to soft-delete subject Q&A pairs.');
+
+  // Step 2: Now hard-delete the soft-deleted rows (trigger allows this).
+  const hardDeletedQaPairs = await supabase
+    .from('subject_qa_pairs')
+    .delete()
+    .eq('subject_id', input.subjectId)
+    .not('deleted_at', 'is', null);
+  assertSubjectQaPairsAvailable(hardDeletedQaPairs.error, 'Failed to hard-delete subject Q&A pairs.');
 
   const deletedCategories = await supabase.from('categories').delete().eq('subject_id', input.subjectId);
   assertSupabaseResult(deletedCategories.error, 'Failed to delete subject categories.');

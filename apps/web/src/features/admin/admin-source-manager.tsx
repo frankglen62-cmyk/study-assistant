@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 
 import type {
   AdminSubjectQaCountResponse,
@@ -136,7 +136,7 @@ export function AdminSourceManager({
   qaPairCounts,
   subjects,
 }: AdminSourceManagerProps) {
-  const router = useRouter();
+
   const { pushToast } = useToast();
 
   const [subjectRows, setSubjectRows] = useState(subjects);
@@ -191,30 +191,10 @@ export function AdminSourceManager({
     setQaPairCountsBySubjectId(qaPairCounts);
   }, [qaPairCounts]);
 
-  useEffect(() => {
-    const firstSubjectId = subjects[0]?.id;
-    if (!firstSubjectId) {
-      setQaPairCache({});
-      setLoadedSubjectIds([]);
-      return;
-    }
-
-    setQaPairCache((current) =>
-      initialQaPairs.length > 0
-        ? {
-            ...current,
-            [firstSubjectId]: initialQaPairs,
-          }
-        : current,
-    );
-    setLoadedSubjectIds((current) => {
-      if (initialQaPairs.length === 0 || current.includes(firstSubjectId)) {
-        return current;
-      }
-
-      return [...current, firstSubjectId];
-    });
-  }, [initialQaPairs, subjects]);
+  // NOTE: We intentionally do NOT sync initialQaPairs into the cache after
+  // the first render.  initialQaPairs comes from the server and is always
+  // empty (server.ts returns []).  Syncing it would WIPE the client-side
+  // cache.  All Q&A data is loaded lazily via loadSubjectPairs().
 
   useEffect(() => {
     setSourceFileRows(sourceFiles);
@@ -395,10 +375,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'Subject folder added',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Subject creation failed',
@@ -568,26 +545,18 @@ export function AdminSourceManager({
     };
   }, [loadedSubjectIds, pushToast, qaPairCache, qaPairCountsBySubjectId, selectedSubjectId]);
 
+  // Refresh counts once on mount.  Do NOT include qaPairCache or
+  // loadedSubjectIds in the dependency array — that creates a re-run loop
+  // because this effect updates those same values.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let isCancelled = false;
 
     async function refreshCounts() {
       try {
-        const counts = await loadSubjectPairCounts();
+        await loadSubjectPairCounts();
         if (isCancelled) {
           return;
-        }
-
-        const subjectsThatNeedFreshLoad = subjectRows
-          .filter((subject) => {
-            const count = counts[subject.id] ?? 0;
-            const cachedPairs = qaPairCache[subject.id] ?? [];
-            return count > 0 && (!loadedSubjectIds.includes(subject.id) || cachedPairs.length === 0);
-          })
-          .map((subject) => subject.id);
-
-        if (subjectsThatNeedFreshLoad.includes(selectedSubjectId)) {
-          await loadSubjectPairs(selectedSubjectId, { force: true });
         }
       } catch (error) {
         if (!isCancelled) {
@@ -605,7 +574,7 @@ export function AdminSourceManager({
     return () => {
       isCancelled = true;
     };
-  }, [loadedSubjectIds, pushToast, qaPairCache, selectedSubjectId, subjectRows]);
+  }, []);
 
   async function handleCreateSubjectFolder() {
     if (!selectedSubject) {
@@ -662,10 +631,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'Subject folder created',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Folder creation failed',
@@ -724,10 +690,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'Subject folder renamed',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Rename failed',
@@ -785,10 +748,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'Subject deleted',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Delete failed',
@@ -996,10 +956,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: !pair.is_active ? 'Pair activated' : 'Pair deactivated',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Activation update failed',
@@ -1052,10 +1009,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'Q&A pair deleted',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Delete failed',
@@ -1127,10 +1081,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: 'File uploaded',
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'Upload failed',
@@ -1152,8 +1103,6 @@ export function AdminSourceManager({
         title: 'Subject library reloaded',
         description: 'The latest Q&A pairs and counts were fetched from the server.',
       });
-
-      router.refresh();
     }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
@@ -1198,10 +1147,7 @@ export function AdminSourceManager({
         tone: 'success',
         title: successTitle,
         description: payload.message,
-      });
-
-      router.refresh();
-    }).catch((error: unknown) => {
+      });    }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
         title: 'File update failed',
