@@ -84,7 +84,16 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
   }
 
   const answerSupport = optionAnswerSupportScore(candidate.options, pair.answer_text);
-  return questionOverlap >= 0.54 || answerSupport >= 0.85;
+  
+  // For dropdowns (5+ options), answerSupport is unreliable since all sub-questions share options.
+  // Require stronger question overlap to prevent all sub-questions picking the same fallback answer.
+  if (candidate.options.length >= 5) {
+    return questionOverlap >= 0.35 || (questionOverlap >= 0.15 && answerSupport >= 0.85);
+  }
+
+  // For regular multiple choice (under 5 options), we can be a bit more lenient,
+  // but we still require SOME question overlap if we rely on answerSupport.
+  return questionOverlap >= 0.54 || (questionOverlap >= 0.15 && answerSupport >= 0.85);
 }
 
 function sanitizeText(value: string, limit: number) {

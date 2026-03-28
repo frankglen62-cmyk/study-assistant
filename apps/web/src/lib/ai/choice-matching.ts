@@ -230,27 +230,22 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
   const multiAnswerSegments = splitMultiAnswerSegments(answerText);
   if (multiAnswerSegments.length >= 2) {
     const matchedSegments = multiAnswerSegments
-      .map((segment) =>
-        parsedOptions.find((option) => scoreChoiceOption({ option, answerText: segment, questionText }) >= 0.85)?.display ?? null,
-      )
+      .map((segment) => {
+        const bestSegmentMatch = parsedOptions
+          .map((option) => ({
+            display: option.display,
+            score: scoreChoiceOption({ option, answerText: segment, questionText }),
+          }))
+          .sort((left, right) => right.score - left.score)[0];
+
+        return bestSegmentMatch && bestSegmentMatch.score >= 0.85 ? bestSegmentMatch.display : null;
+      })
       .filter((display): display is string => Boolean(display));
 
     const distinctMatches = Array.from(new Set(matchedSegments));
     if (distinctMatches.length >= 2) {
       return null;
     }
-  }
-
-  const exactTextMatch = parsedOptions.find(
-    (option) =>
-      option.normalizedText === normalizedAnswer ||
-      option.normalizedRaw === normalizedAnswer ||
-      (option.normalizedText &&
-        (normalizedAnswer.includes(option.normalizedText) || option.normalizedText.includes(normalizedAnswer))),
-  );
-
-  if (exactTextMatch) {
-    return exactTextMatch.display;
   }
 
   const bestOption = parsedOptions
