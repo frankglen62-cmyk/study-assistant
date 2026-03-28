@@ -376,8 +376,13 @@ function qaPairScore(params: {
 
   const blankBonus = blankAlignment > 0.5 ? 0.06 : blankAlignment > 0 ? 0.03 : 0;
 
+  // For dropdown questions (5+ shared options), optionSupport is misleading because
+  // every sub-question shares the same options. Heavily discount it to prevent one
+  // Q&A pair from ranking highly for all sub-questions.
+  const optionSupportWeight = params.options.length >= 5 ? 0.04 : 0.16;
+
   const baseScore = Math.min(
-    questionScore * 0.76 + answerScore * 0.14 + optionSupport * 0.16 + keywordScore + containmentBoost + blankBonus,
+    questionScore * 0.76 + answerScore * 0.14 + optionSupport * optionSupportWeight + keywordScore + containmentBoost + blankBonus,
     0.99,
   );
   return Math.max(0, baseScore - numberPenalty - blankPenalty);

@@ -68,9 +68,13 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
     return true;
   }
 
+  // Containment match — but guard against short Q&A texts falsely matching long prompts.
+  // The shorter text must be at least 40% the length of the longer one.
+  const shorterLen = Math.min(normalizedCandidatePrompt.length, normalizedPairPrompt.length);
+  const longerLen = Math.max(normalizedCandidatePrompt.length, normalizedPairPrompt.length);
   const containmentMatch =
     normalizedCandidatePrompt.includes(normalizedPairPrompt) || normalizedPairPrompt.includes(normalizedCandidatePrompt);
-  if (containmentMatch) {
+  if (containmentMatch && (shorterLen >= longerLen * 0.4 || shorterLen >= 60)) {
     return true;
   }
 
@@ -83,16 +87,17 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
     return questionOverlap >= 0.72;
   }
 
-  const answerSupport = optionAnswerSupportScore(candidate.options, pair.answer_text);
-  
-  // For dropdowns (5+ options), answerSupport is unreliable since all sub-questions share options.
-  // Require stronger question overlap to prevent all sub-questions picking the same fallback answer.
+  // For dropdowns (5+ options), answerSupport is COMPLETELY UNRELIABLE because all
+  // sub-questions share the same set of dropdown options. The answer of one Q&A pair
+  // will always be present in the shared options, causing every sub-question to match
+  // the same pair. Rely ONLY on question text overlap with a high threshold.
   if (candidate.options.length >= 5) {
-    return questionOverlap >= 0.35 || (questionOverlap >= 0.15 && answerSupport >= 0.85);
+    return questionOverlap >= 0.55;
   }
 
-  // For regular multiple choice (under 5 options), we can be a bit more lenient,
-  // but we still require SOME question overlap if we rely on answerSupport.
+  // For regular multiple choice (under 5 options), we can use answerSupport as a
+  // secondary signal since each question has its own distinct options.
+  const answerSupport = optionAnswerSupportScore(candidate.options, pair.answer_text);
   return questionOverlap >= 0.54 || (questionOverlap >= 0.15 && answerSupport >= 0.85);
 }
 
