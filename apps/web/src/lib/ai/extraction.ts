@@ -21,7 +21,9 @@ export async function extractQuestionContext(params: {
     .map(sanitizeOption)
     .filter(Boolean);
 
-  if (directQuestion.length >= 8) {
+  // Accept short prompts (e.g. "what", "who") when they have dropdown options,
+  // or normal prompts >= 8 chars always
+  if (directQuestion.length >= 8 || (directQuestion.length >= 1 && directOptions.length >= 2)) {
     return {
       questionText: directQuestion,
       options: directOptions.slice(0, 10),

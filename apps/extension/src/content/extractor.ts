@@ -778,7 +778,8 @@ export function installExtractorContentScript() {
   }) {
     const prompt = normalizeText(input.prompt ?? '');
     const normalizedOptions = input.options.map((option) => normalizeText(option)).filter(Boolean);
-    const minimumPromptLength = normalizedOptions.length >= 2 ? 8 : 12;
+    // Allow very short prompts (e.g. 'what', 'who') if there are dropdown options
+    const minimumPromptLength = normalizedOptions.length >= 2 ? 1 : 12;
     if (prompt.length < minimumPromptLength) {
       return null;
     }
@@ -1026,9 +1027,25 @@ export function installExtractorContentScript() {
         selectContainerMap.set(container, existing);
       }
 
+      // Extract the parent question text from the container for context enrichment
+      function getContainerQuestionContext(container: HTMLElement): string {
+        const qtextEl = container.querySelector('.qtext, .questiontext, .question-text, .prompt, .question-prompt, .question-stem, .stem');
+        if (qtextEl && isElementVisible(qtextEl)) {
+          const text = normalizeText(qtextEl.textContent ?? '');
+          if (text.length >= 8) return text;
+        }
+        // Try deriving from pruned container
+        const derived = derivePromptFromContainer(container);
+        if (derived && derived.length >= 8) return derived;
+        return '';
+      }
+
       let dropdownContainerIndex = 0;
       for (const [container, selects] of selectContainerMap) {
         dropdownContainerIndex++;
+
+        // Get parent question context once for all sub-dropdowns
+        const parentContext = getContainerQuestionContext(container);
 
         // For each <select>, create a sub-question with the text label near it
         for (let si = 0; si < selects.length; si++) {
@@ -1049,7 +1066,7 @@ export function installExtractorContentScript() {
                 !lowerLabel.startsWith('answer') &&
                 !lowerLabel.includes('choose') &&
                 !lowerLabel.includes('jump') &&
-                labelText.length >= 8
+                labelText.length >= 1
               ) {
                 subPrompt = labelText;
               }
@@ -1057,7 +1074,7 @@ export function installExtractorContentScript() {
           }
 
           // 2. Moodle table row: extract from sibling <td> cell (not the cell with the select)
-          if (!subPrompt || subPrompt.length < 8) {
+          if (!subPrompt || subPrompt.length < 1) {
             const parentTd = sel.closest('td');
             if (parentTd) {
               const row = parentTd.closest('tr');
@@ -1068,12 +1085,12 @@ export function installExtractorContentScript() {
                 for (const cell of cells) {
                   if (cell === parentTd || cell.contains(sel)) continue;
                   const cellText = normalizeText(cell.textContent ?? '');
-                  if (cellText.length >= 4) {
+                  if (cellText.length >= 1) {
                     textParts.push(cellText);
                   }
                 }
                 const rowText = textParts.join(' ').trim();
-                if (rowText.length >= 8 && rowText.length < 500) {
+                if (rowText.length >= 1 && rowText.length < 500) {
                   subPrompt = rowText;
                 }
               }
@@ -1081,46 +1098,46 @@ export function installExtractorContentScript() {
           }
 
           // 3. Try closest row container (including Moodle answer row classes)
-          if (!subPrompt || subPrompt.length < 8) {
+          if (!subPrompt || subPrompt.length < 1) {
             const row = sel.closest('tr, .fitem, .form-group, .r0, .r1, .r2, .r3');
             if (row instanceof HTMLElement) {
               const clone = row.cloneNode(true) as HTMLElement;
-              clone.querySelectorAll('select, button, .submitbtns').forEach(n => n.remove());
+              clone.querySelectorAll('select, button, .submitbtns, .accesshide, .sr-only').forEach(n => n.remove());
               const rowText = normalizeText(clone.textContent ?? '');
-              if (rowText.length >= 8 && rowText.length < 500) {
+              if (rowText.length >= 1 && rowText.length < 500) {
                 subPrompt = rowText;
               }
             }
           }
 
           // 4. Try previous sibling element text
-          if (!subPrompt || subPrompt.length < 8) {
+          if (!subPrompt || subPrompt.length < 1) {
             let prevEl: Element | null = sel.previousElementSibling;
             if (!prevEl) {
               prevEl = sel.parentElement?.previousElementSibling ?? null;
             }
             if (prevEl && isElementVisible(prevEl)) {
               const text = normalizeText(prevEl.textContent ?? '');
-              if (text.length >= 8 && text.length < 500) {
+              if (text.length >= 1 && text.length < 500) {
                 subPrompt = text;
               }
             }
           }
 
           // 5. Fallback: extract text from parent element, excluding the select
-          if (!subPrompt || subPrompt.length < 8) {
+          if (!subPrompt || subPrompt.length < 1) {
             const parent = sel.parentElement;
             if (parent) {
               const clone = parent.cloneNode(true) as HTMLElement;
-              clone.querySelectorAll('select, button').forEach(n => n.remove());
+              clone.querySelectorAll('select, button, .accesshide, .sr-only').forEach(n => n.remove());
               const parentText = normalizeText(clone.textContent ?? '');
-              if (parentText.length >= 8) {
+              if (parentText.length >= 1) {
                 subPrompt = parentText;
               }
             }
           }
 
-          if (!subPrompt || subPrompt.length < 8) continue;
+          if (!subPrompt || subPrompt.length < 1) continue;
 
           // Extract options from this specific <select>
           const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
@@ -1136,12 +1153,19 @@ export function installExtractorContentScript() {
             container.dataset.studyAssistantId = `dropdown-container-${dropdownContainerIndex}`;
           }
 
+          // For short sub-prompts, include the parent context in contextLabel for
+          // richer subject detection, but keep prompt raw for exact Q&A matching.
+          const subContextLabel =
+            subPrompt.length < 12 && parentContext
+              ? `${deriveQuestionLabel(container) ?? ''} ${parentContext}`.trim().slice(0, 120) || null
+              : deriveQuestionLabel(container);
+
           pushCandidate(
             createQuestionCandidate({
               id: subId,
               prompt: subPrompt,
               options: selectOptions,
-              contextLabel: deriveQuestionLabel(container),
+              contextLabel: subContextLabel,
             }),
           );
         }

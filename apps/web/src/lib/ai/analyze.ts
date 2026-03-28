@@ -68,6 +68,19 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
     return true;
   }
 
+  // For very short prompts (≤10 chars, e.g. "what", "who", "when"), if the
+  // stored question is also very short and they match exactly after normalization,
+  // accept it directly. This handles dropdown sub-questions.
+  if (normalizedCandidatePrompt.length <= 10 && normalizedPairPrompt.length <= 10) {
+    // Short text exact match already handled above. For near-matches, require very
+    // high overlap to avoid false positives between "who" and "how" etc.
+    const shortOverlap = Math.max(
+      overlapScore(candidate.prompt, pair.question_text),
+      overlapScore(pair.question_text, candidate.prompt),
+    );
+    return shortOverlap >= 0.9;
+  }
+
   // Containment match — but guard against short Q&A texts falsely matching long prompts.
   // The shorter text must be at least 40% the length of the longer one.
   const shorterLen = Math.min(normalizedCandidatePrompt.length, normalizedPairPrompt.length);
@@ -157,7 +170,8 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
         contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
       };
     })
-    .filter((candidate) => candidate.prompt.length >= 12)
+    // Allow short prompts (e.g. "what", "who", "when") when they have dropdown options (2+)
+    .filter((candidate) => candidate.prompt.length >= 12 || (candidate.prompt.length >= 1 && candidate.options.length >= 2))
     .slice(0, MAX_QUESTION_CANDIDATES);
 
   const questionText =
