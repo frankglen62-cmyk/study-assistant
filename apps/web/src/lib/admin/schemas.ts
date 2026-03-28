@@ -106,7 +106,7 @@ export const adminSourceUploadPayloadSchema = z.object({
 export const adminSubjectQaPairCreateSchema = z.object({
   subjectId: z.string().uuid(),
   categoryId: z.string().uuid().nullable().optional().default(null),
-  questionText: z.string().trim().min(8).max(1200),
+  questionText: z.string().trim().min(1).max(1200),
   answerText: z.string().trim().min(1).max(2400),
   shortExplanation: optionalNullableStringSchema,
   keywords: z.array(z.string().trim().min(1).max(80)).max(30),
@@ -119,7 +119,7 @@ export const adminSubjectQaPairUpdateSchema = z.discriminatedUnion('action', [
     action: z.literal('update'),
     subjectId: z.string().uuid(),
     categoryId: z.string().uuid().nullable().optional().default(null),
-    questionText: z.string().trim().min(8).max(1200),
+    questionText: z.string().trim().min(1).max(1200),
     answerText: z.string().trim().min(1).max(2400),
     shortExplanation: optionalNullableStringSchema,
     keywords: z.array(z.string().trim().min(1).max(80)).max(30),

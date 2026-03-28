@@ -1020,6 +1020,38 @@ export async function createSubjectQaPair(input: AdminSubjectQaPairCreateRequest
   };
 }
 
+export async function createSubjectQaPairFast(input: AdminSubjectQaPairCreateRequest & AuditContext) {
+  const supabase = getSupabaseAdmin();
+  const updatedAt = new Date().toISOString();
+
+  const inserted = await supabase
+    .from('subject_qa_pairs')
+    .insert({
+      subject_id: input.subjectId,
+      category_id: input.categoryId ?? null,
+      question_text: input.questionText,
+      answer_text: input.answerText,
+      short_explanation: input.shortExplanation ?? null,
+      keywords: input.keywords,
+      sort_order: input.sortOrder ?? 0,
+      is_active: input.isActive ?? true,
+      created_by: input.actorUserId,
+      updated_by: input.actorUserId,
+      updated_at: updatedAt,
+    })
+    .select('id')
+    .single();
+
+  assertSubjectQaPairsAvailable(inserted.error, 'Failed to create subject Q&A pair.');
+
+  invalidatePreloadedQaPairCache(input.subjectId);
+
+  return {
+    pairId: inserted.data!.id,
+    message: 'Subject Q&A pair created successfully.',
+  };
+}
+
 export async function updateSubjectQaPair(
   input: AdminSubjectQaPairUpdateRequest & AuditContext & { pairId: string },
 ) {

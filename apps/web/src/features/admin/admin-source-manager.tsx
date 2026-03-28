@@ -174,6 +174,10 @@ export function AdminSourceManager({
   const [newSubjectCode, setNewSubjectCode] = useState('');
   const [activeTab, setActiveTab] = useState<'qa' | 'add' | 'files' | 'settings'>('qa');
   const [isLoadingSelectedPairs, setIsLoadingSelectedPairs] = useState(false);
+  const [batchPairs, setBatchPairs] = useState<Array<{ questionText: string; answerText: string }>>([]);
+  const [isSavingBatch, setIsSavingBatch] = useState(false);
+  const [batchSaveProgress, setBatchSaveProgress] = useState<{ saved: number; total: number } | null>(null);
+  const [recentlyAddedPairs, setRecentlyAddedPairs] = useState<SubjectQaPairRecord[]>([]);
 
   useEffect(() => {
     setSubjectRows(subjects);
@@ -431,12 +435,10 @@ export function AdminSourceManager({
 
   useEffect(() => {
     if (selectedSubjectId && subjectRows.some((subject) => subject.id === selectedSubjectId)) {
-      setActiveTab('qa');
       return;
     }
 
     setSelectedSubjectId(subjectRows[0]?.id ?? '');
-    setActiveTab('qa');
   }, [selectedSubjectId, subjectRows]);
 
   useEffect(() => {
@@ -808,11 +810,11 @@ export function AdminSourceManager({
     const questionText = draft.questionText.trim();
     const answerText = draft.answerText.trim();
 
-    if (questionText.length < 8 || answerText.length < 1) {
+    if (questionText.length < 1 || answerText.length < 1) {
       pushToast({
         tone: 'warning',
         title: 'Incomplete Q&A pair',
-        description: 'Question and answer are both required.',
+        description: 'Both question and answer fields are required (even short ones like "what" are allowed).',
       });
       return;
     }
@@ -906,7 +908,10 @@ export function AdminSourceManager({
         ...current,
         [selectedSubject.id]: draft.editingId ? current[selectedSubject.id] ?? 0 : (current[selectedSubject.id] ?? 0) + 1,
       }));
-      await refreshSubjectLibraryState(selectedSubject.id);
+
+      if (!draft.editingId && mode === 'top') {
+        setRecentlyAddedPairs((current) => [nextPair, ...current]);
+      }
 
       pushToast({
         tone: 'success',
@@ -919,8 +924,6 @@ export function AdminSourceManager({
       } else {
         resetEditor();
       }
-
-      router.refresh();
     }).catch((error: unknown) => {
       pushToast({
         tone: 'danger',
@@ -1258,7 +1261,7 @@ export function AdminSourceManager({
               <label className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-2 block">Quick select</label>
               <select
                 value={selectedSubjectId}
-                onChange={(event) => setSelectedSubjectId(event.target.value)}
+                onChange={(event) => { setSelectedSubjectId(event.target.value); setRecentlyAddedPairs([]); }}
                 className="h-11 w-full rounded-[18px] border border-border/50 bg-background/65 px-4 text-sm text-foreground outline-none transition focus:border-accent"
               >
                 {subjectDropdownOptions.map((subject) => (
@@ -1580,78 +1583,286 @@ export function AdminSourceManager({
               )}
 
               {activeTab === 'add' && (
-                <Card id="qa-editor" className="shadow-lg border-accent/20 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                  <CardHeader>
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div>
-                        <CardTitle>Add New Q&A Pair</CardTitle>
-                        <CardDescription>
-                          Draft a new question-and-answer pair for {selectedSubject?.name}.
-                        </CardDescription>
+                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  {/* ── Single-pair quick add ── */}
+                  <Card id="qa-editor" className="shadow-lg border-accent/20">
+                    <CardHeader>
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <CardTitle>Quick Add Q&A Pair</CardTitle>
+                          <CardDescription>
+                            Add a single question-and-answer pair to {selectedSubject?.name}. Short questions like &quot;what&quot; or &quot;who&quot; are allowed for dropdown matching.
+                          </CardDescription>
+                        </div>
+                        <Badge tone={editor.isActive ? 'success' : 'warning'}>
+                          {editor.isActive ? 'Will be Active' : 'Will be Inactive'}
+                        </Badge>
                       </div>
-                      <Badge tone={editor.isActive ? 'success' : 'warning'}>
-                        {editor.isActive ? 'Will be Active' : 'Will be Inactive'}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid gap-6 xl:grid-cols-2">
-                      <div className="space-y-3">
-                        <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] text-accent-foreground font-bold">1</span> Question Formulation
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="grid gap-6 xl:grid-cols-2">
+                        <div className="space-y-3">
+                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] text-accent-foreground font-bold">1</span> Question Formulation
+                          </label>
+                          <Textarea
+                            value={editor.questionText}
+                            onChange={(event) => setEditor((current) => ({ ...current, questionText: event.target.value }))}
+                            placeholder="Enter the question text (even short words like 'what' or 'who' are valid)..."
+                            className="min-h-[100px] text-base resize-none"
+                            disabled={!selectedRootFolder}
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">2</span> Answer Content
+                          </label>
+                          <Textarea
+                            value={editor.answerText}
+                            onChange={(event) => setEditor((current) => ({ ...current, answerText: event.target.value }))}
+                            placeholder="Enter the precise answer to be suggested..."
+                            className="min-h-[100px] text-base resize-none"
+                            disabled={!selectedRootFolder}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_140px]">
+                        <div className="space-y-2">
+                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Keywords (Comma-separated)</label>
+                          <Input value={editor.keywordsText} onChange={(event) => setEditor((current) => ({ ...current, keywordsText: event.target.value }))} placeholder="force, current, volts..." disabled={!selectedRootFolder} />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Short explanation</label>
+                          <Input value={editor.shortExplanation} onChange={(event) => setEditor((current) => ({ ...current, shortExplanation: event.target.value }))} placeholder="Optional context..." disabled={!selectedRootFolder} />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Sort order</label>
+                          <Input type="number" min={0} value={editor.sortOrder} onChange={(event) => setEditor((current) => ({ ...current, sortOrder: event.target.value }))} disabled={!selectedRootFolder} />
+                        </div>
+                      </div>
+
+                      <div className="pt-2">
+                        <label className="flex items-center gap-3 rounded-[24px] border border-border/50 bg-background/50 px-5 py-4 text-sm font-medium text-foreground cursor-pointer transition-colors hover:bg-background/80 hover:border-border">
+                          <input type="checkbox" className="h-5 w-5 accent-accent rounded" checked={editor.isActive} onChange={(event) => setEditor((current) => ({ ...current, isActive: event.target.checked }))} disabled={!selectedRootFolder} />
+                          Use this pair in extension retrieval immediately upon saving
                         </label>
-                        <Textarea
-                          value={editor.questionText}
-                          onChange={(event) => setEditor((current) => ({ ...current, questionText: event.target.value }))}
-                          placeholder="Enter the exact question wording that the extension should match..."
-                          className="min-h-[140px] text-base resize-none"
-                          disabled={!selectedRootFolder}
-                        />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">2</span> Answer Content
-                        </label>
-                        <Textarea
-                          value={editor.answerText}
-                          onChange={(event) => setEditor((current) => ({ ...current, answerText: event.target.value }))}
-                          placeholder="Enter the precise answer to be suggested..."
-                          className="min-h-[140px] text-base resize-none"
-                          disabled={!selectedRootFolder}
-                        />
-                      </div>
-                    </div>
 
-                    <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_140px]">
-                      <div className="space-y-2">
-                        <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Keywords (Comma-separated)</label>
-                        <Input value={editor.keywordsText} onChange={(event) => setEditor((current) => ({ ...current, keywordsText: event.target.value }))} placeholder="force, current, volts..." disabled={!selectedRootFolder} />
+                      <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-border/40">
+                        <Button variant="secondary" className="px-6" onClick={resetEditor} disabled={!selectedRootFolder}>Reset</Button>
+                        <Button className="px-8 shadow-lg shadow-accent/20" onClick={() => void handleSavePair()} disabled={!selectedSubject || !selectedRootFolder || busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false)}>
+                          {busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false) ? 'Saving...' : 'Save Pair'}
+                        </Button>
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Short explanation</label>
-                        <Input value={editor.shortExplanation} onChange={(event) => setEditor((current) => ({ ...current, shortExplanation: event.target.value }))} placeholder="Optional context..." disabled={!selectedRootFolder} />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Sort order</label>
-                        <Input type="number" min={0} value={editor.sortOrder} onChange={(event) => setEditor((current) => ({ ...current, sortOrder: event.target.value }))} disabled={!selectedRootFolder} />
-                      </div>
-                    </div>
+                    </CardContent>
+                  </Card>
 
-                    <div className="pt-2">
-                      <label className="flex items-center gap-3 rounded-[24px] border border-border/50 bg-background/50 px-5 py-4 text-sm font-medium text-foreground cursor-pointer transition-colors hover:bg-background/80 hover:border-border">
-                        <input type="checkbox" className="h-5 w-5 accent-accent rounded" checked={editor.isActive} onChange={(event) => setEditor((current) => ({ ...current, isActive: event.target.checked }))} disabled={!selectedRootFolder} />
-                        Use this pair in extension retrieval immediately upon saving
-                      </label>
-                    </div>
+                  {/* ── Batch add ── */}
+                  <Card className="shadow-lg border-accent/20">
+                    <CardHeader>
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <CardTitle>Batch Add Q&A Pairs</CardTitle>
+                          <CardDescription>
+                            Queue multiple question-answer pairs and save them all at once to {selectedSubject?.name}.
+                          </CardDescription>
+                        </div>
+                        <Badge tone="accent">{batchPairs.length} pair{batchPairs.length === 1 ? '' : 's'} queued</Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {batchPairs.map((pair, index) => (
+                        <div key={index} className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-start rounded-[20px] border border-border/40 bg-background/40 p-4">
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">Question {index + 1}</label>
+                            <Input
+                              value={pair.questionText}
+                              onChange={(event) => {
+                                const value = event.target.value;
+                                setBatchPairs((current) => current.map((p, i) => i === index ? { ...p, questionText: value } : p));
+                              }}
+                              placeholder="Question text..."
+                              disabled={!selectedRootFolder}
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">Answer {index + 1}</label>
+                            <Input
+                              value={pair.answerText}
+                              onChange={(event) => {
+                                const value = event.target.value;
+                                setBatchPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
+                              }}
+                              placeholder="Answer text..."
+                              disabled={!selectedRootFolder}
+                            />
+                          </div>
+                          <div className="flex items-end">
+                            <Button
+                              size="sm"
+                              variant="danger"
+                              className="h-10 px-3 mt-5"
+                              onClick={() => setBatchPairs((current) => current.filter((_, i) => i !== index))}
+                            >
+                              ✕
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
 
-                    <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-border/40">
-                      <Button variant="secondary" className="px-6" onClick={resetEditor} disabled={!selectedRootFolder}>Reset</Button>
-                      <Button className="px-8 shadow-lg shadow-accent/20" onClick={() => void handleSavePair()} disabled={!selectedSubject || !selectedRootFolder || busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false)}>
-                        {busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false) ? 'Saving...' : 'Draft & Save Pair'}
+                      <Button
+                        variant="secondary"
+                        className="w-full h-12 rounded-[20px] border-dashed border-2 border-border/60 hover:border-accent/60 hover:bg-accent/5 text-muted-foreground hover:text-accent transition-all"
+                        onClick={() => setBatchPairs((current) => [...current, { questionText: '', answerText: '' }])}
+                        disabled={!selectedRootFolder}
+                      >
+                        + Add Another Pair
                       </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+
+                      {batchSaveProgress && (
+                        <div className="rounded-[16px] bg-accent/10 border border-accent/30 px-5 py-3 text-sm text-accent font-medium">
+                          Saving {batchSaveProgress.saved} / {batchSaveProgress.total} pairs...
+                        </div>
+                      )}
+
+                      {batchPairs.length > 0 && (
+                        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border/40">
+                          <Button
+                            variant="secondary"
+                            className="px-6"
+                            onClick={() => setBatchPairs([])}
+                            disabled={isSavingBatch}
+                          >
+                            Clear All
+                          </Button>
+                          <Button
+                            className="px-8 shadow-lg shadow-accent/20"
+                            disabled={!selectedSubject || !selectedRootFolder || isSavingBatch || batchPairs.every((p) => !p.questionText.trim() || !p.answerText.trim())}
+                            onClick={async () => {
+                              if (!selectedSubject) return;
+                              const validPairs = batchPairs.filter((p) => p.questionText.trim() && p.answerText.trim());
+                              if (validPairs.length === 0) {
+                                pushToast({ tone: 'warning', title: 'No valid pairs', description: 'Fill in at least one question and answer.' });
+                                return;
+                              }
+                              setIsSavingBatch(true);
+                              setBatchSaveProgress({ saved: 0, total: validPairs.length });
+                              const baseSortOrder = getNextSortOrder(selectedSubjectPairs);
+                              try {
+                                const response = await fetch('/api/admin/subject-qa/batch', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({
+                                    pairs: validPairs.map((p, i) => ({
+                                      subjectId: selectedSubject.id,
+                                      categoryId: null,
+                                      questionText: p.questionText.trim(),
+                                      answerText: p.answerText.trim(),
+                                      shortExplanation: null,
+                                      keywords: [],
+                                      sortOrder: baseSortOrder + i,
+                                      isActive: true,
+                                    })),
+                                  }),
+                                });
+                                const result = await response.json() as { savedCount: number; failedCount: number; pairIds: string[]; message: string };
+                                const savedCount = result.savedCount ?? 0;
+                                const failedCount = result.failedCount ?? 0;
+                                setBatchSaveProgress({ saved: savedCount, total: validPairs.length });
+
+                                const newPairs: SubjectQaPairRecord[] = (result.pairIds ?? []).map((pairId: string, i: number) => ({
+                                  id: pairId,
+                                  subject_id: selectedSubject.id,
+                                  category_id: null,
+                                  question_text: validPairs[i]!.questionText.trim(),
+                                  answer_text: validPairs[i]!.answerText.trim(),
+                                  short_explanation: null,
+                                  keywords: [],
+                                  sort_order: baseSortOrder + i,
+                                  is_active: true,
+                                  deleted_at: null,
+                                  updated_at: new Date().toISOString(),
+                                  subjects: { name: selectedSubject.name },
+                                  categories: null,
+                                }));
+
+                                if (newPairs.length > 0) {
+                                  setQaPairCache((current) => ({
+                                    ...current,
+                                    [selectedSubject.id]: [...newPairs, ...(current[selectedSubject.id] ?? [])],
+                                  }));
+                                  setQaPairCountsBySubjectId((current) => ({
+                                    ...current,
+                                    [selectedSubject.id]: (current[selectedSubject.id] ?? 0) + newPairs.length,
+                                  }));
+                                  setRecentlyAddedPairs((current) => [...newPairs, ...current]);
+                                }
+
+                                setBatchPairs([]);
+                                pushToast({
+                                  tone: failedCount === 0 ? 'success' : 'warning',
+                                  title: 'Batch save complete',
+                                  description: `${savedCount} pair${savedCount === 1 ? '' : 's'} saved${failedCount > 0 ? `, ${failedCount} failed` : ''} to ${selectedSubject.name}.`,
+                                });
+                              } catch (error) {
+                                pushToast({
+                                  tone: 'danger',
+                                  title: 'Batch save failed',
+                                  description: error instanceof Error ? error.message : 'Unknown error.',
+                                });
+                              }
+                              setBatchSaveProgress(null);
+                              setIsSavingBatch(false);
+                            }}
+                          >
+                            {isSavingBatch ? 'Saving batch...' : `Save All ${batchPairs.filter((p) => p.questionText.trim() && p.answerText.trim()).length} Pairs`}
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* ── Recently Added Pairs ── */}
+                  {recentlyAddedPairs.length > 0 && (
+                    <Card className="shadow-lg border-success/20 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                      <CardHeader>
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div>
+                            <CardTitle>Recently Added</CardTitle>
+                            <CardDescription>
+                              Pairs added during this session. They are saved to the database and will be used by the extension.
+                            </CardDescription>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge tone="success">{recentlyAddedPairs.length} added</Badge>
+                            <Button size="sm" variant="secondary" onClick={() => setRecentlyAddedPairs([])}>Clear list</Button>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        {recentlyAddedPairs.map((pair) => (
+                          <div key={pair.id} className="rounded-[20px] border border-success/20 bg-success/5 p-4 transition-all hover:bg-success/10">
+                            <div className="grid gap-4 xl:grid-cols-2">
+                              <div className="space-y-1">
+                                <p className="text-[10px] uppercase tracking-[0.15em] text-success font-semibold">Question</p>
+                                <p className="text-sm text-foreground whitespace-pre-wrap">{pair.question_text}</p>
+                              </div>
+                              <div className="space-y-1">
+                                <p className="text-[10px] uppercase tracking-[0.15em] text-success font-semibold">Answer</p>
+                                <p className="text-sm text-foreground font-medium whitespace-pre-wrap">{pair.answer_text}</p>
+                              </div>
+                            </div>
+                            <div className="mt-2 flex items-center gap-2">
+                              <Badge tone="success" className="scale-90">Saved ✓</Badge>
+                              {pair.short_explanation && <span className="text-xs text-muted-foreground italic">{pair.short_explanation}</span>}
+                            </div>
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
               )}
 
               {activeTab === 'files' && (
