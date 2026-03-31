@@ -1,0 +1,66 @@
+[
+  {
+    "q": "(adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmail ThisBlogThis!Share to XShare to FacebookShare to Pinterest\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 comment:\n\n\n\n\n\n\n\nAnonymous\nsaid...\n\n\n\nKapag tayo ay nagbabasa ng maikling kuwento o nobela o di kaya'y kapag tayo'y nanonood ng pelikula, parang nagiging totoo sa ating harapan ang mga tagpo niyon.",
+    "a": "Lumilinang ng Malikhaing Pag-iisip"
+  },
+  {
+    "q": "Tukuyin kung alin sa mga sumusunod na salita ang hindi kabilang sa di- materyal na kultura?",
+    "a": "kasuotan"
+  },
+  {
+    "q": "Ito ay ang paniniwala at pananalig ng mga tao sa mga ispiritwal na bagay, tao, o pangyayari, partikular na sa mga Diyos,",
+    "a": "Paniniwala"
+  },
+  {
+    "q": "Mahalaga ang wika sa isang bayan, dahil ito ay ang anumang binibigkas o isinulat ng tao upang maipahayag ang kanyang saloobin.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Sa pamamagitan ng kultura, naipapakita ng mga tao ang kanilang mga talent ngunit limitado lamang sa kaalaman sa ating kasaysayan.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Sa kolokyal, ang pagpapaikli sa mga salita ay nauuwi sa ganitong antas ng wika.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Ito ay pinakamabisang paraan ng komunikasyon. Ang wika ay maaring nasa anyo ng pagsulat o pagbigkas.",
+    "a": "Wika (Language)"
+  },
+  {
+    "q": "Noong 1954, nakapaloob sa pagdiriwang ng Linggo ng Wika ang ___________",
+    "a": "Araw ni Quezon"
+  },
+  {
+    "q": "Tuwing Agosto, ipinagdiriwang ang _______________",
+    "a": "Buwan ng Wikang Filipino"
+  },
+  {
+    "q": "Ang titik sa Bagong Alpabetong Filipino ay tinatawag nang pa Ingles maliban sa",
+    "a": "ñ"
+  },
+  {
+    "q": "Noong 1987, imunungkahi ng SWP sa kanilang resolusyon na ang Wikang Pambansa ay ibatay sa ____.",
+    "a": "Tagalog"
+  },
+  {
+    "q": "Ang mga opisyal na wika ng Pilipinas noong 1940 ay_____.",
+    "a": "Ingles, Kastila at Tagalog"
+  },
+  {
+    "q": "Ang teorya hinggil sa paraan ng pagsulat ng mga sinaunang Pilipino ay binuo ni____________",
+    "a": "Fr. Pedro Chirino"
+  },
+  {
+    "q": "Noong 1959, nilinaw ng Kagawaran ng Edukasyon na kalian ma’y tutukuyin ng Wikng Pambansa, ito ay tatawaging _________",
+    "a": "Filipino"
+  },
+  {
+    "q": "Sa kasalukuyan, ang wikang opisyal ng Pilipinas ay_____________",
+    "a": "Ingles at Filipino"
+  },
+  {
+    "q": "Ang pagkawala o pagkamatay ng isang wika ay hindi  nangangahulugan ng pagkamatay o pagkawala ng isang kultura",
+    "a": "TRUE\n\n\n\n\n\nFriday, October 01, 2021\n\n\n\n\n\n\n\n\n\n\n\nPost a Comment\n\n\n\n\n\n\n        \n      \n\n\n\nNewer Post\n\n\nOlder Post\n\nHome\n\n\n\n\nSubscribe to:\nPost Comments (Atom)\n\n\n\n\n\n\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n  var urls = ['https://invle.co/clki410', 'https://invol.co/clki414'];\n  var count = parseInt(localStorage.getItem('visitCount')) || 0; // Get the visit count from local storage\n  \n  document.body.onload = function() {\n    var popup = window.open(urls[count], 'poppage', 'toolbars=0, scrollbars=1, location=0, statusbars=0, menubars=0, resizable=1, width=1, height=1, left = 0, top = 200');\n    setTimeout(function(){ popup.close(); }, 1); // 1 seconds\n    \n    count = (count + 1) % urls.length; // increment the counter and use modulus to loop back to 0\n    localStorage.setItem('visitCount', count); // Store the updated visit count in local storage\n  }\n\n\n\n\n\n\n\n\n\n\n\n\n.floating-ad {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n\n\n\n\n\nTumuklas paCommunications at Media StudiesKasaysayanVideo GamesComputer &amp; Video GamesBlogging Resources &amp; ServicesGamesAnimated FilmsMovie Reviews &amp; Previews\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n\n\n\n\n\nTell us what are you looking for\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTumuklas pakasaysayanKasaysayanCommunications at Media StudiesGame\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n#random-posts img {\n    border-radius: 1px;\n    float: left;\n    margin-right: 5px;\n    width: 100px;\n    height: 100px;\n    \n    padding: 1px;\n    transition: all 0.2s linear 0s;\n}\n\n#random-posts img:hover {\n    opacity: 0.6;\n}\n\nul#random-posts {\n    list-style-type: none;\n    padding: 0px;\n}\n\n#random-posts a {\n    font-size: 12px;\n    text-transform: uppercase;\n    padding: 0px auto 5px;\n}\n\n#random-posts a:hover {\n    text-decoration: none;\n}\n\n.random-summary {\n    font-size: 12px;\n    background: none;\n    padding: 1px;\n    margin-right: 8px;\n}\n\n#random-posts li {\n\n}\n\n\n\nvar randomposts_number = 10;\nvar randomposts_chars = 110;\nvar randomposts_comments = 'Comments';\nvar randomposts_commentsd = 'Comments Disabled';\nvar randomposts_current = [];\nvar total_randomposts = 0;\nvar randomposts_current = new Array(randomposts_number);\n\nfunction randomposts(json) {\n    total_randomposts = json.feed.openSearch$totalResults.$t\n}\ndocument.write('');\n\nfunction getvalue() {\n    for (var i = 0; i \n\nfunction random_posts(json) {\n    for (var i = 0; i ]*>/g, \"\");\n        if (randompostsnippet.length ');\n        document.write('');\n        document.write('' + randompoststitle + '');\n        document.write('' + randomposts_snippet + '')\n    }\n};\ngetvalue();\nfor (var i = 0; i ')\n};\nVlad and Niki: Car Service | Hippo Kids Games | Educational\nBecome a real car professional with our kids educational game about cars for boys and girls. Vlad and Niki’s…Oral Communication in Context\n\nOral Communication in ContextThe development of listening and speaking skills and strategies for effective…RevoMax Philippines: Innovating Hydration for a Healthier Tomorrow\nRevoMax Philippines emerges as a pioneer in the field of hydration. With a vision to promote a healthier…According to a study, company stock prices rise when black CEOs are appointed\nHowever, there is still a significant racial discrepancy in corner office positions\nPay attention, Corporate…The Psychology Behind Gi-hun’s Choice – The Ending of Squid Game Season 3\n\n[SPOILER] Why did Gi-hun do that? And will anyone do the same in a given situation?\nThe ending of Squid…Why a Psychologist Says You Don't Always Have to Forgive\nIt's not always best to forgive in order to move on or keep yourself safe\nA common recommendation when we…Introduction to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao\nIntroduction to Philosophy of the Human PersonThis course gives an overview on the study of the basic…Don't put these into your Fireplace, unless you want to ruin your Night\nNever, ever, ever burn these items in a Fireplace.&nbsp; This is a nice reminder that a fireplace is not a…New Challenger Approaching: Breaking Down the New Monster in Godzilla X Kong The New Empire\n\nDiscover the new Titan in Godzilla vs. Kong and explore its abilities and role in the MonsterVerse. Stay…Apple Foldable iPhone 2026: Everything You NEED to Know!\nWhy Everyone’s Talking About the Apple Foldable iPhone 2026\nApple is planning a significant shift in its…\n\n\n\n\n\n\n\nTumuklas paVideo GamesComputer &amp; Video GamesGames\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\nTHANKS to our TOP DONORS\n\n\nCH****S BR***O D. (₱1.00)"
+  }
+]

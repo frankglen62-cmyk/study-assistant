@@ -1,0 +1,594 @@
+[
+  {
+    "q": "Formatting text in a presentation programs is not the same with formatting in word processor.",
+    "a": "False"
+  },
+  {
+    "q": "Every Web server has an IP address",
+    "a": "True"
+  },
+  {
+    "q": "You can move from one slide to the next slide by clicking the mouse button or by pressing home button key.",
+    "a": "False"
+  },
+  {
+    "q": "Notepad++ is an advanced text editor for creating HTML programs",
+    "a": "True"
+  },
+  {
+    "q": "The decimal value of 11 is equal to B in hexadecimal",
+    "a": "True"
+  },
+  {
+    "q": "Paragraph in slide is usually in the form of tiles, headings, and lists.",
+    "a": "False"
+  },
+  {
+    "q": "A text entered in a worksheet is also known as?",
+    "a": "Label"
+  },
+  {
+    "q": "The blinking insertion point is also known as?",
+    "a": "Cursor"
+  },
+  {
+    "q": "This is used to change the line height in number, length, or %.",
+    "a": "line-height"
+  },
+  {
+    "q": "This is just like a printed one-a source of alternatives words",
+    "a": "Thesaurus"
+  },
+  {
+    "q": "What is the new value if cell A3 is deleted",
+    "a": "360"
+  },
+  {
+    "q": "CSS allows you to apply style to many selectors twice.",
+    "a": "False"
+  },
+  {
+    "q": "In what year does W3C maintained the specification of HTML?",
+    "a": "1996"
+  },
+  {
+    "q": "Document dimension is also determined by the orientation of the paper.",
+    "a": "True"
+  },
+  {
+    "q": "This is most common input devices.",
+    "a": "Keyboard"
+  },
+  {
+    "q": "Which menu bar is used to change the design of the slide?",
+    "a": "Design"
+  },
+  {
+    "q": "This is used to identify the font family, the boldness of font, and even the font style.",
+    "a": "CSS Font"
+  },
+  {
+    "q": "Which menu bar can you find the Charts?",
+    "a": "Insert"
+  },
+  {
+    "q": "This is used as a quick access to various background properties.",
+    "a": "background"
+  },
+  {
+    "q": "The conversion of 27 octal to decimal is 23.",
+    "a": "True"
+  },
+  {
+    "q": "The combination of the column letter and row number.",
+    "a": "Cell Address"
+  },
+  {
+    "q": "This can display your slides at the proper resolution and in large enough format for a sizable audience to view comfortably.",
+    "a": "On a Large Format Monitor"
+  },
+  {
+    "q": "You can easily change one part of formula or a cell that it refers to see how that changed affect the rest of the worksheets.",
+    "a": "True"
+  },
+  {
+    "q": "To insert clip art or another type of graphic in a slide, you can select an image from your software collections of graphics or import an image file, such as scanned photograph or clip art.",
+    "a": "True"
+  },
+  {
+    "q": "What is the formula in getting the value 450?",
+    "a": "=SUM(A1:A5)"
+  },
+  {
+    "q": "This provides powerful design tools that make it easy to anyone to outline, create, edit, arrange and display complex slides presentations.",
+    "a": "Presentation program"
+  },
+  {
+    "q": "1em in CSS is equal to 12pt.",
+    "a": "True"
+  },
+  {
+    "q": "It is also known as \"electron tube\" in North America, \"thermionic valve\", or \"valve\" in Britain",
+    "a": "Vacuum tube"
+  },
+  {
+    "q": "These are the values (often called cell reference) that the function uses in its operation.",
+    "a": "Arguments"
+  },
+  {
+    "q": "It is the year when the development of Arpanet began with the financial backing of the department of defense.",
+    "a": "1969"
+  },
+  {
+    "q": "2 raised to 0 is equal to 1",
+    "a": "True"
+  },
+  {
+    "q": "These are other common data analysis tools found in spreadsheets.",
+    "a": "Goal seeking and Sorting"
+  },
+  {
+    "q": "Like a word processors, a spreadsheet programs are extremely accommodating when you want to make the desired changes.",
+    "a": "True"
+  },
+  {
+    "q": "This property is used to assign a background image of an element.",
+    "a": "background-image"
+  },
+  {
+    "q": "It is consists of pattern or color that is displayed as a background of the text in a paragraph.",
+    "a": "Shading"
+  },
+  {
+    "q": "CERN is a European Organization for Nuclear Research",
+    "a": "True"
+  },
+  {
+    "q": "These are the white borders around the edge of the page. Every document has top, bottom, left, and right margins.",
+    "a": "Margin"
+  },
+  {
+    "q": "This return processed data to the user or to another computer system.",
+    "a": "Output Devices"
+  },
+  {
+    "q": "Border is also known as values.",
+    "a": "False"
+  },
+  {
+    "q": "It is the process of combining a form letter with the contents of database",
+    "a": "Mail Merge"
+  },
+  {
+    "q": "Notepad is a text editor for advance users.",
+    "a": "False"
+  },
+  {
+    "q": "It is the tangible parts of the computer that you can touch.",
+    "a": "Hardware"
+  },
+  {
+    "q": "Output devices accept data and instructions from the user or from another computer",
+    "a": "False"
+  },
+  {
+    "q": "This is used to compare each sentence to a set of standard grammatical rules",
+    "a": "Grammar Checker"
+  },
+  {
+    "q": ".gov extension indicate a website for academe",
+    "a": "False"
+  },
+  {
+    "q": "Many web pages provide hyperlinked pictures or graphical buttons called?",
+    "a": "navigation tools"
+  },
+  {
+    "q": "All spreadsheet allow you to do simple analysis.",
+    "a": "True"
+  },
+  {
+    "q": "Safari is a website developed by Mozilla.",
+    "a": "False"
+  },
+  {
+    "q": "Is a predefined formula provided by the spreadsheet program.",
+    "a": "Functions"
+  },
+  {
+    "q": "ENVAC was a turning-complete, digital computer capable of being reprogrammed to solve a full range of computing problem.",
+    "a": "False"
+  },
+  {
+    "q": "This calculate numbers based on values or formulas in other cells.",
+    "a": "Formula"
+  },
+  {
+    "q": "It is the year where the seeds of Internet was planted.",
+    "a": "1969"
+  },
+  {
+    "q": "Pertaining to local, regional, national, and international laws and regulations that professional worker must know",
+    "a": "Rules"
+  },
+  {
+    "q": "The conversion of 53 hexadecimal to binary is 1100101.",
+    "a": "False"
+  },
+  {
+    "q": "What is the current version of CSS?",
+    "a": "CSS 3"
+  },
+  {
+    "q": "Abacist is the term called for the user of an abacus who slides the beads of the abacus by hand.",
+    "a": "True"
+  },
+  {
+    "q": "During Third Generation semiconductors decreased the speed and efficiency of the computer.",
+    "a": "False"
+  },
+  {
+    "q": "This can write data to and read data from a compact disk",
+    "a": "CD-R"
+  },
+  {
+    "q": "Semiconductors are used in almost all electronic equipment in use today and have revolutionized the world of electronics.",
+    "a": "False"
+  },
+  {
+    "q": "This is used to calculate numbers based on values or formulas in other cells",
+    "a": "Formulas"
+  },
+  {
+    "q": "Two types of memory are CDROM and ROM",
+    "a": "False"
+  },
+  {
+    "q": "Worksheet can be collected into groups called?",
+    "a": "Workbook"
+  },
+  {
+    "q": "The intersection of a column and row is called a _____?",
+    "a": "Cell"
+  },
+  {
+    "q": "You cannot automate the presentation by setting a display time for each slide",
+    "a": "False"
+  },
+  {
+    "q": "Leaders should consider the personal and professional development, accessibility requirements, physical safety, psychological well-being, and human dignity of all workers",
+    "a": "True"
+  },
+  {
+    "q": "The given binary number: 011011111 if converted to octal is equal to?",
+    "a": "337"
+  },
+  {
+    "q": "Every website has no specific web address on the WWW",
+    "a": "False"
+  },
+  {
+    "q": "What version of HTML was published and refined in the year 2000?",
+    "a": "HTML 4.01"
+  },
+  {
+    "q": "Spreadsheet applications contain a lot of features that can help the ICT professionals",
+    "a": "True"
+  },
+  {
+    "q": "As binary system uses the power of?",
+    "a": "2"
+  },
+  {
+    "q": "This is also known as another data-analysis tool",
+    "a": "Sorting"
+  },
+  {
+    "q": "Personal websites are mostly build by software company focusing on building a system.",
+    "a": "False"
+  },
+  {
+    "q": "This is a line that is drawn on one or more side of paragraph",
+    "a": "Border"
+  },
+  {
+    "q": "This is the process of using spreadsheet to test how alternative scenarios affect numeric results.",
+    "a": "Analysis"
+  },
+  {
+    "q": "Document are also useful in arranging images",
+    "a": "False"
+  },
+  {
+    "q": "This is used to select elements with a specific class.",
+    "a": "period (.)"
+  },
+  {
+    "q": "This property is used to control how the image will behave in the background upon scrolling.",
+    "a": "background-attachment"
+  },
+  {
+    "q": "Font-size property allows you to change the uppercase display of text or use a font’s default setting.",
+    "a": "False"
+  },
+  {
+    "q": "This is used to measure the font in points",
+    "a": "Type Size"
+  },
+  {
+    "q": "It is the year that the history of computers dates back to the invention of a mechanical adding machine.",
+    "a": "1642"
+  },
+  {
+    "q": "All elements having the given ID will be set according to the defined rule.",
+    "a": "True"
+  },
+  {
+    "q": "It permits users to create and maintain several files and extract in an easy convenient manner.",
+    "a": "Database"
+  },
+  {
+    "q": "This can be used to set up rows and columns of information in a document",
+    "a": "Table"
+  },
+  {
+    "q": "This property is used to control the frequency of an image used in the background.",
+    "a": "background-repeat"
+  },
+  {
+    "q": "Navigating the web means moving from one web page to another, or from one web site to another.",
+    "a": "True"
+  },
+  {
+    "q": "It display the button of frequently used commands",
+    "a": "Toolbars"
+  },
+  {
+    "q": "The given decimal number: 55 if converted to octal is equal to?",
+    "a": "67"
+  },
+  {
+    "q": "Which of the following is not included in formatting the slides?",
+    "a": "Adding charts based on data"
+  },
+  {
+    "q": "Part of that stewardship requires establishing policies for fair system access, including for those who may have been excluded",
+    "a": "True"
+  },
+  {
+    "q": "This is also known as electronic file cabinet.",
+    "a": "Storage"
+  },
+  {
+    "q": "Which type of view where it allows the user to add a note?",
+    "a": "Note pages"
+  },
+  {
+    "q": "It is a method by which you move around on the web",
+    "a": "Hypertext"
+  },
+  {
+    "q": "Computer system under fifth generation are going to be based on principles of Artificial Intelligence and Natural Language recognition.",
+    "a": "True"
+  },
+  {
+    "q": "Images quality may suffer even if a PC-to-TV converter is used.",
+    "a": "True"
+  },
+  {
+    "q": "It display the list of commands and options",
+    "a": "Menu bar"
+  },
+  {
+    "q": "This property is used to control the location of an image in the background.",
+    "a": "background-position"
+  },
+  {
+    "q": "This is a document formatted with Hypertext Markup Language (HTML)",
+    "a": "web page"
+  },
+  {
+    "q": "It is consist of a series of short codes typed into a text-file",
+    "a": "HTML"
+  },
+  {
+    "q": "It a number is made up of just two possible digits, zero and one.",
+    "a": "Binary"
+  },
+  {
+    "q": "This is used for creating charts.",
+    "a": "Spreadsheet"
+  },
+  {
+    "q": "This is any number you enter or number that results from a computation.",
+    "a": "Value"
+  },
+  {
+    "q": "It is made up of just two possible digits, zero and one.",
+    "a": "Binary"
+  },
+  {
+    "q": "What is the cell address of number 55?",
+    "a": "A4"
+  },
+  {
+    "q": "ATOM is a powerful text editor that can be used by any platform",
+    "a": "True"
+  },
+  {
+    "q": "This is used to perform specialized calculations automatically",
+    "a": "Function"
+  },
+  {
+    "q": "Websites include links to other sites in the form of _____?",
+    "a": "Hypertext"
+  },
+  {
+    "q": "These people are usually knowledgeable in using scripting languages such as HTML and CSS.",
+    "a": "Web Developer"
+  },
+  {
+    "q": "It is a special link which brings you from one page to another page on the web.",
+    "a": "Hyperlink"
+  },
+  {
+    "q": "It is the year when DEC launched the first minicomputer called the PDP-8.",
+    "a": "1968"
+  },
+  {
+    "q": "It is the year when Atanasoff and Berry came up with ABC prototype.",
+    "a": "1939"
+  },
+  {
+    "q": "In 1989, Berners-Lee proposed another kind of system called _______?",
+    "a": "HTML"
+  },
+  {
+    "q": "A number system with a ten possible values.",
+    "a": "decimal"
+  },
+  {
+    "q": "This is used when presenting business proposals to clients or sales reports in the office",
+    "a": "PowerPoint"
+  },
+  {
+    "q": "CSS Font properties can help identify the font family, the boldness of font, and even the font style.",
+    "a": "True"
+  },
+  {
+    "q": "A tag for monospace is <BR></BR>",
+    "a": "False"
+  },
+  {
+    "q": "In First Generation computer in this generation were not expensive and bulky. They used machine language for computing and could solve problem at a time. Computers during this phase cannot support multitasking task.",
+    "a": "False"
+  },
+  {
+    "q": "It is a contiguous group of characters, words, lines, sentences or paragraphs in your document that you mark for editing.",
+    "a": "Block"
+  },
+  {
+    "q": "A computer's main memory is also known as ?",
+    "a": "RAM"
+  },
+  {
+    "q": "These are necessary part of most worksheets",
+    "a": "Dates"
+  },
+  {
+    "q": "This let the user scroll through a document that is too large to fit inside the document area.",
+    "a": "Scroll bar"
+  },
+  {
+    "q": "It is a device inside your computer that follows a program instruction.",
+    "a": "CPU"
+  },
+  {
+    "q": "ARPA also wanted users in remote locations to be able to share scarce computing resources.",
+    "a": "True"
+  },
+  {
+    "q": "The text is formatted automatically, but you can easily reformat the text later, using many of the same formatting options that are available in word processors.",
+    "a": "True"
+  },
+  {
+    "q": "This help the user make data easier to understand.",
+    "a": "Charts"
+  },
+  {
+    "q": "TextEdit is the default text editor for MAC.",
+    "a": "True"
+  },
+  {
+    "q": "What is the conversion of 100011 (base 2) if to be converted to octal?",
+    "a": "43"
+  },
+  {
+    "q": "Which of the following is not included as one of the special features of presentation program?",
+    "a": "Formulas"
+  },
+  {
+    "q": "This is being utilized to create a webpage to show the multimedia documents",
+    "a": "Markup language"
+  },
+  {
+    "q": "It is an alternative web-browser that has a clean UI and is easy to use",
+    "a": "Opera"
+  },
+  {
+    "q": "This bar tell the specific information about the worksheet.",
+    "a": "Status bar"
+  },
+  {
+    "q": "When you text reaches the right edge of the screen it automatically moves the insertion point to the next line. This feature is called word wrap.",
+    "a": "True"
+  },
+  {
+    "q": "This is a popular browser for both desktop and mobile devices.",
+    "a": "UC Browser"
+  },
+  {
+    "q": "This is added on the worksheet simply to indicate when it was created",
+    "a": "Date"
+  },
+  {
+    "q": "This is another common type of storage device.",
+    "a": "CD-ROM"
+  },
+  {
+    "q": "Text-align: left is also known as tags",
+    "a": "False"
+  },
+  {
+    "q": "If your topic is interesting, and your presentation is crisp, your audience is more likely to respond.",
+    "a": "True"
+  },
+  {
+    "q": "This is consists of a sequence of locations.",
+    "a": "Main memory"
+  },
+  {
+    "q": "What is the ISO number of HTML, in which it became an international standard?",
+    "a": "(ISO/IEC 15445:2000)"
+  },
+  {
+    "q": "This is used to left, right, center, justify the text.",
+    "a": "text-align"
+  },
+  {
+    "q": "This refers to the characteristics of the letters, symbols, and punctuation marks in your document.",
+    "a": "Font"
+  },
+  {
+    "q": "HTML file can be save as .html or .htm",
+    "a": "True"
+  },
+  {
+    "q": "A collection of networked network is describe as being ?",
+    "a": "Inter-networked"
+  },
+  {
+    "q": "A CSS is composed of style rules that are understood by a web browser and then applied to the corresponding elements within your document.",
+    "a": "True"
+  },
+  {
+    "q": "A document area in spreadsheet is known as?",
+    "a": "Worksheet"
+  },
+  {
+    "q": "The given decimal number: 26 if converted to binary is equal to?",
+    "a": "11010"
+  },
+  {
+    "q": "Long documents generally include header and footer or both.",
+    "a": "True"
+  },
+  {
+    "q": "Spreadsheet software has no ability to generate charts based on numeric data",
+    "a": "False"
+  },
+  {
+    "q": "This is a process of organizing the slides so that the information flows logically.",
+    "a": "Outlining"
+  }
+]

@@ -1,0 +1,882 @@
+[
+  {
+    "q": "What will be the output of the following PHP code ? <?php $x; for($x=-3;$x<-5;++$x) { print++$x; } ?>",
+    "a": "no output"
+  },
+  {
+    "q": "A way on how to print / display text on the screen.",
+    "a": "echo"
+  },
+  {
+    "q": "The following are examples of =, +=, *=, /=, .= _______ Operators",
+    "a": "Assignment"
+  },
+  {
+    "q": "Returns the status-number of a request if \"OK\"",
+    "a": "200"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for($i==2;++$i==$i;++$i) print\"In for loop \"; print\"After loopn\"; ?>",
+    "a": "In for loop In for loop In for loop In for loop......infinitely"
+  },
+  {
+    "q": "If the variable $x = 11; , what will $x equal if it is incremented, that is, if I write $x++; what value will $x contain after it has been incremented?",
+    "a": "12"
+  },
+  {
+    "q": "Original developer of JavaScript?",
+    "a": "Brendan Eich"
+  },
+  {
+    "q": "Area that can be specified by the cols and rows attributes, or even better; through CSS' height and width properties",
+    "a": "textarea"
+  },
+  {
+    "q": "What is the output of the following code snippet? $str = 'asdfghyo off on off'; $replace_pairs = array('a' => 'q', 's' => 'w', 'd' => 'e', 'f' => 'r', 'y' => 'z', 'o' => 'i', 'off' => 'on', 'on' => 'off'); echo strtr($str, $replace_pairs);",
+    "a": "Qwerghzi on off on"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for(1;$i==1;$i=2) print\"In for loop \"; print\"After loopn\"; ?>",
+    "a": "After for loop"
+  },
+  {
+    "q": "Which of the following statements contains an error?",
+    "a": "Select empid where empid = 1009 and lastname = ‘JOHANN;"
+  },
+  {
+    "q": "returns the numbers of rows in a columns.",
+    "a": "count()"
+  },
+  {
+    "q": "What is the correct way to end a PHP statement?",
+    "a": ";"
+  },
+  {
+    "q": "Which of the following is the original purpose of SQL?",
+    "a": "All of the above."
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE:!(4 >= 4 || 8 < 1)",
+    "a": "False"
+  },
+  {
+    "q": "Symbol use as identical",
+    "a": "==="
+  },
+  {
+    "q": "Function trims all spaces from the right of a value",
+    "a": "RTRIM()"
+  },
+  {
+    "q": "The following comparison condition would return TRUE or FALSE:(4 <> 7)",
+    "a": "True"
+  },
+  {
+    "q": "The PHP syntax is most similar to:",
+    "a": "Perl and C"
+  },
+  {
+    "q": "represents a control that presents a menu of options.",
+    "a": "select"
+  },
+  {
+    "q": "Which one of the following denotes the default mysql date format?",
+    "a": "YYYY-MM-DD"
+  },
+  {
+    "q": "What is the output of the following? echo substr(\"abcdef\", -2), ', '; echo substr(\"abcdef\", 4), ', '; echo substr(\"abcdef\", -3, -1), ', '; echo substr(\"abcdef\", 4, -2), ', '; echo substr(\"abcdef\", 2, -1)",
+    "a": "Ef, ef, de, , cde"
+  },
+  {
+    "q": "True or False - The following search statement will exclude any records that contain the term \"poodle.\" (dogs OR canines) NOT cats.",
+    "a": "False"
+  },
+  {
+    "q": "Which of the following are the five built-in functions provided by SQL?",
+    "a": "COUNT, SUM, AVG, MAX, MIN"
+  },
+  {
+    "q": "How do you start the shorthand form PHP scripting block?",
+    "a": "<? … ?>"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? < ?php $i = 0; for ($i) { print$i; } ? >",
+    "a": "error"
+  },
+  {
+    "q": "One of the parameters to represent the day of the month",
+    "a": "d"
+  },
+  {
+    "q": "Which of the following is the correct order of keywords for SQL SELECT statements?",
+    "a": "SELECT, FROM, WHERE"
+  },
+  {
+    "q": "What is the output of the following? echo strcmp('first', 'second'), \", \"; echo strcmp('44', '054'), \", \"; echo strcmp('0x80', 'a'), \", \"; echo strcmp('a', 'A');",
+    "a": "-1, 1, -1, 1"
+  },
+  {
+    "q": "In PHP, the only way to output text is with echo.",
+    "a": "False"
+  },
+  {
+    "q": "<?php for($x=0;$x<=10;++$x) { print++$x; } ?>",
+    "a": "123456789101112"
+  },
+  {
+    "q": "This are functions that operate on a set of rows to calculate and return a single value.",
+    "a": "Aggregate functions"
+  },
+  {
+    "q": "Assuming the table and fields below exists, what is wrong with the following mysql query example: mysql_query(\"INSERT INTO contacts (firstName, lastName, phoneNumber) VALUES ('Robert', 'Smith', '123-983-2929')\");",
+    "a": "Nothing, everything is fine"
+  },
+  {
+    "q": "Which operator will check if two variables are the same?",
+    "a": "=="
+  },
+  {
+    "q": "PHP server scripts are surrounded by delimiters, which?",
+    "a": "<?php...?>"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE: (4 >= 4 && 8 < 1)",
+    "a": "False"
+  },
+  {
+    "q": "PHP is one of the most widely used and recognizable web technology use on the internet.",
+    "a": "True"
+  },
+  {
+    "q": "It refers to styles for your documents, including the design, layout and variations in display for different devices and screen sizes.",
+    "a": "CSS"
+  },
+  {
+    "q": "Andi Gutmans was the inventor of PHP.",
+    "a": "False"
+  },
+  {
+    "q": "The SQL statement that queries or reads data from a table is ________ .",
+    "a": "SELECT"
+  },
+  {
+    "q": "PHP is proprietary software.",
+    "a": "True"
+  },
+  {
+    "q": "Consider the following code snippet : var grand_Total=eval(\"10*10+5\");",
+    "a": "105 as an integer value"
+  },
+  {
+    "q": "The following example $x -= $y; is the same as?",
+    "a": "$x = $x – $y;"
+  },
+  {
+    "q": "Assuming the table and fields below exists, what is wrong with the following mysql query example: mysql_query(\"INSERT INTO contacts (firstName, lastName) VALUES ('Robert', 'Smith', '123-983-2929')\");",
+    "a": "There are more values than fields"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE ( (2 >= 2 && 8 < 1) || (11 == 33 || 5 > 3) )",
+    "a": "True"
+  },
+  {
+    "q": "Returns header information",
+    "a": "getAllResponseHeaders()"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for($x=1;$x<10;++$x) { print\"*t\"; } ?>",
+    "a": "*********"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for($i++;$i==1;$i=2) print\"In for loop \"; print\"After loopn\"; ?>",
+    "a": "In for loopAfter for loop"
+  },
+  {
+    "q": "It's a time manipulation function that returns the current date.",
+    "a": "CurDate()"
+  },
+  {
+    "q": "If I wanted to concatenate a word to a string variable I would use which symbol?",
+    "a": "."
+  },
+  {
+    "q": "Function that is used to check whether a variable is set or not.",
+    "a": "isset()"
+  },
+  {
+    "q": "True or False - Using the operator AND to combine concept terms is a good way to increase the number of records retrieved in a search.",
+    "a": "False"
+  },
+  {
+    "q": "Which one of the following methods is responsible for sending the query to the database?",
+    "a": "query()"
+  },
+  {
+    "q": "Find the SQL statement below that is equal to the following: SELECT NAME FROM CUSTOMER WHERE STATE = 'VA';",
+    "a": "SELECT NAME FROM CUSTOMER WHERE STATE IN ('VA');"
+  },
+  {
+    "q": "The result of a SELECT statement can contain duplicate rows.",
+    "a": "True"
+  },
+  {
+    "q": "Which one of the following databases has PHP supported almost since the beginning?",
+    "a": "MYSQL"
+  },
+  {
+    "q": "Working locally you an access php script by using http://localhosts/filename.php",
+    "a": "False"
+  },
+  {
+    "q": "Which statement will evaluate and include a file into the location where it is called.",
+    "a": "include statement"
+  },
+  {
+    "q": "What functions count elements in an array?",
+    "a": "count"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php $colors=array(\"red\",\"green\",\"blue\",\"yellow\"); foreach($colors as $value) { echo \"$value<br>\"; }",
+    "a": "red green blue yellow"
+  },
+  {
+    "q": "The following are examples of >, <=, >=, ==________ Operators",
+    "a": "Comparison"
+  },
+  {
+    "q": "The logical operator && stands for?",
+    "a": "AND"
+  },
+  {
+    "q": "The query given below will not give an error. Which one of the following has to be replaced to get the desired output? Select ID, name, dept name, sal * 1.1 where instructor;",
+    "a": "WHERE"
+  },
+  {
+    "q": "You can add a row using SQL in a database with which of the following?",
+    "a": "INSERT"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE: !(3 >= 3 || 8 < 1)",
+    "a": "False"
+  },
+  {
+    "q": "Ajax Stands for",
+    "a": "Asynchronous JavaScript And XML."
+  },
+  {
+    "q": "The SQL keyword BETWEEN is used:",
+    "a": "for ranges."
+  },
+  {
+    "q": "Identification. Write your answer on the space provided. +, -, *, /, %, are all examples of what category of operators",
+    "a": "arithmetic operators"
+  },
+  {
+    "q": "MySQL runs on which operating systems?",
+    "a": "Unix, Linux, Windows and others"
+  },
+  {
+    "q": "How many single line commenting types are there?",
+    "a": "2"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for($x=0;$x<=10;$x++) { echo\"The number is: $x<br>\"; } ?>",
+    "a": "The number is: 0 The number is: 1 The number is: 2 The number is: 3 The number is: 4 The number is: 5 The number is: 6 The number is: 7 The number is: 8 The number is: 9 The number is: 10"
+  },
+  {
+    "q": "Which is the correct way to write a multiple line PHP comment?",
+    "a": "/* .. *"
+  },
+  {
+    "q": "MySQL was invented in the year of",
+    "a": "1994"
+  },
+  {
+    "q": "Is the SQL statement correct or not. SELECT vend_name, prod_name, prod_price, vendors.vend_id, products.vend_id FROM vendors INNER JOINS products ON vendors.vend_id = products.vend_id;",
+    "a": "No"
+  },
+  {
+    "q": "Which is identified as a special variable, which can store multiple values in one single variable?",
+    "a": "Array"
+  },
+  {
+    "q": "What data type will PHP automatically convert the following variable to:? $aVariable = 99;",
+    "a": "integer (a number variable)"
+  },
+  {
+    "q": "PHP project originally started in 1995 by RasmusLerdorf. (1994)",
+    "a": "False"
+  },
+  {
+    "q": "Which one of these variables has an illegal name?",
+    "a": "$my-VarV"
+  },
+  {
+    "q": "PHP 3 was released in 1998.",
+    "a": "True"
+  },
+  {
+    "q": "PHP variables need to be declared before adding a value to it?",
+    "a": "False"
+  },
+  {
+    "q": "PHP only runs in Apache web server.",
+    "a": "False"
+  },
+  {
+    "q": "The following comparison condition would return TRUE or FALSE:(3 <> 6)",
+    "a": "True"
+  },
+  {
+    "q": "The following example $a -= $b; is the same as?",
+    "a": "$a = $a – $b;"
+  },
+  {
+    "q": "The command to remove rows from a table 'CUSTOMER' is:",
+    "a": "DELETE FROM CUSTOMER WHERE ..."
+  },
+  {
+    "q": "To remove duplicate rows from the result set of a SELECT use the following keyword:",
+    "a": "DISTINCT"
+  },
+  {
+    "q": "The ______ clause allows us to select only those rows in the result relation of the ____ clause that satisfy a specified predicate.",
+    "a": "Where, from"
+  },
+  {
+    "q": "The SQL WHERE clause:",
+    "a": "limits the row data are returned."
+  },
+  {
+    "q": "What does the following MySQL command do? SELECT * FROM author WHERE auth_name LIKE 'W%';",
+    "a": "Return those rows from the table author in which the name of the author starts with the character 'W"
+  },
+  {
+    "q": "Facebook, wordpress uses php as script language.",
+    "a": "True"
+  },
+  {
+    "q": "Which one of the following is the right way of defining a function in PHP?",
+    "a": "functionfumctionName(parameters) { function body }"
+  },
+  {
+    "q": "What is the function of the ucfirst and lcfirst functions?",
+    "a": "To make the string's first character uppercase or lowercase, respectively"
+  },
+  {
+    "q": "The date() function returns ___ representation of the current date and/or time.",
+    "a": "String"
+  },
+  {
+    "q": "It's a function returns the Unix timestamp for a date.",
+    "a": "mktime()"
+  },
+  {
+    "q": "PHP variables start with what symbol ?",
+    "a": "A $ symbol"
+  },
+  {
+    "q": "The keystone of AJAX",
+    "a": "XMLHttpRequest"
+  },
+  {
+    "q": "Which SQL statement is used to insert new data in a database?",
+    "a": "INSERT INTO"
+  },
+  {
+    "q": "The PHP If Else Statement can execute the code within the if and else segments at the same time?",
+    "a": "False"
+  },
+  {
+    "q": "PHP script tags ends with ?>;",
+    "a": "False"
+  },
+  {
+    "q": "Version 4 of php supports global variables $Get etc. (v4.1)",
+    "a": "False"
+  },
+  {
+    "q": "Tag is used to group block-elements to format them with CSS.",
+    "a": "div"
+  },
+  {
+    "q": "Originally PHP is known as \"Personal Home Pages\"",
+    "a": "False"
+  },
+  {
+    "q": "A NULL value is treated as a blank or 0.",
+    "a": "False"
+  },
+  {
+    "q": "What will be the output of the following PHP code ? <?php for($x=-1;$x<10;--$x) { print$x; } ?>",
+    "a": "infinite loop"
+  },
+  {
+    "q": "The \"mysql_error()\" function returns the error description for a MYSQL operation?",
+    "a": "True"
+  },
+  {
+    "q": "MYSQL can be used to:",
+    "a": "All of the above can be done by MYSQL."
+  },
+  {
+    "q": "Which one of the following statements is used to create a table?",
+    "a": "CREATE TABLE table_name (column_namecolumn_type);"
+  },
+  {
+    "q": "_Select name, course_id from instructor, teaches where instructor_ID= teaches_ID; This Query can be replaced by which one of the following ?",
+    "a": "Select name, course_id from instructor natural join teaches;"
+  },
+  {
+    "q": "Which one of the following method is used to retrieve the number of rows affected by an INSERT, UPDATE, or DELETE query",
+    "a": "affected_rows()"
+  },
+  {
+    "q": "Original Name of JavaScript",
+    "a": "LiveScript"
+  },
+  {
+    "q": "Server command that calls itself",
+    "a": "$_SERVER['PHP_SELF']"
+  },
+  {
+    "q": "All text in a multiple line comment block is ignored?",
+    "a": "True"
+  },
+  {
+    "q": "Using XAMPP server you can use SQL Server database.",
+    "a": "False"
+  },
+  {
+    "q": "The logical operator ! stands for?",
+    "a": "NOT"
+  },
+  {
+    "q": "PHP can be run on Microsoft Windows IIS(Internet Information Server):",
+    "a": "True"
+  },
+  {
+    "q": "In an SQL SELECT statement querying a single table, the asterisk (*) means that:",
+    "a": "all columns of the table are to be returned."
+  },
+  {
+    "q": "Which one of the following function is useful for producing a timestamp based on a given date and time.",
+    "a": "mktime()"
+  },
+  {
+    "q": "Multiple Choice. Select the best answer How do you write \"Hello World\" in PHP",
+    "a": "echo \"Hello World\";"
+  },
+  {
+    "q": "What will happen in this function call?",
+    "a": "Call by value"
+  },
+  {
+    "q": "PHP in now known as \"PHP: Hypertexts Preprocessor\"",
+    "a": "False"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE:(4 >= 4 || 8 < 1)",
+    "a": "False"
+  },
+  {
+    "q": "This function allows you to close the current connection.",
+    "a": "close();"
+  },
+  {
+    "q": "Which of the following employee_id will be displayed?",
+    "a": "1018"
+  },
+  {
+    "q": "The wildcard in a WHERE clause is useful when?",
+    "a": "An exact match is not possible in a SELECT statement."
+  },
+  {
+    "q": "Identify if the statement if True or False. Write True if statement is true otherwise False php.org is the official php resource.",
+    "a": "False"
+  },
+  {
+    "q": "There are three different kind of arrays:",
+    "a": "Numeric array, Associative array, Multidimensional array"
+  },
+  {
+    "q": "When a variable is declared, it can only be used 1 time in your PHP source file?",
+    "a": "False"
+  },
+  {
+    "q": "Which one of the following statements should be used to include a file?",
+    "a": "include 'filename';"
+  },
+  {
+    "q": "A line of php code must end with a ?",
+    "a": "Semicolon ( ; )"
+  },
+  {
+    "q": "Symbol used to combine 2 sting values to create one string.",
+    "a": "."
+  },
+  {
+    "q": "To remove duplicate rows from the results of an SQL SELECT statement, the ________ qualifier specified must be included",
+    "a": "DISTINCT"
+  },
+  {
+    "q": "The following are examples of =, !=, === ______ Operators",
+    "a": "Equality"
+  },
+  {
+    "q": "What does a semicolon signify at the end of a instruction or statement?",
+    "a": "the end of a PHP statement or instruction"
+  },
+  {
+    "q": "What does SQL stand for?",
+    "a": "Structured Query Language"
+  },
+  {
+    "q": "Array values are keyed by ______ values (called indexed arrays) or using ______ values (called associative arrays). Of course, these key methods can be combined as well.",
+    "a": "Integer, String"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE:(7 >= 7 && 9 < 2)",
+    "a": "False"
+  },
+  {
+    "q": "Which SQL statement is used to delete data from a database?",
+    "a": "DELETE"
+  },
+  {
+    "q": "To use MySQL on your computer, you'll need?",
+    "a": "Some sort of client program to access the databases"
+  },
+  {
+    "q": "True or False - The operator AND, when used to link two concept terms (e.g. children and violence) will retrieve only those records that contain both concept terms",
+    "a": "True"
+  },
+  {
+    "q": "Which is the incorrect way to start a single line PHP comment?",
+    "a": "/* .. */"
+  },
+  {
+    "q": "Which one of the following sorts rows in SQL?",
+    "a": "ORDER BY"
+  },
+  {
+    "q": "Which of the following statement is not true about MySQL DROP command?",
+    "a": "it can be used to delete only data but not structure of a table"
+  },
+  {
+    "q": "The ________ clause is used to list the attributes desired in the result of a query.",
+    "a": "Select"
+  },
+  {
+    "q": "Syntax is a set of rules that must be followed to write properly structured code?",
+    "a": "True"
+  },
+  {
+    "q": "A subquery in an SQL SELECT statement",
+    "a": "has a distinct form that cannot be duplicated by a join."
+  },
+  {
+    "q": "What will the following script output?",
+    "a": "78"
+  },
+  {
+    "q": "Which of the following can add a row to a table?",
+    "a": "Insert"
+  },
+  {
+    "q": "All text to the right of a single line comment is not ignored?",
+    "a": "False"
+  },
+  {
+    "q": "Insert into employee _____ (1002,Jeiven,2000); In the given query which of the keyword has to be inserted ?",
+    "a": "Values"
+  },
+  {
+    "q": "AJAX is a programming language",
+    "a": "It refers to a client-side script that communicates to and from a server/database without the need for a postback or a complete page refresh"
+  },
+  {
+    "q": "Which SQL statement is used to insert a new data in a database?",
+    "a": "INSERT INTO"
+  },
+  {
+    "q": "_Select * from employee where salary>10000 and dept_id=101; Which of the following fields are displayed as output?",
+    "a": "All the field of employee relation"
+  },
+  {
+    "q": "Consider the following snippet code var string1 = \"123\"; var intvalue = 123; alert( string1 + intvalue );",
+    "a": "123123"
+  },
+  {
+    "q": "To sort the results of a query use:",
+    "a": "ORDER BY."
+  },
+  {
+    "q": "True or False. JavaScript can be inserted into any web page regardless of the file extension.",
+    "a": "True"
+  },
+  {
+    "q": "The PHP If Statement will only execute the code within it's curly braces if the if condition is FALSE?",
+    "a": "False"
+  },
+  {
+    "q": "The HAVING clause does which of the following?",
+    "a": "Acts like a WHERE clause but is used for groups rather than rows."
+  },
+  {
+    "q": "Using the _POST is allowed us to collect data from the htm file and display to the php script",
+    "a": "_POST"
+  },
+  {
+    "q": "PHP runs on various platforms operating system such as apache and IIS",
+    "a": "False"
+  },
+  {
+    "q": "JavaScript Code can be called by using",
+    "a": "Function/Method"
+  },
+  {
+    "q": "Assuming the table and fields below exists, what is wrong with the following mysql query example: mysql_query(\"INSERT INTO contacts (firstName, lastName, phoneNumber) VALUES ('Robert', 'Smith')\");",
+    "a": "There are more fields than values"
+  },
+  {
+    "q": "It's a text function that returns convert string to lowercase",
+    "a": "Lower()"
+  },
+  {
+    "q": "Returns the highest value",
+    "a": "MAX()"
+  },
+  {
+    "q": "The concatenation operator in PHP?",
+    "a": "."
+  },
+  {
+    "q": "If the variable $x = 10; , what will $x equal if it is incremented, that is, if I write $x++; what value will $x contain after it has been incremented?",
+    "a": "11"
+  },
+  {
+    "q": "Look at the following code and determine what will be displayed in the browser: <?php echo \"Hello World 1\"; // echo \"Hello World 2\"; ?>",
+    "a": "Hello World 1"
+  },
+  {
+    "q": "Function that select database.",
+    "a": "mysql_select_db();"
+  },
+  {
+    "q": "Can hold an unlimited number of characters, and the text renders in a fixed-width font.",
+    "a": "Textarea"
+  },
+  {
+    "q": "Symbol use to append data or string",
+    "a": "."
+  },
+  {
+    "q": "What data type will PHP automatically convert the following variable to: $aVariable = \"Robert\";",
+    "a": "string (a text variable)"
+  },
+  {
+    "q": "MySQL COUNT() function returns",
+    "a": "a count of number of non-NULL values of a given expression"
+  },
+  {
+    "q": "Multiple Choice. Select the best answer How do you start the standard form PHP scripting block?",
+    "a": "<?php … ?>"
+  },
+  {
+    "q": "All variables in PHP start with a $(dollar) sign?",
+    "a": "True"
+  },
+  {
+    "q": "The \"or die()\" part of a MySQL command will execute if the connection fails?",
+    "a": "True"
+  },
+  {
+    "q": "Which one of the following denotes the difference between SELECT and USE command?",
+    "a": "SELECT checks which database is currently selected, USE selects a database"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE ( (4 >= 4 && 8 < 1) || (44 == 33 || 5 > 3) )",
+    "a": "True"
+  },
+  {
+    "q": "If a source file contains PHP code, what extension should be used?",
+    "a": "php"
+  },
+  {
+    "q": "Other term use for Option buttons?",
+    "a": "Radio buttons"
+  },
+  {
+    "q": "Function is used to convert a human readable string to a Unix time.",
+    "a": "strtotime()"
+  },
+  {
+    "q": "A variable declared within a function.",
+    "a": "local"
+  },
+  {
+    "q": "Object is used to exchange data with a server behind the scenes.",
+    "a": "XMLHttpRequest"
+  },
+  {
+    "q": "It uses spec cols and rows attributes, or even better; through CSS' height and width properties.",
+    "a": "textarea"
+  },
+  {
+    "q": "Converts text to uppercase",
+    "a": "Upper()"
+  },
+  {
+    "q": "With SQL, how do you select all the records from a table named \"Persons\" where the value of the column \"FirstName\" is \"Peter\"?",
+    "a": "SELECT * FROM Persons WHERE FirstName = 'Peter'"
+  },
+  {
+    "q": "XMLHttpRequest object function that cancel request.",
+    "a": "Abort()"
+  },
+  {
+    "q": "It's a function that returns the lowest value in a column.",
+    "a": "Min()"
+  },
+  {
+    "q": "The SQL keyword(s) ________ is used with wildcards.",
+    "a": "LIKE only"
+  },
+  {
+    "q": "this function allows you to connect to mysql database",
+    "a": "mysql_connect(),"
+  },
+  {
+    "q": "True or False - The operator OR, when used to link two or concept terms will retrieve fewer records because both terms need not be present in each article.",
+    "a": "False"
+  },
+  {
+    "q": "Which function used to get the current time in mysql?",
+    "a": "NOW()"
+  },
+  {
+    "q": "Originally PHP is known as PHP: Hypertext Preprocessor (Personal Home Page)",
+    "a": "False"
+  },
+  {
+    "q": "What is the output of the following code? $a=1; ++$a; $a*=$a; echo $a- -;",
+    "a": "4"
+  },
+  {
+    "q": "All variables in PHP start with which symbol?",
+    "a": "$"
+  },
+  {
+    "q": "The logical operator || stands for?",
+    "a": "AND"
+  },
+  {
+    "q": "Is allowed us to collect data from the htm file and display to the php script.",
+    "a": "_POST"
+  },
+  {
+    "q": "Its a client-side script that communicates to and from a server/database without the need for a postback or a complete page refresh",
+    "a": "AJAX"
+  },
+  {
+    "q": "The \"mysql_connect()\" function opens a MySQL connection?",
+    "a": "True"
+  },
+  {
+    "q": "Option buttons are also called Selection button",
+    "a": "False"
+  },
+  {
+    "q": "Which of the following is the incorrect way to declare a PHP variable?",
+    "a": "$a_Number = 9"
+  },
+  {
+    "q": "What does PHP stand for?",
+    "a": "PHP: Hypertext Preprocessor"
+  },
+  {
+    "q": "If a PHP script opens a MySQL connection, the script will automatically close the connection after the script has finished executing?",
+    "a": "True"
+  },
+  {
+    "q": "For maximum compatibility, you should use the shorthand form to create PHP scripts?",
+    "a": "False"
+  },
+  {
+    "q": "One of the main points of interaction between a user and a web site or application. They allow users to send data to the web site.",
+    "a": "HTML forms"
+  },
+  {
+    "q": "Which of the following displays the unique values of the column. Select ________ dept_name from instructor;",
+    "a": "Distinct"
+  },
+  {
+    "q": "The INSERT INTO statement is not used to add new records to a database table?",
+    "a": "False"
+  },
+  {
+    "q": "The following condition will return TRUE or FALSE: (7 >= 7 && 9 < 2)",
+    "a": "False"
+  },
+  {
+    "q": "When using the POST method, variables are displayed in the URL:",
+    "a": "False"
+  },
+  {
+    "q": "In a LIKE clause, you can could ask for any value ending in \"qpt\" by writing",
+    "a": "LIKE %qpt"
+  },
+  {
+    "q": "With SQL, how do you select a column named \"FirstName\" from a table named \"Persons\"?",
+    "a": "SELECT FirstName FROM Persons"
+  },
+  {
+    "q": "When three or more AND and OR conditions are combined, it is easier to use the SQL keyword(s):",
+    "a": "Both IN and NOT IN."
+  },
+  {
+    "q": "Whitespace is not ignored in PHP?",
+    "a": "False"
+  },
+  {
+    "q": "Security is not an issue with JavaScript",
+    "a": "False"
+  },
+  {
+    "q": "An object-oriented computer programming language commonly used to create interactive effects within web browsers",
+    "a": "JavaScript"
+  },
+  {
+    "q": "In PHP you can use both single quotes ( ' ' ) and double quotes ( \" \" ) for strings",
+    "a": "True"
+  },
+  {
+    "q": "The \"mysql_close()\" function allows you to close a MySQL connection?",
+    "a": "True"
+  },
+  {
+    "q": "Element represents a control that presents a menu of options.",
+    "a": "HTML select"
+  },
+  {
+    "q": "The \"I\" in MySQLi stands for",
+    "a": "improved"
+  },
+  {
+    "q": "Joining values together (by appending them to each other) to form a single long value.",
+    "a": "concatenate"
+  },
+  {
+    "q": "The default file extension for PHP files is \".php\".",
+    "a": "True"
+  },
+  {
+    "q": "This command sends active query to the database",
+    "a": "mysql_query()"
+  },
+  {
+    "q": "Assume you would like to sort an array in ascending order by value while preserving key associations. Which of the following PHP sorting functions would you use?",
+    "a": "asort()"
+  }
+]
