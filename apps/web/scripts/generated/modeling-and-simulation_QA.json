@@ -1,0 +1,362 @@
+[
+  {
+    "q": "A behavioral model that is distinct and the have the same state variable",
+    "a": "Heterogeneous Agent Model"
+  },
+  {
+    "q": "A behaviour type that has an adaptive refinement for finer localized representation",
+    "a": "Mesh Cell"
+  },
+  {
+    "q": "A circuit that interconnects two or more bus segments in a bus-based system",
+    "a": "Repeater"
+  },
+  {
+    "q": "A class of communication that provides references to resources, analogous to links in the World Wide Web",
+    "a": "Network Pointer"
+  },
+  {
+    "q": "A collection of dynamical models, and which one to use is selected by the state of the FSM",
+    "a": "Hybrid Dynamical System (HDS)"
+  },
+  {
+    "q": "A communication service that sends a copy of a specific message to more than one but not necessarily all destinations",
+    "a": "Multicast"
+  },
+  {
+    "q": "A computation that models the behavior of some real or imagined system over time",
+    "a": "Computer Simulation"
+  },
+  {
+    "q": "A discrete-event simulation consisting of logical processes (LPs) that interact exclusively by exchanging time stamped messages",
+    "a": "Local Causality Constraint"
+  },
+  {
+    "q": "A distributed computer's characteristic that is important because many distributed simulators are constructed by interconnecting existing sequential simulators operating on specific workstations",
+    "a": "Heterogeneity"
+  },
+  {
+    "q": "A graph that has at least one pair of nodes with no undirected path between them",
+    "a": "Undirected Graph"
+  },
+  {
+    "q": "A group formed by the Defense Modeling and Simulation Office (DMSO) in early 1995",
+    "a": "Architecture Management Group (AMG)"
+  },
+  {
+    "q": "A high-level architecture mechanism where abstractions are defined separately from objects and attributes, solely for the purpose of data distribution",
+    "a": "Routing Spaces"
+  },
+  {
+    "q": "A layer that provides an end-to-end communication service between hosts, hiding details of the underlying network",
+    "a": "Transport Layer"
+  },
+  {
+    "q": "A path in which all contained links are directed from the start node, in succession, to the end node, and is also known as a route between the two nodes",
+    "a": "Directed Path"
+  },
+  {
+    "q": "A PDU that indicates the trajectory of a munition has been completed",
+    "a": "Detonation"
+  },
+  {
+    "q": "A potentially far-reaching impact of distributed virtual environments creating new means for people to interact socially on the Internet",
+    "a": "Social Interaction/Business Collaborations"
+  },
+  {
+    "q": "A subset of the nodes in a parent graph, and includes only links from the parent graph that are between nodes in the subgraph",
+    "a": "Subgraph"
+  },
+  {
+    "q": "A technique in Distributed Interactive Simulation that is used to reduce interprocessor communication",
+    "a": "Dead Reckoning"
+  },
+  {
+    "q": "A term referred to as distributed simulation in high level architecture",
+    "a": "Federation"
+  },
+  {
+    "q": "A trail segment that is a path except that it starts and ends on the same node",
+    "a": "Loop"
+  },
+  {
+    "q": "A type of distributed simulation technology can be applied in amusement park and arcade centers where players are co-located but interact with each other and computer-generated entities over a local area network",
+    "a": "Entertainment Application"
+  },
+  {
+    "q": "A type of error where results are mere misinterpretations",
+    "a": "Unhandled Implication"
+  },
+  {
+    "q": "A type of modeling where data is represented by measurable quantities, as voltages or, formerly, the rotation of gears, in order to solve a problem, rather than by expressing the data as numbers",
+    "a": "Continuous Model"
+  },
+  {
+    "q": "An approach that eliminates the broadcast to notify the processors that a global synchronization has been achieved",
+    "a": "Butterfly Barrier"
+  },
+  {
+    "q": "An architecture where computation-only entities may now be distributed among geographically distributed processors",
+    "a": "Distributed-serverless architecture"
+  },
+  {
+    "q": "An area or field in computer science that plays a critical role in distributed simulation systems",
+    "a": "Networking"
+  },
+  {
+    "q": "An association of one node to another as a pair of references",
+    "a": "Links"
+  },
+  {
+    "q": "An error that comes when numerical calculations are generated to approximate math function",
+    "a": "Computational Error"
+  },
+  {
+    "q": "An HLA category that includes services to create and delete federation executions",
+    "a": "Federation Management"
+  },
+  {
+    "q": "An HLA component that defines the underling principle used in the HLA",
+    "a": "HLA rules"
+  },
+  {
+    "q": "An inaccurate representation of real and ideal world in terms of algorithms analysis",
+    "a": "Algorithm Sources of Erros"
+  },
+  {
+    "q": "Any sequence of links and their shared nodes which can be traced from one node to another visiting each included link only once",
+    "a": "Trail"
+  },
+  {
+    "q": "Any sequence of links and their shared nodes which can be traced from one node to another visiting each included node only once",
+    "a": "Walk"
+  },
+  {
+    "q": "Are highly dependent on the distribution and the calculations being performed",
+    "a": "Propagating a Distribution Error"
+  },
+  {
+    "q": "Calculations having temporary variables that may or may not be considered state variables",
+    "a": "State Variable Calculations"
+  },
+  {
+    "q": "Can be propagated through nonlinear calculations",
+    "a": "Bounded Errors"
+  },
+  {
+    "q": "Characterized as evenly propagated point source radiated energy",
+    "a": "Continuum Field Equations"
+  },
+  {
+    "q": "Contain ground truth information indicating the appearance and location of an entity",
+    "a": "Entity State PDU"
+  },
+  {
+    "q": "Defines the services provided by the Run-Time Infrastructure (RTI) for linking together individual federates",
+    "a": "Interface Specification"
+  },
+  {
+    "q": "Indicates the federate is to receive all updates for objects of a certain class, such as the altitude attribute of all aircraft objects",
+    "a": "Subscribe Object Class Attribute"
+  },
+  {
+    "q": "Is a graph whose links indicate various association types between the nodes",
+    "a": "Semantic Graph"
+  },
+  {
+    "q": "Is a graph whose nodes form two distinct sets and whose links start in one of those sets and end in the other",
+    "a": "Bipartite Graph"
+  },
+  {
+    "q": "Is a mathematical model of computation used to design both computer programs and sequential logic circuits",
+    "a": "Finite State Automation or State Machine"
+  },
+  {
+    "q": "Is a node that represents a subgraph and all the links between the nodes in the subgraph",
+    "a": "Hypernode"
+  },
+  {
+    "q": "Is any link that is between a hypernode and any node external to the subgraph it includes",
+    "a": "Hyperlink"
+  },
+  {
+    "q": "It is the number of links into and out of the node",
+    "a": "Degree of Nodes"
+  },
+  {
+    "q": "It is the other term for the pairing of two or more nodes",
+    "a": "Tuple"
+  },
+  {
+    "q": "It is the simulation of systems of objects that are free to move, usually in three dimensions according to Newton's laws of dynamics, or approximations thereof",
+    "a": "Dynamical Simulation"
+  },
+  {
+    "q": "It provides the language by which the simulator specifies what information it is interested in receiving",
+    "a": "Interest Expression"
+  },
+  {
+    "q": "It refers to technologies that enable a simulation program to execute on a computing system containing multiple processors, such as personal computers, interconnected by a communication network",
+    "a": "Parellel Simulation/Distributed Simulation"
+  },
+  {
+    "q": "It refers to the interpretation of error implied or resulting outcomes",
+    "a": "Interpreting Error Implications"
+  },
+  {
+    "q": "It simplifies integration of existing simulators into a DVE, and it simplifies allowing simulators to join or leave the exercise while it is in progress",
+    "a": "Autonomous Simulation Nodes"
+  },
+  {
+    "q": "Its principal objective is to enable interoperability among separately developed simulators",
+    "a": "Distributed Interactive Simulation"
+  },
+  {
+    "q": "Literally known error that is not seen as an error and usually the worst-case scenarios",
+    "a": "Machine Error"
+  },
+  {
+    "q": "One of a class of computational models for simulating the actions and interactions of autonomous agents with a view to assessing their effects on the system as a whole",
+    "a": "Agent Based Model"
+  },
+  {
+    "q": "Refers to being able to understand sources and behaviour of errors which empowers you to control them and predict their effects on the results",
+    "a": "Controllable Errors"
+  },
+  {
+    "q": "Refers to characterizing randomness in behaviors of otherwise deterministic models",
+    "a": "Stochastic Forms"
+  },
+  {
+    "q": "Results might even be worse implementation model values",
+    "a": "Ideal Model to Implementation"
+  },
+  {
+    "q": "Spacing determines \"range\" for each measurement point",
+    "a": "Measurement Error Characteristic"
+  },
+  {
+    "q": "Specifies a common format for describing the information of common interest to the simulations in the federation",
+    "a": "Object Model Template (OMT)"
+  },
+  {
+    "q": "The central characteristic of these machines is that all processors must execute the same instruction (but using different data) at any instant in the program's execution",
+    "a": "SIMD/Single-Intruction-Stream, Multiple-Data-Stream"
+  },
+  {
+    "q": "The condition where transaction A cannot complete until transaction B completes, but transaction B is blocked by transaction A",
+    "a": "Cyclic Dependency"
+  },
+  {
+    "q": "The mechanisms which handles conservative synchronization algorithms which utilizes the approach of cycling between phases",
+    "a": "Barrier Synchronization"
+  },
+  {
+    "q": "The model of which statistical estimates are only \"best fit\" to observed measurements",
+    "a": "Real World to Ideal World Model"
+  },
+  {
+    "q": "The most widely known approach in simulation of natural systems",
+    "a": "Time-driven Simulation"
+  },
+  {
+    "q": "The point or place from which the condition of deviating from accuracy or correctness",
+    "a": "Sources of Errors"
+  },
+  {
+    "q": "The simulation is initialized to zero and the times of occurrence of future events are determined",
+    "a": "Event-driven Simulation"
+  },
+  {
+    "q": "These algorithms determine which packet is transmitted over each communication link next",
+    "a": "Packet Scheduling"
+  },
+  {
+    "q": "These are important for moderate to large DVEs, especially in geographically distributed systems where broadcast communication facilities are not readily available",
+    "a": "Group Communication"
+  },
+  {
+    "q": "These are services that enable the transfer of ownership of object attributes during the federation execution",
+    "a": "Ownership Management"
+  },
+  {
+    "q": "These are simulations that are often used to evaluate different strategies for attacking or defending against an opposing force, or for acquisition decisions to determine the number and type of weapon systems that should be purchased to be prepared for future engagement",
+    "a": "War Gaming Simulations/Aggregated Simulations"
+  },
+  {
+    "q": "These are simulations that embed pilots, tank operators, commanding officers and their staffs, and the like, into an environment to train personnel for actual combat",
+    "a": "Training Environment"
+  },
+  {
+    "q": "These have been used in the telecommunications industry for long to evaluate networking hardware, software, protocols, and services",
+    "a": "Analytic Simulation"
+  },
+  {
+    "q": "These machines are typically constructed by providing memory with each processor but allow each processor to directly read or write the memory attached to another processor",
+    "a": "Non-Uniform Memory Access (NUMA)"
+  },
+  {
+    "q": "These protocols provide a means to reserve resources in the network such as bandwidth and message buffers for traffic produced by the application",
+    "a": "Resource Reservation"
+  },
+  {
+    "q": "These provide a reliable, connection-oriented communication service",
+    "a": "Heavy Weight Objects"
+  },
+  {
+    "q": "These provide real-time delivery of continuous streams of data, as well as sequencing and synchronization of streams",
+    "a": "Real-time Streams"
+  },
+  {
+    "q": "These services control the distribution of state updates and interactions among federates, in order to control the distribution of information so that federates receive all of the information relevant to it and (ideally) no other information",
+    "a": "Data Distribution Management"
+  },
+  {
+    "q": "These services coordinate the advancement of logical time, and its relationship to wall clock time during the federation execution",
+    "a": "Time Management"
+  },
+  {
+    "q": "This indicates the class in the object class structure table, such as Vehicle, and can be chosen from any level in the class hierarchy",
+    "a": "Object Class"
+  },
+  {
+    "q": "This is a general parallel programming construct that defines a point in time when all of the processors participating in the computation have stopped",
+    "a": "Barrier"
+  },
+  {
+    "q": "This is a language used to specify characteristics of the message flows produced by traffic sources and the QoS requirements of the application with respect to the flows",
+    "a": "Flow Specification"
+  },
+  {
+    "q": "This is also referred to as a connectionless service wherein the sender places the data it wishes to transmit into a message, and passes the message to the networking software for transmission to the destination",
+    "a": "Datagram"
+  },
+  {
+    "q": "This is responsible for sending and receiving messages between nodes and typically transfers messages directly between that node's memory and the inter-connection network",
+    "a": "Communications Controller"
+  },
+  {
+    "q": "This is similar to the centralized server architecture, except that a multiprocessor or a collection of processors interconnected on a LAN is used to implement the server",
+    "a": "Distribution server architecture"
+  },
+  {
+    "q": "This is where simulation can play an important role in designing and managing road and air transportation systems",
+    "a": "Transportation"
+  },
+  {
+    "q": "This is where the service guarantees that each message will be received at the specified destination(s), or an exception will be raised for any message that cannot be delivered",
+    "a": "Reliable Delivery"
+  },
+  {
+    "q": "This means that humans embedded into the environment are able to develop skills that would be applicable in actual situations they might later encounter",
+    "a": "Sufficiently Realistic"
+  },
+  {
+    "q": "This means the distributed computation consists of a set of processes, and processes only perform computations upon receiving one or more messages",
+    "a": "Diffusing Computation"
+  },
+  {
+    "q": "This occurs when two or more tasks permanently block each other by each task having a lock on a resource which the other tasks are trying to do",
+    "a": "Deadlock"
+  }
+]

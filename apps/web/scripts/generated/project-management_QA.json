@@ -1,0 +1,1034 @@
+[
+  {
+    "q": "_____ is a problem-solving approach that requires defining the scope of the system",
+    "a": "systems analysis"
+  },
+  {
+    "q": "______ is the most significant portion of project management which cannot be avoided at any cost",
+    "a": "Planning"
+  },
+  {
+    "q": "_______ are often measured in monetary amounts that must be paid to acquire goods and services",
+    "a": "Costs"
+  },
+  {
+    "q": "_________ involves identifying specific actions that will produce project deliverables in enough detail to determine resource/schedule estimates",
+    "a": "defining activities"
+  },
+  {
+    "q": "___________ is a standard format for displaying project schedule information by listing project activities Also, their corresponding start and finish dates in calendar form",
+    "a": "Gantt chart"
+  },
+  {
+    "q": "___________ is useful for setting schedule goals and monitoring progress",
+    "a": "milestones"
+  },
+  {
+    "q": "____________ management incudes developing and managing direction of the project",
+    "a": "Integration"
+  },
+  {
+    "q": "_____________ - developing an approximation/estimate of the costs of the resources needed to complete a project",
+    "a": "estimating costs"
+  },
+  {
+    "q": "_____________ - money that has been spent in the past",
+    "a": "expenses"
+  },
+  {
+    "q": "______________ - allow for future situations that may be partially planned",
+    "a": "contingency reserves"
+  },
+  {
+    "q": "______________ - dollar amounts included in a cost estimate to mitigate cost risk by allowing for future situations that are difficult to predict",
+    "a": "reserves"
+  },
+  {
+    "q": "_________________ - the processes required to ensure that a project team completes a project within an approved budget",
+    "a": "Project cost management"
+  },
+  {
+    "q": "_________________ involves the processes required to ensure timely completion of a project",
+    "a": "Schedule"
+  },
+  {
+    "q": "A ______ is a deliverable-oriented grouping of the work involved in a project that defines its total scope",
+    "a": "WBS"
+  },
+  {
+    "q": "A ________ is a standard format for displaying project schedule information by listing project activities and their corresponding start and finish dates in a calendar format",
+    "a": "Gantt chart"
+  },
+  {
+    "q": "A deliverable-oriented grouping of the work involved in a project that defines the total scope of the project",
+    "a": "Work breakdown structure"
+  },
+  {
+    "q": "A document that includes, at a minimum, a description of the project, including its overall objectives and justification, detailed descriptions of all project deliverables",
+    "a": "project scope management"
+  },
+  {
+    "q": "A framework that build linkages to other stakeholders, use persuasion first, use negotiation and coercion if necessary",
+    "a": "Human Resources Framework"
+  },
+  {
+    "q": "A framework that view organizations as a stage or theater to play certain roles and give impressions",
+    "a": "Symbolic Framework"
+  },
+  {
+    "q": "A group of milestones or phases, activities or task that support an effort to accomplish something termed as _______",
+    "a": "Project"
+  },
+  {
+    "q": "A group of milestones or phases, activities or task that support an effort to accomplished something",
+    "a": "Project"
+  },
+  {
+    "q": "A management system that maps an organization's strategic it align business activities to the vision and strategy of the organization",
+    "a": "Balanced Scorecard"
+  },
+  {
+    "q": "A problem-solving approach that requires defining the scope of the system, dividing it into components, and then identifying and evaluating its problems, opportunities, constraints, and needs",
+    "a": "Systems analysis"
+  },
+  {
+    "q": "A project is a permanent activity",
+    "a": "False"
+  },
+  {
+    "q": "A Project Manager should not elicit feedback from all team members",
+    "a": "False"
+  },
+  {
+    "q": "A project with a 10-year life and a cost of 180,000 generates revenues of 24,000 each year If the discount rate is 3%, what is the NPV of the project?",
+    "a": "24,725"
+  },
+  {
+    "q": "A project with a 10-year life and a cost of 180,000 generates revenues of 24,000 each year If the discount rate is 6%, what is the NPV of the project?",
+    "a": "-3,548"
+  },
+  {
+    "q": "A project with a 10-year life and a cost of 180,000 generates revenues of 24,000 each year If the discount rate is 9%, what is the NPV of the project?",
+    "a": "-25,976"
+  },
+  {
+    "q": "A project with a 12-year life and a cost of 250,000 generates revenues of 32,000 each year If the discount rate is 4%, what is the NPV of the project?",
+    "a": "50,322"
+  },
+  {
+    "q": "A project with a 12-year life and a cost of 250,000 generates revenues of 32,000 each year If the discount rate is 6%, what is the NPV of the project?",
+    "a": "18,283"
+  },
+  {
+    "q": "A project with a 12-year life and a cost of 250,000 generates revenues of 32,000 each year If the discount rate is 8%, what is the NPV of the project?",
+    "a": "-8,845"
+  },
+  {
+    "q": "A project with a 15-year life and a cost of 200,000 generates revenues of 22,000 each year If the discount rate is 5%, what is the NPV of the project?",
+    "a": "28,352"
+  },
+  {
+    "q": "A project with a 15-year life and a cost of 200,000 generates revenues of 22,000 each year If the discount rate is 6%, what is the NPV of the project?",
+    "a": "13,669"
+  },
+  {
+    "q": "A project with a 15-year life and a cost of 200,000 generates revenues of 22,000 each year If the discount rate is 7%, what is the NPV of the project?",
+    "a": "374"
+  },
+  {
+    "q": "A project with a 15-year life and a cost of 200,000 generates revenues of 22,000 each year If the discount rate is 8%, what is the NPV of the project?",
+    "a": "-11,691"
+  },
+  {
+    "q": "A project with a 3 year life and a cost of 70,000 generates revenues of 26,000 in year 1, 38,000 in year 2, and 19,000 in year 3 If the discount rate is 7%, what is the NPV of the project?",
+    "a": "3,000"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 28,000 generates revenues of 8,000 in year 1, 12,000 in year 2, and 17,000 in year 3 If the discount rate is 4%, what is the NPV of the project?",
+    "a": "5,900"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 32,000 generates revenues of 8,000 in year 1, 12,000 in year 2, and 17,000 in year 3 If the discount rate is 5%, what is the NPV of the project?",
+    "a": "1,188"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 65,000 generates revenues of 26,000 in year 1, 38,000 in year 2, and 19,000 in year 3 If the discount rate is 5%, what is the NPV of the project?",
+    "a": "None of the given"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 70,000 generates revenues of 26,000 in year 1, 38,000 in year 2, and 19,000 in year 3 If the discount rate is 10%, what is the NPV of the project?",
+    "a": "-684"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 85,000 generates revenues of 32,000 in year 1, 44,000 in year 2, and 52,000 in year 3 If the discount rate is 11%, what is the NPV of the project?",
+    "a": "17,562"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 85,000 generates revenues of 32,000 in year 1, 44,000 in year 2, and 52,000 in year 3 If the discount rate is 8%, what is the NPV of the project?",
+    "a": "23,632"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 95,000 generates revenues of 32,000 in year 1, 44,000 in year 2, and 52,000 in year 3 If the discount rate is 14%, what is the NPV of the project?",
+    "a": "2,026"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of 95,000 generates revenues of 32,000 in year 1, 44,000 in year 2, and 52,000 in year 3 If the discount rate is 17%, what is the NPV of the project?",
+    "a": "-3,040"
+  },
+  {
+    "q": "A project with a 3-year life and a cost of P28,000 generates revenues of P8,000 in year 1, P12,000 in year 2, and P17,000 in year 3 If the discount rate is 3%, what is the NPV of the project?",
+    "a": "6,635"
+  },
+  {
+    "q": "A stakeholder is any individual, group or organization that can affect, be affected by, or perceive itself to be affected by a programme",
+    "a": "True"
+  },
+  {
+    "q": "A technique that separates data gathered from a variety of sources so that patterns can be seen",
+    "a": "FlowChart"
+  },
+  {
+    "q": "According to Maslow's hierarchy of needs in which level does the need for acceptance occur?",
+    "a": "Self Esteem"
+  },
+  {
+    "q": "According to McClelland's acquired-needs theory, people who desire harmonious relations with other people and need to feel accepted have a high need",
+    "a": "affiliation"
+  },
+  {
+    "q": "According to the PMI, a project is _________",
+    "a": "A unique system defined to meet ongoing operational needs with repeating activities"
+  },
+  {
+    "q": "Activity definition refers to the process of parsing a project into a number of individual tasks which must be completed before the deliverables can be considered completed",
+    "a": "True"
+  },
+  {
+    "q": "Activity sequencing is the number of work periods that are needed to complete individual activities",
+    "a": "False"
+  },
+  {
+    "q": "Allocating the overall cost estimate to individual work item",
+    "a": "Cost Budgeting"
+  },
+  {
+    "q": "An exchange of promises, a mutual understanding; a contract A document or communication defining initial intentions or a project",
+    "a": "Contract"
+  },
+  {
+    "q": "An optimal way recognized by industry to achieve a stated goal or objective",
+    "a": "best practice"
+  },
+  {
+    "q": "At the bottom of Maslow's pyramid or hierarchy of needs are needs",
+    "a": "Physiological"
+  },
+  {
+    "q": "AThe most commonly used graph for showing frequency distributions, or how often each different value in a set of data occurs",
+    "a": "Histogram"
+  },
+  {
+    "q": "Benchmarking is one way to collect requirements",
+    "a": "True"
+  },
+  {
+    "q": "Causes people to participate in an activity for their own enjoyment",
+    "a": "Intrinsic Motivation"
+  },
+  {
+    "q": "Characteristics of the business or project that give it an advantage over others",
+    "a": "Strengths"
+  },
+  {
+    "q": "Clinical psychologist and pioneer of 'job enrichment', is regarded as one of the great original thinkers in management and motivational theory",
+    "a": "Frederick Herzberg"
+  },
+  {
+    "q": "Composition is an effective technique of WBS",
+    "a": "False"
+  },
+  {
+    "q": "Contains monitoring and control of expenditures as the work proceeds as well as modifying the method if the result is not satisfactory",
+    "a": "Cost Control"
+  },
+  {
+    "q": "CPM stands for",
+    "a": "Critical Path Method"
+  },
+  {
+    "q": "CPM was developed in the 1960s by the US Navy",
+    "a": "False"
+  },
+  {
+    "q": "Decomposition of all the work necessary to complete a project",
+    "a": "WBS"
+  },
+  {
+    "q": "Defines exactly what is required and how to accomplish it",
+    "a": "Design"
+  },
+  {
+    "q": "Determining what needs to be done, who is going to do it, and when it needs to be done are all part of the planning process",
+    "a": "planning"
+  },
+  {
+    "q": "Develop a plan which sums up the funds included in undertaking the project by listing the labor",
+    "a": "resource plan"
+  },
+  {
+    "q": "developed two theories of human behavior at work: Theory and X and Theory Y",
+    "a": "McGregor"
+  },
+  {
+    "q": "Elements in the environment that could cause trouble for the business or project",
+    "a": "Opportunities"
+  },
+  {
+    "q": "Elements that the business or project could exploit to its advantage",
+    "a": "opportunities"
+  },
+  {
+    "q": "Ensuring that the project will satisfy the stated and implied needs for which it was undertaken",
+    "a": "Project quality management"
+  },
+  {
+    "q": "Establishes partnership between the performing organizations and the requesting organization (or customer, in the case of external projects)",
+    "a": "Develop Project Charter"
+  },
+  {
+    "q": "Estimating how long it will take to complete the work , developing, an acceptable project schedule given cost-effective use of available resources, and ensuring timely completion of the project",
+    "a": "Project time management"
+  },
+  {
+    "q": "Estimating the number of periods that is needed to complete individual activities",
+    "a": "Activity sequencing"
+  },
+  {
+    "q": "Every Organization maintains a repository of information and data from the past Projects what do you call this",
+    "a": "Organizational process assets"
+  },
+  {
+    "q": "Framework that Leaders believe in people and communicate that belief; they are visible and accessible; they empower, increase participation, support, share information, and move decision making down into the organization",
+    "a": "Human Resources Framework"
+  },
+  {
+    "q": "Gannt Chart is a visual representation that breaks down the scope of the project into manageable sections for the team",
+    "a": "False"
+  },
+  {
+    "q": "Graphs pairs of numerical data, one variable on each axis, to look for a relationship The closer data points are to a diagonal line, the more closely the two variables are related",
+    "a": "Scatter Diagram"
+  },
+  {
+    "q": "Here all allowable expenses are charged back and in addition an incentive fee for exceeding the performance criteria specified in the contract",
+    "a": "Cost plus incentive fee"
+  },
+  {
+    "q": "Here all allowable expenses are charged back plus a fixed fee at the end of the contract The fixed fee is how the seller makes their profit",
+    "a": "Cost plus fixed fee"
+  },
+  {
+    "q": "Here the seller is reimbursed for allowable costs plus a fee that's calculated as a percentage of costs",
+    "a": "Cost plus fee"
+  },
+  {
+    "q": "How often does the Planning Process Group occur",
+    "a": "As many times as is necessary to achieve the project objectives"
+  },
+  {
+    "q": "Identifies many possible causes for an effect or problem and sorts ideas into useful categories",
+    "a": "Cause-and-effect diagram"
+  },
+  {
+    "q": "Identifying, analyzing, and responding to risks related to the project",
+    "a": "Project risk management"
+  },
+  {
+    "q": "If the vice president of sales initiates a project to improve direct product sales using the Internet, he or she might be the _____",
+    "a": "project sponsor"
+  },
+  {
+    "q": "In RACI it's the person who signs off on the task or has authority for it?",
+    "a": "Accountability"
+  },
+  {
+    "q": "In RACI Who does the task?",
+    "a": "Responsibility"
+  },
+  {
+    "q": "In which document will you find details of the procedures and processes to follow when you are closing contracts?",
+    "a": "Contract Terms and Conditions"
+  },
+  {
+    "q": "Includes the processes required to manage timely completion of the project",
+    "a": "Project time management"
+  },
+  {
+    "q": "Influencing is also referred to as _____________",
+    "a": "All of the given"
+  },
+  {
+    "q": "Invest 2,000 now, receive 3 yearly payments of 100 each, plus 2,500 in the 3rd year Use 10% Interest Rate",
+    "a": "12697"
+  },
+  {
+    "q": "Is a document that request support-usually money- for work a proposer wants to do?",
+    "a": "Proposal"
+  },
+  {
+    "q": "Is a method for determining the estimated annual costs and benefits for a project",
+    "a": "Cash flow"
+  },
+  {
+    "q": "Is a set of activities, to plan, monitor, coordinate and review goals",
+    "a": "Project Management Process"
+  },
+  {
+    "q": "Is a team structure with members from functional areas, depending on skills required",
+    "a": "Matrix Organization"
+  },
+  {
+    "q": "Is a type of proposal address someone within your organization",
+    "a": "Internal Proposal"
+  },
+  {
+    "q": "Is a type of proposal address to an independent organization or individual from another such entity",
+    "a": "External Proposal"
+  },
+  {
+    "q": "Is a very important part of the proposal because it provides a short overview and summary of the entire proposal",
+    "a": "Abstract"
+  },
+  {
+    "q": "Is made up of individuals from various areas and department within a company",
+    "a": "Project team"
+  },
+  {
+    "q": "Is the degree to which a set of inherent characteristics fulfills requirements",
+    "a": "Quality"
+  },
+  {
+    "q": "Is the term used to describe formal systems devised for the management of people within an organization requirements",
+    "a": "Human Resource Management"
+  },
+  {
+    "q": "Is very important in planning procurements Many potential suppliers are often available for goods and services, so the project team must choose suppliers carefully",
+    "a": "market research"
+  },
+  {
+    "q": "It addresses the business, technological, and organizational issues associated with creating, maintaining, and modifying a system",
+    "a": "System management"
+  },
+  {
+    "q": "It describes your company philosophy in a few sentences, describes how you see your company in the future",
+    "a": "Mission and Vision Statement"
+  },
+  {
+    "q": "It identifies and document the relationship between project activities",
+    "a": "Activity sequencing"
+  },
+  {
+    "q": "It is a contract all the costs that the seller incurs during the project are charged back to the buyer",
+    "a": "Cost reimbursable"
+  },
+  {
+    "q": "It is a method of calculating the expected net monetary gain or loss from a project by discounting all expected future cash inflows and outflows to the present point in time",
+    "a": "ROI"
+  },
+  {
+    "q": "It is a set of activities to plan, monitor, coordinate and review a goal",
+    "a": "Project management"
+  },
+  {
+    "q": "It is similar to a deliverable-oriented WBS except that it is organized, at the highest level, by phases or steps in a process rather than by deliverables",
+    "a": "Process Centered WBS"
+  },
+  {
+    "q": "It maps the work of the project, as described in the WBS, to the people responsible for performing the work, as described in the OBS",
+    "a": "RAM"
+  },
+  {
+    "q": "It refers to mutually binding agreement between seller and the buyer",
+    "a": "Contract"
+  },
+  {
+    "q": "It refers to the achievement of a key deliverable",
+    "a": "milestones"
+  },
+  {
+    "q": "It refers to the beginning or ending point of one or more activity",
+    "a": "Event"
+  },
+  {
+    "q": "It refers to the method by which items are purchased from external suppliers",
+    "a": "Procurement"
+  },
+  {
+    "q": "It's a process that can be applied in a collaboration of its various sub-disciplines",
+    "a": "Project Collaboration"
+  },
+  {
+    "q": "It's a schematic display of the logical relationship among, or sequencing of project activities",
+    "a": "network diagram"
+  },
+  {
+    "q": "It's the 2nd Habit of a highly effective person",
+    "a": "Begin with the end in mind"
+  },
+  {
+    "q": "Its about keeping the project on track",
+    "a": "Leading"
+  },
+  {
+    "q": "Kick-off\" meeting usually marks the start of the Project Execution phase where the teams involved are informed of their responsibilities",
+    "a": "True"
+  },
+  {
+    "q": "known for his work on quality control in Japan, and he developed the 14 Points for Management in his text Out of the Crisis",
+    "a": "Deming"
+  },
+  {
+    "q": "Leadership behavior that focus on arrangement, strategy, environment, implementation, experimentation, and adaptation",
+    "a": "Structure framework"
+  },
+  {
+    "q": "Leadership style that demands immediate compliance",
+    "a": "Commanding"
+  },
+  {
+    "q": "Leadership style that sets high standard for performance",
+    "a": "Pacesetting"
+  },
+  {
+    "q": "Main output of _________ is schedule management plan",
+    "a": "planning schedule management"
+  },
+  {
+    "q": "Most proposals discuss the advantages or benefits of doing the proposed project This acts as an argument in favor of approving the project",
+    "a": "Benefit and feasibility"
+  },
+  {
+    "q": "Motivation causes people to do something for a reward or to avoid a penalty",
+    "a": "Extrinsic motivation"
+  },
+  {
+    "q": "Network diagrams are the preferred technique for showing activity sequencing",
+    "a": "True"
+  },
+  {
+    "q": "One of the leadership style that shows self confidence, empathy and change catalyst",
+    "a": "Visionary"
+  },
+  {
+    "q": "One of the role of PM is to includes developing and managing the direction of the project",
+    "a": "Integration Management"
+  },
+  {
+    "q": "Outline the corporate structure, Are you a sole proprietor, partnership or an incorporation? List any shareholders, partners and incorporation information",
+    "a": "Company Structure"
+  },
+  {
+    "q": "Part of the proposals contain a section that shows not only the projected completion date but also key milestones for the project",
+    "a": "Schedule"
+  },
+  {
+    "q": "Pessimistic time he shortest possible time in which an activity is likely to be completed",
+    "a": "False"
+  },
+  {
+    "q": "Project ________ management ensures that the project will satisfy the stated or implied needs for which it was undertaken",
+    "a": "quality"
+  },
+  {
+    "q": "Project ________ management involves acquiring goods and services for a project from outside the performing organization",
+    "a": "procurement"
+  },
+  {
+    "q": "Project ________ management involves defining and managing all the work required to complete the project successfully",
+    "a": "scope"
+  },
+  {
+    "q": "Project charter inputs includes project management plan, approve change request, organizational process assets",
+    "a": "False"
+  },
+  {
+    "q": "Project is a temporary endeavor undertaken to create a unique product, service, or result",
+    "a": "True"
+  },
+  {
+    "q": "Project Management Institute (PMI)suggested 7 phases of project management",
+    "a": "False"
+  },
+  {
+    "q": "Project Management involves four project constraints they are time, cost, human resources and scope",
+    "a": "False"
+  },
+  {
+    "q": "Project Management is the discipline of ________ sources to achieve a specific goal",
+    "a": "All of the given"
+  },
+  {
+    "q": "Project Management plan is a document used to coordinate all project planning documents and help guide a project's execution and control",
+    "a": "True"
+  },
+  {
+    "q": "Project management software helps you develop a ______, which serves as a basis for creating Gantt charts, assigning resources, and allocating costs",
+    "a": "WBS"
+  },
+  {
+    "q": "Project manager ensures that _____________",
+    "a": "Both of the given"
+  },
+  {
+    "q": "Project Planning is a discipline for stating how to complete a project within a certain timeframe",
+    "a": "True"
+  },
+  {
+    "q": "Project Scope Management is the management of the process that is required to ensure that a project includes all the work necessary to complete the project successfully",
+    "a": "True"
+  },
+  {
+    "q": "Project Team is the composition of individuals from various areas and departments within a company",
+    "a": "True"
+  },
+  {
+    "q": "Project work involves overseeing activities to meet the performance objectives of the project",
+    "a": "Direct and Manage Project Work"
+  },
+  {
+    "q": "Proposal to an independent organization or individual from another such entity is one written from one separate, independent organization or individual to another such entity",
+    "a": "External"
+  },
+  {
+    "q": "Quality audits are a tool/technique of which of the following processes?",
+    "a": "Perform Quality Assurance"
+  },
+  {
+    "q": "Refer(s) to all the work involved in creating the products of the project and the processes used to create them",
+    "a": "Scope"
+  },
+  {
+    "q": "Referred to as a Risk Log, is a master document which is created during early stages of your project",
+    "a": "Risk Register"
+  },
+  {
+    "q": "Refers to a specific price is agreed for the good or service being sold",
+    "a": "Fixed Price"
+  },
+  {
+    "q": "Refers to process of planning, organizing, controlling and measuring",
+    "a": "Management"
+  },
+  {
+    "q": "Refers to the incremental expansion of the project scope",
+    "a": "Scope creep"
+  },
+  {
+    "q": "Refers to what the project wants, how it can be accomplished and project needs defined by seller",
+    "a": "Performance"
+  },
+  {
+    "q": "Scheduling is the easiest way of managing project time",
+    "a": "True"
+  },
+  {
+    "q": "Scope creep not something common with every project",
+    "a": "False"
+  },
+  {
+    "q": "Scope crepe refers to the shorting of project scope",
+    "a": "False"
+  },
+  {
+    "q": "Show the amount borrowed in your financials and include the monthly payments in your cash flow projections",
+    "a": "Funding Requirements"
+  },
+  {
+    "q": "Shows on a bar graph which factors are more significant histogram that can help you identify and prioritize problem areas",
+    "a": "Pareto Chart"
+  },
+  {
+    "q": "Skills of resolving disputes among group members and organizing them to get back on tract",
+    "a": "Responsibility of a project manager to put an end of the differences amid workers"
+  },
+  {
+    "q": "Strategic planning is a management task concerned with the growth and current process of the business enterprise",
+    "a": "False"
+  },
+  {
+    "q": "SWOT stands for Strengths, Weaknesses, Openings and Threats",
+    "a": "False"
+  },
+  {
+    "q": "Symbolic Framework shows leaders organizations as a stage or theater to play certain roles and give impressions",
+    "a": "True"
+  },
+  {
+    "q": "Taking care of the quality of the process in the organization",
+    "a": "Quality Management"
+  },
+  {
+    "q": "Target rating of 6 sigma",
+    "a": "9999%"
+  },
+  {
+    "q": "The __________ is a calendar that links the tasks to be done with the resources that will complete them",
+    "a": "Project Schedule"
+  },
+  {
+    "q": "The application of knowledge, skills, tools, and techniques to project activities to meet project requirements",
+    "a": "Project management"
+  },
+  {
+    "q": "The first Gantt chart was devised in the mid 1890s by Karol Adamiecki",
+    "a": "True"
+  },
+  {
+    "q": "The goal of scope control is to influence the factors that cause scope changes, to ensure that changes are processed according to procedures developed",
+    "a": "True"
+  },
+  {
+    "q": "The goal of scope control is to influence the factors that cause scope changes, to ensure that changes are processed according to procedures developed (True or False)",
+    "a": "True"
+  },
+  {
+    "q": "The Make or Buy Decision is an output of which process?",
+    "a": "It is an output of Plan Procurement Management process"
+  },
+  {
+    "q": "The methods available to assist project managers and their teams; some popular tools in the time-management knowledge area include Gantt charts, network diagrams, critical-path analysis and project management software",
+    "a": "project management tools and techniques"
+  },
+  {
+    "q": "The people involved in or affected by project activities",
+    "a": "Stakeholders"
+  },
+  {
+    "q": "The person who provides the direction and funding for a project",
+    "a": "Project sponsor"
+  },
+  {
+    "q": "The process of documenting the actions necessary to define, prepare, integrate, and coordinate all subsidiary plans",
+    "a": "Develop Project Management Plan"
+  },
+  {
+    "q": "The processes and activities needed to identify, define, combine, unify, and coordinate the various processes and project management activities",
+    "a": "Project Integration Management"
+  },
+  {
+    "q": "The processes involved in defining and controlling what work is or is not included in a project",
+    "a": "project scope management"
+  },
+  {
+    "q": "The project manager is responsible for ______________",
+    "a": "All of the given"
+  },
+  {
+    "q": "The shortest possible time in which an activity is likely to be completed",
+    "a": "Pessimistic Time"
+  },
+  {
+    "q": "The tool and technique known as \"expert judgment\" in the initiating process group is used to:",
+    "a": "Prepare the Project Charter"
+  },
+  {
+    "q": "The WBS and WBS Dictionary are schedule, but rather the building blocks to it",
+    "a": "False"
+  },
+  {
+    "q": "The WBS and WBS Dictionary are schedule, but rather the building blocks to it (True or False)",
+    "a": "False"
+  },
+  {
+    "q": "There are how many phases involved in project integration management?",
+    "a": "6"
+  },
+  {
+    "q": "These are internal and external environmental that can influence a project's success",
+    "a": "Enterprise environmental factors"
+  },
+  {
+    "q": "This are revenues minus expenditures",
+    "a": "Profit"
+  },
+  {
+    "q": "This are sets of interacting components that works together for a holistic function such as human nervous system, skeletal system and digestive system",
+    "a": "systems philosophy"
+  },
+  {
+    "q": "This defines what end product should be as well as minimum requirements",
+    "a": "Functional"
+  },
+  {
+    "q": "This describe the finished product of the proposed project",
+    "a": "description of the proposed work"
+  },
+  {
+    "q": "This explains what your business is all about It should be between several sentences and a paragraph",
+    "a": "Mission Statement"
+  },
+  {
+    "q": "This includes developing and managing the direction of the project",
+    "a": "Integration Management"
+  },
+  {
+    "q": "This is the action of deciding between manufacturing an item internally (or in-house) or buying it from an external supplier (also known as outsourcing)",
+    "a": "make-or-buy analysis"
+  },
+  {
+    "q": "This is the process of formalizing acceptance of the completed project deliverables",
+    "a": "validation scope"
+  },
+  {
+    "q": "This is the process which is a part of project monitoring and control process group",
+    "a": "Scope monitoring"
+  },
+  {
+    "q": "This plan will outline exactly how you will find potential customers",
+    "a": "Marketing and Sales strategies"
+  },
+  {
+    "q": "This psychologist stated that inputs are defined as each participant's contributions to the relational exchange and are viewed as entitling him/her to rewards or costs",
+    "a": "Adam"
+  },
+  {
+    "q": "This refer(s) to all the work involved in creating the products of the project and the processes used to create them",
+    "a": "Scope"
+  },
+  {
+    "q": "This section briefly tells your reader where your company is, where you want to take it, and why your business idea will be successful",
+    "a": "Executive summary"
+  },
+  {
+    "q": "This section contain a section detailing the costs of the project, whether internal or external",
+    "a": "Cost, resources required"
+  },
+  {
+    "q": "This section discusses what has brought about the need for the project—what problem, what opportunity there is for improving things, what the basic situation is",
+    "a": "Background"
+  },
+  {
+    "q": "This section is considered the most important section of a business plan It briefly tells your reader where your company is, where you want to take it, and why your business idea will be successful",
+    "a": "Executive Summary"
+  },
+  {
+    "q": "This should explain how and who the project will affect and in what ways",
+    "a": "Organization"
+  },
+  {
+    "q": "To create a successful project, a project manager must consider scope, time, and cost and balance these often-competing goals This is sometimes referred to in project management as the ________",
+    "a": "triple constraint"
+  },
+  {
+    "q": "WBS process of formalizing acceptance of the completed project deliverables",
+    "a": "False"
+  },
+  {
+    "q": "We use project management to aid us on ______ and ______ our resources to accomplish our goals",
+    "a": "Maximizing, Optimizing"
+  },
+  {
+    "q": "Weighted Scoring is a method of calculating the expected net monetary gain or loss from a project by discounting all expected future cash inflows",
+    "a": "False"
+  },
+  {
+    "q": "What are the major reasons for project failure?",
+    "a": "All of the given"
+  },
+  {
+    "q": "What can be said to be true about risk and cost of making changes in the Project Lifecycle?",
+    "a": "Risk is highest at the middle and Cost is highest at the start"
+  },
+  {
+    "q": "What is the preferred technique for showing activity sequencing?",
+    "a": "network diagram"
+  },
+  {
+    "q": "What is true about stakeholders? They are:",
+    "a": "Persons or organizations whose interests may be positively or negatively affected by the performance or completion of the project"
+  },
+  {
+    "q": "What tool can you use to determine whether a process is in control or out of control?",
+    "a": "control chart"
+  },
+  {
+    "q": "When carrying out data collection and collation, you notice that you have received this data: – Fault 1 – 85 occurrences; Fault 2 – 125 occurrences; Fault 3 – 28 occurrences; Fault 4 – 395 occurrences; Fault 5 – 185 occurrences; Fault 6 – 128 occurrences; Fault 7 – 85 occurrences; Fault 8 – 169 occurrences; Fault 9 – 148 occurrences; Fault 10 – 209 occurrencesWhat is the best way to show this data for root cause analysis?",
+    "a": "Pareto Chart"
+  },
+  {
+    "q": "When it comes to feasibility study of the project management, __________ is the most important concern that influences the verdict of the PM to a greater extent",
+    "a": "Cost Estimation"
+  },
+  {
+    "q": "Which among the following is NOT the role of the project manager?",
+    "a": "Investigation Management"
+  },
+  {
+    "q": "Which among the following is the job of a project manager?",
+    "a": "All of the given"
+  },
+  {
+    "q": "Which among the following is/are the mandatory point which a project manager keeps in mind while managing project quality?",
+    "a": "All of the given"
+  },
+  {
+    "q": "Which combination correctly describes the order of the PMI Process Groups as presented in the PMBOK Guide®?",
+    "a": "Initiation, Planning, Execution, Monitoring and Control, Closing"
+  },
+  {
+    "q": "Which does not belong?",
+    "a": "Investment"
+  },
+  {
+    "q": "Which famous quality thought leader mentioned that 85% of the cost of quality is a management problem?",
+    "a": "Edward Deming"
+  },
+  {
+    "q": "Which is a true statement regarding a Procurement Audit?",
+    "a": "It is a tool/technique of Close Procurements process"
+  },
+  {
+    "q": "Which is a true statement regarding a Procurement Audit? It is a review of the procurement processes from:",
+    "a": "Plan Procurement Management to Close Procurements"
+  },
+  {
+    "q": "Which is does not belong in the group?",
+    "a": "Operational Strategy"
+  },
+  {
+    "q": "Which is not included in processes for project cost management",
+    "a": "The External Procedure Perspective"
+  },
+  {
+    "q": "Which is not included in the group?",
+    "a": "focus on technology"
+  },
+  {
+    "q": "Which is not included?",
+    "a": "report project status"
+  },
+  {
+    "q": "Which of the following are all characteristics of a project?",
+    "a": "Defined start and flexible end date, interrelated tasks, defined by the line manager"
+  },
+  {
+    "q": "Which of the following is an aspect of the Project Lifecycle?",
+    "a": "The idea, study or trigger to the project"
+  },
+  {
+    "q": "Which of the following is NOT a quality metric?",
+    "a": "Checklists"
+  },
+  {
+    "q": "Which of the following is not a source of projects?",
+    "a": "Legal requirement, market demand, business need"
+  },
+  {
+    "q": "Which of the following is not a suggestion for improving user input?",
+    "a": "Only have meetings as needed, not on a regular basis"
+  },
+  {
+    "q": "Which of the following is one of the qualities of a project manager?",
+    "a": "All of the given"
+  },
+  {
+    "q": "Which of the following is/are role(s) of project manager?",
+    "a": "All of the given"
+  },
+  {
+    "q": "Which of the following statements are true regarding Plan Quality Management and Perform Quality Assurance processes?",
+    "a": "The quality planning process uses the tool such as benefit costs analysis, benchmarking, flow charting, and design of experiment and cost of quality Quality assurance involves identifying which quality standards are relevant to the project"
+  },
+  {
+    "q": "Which of the following statements are true regarding project team management?",
+    "a": "Activity resource estimating involves estimating the type and quantities of resources required to perform each schedule activity"
+  },
+  {
+    "q": "Which of the following techniques does the PM use to resolve conflicts most often?",
+    "a": "Withdraw/avoid"
+  },
+  {
+    "q": "Which one in the controlling scope best practices is not included?",
+    "a": "Involve users in project scope management"
+  },
+  {
+    "q": "Which one is not included in a marketing strategy",
+    "a": "Brand Marketing"
+  },
+  {
+    "q": "Which process are you in when you will check that the results of the project work have been measured or tested to determine that conform to the required quality standards and criteria?",
+    "a": "Control Quality"
+  },
+  {
+    "q": "Which process is included in Project Integration Management",
+    "a": "Develop Project Management Plan"
+  },
+  {
+    "q": "Which statement is NOT true regarding project team working?",
+    "a": "Management of the project team is simplified when team members are accountable to both a functional manager and a project manager within a matrix organization"
+  },
+  {
+    "q": "Which statement is not true regarding recognition and reward?",
+    "a": "Recognition and rewards is a tool/technique of Manage Project Team process"
+  },
+  {
+    "q": "Who determines the requirement of a new project",
+    "a": "Senior management"
+  },
+  {
+    "q": "Who owns the responsibility of planning, executing and closing a project?",
+    "a": "Project Managers"
+  },
+  {
+    "q": "Why is project management important in business?",
+    "a": "Enable to map out a course of action or work plan and Helps to think systematically and thoroughly"
+  },
+  {
+    "q": "Working with all appropriate stakeholders to define, gain written agreement for, and manage all the work required to complete the project successfully",
+    "a": "Project scope management"
+  },
+  {
+    "q": "Year when accounting services, payroll, billing and word processing are outsourced",
+    "a": "1980"
+  },
+  {
+    "q": "Year when England started outsourcing textile?",
+    "a": "1930"
+  },
+  {
+    "q": "Year when outsourcing became profitable over the WWW",
+    "a": "1990"
+  },
+  {
+    "q": "You are evaluating several different motivational strategies to motivate your project team You subscribe to the belief that pay and salary may prevent job dissatisfaction, but will not lead to long term job satisfaction You believe that over the long run pay and salary are NOT motivators Which of the following motivational theories are you applying?",
+    "a": "McClelland's Needs Theory"
+  },
+  {
+    "q": "You are managing a project for the development of Al Fresco, a NAC (network admissions control) appliance that uses network infrastructure to enforce security policy compliance on all connected and potentially connectable devices seeking to access network computing resources, thereby limiting damage from emerging security threats Al Fresco provides self-contained endpoint assessment, device identification, internal matching against security records, policy management, and remediation services Your company had performed a similar project a couple years agoThis is critical project for your company, and you are under tremendous pressure to deliver the project Unfortunately, you are new in the company, and the project seems to be growing in size by the day You are starting to feel overwhelmed by the project What is your BEST course of action?",
+    "a": "Ask for additional resources from the PMO"
+  },
+  {
+    "q": "You are the PM for a high profile, construction project for a new hotel complex in Dubai A budget of $475m was agreed at the outset and staged payments set for $75m at the start, $150 at month 3, $225m in month 4 and $25m in month 7 of an 8 month durationIt is now month 7 and an important stakeholder has just submitted a change request which, when you do an initial evaluation, you realise will mean a required scope increase and resultant budget increase of $92m, further resulting in a delayed completion of 3 months All sellers are in full swing with their production plans and are happy that the project is coming to an end There have been many challenges during the past 4 months and all of the teams have rallied together in overcoming themWhat is the next action you should take?",
+    "a": "Reject the Change as there is a change freeze in place due to there being less than 4 weeks to the completion deadline"
+  },
+  {
+    "q": "You have carried out a Request for Proposal exercise and received 12 submissions which are now reviewing Which of the following is a tool/technique that you could use to select the most appropriate seller to award the contract to?",
+    "a": "Source selection criteria"
+  },
+  {
+    "q": "Your project is coming to an end, and you are in the process of listing the activities that must be performed to close out the project Which of the following should be performed during project closure?",
+    "a": "Issue a formal notice of project completion to all sellers"
+  },
+  {
+    "q": "Your sales and marketing team have been conducting their market research and have identified a potential large customer organisation is planning an implementation of software as a service (SaaS) across their organisation Two days later you receive a request to attend a meeting at which other suppliers will be present What is the name of this meeting?",
+    "a": "A Bidder Conference"
+  },
+  {
+    "q": "Your sales and marketing team have been conducting their market research and have identified a potential large customer organisation is planning an implementation of Software as a Service (SaaS) across their organisation What is the key information document that you would need to be able to make a submission against this need?",
+    "a": "Procurement Statement of Work"
+  },
+  {
+    "q": "Your sales and marketing team have been conducting their market research and have identified a potential large customer organisation, ABMO Healthcare, is planning an implementation of software as a service (SaaS) across their organisationWhen planning your next steps you found out that one of your competitors had already organised a meeting with ABMO Healthcare, had presented their proposals, along with a financial inducement to sweeten the process What is your next action?",
+    "a": "Raise a formal complaint to the CEO of ABMO Healthcare and ask that you be included in an open Request for Proposals process"
+  }
+]

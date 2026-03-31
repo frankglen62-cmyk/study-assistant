@@ -1,0 +1,1026 @@
+[
+  {
+    "q": "=E2=88=8F is a symbol used in Lagrange Interpolating polynomial which designates",
+    "a": "=E2=80=9Ca product of=E2=80=9D"
+  },
+  {
+    "q": "A column vector is denoted by a boldface lowercase letter and expressed as",
+    "a": "n x 1 matrix"
+  },
+  {
+    "q": "A continuous function's integral is approximated using either the trapezoidal or Simpson's rule by translating the function into discrete form",
+    "a": "True"
+  },
+  {
+    "q": "A cubic polynomial can interpolate three points",
+    "a": "False"
+  },
+  {
+    "q": "A diagonal matrix could be an identity matrix if the diagonals have a value of",
+    "a": "1"
+  },
+  {
+    "q": "A Hermitian matrix (or self-adjoint matrix) is a complex square matrix that is equal to its own conjugate transpose and can be decomposed using Cholesky’s method.",
+    "a": "True"
+  },
+  {
+    "q": "A mathematical model that will compute the following limit as will readily give _____________ answer.",
+    "a": "indeterminate"
+  },
+  {
+    "q": "A matrix decomposition method that has an upper triangular matrix and an orthogonal matrix is referred to as the QR",
+    "a": "True"
+  },
+  {
+    "q": "A matrix is symmetric/ Hermitian positive definite matrix if",
+    "a": "the resulting triangular factors are the transpose of each other"
+  },
+  {
+    "q": "A matrix which is denoted by a boldface lowercase letter and expressed as 1 x n matrix is",
+    "a": "column vector"
+  },
+  {
+    "q": "A root finding method also known as the Tangent method is",
+    "a": "Newton's method"
+  },
+  {
+    "q": "A root finding method which requires the function to be differentiable",
+    "a": "Newton-Raphson iteration"
+  },
+  {
+    "q": "A row vector is denoted by a boldface lowercase letter and expressed as a",
+    "a": "1 x n matrix"
+  },
+  {
+    "q": "A square matrix is said to be diagonally dominant if for every row of the matrix, the magnitude of the diagonal entry in a row is less than or equal to the sum of the magnitudes of all the other (non-diagonal) entries in that row.",
+    "a": "True"
+  },
+  {
+    "q": "Algorithms should have explicitly defined set of inputs and outputs",
+    "a": "True"
+  },
+  {
+    "q": "Also called trapezoidal rule It approximates the area under a curve by atrapezoidwith horizontal base and sloped top (connecting the endpointsx1andx2)",
+    "a": "2-point closed Newton-Cotes formula"
+  },
+  {
+    "q": "Among the many applications of matrices are used in statistics, economics, physics, and engineering.",
+    "a": "True"
+  },
+  {
+    "q": "An additional benefit of the power method is that the corresponding eigenvector is obtained as a by-product of the method.",
+    "a": "True"
+  },
+  {
+    "q": "An algorithm design technique is a general approach to solving problems algorithmically that is applicable to a variety of problems from different areas of computing",
+    "a": "True"
+  },
+  {
+    "q": "An integral expressed as the difference between the values of the integral at specified upper and lower limits of the independent variable",
+    "a": "definite integral"
+  },
+  {
+    "q": "Another condition that must be satisfied is that the diagonal elements are all nonzero for the Gauss-Seidel method to be used:",
+    "a": "True"
+  },
+  {
+    "q": "Another method called midpoint rule is an open type method numerical integration",
+    "a": "True"
+  },
+  {
+    "q": "Approximating calculations which involve infinite value, most often used in series notations and in calculus doesn't introduce errors.",
+    "a": "False"
+  },
+  {
+    "q": "Best-case is the maximum number of steps taken on any instance of size of a variable",
+    "a": "False"
+  },
+  {
+    "q": "By applying the power method to the matrix inverse of [A], the power method will ________on the largest value of 1/λ in other words, the smallest value of λ",
+    "a": "converge"
+  },
+  {
+    "q": "Cholesky’s Method is based on the fact that a symmetric matrix can be decomposed into triangular factors are the transpose of each other.",
+    "a": "True"
+  },
+  {
+    "q": "Choosing an initial guess which gives near f(x) = 0 is considered a good guess",
+    "a": "True"
+  },
+  {
+    "q": "Compute for the determinant of the 2 x 2 matrix defined as",
+    "a": "D = 0875"
+  },
+  {
+    "q": "Creating a mathematical model that will compute the following limit as will produce a result of",
+    "a": "1"
+  },
+  {
+    "q": "Direct method for finding the eigenvalues is recommended since the calculation of zeros of a polynomial is numerically challenging if not unstable.",
+    "a": "True"
+  },
+  {
+    "q": "Each component of the new iterates in Gauss-Seidel method depends upon all previously computed components, the updates cannot be done simultaneously.",
+    "a": "True"
+  },
+  {
+    "q": "Eigenvalues are used in the analysis of linear transformation such as scaling.",
+    "a": "True"
+  },
+  {
+    "q": "Find the missing value to satisfy that y = 1/24x +2y +2z = 8x + 4y - 2z = ?3x +y - z = 4",
+    "a": "2"
+  },
+  {
+    "q": "First order differences is equivalent f[x0,x1] when i = 0",
+    "a": "True"
+  },
+  {
+    "q": "For is the iteration may terminate if the difference between f (x) is already zero.",
+    "a": "True"
+  },
+  {
+    "q": "For a two segment trapezoidal rule, it will use the points similar to the ones used by Simpson's 1/3 rule",
+    "a": "True"
+  },
+  {
+    "q": "For an interval of 0 to 1, a subinterval with a size of 02 will give n = 5 described as 5 segment Trapezoidal rule",
+    "a": "True"
+  },
+  {
+    "q": "For both the Trapezoidal and Simpson's 1/3 rule , using more strips will give better approximation of the curve",
+    "a": "True"
+  },
+  {
+    "q": "For practical reasons, the absolute error is usually more meaningful than the relative error.",
+    "a": "False"
+  },
+  {
+    "q": "For the function , its first derivative is f’(x) is",
+    "a": "True"
+  },
+  {
+    "q": "For the function f(x) =its first derivative is f’(x) is The first derivative of the function is f’(x) =",
+    "a": "True"
+  },
+  {
+    "q": "For the function f(x) = ex-2 the next approximated value of the root when x0 = -1 and x1 = 1 is x2 = 0.98626.",
+    "a": "True"
+  },
+  {
+    "q": "For the function f(x) = ex-2 the value of f(x2) when x0 = -1 and x1 = 1 is f(x) = -0.5248",
+    "a": "True"
+  },
+  {
+    "q": "For the given systems of linear equations, with initial values x1 =0; x2 =0; x3 = 0. The next iterative value of x1 using Gauss-Seidel Method is 1.3333.",
+    "a": "True"
+  },
+  {
+    "q": "For the given systems of linear equations, with initial values x1 =0; x2 =0; x3 = 0. The next iterative value of x2 using Gauss-Seidel Method is 1.5.",
+    "a": "True"
+  },
+  {
+    "q": "For the given systems of linear equations, with initial values x1 =0; x2 =0; x3 = 0. The next iterative value of x3 using Gauss-Seidel Method is 0.5278.",
+    "a": "True"
+  },
+  {
+    "q": "From the two data points (1,4) and (3, 7), and (4,10) using Lagrange polynomial method, the polynomial is Li(x) = 05x2-05x +2",
+    "a": "False"
+  },
+  {
+    "q": "From the two data points(2,5) and (6, 11), using Lagrange polynomial method, the polynomial is Li(x) = 15x +2",
+    "a": "True"
+  },
+  {
+    "q": "Gauss-Jordan method consists of guessing a value and then using a systematic method to obtain a refined estimate of the root.",
+    "a": "True"
+  },
+  {
+    "q": "Gaussian elimination has no specific row operations Various ways can be employed but may come up with the same answer",
+    "a": "True"
+  },
+  {
+    "q": "Given a matrix A , its QR -decomposition is an upper triangular matrix and an orthogonal matrix. An orthogonal matrix is a matrix whose transpose is equivalent to its inverse.",
+    "a": "True"
+  },
+  {
+    "q": "Given the function f(x) = 075 + 11x, an exact value can be given instantly by Trapezoidal rule",
+    "a": "True"
+  },
+  {
+    "q": "Horner’s method which is a method for finding roots of a polynomial equation f(x) =0 is almost similar to Newton’s method.",
+    "a": "True"
+  },
+  {
+    "q": "How much error would be observed for the integral of f(x) = sin2x + 5 for an interval of [0,1] if n = 1 or if n = 2?",
+    "a": "almost negligible"
+  },
+  {
+    "q": "If A is a 3 x 3 matrix and B is a 3x2 matrix , the statement “ A – B is not possible” is",
+    "a": "True"
+  },
+  {
+    "q": "If a matrix has its entire diagonal elements are positive, then the real parts of its eigenvalues are negative.",
+    "a": "True"
+  },
+  {
+    "q": "If A−1 (if it exists) the eigenvalues of A−1 is 1/5, 1/4 and 1/2 if matrix A has eigenvalues 5, 4 and 2",
+    "a": "True"
+  },
+  {
+    "q": "If A−1 (if it exists) the eigenvalues of A−1 is 1/5, ¼ and ½ if matrix A has eigenvalues 5, 4 and 2.",
+    "a": "True"
+  },
+  {
+    "q": "If matrix A gives the largest eigenvalue, it suggests that if A -1 exists, the smallest eigenvalue can be obtained through inverse power method.",
+    "a": "True"
+  },
+  {
+    "q": "If matrix A is invertible such that A−1 = L−TL−1 then matrix A can be decomposed using Cholesky’s method.",
+    "a": "True"
+  },
+  {
+    "q": "If matrix is A is positive definite then a11 > 0.",
+    "a": "True"
+  },
+  {
+    "q": "If QT is the transpose of Q then QT Q = I or the identity matrix.",
+    "a": "True"
+  },
+  {
+    "q": "If the determinant of the matrix is zero, it is impossible to check the solutions of the variables using",
+    "a": "Cramer's Rule"
+  },
+  {
+    "q": "If the eigenvalues are repeated roots λ1 = λ2 = λ3, then the characteristic polynomial is of",
+    "a": "3rd degree polynomial"
+  },
+  {
+    "q": "If the function, f(x) = cos3x was approximated by the polynomial, P(15) = -02, the amount of error approximately 005",
+    "a": "True"
+  },
+  {
+    "q": "If the interval of the function is given as 0 to pi, for n = 6 segments, each node or segments will be",
+    "a": "True"
+  },
+  {
+    "q": "If the magnitude of the diagonals is greater than the sum of the non-diagonals in the same row, then the matrix is not diagonally dominant.",
+    "a": "True"
+  },
+  {
+    "q": "If the main determinant is zero the system of linear equations is",
+    "a": "Both \"inconsistent\" and \"has infinite many solutions\" are correct"
+  },
+  {
+    "q": "If the number of segments, n= 20 Compute for the stepsize, h if the interval is from 0 to 1",
+    "a": "h = 005"
+  },
+  {
+    "q": "If the tridiagonal coefficient matrix is diagonally dominant, then procedure Tri",
+    "a": "will encounter zero divisors"
+  },
+  {
+    "q": "If there is a randomized algorithm that solves a decision problem in time t and outputs the correct answer with probability 05, then there is a randomized algorithm for the problem that runs in time =CE=98(t) and outputs the correct answer with probability at least 099",
+    "a": "False"
+  },
+  {
+    "q": "If x2 is the approximated root in Secant method, it follows that; the value of f(x2) must be equal to 0.",
+    "a": "True"
+  },
+  {
+    "q": "If you need to evaluate a definite integral involving a function whose anti derivative cannot be found, it is easier to resort to this approximation technique",
+    "a": "Trapezoidal method"
+  },
+  {
+    "q": "In creating a computer algorithm one important factor that should be considered is that the user would be prompted the values that are needed in solving.",
+    "a": "True"
+  },
+  {
+    "q": "In differentiation using numerical methods, one of the steps is interpolating the function by a polynomial p at suitable points",
+    "a": "True"
+  },
+  {
+    "q": "In employing Gauss-Seidel method, the most recent values should be used to substitute with the formula of finding x1, x2 and x3, respectively.",
+    "a": "True"
+  },
+  {
+    "q": "In floating point addition, where the exponent of the smaller number must match that of the larger number making 3.141516 x 101 and 2.125 x 102 expressed in 3 digit precision as 0.314 x 102 and 2.13 x 102",
+    "a": "True"
+  },
+  {
+    "q": "In general, an n × n matrix will have a characteristic polynomial of degree of n+ 1, and its roots are the eigenvalues of A.",
+    "a": "n degree"
+  },
+  {
+    "q": "In general, an n =C3=97 n matrix will have a characteristic polynomial of degree of n+ 1, and its roots are the eigenvalues of A",
+    "a": "False"
+  },
+  {
+    "q": "In giving initial values of x0 and x1, both of them should preferably be close to the solution.",
+    "a": "True"
+  },
+  {
+    "q": "In mathematical modeling, a physical system is translated into mathematical expressions in order to be implemented in computers.",
+    "a": "True"
+  },
+  {
+    "q": "In matrix multiplication if the number of columns of the 1st matrix is equal to the number of rows of the 2nd one,",
+    "a": "matrix multiplication may proceed"
+  },
+  {
+    "q": "In matrix multiplication, a matrix of n x k by k x m size the resulting matrix would have a dimension of",
+    "a": "n x m"
+  },
+  {
+    "q": "In most cases, __________ is suitable to linear behaving functions and that polynomial interpolation is suitable to non-linear behaving function",
+    "a": "linear interpolation"
+  },
+  {
+    "q": "In Newton-Cotes integration methods, the nodes are uniformly distributed in [a, b] with x0 = a, xn = band the spacing h = (b - a) / n",
+    "a": "True"
+  },
+  {
+    "q": "In numerical differentiation, using a very small step size may increase the approximation error",
+    "a": "True"
+  },
+  {
+    "q": "In numerical integration, when both the end points of the interval of integration are used as nodes in the methods, the methods are called closed type methods",
+    "a": "True"
+  },
+  {
+    "q": "In performing Gauss-Jordan method, although there is no specific procedure to perform this, it is more convenient to",
+    "a": "Eliminate all elements below and above at once"
+  },
+  {
+    "q": "In root finding algorithms, the requirement of initial values",
+    "a": "may have one or two initial values"
+  },
+  {
+    "q": "In solving systems of linear equations using Gaussian elimination method, if the coefficient of the first variable in the first linear equation is zero and the rest are non-zero:",
+    "a": "Swap the linear equations first to proceed"
+  },
+  {
+    "q": "In the analysis of algorithm, this is maximum number of steps taken on any instance of size a",
+    "a": "worst-case"
+  },
+  {
+    "q": "In the analysis of algorithm, this is minimum number of steps taken on any instance of size a",
+    "a": "best-case"
+  },
+  {
+    "q": "In the analysis of algorithm, this is the number of steps taken on any instance of size a",
+    "a": "average-case"
+  },
+  {
+    "q": "In the analysis of algorithm, this refers to the number of steps to be taken in an algorithm",
+    "a": "Time complexity"
+  },
+  {
+    "q": "In the analysis of algorithm, this refers to the volume of memory",
+    "a": "Space complexity"
+  },
+  {
+    "q": "In the case of the tridiagonal system strict diagonal dominance means simply that (with a0 = an = 0)",
+    "a": "True"
+  },
+  {
+    "q": "In the factorization A = LU the matrix L is lower triangular and the matrix U is upper triangular, it is called Crout factorization when",
+    "a": "L is unit lower triangular"
+  },
+  {
+    "q": "In the factorization A = LU the matrix L is lower triangular and the matrix U is upper triangular, it is called Doolittle factorization when",
+    "a": "U is unit upper triangular"
+  },
+  {
+    "q": "In using Gauss-Jordan method if a matrix has at least one zero row with non-zero right hand side, the solution",
+    "a": "Doesn't exist"
+  },
+  {
+    "q": "In using Gaussian elimination method, the system of linear equations is transformed into upper triangular form where the values in the upper part of the diagonal are 0s",
+    "a": "False"
+  },
+  {
+    "q": "In using smaller integration interval for multiple segments, Trapezoidal method can reduce the approximation error better than Simpson's 1/3 rule",
+    "a": "False"
+  },
+  {
+    "q": "In what method can all of the eigenvalues of a matrix are found simultaneously?",
+    "a": "QR method"
+  },
+  {
+    "q": "Interpreting the results graphically is one advantages of using software systems in numerical methods.",
+    "a": "True"
+  },
+  {
+    "q": "Inverse of a matrix is possible for",
+    "a": "Square matrix"
+  },
+  {
+    "q": "It is a feature which is essential to a system design especially when dealing with changes in computation",
+    "a": "adaptability"
+  },
+  {
+    "q": "It is a process for estimating values that lie between known data points",
+    "a": "Interpolation"
+  },
+  {
+    "q": "It is an extension of the Trapezoidal rule This time, it uses three points that would touch the curve of the original function",
+    "a": "Simpson's 1/3 rule"
+  },
+  {
+    "q": "It is an iterative approach that can be employed to determine the largest or dominant eigenvalue It has the additional benefit that the corresponding eigenvector is obtained as a by-product of the method",
+    "a": "Power method"
+  },
+  {
+    "q": "It is determined using the expression f(x) = 0",
+    "a": "root"
+  },
+  {
+    "q": "It is impossible to find the complex roots of a polynomial function, using Newton’s Method” is:",
+    "a": "True"
+  },
+  {
+    "q": "It is possible to approximate a function by using values outside the data points which is known as the linear interpolation",
+    "a": "False"
+  },
+  {
+    "q": "It is the approximate computation of integral usingnumericaltechniques",
+    "a": "numerical integration"
+  },
+  {
+    "q": "It iterative technique for solving a square system of n linear equations with unknown x, where Ax=b",
+    "a": "Gauss Seidel method"
+  },
+  {
+    "q": "Just like the Gaussian elimination method, the Gauss-Jordan method involves forward and backward substitution",
+    "a": "True"
+  },
+  {
+    "q": "Just like the Newton-Raphson method, the initial guesses affect the convergence of the Secant method.",
+    "a": "True"
+  },
+  {
+    "q": "LU decomposition can be viewed as the matrix form of Gaussian elimination",
+    "a": "True"
+  },
+  {
+    "q": "Matrix has repeated eigenvalues",
+    "a": "True"
+  },
+  {
+    "q": "Matrix multiplication may proceed if the number of columns of the 1st matrix is equal to the number of rows of the 2nd one.",
+    "a": "True"
+  },
+  {
+    "q": "Methods that uses a single initial value or two initial values that do not necessarily brackets the root where Newton’s method is categorized are called",
+    "a": "Open method"
+  },
+  {
+    "q": "Newton's Method is ideal to function which isDifferentiable also known as a \"smooth\" functionTranscendental or that which cannot be expressed in finite number of termsContaining multiple roots",
+    "a": "Both of \"Differentiable also known as a =E2=80=9Csmooth=E2=80=9D function\" and \"Transcendental or that which cannot be expressed in finite number of terms\" are correct"
+  },
+  {
+    "q": "Newton’s method also known as the Newton-Raphson iteration is that, suppose at point xi of the function, there is a tangent at that point. This point is assumed to be:",
+    "a": "the root of the function"
+  },
+  {
+    "q": "Newton’s method and secant method has almost the same concept and are both fast.",
+    "a": "True"
+  },
+  {
+    "q": "Newton’s method is based on a truncated version of the Taylor series keeping only the first order terms.",
+    "a": "True"
+  },
+  {
+    "q": "Newton’s Method is ideal to function which is Differentiable also known as a “smooth” function Transcendental or that which cannot be expressed in finite number of terms. Containing multiple roots",
+    "a": "All of the answers correct"
+  },
+  {
+    "q": "Newton’s method is powerful in giving multiple roots of any differentiable function.",
+    "a": "True"
+  },
+  {
+    "q": "Numerical integrations such as Trapezoidal and Simpson's 1/3 rule should have intervals that are uniform",
+    "a": "True"
+  },
+  {
+    "q": "Numerical methods give more accurate results than analytic methods.",
+    "a": "False"
+  },
+  {
+    "q": "One of the advantages of Newton’s method is that its converges fast even if the initial guess was poorly chosen",
+    "a": "True"
+  },
+  {
+    "q": "One of the advantages of secant method over the Newton’s Method is the use of derivatives.",
+    "a": "True"
+  },
+  {
+    "q": "One of the advantages of using mathematical modeling is the ability to predict an output given a certain input.",
+    "a": "True"
+  },
+  {
+    "q": "One of the disadvantages of this method is that it can jump to a value away from the rooth if the slope is small",
+    "a": "Secant Method"
+  },
+  {
+    "q": "Only four points are needed in constructing a fourth order Newton Divided Difference polynomial,",
+    "a": "False"
+  },
+  {
+    "q": "Perform floating point addition of 3.1 x 10 -1 and 12.25 x 10 1. If only 3 significant figures are allowed for mantissa, determine the percent accuracy of the result.",
+    "a": "9972 %"
+  },
+  {
+    "q": "Positive definite matrix can be efficiently solved using Cholesky decomposition.",
+    "a": "True"
+  },
+  {
+    "q": "Power method is an iterative approach that can be employed to determine the largest or dominant eigenvalue",
+    "a": "True"
+  },
+  {
+    "q": "Rate of growth of errors are needed to be identified, especially when dealing with iterative methods as this might affect the solution in general.",
+    "a": "True"
+  },
+  {
+    "q": "Rearranging rows are prohibited when evaluating the matrix if it is diagonally dominant.",
+    "a": "True"
+  },
+  {
+    "q": "Reducing the equidistant points improves the approximation of the function, f(x) by the polynomial, P",
+    "a": "False"
+  },
+  {
+    "q": "Roots of transcendental functions are easily approximated using Newton's method provided that f'(x) =E2=89=A0 0",
+    "a": "True"
+  },
+  {
+    "q": "Roots of transcendental functions are easily approximated using Newton’s method provided that f’(x) ≠ 0.",
+    "a": "True"
+  },
+  {
+    "q": "Secant method is categorized as bracketing method because it uses two points of the secant as initial values.",
+    "a": "True"
+  },
+  {
+    "q": "Secant method is nearly as fast as the Newton-Raphson method and ensures convergence rather than the latter.",
+    "a": "True"
+  },
+  {
+    "q": "Secant method is usually the best option if the function doesn’t have an exact formula but just a pair of x and y values.",
+    "a": "True"
+  },
+  {
+    "q": "Secant method replaces the tangent in Newton’s method to the slope of the function using two initial guesses.",
+    "a": "True"
+  },
+  {
+    "q": "Sequential algorithm is an algorithm which can be executed a piece at a time on many different processing devices, and then combined together again at the end to get the correct result",
+    "a": "False"
+  },
+  {
+    "q": "Simpson's 1/3 rule is an example of an open type numerical integration method",
+    "a": "False"
+  },
+  {
+    "q": "Simpson's 1/3 rule is an extension of the Trapezoidal rule This time, it uses _______ that would touch the curve of the original function",
+    "a": "three points"
+  },
+  {
+    "q": "Simpson's 1/3 rule uses a second degree polynomial formed by the two points of the original function",
+    "a": "False"
+  },
+  {
+    "q": "Simpson's rule is a numerical method that approximates the value of a definite integral by using third degree polynomials",
+    "a": "False"
+  },
+  {
+    "q": "Since Cramer's rule employ determinants, a system of linear equations with 3 unknowns even with 3 equations cannot be used if the constants are non-zero",
+    "a": "False"
+  },
+  {
+    "q": "Since matrices are used to represent properties of images, it follows that transformation of images may use eigenvalues and eigenvectors to do that.",
+    "a": "True"
+  },
+  {
+    "q": "Some elementary functions simply do not have antiderivatives that are_______________ where Trapezoidal and Simpson's 1/3 rule can be more useful",
+    "a": "elementary functions"
+  },
+  {
+    "q": "Suppose a computing machine can only display up to 4 decimal places. Assuming that the true value of π is 3.14159265359. Using an approximate value of πa = 3.1416 Calculate the absolute error and the relative error.",
+    "a": "ɛa = 7346410 x 10-7, %ɛ = 2 3384 x 10 -6"
+  },
+  {
+    "q": "Suppose we do not know that the true value of the root of f(x) = x3 -1 is 1. How many iterations will be used to get the true value suppose the initial value of x = 0?",
+    "a": "1"
+  },
+  {
+    "q": "The absolute error of the function f(x) = e x when the the true value of f(x) = 2.718281828 compared to the approximated value of using the first five terms of the Maclaurin Series center at when x = 1, c =0 is _____.",
+    "a": "995 x10-3"
+  },
+  {
+    "q": "The absolute value of the ratio of is x0 = 0 is 8",
+    "a": "True"
+  },
+  {
+    "q": "The advantage of quadratic formula over the Newton's method is that",
+    "a": "both \"it can get complex root\" and \"it can get multiple root\" are correct"
+  },
+  {
+    "q": "The approximate value of f(x) = e x using the first five terms of the Maclaurin Series center at when x = 1, c =0 is",
+    "a": "2708"
+  },
+  {
+    "q": "The approximated root using the secant method lies within the two initial points which is used to project the secant line.",
+    "a": "True"
+  },
+  {
+    "q": "The Average case occurs in linear search algorithm when item is the last element in the array",
+    "a": "False"
+  },
+  {
+    "q": "The characteristic polynomial formed from the matrix is given as: -λ3+3λ2-4λ+4",
+    "a": "True"
+  },
+  {
+    "q": "The characteristic polynomial formed from the matrixis given as: -=CE=BB3+3=CE=BB2-4=CE=BB+4",
+    "a": "True"
+  },
+  {
+    "q": "The characteristic polynomial involves the calculation of zeros. These values of the roots are the eigenvalues.",
+    "a": "True"
+  },
+  {
+    "q": "The Cholesky factorization for the sample matrix given above is:",
+    "a": "True"
+  },
+  {
+    "q": "The coefficient a0 is also equal to f(x0) in the Newton's interpolating polynomial",
+    "a": "True"
+  },
+  {
+    "q": "The coefficients of the Newton's interpolating polynomial can also be expressed in terms of divided difference",
+    "a": "True"
+  },
+  {
+    "q": "The column vector of the constant replaces the column of the unknown to find the determinant of the variable in question and divide it to the determinant of the coefficient matrix",
+    "a": "True"
+  },
+  {
+    "q": "The commutative property also exist in matrices.",
+    "a": "False"
+  },
+  {
+    "q": "The complexity of sorting algorithm measures the running time as a function of the number n of items to be sorter",
+    "a": "True"
+  },
+  {
+    "q": "The degree of the polynomial for the 10 sample values or data points is equal to 10",
+    "a": "False"
+  },
+  {
+    "q": "The determinant of an identity matrix is equal to",
+    "a": "1"
+  },
+  {
+    "q": "The determinant of the given matrix is D = |-5|.",
+    "a": "No correct answer"
+  },
+  {
+    "q": "The determinant of the given matrix is equal to |D| = 27.",
+    "a": "No correct answer"
+  },
+  {
+    "q": "The eigenvalues of A = are λ = 0 and λ = -3.",
+    "a": "True"
+  },
+  {
+    "q": "The eigenvalues of A = have no rational values because of the zero element in the matrix.",
+    "a": "True"
+  },
+  {
+    "q": "The eigenvalues of A = are =CE=BB = 0 and =CE=BB = -3",
+    "a": "True"
+  },
+  {
+    "q": "The eigenvalues that corresponds to the characteristic polynomial are =CE=BB2-4=CE=BB+3 are =CE=BB = 1 and =CE=BB = -3",
+    "a": "False"
+  },
+  {
+    "q": "The eigenvalues that corresponds to the characteristic polynomial are λ2-4λ+3 are λ = 1 and λ = -3.",
+    "a": "True"
+  },
+  {
+    "q": "The eigenvectors of A = and are the same.",
+    "a": "False"
+  },
+  {
+    "q": "The elements of both the coefficient matrix and determinant are the same, and so is their the mathematical concept.",
+    "a": "False"
+  },
+  {
+    "q": "The essential features of a physical system or process in mathematical terms should be carried out in the formulation of a mathematical model.",
+    "a": "True"
+  },
+  {
+    "q": "The factorization in Cholesky’s Method can be generated efficiently by recurrence relations.",
+    "a": "True"
+  },
+  {
+    "q": "The function f(x) = x3 -5 with initial guesses x0 and x1 would converge.",
+    "a": "True"
+  },
+  {
+    "q": "The given matrix above is a symmetric matrix.",
+    "a": "True"
+  },
+  {
+    "q": "The goal in using Newton's method is the When choosing an initial value, a good guess is :A value which when substituted to the function will give a near zero valueA value with f '(x) =E2=89=A0 0Always starting with 0",
+    "a": "\"A value which when substituted to the function will give a near zero value\" and \"A value with f '(x) =E2=89=A0 0\" are correct"
+  },
+  {
+    "q": "The goal in using Newton’s method is the When choosing an initial value, a good guess is : A value which when substituted to the function will give a near zero value A value with f ’(x) ≠ 0 Always starting with 0",
+    "a": "All of the answers correct"
+  },
+  {
+    "q": "The higher the degree of the resulting polynomial from Lagrange interpolating polynomial implies that",
+    "a": "more data points are used in the interpolation"
+  },
+  {
+    "q": "The inverse of A which is a 3 x 2 matrix is A -1 = 2 x 3 matrix.",
+    "a": "False"
+  },
+  {
+    "q": "The iteration in Secant method may terminate if the difference between two successive approximations equal to zero.",
+    "a": "True"
+  },
+  {
+    "q": "The iteration may terminate if the difference between approximated values of x is already zero.",
+    "a": "True"
+  },
+  {
+    "q": "The Lagrange interpolating polynomial is thepolynomial P(x)of degree ________ that passes through thenpoints",
+    "a": "< (n-1)"
+  },
+  {
+    "q": "The largest eigenvalue of A−1 is the smallest eigenvalue of A in magnitude.",
+    "a": "True"
+  },
+  {
+    "q": "The linear interpolant obtained from the Lagrange interpolating polynomial is of ________degree",
+    "a": "1"
+  },
+  {
+    "q": "The matrix defined as is an upper triangular matrix",
+    "a": "False"
+  },
+  {
+    "q": "The matrix shown below is a",
+    "a": "4 x 4 upper triangular matrix"
+  },
+  {
+    "q": "The part where the derivative of the Newton-Raphson was replaced by the slope of the secant line in Secant method.",
+    "a": "True"
+  },
+  {
+    "q": "The relative error is ______________ when the exact value is given by e = 2.718281828 and the approximate value is e a = 2.701.",
+    "a": "635763 x 10-3"
+  },
+  {
+    "q": "The relative error is related to the approximate value rather than to the exact value because the true value may not be known.",
+    "a": "True"
+  },
+  {
+    "q": "The same algorithm can be represented in several different ways",
+    "a": "True"
+  },
+  {
+    "q": "The secant method can fail to find a root of a nonlinear function that has a small slope near the root assures the presence of the root.",
+    "a": "True"
+  },
+  {
+    "q": "The secant method is almost similar to the concept of False-position in the bracketing methods as it uses two initial approximations however secant doesn’t bother with the bracketing.",
+    "a": "True"
+  },
+  {
+    "q": "The Secant method is convergent for the function f(x) = 3x4 – x -3 whose initial values are present between x0 = 0 and x1 = -1",
+    "a": "True"
+  },
+  {
+    "q": "The Secant method is convergent for the function f(x) = 3x4 – x -3 whose initial values are present between x0 = 2 and x1 = 4",
+    "a": "True"
+  },
+  {
+    "q": "The slope of the secant line has nothing to do with the convergence of the Secant method.",
+    "a": "True"
+  },
+  {
+    "q": "The tangent line is projected to approximate the root of the function where it crosses the",
+    "a": "origin"
+  },
+  {
+    "q": "The tri method is specially used for",
+    "a": "banded matrix"
+  },
+  {
+    "q": "The value of is",
+    "a": "a negative value"
+  },
+  {
+    "q": "The value of Dy is -7/ 5 for the matrix given-x-y+z=-22x+y=-3x+2z=1",
+    "a": "False"
+  },
+  {
+    "q": "The value of the determinant is D= 5 for the matrix given-x-y+z=-22x+y=-3x+2z=1",
+    "a": "False"
+  },
+  {
+    "q": "Thealgorithm of the Trapezoidalrule is described by>>h=(b-a)/n>>x=a sum=f(x)>>for i=1:n-1>>x=x+h>>sum=sum+2*f(x)>> end>>sum=sum+f(b)>>(b-a)*sum/(2*n)",
+    "a": "True"
+  },
+  {
+    "q": "TheNewton polynomialis sometimes called the NDDP which stands for",
+    "a": "Newton's divided differenceinterpolating polynomial"
+  },
+  {
+    "q": "There exists a minimization problem such that (i) assuming P = NP, there is no polynomial-time 1-approximation algorithm for the problem; and (ii) for any constant =C7=AB > 0, there is a polynomial-time (1 + =C7=AB)-approximation algorithm for the problem",
+    "a": "True"
+  },
+  {
+    "q": "This is an informal and human readable description of an algorithm leaving many granular details of it",
+    "a": "Pseudocode"
+  },
+  {
+    "q": "This is defined as the high level descriptions of instruction which is intended for human reading",
+    "a": "Pseudocode"
+  },
+  {
+    "q": "This method involves creating an identity matrix at the end stage of the procedure",
+    "a": "Gauss- Jordan method"
+  },
+  {
+    "q": "To measure the efficiency of the algorithm, the space and time efficiency are the important factors",
+    "a": "True"
+  },
+  {
+    "q": "Trapezoidal rule is a numerical method that approximates the value of a definite integral by using first degree polynomial",
+    "a": "True"
+  },
+  {
+    "q": "Triangular matrices have their eigenvalues on the diagonal of the matrix therefore the eigenvalues of A are the diagonal elements.",
+    "a": "their eigenvalues on the diagonal of the matrix"
+  },
+  {
+    "q": "Triangular matrix is a square matrix in which all of the elements on one side of the main diagonal are zero The remaining elements should have",
+    "a": "may be zero or not"
+  },
+  {
+    "q": "Using Lagrange interpolation, with data given below compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7the solution is f(15) = 45",
+    "a": "True"
+  },
+  {
+    "q": "Using Lagrange interpolation, with data given below compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7x2 = 5 f(x2) = 9the solution is f(15) = 48",
+    "a": "True"
+  },
+  {
+    "q": "Using Newton's interpolation, with data given below compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7x2 = 5 f(x2) = 9The solution of Y(15)=48",
+    "a": "True"
+  },
+  {
+    "q": "Using Newton's interpolation, with data given below to compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7x2 = 5 f(x2) = 9The first order from x0 = 0 to x1 = 3 has a value of 48 which is similar to Lagrange",
+    "a": "False"
+  },
+  {
+    "q": "Using Newton's interpolation, with data given below to compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7x2 = 5 f(x2) = 9The first order from x0 = 3 to x1 = 5 has a value of 1",
+    "a": "True"
+  },
+  {
+    "q": "Using Newton's interpolation, with data given below to compute for f(15)x0 = 0 f(x0) = 2x1 = 3 f(x1) = 7x2 = 5 f(x2) = 9The second ordervalue is 1/3",
+    "a": "False"
+  },
+  {
+    "q": "Using Secant method, what is the value of the next approximated root x2 if x0 = -3 and x1 = 1 for the function f(x) = x3+ 4x+8",
+    "a": "02727"
+  },
+  {
+    "q": "Using the Maclaurin series expansion of cos(x) , when x = will give an approximate value of 0.6073 using the first two terms only.",
+    "a": "True"
+  },
+  {
+    "q": "What is the effect of using multiple segment trapezoidal rules to an exponential function?",
+    "a": "as n increases, the error decreases"
+  },
+  {
+    "q": "What is the next approximated root for the function f(x) = ex + sin(x) when x0 = 0?",
+    "a": "Invalid initial value"
+  },
+  {
+    "q": "What is the next approximated root for the function f(x) = x + cos(x) when x0 = 0?",
+    "a": "0"
+  },
+  {
+    "q": "What is the suppose the interval is from [05, 25] and n = 4?",
+    "a": "05"
+  },
+  {
+    "q": "What is the value of the inverse of a matrix if the determinant of the main matrix is zero?",
+    "a": "doesn't exist"
+  },
+  {
+    "q": "When it comes to computer implementation, secant method may have an advantage over the Newton-Raphson since the latter only evaluates the function and not its derivative.",
+    "a": "True"
+  },
+  {
+    "q": "When it comes to computer implementation, secant method may have disadvantage over the Newton-Raphson since Secant method depends on the previous approximation making it slower than the Newton Raphson",
+    "a": "True"
+  },
+  {
+    "q": "When the exact value is π = 3.14159265359 and the relative error is given as 0.001, the approximate value is ____________.",
+    "a": "3141906813"
+  },
+  {
+    "q": "Which among the following cases would give a different step size?",
+    "a": "a = 0; b = 6; n = 12"
+  },
+  {
+    "q": "Which among the given set of values provides the least approximation error in employing trapezoidal rule?",
+    "a": "f(x) = sin 35x; n =20"
+  },
+  {
+    "q": "Which among the given set of values will produce the closest value(for a = 0 and b = 4)?",
+    "a": "f(x) = sin 35x; h =05"
+  },
+  {
+    "q": "Which initial value can get the next approximated value of the root equal to 1 if f(x) = ex",
+    "a": "0"
+  },
+  {
+    "q": "Which is true about the error when approximating the integral of the linear function f(x) = 3x for an interval of [0,1]?",
+    "a": "The error is equal to zero using Simpson's 1/3 rule compared to Trapezoidal rule"
+  },
+  {
+    "q": "Which of the following is the best initial guess for the function f(x) = e x – sin x",
+    "a": "1"
+  },
+  {
+    "q": "Which of the following correctly describes an algorithm?",
+    "a": "All of these"
+  },
+  {
+    "q": "Which of the following is considered an open method?",
+    "a": "Secant method"
+  },
+  {
+    "q": "Which of the following is not true in finding the determinant of a matrix?",
+    "a": "The operation between the matrices also takes an alternate sign of negative first then positive"
+  },
+  {
+    "q": "Which of the following is the best application of approximating an integral of a function numerically?",
+    "a": "a function whose anti derivative cannot be found"
+  },
+  {
+    "q": "Which of the following is the first step in solving computational problems?",
+    "a": "Problem definition"
+  },
+  {
+    "q": "Which of the following is true about A - B?",
+    "a": "Subtraction of matrices is not possible"
+  },
+  {
+    "q": "Which of the following is true about A x B?",
+    "a": "Matrix multiplication is not possible"
+  },
+  {
+    "q": "Which of the following is true about the determinant of A and B when",
+    "a": "Both \"the determinant of A is the inverse sign of B\" and \"the absolute value of the determinant is 1\" are correct"
+  },
+  {
+    "q": "Which of the following is true about the determinant of A when",
+    "a": "Both \"the determinant is negative\" and \"the absolute value of the determinant is 1\" are correct"
+  },
+  {
+    "q": "Which of the following is true about the similarities of Cramer's rule and Gauss-Jordan Method?",
+    "a": "Both Cramer's rule and Gauss- Jordan method use augmented matrix"
+  },
+  {
+    "q": "Which of the following is true about the systems of linear equation?x + 6y + 3 = 0x + 2y + 4 = 84x + y + z = 4",
+    "a": "the solution will converge"
+  },
+  {
+    "q": "Which of the following statements about algorithm is INCORRECT?",
+    "a": "Algorithms can run for infinitely"
+  },
+  {
+    "q": "Which of the following statements is true for the function f(x) = -e x + sin x, when 0 is used as an initial value:",
+    "a": "Newton’s method cannot be used"
+  },
+  {
+    "q": "While using two sets of points (x0,y0) and (x1,y1) a straight line is formed and could use the slope equation which follows that the first derivative can be approximated using the given values",
+    "a": "True"
+  },
+  {
+    "q": "With the Lagrange form, it is ___________ to pass from one interpolation polynomial to another of degree one greater",
+    "a": "inconvenient"
+  }
+]

@@ -1,0 +1,746 @@
+[
+  {
+    "q": "\"It is the principal methodology used by organisations to ensure that the products they develop have the desired quality\"",
+    "a": "Quality management system"
+  },
+  {
+    "q": "\"Which focuses not only on detecting the defective products and eliminating them, but also on determining the causes behind the defects?\"",
+    "a": "Quality Control"
+  },
+  {
+    "q": "A collaboration diagram shows both structural and behavioral aspects explicitly",
+    "a": "True"
+  },
+  {
+    "q": "A constraint describes a condition or an integrity rule",
+    "a": "True"
+  },
+  {
+    "q": "A control flow graph describes the sequence in which the different instructions of a program get executed",
+    "a": "True"
+  },
+  {
+    "q": "A DFD model does not specify the order in which the different bubbles are executed",
+    "a": "True"
+  },
+  {
+    "q": "A layered design achieves control abstraction and is easier to understand and debug",
+    "a": "True"
+  },
+  {
+    "q": "A module is said to have procedural cohesion, if all functions of the module refer to or update the same data structure",
+    "a": "False"
+  },
+  {
+    "q": "A poorly designed interface can cause a user to make catastrophic errors.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A quality management system is the principal methodology used by organizations to ensure that the products they develop have the desired quality",
+    "a": "True"
+  },
+  {
+    "q": "A system attribute which is concerned with the ease of repairing the system after a failure has been discovered or changing the system to include new features.",
+    "a": "Maintainability"
+  },
+  {
+    "q": "Abstraction is one of the characteristics of object-oriented design",
+    "a": "True"
+  },
+  {
+    "q": "An event that occurs at some point in time when the system does not deliver a service as expected by its users.",
+    "a": "System failure"
+  },
+  {
+    "q": "An in system state i e a system state that is unexpected by the designers of the system",
+    "a": "System fault"
+  },
+  {
+    "q": "An incorrect system state i .e . a system state that is unexpected by the designers of the system.",
+    "a": "System fault"
+  },
+  {
+    "q": "Because of very high costs of dependability achievement, it may be more cost effective to accept untrustworthy systems and pay for failure costs.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Beta testing is a form of system testing usually performed by the development team",
+    "a": "False"
+  },
+  {
+    "q": "Classes that are not intended to produce instances of themselves are dependent on its own",
+    "a": "False"
+  },
+  {
+    "q": "Clean Room Testing is a technique that reportedly produces documentation and code that is more reliable and maintainable than other development methods relying heavily on code execution-based testing",
+    "a": "True"
+  },
+  {
+    "q": "Cohesion is a qualitative indication of the degree to which a module",
+    "a": "Focuses on just one thing"
+  },
+  {
+    "q": "Coupling is a qualitative indication of the degree to which a module",
+    "a": "Is connected to other modules and the outside world"
+  },
+  {
+    "q": "Decision Trees shows the decision-making logic and corresponding actions taken in matrix form",
+    "a": "False"
+  },
+  {
+    "q": "Dependability costs tend to increase exponentially as increasing levels of dependability are required.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Designers should be aware of people’s physical and mental limitations.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Embedded software are standalone programs that solves a specific business need",
+    "a": "False"
+  },
+  {
+    "q": "Empirical estimation techniques assume that the relationship that exists among the different project parameters can be satisfactorily modeled using suitable mathematical expression",
+    "a": "False"
+  },
+  {
+    "q": "Ensure that procedures and standards are followed by the software development team",
+    "a": "Quality control"
+  },
+  {
+    "q": "Erroneous system behavior where the behavior of the system does not conform to its specification.",
+    "a": "System error"
+  },
+  {
+    "q": "Errors do not necessarily lead to system failures.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Establish organizational procedures and standards for quality",
+    "a": "Quality assurance"
+  },
+  {
+    "q": "Evolve and improve process improvements",
+    "a": "Change tuning"
+  },
+  {
+    "q": "Fan-out indicates the number of modules that directly invoke a given module",
+    "a": "False"
+  },
+  {
+    "q": "For systems with a short life, maintenance costs may be several times development costs.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Formal methods are easy to learn and use",
+    "a": "False"
+  },
+  {
+    "q": "Hardware interfaces described the interface between the software and the hardware components of the system",
+    "a": "True"
+  },
+  {
+    "q": "How does the internal structure data of an object can be hidden so that all interactions with the object are simple and standardized?",
+    "a": "Through encapsulation"
+  },
+  {
+    "q": "Human behavior that results in the introduction of faults into a system.",
+    "a": "Human error"
+  },
+  {
+    "q": "Identify quality, cost or schedule bottlenecks",
+    "a": "Improvement identification"
+  },
+  {
+    "q": "If all functions of the module refer to or update the same data structure, then the module have _______________ ?",
+    "a": "Communicational cohesion"
+  },
+  {
+    "q": "If different functions of the module co-operate to complete a single task, then the module have _______________ ?",
+    "a": "Functional cohesion"
+  },
+  {
+    "q": "If the function calls between two modules involve passing large chunks of shared data, the modules are said to be _________ ?",
+    "a": "Highly coupled"
+  },
+  {
+    "q": "If the interactions occur through some shared data, then we say that they are ________________",
+    "a": "Highly coupled"
+  },
+  {
+    "q": "If the module performs a set of tasks that relate to each other very loosely, then the module have _______ ?",
+    "a": "Coincidental cohesion"
+  },
+  {
+    "q": "Improper user interface design is the reason why so many software systems are never used.",
+    "a": "TRUE"
+  },
+  {
+    "q": "In the Inception phase, functional and non-functional requirements are captured",
+    "a": "False"
+  },
+  {
+    "q": "In the Inception Phase, the product is installed in the user's environment and maintained",
+    "a": "False"
+  },
+  {
+    "q": "In V-shaped model, testing activities are carried out in parallel with the development activities",
+    "a": "True"
+  },
+  {
+    "q": "In waterfall model, customer feedback is obtained on the development prototype after each iteration and based on this the prototype is used",
+    "a": "False"
+  },
+  {
+    "q": "In which of the following best descibed an external entity?",
+    "a": "Represented using a rectangle"
+  },
+  {
+    "q": "In which of the following best described a DFD process symbol?",
+    "a": "Represented using a circle"
+  },
+  {
+    "q": "In which of the following described a synchronous operations of DFD?",
+    "a": "Two bubbles are directly connected by a data flow arrow"
+  },
+  {
+    "q": "In which of the following describes a synchronous operations of DFD?",
+    "a": "Two bubbles are directly connected by a data flow arrow"
+  },
+  {
+    "q": "In which of the following is true about level 1 DFD?",
+    "a": "Level 1 DFD usually contains three to 7 bubbles"
+  },
+  {
+    "q": "In which of the following is true when using data flow in constructing a DFD?",
+    "a": "Data flow should not connect two data stores"
+  },
+  {
+    "q": "Information hiding makes program maintenance easier by hiding data and procedure from unaffected parts of the program",
+    "a": "True"
+  },
+  {
+    "q": "Input Kludge concerns failing to specify and implement a mechanism for handling invalidinputs",
+    "a": "True"
+  },
+  {
+    "q": "International set of standards for quality management.",
+    "a": "ISO 9000"
+  },
+  {
+    "q": "is concerned with theories, methods and tools for professional software development",
+    "a": "Software Engineering"
+  },
+  {
+    "q": "ISO 9000 series of standards are based on the premise that if a proper process is followed for production, then good quality products are bound to follow automatically",
+    "a": "True"
+  },
+  {
+    "q": "It deals with production of the software system itself.",
+    "a": "Development"
+  },
+  {
+    "q": "It guides developer to arrive at a correct design decisions and helps them to attain productivity",
+    "a": "Design patterns"
+  },
+  {
+    "q": "It implies that the problem has been decomposed into a set of modules that have only limited interactions with each other",
+    "a": "Modularity"
+  },
+  {
+    "q": "It is a measure of the functional strength of a module",
+    "a": "Cohesion"
+  },
+  {
+    "q": "It is a basic characteristic of any good design solution",
+    "a": "Modularity"
+  },
+  {
+    "q": "It is a characteristic of a good software design wherein it states that the design should correctly implement all the functionalities of the system",
+    "a": "Correctness"
+  },
+  {
+    "q": "It is a form of Interaction style is ideal for video games.",
+    "a": "Direct Manipulation"
+  },
+  {
+    "q": "It is a measure of the degree of interaction between two modules",
+    "a": "Coupling"
+  },
+  {
+    "q": "It is a UI design principle that allows user to recover from errors.",
+    "a": "recoverability"
+  },
+  {
+    "q": "It is a UI design principle that provides appropriate interaction facilities for different types of system user.",
+    "a": "User diversity"
+  },
+  {
+    "q": "It is an approach to UI design where the needs of the user are paramount and where the user is involved in the design process.",
+    "a": "User-centered design"
+  },
+  {
+    "q": "It is an effective decomposition of a problem",
+    "a": "Modularity"
+  },
+  {
+    "q": "It is concerned with theories, methods and tools for professional software development",
+    "a": "Software Engineering"
+  },
+  {
+    "q": "It is concerned with theory and fundamentals of software development.",
+    "a": "Computer Science"
+  },
+  {
+    "q": "It is focused on cost effective software development.",
+    "a": "Software Engineering"
+  },
+  {
+    "q": "It provides a common vocabulary that helps improve communications among the developers",
+    "a": "Design patterns"
+  },
+  {
+    "q": "It provides a common vocabulary that helps to improve communications among the developers",
+    "a": "Design patterns"
+  },
+  {
+    "q": "It provides a defined process which can be tuned by individuals?",
+    "a": "Personal Software Process"
+  },
+  {
+    "q": "It reflects the extent of the user’s confidence that it will operate as users expect and that it will not ‘fail’ in normal use.",
+    "a": "Dependability"
+  },
+  {
+    "q": "It subsumes the notion of resilience - the ability of a system to continue in operation in spite of component failures.",
+    "a": "Survivability"
+  },
+  {
+    "q": "It suggests a scheme for structuring the classes in a design solution and defines the required interactions among those classes",
+    "a": "Design patterns"
+  },
+  {
+    "q": "Library modules represents one of the several modules connected with the diamond symbol",
+    "a": "False"
+  },
+  {
+    "q": "LOC is an appropriate metric to estimate and measure the size of a component-based GUI",
+    "a": "False"
+  },
+  {
+    "q": "means that a product should meet its specification",
+    "a": "Quality"
+  },
+  {
+    "q": "Model and analyze (quantitatively if possible) existing processes",
+    "a": "Process analysis"
+  },
+  {
+    "q": "Modify the process to remove identified bottlenecks",
+    "a": "Process change introduction"
+  },
+  {
+    "q": "New release is created if there is only a bug fix, minor enhancement to the functionality of the system",
+    "a": "True"
+  },
+  {
+    "q": "Object Oriented Programming is the drag and drop style of program development",
+    "a": "False"
+  },
+  {
+    "q": "One which calls relations among different modules are represented graphically",
+    "a": "Layed design"
+  },
+  {
+    "q": "Organizations rated as ______ in the CMM are likely to be ISO 9000 compliant",
+    "a": "level 2"
+  },
+  {
+    "q": "Organizations rated as ______ in the CMM are likely to be ISO compliant",
+    "a": "level"
+  },
+  {
+    "q": "Part of the generic activity of software development which checks what the system should do and its development constraints.",
+    "a": "Specification"
+  },
+  {
+    "q": "Patterns primarily focus on solving problems with reduced space and time requirements",
+    "a": "False"
+  },
+  {
+    "q": "Product Perspective summarizes the major ways in which the software would be used",
+    "a": "False"
+  },
+  {
+    "q": "PSP is a framework that helps engineers to measure and improve the way they work",
+    "a": "True"
+  },
+  {
+    "q": "Select applicable procedures and standards for a particular project and modify these as required",
+    "a": "Quality planning"
+  },
+  {
+    "q": "Some of the components of User interface design process. (select all that applies)",
+    "a": "None among the choices"
+  },
+  {
+    "q": "Speed of use of a user interface is determined by the time and user effort necessary toinitiate and execute different commands",
+    "a": "True"
+  },
+  {
+    "q": "Spiral model is most appropriate for projects that suffer from technical and requirement risks",
+    "a": "False"
+  },
+  {
+    "q": "Statistical Testing is a testing process whose objective is to determine the reliability of the product rather than discovering errors",
+    "a": "True"
+  },
+  {
+    "q": "System state that are a usually a result of system errors that are derived from faults in the system.",
+    "a": "System failure"
+  },
+  {
+    "q": "System users often judge a system by its functionality rather than its interface.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The ability of a system to continue to deliver its services to users in the face of deliberate or accidental attack.",
+    "a": "Survivability"
+  },
+  {
+    "q": "The ability of the system to deliver services as specified.",
+    "a": "Reliability"
+  },
+  {
+    "q": "The ability of the system to deliver services when requested.",
+    "a": "Availability"
+  },
+  {
+    "q": "The ability of the system to operate without catastrophic failure.",
+    "a": "Safety"
+  },
+  {
+    "q": "The ability of the system to protect itself against accidental or deliberate intrusion.",
+    "a": "Security"
+  },
+  {
+    "q": "The behavioral view captures how objects interact with each other in time to realize the system behavior",
+    "a": "True"
+  },
+  {
+    "q": "The error can not be corrected by built-in error detection and recovery.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The error can not be ed by built-in error detection and recovery",
+    "a": "FALSE"
+  },
+  {
+    "q": "The extent to which a critical system is trusted by its users.",
+    "a": "Dependability"
+  },
+  {
+    "q": "The failure can be avoided by built-in protection facilities.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The faulty system state may be transient and ‘corrected’ before an error arises.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The faulty system state may be transient and ‘ed’ before an error arises",
+    "a": "TRUE"
+  },
+  {
+    "q": "The increased testing and system validation that is required to convince the system client that the required levels of dependability have been achieved decreases the cost of dependability of software",
+    "a": "FALSE"
+  },
+  {
+    "q": "The probability of failure-free system operation over a specified time in a given environment for a given purpose.",
+    "a": "Reliability"
+  },
+  {
+    "q": "The probability that a system, at a point in time, will be operational and able to deliver the requested services.",
+    "a": "Availability"
+  },
+  {
+    "q": "The process of checking that the software is what the customer wants.",
+    "a": "Validation"
+  },
+  {
+    "q": "The state chart diagram focuses on representing various activities or chunks of processing and their sequence of activation",
+    "a": "False"
+  },
+  {
+    "q": "The use of more expensive development techniques and hardware that are required to achieve the higher levels of dependability decreases the cost of dependability of software.",
+    "a": "The correct answer i"
+  },
+  {
+    "q": "The Waterfall Model is highly structured and systematically steps through requirements-capture, analysis, specification, design, coding, and testing stages in a planned sequence",
+    "a": "True"
+  },
+  {
+    "q": "These are developed software for a single customer according to their specification (select all that applies)",
+    "a": "The correct answers are: Customized, Bespoke"
+  },
+  {
+    "q": "These are generic activities involved in all software processes: (select all that applies)",
+    "a": "The correct answers are: Specification, Development, Validation, Evolution"
+  },
+  {
+    "q": "These are software products developed to be sold to a range of different customers.",
+    "a": "Generic"
+  },
+  {
+    "q": "They are I.T. practitioners who adopt a systematic and organised approach to their work and use appropriate tools and techniques depending on the problem to be solved, the development constraints and the resources available.",
+    "a": "Software Engineers"
+  },
+  {
+    "q": "This expenditure represents a significant fraction of GNP in all developed countries.",
+    "a": "Software Engineering"
+  },
+  {
+    "q": "This factor often dominates system costs in a system development",
+    "a": "Technical cost"
+  },
+  {
+    "q": "This is a set of activities whose goal is the development or evolution of software.",
+    "a": "Software process"
+  },
+  {
+    "q": "This is an increasingly important attribute for distributed systems whose security can be compromised.",
+    "a": "Survivability"
+  },
+  {
+    "q": "This is the process changing the software in response to changing demands",
+    "a": "Evolution"
+  },
+  {
+    "q": "Three aspects of the system users that UI design must take into account (select answers)",
+    "a": "The answers are: needs, experience, capabilities"
+  },
+  {
+    "q": "Three aspects of the system users that UI design must take into account. (select 3 answers)",
+    "a": "The correct answers are: needs, experience, capabilities"
+  },
+  {
+    "q": "Train staff involved in new process proposals",
+    "a": "Process change training"
+  },
+  {
+    "q": "Unit testing is typically undertaken by the coder of the modules in the coding phase",
+    "a": "True"
+  },
+  {
+    "q": "Usefulness and trustworthiness of a computer system are the same thing.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Visual Programming is the drag and drop style of program development",
+    "a": "True"
+  },
+  {
+    "q": "When modules are functionally independent, complexity of the design is greatly reduced",
+    "a": "Understandability"
+  },
+  {
+    "q": "Whenever an error exists in a module, functional independence reduce the chances of the error propagating to the other modules",
+    "a": "Error isolation"
+  },
+  {
+    "q": "Whenever an error exists in a module, functional independence reduces the chance of the error propagating to the other module",
+    "a": "True"
+  },
+  {
+    "q": "Which best describes a modeling language?",
+    "a": "Consists of a set of notations"
+  },
+  {
+    "q": "Which of the folllowing best described a task analysis?",
+    "a": "Providing the user of block-box of a software"
+  },
+  {
+    "q": "Which of the following best applies to organizations which do not design products but are only involved in production?",
+    "a": "ISO 9002"
+  },
+  {
+    "q": "Which of the following best applies to organizations which only involves in installation and testing of products?",
+    "a": "ISO 9003"
+  },
+  {
+    "q": "Which of the following best describe a black-box testing?",
+    "a": "Perform equivalence class partitioning"
+  },
+  {
+    "q": "Which of the following best describe a post-architechtural model?",
+    "a": "Used to provide cost estimation during detailed design and coding stages"
+  },
+  {
+    "q": "Which of the following best described a branch coverage test suite?",
+    "a": "Perform edge testing that traversed program's control flow atleast once"
+  },
+  {
+    "q": "Which of the following best described a code inspection?",
+    "a": "Perform code examination for the presence of some common programming errors"
+  },
+  {
+    "q": "Which of the following best described a composition of series of standards?",
+    "a": "ISO 9000"
+  },
+  {
+    "q": "Which of the following best described a corrective maintenance?",
+    "a": "It corrects errors that are not discovered during the product development phase"
+  },
+  {
+    "q": "Which of the following best described a fault-based testing?",
+    "a": "Performs a strategy which focuses on what constitute a fault model of the strategy"
+  },
+  {
+    "q": "Which of the following best described a GUI?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following best described a heuristic techniques?",
+    "a": "It assume that the project uses suitable mathematical expression"
+  },
+  {
+    "q": "Which of the following best described a hierarchical menu?",
+    "a": "Commonly suitable for small screens with limited display area"
+  },
+  {
+    "q": "Which of the following best described a process metrics",
+    "a": "Measures how a process is performing"
+  },
+  {
+    "q": "Which of the following best described a semidetached classes of software development?",
+    "a": "It consist of a mixture of experienced and inexperienced staff"
+  },
+  {
+    "q": "Which of the following best described a state or collection of states in which only a subset of user interface tasks can be performed?",
+    "a": "Mode"
+  },
+  {
+    "q": "Which of the following best described a superfluous DFD?",
+    "a": "Decomposed a few bubbles at any level"
+  },
+  {
+    "q": "Which of the following best described a unit testing?",
+    "a": "Code unit are slowly integrated and tested after each step of integration"
+  },
+  {
+    "q": "Which of the following best described a walking menu?",
+    "a": "Commonly used to structure a large collection of menu items"
+  },
+  {
+    "q": "Which of the following best described a white-box testing?",
+    "a": "Performs a a design test cases based on analysis of some aspect of source code heuristically"
+  },
+  {
+    "q": "Which of the following best described an anomaly in the requirements analysis?",
+    "a": "There are ambiguity in a requirement"
+  },
+  {
+    "q": "Which of the following best described an application composition model?",
+    "a": "Used to estimate the cost for prototype development"
+  },
+  {
+    "q": "Which of the following best described an early design model?",
+    "a": "Used to support estimation of cost at the architechtural design stage"
+  },
+  {
+    "q": "Which of the following best described an Embedded Software?",
+    "a": "It resides within a product or system"
+  },
+  {
+    "q": "Which of the following best described an empirical estimation techniques?",
+    "a": "It is based on making an educated guess"
+  },
+  {
+    "q": "Which of the following best described an incompleteness in requirement analysis?",
+    "a": "Requirements have been overlooked"
+  },
+  {
+    "q": "Which of the following best described an inconsistency in requirement analysis?",
+    "a": "Requirements may contradicts the other"
+  },
+  {
+    "q": "Which of the following best described an integration testing?",
+    "a": "Code is tested a whole"
+  },
+  {
+    "q": "Which of the following best described an organic classes of software development?",
+    "a": "It deals with developing a well-understood application program"
+  },
+  {
+    "q": "Which of the following best described an X Library",
+    "a": "It provides a set of about 300 utility routines"
+  },
+  {
+    "q": "Which of the following best described an X Protocol?",
+    "a": "It defines the format request between client and applications"
+  },
+  {
+    "q": "Which of the following best described code review?",
+    "a": "Performs code evaluation for defects and removal mechanism"
+  },
+  {
+    "q": "Which of the following best described delphi cost estimation?",
+    "a": "It overcomes some of the shortcomings of expert judgment approach"
+  },
+  {
+    "q": "Which of the following best described that all commands are available all the time during the operation of the software?",
+    "a": "Modeless"
+  },
+  {
+    "q": "Which of the following best describes a black-box testing?",
+    "a": "Performs equivalence class partitioning"
+  },
+  {
+    "q": "Which of the following best describes analysis model?",
+    "a": "Elaborates user requirements"
+  },
+  {
+    "q": "Which of the following best describes structured analysis?",
+    "a": "Structured Analysis activity transforms the SRS document into a graphical model called DFD model"
+  },
+  {
+    "q": "Which of the following defines the structure of the problem in terms of the kinds of objects important to the understanding of the working system?",
+    "a": "Structural view"
+  },
+  {
+    "q": "Which of the following description best characterize a context diagram?",
+    "a": "It is the highest level and most abstract"
+  },
+  {
+    "q": "Which of the following description best characterizes a context diagram?",
+    "a": "It is the highest level and most abstract"
+  },
+  {
+    "q": "Which of the following description best characterizes Data Flow Diagram?",
+    "a": "It is a simple graphical formalism that can be used to represent a system"
+  },
+  {
+    "q": "Which of the following is true about container widget?",
+    "a": "It exists merely to contain other widgets"
+  },
+  {
+    "q": "Which of the following is true about label widget?",
+    "a": "It does not have any other interaction capabilities"
+  },
+  {
+    "q": "Which of the following SRS Document characteristics which should provide the possibility testing the design bases based on the description of functionality?",
+    "a": "Verifiability"
+  },
+  {
+    "q": "Which phase of a unified process model in which the design and implementation activities are carried out?",
+    "a": "Construction phase"
+  },
+  {
+    "q": "Which phase of a unified process model in which the product is installed in the user's environment and maintained?",
+    "a": "Transition phase"
+  },
+  {
+    "q": "Which principle best describes structured analysis technique?",
+    "a": "It is based on a divided and conquer approach"
+  }
+]

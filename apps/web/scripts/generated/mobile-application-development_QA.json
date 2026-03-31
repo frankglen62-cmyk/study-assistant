@@ -1,0 +1,242 @@
+[
+  {
+    "q": "_______ is the space between an element's content and its border",
+    "a": "Padding"
+  },
+  {
+    "q": "_________ is a Java-based open source platform that allows a software developer to create a customized integrated development environment (IDE) from plug-in components",
+    "a": "Eclipse"
+  },
+  {
+    "q": "____________ can be measured in pixels (px), density-independent pixels, and scaled pixels based on preferred font size",
+    "a": "Explicit Dimension"
+  },
+  {
+    "q": "_____________ contain a local copy of the latest multi-version documentation of the Android framework API",
+    "a": "Documentation"
+  },
+  {
+    "q": "A ________ is an icon that consists of text or an image which communicates What action occurs when you touch or click it?",
+    "a": "Button"
+  },
+  {
+    "q": "A ContextualMenu offers actions that affect general items or constant frame in the UI",
+    "a": "False"
+  },
+  {
+    "q": "A layout manager positions item views inside the RecylerView",
+    "a": "True"
+  },
+  {
+    "q": "A PopupMenu is a modal menu anchored to a View",
+    "a": "True"
+  },
+  {
+    "q": "Android-powered devices have a host of developer options that you can access on the phone",
+    "a": "True"
+  },
+  {
+    "q": "Choose the best answer The Motorola Dynatec was the first ever mobile phone to be approved by the FCC What does the FCC stand for?",
+    "a": "Federal Communications Commission"
+  },
+  {
+    "q": "Choose the best answer The NMT (Nordic Mobile Telephone) company was first launched in Denmark, Norway, Sweden and ______________?",
+    "a": "Finland"
+  },
+  {
+    "q": "Choose the best answer What device falls between a smartphone and a laptop in usability and functionality?",
+    "a": "Tablet"
+  },
+  {
+    "q": "Choose the best answer What does MTS stand for?",
+    "a": "Mobile Telephone Service"
+  },
+  {
+    "q": "Choose the best answer What does the IMTS stand for?",
+    "a": "Improved Mobile Telephone System"
+  },
+  {
+    "q": "Choose the best answer What was the name of the first smartphone released in 1992?",
+    "a": "IBM Simon Personal Communicator"
+  },
+  {
+    "q": "Choose the best answer When did Dr Martin Cooper successfully call on a handheld mobile phone?",
+    "a": "None of the above"
+  },
+  {
+    "q": "Choose the best answer When did Google announce that the Android mobile operating system will be offered free to the public?",
+    "a": "November 2007"
+  },
+  {
+    "q": "Choose the best answer When did Japan achieve a city-wide commercial mobile phone network?",
+    "a": "1979"
+  },
+  {
+    "q": "Choose the best answer Who conceptualized the Dynabook?",
+    "a": "Alan Kay"
+  },
+  {
+    "q": "Editable text field hints are one of the most important attributes to set",
+    "a": "True"
+  },
+  {
+    "q": "Editable text fields or hints do not have a distinct appearance and behavior from static ones",
+    "a": "False"
+  },
+  {
+    "q": "Every button is styled using the system's ___________ button background",
+    "a": "Default"
+  },
+  {
+    "q": "In setting up the Android Virtual Device (AVD), and the recommended version that you will use in creating your own android-based mobile applications, you must first finish downloading and installing the __________",
+    "a": "Android SDK"
+  },
+  {
+    "q": "In the early 2000s, Symbian, BlackBerry OS, Palm OS and ________ (now known as Windows Mobile) became increasingly popular They are gadgets with capabilities such as email, fax, Web browsing, etc",
+    "a": "PocketPC2000"
+  },
+  {
+    "q": "ListView is a view group that displays a list of un scrollable items",
+    "a": "False"
+  },
+  {
+    "q": "Menus are a common user interface component in many types of applications",
+    "a": "True"
+  },
+  {
+    "q": "R array spinnerColors is the ID of the string array",
+    "a": "True"
+  },
+  {
+    "q": "Spinners are drop-down menus that allow users to pick one item from a group of choices",
+    "a": "True"
+  },
+  {
+    "q": "Tabs work in conjunction with the ActionBarMenu",
+    "a": "True"
+  },
+  {
+    "q": "The ________ is the Operating System of Microsoft based smartphones",
+    "a": "Windows Phone"
+  },
+  {
+    "q": "The _________ tells the system when to use the contained resources",
+    "a": "Qualifier"
+  },
+  {
+    "q": "The _____________ is responsible for developing the Eclipse IDE workbench",
+    "a": "Eclipse Consortium"
+  },
+  {
+    "q": "The 2nd Blackberry OS included the same features as the first version but included ___________ to its repertoire",
+    "a": "Notes, Web Browsers and Games"
+  },
+  {
+    "q": "The OptionsMenu is the tertiary collection of menu items for an activity",
+    "a": "False"
+  },
+  {
+    "q": "The push notification for 3rd party apps was first seen during this iOS 4 update",
+    "a": "FALSE"
+  },
+  {
+    "q": "The RecyclerView provides layout managers for positioning items",
+    "a": "True"
+  },
+  {
+    "q": "The RecyclerView widget is a more advanced and flexible version of the ListView",
+    "a": "True"
+  },
+  {
+    "q": "The TextView is a subclass of View that represents a substandard text field component True or False?",
+    "a": "False"
+  },
+  {
+    "q": "The Windows Phone 8 is also known as the __________",
+    "a": "Apollo"
+  },
+  {
+    "q": "There are three important items to note when talking about the Android Project Components These are:",
+    "a": "Source Code, Auto Generated Code, Included Libraries"
+  },
+  {
+    "q": "These tools contain platform-dependent tools for developing and debugging your application",
+    "a": "SDK Platform Tools"
+  },
+  {
+    "q": "This class namespace creates the initial package structure",
+    "a": "Package Name"
+  },
+  {
+    "q": "This constant makes the element as big as it needs to contain its content",
+    "a": "wrap_content"
+  },
+  {
+    "q": "This constant makes the element match the width and height of the parent element",
+    "a": "match_parent"
+  },
+  {
+    "q": "This defines the visual structure for a user interface (UI)",
+    "a": "Layout"
+  },
+  {
+    "q": "Using a Cursor Loader is helpful when avoiding/blocking an Adapter",
+    "a": "False"
+  },
+  {
+    "q": "What is the estimated total number of Android devices sold in 2014?",
+    "a": "1 Billion units"
+  },
+  {
+    "q": "What is the operating system for the Blackberry line of smartphones?",
+    "a": "Blackberry OS"
+  },
+  {
+    "q": "What is the operating system of Iphone?",
+    "a": "IOS"
+  },
+  {
+    "q": "What is the other name for Android 50?",
+    "a": "Lollipop"
+  },
+  {
+    "q": "What smartphone product first allowed the capacitive touch capabilities?",
+    "a": "Iphone"
+  },
+  {
+    "q": "What version did Java Support first appear in the Blackberry OS updates?",
+    "a": "Blackberry OS 3"
+  },
+  {
+    "q": "When creating a new Android Project, you first SELECT FILE > NEW >________",
+    "a": "Project"
+  },
+  {
+    "q": "When the user clicks a button, the Button object receives and on-click event To define the click event handler for a button, add the _______________",
+    "a": "android:onClick"
+  },
+  {
+    "q": "When you connect a device running Android 422 or higher to your computer, the system shows a dialog asking whether to accept an RSA key that allows debugging through the computer",
+    "a": "True"
+  },
+  {
+    "q": "While spinners may offer similar functionality as radio buttons, they do not require an entirely different API",
+    "a": "False"
+  },
+  {
+    "q": "With an Android-powered device, you can develop and debug your Android applications just as you would on the emulator",
+    "a": "True"
+  },
+  {
+    "q": "You are in your final chapter of Mobile Programming",
+    "a": "True"
+  },
+  {
+    "q": "You can install your application on the device directly from Android Studio",
+    "a": "True"
+  },
+  {
+    "q": "You can scale images by defining layout_width and layout_height attributes on the ____________ element",
+    "a": "ImageView"
+  }
+]

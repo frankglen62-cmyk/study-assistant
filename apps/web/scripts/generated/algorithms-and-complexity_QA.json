@@ -1,0 +1,430 @@
+[
+  {
+    "q": "A B-Tree is defined by the term minimum degree =E2=80=98t' The value of t depends upon disk block size",
+    "a": "True"
+  },
+  {
+    "q": "A basic sorting algorithm is selection sort",
+    "a": "True"
+  },
+  {
+    "q": "A collection of Binomial Trees is called a Binomial Heap",
+    "a": "False"
+  },
+  {
+    "q": "A Complete Binary Tree is a Binary Heap",
+    "a": "True"
+  },
+  {
+    "q": "A priority queue can be built using an array, a linked list, a heap data structure, or a binary search tree",
+    "a": "True"
+  },
+  {
+    "q": "A significantly slower deterministic technique must beutilized to establish complexity",
+    "a": "False"
+  },
+  {
+    "q": "Algorithmic or automated decision systems use data and statistical analyses to classify people for the purpose of assessing their eligibility for a benefit or penalty",
+    "a": "True"
+  },
+  {
+    "q": "Algorithms for string matching can be roughly divided into three categories",
+    "a": "False"
+  },
+  {
+    "q": "All of the numbers in the list that aren't indicated are prime when the algorithm finishes",
+    "a": "True"
+  },
+  {
+    "q": "An array is commonly used to represent a binary heap",
+    "a": "True"
+  },
+  {
+    "q": "An array, a linked list, a heap data structure, or a binary search tree can all be used to build a priority queue",
+    "a": "True"
+  },
+  {
+    "q": "B-Tree grows and shrinks from the root which is unlike Binary Search Tree",
+    "a": "True"
+  },
+  {
+    "q": "Binary Heap's minor use case is as a priority queue implementation",
+    "a": "False"
+  },
+  {
+    "q": "Binary search is known to be the fastest linear, according to a simulation run by academics",
+    "a": "False"
+  },
+  {
+    "q": "Collect extra data to test the algorithm and see if the new information matches or not",
+    "a": "False"
+  },
+  {
+    "q": "Construct objectives to explain the patterns and correlations",
+    "a": "False"
+  },
+  {
+    "q": "Data locations in secondary memory do not have to be contiguous, merge sort is preferred",
+    "a": "True"
+  },
+  {
+    "q": "Discrimination can also be completely unconscious when a neutral procedure produces decisions that disproportionately and systematically harm protected classes",
+    "a": "True"
+  },
+  {
+    "q": "Each node's subtrees are likewise BSTs, meaning they have the same two qualities as the node itself",
+    "a": "True"
+  },
+  {
+    "q": "Even if the array is sorted, it goes through the entire procedure",
+    "a": "True"
+  },
+  {
+    "q": "Every incoming data is checked with existing data, and all harmful code is recorded in the database",
+    "a": "True"
+  },
+  {
+    "q": "Finding the median, on the other hand, is the most difficult scenario for a selection algorithm",
+    "a": "True"
+  },
+  {
+    "q": "For smaller assignments, it is slower than the other sort algorithms",
+    "a": "True"
+  },
+  {
+    "q": "Further, proxies for protected classes might be hiding undetected within other factors used in machine learning models Despite the complexity, these factors might unintentionally be too coarse to accurately capture the qualifications of members of protected classes",
+    "a": "True"
+  },
+  {
+    "q": "If a match is identified, drop the slider by 1 to check for more matches",
+    "a": "True"
+  },
+  {
+    "q": "If a match is not found, the index of the middle element is returned",
+    "a": "False"
+  },
+  {
+    "q": "If elements with the same priority appear, they are served in the order in which they appeared in the queue",
+    "a": "True"
+  },
+  {
+    "q": "If we have an integer (4-byte) array A and the address of A[0] is x, we may directly access the memory at (x + i*4) to access A[i]",
+    "a": "True"
+  },
+  {
+    "q": "If you know number theory, you'll have a lot more ammunition to solve some of the difficult problems, and it'll also help you grasp a lot of other issues",
+    "a": "True"
+  },
+  {
+    "q": "Illegal discrimination cannot be intentional, where a company deliberately takes protected-class status into account to make decisions that disadvantage members of the protected class",
+    "a": "False"
+  },
+  {
+    "q": "In mathematics, the step of proof is not required, which is a logical series of statements that begins with known facts and ends with the desired declaration",
+    "a": "False"
+  },
+  {
+    "q": "In Merge Sort in Java, we will see the working of the Merge Sort mechanism invented by John Von Neumann in the year 1945, which is used in Java to arrange data sequentially",
+    "a": "True"
+  },
+  {
+    "q": "In most cases, the value of the element itself is used to determine precedence",
+    "a": "True"
+  },
+  {
+    "q": "In the best-case situation, the merge sort's complexity is minimal (nlogn)",
+    "a": "False"
+  },
+  {
+    "q": "Insertion of a Node in B-Tree happens only at staffing",
+    "a": "False"
+  },
+  {
+    "q": "Insertion operation are like a \"express line\" where the components are skipped",
+    "a": "False"
+  },
+  {
+    "q": "Inversion Count is a merge sorting method",
+    "a": "False"
+  },
+  {
+    "q": "Investigate the data for patterns and connections",
+    "a": "True"
+  },
+  {
+    "q": "It is possible to examine the order in which the things are handled",
+    "a": "True"
+  },
+  {
+    "q": "It's easy to understand the underlying challenges that RSA encryption solves in order to appreciate its significance",
+    "a": "False"
+  },
+  {
+    "q": "Like other balanced Binary Search Trees, time complexity to search, insert and delete is O(log n)",
+    "a": "True"
+  },
+  {
+    "q": "Mandy Moore begins by matching the previous pattern, which differs from KMP and Na=C3=AFve's method",
+    "a": "False"
+  },
+  {
+    "q": "Many computer programs start with a search for a keyword or value",
+    "a": "True"
+  },
+  {
+    "q": "Merge (arr, l, m, r) is a key process that takes two sorted sub-arrays, arr[lm] and arr[m+1r], and merges them into two",
+    "a": "False"
+  },
+  {
+    "q": "Merge sort accesses data in a logical order, reducing the need for random access",
+    "a": "True"
+  },
+  {
+    "q": "Merge sort combines the sub-arrays split by the m position element using the key procedure Merge (myarr, left,m, right)",
+    "a": "True"
+  },
+  {
+    "q": "Merge Sort divides the list of items into smaller lists until only one element remains,",
+    "a": "True"
+  },
+  {
+    "q": "Merge Sort in Java divides the array into five halves After that, it sorts the two arrays in a respective order as desired by the user",
+    "a": "False"
+  },
+  {
+    "q": "Merge sort is a very famous sorting technique because of its various usage in numerous places",
+    "a": "True"
+  },
+  {
+    "q": "Merge sort is used in FMCG companies where products have different labels and numbers assigned to them, telecommunication companies, manufacturing, and chemical industries",
+    "a": "True"
+  },
+  {
+    "q": "Merge sort is used in Java, C, C++, Python, and many other programming languages for its varied benefits",
+    "a": "True"
+  },
+  {
+    "q": "Merge sort is very similar to Quick Sort Merge sort is relatively easy to use than other sorting techniques",
+    "a": "True"
+  },
+  {
+    "q": "Merge sort stack up is internal",
+    "a": "False"
+  },
+  {
+    "q": "Merge sort uses the key operation Merge to join the sub-arrays divided by the m position element (myarr, left,m, right)",
+    "a": "True"
+  },
+  {
+    "q": "No numbers that satisfy sophisticated probabilistic tests (such as Rabin-Miller) and are composite are known",
+    "a": "True"
+  },
+  {
+    "q": "Not all search algorithms make use of a search key in order to complete the procedure And they are expected to return a success or a failure status (in boolean true or false value)",
+    "a": "False"
+  },
+  {
+    "q": "Not all nodes in the leaf are black",
+    "a": "False"
+  },
+  {
+    "q": "Number of children of a node is equal to the number of keys in it plus 1",
+    "a": "True"
+  },
+  {
+    "q": "Number of children of a node is equal to the number of keys in it plus 2",
+    "a": "False"
+  },
+  {
+    "q": "Parts of Number Theory are experimental, while others are theoretical",
+    "a": "True"
+  },
+  {
+    "q": "Rabin-Karp Algorithm is the hardest string searching algorithm",
+    "a": "False"
+  },
+  {
+    "q": "Search Operation is used to remove a node from a network in a certain situation",
+    "a": "False"
+  },
+  {
+    "q": "Searching Algorithms are designed to check or retrieve an element from any data structure where it is being stored",
+    "a": "True"
+  },
+  {
+    "q": "Searching through large sorted arrays is a breeze using Binary Search",
+    "a": "True"
+  },
+  {
+    "q": "Selection sort worst complexity is O(n)",
+    "a": "False"
+  },
+  {
+    "q": "Sorting in any programming language means arranging the data in a sequential manner",
+    "a": "True"
+  },
+  {
+    "q": "String matching algorithms and DNA analysis are both collectively used for finding the occurrence of the pattern set",
+    "a": "True"
+  },
+  {
+    "q": "String matching algorithms are used to list documents that have been broken into string tokens",
+    "a": "False"
+  },
+  {
+    "q": "String matching algorithms have had a significant impact on computer science and are used to solve a variety of real-world challenges",
+    "a": "True"
+  },
+  {
+    "q": "String matching methods are used to find data packets containing intrusion-related keywords",
+    "a": "True"
+  },
+  {
+    "q": "String searching algorithms are sometimes called string matching algorithms",
+    "a": "True"
+  },
+  {
+    "q": "T(n) = 2T(n/4) + =CE=98(n)",
+    "a": "False"
+  },
+  {
+    "q": "The analysis method takes an array as input and tests to see whether the last index is greater than the left index to see if the array contains items that need to be sorted",
+    "a": "False"
+  },
+  {
+    "q": "The B-height tree's is low, total disk accesses for most operations are greatly decreased",
+    "a": "True"
+  },
+  {
+    "q": "The Boyer Moore algorithm is a search method that looks for a string with length n and a pattern with length z",
+    "a": "False"
+  },
+  {
+    "q": "The capacity to anticipate the outcome of trials is what a scientific theory is",
+    "a": "True"
+  },
+  {
+    "q": "The complicity matching time of Finite automata is O((n-m+1)m)",
+    "a": "False"
+  },
+  {
+    "q": "The components are then compared, ordered, and merged in pairs",
+    "a": "True"
+  },
+  {
+    "q": "The difficulty of identifying prime factors of very big composite numbers ensures the security of RSA encryption",
+    "a": "True"
+  },
+  {
+    "q": "The first step is to find the address of the consumer",
+    "a": "True"
+  },
+  {
+    "q": "The goal is to construct an argument that provides a conclusive problem to the questions",
+    "a": "False"
+  },
+  {
+    "q": "The keys are stored in the form of a balanced KMP",
+    "a": "False"
+  },
+  {
+    "q": "The KMP method outperforms the plain technique in best-case scenarios",
+    "a": "False"
+  },
+  {
+    "q": "The kth method use to achieve Array representation is Level Order",
+    "a": "False"
+  },
+  {
+    "q": "The least efficient primality tests for big numbers are probabilistic",
+    "a": "False"
+  },
+  {
+    "q": "The Levenshtein edit distance and the Hamming edit distance are two well-known edit distances",
+    "a": "True"
+  },
+  {
+    "q": "The LZW algorithm is difficult, straightforward, and effective",
+    "a": "False"
+  },
+  {
+    "q": "The original Onix command fgrep is based on this algorithm",
+    "a": "False"
+  },
+  {
+    "q": "The pattern or text contains spelling errors, discovering DNAsubsequences after mutation, diverse databases, and so on",
+    "a": "True"
+  },
+  {
+    "q": "The period of time for computing the prefix function is =CE=98 (m) and period of time of matching function is =CE=98 (n)",
+    "a": "True"
+  },
+  {
+    "q": "The piece with the highest priority is the last to be deleted",
+    "a": "False"
+  },
+  {
+    "q": "The prefix function, =CE=A0 The prefix function, =CE=A0 for a pattern summarizes the knowledge regarding however the pattern matches in contradiction of shifts of itself",
+    "a": "True"
+  },
+  {
+    "q": "The same characteristic must be true recursively for all nodes in a Binary heap",
+    "a": "False"
+  },
+  {
+    "q": "The Selection Algorithm is used to identify the kth smallest (or largest) integer in a list or array",
+    "a": "True"
+  },
+  {
+    "q": "The sorted section is initially empty, but the unsorted part contains the complete list",
+    "a": "True"
+  },
+  {
+    "q": "The unsorted array's smallest element is chosen and swapped with the leftmost element, resulting in that element becoming a member of the sorted array This operation continues to move the unsorted array border to the right by one element",
+    "a": "True"
+  },
+  {
+    "q": "The value of the minimal order in practical B-Trees is substantially higher than 4",
+    "a": "False"
+  },
+  {
+    "q": "There are any red nodes that are close to one other",
+    "a": "False"
+  },
+  {
+    "q": "There are several different kinds of pseudoprimes, the most frequent of which are Fermat pseudoprimes, which are composites that meet Fermat's big theorem",
+    "a": "False"
+  },
+  {
+    "q": "There's the analysis algorithm, which takes an array as an input and checks to see whether the final index is larger than the left index to determine if the array includes entries that need to be sorted",
+    "a": "False"
+  },
+  {
+    "q": "Trie-matching processing time is 0 (no preprocessing)",
+    "a": "True"
+  },
+  {
+    "q": "Using binary search, the target only had to be compared to 3 values Compared to doing a linear search, it would have started from the very first value and moved up, needing to compare the target to eight values",
+    "a": "True"
+  },
+  {
+    "q": "Using several of the specialized algorithms, for example, eliminates the need to write! container finish ()",
+    "a": "True"
+  },
+  {
+    "q": "We can conduct random access in arrays since the items are contiguous in memory",
+    "a": "True"
+  },
+  {
+    "q": "We move the pattern by m size if it isn't present",
+    "a": "True"
+  },
+  {
+    "q": "When searching for data, the difference between a fast application and a slower one lies in the accurate use of search algorithm",
+    "a": "True"
+  },
+  {
+    "q": "When the size reaches 2, the merge processes kick in and begin merging arrays back together until the entire array is merged",
+    "a": "False"
+  }
+]

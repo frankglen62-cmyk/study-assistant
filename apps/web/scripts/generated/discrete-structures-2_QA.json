@@ -1,0 +1,426 @@
+[
+  {
+    "q": "\"A simple graph with 15 vertices with each having a degree of 5 can exist.\" This statement is ________.",
+    "a": "False"
+  },
+  {
+    "q": "A binary tree of depth \"d\" is an almost complete binary tree if. A. Each leaf in the tree is either at level \"d\" or at level \"d- 1\" B. For any node \"n\" in the tree with a right descendant at level \"d\" all the left descendants of \"n\" that are leaves, are also at level \"d\"",
+    "a": "Both A and B"
+  },
+  {
+    "q": "A class consists of 12 women and 10 men. How many ways are there to form a committee of size six if the committee has equal numbers of women and men?",
+    "a": "C(12,3) =C2=B7 C(10,3)"
+  },
+  {
+    "q": "A data structure wherein data items are traverse in a single run",
+    "a": "Linear"
+  },
+  {
+    "q": "A data structure wherein the data have to be stored and retrieved in reverse order",
+    "a": "Stack"
+  },
+  {
+    "q": "A Finite State Automaton can have more than one initial state.",
+    "a": "False"
+  },
+  {
+    "q": "A full binary tree with 2n+1 nodes contain",
+    "a": "n non-leaf nodes"
+  },
+  {
+    "q": "A node is _____________",
+    "a": "An elements"
+  },
+  {
+    "q": "A queue is a FIFO list",
+    "a": "True"
+  },
+  {
+    "q": "A terminal node in a binary tree is called _______________.",
+    "a": "Leaf"
+  },
+  {
+    "q": "A train is an example of _____ data structure",
+    "a": "Linked list"
+  },
+  {
+    "q": "ADT means",
+    "a": "Abstract Data Type"
+  },
+  {
+    "q": "After creation, the size of an array can grow or increase",
+    "a": "False"
+  },
+  {
+    "q": "An experiment consists of casting a pair of dice and observing the number that falls uppermost on each die. We may represent each outcome of the experiment by an ordered pair of numbers, the first representing the number that appears uppermost on the first die and the second representing the number that appears uppermost on the second die. Consider the sample space Determine the event that the number falling uppermost on one die is a 4 and the number falling uppermost on the other die is less than 4.",
+    "a": "{(1, 4), (2, 4), (3, 4), (4, 3), (4, 2), (4, 1)}"
+  },
+  {
+    "q": "An experiment consists of casting a pair of dice and observing the number that falls uppermost on each die. We may represent each outcome of the experiment by an ordered pair of numbers, the first representing the number that appears uppermost on the first die and the second representing the number that appears uppermost on the second die. Consider the sample space Determine the event that the sum of the numbers falling uppermost is greater than or equal to 7.",
+    "a": "{(1, 6), (2, 5), (2, 6), (3, 4), (3, 5), (3, 6), (4, 3), (4, 5), (4, 6), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)}"
+  },
+  {
+    "q": "Array is a common example of a linear structure",
+    "a": "True"
+  },
+  {
+    "q": "Assume that you have an ordinary deck of 52 playing cards. How many possible 7-card poker hands are there that contain at least one face card (J, Q, K)?",
+    "a": "C(52,7) - C(40,7)"
+  },
+  {
+    "q": "Binary tree is similar to an array in data structure",
+    "a": "False"
+  },
+  {
+    "q": "Consider the following finite automaton A over =CE=A3 = {a,b,c}:Which of the following statements about A is/are correct?",
+    "a": "bbaacbabcac =E2=88=88 L(A)"
+  },
+  {
+    "q": "Consider the statement \"If the product of two integers is even, then their sum is also even.\" Which of the following assertions is correct?",
+    "a": "The statement is false as you can find a counterexample"
+  },
+  {
+    "q": "Consider the statement, \"If n is divisible by 30 then n is divisible by 2 and by 3 and by 5.\" Which of the following statements is equivalent to this statement?",
+    "a": "If n is not divisible by 2 or not divisible by 3 or not divisible by 5 then n is not divisible by 30"
+  },
+  {
+    "q": "Data structure is defined as a specialized format for _______ and ______ data",
+    "a": "organizing, storing"
+  },
+  {
+    "q": "Describe the process of removing an element at the tail of a singly linked list",
+    "a": "Removing an element at the tail of the singly list is not easy"
+  },
+  {
+    "q": "Doubly linked list doubles the size of a singly linked list",
+    "a": "False"
+  },
+  {
+    "q": "Every tree with at least two nodes has at least two nodes of what degree?",
+    "a": "1"
+  },
+  {
+    "q": "Finite automata requires minimum _______ number of stacks.",
+    "a": "0"
+  },
+  {
+    "q": "Head and tail are the only important components of a Linked List",
+    "a": "False"
+  },
+  {
+    "q": "How many bit strings of length four do not have two consecutive 1s?",
+    "a": "8"
+  },
+  {
+    "q": "How many different choices of winners can you have if the draw is limited to first year and second year students and you only have one grand prize? Note: Given that the population of the school is as follows: 1st year = 100 students, 2nd year = 98 students, 3rd year = 102 students, 4th year = 50 students.",
+    "a": "198"
+  },
+  {
+    "q": "How many different license plates are available if the license plate pattern consists of four letters that cannot be repeated and followed by three digits that can be repeated? (Assume that all letters are uppercase and the digits are 0, 1, ... 9)",
+    "a": "26 =C2=B7 25 =C2=B7 24 =C2=B7 23 =C2=B7 103"
+  },
+  {
+    "q": "How many different passwords are possible if each password consists of six characters where each character is either an uppercase letter, a lowercase letter, or a digit, and at least one digit must be included in the password? (Note: There are 26 letters and 10 digits)",
+    "a": "62 - 526"
+  },
+  {
+    "q": "How many edges does a tree with V vertices have?",
+    "a": "V - 1"
+  },
+  {
+    "q": "How many nodes in a tree have no ancestors?",
+    "a": "1"
+  },
+  {
+    "q": "How many nonisomorphic simple graphs are there with five vertices and three edges?",
+    "a": "4"
+  },
+  {
+    "q": "How many terms does the binomial expansion of (2x+3)99 has?",
+    "a": "100"
+  },
+  {
+    "q": "How may isomorphic graphs are there for a graph with n number vertices?",
+    "a": "n! number of vertices"
+  },
+  {
+    "q": "If two finite states machine M and N are isomorphic, thenA. M can be transformed to N, merely re-labelling its statesB. M can be transformed to N, merely re-labelling its edgesWhich is true?",
+    "a": "A only"
+  },
+  {
+    "q": "If you give a proof by mathematical induction of the statement that 2n &ge= n2, for all integers n =E2=89=A5 4, the basis step requires you to prove that which of the following is true?",
+    "a": "24 =E2=89=A5 42"
+  },
+  {
+    "q": "Implementation of ADT requires",
+    "a": "choosing a data representation"
+  },
+  {
+    "q": "In a survey of 900 likely voters, the following question was asked: Do you support using cameras to identify red-light runners? The results of the survey follow: AnswerStrongly supportSomewhatsupportSomewhat opposeStronglyOpposeDon't knowRespondents4102129516419 What is the probability that a person in the survey selected at random favors using cameras to identify red-light runners?",
+    "a": "069"
+  },
+  {
+    "q": "In examining the algorithm of multiplying two numbers and displaying the output, what is the next step after declaring the 3 integers a,b,c",
+    "a": "define the values of a and b"
+  },
+  {
+    "q": "In order to get the contents of a binary search tree in ascending order, one has to traverse it in.",
+    "a": "in-order"
+  },
+  {
+    "q": "It is a collection of items stored at adjacent memory location",
+    "a": "Array"
+  },
+  {
+    "q": "It is impossible for a valid argument to have a true premise and",
+    "a": "a false conclusion"
+  },
+  {
+    "q": "Let p and q be propositions. does not imply is:",
+    "a": "True"
+  },
+  {
+    "q": "Let P be the statement \"you can make n cents postage using 3-cent and 5-cent stamps.\" Suppose you want to use the Principle of Mathematical Induction to show that P is true for all n =E2=89=A5 8.You begin by proving P(8), which is true because 8 cents postage can be made with one 3-cent stamp and one 5-cent stamp.Which of the following will show that the implication P(k) -> P(k+1) in the inductive step is true for all k =E2=89=A5 8?",
+    "a": "none of the given"
+  },
+  {
+    "q": "Logic is a system based on __________.",
+    "a": "propositions"
+  },
+  {
+    "q": "Nodes in a linked list are also called elements",
+    "a": "True"
+  },
+  {
+    "q": "One light bulb is selected at random from a lot of 110 light bulbs, of which 2% are defective. What is the probability that the light bulb selected is defective?",
+    "a": "The probability is 002"
+  },
+  {
+    "q": "Order and sorting of array and linked list follows the same process",
+    "a": "False"
+  },
+  {
+    "q": "Size of a liked list can be zero",
+    "a": "True"
+  },
+  {
+    "q": "Stack applies the Last In First Out process",
+    "a": "True"
+  },
+  {
+    "q": "Storage capacity of an array is static",
+    "a": "True"
+  },
+  {
+    "q": "Suppose inflation decreases the value of money by 3% per year? Which formula describes an = the value (in dollars) of $1000 after n years?",
+    "a": "an = (097)n 1000"
+  },
+  {
+    "q": "Suppose that P is the statement \"n + 1 = n + 2\". What is wrong with the following proof that the statement P is true for all non negative integers n?You assume that P(k) is true for some positive integer k, that is, that k+1 = k+2. Then you add 1 to both sides of this equation to obtain k+2 = k+3; therefore P(k+1) is true. By the principle of mathematical induction P is true for all non-negative integers n.",
+    "a": "The proof is incorrect because there is no basis step"
+  },
+  {
+    "q": "Suppose you are hired by a company at an initial salary of $30,000. At the end of each year you receive a 3% raise, plus an addition of $1000 on your base salary. Let an equal your salary at the end of n years with the company. Find a recurrence relation for an.",
+    "a": "an = 103an-1 + 1000"
+  },
+  {
+    "q": "Suppose you want to prove that every product of integers of the form k(k+1)(k+2) is divisible by 6. If you want to prove this by cases, which of the following is a set of cases you would use?",
+    "a": "when k is divided by 3, the remainder is 0; when k is divided by 3, the remainder is 1; when k is divided by 3, the remainder is 2"
+  },
+  {
+    "q": "Suppose you want to use the principle of mathematical induction to prove that 1 + 2 + 22 + 23 + 23 + ... + 2n = + 2n+1 - 1 for all non-negative integers n. Which of theses is the correct statement P(k) in the inductive step?",
+    "a": "1 + 2 + 22 + 23 + 24 + + 2k = 2k+1 - 1"
+  },
+  {
+    "q": "Suppose you want to use the principle of mathematical induction to prove that 1 + 2 + 22 + 23 + 23 + ... + 2n = + 2n+1 - 1 for all positive integers n. Which of these is the correct implication p(k) -> P(k+1) to be used in the inductive step?",
+    "a": "1 + 2 + 22 + 23 + + 2k = 2k+1 - 1 -> 1 + 2 + 22 + 23 + + 2k + 2k+1 = 2k+2 - 1"
+  },
+  {
+    "q": "Suppose you wish to prove this statement \"If n is an integer, then n =E2=89=A4 n3.\" Which of the following is correct?",
+    "a": "The given statement is false because a counterexample can be found"
+  },
+  {
+    "q": "The basic limitation of finite automata is that",
+    "a": "It cannot remember arbitrary large amount of information"
+  },
+  {
+    "q": "The first node of a linked list is called head",
+    "a": "True"
+  },
+  {
+    "q": "The first node of a linked list is referred to as _____________",
+    "a": "head"
+  },
+  {
+    "q": "The first step to insert an element at the tail of a linked list is to increase the size of the linked list",
+    "a": "False"
+  },
+  {
+    "q": "The following breakdown of a total of 18,686 transportation fatalities that occured in 2007 was obtained from records compiled by the U.S. Department of Transportation (DOT).Mode of Transportation Car Train Bicycle PlaneNumber of Fatalities 16,525842698538 What is the probability that a victim randomly selected from this list of transportation fatalities for 2007 died in a train or a plane accident? Round answer to two decimal places.",
+    "a": "007"
+  },
+  {
+    "q": "The method of accessing the element in a linked list is _______",
+    "a": "Traversal"
+  },
+  {
+    "q": "The next node in the sequence of a linked list is called _____________",
+    "a": "Node's successor"
+  },
+  {
+    "q": "The number of cars entering a tunnel leading to an airport in a major city over a period of 200 peak hours was observed and the following data were obtained: Cars, xFrequency of Occurrence152040654515Find the empirical probability distribution for this experiment.",
+    "a": "Cars, x Frequency of Occurrence 0075 01 02 0325 0225 0075"
+  },
+  {
+    "q": "The number of different directed trees with 3 nodes is",
+    "a": "3"
+  },
+  {
+    "q": "The number of leaf nodes in a complete binary tree of depth d is",
+    "a": "2d"
+  },
+  {
+    "q": "The preorder and post order traversal of a Binary Tree generates the same output. The tree can have maximum",
+    "a": "One node"
+  },
+  {
+    "q": "The results of a time study conducted by the production manager of Ace Novelty are shown in the accompanying table, where the number of space action-figures produced each quarter hour during an 8-hour workday has been tabulated. Find the empirical probability distribution associated with this experiment. Figures Produced (in dozens)Frequency of Occurrence304310326336348356362",
+    "a": "Figures Frequency of Produced Occurrence(in dozens)30 012531 032 0187533 0187534 02535 0187536 00625"
+  },
+  {
+    "q": "The size need to be specific during declaration",
+    "a": "The statement describes an array"
+  },
+  {
+    "q": "The size of a singly linked list is always fixed but the size can grow dynamically",
+    "a": "False"
+  },
+  {
+    "q": "This is a statement that is always false.",
+    "a": "contradiction"
+  },
+  {
+    "q": "Two finite state machines are said to be equivalent if they",
+    "a": "have same number of states and edges"
+  },
+  {
+    "q": "What is the 8th term in the binomial expansion of (2x+y)16?",
+    "a": "5,857,280 x9 y7"
+  },
+  {
+    "q": "What is the coefficient of aby98 in the binomial expansion of (ab+y)99?",
+    "a": "99"
+  },
+  {
+    "q": "What is the coefficient of x101 y99 in the expansion of (2x-3y)200?",
+    "a": "C(200,99) (2)101 (-3)99"
+  },
+  {
+    "q": "What is the maximum possible number of nodes in a binary tree at level 6",
+    "a": "64"
+  },
+  {
+    "q": "What is the negation of a tautology?",
+    "a": "Contradiction"
+  },
+  {
+    "q": "What is the probability of arriving at a traffic light when it is red if the red signal is flashed for 30 sec, the yellow signal for 5 sec, and the green signal for 40 sec?",
+    "a": "The probability is 040"
+  },
+  {
+    "q": "When inorder traversing a tree resulted e a c k f h d b g; the preorder traversal would return.",
+    "a": "faekcdhgb"
+  },
+  {
+    "q": "Which concept considers the arrangement of objects / elements in a set?",
+    "a": "permutations"
+  },
+  {
+    "q": "Which is not an invariant when determining if graphs are isomorphic?",
+    "a": "existence of closed loops"
+  },
+  {
+    "q": "Which logical operator represents the statement \"if and only if\"?",
+    "a": "biconditional"
+  },
+  {
+    "q": "Which of is a formula for the sequence 3, 6, 12, 24, 48, ...? Assume that the first term in the sequence is called a0?",
+    "a": "none of the given"
+  },
+  {
+    "q": "Which of the following applies Last In Last Out?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following describes a Stack data structure?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "Which of the following describes an algorithm?",
+    "a": "executed in a way to get a required output"
+  },
+  {
+    "q": "Which of the following does not describes a linked list?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following does NOT describes non-linear data structure?",
+    "a": "Data can be traverse in singular run"
+  },
+  {
+    "q": "Which of the following graphs is not a characteristics of isomorphic graphs?",
+    "a": "Graphs with different adjacency matrices"
+  },
+  {
+    "q": "Which of the following is a linear data structure?",
+    "a": "Stack"
+  },
+  {
+    "q": "Which of the following is a recurrence relation for the sequence that begins 3, 6, 9, 12, 15, ...?",
+    "a": "an = an-2 + 6"
+  },
+  {
+    "q": "Which of the following is an example of data structure?",
+    "a": "all of the choices"
+  },
+  {
+    "q": "Which of the following is NOT a characteristic of a data type?",
+    "a": "set of functions"
+  },
+  {
+    "q": "Which of the following is not a component of a data structure?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following is not a recurrence relation?",
+    "a": "primality of numbers"
+  },
+  {
+    "q": "Which of the following is not the part of ADT description?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following programming language is NOT used to implement a data structure?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "Which of the following statement is correct?",
+    "a": "Stack applies the LIFO"
+  },
+  {
+    "q": "Which of the following statements about binary trees is NOT true?",
+    "a": "Every binary tree has at least one node"
+  },
+  {
+    "q": "Which of the proposition is is:",
+    "a": "Logically equivalent to"
+  },
+  {
+    "q": "Which rule states that if (k + 1) or more objects are placed into k boxes, then there is at least one box containing two or more of the objects?",
+    "a": "pigeonhole principle"
+  },
+  {
+    "q": "You have 12 balls, numbered 1 through 12, which you want to place into 4 boxes, numbered 1 through 4. If boxes can remain empty, in how many ways can the 12 balls be disturbed among the 4 boxes?",
+    "a": "412"
+  }
+]

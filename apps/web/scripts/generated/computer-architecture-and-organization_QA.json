@@ -1,0 +1,58 @@
+[
+  {
+    "q": "Architecture is concerned with how features (attributes) are implemented control signals, interfaces, memory technology",
+    "a": "False"
+  },
+  {
+    "q": "Baer defines computer architecture as \"the design of the integrated system which provides a useful tool to the programmer\"",
+    "a": "True"
+  },
+  {
+    "q": "Based on the picture shown in the video \"Birth of a Computer\", this group was called \"the first programmers\"",
+    "a": "women"
+  },
+  {
+    "q": "Computer organization deals with structural relationships that are not visible to the programmer",
+    "a": "True"
+  },
+  {
+    "q": "Computer system refers to the set of attributes of a computer system that are visible to a programmer",
+    "a": "False"
+  },
+  {
+    "q": "In 1950, ENIAC was first created The first general purpose computer",
+    "a": "False"
+  },
+  {
+    "q": "In 1958, integrated circuit or IC was developed",
+    "a": "True"
+  },
+  {
+    "q": "In the 1960s, this is where you find the computer memory",
+    "a": "Cathode Ray Tubes"
+  },
+  {
+    "q": "Princeton Institute for Advanced Studies (IAS) computer is the prototype for all subsequent general-purpose computers",
+    "a": "True"
+  },
+  {
+    "q": "The data channel is an independent I/O module with its own processor and instruction set",
+    "a": "True"
+  },
+  {
+    "q": "The first computer was developed in 1964",
+    "a": "False"
+  },
+  {
+    "q": "The IC is a central termination point for data channels, CPU, and memory",
+    "a": "False"
+  },
+  {
+    "q": "This person gave the TedTalk \"You should Learn to Program\"",
+    "a": "Christian Genco"
+  },
+  {
+    "q": "Thomas Hobbes said \" Arithmetic and Logic are the same things You can do it using Addition and Subtraction\"",
+    "a": "True"
+  }
+]

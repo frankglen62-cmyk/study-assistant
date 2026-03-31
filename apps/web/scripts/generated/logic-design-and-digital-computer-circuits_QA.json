@@ -1,0 +1,110 @@
+[
+  {
+    "q": "1 bit is equal to 1 pixel",
+    "a": "True"
+  },
+  {
+    "q": "A switch holds both of the states",
+    "a": "False"
+  },
+  {
+    "q": "Analog Technology still used today",
+    "a": "True"
+  },
+  {
+    "q": "ASCII is to 8bits as Unicode is to 16 bits",
+    "a": "True"
+  },
+  {
+    "q": "Combinational circuits are memory-less, thus, the output value depends ONLY on current input values",
+    "a": "True"
+  },
+  {
+    "q": "Combinational Circuits can be described by Boolean Functions",
+    "a": "True"
+  },
+  {
+    "q": "Complete the given Truth Table below:ABC=A* B00001011What are the values under Column B, arranged from top to bottom?",
+    "a": "0, 1, 0, 1"
+  },
+  {
+    "q": "Convert 1088 to octal",
+    "a": "2100(8)"
+  },
+  {
+    "q": "Convert 259 to hexa",
+    "a": "103(16)"
+  },
+  {
+    "q": "Convert 303 to octal",
+    "a": "457(8)"
+  },
+  {
+    "q": "Convert 4100 to binary",
+    "a": "1000000000100(2)"
+  },
+  {
+    "q": "Convert 67 to binary",
+    "a": "1000011(2)"
+  },
+  {
+    "q": "For each binary combination of the input variables, there are three possible outputs",
+    "a": "False"
+  },
+  {
+    "q": "Frequency = Hertz/second",
+    "a": "False"
+  },
+  {
+    "q": "Gate array chip design is the most expensive style",
+    "a": "False"
+  },
+  {
+    "q": "Hierarchy is useful because it reuses blocks if possible",
+    "a": "True"
+  },
+  {
+    "q": "It is possible to recreate an audio original quality through extract if the pattern fromdigital code",
+    "a": "True"
+  },
+  {
+    "q": "Only Software is necessary to successfully implement Unicode",
+    "a": "False"
+  },
+  {
+    "q": "Output inversion for Programmable Logic Array is unavailable",
+    "a": "False"
+  },
+  {
+    "q": "Overflow happens under 2 conditions: a) negative added to another negative gives positive; b) positive added to positive gives negative",
+    "a": "True"
+  },
+  {
+    "q": "PAM is for video encoding",
+    "a": "False"
+  },
+  {
+    "q": "Propagation delay is usually measured at 30% point with respect to the L and H output voltage level",
+    "a": "False"
+  },
+  {
+    "q": "Sequential circuits consist of combinational logic only",
+    "a": "False"
+  },
+  {
+    "q": "Solve for the following: 2438 plus 1728=",
+    "a": "435(8)"
+  },
+  {
+    "q": "Solve for the following: 3a1216 less 29A(16)",
+    "a": "3778(16)"
+  },
+  {
+    "q": "The detailed specification of a cell for the use of a designer is called cell specification",
+    "a": "False"
+  },
+  {
+    "q": "The output of sequential circuits depend only on input values",
+    "a": "False"
+  }
+]

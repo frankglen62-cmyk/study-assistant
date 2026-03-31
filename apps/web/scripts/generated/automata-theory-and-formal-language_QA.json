@@ -1,0 +1,986 @@
+[
+  {
+    "q": "__ is a finite set of states.",
+    "a": "Q"
+  },
+  {
+    "q": "__ is a finite set of symbols called the alphabet.",
+    "a": "Σ"
+  },
+  {
+    "q": "__ is the initial state from where any input is processed (q0 ∈ Q).",
+    "a": "q0"
+  },
+  {
+    "q": "______ is used to derive a string using the production rules of a grammar.",
+    "a": "Parsing"
+  },
+  {
+    "q": "“C if H” is also the same as saying _______.",
+    "a": "“If H then ”"
+  },
+  {
+    "q": "“If H then ” is also the same as saying _______.",
+    "a": "“C if H”"
+  },
+  {
+    "q": "“Whenever H holds, C follows” can also be said as _______.",
+    "a": "H → C"
+  },
+  {
+    "q": "{Q, Σ, q0, F, δ, Q × Σ → Q} is…",
+    "a": "There is no such tuple"
+  },
+  {
+    "q": "* Starts from tree leaves. It proceeds upward to the root which is the starting symbol S.",
+    "a": "Bottom-Up Approach"
+  },
+  {
+    "q": "* Starts with the starting symbol S. It goes down to tree leaves using productions.",
+    "a": "Top-Down Approach"
+  },
+  {
+    "q": "|-* is the _____ closure of |-",
+    "a": "transitive and reflexive"
+  },
+  {
+    "q": "A __________ of a derivation is a tree in which each internal node is labeled with a nonterminal.",
+    "a": "parse tree"
+  },
+  {
+    "q": "A - B will contain elements in?",
+    "a": "A not in B"
+  },
+  {
+    "q": "A ⊂ B is read as ________________.",
+    "a": "A is a proper subset of B"
+  },
+  {
+    "q": "A 2-Tape Turing Machine ___________________.",
+    "a": "can show that recursive languages are closed under union"
+  },
+  {
+    "q": "A compact textual representation of a set of strings representing a language.",
+    "a": "Regular Expressions"
+  },
+  {
+    "q": "A conceptual design for a machine consisting of a Mill, Store, Printer, and Readers.",
+    "a": "Analytic Engine"
+  },
+  {
+    "q": "A DFA can remember a finite amount of information, but a can remember an infinite amount of information.",
+    "a": "PDA"
+  },
+  {
+    "q": "A DFA is defined ____________________.",
+    "a": "by a 5-tuple which is {Q, Σ, q0, F, δ}"
+  },
+  {
+    "q": "A DFA is represented by digraphs called.",
+    "a": "State Diagram"
+  },
+  {
+    "q": "A DPDA is a PDA in which",
+    "a": "No state p has two outgoing transitions"
+  },
+  {
+    "q": "A Finite Automaton with null moves (FA-ε) does transit not only after giving input from the alphabet set but also without any input symbol. This transition without input is called a",
+    "a": "Null Move"
+  },
+  {
+    "q": "A finite number of states.",
+    "a": "Q"
+  },
+  {
+    "q": "A finite set of input symbols.",
+    "a": "Σ"
+  },
+  {
+    "q": "A finite set of states",
+    "a": "Q"
+  },
+  {
+    "q": "A formal language is a set of strings, each string composed of symbols from a finite set called.",
+    "a": "Alphabet"
+  },
+  {
+    "q": "A general purpose, programmable, information processor with input and output.",
+    "a": "computer"
+  },
+  {
+    "q": "A good regular expression for any valid real number using engineering notation is ______________.",
+    "a": "[0-9]+[0-9]*[(E|e)[0-9]+]"
+  },
+  {
+    "q": "A good regular expression for any valid whole number is ______________.",
+    "a": "[0-9]+"
+  },
+  {
+    "q": "A good regular expression of a person's name is ______________.",
+    "a": "[A-Z][a-z]*"
+  },
+  {
+    "q": "A grammar G is ambiguous if there is a word w Î L(G) having are least two different parse trees.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A language accepted by Deterministic Push down automata is closed under which of the following?",
+    "a": "complement"
+  },
+  {
+    "q": "A language is regular if and only if.",
+    "a": "Accepted by DFA"
+  },
+  {
+    "q": "A may or may not read an input symbol, but it has to read the top of the stack in every transition.",
+    "a": "PDA"
+  },
+  {
+    "q": "A Moore machine can be described by a tuple.",
+    "a": "6"
+  },
+  {
+    "q": "A nested if-then statement is one of these:",
+    "a": "If w then if x then y else z"
+  },
+  {
+    "q": "A new symbol is added at the top.",
+    "a": "Push"
+  },
+  {
+    "q": "A parsing that starts from the top with the start-symbol and derives a string using a parsetree.",
+    "a": "top-down parser"
+  },
+  {
+    "q": "A PDA accepts a string when, after reading the entire string, the PDA is in a final state.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A PDA is already in its accept state if:",
+    "a": "it is either in the final state or the stack is empty"
+  },
+  {
+    "q": "A PDA machine configuration (p, w, y) can be correctly represented as.",
+    "a": "Current state, Unprocessed input, Stack content"
+  },
+  {
+    "q": "A PDA machine configuration (p, w, y) can be ly represented as ____________",
+    "a": "current state, unprocessed input, stack content"
+  },
+  {
+    "q": "A pushdown automata can be regarded as:",
+    "a": "a ε-NFA with a stack"
+  },
+  {
+    "q": "A pushdown automaton is a way to implement a context-free grammar in a similar way to design DFA for a regular grammar.",
+    "a": "TRUE"
+  },
+  {
+    "q": "A regular expression consisting of a finite set of grammar rules is a quadruple.",
+    "a": "FALSE"
+  },
+  {
+    "q": "A right-most derivation of a sentential form is one in which rules transforming the are always applied.",
+    "a": "Context"
+  },
+  {
+    "q": "A set has n elements, then the number of elements in its power set is?",
+    "a": "2 ^ n"
+  },
+  {
+    "q": "A set of accepting states (F ∈ Q).",
+    "a": "F"
+  },
+  {
+    "q": "A set of final state/states of Q (F⊆Q).",
+    "a": "F"
+  },
+  {
+    "q": "A set of rules, P: N → (N U T)*, it does have any right context or left context.",
+    "a": "P"
+  },
+  {
+    "q": "A set of strings of a's and b's of any length including the null string. So L= { ε, a, b, aa , ab , bb , ba, aaa.......}, the regular",
+    "a": "(a+b)*"
+  },
+  {
+    "q": "A set of strings of a's and b's of any length including the null string. So L= { ε, a, b, aa , ab , bb , ba, aaa.......}, the regular expression is.",
+    "a": "(a+b)*"
+  },
+  {
+    "q": "A set of terminals where N ∩ T = NULL.",
+    "a": "T"
+  },
+  {
+    "q": "A set on non-terminal symbols.",
+    "a": "S & A"
+  },
+  {
+    "q": "A stack symbols",
+    "a": "Σ"
+  },
+  {
+    "q": "A string is accepted by a, iff the DFA/NDFA starting at the initial state ends in an after reading the string.",
+    "a": "NDFA"
+  },
+  {
+    "q": "A sub-tree of a derivation tree/parse tree such that either all of its children are in the sub-tree or none of them are in the",
+    "a": "Partial Derivation Tree, Sub-Tree"
+  },
+  {
+    "q": "A symbol X is reachable _________________________.",
+    "a": "if S →* aXβ"
+  },
+  {
+    "q": "A transition function δ : Q × (Σ ∪ {ε}) → 2Q.",
+    "a": "δ"
+  },
+  {
+    "q": "A transition function: Q × (Σ∪{ε}) × S × Q × S*.",
+    "a": "δ"
+  },
+  {
+    "q": "A' will contain how many elements from the original set A?",
+    "a": "0"
+  },
+  {
+    "q": "According to the 5-tuple representation i.e. FA= {Q, ∑, δ, q, F} Statement 1: q ϵ Q'; Statement 2: FϵQ",
+    "a": "Statement 1 is false, Statement 2 is true"
+  },
+  {
+    "q": "According to what concept is CFL a superset of RL?",
+    "a": "Chomsky Hierarchy"
+  },
+  {
+    "q": "All functions are relations",
+    "a": "True"
+  },
+  {
+    "q": "All relations are functions",
+    "a": "False"
+  },
+  {
+    "q": "All trees contain loops.",
+    "a": "False"
+  },
+  {
+    "q": "An algorithms to shampoo your hair.",
+    "a": "rinse, lather, repeat"
+  },
+  {
+    "q": "An alphabet is any finite set of symbols.",
+    "a": "TRUE"
+  },
+  {
+    "q": "An automaton that produces outputs based on current input and/or previous state is called.",
+    "a": "Transducer"
+  },
+  {
+    "q": "An English like abbreviations representing elementary computer operations.",
+    "a": "Assembly Language"
+  },
+  {
+    "q": "An example string w of a language L characterized by equal number of As and Bs is _______________.",
+    "a": "ABBBAA"
+  },
+  {
+    "q": "An indirect way of building a CFG is to _____________",
+    "a": "build a PDA and then construct a CFG from it"
+  },
+  {
+    "q": "An initial state q0 ∈ Q",
+    "a": "q0"
+  },
+  {
+    "q": "An order rooted tree that graphically represents the semantic information a string derived from a context-free grammar.",
+    "a": "Derivation tree"
+  },
+  {
+    "q": "An ε-NFA with a stack is also regarded as:",
+    "a": "A PDA"
+  },
+  {
+    "q": "Any production rule in the form A → B where A, B ∈ Non-terminal is called unit production.",
+    "a": "Unit Production"
+  },
+  {
+    "q": "Any production rule in the form A → B where A, B ∈ Non-terminal is called.",
+    "a": "Unit Production"
+  },
+  {
+    "q": "Any set that represents the value of the Regular Expression is called a Property set.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Are ambiguous grammar context free?",
+    "a": "TRUE"
+  },
+  {
+    "q": "are parameterized statement, they are true or false depending on the values of their parameters.",
+    "a": "predicates"
+  },
+  {
+    "q": "Blank symbol",
+    "a": "Δ"
+  },
+  {
+    "q": "challenged the mathematical community to find an infallible, mechanical method for constructing and checking truth of mathematical statements.",
+    "a": "David Hilbert"
+  },
+  {
+    "q": "Checking whether there is a matching parenthesis in a computer code can be done by a ______________.",
+    "a": "context-free grammar"
+  },
+  {
+    "q": "Circuits in graphs are always simple paths.",
+    "a": "True"
+  },
+  {
+    "q": "Computer science has roots in two fields :",
+    "a": "Mathematics"
+  },
+  {
+    "q": "Computers are general purpose because they can perform many different tasks.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Connected graphs have components.",
+    "a": "False"
+  },
+  {
+    "q": "Context Free Languages is closed under intersection.",
+    "a": "False"
+  },
+  {
+    "q": "Context-free grammars are more expressive than finite automata; if a language L is _____ by a finite automata then L can be _______ by a context-free grammar.",
+    "a": "accepted, generated"
+  },
+  {
+    "q": "Context-free grammars are more expressive than finite automata; if a language L is by a finite automata then L can be blank by a context-free grammar.",
+    "a": "Accepted"
+  },
+  {
+    "q": "Context-free grammars are more expressive than finite automata; if a language L is by a finite automata then L can be by a context-free grammar.",
+    "a": "Accepted, Ignored"
+  },
+  {
+    "q": "Elimination of productions and symbols is called simplification of CFGs. Simplification essentially comprises of the following steps:",
+    "a": "Reduction of CFG"
+  },
+  {
+    "q": "Empty set is a/an ________________.",
+    "a": "Finite set"
+  },
+  {
+    "q": "Empty string",
+    "a": "Σ"
+  },
+  {
+    "q": "Every context free grammar can be transformed into an equvalent non deterministic push down automata.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Every set is a / an ________________ of itself.",
+    "a": "Improper Subset"
+  },
+  {
+    "q": "Finite Automata all regular languages and only regular languages.",
+    "a": "Accept"
+  },
+  {
+    "q": "Finite set of input alphabets.",
+    "a": "Σ"
+  },
+  {
+    "q": "Finite set of states",
+    "a": "Q"
+  },
+  {
+    "q": "For a regular expression 'a', we can construct the following FA:",
+    "a": "TRUE"
+  },
+  {
+    "q": "For bottom-up parsing, a PDA has the following four types of transitions:",
+    "a": "Push the current input symbol into the stack., Replace the right‑hand side of a production at the top of the stack with its left‑hand side. , If the top of the stack element matches with the current input symbol, pop it. , If the input string is fully read and only if the start symbol 'S' remains in the stack, pop it and go to the final state ."
+  },
+  {
+    "q": "For every CFL, G, there exists a PDA M such that L(G) = L(M) and vice versa.",
+    "a": "TRUE"
+  },
+  {
+    "q": "For every pair of regular expressions R and S, the languages denoted by R(SR)* and (RS)*R are the same.",
+    "a": "TRUE"
+  },
+  {
+    "q": "For the given Regular expression, the minimum number of terminals required to derive its grammar (011+1)*(01)* is",
+    "a": "3,6,2,5,4"
+  },
+  {
+    "q": "Given that the language L = {ε}, is L empty?",
+    "a": "No, because the language has an empty symbol"
+  },
+  {
+    "q": "Given the language L = {ε}, is L empty?",
+    "a": "No, because the language has an empty symbol"
+  },
+  {
+    "q": "Given the productions S → αXβ, X → a, ___________________.",
+    "a": "X is useful"
+  },
+  {
+    "q": "Global Positioning System (GPS) calculates latitude and longitude from satellite signals.",
+    "a": "True"
+  },
+  {
+    "q": "Having the initial state as a final state, give the deterministic finite state automaton that accepts the regular expression.",
+    "a": "((a.b)+c)*"
+  },
+  {
+    "q": "How many rational and irrational numbers are possible between 0 and 1?",
+    "a": "Infinite"
+  },
+  {
+    "q": "How many sets belong to the power set of A = {a,b,c,d}?",
+    "a": "16"
+  },
+  {
+    "q": "Identify the modeling recognition of the word \"then\"",
+    "a": "Start State"
+  },
+  {
+    "q": "If A →* ε, then we can say that:",
+    "a": "A is nullable"
+  },
+  {
+    "q": "If A = {0,2) and B = {1,3), then Cartesian product is?",
+    "a": "A x B not equal B x A"
+  },
+  {
+    "q": "If A = {3, 4, 6, 8} and",
+    "a": "{ 4,6}"
+  },
+  {
+    "q": "If A = {5,6,7} and B = {7,8,9} then A U B is equal to:",
+    "a": "{5,6,7,8,9}"
+  },
+  {
+    "q": "If A has m elements and B has n elements, then A x B has elements?",
+    "a": "m x n"
+  },
+  {
+    "q": "If a problem can be shown that it belongs to the class of recursively enumerable languages then ______________________.",
+    "a": "It may be solved by any TM"
+  },
+  {
+    "q": "If L is recursively enumerable then ________________.",
+    "a": "L may not be recursively enumerable"
+  },
+  {
+    "q": "If L1 and L2 are regular sets then intersection of these two will be.",
+    "a": "Regular"
+  },
+  {
+    "q": "If R = {(1,1),(2,3),(4,5)}, then domain of the function is?",
+    "a": "Dom R = {1,2,4}"
+  },
+  {
+    "q": "If R ={(1,1),(2,3),(4,5)}, then the Range of the function is?",
+    "a": "Range R = {1,3,5}"
+  },
+  {
+    "q": "If we can successfully and correctly stimulate a TM with storage by two standard TMs, then ______________________.",
+    "a": "we have already shown that the two are equivalent"
+  },
+  {
+    "q": "If we can successfully and ly stimulate a TM with storage by two standard TMs, then ______________________",
+    "a": "we have already shown that the two are equivalent"
+  },
+  {
+    "q": "If Σ2 is {00, 01, 10, 11}, then Σ =",
+    "a": "{0, 1}"
+  },
+  {
+    "q": "In Allan M. Turing proposed the Turing machine as a model of \"any possible computation\".",
+    "a": "1936"
+  },
+  {
+    "q": "In mathematical notation, the symbol → means...",
+    "a": "implication"
+  },
+  {
+    "q": "In the Chomsky Hierarchy:",
+    "a": "Regular Language ⊂ Context-sensitive Language"
+  },
+  {
+    "q": "In words, H → C means…",
+    "a": "Whenever H holds, C follows"
+  },
+  {
+    "q": "Increasing accuracy, or precision",
+    "a": "Minimizing False Positives"
+  },
+  {
+    "q": "Increasing coverage, or recall.",
+    "a": "Minimizing False Negatives"
+  },
+  {
+    "q": "Is a set of final state/states of Q (F ⊆ Q).",
+    "a": "F"
+  },
+  {
+    "q": "Is the transition function where δ: Q × Σ → Q.",
+    "a": "δ"
+  },
+  {
+    "q": "Is to be applied to show that certain languages are not regular. It should never be used to show a language is regular.",
+    "a": "Pumping Lemma"
+  },
+  {
+    "q": "Is used to derive a string using the production rules of a grammar.",
+    "a": "Production"
+  },
+  {
+    "q": "It generate context-free languages. The productions must be in the form A → γ",
+    "a": "Type-2 grammars"
+  },
+  {
+    "q": "IT generate recursively enumerable languages. The productions have no restrictions and phase structure grammar including all formal grammars.",
+    "a": "Type-0 grammars"
+  },
+  {
+    "q": "IT generate recursively enumerable languages. The productions have no restrictions and phase structure grammar including all formal grammars. They generate the languages that are recognized by a Turing machine.",
+    "a": "Type-0 grammars"
+  },
+  {
+    "q": "It is a unary operator on a set of symbols or strings, that gives the infinite set of all possible strings of all possible lengths.",
+    "a": "Σ *"
+  },
+  {
+    "q": "It process information in their efforts to eat, survive, and reproduce.",
+    "a": "Living Organisms"
+  },
+  {
+    "q": "It refers to the measure of the number of times the tape moves when the machine is initialized for some input symbols and the space complexity is the number of cells of the tape written.",
+    "a": "Time Complexity"
+  },
+  {
+    "q": "It starts from the bottom with the string and comes to the start symbol using a parse tree.",
+    "a": "Bottom-Up Parser"
+  },
+  {
+    "q": "It starts from the top with the start-symbol and derives a string using a parse tree.",
+    "a": "Top-Down Parser"
+  },
+  {
+    "q": "JASON can generally be parsed by ______________.",
+    "a": "A CFG"
+  },
+  {
+    "q": "Labeled by a non-terminal symbol.",
+    "a": "Vertex"
+  },
+  {
+    "q": "Labeled by a terminal symbol or ε.",
+    "a": "Leaves"
+  },
+  {
+    "q": "Labeled by the start symbol.",
+    "a": "Root Vertex"
+  },
+  {
+    "q": "Language may be derived from other strings using the productions in a grammar.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Leibniz introduced binary notation of calculation.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Let the class of language accepted by finite state machine be L1 and the class of languages represented by regular expressions be L2 then.",
+    "a": "L1=L2"
+  },
+  {
+    "q": "Let w = 100011, is w a member of a language of string with equal number of 0s and 1s?",
+    "a": "Yes, because the number of 1s is the same as the number of 0s, which is 3"
+  },
+  {
+    "q": "NFA means:",
+    "a": "Nondeterministic Finite Automaton"
+  },
+  {
+    "q": "Noam Chomsky gave a mathematical model in _______ which is effective for writing computer languages.",
+    "a": "1956"
+  },
+  {
+    "q": "Non-terminal symbols",
+    "a": "S & A"
+  },
+  {
+    "q": "NP-Hard problems are problems that are...",
+    "a": "intractable"
+  },
+  {
+    "q": "Number of final state require to accept in minimal finite automata.",
+    "a": "None of the mentioned"
+  },
+  {
+    "q": "Number of states require to accept string ends with 10.",
+    "a": "3"
+  },
+  {
+    "q": "One of the first programmable electronic computers in 1945.",
+    "a": "ENIAC"
+  },
+  {
+    "q": "Production Rule: aAb->agb belongs to which of the following category?",
+    "a": "Context Sensitive Language"
+  },
+  {
+    "q": "Recursive : TM that always halt = ________________ : TM that may or may not halt",
+    "a": "recursively enumerable"
+  },
+  {
+    "q": "Regular expression Φ* is equivalent to.",
+    "a": "ϵ"
+  },
+  {
+    "q": "Regular sets are closed under union,concatenation and kleene closure.",
+    "a": "TRUE"
+  },
+  {
+    "q": "S → aAb, aA →aaAb, A→ε",
+    "a": "P"
+  },
+  {
+    "q": "Set of all tape symbols",
+    "a": "Γ"
+  },
+  {
+    "q": "Set of final or accepting states.",
+    "a": "F"
+  },
+  {
+    "q": "Some graphs contain cycles.",
+    "a": "True"
+  },
+  {
+    "q": "Start symbol, S ∈ N",
+    "a": "S"
+  },
+  {
+    "q": "Starting state",
+    "a": "q0"
+  },
+  {
+    "q": "T generate recursively enumerable languages. The productions have no restrictions and phase structure grammar including all formal grammars.",
+    "a": "Type-0 grammars"
+  },
+  {
+    "q": "Terminal symbols",
+    "a": "a & b"
+  },
+  {
+    "q": "The _____ of two sets A and B is the set containing those elements which are elements of A or elements of B.",
+    "a": "union"
+  },
+  {
+    "q": "The __________ of a Turing machine depends on the current state of finite control and the tape symbol present in the input tape.",
+    "a": "single move"
+  },
+  {
+    "q": "The algebraic law of regular expression described by E + E = E is _____________.",
+    "a": "Idempotent"
+  },
+  {
+    "q": "The algebraic law of regular expression described by φE = φ = Eφ is _______________.",
+    "a": "Annihilator"
+  },
+  {
+    "q": "The basic model of a Turing machine consists of _______ and _______ , in which the finite control has finite set of states and the transition between the states.",
+    "a": "finite control, input tape"
+  },
+  {
+    "q": "The body of a production in CFG is composed of:",
+    "a": "a string of terminals and non-terminals"
+  },
+  {
+    "q": "The cardinality of the union of two disjoint sets is less than the sum of the cardinality of the given sets.",
+    "a": "True"
+  },
+  {
+    "q": "The CFG \"S → (S) | SS | ε\" accepts:",
+    "a": "the string \"((()))(())(())\""
+  },
+  {
+    "q": "The commutativity property of set operations states that the union of any set with same set is the set itself.",
+    "a": "False"
+  },
+  {
+    "q": "The complement of an infinite language is necessarily finite.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The difference between DFA and NFA",
+    "a": "DFA can exist in only one state at a given time while NFA can exist in multiple states"
+  },
+  {
+    "q": "The difference between regular expressions and finite automata is _____________.",
+    "a": "that regular expressions are more program syntax-like while automata are more machine-like"
+  },
+  {
+    "q": "The empty set is always a subset of any set.",
+    "a": "True"
+  },
+  {
+    "q": "The entity which generate Language is termed as regular languages.",
+    "a": "FALSE"
+  },
+  {
+    "q": "The entity which generate Language is termed as:",
+    "a": "Grammar"
+  },
+  {
+    "q": "The first counting machine developed 5000 years ago in the Middle East.",
+    "a": "Abacus"
+  },
+  {
+    "q": "The first mechanical calculator using gears for calculation developed in 1642.",
+    "a": "Pascaline"
+  },
+  {
+    "q": "The following are phases of C++ Programs except",
+    "a": "Process"
+  },
+  {
+    "q": "The initial stack top symbol (I ∈ S).",
+    "a": "I"
+  },
+  {
+    "q": "The initial state (q0 ∈ Q)",
+    "a": "q0"
+  },
+  {
+    "q": "The intersection of sets A and B is expressed as _________________.",
+    "a": "A ∩ B"
+  },
+  {
+    "q": "The language L contains all strings over the alphabet {a,b} that begin with and end with",
+    "a": "a,b"
+  },
+  {
+    "q": "The minimum number of states required to recognize an octal number divisible by 3 are/is.",
+    "a": "3"
+  },
+  {
+    "q": "The number of elements in the set for the Language L={xϵ(∑r) *|length if x is at most 2} and ∑={0,1} is",
+    "a": "7"
+  },
+  {
+    "q": "The PDA has infinite memory and access in _____ order and the finite automata has ____ memory.",
+    "a": "LIFO, finite"
+  },
+  {
+    "q": "The power set of a given set does not contain the set itself.",
+    "a": "False"
+  },
+  {
+    "q": "The recursive inference procedure determines that string w is in the language of the variable A, A being the starting variable.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The relationship between recursive and recursively enumerable languages is ________________.",
+    "a": "⊂"
+  },
+  {
+    "q": "The stack content",
+    "a": "s"
+  },
+  {
+    "q": "The stack contents",
+    "a": "s"
+  },
+  {
+    "q": "The start symbol.",
+    "a": "S"
+  },
+  {
+    "q": "The string \"0000111\" is accepted by _____________.",
+    "a": "the CFG S → 0S1 | A, A → 0A | ε"
+  },
+  {
+    "q": "The string aaaabbbccaaad is accepted by this regular expression.",
+    "a": "a*b*c*a*d*"
+  },
+  {
+    "q": "The string abe is accepted by this regular expression.",
+    "a": "a*b*c*a*d*e+"
+  },
+  {
+    "q": "The string acde is accepted by this regular expression.",
+    "a": "a*b*c*a*d*e+"
+  },
+  {
+    "q": "The symbol used for the empty string is ____________.",
+    "a": "ε"
+  },
+  {
+    "q": "The tape head is positioned at one of the tape cells for scanning the input symbol from the input tape and initially the tape head points at the left most cell of the input tape.",
+    "a": "TRUE"
+  },
+  {
+    "q": "The theory of formal languages finds its applicability extensively in the fields of Computer Science. gave a mathematical model of grammar in which is effective for writing computer languages.",
+    "a": "Noam Chomsky, 1956"
+  },
+  {
+    "q": "The top symbol is read and removed.",
+    "a": "Pop"
+  },
+  {
+    "q": "The transition a Push down automaton makes it additionally dependent upon the _____.",
+    "a": "stack"
+  },
+  {
+    "q": "The unconsumed input.",
+    "a": "w"
+  },
+  {
+    "q": "The union of sets A and B is expressed as?",
+    "a": "A U B"
+  },
+  {
+    "q": "There are 5 tuples in finite state machine.",
+    "a": "TRUE"
+  },
+  {
+    "q": "Transition function",
+    "a": "δ"
+  },
+  {
+    "q": "Turing hypothesis believed that a function is said to be computable if and only if it can be computed by a Turing machine.",
+    "a": "FALSE"
+  },
+  {
+    "q": "Unconsumed input",
+    "a": "w"
+  },
+  {
+    "q": "What are strings?",
+    "a": "A string is a finite sequence of symbols chosen from Σ"
+  },
+  {
+    "q": "What can be said about CFLs?",
+    "a": "It is closed under •"
+  },
+  {
+    "q": "What can be said about undecidable problems?",
+    "a": "They are not recursive"
+  },
+  {
+    "q": "What can not be said about CFLs?",
+    "a": "It is closed under —"
+  },
+  {
+    "q": "What cannot be said about automata theory?",
+    "a": "None of the choices"
+  },
+  {
+    "q": "What concept did Alan Turing introduce?",
+    "a": "The concept of decidability"
+  },
+  {
+    "q": "What is a grammar?",
+    "a": "A device that enumerates the sentences of a language"
+  },
+  {
+    "q": "What is a language?",
+    "a": "A collection of finite-length sentences that were constructed from a finite set of symbols"
+  },
+  {
+    "q": "What is a Universal TM?",
+    "a": "a TM that stimulates another TM"
+  },
+  {
+    "q": "What is an undecidable problem?",
+    "a": "When a TM cannot make a decision on an instance of the problem"
+  },
+  {
+    "q": "What is an ε-NFA?",
+    "a": "It is an NFA with at least one explicit ε-transition defined"
+  },
+  {
+    "q": "What is automata theory?",
+    "a": "All of the choices"
+  },
+  {
+    "q": "What is the final result after converting the following NFA-ε to NFA without Null move.",
+    "a": "What is the final result after converting the following NFA-ε to NFA without Null move."
+  },
+  {
+    "q": "What kind of languages does a TM decide?",
+    "a": "recursively enumerable"
+  },
+  {
+    "q": "Which among the following cannot be accepted by a regular grammar?",
+    "a": "L is a set of 0n1n"
+  },
+  {
+    "q": "Which among the following is not a part of the Context free grammar tuple?",
+    "a": "End SymbolCorre"
+  },
+  {
+    "q": "Which among the following is the correct option for the given grammar? G->X111|G1,X->X0|00.",
+    "a": "{0a1b|a=2,b=3}"
+  },
+  {
+    "q": "Which among the following is the option for the given grammar? G->X111|G1,X->X0|00",
+    "a": "{0a1b|a=2,b=3}"
+  },
+  {
+    "q": "Which of the following is a not a part of 5-tuple finite automata?",
+    "a": "Output Alphabet"
+  },
+  {
+    "q": "Which of the following Set Operations produces the set that contains everything that is in Set A and in Set B?",
+    "a": "Union"
+  },
+  {
+    "q": "Which of the following statement is false in context of tree terminology?",
+    "a": "Root with no children is called a leaf"
+  },
+  {
+    "q": "Which of the following statements are correct for a concept called inherent ambiguity in CFL?",
+    "a": "Every CFG for L is ambiguous"
+  },
+  {
+    "q": "Which of the following statements are for a concept called inherent ambiguity in CFL?",
+    "a": "Every CFG for L is ambiguous"
+  },
+  {
+    "q": "Which of the following statements is true about NPDA, DPDA, and RL?",
+    "a": "RL ⊂ DPDA ⊂ NPDA"
+  },
+  {
+    "q": "Which of the following ways can be done to simplify a CFG?",
+    "a": "Eliminate productions of the form A → B"
+  },
+  {
+    "q": "Which of the following will not be accepted by the following DFA?",
+    "a": "ababaabaa"
+  },
+  {
+    "q": "Which one is the answer?",
+    "a": "Computer"
+  },
+  {
+    "q": "Who is the father of modern computer science?",
+    "a": "Alan Turing"
+  },
+  {
+    "q": "Who is the father of modern computer?",
+    "a": "Charles Babbage"
+  },
+  {
+    "q": "Z2 uses electricity to convey letters and transmit information quickly in 1844.",
+    "a": "TRUE"
+  }
+]

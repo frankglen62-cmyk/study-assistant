@@ -1,0 +1,162 @@
+[
+  {
+    "q": "_____ is a command line interface that lets you run Unix commands to explore _____ is a command line interface that lets you run Unix commands to explore directories, execute scripts, and work with Python",
+    "a": "Terminal"
+  },
+  {
+    "q": "_____, a unique feature of VSCode, allows you to get code suggestions while you're typing",
+    "a": "IntelliSense"
+  },
+  {
+    "q": "Any expression that breaks down to either true or false is called a conditional, or _____",
+    "a": "boolean expression"
+  },
+  {
+    "q": "How would you write the \"Hello, world!\" program in Python?",
+    "a": "print (\"Hello World!\")"
+  },
+  {
+    "q": "If you execute the following expression, what is the output? >>> 3 + 5 * 2",
+    "a": "13"
+  },
+  {
+    "q": "If you were developing an application for an iPhone, which IDE would you use?",
+    "a": "XCode"
+  },
+  {
+    "q": "If you were writing your source code in the JavaScript programming language, what file extension would you use to save your file?",
+    "a": "js"
+  },
+  {
+    "q": "In programming, a crash is when your program stops early or freezes because something unexpected happened",
+    "a": "True"
+  },
+  {
+    "q": "In this function definition, the variable \"name\" is _____def hello(name): print(\"Hey,\", name)",
+    "a": "a parameter"
+  },
+  {
+    "q": "Multiple statements grouped together are called a _____",
+    "a": "block"
+  },
+  {
+    "q": "Programming can be defined as: converting ideas into _____ that a computer can understand",
+    "a": "instructions"
+  },
+  {
+    "q": "Python treats all numbers the same, regardless of numerical value",
+    "a": "False"
+  },
+  {
+    "q": "Source code is written in rich text",
+    "a": "False"
+  },
+  {
+    "q": "The _____ keyword is used to send back values from a Python function",
+    "a": "return"
+  },
+  {
+    "q": "The code that's contained inside of a function is often called the function's legs",
+    "a": "False"
+  },
+  {
+    "q": "This if-else statement is written in _____if \"apples\" = \"apples\" puts \"You're comparing the same thing\" end",
+    "a": "Ruby"
+  },
+  {
+    "q": "To get Python code suggestions, you need to tell VS Code which Python interpreter to use",
+    "a": "True"
+  },
+  {
+    "q": "Typing \"What is 2 plus 2?\" into the Python prompt causes a _____",
+    "a": "syntax error"
+  },
+  {
+    "q": "What does this expression evaluate to? 2 * 3 + 2 * 5",
+    "a": "16"
+  },
+  {
+    "q": "What does this expression evaluate to? 3 + 2 * 5",
+    "a": "13"
+  },
+  {
+    "q": "What is the output of the following program?defisEven(num): return num % 2 = 0 if isEven(3): print(\"3 is even\") else: print(\"3 is not even\")",
+    "a": "3 is not even"
+  },
+  {
+    "q": "What is the output of the following Python code?first_name = \"Jeff\" #first_name = \"Sara\" print(first_name)",
+    "a": "Jeff"
+  },
+  {
+    "q": "What is the output of this program?num = 16 if num % 3 = 0: print(num, \"is divisible by 3\") print(\"The end\")",
+    "a": "The end"
+  },
+  {
+    "q": "What is the type of the following value: '12'?",
+    "a": "str"
+  },
+  {
+    "q": "What programming language is this function written in?defcalculate_check(hourly_rate) hourly_rate * 40 end",
+    "a": "Ruby"
+  },
+  {
+    "q": "When working with the Terminal inside of VSCode, how can you expand the pane?",
+    "a": "Click the up arrow"
+  },
+  {
+    "q": "Which command will start the Python prompt on your computer?",
+    "a": "python3"
+  },
+  {
+    "q": "Which expression evaluates to 2?",
+    "a": "5 % 3"
+  },
+  {
+    "q": "Which if-else statement will not produce this output?is divisible by 3",
+    "a": "num = 16 if num % 3 = 0: print(\"is divisible by 3\") else: print(\"is not divisible by 3\")"
+  },
+  {
+    "q": "Which is an example of a runtime error?",
+    "a": "name = \"It's me!\" print(\"Hello\", Name)"
+  },
+  {
+    "q": "Which is an example of a syntax error?",
+    "a": "2 (4*2)"
+  },
+  {
+    "q": "Which language does not use a hybrid compiler/interpreter approach?",
+    "a": "C++"
+  },
+  {
+    "q": "Which of these is NOT a reason why we chose Python as the language for the course?",
+    "a": "highly performant"
+  },
+  {
+    "q": "Which of these is not a relational operator?",
+    "a": "\"=\""
+  },
+  {
+    "q": "Which of these will not output:I'm learning a lot!",
+    "a": "print('I'm learning a lot!')"
+  },
+  {
+    "q": "Which value is not an argument to the \"hello\" function?def hello(name): print(\"Hey,\", name) hello(\"John\") hello(\"Mya\")",
+    "a": "\"Hey\""
+  },
+  {
+    "q": "Which variable name is valid in Python?",
+    "a": "account_balance"
+  },
+  {
+    "q": "Why doesn't a Python file execute when you double-click it?",
+    "a": "Double-clicking does not run the Python Interpreter on the source code"
+  },
+  {
+    "q": "Why is there no output for this program?def goodbye(): print(\"Bye\")",
+    "a": "We never called the goodbye function"
+  },
+  {
+    "q": "With if-else statements, we will always execute one of the code blocks depending on the result of the condition test",
+    "a": "True"
+  }
+]

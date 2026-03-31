@@ -1,0 +1,1058 @@
+[
+  {
+    "q": "____ mod 9 = 5",
+    "a": "23"
+  },
+  {
+    "q": "_________ is defined as the remainder of the bn less the modulo.",
+    "a": "Primitive Roots"
+  },
+  {
+    "q": "-119 mod 16 = ?",
+    "a": "9"
+  },
+  {
+    "q": "-35 mod 7 = ?",
+    "a": "0"
+  },
+  {
+    "q": "-46 mod 5 = ?",
+    "a": "4"
+  },
+  {
+    "q": "-60 mod ___ = 0",
+    "a": "12"
+  },
+  {
+    "q": "-60 mod 3 = ?",
+    "a": "0"
+  },
+  {
+    "q": "-74 mod 8 = ?",
+    "a": "6"
+  },
+  {
+    "q": "-78 mod 8 = ?",
+    "a": "2"
+  },
+  {
+    "q": "-87 mod 6 = ?",
+    "a": "3"
+  },
+  {
+    "q": "-94 mod ____ = 8",
+    "a": "17"
+  },
+  {
+    "q": "\"If a number is divisible by _________, multiply 3 to the last digit then add the remaining number. Repeat the steps if necessary.\" This rule applies in",
+    "a": "Divisibility of 29"
+  },
+  {
+    "q": "129 mod 13 = ?",
+    "a": "12"
+  },
+  {
+    "q": "1890 is divisible by 2.",
+    "a": "True"
+  },
+  {
+    "q": "1890 is divisible by 3.",
+    "a": "True"
+  },
+  {
+    "q": "1890 is divisible by 5.",
+    "a": "True"
+  },
+  {
+    "q": "1890 is divisible by 7.",
+    "a": "True"
+  },
+  {
+    "q": "1890 is divisible by 9.",
+    "a": "True"
+  },
+  {
+    "q": "24 mod 3 = ?",
+    "a": "0"
+  },
+  {
+    "q": "25 mod 5 = ?",
+    "a": "0"
+  },
+  {
+    "q": "35 modulo 7 = ?",
+    "a": "0"
+  },
+  {
+    "q": "37 mod 4 = ?",
+    "a": "1"
+  },
+  {
+    "q": "4199 is divisible by 11.",
+    "a": "False"
+  },
+  {
+    "q": "4199 is divisible by 13.",
+    "a": "True"
+  },
+  {
+    "q": "4199 is divisible by 17.",
+    "a": "True"
+  },
+  {
+    "q": "4199 is divisible by 19.",
+    "a": "True"
+  },
+  {
+    "q": "4199 is divisible by 23.",
+    "a": "False"
+  },
+  {
+    "q": "42 mod 5 = ?",
+    "a": "2"
+  },
+  {
+    "q": "75 mod 6 = ?",
+    "a": "3"
+  },
+  {
+    "q": "83 mod 7 = ?",
+    "a": "6"
+  },
+  {
+    "q": "88 mod 9 = ?",
+    "a": "7"
+  },
+  {
+    "q": "A Fermat Number is a prime number that follows the form of 2s + 1.",
+    "a": "False"
+  },
+  {
+    "q": "A number is divisible by 2 and 3. Thus it is also divisible by 6.",
+    "a": "True"
+  },
+  {
+    "q": "A power function has a fixed __________.",
+    "a": "exponent"
+  },
+  {
+    "q": "All numbers are coprime of 385, EXCEPT:",
+    "a": "5"
+  },
+  {
+    "q": "All numbers are divisible by 1.",
+    "a": "True"
+  },
+  {
+    "q": "All numbers below are divisible by 3 except",
+    "a": "7562"
+  },
+  {
+    "q": "All of the numbers below have an answer of 4, EXCEPT:",
+    "a": "73 mod 8"
+  },
+  {
+    "q": "An exponential function has a fixed base that is raised to a variable.",
+    "a": "True"
+  },
+  {
+    "q": "Base on the given factor tree, what numbers should be written inside the boxes?",
+    "a": "2 and 3"
+  },
+  {
+    "q": "Based on the given factor tree, what is the unknown number?",
+    "a": "153"
+  },
+  {
+    "q": "Complete the expression '27 = 128 = ___ (mod 63)'",
+    "a": "2"
+  },
+  {
+    "q": "Complete the expression '53 = 125 = 14 (mod ___ )'",
+    "a": "37"
+  },
+  {
+    "q": "Complete the expression =E2=80=98 __13 = 1,594,323 = 819 (mod 1584)'",
+    "a": "3"
+  },
+  {
+    "q": "Complete the expression =E2=80=98 __13 = 1,594,323 = 819 (mod 1584)'.",
+    "a": "3"
+  },
+  {
+    "q": "Complete the mathematical statement: 142 = ____ = 0 (mod 28)",
+    "a": "196"
+  },
+  {
+    "q": "Complete the mathematical statement: 22^2 = ____ = 25 (mod 27).",
+    "a": "484"
+  },
+  {
+    "q": "Complete the statement: 152 = 225 = ___ (mod 27).",
+    "a": "9"
+  },
+  {
+    "q": "Complete the statement: 252 = 625 = ___ (mod 28).",
+    "a": "9"
+  },
+  {
+    "q": "Describe the value k of the function f(x) = 5xk, so that the answer is a fraction?",
+    "a": "Negative"
+  },
+  {
+    "q": "Double the last digit of the given number and subtract it from the remaining number excluding the last digit. This rule applies in",
+    "a": "Divisibility by 7"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 138 and 224",
+    "a": "2"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 210 and 320",
+    "a": "10"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 265 and 190",
+    "a": "5"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 36 and 99",
+    "a": "9"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 420 and 315",
+    "a": "105"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 469 and 357",
+    "a": "7"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 624 and 516",
+    "a": "12"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 77 and 121",
+    "a": "11"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 976 and 696",
+    "a": "8"
+  },
+  {
+    "q": "Find the Greatest Common Divisor: 352 and 41",
+    "a": "coprime"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 125 and 275",
+    "a": "25"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 178 and 150",
+    "a": "2"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 1800 and 2300",
+    "a": "100"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 244 and 260",
+    "a": "4"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 3425 and 4520",
+    "a": "5"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 366 and 420",
+    "a": "6"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 4250 and 2530",
+    "a": "10"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 500, 600 and 700",
+    "a": "100"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 78 and 96",
+    "a": "6"
+  },
+  {
+    "q": "Find the Greatest Common Divisor. Apply any method: 899 and 760",
+    "a": "relatively prime or coprime"
+  },
+  {
+    "q": "Find the Least Common Multiple: 10, 12 and 15",
+    "a": "60"
+  },
+  {
+    "q": "Find the Least Common Multiple: 2 and 3",
+    "a": "6"
+  },
+  {
+    "q": "Find the Least Common Multiple: 2 and 7",
+    "a": "14"
+  },
+  {
+    "q": "Find the Least Common Multiple: 3 and 11",
+    "a": "33"
+  },
+  {
+    "q": "Find the Least Common Multiple: 3 and 7",
+    "a": "21"
+  },
+  {
+    "q": "Find the Least Common Multiple: 4 and 15",
+    "a": "60"
+  },
+  {
+    "q": "Find the Least Common Multiple: 4, 6 and 8",
+    "a": "24"
+  },
+  {
+    "q": "Find the Least Common Multiple: 4, 8 and 10",
+    "a": "40"
+  },
+  {
+    "q": "Find the Least Common Multiple: 5 and 7",
+    "a": "35"
+  },
+  {
+    "q": "Find the Least Common Multiple: 6 and 14",
+    "a": "42"
+  },
+  {
+    "q": "Find TWO common multiples of the given numbers: 2 and 5",
+    "a": "10 and 20"
+  },
+  {
+    "q": "Find TWO common multiples of the given numbers: 3 and 4",
+    "a": "12 and 24"
+  },
+  {
+    "q": "Find TWO common multiples of the given numbers: 4 and 5",
+    "a": "20 and 40"
+  },
+  {
+    "q": "Find TWO common multiples of the given numbers: 5 and 11",
+    "a": "55 and 110"
+  },
+  {
+    "q": "Find TWO common multiples of the given numbers: 8 and 9",
+    "a": "72 and 144"
+  },
+  {
+    "q": "From the given numbers, which number has more number of factors?",
+    "a": "30"
+  },
+  {
+    "q": "From the given numbers below, _______ is the coprime of 143.",
+    "a": "19"
+  },
+  {
+    "q": "From the given numbers below, _______ is the coprime of 286?",
+    "a": "19"
+  },
+  {
+    "q": "Given: 162 = 256 = ___ (mod 27), what must be the value of the unknown?",
+    "a": "13"
+  },
+  {
+    "q": "Given: 202 = 400 = 22 (mod ___), what must be the value of the unknown?",
+    "a": "27"
+  },
+  {
+    "q": "Given: 22 = 4 = 32 (mod ___), what must be the value of the unknown?",
+    "a": "28"
+  },
+  {
+    "q": "How many divisors does 12 have?",
+    "a": "6"
+  },
+  {
+    "q": "How many factors does 421 have?",
+    "a": "2"
+  },
+  {
+    "q": "How many primitive roots below 100 does 421 have if the coprimes are between 5 and 11, using 3 as base?",
+    "a": "1"
+  },
+  {
+    "q": "IF a number is divisible by _________, multiply 3 to the last digit then add the remaining number Repeat the steps if necessary This rule applies in",
+    "a": "Divisibility of 29"
+  },
+  {
+    "q": "If a number is divisible by 11, the last 3 digits must be divisible by 11.",
+    "a": "False"
+  },
+  {
+    "q": "If a number is divisible by 23, multiply the last digit of the given number to 7 and add the remaining number. Repeat the steps if necessary.",
+    "a": "True"
+  },
+  {
+    "q": "If a number is divisible by 31, multiply the last number to 3 and subtract from the remaining number. Repeat the steps if necessary.",
+    "a": "True"
+  },
+  {
+    "q": "If a number is divisible by 37, multiply 11 to the last digit minus the remaining number. Repeat the steps if necessary.",
+    "a": "True"
+  },
+  {
+    "q": "If a number is divisible by 43, multiply 13 to the last digit of the number and add to the remaining number. Repeat steps if necessary.",
+    "a": "True"
+  },
+  {
+    "q": "If a number is divisible by 47, multiply 14 to the last digit of the number and add from the remaining number. Repeat the steps if necessary.",
+    "a": "False"
+  },
+  {
+    "q": "If k is less than 0 where k is not an integer, then f(0) is undefined and it has no y-intercepts.",
+    "a": "True"
+  },
+  {
+    "q": "If one of the factor of 420 is 14, the other one is____.",
+    "a": "30"
+  },
+  {
+    "q": "If the integers 5, 3, -4, 7, -10, 8, and -5 are arranged in order from least to greatest which integer would come first in the list.",
+    "a": "-10"
+  },
+  {
+    "q": "If the last two digits of a number are divisible by 4, then that number is a multiple of 4 and is divisible by 4 completely.",
+    "a": "True"
+  },
+  {
+    "q": "If the values of k are odd integers, thus the function has a certain symmetry.",
+    "a": "False"
+  },
+  {
+    "q": "If we substitute 7 for s, from the formula 2s + 1, then the answer is ____.",
+    "a": "129"
+  },
+  {
+    "q": "If we substitute 7 for s, from the formula 2s + 1, then the answer is ____. Is the answer a Fermat number?",
+    "a": "No"
+  },
+  {
+    "q": "If you obtain the factors of 444, the largest prime number is",
+    "a": "37"
+  },
+  {
+    "q": "If you substitute 5 to the Fermat form, the answer is ________?",
+    "a": "33"
+  },
+  {
+    "q": "If you substitute a negative integer to the exponent of a power function, then the answer is _____________.",
+    "a": "singularity"
+  },
+  {
+    "q": "In a power function the base is a variable and raised to a fixed exponent.",
+    "a": "True"
+  },
+  {
+    "q": "In finding the answer in 59 mod 5, the usual last step of congruence modulo is",
+    "a": "The remainder is the answer"
+  },
+  {
+    "q": "In mod 33, using 2, 3, and 5 as coprimes and base 5, the primitive roots are 8, ____, and ____.",
+    "a": "23 and 26"
+  },
+  {
+    "q": "Johnny borrowed money from his brother 10 months ago. He returned Php 1000.00 per month to his brother starting the month he borrowed the money. Currently, he owes his brother Php 5,000.00. How much money did he borrow from his brother?",
+    "a": "Php 15,000"
+  },
+  {
+    "q": "Listed below are three numbers that are composite. Which is not?",
+    "a": "577"
+  },
+  {
+    "q": "Power function is presented in the form f(x) = abc.",
+    "a": "False"
+  },
+  {
+    "q": "Simplify the expression 32 x 52 x 7 = ?",
+    "a": "1575"
+  },
+  {
+    "q": "The _____________ is the modulo of a certain number.",
+    "a": "remainder"
+  },
+  {
+    "q": "The expressions below are all , EXCEPT:",
+    "a": "53 = 125 = 10 (mod 15)"
+  },
+  {
+    "q": "The expressions below are all correct, EXCEPT:",
+    "a": "53 = 125 = 10 (mod 15)"
+  },
+  {
+    "q": "The expressions below have a solution of 10.",
+    "a": "78 mod 17"
+  },
+  {
+    "q": "The expressions below have a solution of 12, EXCEPT:",
+    "a": "78 mod 17"
+  },
+  {
+    "q": "The factors of 12 from the given factor tree are 3 and ____.",
+    "a": "4"
+  },
+  {
+    "q": "The factors of 14 in the factor tree are 7 and ____.",
+    "a": "2"
+  },
+  {
+    "q": "The factors of 270 with the most times repeated is",
+    "a": "3"
+  },
+  {
+    "q": "The factors of 30 in the factor tree are",
+    "a": "5 and 6"
+  },
+  {
+    "q": "The factors of 300 are the prime numbers 2, 3 and 5. Which of the following numbers appears twice?",
+    "a": "2 and 5"
+  },
+  {
+    "q": "The factors of 355 are ____ numbers.",
+    "a": "2"
+  },
+  {
+    "q": "The factors of the number is 25 x 32 x 37. What is the number?",
+    "a": "10,656"
+  },
+  {
+    "q": "The Fermat form is in the form __________.",
+    "a": "2s + 1"
+  },
+  {
+    "q": "The following are sets of integers, EXCEPT",
+    "a": "{ 05, 1/3,}"
+  },
+  {
+    "q": "The following are the divisors of 60, EXCEPT:",
+    "a": "18"
+  },
+  {
+    "q": "The following are the factors of 72, EXCEPT:",
+    "a": "23"
+  },
+  {
+    "q": "The following are the multiples of 12 between 120 and 450, EXCEPT?",
+    "a": "432"
+  },
+  {
+    "q": "The following are the multiples of 2, 3, and 7, EXCEPT:",
+    "a": "21"
+  },
+  {
+    "q": "The following are the multiples of 3 and 5, EXCEPT:",
+    "a": "{3, 7, 9,=E2=80=A6 5, 10,=E2=80=A6}"
+  },
+  {
+    "q": "The following are the numbers you can multiply to produce the fundamental theorem of arithmetic, EXCEPT:",
+    "a": "31, 37, 41, 43, 47, 49, 51"
+  },
+  {
+    "q": "The following are the other quadratic residues of modulo 28 , EXCEPT",
+    "a": "27"
+  },
+  {
+    "q": "The following are the other quadratic residues of modulo 28, EXCEPT:",
+    "a": "13"
+  },
+  {
+    "q": "The following are the primitive roots of mod 50 base 2, EXCEPT:",
+    "a": "5"
+  },
+  {
+    "q": "The following are the quadratic non residue of modulo 27, EXCEPT",
+    "a": "16"
+  },
+  {
+    "q": "The following are the quadratic non residue of modulo 28, EXCEPT",
+    "a": "25"
+  },
+  {
+    "q": "The following are the quadratic residue of modulo 27 , EXCEPT",
+    "a": "8"
+  },
+  {
+    "q": "The following are the quadratic residue of modulo 28 , EXCEPT",
+    "a": "10"
+  },
+  {
+    "q": "The following expressions are , EXCEPT:",
+    "a": "None of the choices"
+  },
+  {
+    "q": "The following numbers are all Fermat numbers, EXCEPT:",
+    "a": "2"
+  },
+  {
+    "q": "The following numbers are coprime of 34, EXCEPT:",
+    "a": "2"
+  },
+  {
+    "q": "The following pairs below shows an example of fundamental theorem of arithmetic, EXCEPT:",
+    "a": "9 x 11"
+  },
+  {
+    "q": "The following pairs of numbers has a GCD of 31, EXCEPT:",
+    "a": "6750 & 1519"
+  },
+  {
+    "q": "The GCD of 90 and 105 is ________.",
+    "a": "15"
+  },
+  {
+    "q": "The greatest common divisor of 19,342 and 2,766 is ______.",
+    "a": "2"
+  },
+  {
+    "q": "The Greek letter t is used in finding the divisor function.",
+    "a": "True"
+  },
+  {
+    "q": "The largest factor of 279 is",
+    "a": "31"
+  },
+  {
+    "q": "The LCM of 2, 3, and 6 is _______.",
+    "a": "6"
+  },
+  {
+    "q": "The least common multiple of 9 and 12 is __________.",
+    "a": "36"
+  },
+  {
+    "q": "The missing value of the expression 39 = 19 683 = 6 (mod __).",
+    "a": "7"
+  },
+  {
+    "q": "The modulo of a certain number is obtained by",
+    "a": "division"
+  },
+  {
+    "q": "The number of divisor of a certain integer is being added.",
+    "a": "False"
+  },
+  {
+    "q": "The number of multiples of 6 from 20 to 50 is ________.",
+    "a": "5"
+  },
+  {
+    "q": "The number with the most numbers of multiples between 5 and 35 below is _________.",
+    "a": "4"
+  },
+  {
+    "q": "The numbers 2, 2, 2, 3, 3, 5, 7, and 11 are the factors of what number?",
+    "a": "27,720"
+  },
+  {
+    "q": "The numbers below are coprime, EXCEPT:",
+    "a": "1 and 27"
+  },
+  {
+    "q": "The numbers below are the common factors of 30 and 45, EXCEPT:",
+    "a": "10"
+  },
+  {
+    "q": "The price of gasoline decline Php 140 over a one week period. If the rate decrease was spread equally over the week, how much did the price of gasoline decrease in one day?",
+    "a": "Php 2000"
+  },
+  {
+    "q": "The prime factors of 420 are 2, 3, 5 and ____.",
+    "a": "7"
+  },
+  {
+    "q": "The primitive root of mod 60 using 11 as one of the primitive root is",
+    "a": "4"
+  },
+  {
+    "q": "The primitive root of mod 60 using 11 as one of the primitive roots is",
+    "a": "1"
+  },
+  {
+    "q": "The primitive roots of mod 55 using coprimes 5, 7, and 11 using base 3 are 23, 42, and ____.",
+    "a": "47"
+  },
+  {
+    "q": "The rules in obtaining the divisibility of 3 is",
+    "a": "Add all the digits of the given number"
+  },
+  {
+    "q": "The solution of the statement 231 - 1 = ____.",
+    "a": "2 147 483 647"
+  },
+  {
+    "q": "The solution to 96 modulo 32 is _________.",
+    "a": "0"
+  },
+  {
+    "q": "The symbol sigma is used to determine the sum of the given objects.",
+    "a": "True"
+  },
+  {
+    "q": "The value of p in the expression 2p - 1 = 524 287 is ______.",
+    "a": "19"
+  },
+  {
+    "q": "Three of the numbers below are divisible by 13, 15 and 17. Which is NOT?",
+    "a": "48,645"
+  },
+  {
+    "q": "Using Euclidean Algorithm, determine the remainder of 1 515 and 705",
+    "a": "15"
+  },
+  {
+    "q": "Using Euclidean Algorithm, determine the remainder of 1541 and 897",
+    "a": "23"
+  },
+  {
+    "q": "Using Euclidean Algorithm, determine the remainder of 18476 and 2636",
+    "a": "4"
+  },
+  {
+    "q": "Using Euclidean Algorithm, determine the remainder of 703 and 259",
+    "a": "37"
+  },
+  {
+    "q": "Using Euclidean Algorithm, determine the remainder of 8 420 and 3 020",
+    "a": "20"
+  },
+  {
+    "q": "Using Prime Factorization, what is the value of 23 x 32 x 5 x 11?",
+    "a": "3960"
+  },
+  {
+    "q": "Using s = 2, in the Fermat formula 2s + 1, is the answer a Fermat number?",
+    "a": "Yes"
+  },
+  {
+    "q": "Using the Fermat number 2s + 1, find the value using s = 2.",
+    "a": "5"
+  },
+  {
+    "q": "Using the formula of Mersenne prime 2d - 1, if d = 17, the value is",
+    "a": "131 071"
+  },
+  {
+    "q": "Using the formula of Mersenne prime 2k - 1, if k = 11, the value is",
+    "a": "2,047"
+  },
+  {
+    "q": "Using the function f(x) = -xk, if x = 0 and k is a negative integer then it is an example of singularity.",
+    "a": "True"
+  },
+  {
+    "q": "Using the Mersenne Primes, if you apply 23, the value is ______.",
+    "a": "8,388,607"
+  },
+  {
+    "q": "What are the primitive roots of mod 209 using coprimes 7, 11, and 13 and base 2?",
+    "a": "41, 81 and 167"
+  },
+  {
+    "q": "What are the unknown numbers in the factor tree?",
+    "a": "3 and 12"
+  },
+  {
+    "q": "What is the GCD of 108 and 81?",
+    "a": "27"
+  },
+  {
+    "q": "What is the greatest common factor of 36 848 and 77 080?",
+    "a": "376"
+  },
+  {
+    "q": "What is the primitive root of mod 75 using 7 as one of its coprime?",
+    "a": "43"
+  },
+  {
+    "q": "What is the primitive root of mod 75 using 7 as one of its coprimes?",
+    "a": "43"
+  },
+  {
+    "q": "What is the product of the prime factors 2,2 and 53?",
+    "a": "212"
+  },
+  {
+    "q": "What is the remainder if we use Euclidean Algorithm between 55, 230 and 3, 985?",
+    "a": "0"
+  },
+  {
+    "q": "What is the remainder if you apply the Euclidean Algorithm to 10 465 and 3 553?",
+    "a": "1"
+  },
+  {
+    "q": "What is the remainder of 23 069 and 20 069 when you use the Euclidean Algorithm?",
+    "a": "1"
+  },
+  {
+    "q": "What is the value of 216 + 1? Is it a Fermat Number?",
+    "a": "65, 537 Yes, it is a Fermat Number"
+  },
+  {
+    "q": "What is the value of f(x) = 2xk, if k = 2.",
+    "a": "2x2"
+  },
+  {
+    "q": "What is the value of the expression -5 + 5 + (-12)?",
+    "a": "-12"
+  },
+  {
+    "q": "What must be the last digit of a number to make it divisible by 10?",
+    "a": "0"
+  },
+  {
+    "q": "What must be the missing value of the expression to make it ? 76 = 117 649 = ___ (mod 3)",
+    "a": "1"
+  },
+  {
+    "q": "What must be the missing value of the expression to make it correct? 76 = 117 649 = ___ (mod 3)",
+    "a": "1"
+  },
+  {
+    "q": "What must be the value k to make the function f(x) = -3xk equal to -3?",
+    "a": "0"
+  },
+  {
+    "q": "What must be the value of g, in the formula 2g - 1 = 8 191, to make it correct?",
+    "a": "13"
+  },
+  {
+    "q": "What must be the value of the last digit of 23, 31__ to make it divisible by 5?",
+    "a": "0"
+  },
+  {
+    "q": "What must be the value of the last digit of 3, 45__ to make it divisible by 8?",
+    "a": "6"
+  },
+  {
+    "q": "What must be the value of the missing value of the expression 213 = 8 192 = 2 (mod __ ) to make it correct?",
+    "a": "7"
+  },
+  {
+    "q": "What must be the value of the unknown if, ___ = 36 = 8 (mod 28)?",
+    "a": "62"
+  },
+  {
+    "q": "What must be the value of the unknown if, ___ = 64 = 10 (mod 27)?",
+    "a": "82"
+  },
+  {
+    "q": "What must be the value of the unknown if, 112 = 121 = ___ (mod 28)?",
+    "a": "9"
+  },
+  {
+    "q": "What must be the value of the unknown if, 182 = 324 = ___ (mod 27)?",
+    "a": "0"
+  },
+  {
+    "q": "Which among the numbers below is equal to 38 mod 9?",
+    "a": "2"
+  },
+  {
+    "q": "Which expression has a value different from the others?",
+    "a": "-3 + 2 + (-4)"
+  },
+  {
+    "q": "Which expression has the greatest value?",
+    "a": "3 + (-2)"
+  },
+  {
+    "q": "Which list below are the numbers arranged in order from greatest to smallest?",
+    "a": "5, 4, 0, -3"
+  },
+  {
+    "q": "Which of the following are the prime factors of 234?",
+    "a": "2 x 32 x 13"
+  },
+  {
+    "q": "Which of the following are the prime factors of 3024?",
+    "a": "7 x 24 x 33"
+  },
+  {
+    "q": "Which of the following are the prime factors of 360?",
+    "a": "23 x 32 x 5"
+  },
+  {
+    "q": "Which of the following expressions below is INCORRECT?",
+    "a": "42 mod 2 = 2"
+  },
+  {
+    "q": "Which of the following expressions is below is correct?",
+    "a": "23 mod 5 = 3"
+  },
+  {
+    "q": "Which of the following form shows a power function?",
+    "a": "f(x) = -xk"
+  },
+  {
+    "q": "Which of the following is a coprime of 385?",
+    "a": "3"
+  },
+  {
+    "q": "Which of the following is a coprime of 483?",
+    "a": "5"
+  },
+  {
+    "q": "Which of the following is a prime number?",
+    "a": "101"
+  },
+  {
+    "q": "Which of the following is the correct way to find the prime factorization of 24?",
+    "a": "both i and ii"
+  },
+  {
+    "q": "Which of the following is the correct way to write the set notation of factors of 56?",
+    "a": "{1, 2, 4, 7, 8, 14, 28, 56}"
+  },
+  {
+    "q": "Which of the following is the first step to find the answer in 59 mod 5?",
+    "a": "Divide 59 and 5"
+  },
+  {
+    "q": "Which of the following is the LCM of 12 and 15?",
+    "a": "60"
+  },
+  {
+    "q": "Which of the following is the next step to find the remainder of 10,465 and 3,553?10 465 = 3 553(2) + 3 359 3 553 = 3 359(1) + 194 3 359 = 194(17) + 61",
+    "a": "194 = 61(3) + 11"
+  },
+  {
+    "q": "Which of the following is the prime factor of 81, 141?",
+    "a": "43"
+  },
+  {
+    "q": "Which of the following is the prime factorization of 328?",
+    "a": "23 x 41"
+  },
+  {
+    "q": "Which of the following is the quadratic non residue of modulo 27?",
+    "a": "11"
+  },
+  {
+    "q": "Which of the following is the quadratic non residue of modulo 28?",
+    "a": "18"
+  },
+  {
+    "q": "Which of the following is the solution of the expression 23 x 52 x 7?",
+    "a": "1400"
+  },
+  {
+    "q": "Which of the following is the way to find the prime factorization of 24?",
+    "a": "both i and ii"
+  },
+  {
+    "q": "Which of the following is the way to write the set notation of factors of 56?",
+    "a": "{1, 2, 4, 7, 8, 14, 28, 56}"
+  },
+  {
+    "q": "Which of the following number below is a Mersenne Prime?",
+    "a": "31"
+  },
+  {
+    "q": "Which of the following numbers below is a factor that is common to 120 and 42?",
+    "a": "6"
+  },
+  {
+    "q": "Which of the following numbers below is divisible by 2, 3, 5, and 7?",
+    "a": "10,500"
+  },
+  {
+    "q": "Which of the following numbers below is the answer to 43 modulo 5?",
+    "a": "3"
+  },
+  {
+    "q": "Which of the following numbers below is the GCD of 48 and 60?",
+    "a": "12"
+  },
+  {
+    "q": "Which of the following numbers below is the LCM of 7 and 10?",
+    "a": "70"
+  },
+  {
+    "q": "Which of the following numbers is divisible by 47?",
+    "a": "12,549"
+  },
+  {
+    "q": "Which of the following numbers that can be presented using exponents in factorization?",
+    "a": "5184"
+  },
+  {
+    "q": "Which of the following operations results in a difference?",
+    "a": "Subtraction"
+  },
+  {
+    "q": "Which of the following pair of numbers has a greatest common divisor of 159?",
+    "a": "14 628 and 5 565"
+  },
+  {
+    "q": "Which of the following pairs of numbers below have the LEAST number of common multiples from 1 to 30?",
+    "a": "4 and 5"
+  },
+  {
+    "q": "Which of the following pairs of numbers below shows the properties of relatively prime?",
+    "a": "99 and 100"
+  },
+  {
+    "q": "Which of the following pairs of numbers has a remainder of 12?",
+    "a": "9 324 and 7 608"
+  },
+  {
+    "q": "Which of the following pairs of numbers has a remainder of 13?",
+    "a": "650 and 273"
+  },
+  {
+    "q": "Which of the following pairs of numbers has a remainder of 2?",
+    "a": "5 126 and 1 512"
+  },
+  {
+    "q": "Which of the following pairs of numbers has a remainder of 5?",
+    "a": "13 865 and 495"
+  },
+  {
+    "q": "Which of the following pairs of numbers has a remainder of 8?",
+    "a": "536 and 488"
+  },
+  {
+    "q": "Which of the following pairs of numbers shows a fundamental theorem of arithmetic?",
+    "a": "89 x 97"
+  },
+  {
+    "q": "Which of the following prime numbers below is a Mersenne Prime?",
+    "a": "127"
+  },
+  {
+    "q": "Which solution is correct from the given factor tree below?",
+    "a": "i and ii"
+  },
+  {
+    "q": "Which solution is from the given factor tree below?",
+    "a": "i and ii"
+  },
+  {
+    "q": "Write all the multiples of 12 between 20 and 150",
+    "a": "24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144"
+  },
+  {
+    "q": "Write all the multiples of 17 between 70 and 160.",
+    "a": "85, 102, 119, 136, 153"
+  },
+  {
+    "q": "Write all the multiples of 6 between 4 and 40.",
+    "a": "6, 12, 18, 24, 30, 36"
+  },
+  {
+    "q": "Write all the multiples of 7 between 5 and 50.",
+    "a": "7, 14, 21, 28, 35, 42, 49"
+  },
+  {
+    "q": "Write all the multiples of 8 between 3 and 100.",
+    "a": "8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96"
+  }
+]

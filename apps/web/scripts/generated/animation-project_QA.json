@@ -1,0 +1,246 @@
+[
+  {
+    "q": "_ is often overlooked when considering an animation software, but in reality its powerful drawing capabilities makes it a great choices for frame by frame Disney-style animation",
+    "a": "Photoshop"
+  },
+  {
+    "q": "_ offers a user friendly set of animation programs that has advanced rigging systems, effects and camera tools",
+    "a": "Toon Boom"
+  },
+  {
+    "q": "___ is the industry standard for stop-motion animation, and was used on films such as Kubo and the Two Strings and Shaun the Sheep",
+    "a": "Dragonframe"
+  },
+  {
+    "q": "_______________ is a complete 2D animation package that can produce traditional animation, cutout animation and anime style animation",
+    "a": "Moho"
+  },
+  {
+    "q": "- Processes, where the user can define two key frames and Flash will automatically create the in-between frames, either morphing one shape into another over a set period of time or else moving a shape or shapes from point A to point B over a set period of time",
+    "a": "Motion Tweening"
+  },
+  {
+    "q": "A ___________ should show character, attitude, feelings, entertainment, expressions, type of action, as well as telling the story’s plot.",
+    "a": "storyboard"
+  },
+  {
+    "q": "A ______________ is the fact that the object/character animated retains the same volume/apparent mass; it's simply distorted into a different shape and/or configuration to give the impression of the forces acting on it",
+    "a": "key principle of squash and stretch"
+  },
+  {
+    "q": "A filmmaking technique where the illusion of motion is created frame-by-frame. The word comes from the Latin word, \"anima,\" meaning \"life\" or \"soul\".",
+    "a": "animation"
+  },
+  {
+    "q": "A flat piece of artwork that is the setting for a moving character in an animated film.",
+    "a": "background"
+  },
+  {
+    "q": "A french animation software, ____________ is the all-in-one 2D animation software you’ll ever need",
+    "a": "TVPaint"
+  },
+  {
+    "q": "A reference sheet for animators that shows a number of different poses of an animated character.",
+    "a": "Model Sheet"
+  },
+  {
+    "q": "A stop-motion technique in which life-size props or live actors are photographed frame-by-frame.",
+    "a": "Pixilation"
+  },
+  {
+    "q": "A visual representation of a story.",
+    "a": "storyboard"
+  },
+  {
+    "q": "Adobe Animate is formerly known as",
+    "a": "Flash"
+  },
+  {
+    "q": "After effects gives you great control when creating rigs for 2D, and using the puppet tool is very convenient and intuitive",
+    "a": "Adobe After Effects"
+  },
+  {
+    "q": "All animation is arranged in _________ from beginning to end",
+    "a": "linear order"
+  },
+  {
+    "q": "An animation _____________ is a single still image in an animated sequence that occurs at an important point in that sequence",
+    "a": "key frame"
+  },
+  {
+    "q": "An individual still picture on a strip of film 24 frames equal one second of a motion picture",
+    "a": "frame"
+  },
+  {
+    "q": "Animation produced by arranging real objects, taking a picture of them, repositioning the objects minutely, then taking another picture of them to create a sequence of consecutive images that create the illusion of motion.",
+    "a": "Stop-Motion Animation"
+  },
+  {
+    "q": "Animation technique used to depict exaggerated animated motion",
+    "a": "Squash and Stretch"
+  },
+  {
+    "q": "Animation whose art or motion is controlled by vectors rather than pixels",
+    "a": "vector animation"
+  },
+  {
+    "q": "can be numbered by frame, by second (or other interval of time), or both",
+    "a": "timelines"
+  },
+  {
+    "q": "Covers a broad range of subjects, but overall can be defined as the creation of moving images through the use of computers.",
+    "a": "computer animation"
+  },
+  {
+    "q": "In animation, a ______ refers to the frame-by-frame layout of all animation occurring over a delineated course of time",
+    "a": "timeline"
+  },
+  {
+    "q": "In computer animation, the term is most commonly used for Flash's \"____________\"",
+    "a": "shape tweening"
+  },
+  {
+    "q": "It does have some pro features though, such as DSLR support, onion skinning, using an iPad or iPhone as a remote and even chroma keying (using green screen)",
+    "a": "iStopMotion"
+  },
+  {
+    "q": "It has a complex bone system for rigging and even supports the Unity engine It offers two packages, the Debut and the Pro (priced at $6999 and $39999 respectively)",
+    "a": "Moho"
+  },
+  {
+    "q": "It is a 3D program for the After Effects user",
+    "a": "Cinema 4D"
+  },
+  {
+    "q": "It is designed from the ground up with motion graphics in mind, but it is an amazing and quite versatile program",
+    "a": "cinema 4d"
+  },
+  {
+    "q": "It is vector based, very intuitive to use (as are most of Adobe’s programs) and relatively inexpensive",
+    "a": "Adobe Animate"
+  },
+  {
+    "q": "It's a crucial animation technique to make ______________ more believable; for instance, if an animated character is going to punch something, you wouldn't animate their fist flying forward straight from the mark Instead they'd draw back in the opposite direction, that moment of anticipation, gathered kinetic energy - and then throw the punch forward",
+    "a": "motion"
+  },
+  {
+    "q": "It’s definitely more robust and complex than Photoshop, but it’s also much pricier",
+    "a": "TVPaint"
+  },
+  {
+    "q": "It’s great for getting started with 2D animation, and though it’s not meant for professional animation production (unlike Toon Boom Harmony) you can still get amazing results with it",
+    "a": "adobe animate"
+  },
+  {
+    "q": "Its comprehensive software can be used with many different attachments, such as a device that controls the camera, lights and even pull focus",
+    "a": "Dragonframe"
+  },
+  {
+    "q": "Match the term/details to complete each statement.",
+    "a": "Match the term/details to complete each statement."
+  },
+  {
+    "q": "often allows cleaner, smoother animation, because images are displayed and/or resized using mathematical values instead of stored pixel values",
+    "a": "vector animation"
+  },
+  {
+    "q": "One of the most common forms of stop-motion animation is _____________.",
+    "a": "Claymation"
+  },
+  {
+    "q": "One of the most commonly used vector animation programs is",
+    "a": "adobe flash"
+  },
+  {
+    "q": "Photoshop’s _______________ functionality lets you animate by drawing frame by frame, using onion skinning, and is incredibly robust",
+    "a": "timeline"
+  },
+  {
+    "q": "The ____________ shows how characters relate in size to other characters.",
+    "a": "Model Sheet"
+  },
+  {
+    "q": "The brief moment of anticipatory motion that precedes an action",
+    "a": "Anticipation"
+  },
+  {
+    "q": "The creation of moving pictures in a three-dimensional digital environment. // animationcam",
+    "a": "3D animation"
+  },
+  {
+    "q": "The creation of moving pictures in a two-dimensional environment, such as through \"traditional\" cel animation or in computerized animation software.",
+    "a": "2D Animation"
+  },
+  {
+    "q": "The creation of successive frames of animation between key frames",
+    "a": "Tween"
+  },
+  {
+    "q": "The eye can be \"__________\" into perceiving motion when these consecutive images are shown at a rate of 24 frames per second or faster",
+    "a": "fooled"
+  },
+  {
+    "q": "The filmmaking technique in animation where each frame is exposed one at a time and the object being photographed is slightly altered for each picture",
+    "a": "Frame-by-frame"
+  },
+  {
+    "q": "The higher the frame rate, the smoother the motion, because there are more frames per second (fps) to display the transition from point A to point B 24 fps is standard, but you could go as low as __________ fps and as high as 30 fps",
+    "a": "12"
+  },
+  {
+    "q": "The measure of the number of frames displayed sequentially per second of animation in order to create the illusion of motion",
+    "a": "frame rate"
+  },
+  {
+    "q": "The person who draws the moving character in an animated film.",
+    "a": "animator"
+  },
+  {
+    "q": "The point of squash and stretch is to make the motions _______________, rather than more swift, realistic, and sometimes unnoticed in passing observation",
+    "a": "larger than life"
+  },
+  {
+    "q": "The written story of a film that supplies dialogue, camera moves, background, staging and action.",
+    "a": "script"
+  },
+  {
+    "q": "These images can be created in either a two-dimensional or threedimensional space, and can be applied to web design, user interface design, application development, video games, movies, special effects, cartooning, and many others.",
+    "a": "Computer Animation"
+  },
+  {
+    "q": "This creates massive worlds and stunning scenes more quickly and efficiently with some of the most robust animation and rendering tools in the industry",
+    "a": "Autodesk 3Ds Max"
+  },
+  {
+    "q": "This is done by sequencing consecutive images, or \"frames\", that simulate motion by each image showing the next in a gradual progression of steps, filmed by a virtual \"camera\" and then output to video by a rendering engine.",
+    "a": "3-D Animation"
+  },
+  {
+    "q": "This is done by sequencing consecutive images, or \"frames\", that simulate motion by each image showing the next in a gradual progression of steps. The eye can be \"fooled\" into perceiving motion when these consecutive images are shown at a rate of 24 frames per second or faster.",
+    "a": "2-D Animation"
+  },
+  {
+    "q": "This is short for celluloid, is a transparent sheet on which objects are drawn or painted for traditional, hand drawn animation",
+    "a": "cel"
+  },
+  {
+    "q": "This provides a broad spectrum of modeling, texturing, lighting, animation, and video postprocessing functionality in one package",
+    "a": "blender"
+  },
+  {
+    "q": "This provides a comprehensive 3D modeling, animation, rendering, and compositing solution for games, film, and motion graphics artists",
+    "a": "autodesk 3ds max"
+  },
+  {
+    "q": "This refers to any artwork or animation created with computers.",
+    "a": "CGI"
+  },
+  {
+    "q": "Through its open architecture, __________ provides cross-platform interoperability, extensibility, an incredibly small footprint, and a tightly integrated workflow",
+    "a": "blender"
+  },
+  {
+    "q": "When viewed, they appear to be moving at a fast speed",
+    "a": "pixilation"
+  }
+]

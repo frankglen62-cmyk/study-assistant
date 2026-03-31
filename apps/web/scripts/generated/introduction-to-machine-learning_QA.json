@@ -1,0 +1,654 @@
+[
+  {
+    "q": "4To get the best value for k, choose the value of k that offers the least accuracy Maximum",
+    "a": "False"
+  },
+  {
+    "q": "A better way to visualize is to start the x-axis at 45 and increase the y-range axis's",
+    "a": "False"
+  },
+  {
+    "q": "A broken value, representing the likelihood of an observation belonging to a given class, can also be the result of a classification difficulty",
+    "a": "False"
+  },
+  {
+    "q": "A dependent variable class in the Scikit-learn library can help you precisely create an instance of this class and use the heights and weights lists to build a linear regression model with the fit() function LinearRegression class",
+    "a": "False"
+  },
+  {
+    "q": "A good application of Python programming is determining if a particular credit card transaction is fraudulent",
+    "a": "False"
+  },
+  {
+    "q": "A hard margin means that an SVM is very rigid in classification and tries to work extremely well in the training set, causing overfitting",
+    "a": "True"
+  },
+  {
+    "q": "A high Gamma value indicates that every point has a far reach",
+    "a": "False"
+  },
+  {
+    "q": "A higher C will aim for the widest margin possible, but it will result in some points being classified incorrectly",
+    "a": "False"
+  },
+  {
+    "q": "A model that detects fraudulent credit card use, for example, would be trained using a dataset that included labeled data points of known fraudulent and valid charges",
+    "a": "True"
+  },
+  {
+    "q": "A more sensible strategy would be to use the confusion matrix",
+    "a": "True"
+  },
+  {
+    "q": "A NumPy object is created in the same way that a NumPy array is created",
+    "a": "False"
+  },
+  {
+    "q": "A NumPy slice generates a reference rather than a copy of the original array",
+    "a": "True"
+  },
+  {
+    "q": "A polynomial regression line may not always be the optimal method for effectively capturing the relationships between the characteristics and labels",
+    "a": "False"
+  },
+  {
+    "q": "A positive correlation exists when one variable increases as the other increases or when one variable decreases while the other decreases",
+    "a": "True"
+  },
+  {
+    "q": "A relationship between two variables is said to have a positive correlation when both variables move in lockstep",
+    "a": "True"
+  },
+  {
+    "q": "A running number shows how cells were performed when they were run",
+    "a": "True"
+  },
+  {
+    "q": "A state-based matplotlib interface called matplotlibfigure offers an implicit plotting method that is similar to MATLAB Matplotlibpyplot",
+    "a": "False"
+  },
+  {
+    "q": "A straight line attempting to connect all the locations has a strong variance because it doesn't cut through all the points",
+    "a": "False"
+  },
+  {
+    "q": "All points can be separated linearly, nor can they be separated using the kernel tricks",
+    "a": "False"
+  },
+  {
+    "q": "Although printing the predictions alongside the test set's original diagnoses is useful, it does not give a clear sense of how well the model predicts if a tumor is malignant",
+    "a": "True"
+  },
+  {
+    "q": "An overfitted model's main drawback is that it will struggle to handle brand-new, untested data",
+    "a": "True"
+  },
+  {
+    "q": "Anaconda is a web-based editor for working with Python projects",
+    "a": "False"
+  },
+  {
+    "q": "Anaconda is an open source package management system and environment management system for installing multiple versions of software packages and their dependencies and switching easily between them",
+    "a": "False"
+  },
+  {
+    "q": "Another important element to keep in mind is that the outcome of the slicing is determined by how you slice it",
+    "a": "True"
+  },
+  {
+    "q": "Another option for dealing with Isnull in your dataset is to delete the rows that contain them NaNs",
+    "a": "False"
+  },
+  {
+    "q": "Any dimension can be used to calculate the distance between two places using the Euclidean distance() function",
+    "a": "True"
+  },
+  {
+    "q": "Applying a trained model to data is what fit() and transform() are designed to do predict()",
+    "a": "False"
+  },
+  {
+    "q": "Because it will generate dramatically different RSS for varied datasets, the curved line exhibits a great amount of fluctuation",
+    "a": "True"
+  },
+  {
+    "q": "Because the bars could overlap, it's crucial to be able to tell them apart by setting their alpha to 05 (making them translucent)",
+    "a": "True"
+  },
+  {
+    "q": "Because the data distribution in datasets might not be uniform, your test set might be difficult to anticipate, making it impossible to determine whether your model is inefficient",
+    "a": "False"
+  },
+  {
+    "q": "Because the RSS is consistent across datasets, a straight line has a minimal variance",
+    "a": "True"
+  },
+  {
+    "q": "Boolean indexing is a mechanism for selecting the number of rows to print",
+    "a": "False"
+  },
+  {
+    "q": "Boolean indexing is a method that lets you select how many rows to print",
+    "a": "False"
+  },
+  {
+    "q": "By default, Matplotlib will decide on the colors for each slice of the pie",
+    "a": "True"
+  },
+  {
+    "q": "By estimating property prices based on several features, you will discover a variation on simple linear regression known as multiple linear regression",
+    "a": "True"
+  },
+  {
+    "q": "Clustering helps in forecasting the future by estimating the relationship between variables",
+    "a": "False"
+  },
+  {
+    "q": "Depending on the inputs, the plot() function may or may not construct connecting lines when drawing points",
+    "a": "False"
+  },
+  {
+    "q": "Each cell in a Jupyter Notecourse can be run independently",
+    "a": "True"
+  },
+  {
+    "q": "Factor plots are frequently used to show how one variable affects the value of another Scatter plot",
+    "a": "False"
+  },
+  {
+    "q": "For instance, when you flip a coin, the probability of getting a head is 1",
+    "a": "True"
+  },
+  {
+    "q": "For SVM, the right line is the one that has the widest margins, with each margin touching at least a point in each class",
+    "a": "True"
+  },
+  {
+    "q": "Fortify() initializes a ggplot object that can be used to declare the input data frame for a graphic and specify the plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden Ggplot()",
+    "a": "False"
+  },
+  {
+    "q": "If the DataFrame is too long, you can use the head() function to accomplish this",
+    "a": "True"
+  },
+  {
+    "q": "If the random state parameter of the train_test_curve() function is not supplied, you will receive a different training and testing set each time you call this function",
+    "a": "False"
+  },
+  {
+    "q": "If you wish to extract specific rows and columns from a DataFrame, you'll need to use the index property",
+    "a": "False"
+  },
+  {
+    "q": "In a Jupyter Notecourse, each cell can be run individually",
+    "a": "True"
+  },
+  {
+    "q": "In bar charting, the colors will be recycled because there are more slices than the colors you requested Pie charting",
+    "a": "False"
+  },
+  {
+    "q": "In data cleansing, no encoding is required if the collection already contains all numerical values",
+    "a": "True"
+  },
+  {
+    "q": "In general, most DataFrame operations do not change the original DataFrame",
+    "a": "True"
+  },
+  {
+    "q": "In machine learning, regression identifies which set of categories a new observation belongs to based on training data containing the observed categories",
+    "a": "False"
+  },
+  {
+    "q": "In mathematics, accuracy is calculated by dividing the total number of guesses by the total number of correct forecasts or prediction",
+    "a": "True"
+  },
+  {
+    "q": "In matplob, you can easily connect the three elements better by dragging the plot with your keyboard",
+    "a": "False"
+  },
+  {
+    "q": "In Pandas, slicing may be applied to both Series and DataFrames",
+    "a": "True"
+  },
+  {
+    "q": "In slicing by number, start:end means extracts row start through row-end but includes the end row, slicing by value includes the end row",
+    "a": "False"
+  },
+  {
+    "q": "In the KNN model, the score is higher at the conclusion of the k-runs",
+    "a": "False"
+  },
+  {
+    "q": "Instead of writing the index of each row and column at the center of the number, a better method to visualize slicing is to write it between the numbers",
+    "a": "True"
+  },
+  {
+    "q": "It is not possible to draw a straight line to separate two sets of points However, you can make this set of points linearly separable with some manipulation",
+    "a": "True"
+  },
+  {
+    "q": "It is unclear at what value the linear regression line intercepts the x-axis Y-axis",
+    "a": "False"
+  },
+  {
+    "q": "It means that you have a 50% chance of landing a head when you state that the odds of landing a head are 1",
+    "a": "True"
+  },
+  {
+    "q": "It's critical to distinguish between the bars by setting their alpha to 05 because they may overlap (which makes them transparent)",
+    "a": "True"
+  },
+  {
+    "q": "It's worth noting that a NumPy slice produces a reference rather than a copy of the original array",
+    "a": "True"
+  },
+  {
+    "q": "It's worth noting that the scatterplot will choose the colors for each pie chart slice Matplotlib",
+    "a": "False"
+  },
+  {
+    "q": "It's worth noting that the sort_values() function only accepts Series objects with indexes equal to the DataFrame's index (axis=0) or the DataFrame's columns (axis=1)",
+    "a": "False"
+  },
+  {
+    "q": "It's your responsibility to organize each of the points into a distinct group so that you can look for a pattern",
+    "a": "True"
+  },
+  {
+    "q": "Keep in mind that the boundary smooths out as k decreases",
+    "a": "False"
+  },
+  {
+    "q": "Labels are also often referred to as targets, whereas features are also referred to as explanatory variables",
+    "a": "True"
+  },
+  {
+    "q": "Loading the dataset into a Pandas dataframe and then using the predict() function to check for null values in the dataframe is an effective technique to detect empty rows Isnull()",
+    "a": "False"
+  },
+  {
+    "q": "Matplotlib makes constructing intricate charts and figures simple, and it works well as a machine learning tool when combined with Jupyter Notebook",
+    "a": "True"
+  },
+  {
+    "q": "Matplotlib makes it simple to create sophisticated charts and figures, and its combination with Jupyter Notebook makes it an excellent machine learning tool",
+    "a": "True"
+  },
+  {
+    "q": "Matplotlib will choose the colors for each of the slices in the pie chart by default",
+    "a": "True"
+  },
+  {
+    "q": "Multiplying the relevant entries in each vector and adding the results yields the sum product of two vectors",
+    "a": "False"
+  },
+  {
+    "q": "NumPy arrays make it simple to conduct array math",
+    "a": "True"
+  },
+  {
+    "q": "NumPy index may also handle subtraction, multiplication, and division in addition to addition",
+    "a": "False"
+  },
+  {
+    "q": "Obtaining sample datasets for experimentation is frequently one of the issues in machine learning",
+    "a": "True"
+  },
+  {
+    "q": "One of the problems in machine learning is frequently obtaining sample datasets for experimentation",
+    "a": "True"
+  },
+  {
+    "q": "Overfitting happens when the model does not adequately fit the facts",
+    "a": "False"
+  },
+  {
+    "q": "Overfitting indicates that your model makes a valiant effort to precisely fit all the data",
+    "a": "True"
+  },
+  {
+    "q": "Pie charts can have labels added to them, but first, you must deal with the values returned by the pie() function",
+    "a": "False"
+  },
+  {
+    "q": "Rather than having to retrain the model each time you have new data to test, a stored model allows you to load the trained model and make predictions without having to retrain the model",
+    "a": "True"
+  },
+  {
+    "q": "Running a code outside Jupyter Notebook would have a significantly better way of presenting the 3D plot",
+    "a": "True"
+  },
+  {
+    "q": "Set the inplace argument to True if you want the original DataFrame to be sorted",
+    "a": "True"
+  },
+  {
+    "q": "Setting the x-axis to start at 45 and expanding the range of the y-axis is a better visualization approach 0",
+    "a": "False"
+  },
+  {
+    "q": "Since you are familiar with the intercept and coefficients of the polynomial multiple regression function, you can quickly visualize the 3D prediction function",
+    "a": "False"
+  },
+  {
+    "q": "Slicing is also applicable to both Series and DataFrames in Pandas",
+    "a": "True"
+  },
+  {
+    "q": "Starting with linear regression is the simplest method to get started with machine learning with Scikit-learn",
+    "a": "True"
+  },
+  {
+    "q": "Sub plots can also be plotted separately and then combined into a single figure Multiple scatter plot",
+    "a": "False"
+  },
+  {
+    "q": "SVM uses the kernel trick to deal with datasets that are not linearly separable",
+    "a": "True"
+  },
+  {
+    "q": "Swarmplots are identical to line graphs that show how much one variable is affected by the presence of another, and this relationship between two variables is statistically termed as their correlation Scatter plots",
+    "a": "False"
+  },
+  {
+    "q": "The =E2=80=98as np' portion of the code tells Python to bring the NumPy library into your current environment",
+    "a": "False"
+  },
+  {
+    "q": "The basic notion behind polynomial regression is finding the polynomial function's prediction that best matches the data",
+    "a": "False"
+  },
+  {
+    "q": "The best hyperplane is that plane with the shortest distance from both classes, which is SVM's main aim",
+    "a": "False"
+  },
+  {
+    "q": "The best k is chosen for each k, which reveals the k with the lowest MSE MSE",
+    "a": "False"
+  },
+  {
+    "q": "The concentric rings drawn around the test point are based on the values of k, which range from 7 to 1, with intervals of -2",
+    "a": "True"
+  },
+  {
+    "q": "The degree of the polynomial features is specified by a number the PolynomialMultiple class accepts",
+    "a": "False"
+  },
+  {
+    "q": "The describe indexer can also be used to extract rows based on the row number",
+    "a": "False"
+  },
+  {
+    "q": "The describe() function can be used to obtain numbers such as count, mean, standard deviation, minimum and maximum",
+    "a": "True"
+  },
+  {
+    "q": "The difference between Boosting and Bagging is that each learner is trained using all the data Still, the data points that previous learners misclassified are given greater weight so that following learners will pay closer attention to them during training",
+    "a": "True"
+  },
+  {
+    "q": "The end index is the source of most misunderstandings when it comes to slicing",
+    "a": "True"
+  },
+  {
+    "q": "The goal of SVM is to separate the points into two or more classes so that you can use it to predict the classes of future points",
+    "a": "True"
+  },
+  {
+    "q": "The higher the value of Gamma, the more it will try to fit the training dataset exactly, resulting in oversizing",
+    "a": "False"
+  },
+  {
+    "q": "The index property is required if you want to extract specific rows and columns from a DataFrame",
+    "a": "False"
+  },
+  {
+    "q": "The intercept and coefficient are currently of greatest interest to us after the model has been predicted",
+    "a": "False"
+  },
+  {
+    "q": "The lmplot is another popular plot in Seaborn",
+    "a": "True"
+  },
+  {
+    "q": "The main idea behind SVM is to draw a line between two or more classes in the best possible manner",
+    "a": "True"
+  },
+  {
+    "q": "The main problem with KNN is how to determine the optimal value of k to employ",
+    "a": "False"
+  },
+  {
+    "q": "The make regression() function produces linearly distributed data wherein you can define the number of features and the standard deviation of the Gaussian noise used in an output",
+    "a": "True"
+  },
+  {
+    "q": "The next step is to identify the best K that yields the highest average Silhouette Coefficient once you have seen how to calculate the mean Silhouette Coefficient for a dataset with K clusters",
+    "a": "True"
+  },
+  {
+    "q": "The number of rows required for training cannot be less than the value of k More than",
+    "a": "False"
+  },
+  {
+    "q": "The optimal k is the one with the lowest average silhouette",
+    "a": "False"
+  },
+  {
+    "q": "The outcome of a classification problem can also be a broken value, indicating the likelihood of an observation belonging to a particular class",
+    "a": "False"
+  },
+  {
+    "q": "The plot() function draws points without connecting lines Depending on the inputs, may or may not be plot lines Scatter() function",
+    "a": "False"
+  },
+  {
+    "q": "The process of making a NumPy object is similar to that of making a NumPy array",
+    "a": "False"
+  },
+  {
+    "q": "The Scikitlearn library's sklearndatasetssamples generator module can be used to create datasets with various distributions",
+    "a": "True"
+  },
+  {
+    "q": "The sigmoid function that tries to fit the points on the chart can be plotted using =CE=B20 and x=CE=B2",
+    "a": "False"
+  },
+  {
+    "q": "The simplest way to begin with Scikit-learn for machine learning is to start with linear regression",
+    "a": "True"
+  },
+  {
+    "q": "The structure of a DataFrame in Pandas demonstrates that a Series is a single column in a DataFrame along with the index",
+    "a": "True"
+  },
+  {
+    "q": "The sum-product of two vectors is computed by multiplying the relevant entries in each vector and adding the results",
+    "a": "False"
+  },
+  {
+    "q": "The tail() function in Python displays the last five rows of the dataframe by default",
+    "a": "True"
+  },
+  {
+    "q": "The tail() method, like the head() function, lets you select how many rows to print",
+    "a": "True"
+  },
+  {
+    "q": "The use pandas portion of the code tells Python to bring the panda's data analysis library into your current environment",
+    "a": "False"
+  },
+  {
+    "q": "The visual inspection makes it simple to determine the value of K for a small dataset, but it becomes more difficult for a large sample",
+    "a": "True"
+  },
+  {
+    "q": "There are numerous classes and functions for handling polynomial regression in the StatLib",
+    "a": "False"
+  },
+  {
+    "q": "There is another fundamental distinction between multiplications on an index array and a matrix",
+    "a": "False"
+  },
+  {
+    "q": "To avoid occurrences when there is a tie between the classes in a two-class problem, k should have an even value Odd",
+    "a": "False"
+  },
+  {
+    "q": "To combine two arrays, you can use the npconcat() function instead of the + operator",
+    "a": "False"
+  },
+  {
+    "q": "To display a 3D plot in python, you need to type in the command $ python filenamepy",
+    "a": "True"
+  },
+  {
+    "q": "To generate datasets with different distributions, use the sklearndatasetssamples generator module of the Scikitlearn package",
+    "a": "True"
+  },
+  {
+    "q": "To illustrate how one variable influences the value of another, factor charts are widely used",
+    "a": "False"
+  },
+  {
+    "q": "To prevent knots, similar to the preceding point, the number of classes must not be a multiple of the value of N k",
+    "a": "False"
+  },
+  {
+    "q": "To run or execute a code in Jupyter Notebook, you need to save the code with an extension name of py and remove the first line that contains the expression \"%matploblib inline\"",
+    "a": "True"
+  },
+  {
+    "q": "To train a model in Scikit-learn, you usually utilize the predict() function Fit() function",
+    "a": "False"
+  },
+  {
+    "q": "Unlabeled data lacks a label Hence the fact that we can identify patterns in it is of interest to us because there is no label in unlabeled data",
+    "a": "True"
+  },
+  {
+    "q": "Unsupervised learning algorithms aim to uncover associations in data that do not have labels",
+    "a": "True"
+  },
+  {
+    "q": "Unsupervised learning's purpose is to predict a pattern in a dataset",
+    "a": "True"
+  },
+  {
+    "q": "Use DataFrameplot to access the shape of a Pandas DataFrame; the shape property provides a tuple that indicates the dimensionality of the DataFrame DataFrameshape",
+    "a": "False"
+  },
+  {
+    "q": "Using a linear object, you can build a new feature matrix from any polynomial combinations of features with a degree less than or equal to the desired degree",
+    "a": "False"
+  },
+  {
+    "q": "Using a polynomial regression line is not always necessary to capture the correlations between the features and labels",
+    "a": "False"
+  },
+  {
+    "q": "Using python commands, you can rotate and interact with the chart",
+    "a": "True"
+  },
+  {
+    "q": "Various models are utilized in the ensemble learning technique in order to work together on a single dataset, and the results are then combined",
+    "a": "True"
+  },
+  {
+    "q": "We can plot a linear regression using a specific code snippet after the values of =CE=B20 and x=CE=B2 are obtained",
+    "a": "False"
+  },
+  {
+    "q": "When cells run, a running number displays the sequence in which they are executed",
+    "a": "True"
+  },
+  {
+    "q": "When displaying percentages or proportions of data, a pie chart is beneficial",
+    "a": "True"
+  },
+  {
+    "q": "When learning Python, it is generally helpful to begin with a simple dataset that you may construct yourself to ensure that the algorithm is performing correctly according to your understanding Machine learning algorithm",
+    "a": "False"
+  },
+  {
+    "q": "When matplotlib loads a dataset with empty fields, it will represent those fields with NaN Pandas",
+    "a": "False"
+  },
+  {
+    "q": "When one variable rises while the other rises or when one variable fall while the other falls, there is a positive correlation",
+    "a": "True"
+  },
+  {
+    "q": "When performing multiplications on an index array and a matrix, there is another significant difference",
+    "a": "False"
+  },
+  {
+    "q": "When the axis parameter is set to 0, it means you wish to sort by index",
+    "a": "True"
+  },
+  {
+    "q": "When the bbox inches parameter is set to zero, the surplus white space surrounding your figure is removed Tight",
+    "a": "False"
+  },
+  {
+    "q": "When the frequency is set to year, the last day of the month will be the day of each date",
+    "a": "False"
+  },
+  {
+    "q": "When using a KNN, increasing k tends to make your prediction more resistant to data noise",
+    "a": "True"
+  },
+  {
+    "q": "With the dataset, you can use the K-Means technique to cluster these individuals according to the precise measurements of various parts",
+    "a": "True"
+  },
+  {
+    "q": "You can add another bar graph to an existing chart in the same way you can add another line chart",
+    "a": "True"
+  },
+  {
+    "q": "You can also get the gradient of the linear regression line using the model object's coef_ property",
+    "a": "True"
+  },
+  {
+    "q": "You can create a new feature matrix made up of all polynomial combinations of the features with a degree less than or equal to the specified degree by using a linear object",
+    "a": "False"
+  },
+  {
+    "q": "You can do this with the head() function if the DataFrame is too long",
+    "a": "True"
+  },
+  {
+    "q": "You can easily visualize the 3D prediction of function since you are aware of the intercept and coefficients of the polynomial multiple regression function",
+    "a": "False"
+  },
+  {
+    "q": "You can include a label in your pie charts, but before you can accomplish it, you must first deal with the pie() function's return values Legend",
+    "a": "False"
+  },
+  {
+    "q": "You can use the iloc indexing method to select a subset of the DataFrame based on specific cell values",
+    "a": "False"
+  },
+  {
+    "q": "You can use the magic function %matplotlib inline to enable scatter plotting, where the plots/graphs will be displayed just below the cell",
+    "a": "False"
+  },
+  {
+    "q": "You can utilize the iloc indexing method to choose a subset of the DataFrame depending on particular values in the cells",
+    "a": "False"
+  },
+  {
+    "q": "You may also load several interesting datasets in Scikitlearn, in addition to the Iris dataset",
+    "a": "True"
+  },
+  {
+    "q": "You will have a very clear idea of the sizes you need to create once the algorithm has been located",
+    "a": "False"
+  },
+  {
+    "q": "Your goal with unsupervised learning is to predict a pattern in the dataset",
+    "a": "True"
+  }
+]
