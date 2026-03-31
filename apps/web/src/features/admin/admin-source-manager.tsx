@@ -1188,7 +1188,7 @@ export function AdminSourceManager({
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      <Card className="overflow-hidden rounded-none border-4 border-border shadow-solid-md">
+      <Card className="overflow-hidden rounded-xl border border-border/40 shadow-card">
         <CardHeader className="space-y-4 border-b-4 border-border bg-surface pb-5">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1">
@@ -1208,7 +1208,7 @@ export function AdminSourceManager({
               <select
                 value={selectedSubjectId}
                 onChange={(event) => { setSelectedSubjectId(event.target.value); setRecentlyAddedPairs([]); }}
-                className="h-12 w-full rounded-none border-2 border-border bg-surface px-4 text-sm font-bold uppercase text-foreground outline-none transition focus:border-accent shadow-solid-sm"
+                className="h-12 w-full rounded-xl border border-border/40 bg-surface px-4 text-sm font-bold uppercase text-foreground outline-none transition focus:border-accent shadow-card"
               >
                 {subjectDropdownOptions.map((subject) => (
                   <option key={subject.id} value={subject.id}>
@@ -1225,7 +1225,7 @@ export function AdminSourceManager({
                 value={subjectFolderSearch}
                 onChange={(event) => setSubjectFolderSearch(event.target.value)}
                 placeholder="SEARCH BY NAME..."
-                className="rounded-none border-2 border-border bg-surface shadow-solid-sm h-12 uppercase font-bold"
+                className="rounded-xl border border-border/40 bg-surface shadow-card h-12 uppercase font-bold"
               />
             </div>
           </div>
@@ -1264,7 +1264,7 @@ export function AdminSourceManager({
 
       <div className="space-y-6">
         {/* Header Card with Navigation */}
-        <div className="rounded-none border-4 border-border bg-background shadow-solid-lg overflow-hidden flex flex-col pt-6 sm:pt-8 w-full">
+        <div className="rounded-xl border border-border/40 bg-background shadow-card-hover overflow-hidden flex flex-col pt-6 sm:pt-8 w-full">
           <div className="px-6 sm:px-8 pb-6 border-b-4 border-border bg-surface">
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div>
@@ -1281,7 +1281,7 @@ export function AdminSourceManager({
               </div>
 
               {selectedRootFolder && (
-                <div className="flex shrink-0 items-center gap-6 rounded-none bg-surface px-6 py-4 shadow-solid-sm border-4 border-border">
+                <div className="flex shrink-0 items-center gap-6 rounded-none bg-surface px-6 py-4 shadow-card border border-border/40">
                   <div className="text-center">
                     <p className="font-display text-4xl font-black text-foreground">{qaPairCountsBySubjectId[selectedSubjectId] ?? selectedSubjectPairs.length}</p>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-foreground mt-1 font-black">Q&A Pairs</p>
@@ -1340,12 +1340,12 @@ export function AdminSourceManager({
 
         <div className="min-h-[400px]">
           {!selectedRootFolder ? (
-            <Card className="rounded-none border-4 border-warning shadow-solid-md bg-warning/10">
+            <Card className="rounded-xl border border-warning shadow-card bg-warning/10">
               <CardContent className="space-y-4 pt-12 pb-12 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-none border-4 border-black bg-white text-black mb-6 shadow-solid-sm">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-none rounded-xl border border-border/40 bg-white text-black mb-6 shadow-card">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><path d="M20 20V8H4v12zM12 2v6"></path></svg>
                 </div>
-                <h3 className="font-display text-2xl font-black uppercase text-foreground tracking-tighter">Subject folder not initialized</h3>
+                <h3 className="font-display text-2xl font-semibold text-foreground tracking-tighter">Subject folder not initialized</h3>
                 <p className="mx-auto max-w-md text-sm font-bold uppercase text-foreground/80 tracking-wider">
                   Create the subject folder here to enable Q&A storage and supporting feature files for this subject. No prelim, midterm, or finals subfolders are used.
                 </p>
@@ -1353,7 +1353,7 @@ export function AdminSourceManager({
                   <Button
                     onClick={() => void handleCreateSubjectFolder()}
                     disabled={busyAction === `create-folder-${selectedSubjectId}`}
-                    className="px-8 shadow-solid-sm border-2 border-foreground rounded-none bg-foreground text-background hover:bg-background hover:text-foreground hover:translate-x-[2px] hover:translate-y-[2px] transition-all uppercase font-black"
+                    className="px-8 shadow-card border-2 border-foreground rounded-none bg-foreground text-background hover:bg-background hover:text-foreground hover:translate-x-[2px] hover:translate-y-[2px] transition-all uppercase font-black"
                   >
                     {busyAction === `create-folder-${selectedSubjectId}` ? 'Creating folder...' : 'Initialize Subject Folder'}
                   </Button>

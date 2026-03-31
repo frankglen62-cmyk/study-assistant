@@ -174,7 +174,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by status"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
+            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
           >
             <option value="all">All statuses</option>
             <option value="active">Active</option>
@@ -189,7 +189,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by site"
             value={siteFilter}
             onChange={(event) => setSiteFilter(event.target.value)}
-            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
+            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
           >
             <option value="all">All sites</option>
             {siteOptions.map((site) => (
@@ -202,7 +202,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by subject"
             value={subjectFilter}
             onChange={(event) => setSubjectFilter(event.target.value)}
-            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
+            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
           >
             <option value="all">All subjects</option>
             {subjectOptions.map((subject) => (
@@ -218,13 +218,13 @@ export function AdminUserSessionsAudit({
         </div>
       </Card>
 
-      <div className="border-4 border-black bg-background shadow-solid-md overflow-hidden">
+      <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm border-collapse">
             <thead className="bg-surface border-b-4 border-black">
               <tr>
                 {['Started', 'Site', 'Subject', 'Billed Time', 'Status', 'Signals', 'Actions'].map((column) => (
-                  <th key={column} className="px-5 py-4 font-black uppercase tracking-widest text-black border-r-2 border-border/50 last:border-r-0">
+                  <th key={column} className="px-5 py-4 font-medium text-black ">
                     {column}
                   </th>
                 ))}
@@ -233,7 +233,7 @@ export function AdminUserSessionsAudit({
             <tbody className="divide-y-2 divide-black/20 font-medium">
               {filteredSessions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
+                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-medium bg-surface/50">
                     No sessions match the current filters for this client.
                   </td>
                 </tr>
@@ -243,14 +243,14 @@ export function AdminUserSessionsAudit({
                     <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
                         <p className="font-bold text-base text-foreground group-hover:text-black">{session.startedAt}</p>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/80">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
+                        <p className="text-xs font-medium text-muted-foreground/80">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
                       </div>
                     </td>
                     <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
                         <p className="font-bold text-base text-foreground group-hover:text-black break-words">{session.siteDomain}</p>
                         <p className="border-t-2 border-black/10 pt-2 text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80 break-all">{session.pagePath}</p>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">{session.pageTitle}</p>
+                        <p className="text-xs text-muted-foreground text-muted-foreground/80">{session.pageTitle}</p>
                       </div>
                     </td>
                     <td className="px-5 py-4 align-top border-r-2 border-border/50">

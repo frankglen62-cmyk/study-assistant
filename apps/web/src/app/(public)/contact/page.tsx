@@ -1,6 +1,5 @@
 import { Mail, MessageSquareText, ShieldEllipsis, Sparkles } from 'lucide-react';
 
-import { InteractiveCard } from '@/components/interactive-card';
 import { ScrollReveal } from '@/components/scroll-reveal';
 import { ContactForm } from '@/features/public/contact-form';
 
@@ -24,51 +23,51 @@ const channels = [
 
 export default function ContactPage() {
   return (
-    <div className="bg-[#0a0a0a] py-24">
+    <div className="py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <ScrollReveal className="relative mb-14 overflow-hidden rounded-[36px] border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-10 lg:p-14">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[10%] top-[12%] h-40 w-40 rounded-full bg-teal-400/10 blur-3xl animate-aurora" />
-            <div className="absolute right-[8%] top-[18%] h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl animate-aurora [animation-duration:20s]" />
+        {/* Hero */}
+        <ScrollReveal className="relative mb-14 text-center lg:text-left">
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+            <div className="absolute left-[10%] top-[10%] h-48 w-48 rounded-full bg-blue-100/40 blur-3xl" />
+            <div className="absolute right-[8%] top-[15%] h-56 w-56 rounded-full bg-emerald-100/30 blur-3xl" />
           </div>
           <div className="relative max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-neutral-400">
-              <Sparkles className="h-4 w-4 text-teal-400" />
+            <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700">
+              <Sparkles className="h-4 w-4" />
               Support
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              A smoother way to
-              <span className="block bg-[linear-gradient(120deg,#5eead4,#2dd4bf,#67e8f9,#5eead4)] bg-[length:220%_220%] bg-clip-text text-transparent animate-shimmer">
-                reach the team
-              </span>
+            </span>
+            <h1 className="font-display text-4xl text-foreground sm:text-5xl">
+              Get in touch
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-500">
+            <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
               Use this channel for onboarding questions, rollout guidance, security inquiries, and
-              support escalations without leaving the premium portal flow.
+              support escalations.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          {/* Info Cards */}
           <div className="space-y-6">
             {channels.map((channel, index) => {
               const Icon = channel.icon;
               return (
                 <ScrollReveal key={channel.title} delay={index * 0.06}>
-                  <InteractiveCard className="rounded-[28px] border border-white/[0.06] bg-white/[0.02] p-6">
-                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-500/10 text-teal-400">
+                  <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="mb-1 text-base font-semibold text-white">{channel.title}</h3>
-                    <p className="text-sm leading-7 text-neutral-500">{channel.description}</p>
-                  </InteractiveCard>
+                    <h3 className="mb-1 text-base font-semibold text-foreground">{channel.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{channel.description}</p>
+                  </div>
                 </ScrollReveal>
               );
             })}
           </div>
 
+          {/* Form */}
           <ScrollReveal delay={0.08}>
-            <div className="rounded-[34px] border border-white/[0.06] bg-white/[0.02] p-2">
+            <div className="rounded-2xl border border-border/40 bg-white p-2 shadow-card">
               <ContactForm />
             </div>
           </ScrollReveal>

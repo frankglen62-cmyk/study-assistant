@@ -69,7 +69,7 @@ export default async function AccountPage({
       />
 
       <div className="space-y-6 pt-4">
-        <h3 className="font-display text-3xl font-black uppercase text-black border-l-8 border-accent pl-4">Billing History</h3>
+        <h3 className="font-display text-3xl font-semibold text-black  pl-4">Billing History</h3>
         <DataTable
           columns={['Date', 'Package', 'Provider', 'Amount', 'Status']}
           emptyMessage="No billing history yet."

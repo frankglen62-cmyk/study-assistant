@@ -126,11 +126,11 @@ export default async function ExtensionGuidePage() {
       />
 
       {isOutdatedInstalledVersion ? (
-        <div className="border-4 border-warning bg-warning/20 shadow-solid-sm">
-          <div className="flex flex-col gap-4 p-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="space-y-2">
-              <p className="text-xs font-black uppercase tracking-widest text-black">Update available for your installed browser</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-black/70">
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-1">
+              <p className="text-sm font-semibold text-amber-800">Update available for your installed browser</p>
+              <p className="text-sm text-amber-700">
                 {`Your latest active browser is still on ${installedVersion}. Download ZIP v${extensionVersion}, extract it, then reload the unpacked extension from chrome://extensions.`}
               </p>
             </div>
@@ -158,7 +158,7 @@ export default async function ExtensionGuidePage() {
         latestInstalledVersion={installedVersion}
       />
 
-      <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
         <Card>
           <CardHeader>
             <CardTitle>Install or update in 3 simple steps</CardTitle>
@@ -171,28 +171,28 @@ export default async function ExtensionGuidePage() {
               const Icon = step.icon;
 
               return (
-                <div key={step.label} className="flex items-start gap-4 border-4 border-black bg-surface p-5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-accent text-black">
+                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/30 p-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">{step.label}</p>
-                    <p className="text-sm font-black uppercase text-black">{step.title}</p>
-                    <p className="text-xs font-bold uppercase tracking-widest text-black/60">{step.description}</p>
+                    <p className="text-xs font-medium text-muted-foreground">{step.label}</p>
+                    <p className="text-sm font-semibold text-foreground">{step.title}</p>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
                 </div>
               );
             })}
 
-            <div className="border-4 border-warning bg-warning/20 p-5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-5">
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-warning text-black">
+                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
                   <AlertTriangle className="h-5 w-5" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-black uppercase text-black">Important folder reminder</p>
-                  <p className="text-xs font-bold uppercase tracking-widest text-black/60">
-                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-black">{extensionManifestFileName}</span> is directly visible.
+                  <p className="text-sm font-semibold text-amber-800">Important folder reminder</p>
+                  <p className="text-sm text-amber-700">
+                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-amber-900">{extensionManifestFileName}</span> is directly visible.
                     Do not select the ZIP file itself or a parent folder above it.
                   </p>
                 </div>
@@ -217,35 +217,35 @@ export default async function ExtensionGuidePage() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
-                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Pairing status</p>
-                <p className="mt-2 text-2xl font-black uppercase text-black">{pairingStatusLabel}</p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
+                <p className="text-xs font-medium text-muted-foreground">Pairing status</p>
+                <p className="mt-2 text-xl font-semibold text-foreground">{pairingStatusLabel}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
                   {hasPairedDevice
                     ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser is' : 'browsers are'} connected to your account.`
                     : 'No browser is connected to your account yet.'}
                 </p>
               </div>
-              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
-                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Installed build</p>
-                <p className="mt-2 text-2xl font-black uppercase text-black">{installedVersion ?? 'Not detected'}</p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
+                <p className="text-xs font-medium text-muted-foreground">Installed build</p>
+                <p className="mt-2 text-xl font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
                   {isOutdatedInstalledVersion
                     ? 'This browser is behind the latest ZIP and needs a manual refresh.'
                     : 'The latest active browser matches the current ZIP build or has not reported a version yet.'}
                 </p>
               </div>
-              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
-                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Latest active browser</p>
-                <p className="mt-2 text-lg font-black uppercase text-black">{latestDevice?.name ?? 'No browser yet'}</p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
+                <p className="text-xs font-medium text-muted-foreground">Latest active browser</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
                   {latestDevice ? `Last seen ${latestDevice.lastSeen}.` : 'Pair a browser first so the portal can track its state.'}
                 </p>
               </div>
-              <div className="border-4 border-accent bg-accent/10 p-6 shadow-solid-sm">
-                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Next step</p>
-                <p className="mt-2 text-lg font-black uppercase text-black">{nextStepLabel}</p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
+              <div className="rounded-xl border border-accent/30 bg-accent/5 p-5">
+                <p className="text-xs font-medium text-muted-foreground">Next step</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">{nextStepLabel}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
                   {hasOpenSession
                     ? 'A session is already active, so the extension can continue immediately after setup.'
                     : 'If pairing is already complete, open or resume a session before using analysis.'}

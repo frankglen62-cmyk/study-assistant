@@ -139,72 +139,74 @@ export function SessionManager({ initialSession, remainingSeconds }: SessionMana
         {session ? (
           <>
             {isActive ? (
-              <Button variant="secondary" className="gap-2" onClick={() => void runMutation('pause')} disabled={pendingAction !== null}>
+              <Button variant="secondary" size="sm" onClick={() => void runMutation('pause')} disabled={pendingAction !== null}>
                 <Pause className="h-4 w-4" /> {pendingAction === 'pause' ? 'Pausing...' : 'Pause'}
               </Button>
             ) : (
-              <Button className="gap-2" onClick={() => void runMutation('resume')} disabled={pendingAction !== null}>
+              <Button size="sm" onClick={() => void runMutation('resume')} disabled={pendingAction !== null}>
                 <Play className="h-4 w-4" /> {pendingAction === 'resume' ? 'Resuming...' : 'Resume'}
               </Button>
             )}
-            <Button variant="danger" className="gap-2" onClick={() => void runMutation('end')} disabled={pendingAction !== null}>
+            <Button variant="danger" size="sm" onClick={() => void runMutation('end')} disabled={pendingAction !== null}>
               <Square className="h-4 w-4" /> {pendingAction === 'end' ? 'Ending...' : 'End Session'}
             </Button>
           </>
         ) : (
-          <Button className="gap-2" onClick={() => void runMutation('start')} disabled={pendingAction !== null}>
+          <Button size="sm" onClick={() => void runMutation('start')} disabled={pendingAction !== null}>
             <Play className="h-4 w-4" /> {pendingAction === 'start' ? 'Starting...' : 'Start New Session'}
           </Button>
         )}
       </div>
 
-      <Card className={session ? 'border-4 border-success bg-success/10 shadow-solid-md bg-surface' : 'border-4 border-black bg-surface shadow-solid-sm'}>
-        <CardHeader className="flex flex-row flex-wrap items-center justify-between pb-6 border-b-4 border-black/10">
-          <div>
-            <CardTitle className="flex items-center gap-2 font-display text-2xl font-black uppercase text-black">
-              <Activity className={session ? 'h-6 w-6 animate-pulse text-success' : 'h-6 w-6 text-black/40'} />
-              Active Session
-            </CardTitle>
-            <CardDescription className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">Current real-time study activity.</CardDescription>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            {lowCredits ? <StatusBadge status="no_credit" /> : null}
-            <StatusBadge status={session?.status ?? 'ended'} />
+      <Card className={session ? 'border-accent/40 ring-1 ring-accent/20' : ''}>
+        <CardHeader>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <Activity className={session ? 'h-5 w-5 animate-pulse text-accent' : 'h-5 w-5 text-muted-foreground/40'} />
+                Active Session
+              </CardTitle>
+              <CardDescription>Current real-time study activity.</CardDescription>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {lowCredits ? <StatusBadge status="no_credit" /> : null}
+              <StatusBadge status={session?.status ?? 'ended'} />
+            </div>
           </div>
         </CardHeader>
-        <CardContent className="pt-6">
-          <div className="border-4 border-black bg-white p-6 shadow-solid-sm">
+        <CardContent>
+          <div className="rounded-xl border border-border/40 bg-surface/30 p-6">
             {session ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <div>
-                  <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-black">Session ID</p>
-                  <p className="font-mono text-lg font-black uppercase">{session.id.split('-')[0]}</p>
+                  <p className="mb-1 text-xs font-medium text-muted-foreground">Session ID</p>
+                  <p className="font-mono text-lg font-semibold text-foreground">{session.id.split('-')[0]}</p>
                 </div>
                 <div>
-                  <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-black">Started</p>
-                  <p className="text-sm font-bold uppercase tracking-widest">{new Date(session.startTime).toLocaleTimeString()}</p>
+                  <p className="mb-1 text-xs font-medium text-muted-foreground">Started</p>
+                  <p className="text-sm font-medium text-foreground">{new Date(session.startTime).toLocaleTimeString()}</p>
                 </div>
                 <div>
-                  <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-black">Detection mode</p>
-                  <p className="text-sm font-bold uppercase tracking-widest">{session.detectionMode}</p>
+                  <p className="mb-1 text-xs font-medium text-muted-foreground">Detection mode</p>
+                  <p className="text-sm font-medium text-foreground capitalize">{session.detectionMode}</p>
                 </div>
                 <div>
-                  <p className="mb-2 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-black">
-                    <Zap className="h-4 w-4" /> Credits remaining
+                  <p className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <Zap className="h-3.5 w-3.5" /> Credits remaining
                   </p>
-                  <p className="font-display text-2xl font-black">{formatDuration(creditsRemaining)}</p>
+                  <p className="font-display text-2xl text-foreground">{formatDuration(creditsRemaining)}</p>
                 </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <History className="mb-4 h-12 w-12 text-black/20" />
-                <p className="font-display text-2xl font-black uppercase text-black">No active session</p>
-                <p className="mt-2 max-w-sm text-xs font-bold uppercase tracking-widest text-black/60">
+                <History className="mb-4 h-12 w-12 text-muted-foreground/20" />
+                <p className="font-display text-xl text-foreground">No active session</p>
+                <p className="mt-2 max-w-sm text-sm text-muted-foreground">
                   Start a session here or via the Chrome extension to begin tracking your study time.
                 </p>
-                <div className="mt-6 flex flex-wrap justify-center gap-3 text-[10px] font-black uppercase tracking-widest text-black/50">
-                  <span className="border-2 border-black/10 bg-black/5 px-2 py-1">Credits available: {formatDuration(creditsRemaining)}</span>
-                  {lowCredits ? <span className="border-2 border-danger bg-danger/10 text-danger px-2 py-1">Low credits. Top up soon.</span> : null}
+                <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs text-muted-foreground">
+                  <span className="rounded-full border border-border/40 bg-surface/50 px-3 py-1.5">Credits available: {formatDuration(creditsRemaining)}</span>
+                  {lowCredits ? <span className="rounded-full border border-red-200 bg-red-50 text-red-700 px-3 py-1.5">Low credits. Top up soon.</span> : null}
                 </div>
               </div>
             )}

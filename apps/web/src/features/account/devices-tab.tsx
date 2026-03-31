@@ -41,23 +41,25 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
   return (
     <div className="space-y-6">
       {/* Summary card */}
-      <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
-        <div className="flex items-center gap-2 mb-4">
-          <Monitor className="h-5 w-5 text-black" />
-          <h3 className="text-xs font-black uppercase tracking-[0.2em] text-black">Device Summary</h3>
+      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <Monitor className="h-4 w-4 text-accent" />
+          </div>
+          <h3 className="text-sm font-semibold text-foreground">Device Summary</h3>
         </div>
         <div className="grid gap-6 sm:grid-cols-3">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Total Devices</p>
-            <p className="mt-1 font-display text-3xl font-black text-black">{devices.length}</p>
+            <p className="text-xs font-medium text-muted-foreground">Total Devices</p>
+            <p className="mt-1 font-display text-3xl text-foreground">{devices.length}</p>
           </div>
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Active</p>
-            <p className="mt-1 font-display text-3xl font-black text-success">{activeCount}</p>
+            <p className="text-xs font-medium text-muted-foreground">Active</p>
+            <p className="mt-1 font-display text-3xl text-accent">{activeCount}</p>
           </div>
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">Current Device</p>
-            <p className="mt-1 text-sm font-bold uppercase tracking-widest text-black truncate">
+            <p className="text-xs font-medium text-muted-foreground">Current Device</p>
+            <p className="mt-1 text-sm font-medium text-foreground truncate">
               {currentDevice?.name ?? 'None'}
             </p>
           </div>
@@ -65,21 +67,21 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
       </div>
 
       {/* Filter row */}
-      <div className="flex gap-0 border-4 border-black bg-surface">
+      <div className="flex gap-1 rounded-xl bg-surface/50 p-1">
         {filters.map((f) => (
           <button
             key={f.id}
             type="button"
             onClick={() => setFilter(f.id)}
-            className={`flex items-center gap-1.5 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-100 border-r-2 border-black/20 last:border-r-0 ${
+            className={`flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
               filter === f.id
-                ? 'bg-accent text-black'
-                : 'text-black/40 hover:bg-black/5 hover:text-black'
+                ? 'bg-white text-foreground shadow-soft-sm'
+                : 'text-muted-foreground hover:bg-white/50 hover:text-foreground'
             }`}
           >
             {f.label}
             {f.count !== undefined ? (
-              <span className="text-[10px] opacity-60">{f.count}</span>
+              <span className="text-xs opacity-60">{f.count}</span>
             ) : null}
           </button>
         ))}
@@ -91,30 +93,30 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
           filteredDevices.map((device, index) => (
             <div
               key={device.id}
-              className={`flex flex-col gap-3 border-4 p-5 sm:flex-row sm:items-center sm:justify-between ${
+              className={`flex flex-col gap-3 rounded-xl border p-5 sm:flex-row sm:items-center sm:justify-between transition-all ${
                 index === 0 && filter === 'all'
-                  ? 'border-accent bg-accent/5 shadow-solid-sm'
+                  ? 'border-accent/30 bg-accent/5 ring-1 ring-accent/10'
                   : device.status === 'revoked'
-                    ? 'border-black/30 bg-surface/50 opacity-60'
-                    : 'border-black bg-surface shadow-solid-sm'
+                    ? 'border-border/30 bg-surface/30 opacity-60'
+                    : 'border-border/40 bg-white shadow-card'
               }`}
             >
               <div className="flex items-start gap-4 min-w-0">
-                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-accent">
-                  <Monitor className="h-5 w-5 text-black" />
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                  <Monitor className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-black uppercase text-black truncate">{device.name}</p>
+                    <p className="text-sm font-medium text-foreground truncate">{device.name}</p>
                     {index === 0 && filter === 'all' ? (
-                      <Badge tone="accent" className="text-[10px] border-black">Current</Badge>
+                      <Badge tone="accent" className="text-xs">Current</Badge>
                     ) : null}
                   </div>
-                  <div className="mt-2 flex flex-wrap items-center gap-3">
-                    <span className="text-[10px] font-mono font-black uppercase tracking-widest text-black border-2 border-black/10 bg-black/5 px-2 py-0.5">
+                  <div className="mt-1.5 flex flex-wrap items-center gap-3">
+                    <span className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-mono text-foreground">
                       {device.version}
                     </span>
-                    <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-black/60">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock className="h-3 w-3" />
                       {device.lastSeen}
                     </span>
@@ -130,11 +132,11 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
             </div>
           ))
         ) : (
-          <div className="border-4 border-dashed border-black/30 bg-surface p-10 text-center flex flex-col items-center gap-4">
-            <AlertTriangle className="h-10 w-10 text-warning" />
+          <div className="rounded-2xl border border-dashed border-border/40 bg-surface/30 p-10 text-center flex flex-col items-center gap-4">
+            <AlertTriangle className="h-10 w-10 text-amber-400" />
             <div>
-              <p className="font-display text-xl font-black uppercase text-black">No devices found</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-black/60 mt-2 max-w-sm">
+              <p className="text-lg font-semibold text-foreground">No devices found</p>
+              <p className="text-sm text-muted-foreground mt-2 max-w-sm">
                 {filter !== 'all'
                   ? 'No devices match this filter. Try selecting "All".'
                   : 'Open the Extension Guide to download and pair your first browser.'}

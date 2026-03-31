@@ -45,25 +45,25 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="SEARCH BY NAME, EMAIL, OR ROLE..."
-          className="h-14 rounded-none bg-surface pl-12 text-sm font-black uppercase tracking-widest border-4 border-border focus:border-accent shadow-solid-sm placeholder:text-muted-foreground/50 transition-colors hover:bg-background"
+          className="h-14 rounded-none bg-surface pl-12 text-sm font-medium border border-border/40 focus:border-accent shadow-card placeholder:text-muted-foreground/50 transition-colors hover:bg-background"
         />
       </div>
 
       {/* Results count */}
       {search.trim() && (
-        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <p className="text-xs font-medium text-muted-foreground">
           Showing {filtered.length} of {users.length} user{users.length === 1 ? '' : 's'}
         </p>
       )}
 
       {/* Table */}
-      <div className="border-4 border-border bg-background shadow-solid-md overflow-hidden">
+      <div className="border border-border/40 bg-background shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm border-collapse">
             <thead className="bg-surface border-b-4 border-border">
               <tr>
                 {['Name', 'Email', 'Role', 'Wallet', 'Status', 'Joined', 'Activity', 'Actions'].map((col) => (
-                  <th key={col} className="px-5 py-4 font-black uppercase tracking-widest text-foreground border-r-2 border-border/50 last:border-r-0">
+                  <th key={col} className="px-5 py-4 font-medium text-foreground ">
                     {col}
                   </th>
                 ))}
@@ -72,7 +72,7 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
             <tbody className="divide-y-2 divide-border font-medium">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
+                  <td colSpan={8} className="px-5 py-16 text-center text-muted-foreground font-medium bg-surface/50">
                     {search.trim() ? 'No users match your search.' : 'No users are available yet.'}
                   </td>
                 </tr>
@@ -87,7 +87,7 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
                     </td>
                     <td className="px-5 py-4 align-top font-mono text-muted-foreground border-r-2 border-border/50">{user.email}</td>
                     <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <Badge tone="neutral" className="rounded-none border-2 border-border/50 bg-surface text-xs font-bold uppercase tracking-widest">
+                      <Badge tone="neutral" className="rounded-xl border border-border/40/50 bg-surface text-xs font-medium">
                         {user.role}
                       </Badge>
                     </td>

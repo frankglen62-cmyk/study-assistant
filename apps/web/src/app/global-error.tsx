@@ -11,10 +11,10 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col items-center justify-center bg-neutral-950 p-8 text-white">
+      <body className="flex min-h-screen flex-col items-center justify-center bg-background p-8 text-foreground">
         <div className="max-w-md space-y-6 text-center">
-          <h1 className="font-display text-4xl font-semibold tracking-tight">Something went wrong</h1>
-          <p className="text-neutral-400">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-foreground">Something went wrong</h1>
+          <p className="text-muted-foreground">
             An unexpected error occurred. Your data is safe — please try again or return to the home page.
           </p>
           {error.digest && (

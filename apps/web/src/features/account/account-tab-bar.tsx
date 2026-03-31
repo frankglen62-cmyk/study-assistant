@@ -19,17 +19,17 @@ export function AccountTabBar({
   onTabChange: (tab: AccountTab) => void;
 }) {
   return (
-    <div className="relative mb-8 flex gap-0 overflow-x-auto border-4 border-black bg-surface">
+    <div className="relative mb-8 flex gap-1 overflow-x-auto rounded-xl bg-surface/50 p-1">
       {tabs.map((tab) => (
         <button
           key={tab.id}
           type="button"
           onClick={() => onTabChange(tab.id)}
           className={cn(
-            'relative z-10 whitespace-nowrap px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-100 border-r-2 border-black/20 last:border-r-0',
+            'relative z-10 whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200',
             activeTab === tab.id
-              ? 'bg-accent text-black shadow-none'
-              : 'text-black/40 hover:bg-black/5 hover:text-black',
+              ? 'bg-white text-foreground shadow-soft-sm'
+              : 'text-muted-foreground hover:bg-white/50 hover:text-foreground',
           )}
         >
           {tab.label}

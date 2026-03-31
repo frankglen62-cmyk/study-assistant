@@ -1,4 +1,4 @@
-import { Button, Card } from '@study-assistant/ui';
+import { Button } from '@study-assistant/ui';
 
 import { DataTable } from '@/components/data-table';
 import { PageHeading } from '@/components/page-heading';
@@ -36,8 +36,8 @@ export default async function SessionsPage() {
         remainingSeconds={context.wallet.remaining_seconds}
       />
 
-      <div className="space-y-6 pt-12">
-        <h3 className="font-display text-3xl font-black uppercase text-black border-l-8 border-accent pl-4">Recent Sessions</h3>
+      <div className="space-y-4 pt-6">
+        <h3 className="text-xl font-semibold text-foreground">Recent Sessions</h3>
         <DataTable
           columns={['Date', 'Duration', 'Subject', 'Category', 'Credits Used', 'Status', 'Action']}
           emptyMessage="No historical sessions found."
@@ -48,7 +48,7 @@ export default async function SessionsPage() {
             session.category,
             session.creditsUsed,
             <StatusBadge key={`${session.id}-status`} status={session.status} />,
-            <Button key={`${session.id}-action`} variant="secondary" size="sm" className="font-black tracking-widest uppercase">
+            <Button key={`${session.id}-action`} variant="secondary" size="sm">
               Details
             </Button>,
           ])}

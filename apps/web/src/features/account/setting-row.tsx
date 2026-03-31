@@ -20,27 +20,27 @@ export function SettingRow({
   className?: string;
 }) {
   return (
-    <div className={cn('border-4 border-black bg-surface p-6 shadow-solid-sm', className)}>
+    <div className={cn('rounded-xl border border-border/40 bg-white p-5', className)}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4 min-w-0">
           {icon ? (
-            <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-accent">
+            <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
               {icon}
             </div>
           ) : null}
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <p className="text-sm font-black uppercase text-black">{title}</p>
+              <p className="text-sm font-medium text-foreground">{title}</p>
               {status}
             </div>
             {description ? (
-              <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">{description}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{description}</p>
             ) : null}
           </div>
         </div>
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
-      {children ? <div className="mt-6">{children}</div> : null}
+      {children ? <div className="mt-4">{children}</div> : null}
     </div>
   );
 }
