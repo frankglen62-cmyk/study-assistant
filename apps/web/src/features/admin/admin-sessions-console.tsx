@@ -97,12 +97,14 @@ export function AdminSessionsConsole({
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {metrics.map((metric) => (
-          <Card key={metric.label} className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{metric.label}</p>
-            <p className="text-2xl font-semibold tracking-tight">{metric.value}</p>
-            <p className="text-xs text-muted-foreground">{metric.delta}</p>
+          <Card key={metric.label} className="space-y-2 flex flex-col justify-between p-6">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">{metric.label}</p>
+            <p className="font-display text-5xl font-black tracking-tighter text-black">{metric.value}</p>
+            <div className="inline-flex w-fit items-center border-[3px] border-black bg-accent px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-black shadow-solid-sm">
+              {metric.delta}
+            </div>
           </Card>
         ))}
       </div>
@@ -110,19 +112,20 @@ export function AdminSessionsConsole({
       <Card className="space-y-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative w-full max-w-xl">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by client, email, site, page title, or subject..."
-              className="pl-9"
+              placeholder="SEARCH BY CLIENT, EMAIL, SITE..."
+              className="pl-12"
             />
           </div>
-          <div className="grid w-full gap-3 md:grid-cols-2 xl:grid-cols-4 xl:max-w-5xl">
+          <div className="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-4 xl:max-w-5xl">
             <select
+              aria-label="Filter by client"
               value={clientFilter}
               onChange={(event) => setClientFilter(event.target.value)}
-              className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
             >
               <option value="all">All clients</option>
               {clientOptions.map((clientOption) => {
@@ -136,9 +139,10 @@ export function AdminSessionsConsole({
               })}
             </select>
             <select
+              aria-label="Filter by status"
               value={statusFilter}
               onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-              className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
             >
               <option value="all">All statuses</option>
               <option value="active">Active</option>
@@ -150,9 +154,10 @@ export function AdminSessionsConsole({
               <option value="failed">Failed</option>
             </select>
             <select
+              aria-label="Filter by site"
               value={siteFilter}
               onChange={(event) => setSiteFilter(event.target.value)}
-              className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
             >
               <option value="all">All sites</option>
               {siteOptions.map((site) => (
@@ -162,9 +167,10 @@ export function AdminSessionsConsole({
               ))}
             </select>
             <select
+              aria-label="Filter by subject"
               value={subjectFilter}
               onChange={(event) => setSubjectFilter(event.target.value)}
-              className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
             >
               <option value="all">All subjects</option>
               {subjectOptions.map((subject) => (
@@ -196,64 +202,64 @@ export function AdminSessionsConsole({
         </div>
       </Card>
 
-      <Card className="overflow-hidden p-0">
+      <div className="border-4 border-black bg-background shadow-solid-md overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-border/70 text-left text-sm">
-            <thead className="bg-muted/50">
+          <table className="min-w-full text-left text-sm border-collapse">
+            <thead className="bg-surface border-b-4 border-black">
               <tr>
                 {['User', 'Site', 'Subject', 'Usage', 'Status', 'Signals', 'Actions'].map((column) => (
-                  <th key={column} className="px-5 py-4 font-medium text-muted-foreground">
+                  <th key={column} className="px-5 py-4 font-black uppercase tracking-widest text-black border-r-2 border-border/50 last:border-r-0">
                     {column}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/70">
+            <tbody className="divide-y-2 divide-border font-medium">
               {filteredSessions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-12 text-center text-muted-foreground">
+                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
                     No sessions match the current filters.
                   </td>
                 </tr>
               ) : (
                 filteredSessions.map((session) => (
-                  <tr key={session.id} className="bg-surface/70 transition hover:bg-muted/30">
-                    <td className="px-5 py-4 align-top">
+                  <tr key={session.id} className="bg-background transition-colors hover:bg-accent/10 group">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.userName}</p>
-                        <p className="text-xs text-muted-foreground">{session.userEmail}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.userName}</p>
+                        <p className="text-[10px] font-mono font-bold tracking-wider text-muted-foreground/80">{session.userEmail}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.siteDomain}</p>
-                        <p className="text-xs text-muted-foreground">{session.pageTitle}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.siteDomain}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{session.pageTitle}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.subject}</p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.subject}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
                           {session.category ? `${session.category} category` : 'No category assigned'}
                         </p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.creditsUsed}</p>
-                        <p className="text-xs text-muted-foreground">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'} | ${session.startedAt}`}</p>
+                        <p className="font-display font-black text-lg text-foreground group-hover:text-black">{session.creditsUsed}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'} | ${session.startedAt}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <StatusBadge status={session.status} />
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.suspiciousFlag}</p>
-                        <p className="text-xs text-muted-foreground">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.suspiciousFlag}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="flex flex-wrap gap-2">
                         <Button size="sm" variant="secondary" onClick={() => setSelectedSessionId(session.id)}>
                           Quick View
@@ -272,24 +278,26 @@ export function AdminSessionsConsole({
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
 
-      <Card className="space-y-4">
-        <div className="space-y-1">
-          <p className="text-sm uppercase tracking-[0.18em] text-accent">Clients Without Sessions Yet</p>
-          <p className="text-sm text-muted-foreground">
+      <Card className="space-y-6">
+        <div className="space-y-2">
+          <p className="text-sm font-black uppercase tracking-widest text-foreground">Clients Without Sessions Yet</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
             These users are registered but have not started any billed extension session yet, so they will not appear in the session table above.
           </p>
         </div>
         {usersWithoutSessions.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Every current client has at least one session record.</p>
+          <div className="border-4 border-black border-dashed bg-surface p-6 sm:p-12 text-center text-xs font-black uppercase tracking-widest text-muted-foreground">
+            Every current client has at least one session record.
+          </div>
         ) : (
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {usersWithoutSessions.map((user) => (
-              <div key={user.id} className="rounded-3xl border border-border/70 bg-surface/60 p-4">
-                <p className="font-medium">{user.name}</p>
-                <p className="text-sm text-muted-foreground">{user.email}</p>
-                <p className="mt-2 text-xs text-muted-foreground">{`Joined ${user.joinedAt}`}</p>
+              <div key={user.id} className="rounded-none border-4 border-black bg-white p-6 shadow-solid-sm transition-all hover:-translate-y-1 hover:translate-x-1 hover:shadow-solid-md group cursor-default">
+                <p className="font-black uppercase tracking-widest text-black/80 group-hover:text-black">{user.name}</p>
+                <p className="mt-1 text-xs font-mono font-bold text-black/60 group-hover:text-black/80">{user.email}</p>
+                <p className="mt-4 text-[10px] font-black uppercase tracking-widest text-black/50 group-hover:text-black/80">{`Joined ${user.joinedAt}`}</p>
               </div>
             ))}
           </div>

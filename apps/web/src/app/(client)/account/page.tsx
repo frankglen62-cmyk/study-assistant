@@ -68,21 +68,19 @@ export default async function AccountPage({
         }}
       />
 
-      <div className="space-y-4">
-        <h3 className="text-lg font-medium tracking-tight">Billing History</h3>
-        <Card className="overflow-hidden">
-          <DataTable
-            columns={['Date', 'Package', 'Provider', 'Amount', 'Status']}
-            emptyMessage="No billing history yet."
-            rows={account.paymentHistory.map((payment) => [
-              payment.date,
-              payment.package,
-              payment.provider,
-              payment.amount,
-              <StatusBadge key={`${payment.id}-status`} status={payment.status} />,
-            ])}
-          />
-        </Card>
+      <div className="space-y-6 pt-4">
+        <h3 className="font-display text-3xl font-black uppercase text-black border-l-8 border-accent pl-4">Billing History</h3>
+        <DataTable
+          columns={['Date', 'Package', 'Provider', 'Amount', 'Status']}
+          emptyMessage="No billing history yet."
+          rows={account.paymentHistory.map((payment) => [
+            payment.date,
+            payment.package,
+            payment.provider,
+            payment.amount,
+            <StatusBadge key={`${payment.id}-status`} status={payment.status} />,
+          ])}
+        />
       </div>
     </div>
   );

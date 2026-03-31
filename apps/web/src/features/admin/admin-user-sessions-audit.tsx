@@ -139,12 +139,12 @@ export function AdminUserSessionsAudit({
       <Card className="space-y-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative w-full max-w-xl">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by site, page title, path, subject, or category..."
-              className="pl-9"
+              placeholder="SEARCH BY SITE, TITLE, PATH, OR SUBJECT..."
+              className="pl-12"
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -171,9 +171,10 @@ export function AdminUserSessionsAudit({
 
         <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-4">
           <select
+            aria-label="Filter by status"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-            className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
           >
             <option value="all">All statuses</option>
             <option value="active">Active</option>
@@ -185,9 +186,10 @@ export function AdminUserSessionsAudit({
             <option value="failed">Failed</option>
           </select>
           <select
+            aria-label="Filter by site"
             value={siteFilter}
             onChange={(event) => setSiteFilter(event.target.value)}
-            className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
           >
             <option value="all">All sites</option>
             {siteOptions.map((site) => (
@@ -197,9 +199,10 @@ export function AdminUserSessionsAudit({
             ))}
           </select>
           <select
+            aria-label="Filter by subject"
             value={subjectFilter}
             onChange={(event) => setSubjectFilter(event.target.value)}
-            className="h-11 rounded-2xl border border-input bg-background/60 px-4 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+            className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
           >
             <option value="all">All subjects</option>
             {subjectOptions.map((subject) => (
@@ -215,65 +218,65 @@ export function AdminUserSessionsAudit({
         </div>
       </Card>
 
-      <Card className="overflow-hidden p-0">
+      <div className="border-4 border-black bg-background shadow-solid-md overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-border/70 text-left text-sm">
-            <thead className="bg-muted/50">
+          <table className="min-w-full text-left text-sm border-collapse">
+            <thead className="bg-surface border-b-4 border-black">
               <tr>
                 {['Started', 'Site', 'Subject', 'Billed Time', 'Status', 'Signals', 'Actions'].map((column) => (
-                  <th key={column} className="px-5 py-4 font-medium text-muted-foreground">
+                  <th key={column} className="px-5 py-4 font-black uppercase tracking-widest text-black border-r-2 border-border/50 last:border-r-0">
                     {column}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/70">
+            <tbody className="divide-y-2 divide-black/20 font-medium">
               {filteredSessions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-12 text-center text-muted-foreground">
+                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
                     No sessions match the current filters for this client.
                   </td>
                 </tr>
               ) : (
                 filteredSessions.map((session) => (
-                  <tr key={session.id} className="bg-surface/70 transition hover:bg-muted/30">
-                    <td className="px-5 py-4 align-top">
+                  <tr key={session.id} className="bg-background transition-colors hover:bg-accent/10 group">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.startedAt}</p>
-                        <p className="text-xs text-muted-foreground">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.startedAt}</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/80">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.siteDomain}</p>
-                        <p className="text-xs text-muted-foreground">{session.pagePath}</p>
-                        <p className="text-xs text-muted-foreground">{session.pageTitle}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black break-words">{session.siteDomain}</p>
+                        <p className="border-t-2 border-black/10 pt-2 text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80 break-all">{session.pagePath}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">{session.pageTitle}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.subject}</p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.subject}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
                           {session.category ? `Category: ${session.category}` : 'No category recorded'}
                         </p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.creditsUsed}</p>
-                        <p className="text-xs text-muted-foreground">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'}`}</p>
+                        <p className="font-display font-black text-lg text-foreground group-hover:text-black">{session.creditsUsed}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <StatusBadge status={session.status} />
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{session.suspiciousFlag}</p>
-                        <p className="text-xs text-muted-foreground">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.suspiciousFlag}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="flex flex-wrap gap-2">
                         <Button size="sm" variant="secondary" onClick={() => setSelectedSessionId(session.id)}>
                           Quick View
@@ -289,7 +292,7 @@ export function AdminUserSessionsAudit({
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
 
       <AdminSessionDrilldownDrawer
         session={selectedSession}

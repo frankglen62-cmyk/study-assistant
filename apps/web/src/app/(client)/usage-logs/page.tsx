@@ -24,21 +24,19 @@ export default async function UsageLogsPage() {
           </div>
         }
       />
-      <div className="space-y-4">
-        <h3 className="text-lg font-medium tracking-tight">Attempt History</h3>
-        <Card className="overflow-hidden">
-          <DataTable
-            columns={['Date', 'Subject', 'Category', 'Duration', 'Status']}
-            emptyMessage="No usage logs found for the selected filters."
-            rows={entries.map((entry) => [
-              entry.date,
-              entry.subject,
-              entry.category,
-              entry.duration,
-              <StatusBadge key={`${entry.id}-status`} status={entry.status} />,
-            ])}
-          />
-        </Card>
+      <div className="space-y-6">
+        <h3 className="font-display text-3xl font-black uppercase text-black border-l-8 border-accent pl-4">Attempt History</h3>
+        <DataTable
+          columns={['Date', 'Subject', 'Category', 'Duration', 'Status']}
+          emptyMessage="No usage logs found for the selected filters."
+          rows={entries.map((entry) => [
+            entry.date,
+            entry.subject,
+            entry.category,
+            entry.duration,
+            <StatusBadge key={`${entry.id}-status`} status={entry.status} />,
+          ])}
+        />
       </div>
     </div>
   );

@@ -79,7 +79,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
           <CardContent className="space-y-5">
             <FormField label="Answer style" error={errors.answerStyle?.message}>
               <select
-                className="h-11 w-full rounded-2xl border border-input bg-background/60 px-4 text-sm"
+                className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
                 {...register('answerStyle')}
               >
                 <option value="concise">Concise & direct</option>
@@ -88,19 +88,19 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
             </FormField>
             <FormField label="Default detection mode" error={errors.detectionMode?.message}>
               <select
-                className="h-11 w-full rounded-2xl border border-input bg-background/60 px-4 text-sm"
+                className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer"
                 {...register('detectionMode')}
               >
                 <option value="auto">Automatic (seamless)</option>
                 <option value="manual">Confirm first (preview)</option>
               </select>
             </FormField>
-            <div className="flex items-center justify-between rounded-lg border border-border/50 bg-background/30 p-4">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">Show confidence scores</p>
-                <p className="text-xs text-muted-foreground">Display AI certainty percentage on answer cards.</p>
+            <div className="flex items-center justify-between border-4 border-black bg-surface p-4">
+              <div className="space-y-1">
+                <p className="text-xs font-black uppercase tracking-widest text-black">Show confidence scores</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">Display AI certainty percentage on answer cards.</p>
               </div>
-              <input type="checkbox" className="h-4 w-4 rounded border-border bg-background" {...register('showConfidence')} />
+              <input type="checkbox" className="h-5 w-5 accent-accent border-2 border-black" {...register('showConfidence')} />
             </div>
           </CardContent>
         </Card>
@@ -114,7 +114,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
             </CardHeader>
             <CardContent className="space-y-5">
               <FormField label="Theme" error={errors.theme?.message}>
-                <select className="h-11 w-full rounded-2xl border border-input bg-background/60 px-4 text-sm" {...register('theme')}>
+                <select className="h-12 w-full appearance-none rounded-none border-4 border-black bg-surface px-4 py-2 text-xs font-black uppercase tracking-widest text-black outline-none transition focus:border-accent focus:shadow-solid-sm cursor-pointer" {...register('theme')}>
                   <option value="system">System match</option>
                   <option value="light">Light mode</option>
                   <option value="dark">Dark mode</option>
@@ -132,12 +132,12 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
               <CardDescription>Manage alerts and system messages.</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center justify-between rounded-lg border border-border/50 bg-background/30 p-4">
-                <div className="space-y-0.5">
-                  <p className="text-sm font-medium">Low credit warnings</p>
-                  <p className="text-xs text-muted-foreground">Get notified when balance implies less than 15 mins.</p>
+              <div className="flex items-center justify-between border-4 border-black bg-surface p-4">
+                <div className="space-y-1">
+                  <p className="text-xs font-black uppercase tracking-widest text-black">Low credit warnings</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">Get notified when balance implies less than 15 mins.</p>
                 </div>
-                <input type="checkbox" className="h-4 w-4 rounded border-border bg-background" {...register('lowCreditNotifications')} />
+                <input type="checkbox" className="h-5 w-5 accent-accent border-2 border-black" {...register('lowCreditNotifications')} />
               </div>
             </CardContent>
           </Card>
@@ -145,8 +145,8 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
       </div>
 
       {/* Sticky Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-end gap-4 border-t border-border/70 bg-surface/85 px-6 py-4 shadow-[0_-18px_50px_-34px_rgba(8,22,28,0.35)] backdrop-blur lg:left-[280px]">
-        <p className="mr-auto text-sm text-muted-foreground hidden sm:block">
+      <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-end gap-4 border-t-4 border-black bg-surface px-6 py-4 shadow-[0_-4px_0_0_rgb(0,0,0)] lg:left-[280px]">
+        <p className="mr-auto text-[10px] font-black uppercase tracking-widest text-black/50 hidden sm:block">
           Settings apply instantly to active sessions.
         </p>
         <Button type="button" variant="secondary" onClick={handleReset} disabled={pending}>

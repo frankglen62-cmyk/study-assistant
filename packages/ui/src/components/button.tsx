@@ -4,19 +4,19 @@ import { cn } from '../lib/cn';
 
 const buttonVariants = {
   primary:
-    'bg-accent text-accent-foreground shadow-glow hover:bg-accent/90 focus-visible:outline-accent',
+    'bg-accent text-black font-black uppercase hover:bg-black hover:text-white border-2 border-black focus-visible:outline-accent shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
   secondary:
-    'bg-surface text-surface-foreground border border-border hover:bg-surface/80 focus-visible:outline-border',
+    'bg-surface text-foreground font-black uppercase border-2 border-border hover:bg-foreground hover:text-background focus-visible:outline-border shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
   ghost:
-    'bg-transparent text-foreground hover:bg-muted/70 focus-visible:outline-border',
+    'bg-transparent text-foreground font-black uppercase hover:bg-surface border-2 border-transparent hover:border-border hover:shadow-solid-sm focus-visible:outline-border',
   danger:
-    'bg-danger text-danger-foreground hover:bg-danger/90 focus-visible:outline-danger',
+    'bg-danger text-white font-black uppercase border-2 border-danger hover:bg-white hover:text-danger focus-visible:outline-danger shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
 };
 
 const buttonSizes = {
-  md: 'h-11 px-4 text-sm',
-  sm: 'h-9 px-3 text-sm',
-  lg: 'h-12 px-5 text-base',
+  md: 'h-12 px-6 text-sm tracking-widest',
+  sm: 'h-10 px-4 text-xs tracking-widest',
+  lg: 'h-14 px-8 text-base tracking-widest',
 };
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,7 +28,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ asChild = false, children, className, variant = 'primary', size = 'md', type = 'button', ...props }, ref) => {
     const buttonClassName = cn(
-      'inline-flex items-center justify-center gap-2 rounded-full font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60',
+      'inline-flex items-center justify-center gap-3 rounded-none transition-all disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-solid-sm',
       buttonVariants[variant],
       buttonSizes[size],
       className,

@@ -126,11 +126,11 @@ export default async function ExtensionGuidePage() {
       />
 
       {isOutdatedInstalledVersion ? (
-        <Card className="border-warning/25 bg-warning/10">
-          <CardContent className="flex flex-col gap-3 p-5 lg:flex-row lg:items-center lg:justify-between">
-            <div className="space-y-1">
-              <p className="text-sm font-semibold text-foreground">Update available for your installed browser</p>
-              <p className="text-sm text-muted-foreground">
+        <div className="border-4 border-warning bg-warning/20 shadow-solid-sm">
+          <div className="flex flex-col gap-4 p-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs font-black uppercase tracking-widest text-black">Update available for your installed browser</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-black/70">
                 {`Your latest active browser is still on ${installedVersion}. Download ZIP v${extensionVersion}, extract it, then reload the unpacked extension from chrome://extensions.`}
               </p>
             </div>
@@ -140,8 +140,8 @@ export default async function ExtensionGuidePage() {
                 Update Now
               </a>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       ) : null}
 
       <PairExtensionCard
@@ -166,33 +166,33 @@ export default async function ExtensionGuidePage() {
               This is the only install flow that matters. Everything else is optional.
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-3">
+          <CardContent className="grid gap-4">
             {setupSteps.map((step) => {
               const Icon = step.icon;
 
               return (
-                <div key={step.label} className="flex items-start gap-4 rounded-[24px] border border-border/70 bg-background/50 p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-                    <Icon className="h-4 w-4" />
+                <div key={step.label} className="flex items-start gap-4 border-4 border-black bg-surface p-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-accent text-black">
+                    <Icon className="h-5 w-5" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">{step.label}</p>
-                    <p className="text-sm font-semibold text-foreground">{step.title}</p>
-                    <p className="text-sm leading-6 text-muted-foreground">{step.description}</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/60">{step.label}</p>
+                    <p className="text-sm font-black uppercase text-black">{step.title}</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-black/60">{step.description}</p>
                   </div>
                 </div>
               );
             })}
 
-            <div className="rounded-[24px] border border-warning/20 bg-warning/10 p-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-warning/15 text-warning">
-                  <AlertTriangle className="h-4 w-4" />
+            <div className="border-4 border-warning bg-warning/20 p-5">
+              <div className="flex items-start gap-4">
+                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center border-4 border-black bg-warning text-black">
+                  <AlertTriangle className="h-5 w-5" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-semibold text-foreground">Important folder reminder</p>
-                  <p className="text-sm leading-6 text-muted-foreground">
-                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-foreground">{extensionManifestFileName}</span> is directly visible.
+                  <p className="text-sm font-black uppercase text-black">Important folder reminder</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-black/60">
+                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-black">{extensionManifestFileName}</span> is directly visible.
                     Do not select the ZIP file itself or a parent folder above it.
                   </p>
                 </div>
@@ -216,36 +216,36 @@ export default async function ExtensionGuidePage() {
               <Badge tone="neutral">{latestPackageDateLabel}</Badge>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[24px] border border-border/70 bg-background/50 p-4">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Pairing status</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">{pairingStatusLabel}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
+                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Pairing status</p>
+                <p className="mt-2 text-2xl font-black uppercase text-black">{pairingStatusLabel}</p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
                   {hasPairedDevice
                     ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser is' : 'browsers are'} connected to your account.`
                     : 'No browser is connected to your account yet.'}
                 </p>
               </div>
-              <div className="rounded-[24px] border border-border/70 bg-background/50 p-4">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Installed build</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
+                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Installed build</p>
+                <p className="mt-2 text-2xl font-black uppercase text-black">{installedVersion ?? 'Not detected'}</p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
                   {isOutdatedInstalledVersion
                     ? 'This browser is behind the latest ZIP and needs a manual refresh.'
                     : 'The latest active browser matches the current ZIP build or has not reported a version yet.'}
                 </p>
               </div>
-              <div className="rounded-[24px] border border-border/70 bg-background/50 p-4">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Latest active browser</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
+                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Latest active browser</p>
+                <p className="mt-2 text-lg font-black uppercase text-black">{latestDevice?.name ?? 'No browser yet'}</p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
                   {latestDevice ? `Last seen ${latestDevice.lastSeen}.` : 'Pair a browser first so the portal can track its state.'}
                 </p>
               </div>
-              <div className="rounded-[24px] border border-border/70 bg-background/50 p-4">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Next step</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{nextStepLabel}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <div className="border-4 border-accent bg-accent/10 p-6 shadow-solid-sm">
+                <p className="text-[10px] uppercase font-black tracking-[0.2em] text-black/60">Next step</p>
+                <p className="mt-2 text-lg font-black uppercase text-black">{nextStepLabel}</p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">
                   {hasOpenSession
                     ? 'A session is already active, so the extension can continue immediately after setup.'
                     : 'If pairing is already complete, open or resume a session before using analysis.'}

@@ -4,42 +4,42 @@
 
 @layer base {
   :root {
-    --background: 42 42% 98%;
-    --foreground: 196 40% 11%;
-    --surface: 0 0% 100%;
-    --surface-foreground: 196 40% 11%;
-    --muted: 160 16% 92%;
-    --muted-foreground: 192 14% 39%;
-    --border: 180 15% 83%;
-    --input: 180 18% 79%;
-    --ring: 174 83% 33%;
-    --accent: 174 83% 33%;
-    --accent-foreground: 48 100% 98%;
-    --success: 152 69% 31%;
-    --success-foreground: 0 0% 100%;
-    --warning: 35 92% 46%;
-    --warning-foreground: 192 20% 14%;
-    --danger: 2 74% 54%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --surface: 0 0% 98%;
+    --surface-foreground: 0 0% 0%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 45%;
+    --border: 0 0% 0%;
+    --input: 0 0% 90%;
+    --ring: 173 100% 45%; /* Electric Cyan */
+    --accent: 173 100% 45%;
+    --accent-foreground: 0 0% 0%;
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 0%;
+    --warning: 48 96% 53%;
+    --warning-foreground: 0 0% 0%;
+    --danger: 348 83% 47%;
     --danger-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 216 45% 6%; /* Deep navy blue/black */
-    --foreground: 210 20% 92%;
-    --surface: 216 35% 9%; /* Slightly lighter than bg */
-    --surface-foreground: 210 20% 92%;
-    --muted: 215 25% 15%;
-    --muted-foreground: 215 14% 60%;
-    --border: 215 20% 16%; /* Softer borders */
-    --input: 215 20% 16%;
-    --ring: 173 77% 42%;
-    --accent: 173 77% 42%;
-    --accent-foreground: 0 0% 100%;
-    --success: 151 66% 40%;
-    --success-foreground: 0 0% 100%;
-    --warning: 36 95% 55%;
-    --warning-foreground: 190 60% 9%;
-    --danger: 350 74% 54%;
+    --background: 0 0% 4%; /* Pitch black base */
+    --foreground: 0 0% 100%;
+    --surface: 0 0% 8%; /* Pure stark panel */
+    --surface-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --border: 0 0% 25%; /* Hard, visible borders */
+    --input: 0 0% 15%;
+    --ring: 173 100% 45%; /* Neon Cyan */
+    --accent: 173 100% 45%;
+    --accent-foreground: 0 0% 0%;
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 0%;
+    --warning: 48 96% 53%;
+    --warning-foreground: 0 0% 0%;
+    --danger: 348 83% 47%;
     --danger-foreground: 0 0% 100%;
   }
 
@@ -52,18 +52,20 @@
   }
 
   body {
-    @apply min-h-screen bg-background font-body text-foreground antialiased selection:bg-accent/20;
-    background-image: 
-      radial-gradient(ellipse at top left, rgba(21, 168, 154, 0.08), transparent 40%),
-      radial-gradient(ellipse at top right, rgba(245, 158, 11, 0.03), transparent 30%);
+    @apply min-h-screen bg-background font-body text-foreground antialiased selection:bg-accent selection:text-black;
+    /* Grid paper background for light mode */
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
     background-attachment: fixed;
   }
 
   .dark body {
-    background-image: 
-      radial-gradient(ellipse 60% 50% at 0% 0%, rgba(20, 160, 150, 0.12), transparent completely),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(90, 40, 200, 0.04), transparent completely),
-      linear-gradient(180deg, rgba(8, 14, 20, 0.1) 0%, rgba(5, 11, 15, 0.4) 100%);
+    /* Glowing grid background for dark mode */
+    background-image: linear-gradient(to right, rgba(200, 200, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(200, 200, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-attachment: fixed;
   }
 
   a {
@@ -71,7 +73,8 @@
   }
 
   ::selection {
-    background: hsl(var(--accent) / 0.22);
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
   }
 }
 

@@ -13,16 +13,14 @@ export function Progress({ className, value, ...props }: ProgressProps) {
 
   return (
     <div
-      className={cn('relative h-2 w-full overflow-hidden rounded-full bg-background/50 shadow-inner', className)}
+      className={cn('relative h-4 w-full overflow-hidden rounded-none border-4 border-black bg-background shadow-solid-sm', className)}
       aria-hidden="true"
       {...props}
     >
       <div
-        className="h-full rounded-full bg-gradient-to-r from-accent/80 to-accent shadow-[0_0_12px_rgba(var(--accent),0.5)] transition-[width] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative overflow-hidden"
+        className="h-full rounded-none bg-accent transition-[width] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative overflow-hidden border-r-4 border-black"
         style={{ width: `${percentage}%` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[100%] animate-[shimmer_2s_infinite]" />
-      </div>
+      />
     </div>
   );
 }

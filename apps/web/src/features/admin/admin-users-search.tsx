@@ -37,69 +37,73 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
   }, [users, search]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Search bar */}
-      <div className="relative max-w-md">
-        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <div className="relative max-w-xl">
+        <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by name, email, or role..."
-          className="h-10 rounded-full bg-surface/50 pl-9 text-sm border-border/50 focus:border-accent"
+          placeholder="SEARCH BY NAME, EMAIL, OR ROLE..."
+          className="h-14 rounded-none bg-surface pl-12 text-sm font-black uppercase tracking-widest border-4 border-border focus:border-accent shadow-solid-sm placeholder:text-muted-foreground/50 transition-colors hover:bg-background"
         />
       </div>
 
       {/* Results count */}
       {search.trim() && (
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
           Showing {filtered.length} of {users.length} user{users.length === 1 ? '' : 's'}
         </p>
       )}
 
       {/* Table */}
-      <Card className="overflow-hidden p-0">
+      <div className="border-4 border-border bg-background shadow-solid-md overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-border/70 text-left text-sm">
-            <thead className="bg-muted/50">
+          <table className="min-w-full text-left text-sm border-collapse">
+            <thead className="bg-surface border-b-4 border-border">
               <tr>
                 {['Name', 'Email', 'Role', 'Wallet', 'Status', 'Joined', 'Activity', 'Actions'].map((col) => (
-                  <th key={col} className="px-5 py-4 font-medium text-muted-foreground">
+                  <th key={col} className="px-5 py-4 font-black uppercase tracking-widest text-foreground border-r-2 border-border/50 last:border-r-0">
                     {col}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/70">
+            <tbody className="divide-y-2 divide-border font-medium">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-5 py-12 text-center text-muted-foreground">
+                  <td colSpan={8} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
                     {search.trim() ? 'No users match your search.' : 'No users are available yet.'}
                   </td>
                 </tr>
               ) : (
                 filtered.map((user) => (
-                  <tr key={user.id} className={cn('bg-surface/70 transition hover:bg-muted/30')}>
-                    <td className="px-5 py-4 align-top">
+                  <tr key={user.id} className="bg-background transition-colors hover:bg-accent/10 group">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{user.name}</p>
-                        <p className="text-xs text-muted-foreground">{`Sessions in sample: ${user.sessionCount}`}</p>
+                        <p className="font-bold text-base text-foreground group-hover:text-black">{user.name}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`Sessions: ${user.sessionCount}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">{user.email}</td>
-                    <td className="px-5 py-4 align-top">{user.role}</td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top font-mono text-muted-foreground border-r-2 border-border/50">{user.email}</td>
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
+                      <Badge tone="neutral" className="rounded-none border-2 border-border/50 bg-surface text-xs font-bold uppercase tracking-widest">
+                        {user.role}
+                      </Badge>
+                    </td>
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <div className="space-y-1">
-                        <p className="font-medium">{user.walletBalance}</p>
-                        <p className="text-xs text-muted-foreground">{`Wallet ${user.walletStatus}`}</p>
+                        <p className="font-display font-black text-lg">{user.walletBalance}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{user.walletStatus}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top">
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
                       <StatusBadge status={user.accountStatus} />
                     </td>
-                    <td className="px-5 py-4 align-top">
-                      <p className="text-sm text-muted-foreground">{user.joinedAt}</p>
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
+                      <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{user.joinedAt}</p>
                     </td>
-                    <td className="px-5 py-4 align-top">{user.lastSessionAt}</td>
+                    <td className="px-5 py-4 align-top border-r-2 border-border/50 text-xs font-bold uppercase tracking-wider text-muted-foreground">{user.lastSessionAt}</td>
                     <td className="px-5 py-4 align-top">
                       <AdminUserActions userId={user.id} accountStatus={user.accountStatus} />
                     </td>
@@ -109,7 +113,7 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

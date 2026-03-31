@@ -14,20 +14,17 @@ export function MetricCard({
   tone?: 'accent' | 'success' | 'warning' | 'neutral';
 }) {
   return (
-    <Card className="relative overflow-hidden group">
-      {/* Subtle background glow effect appearing on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      
-      <CardHeader className="relative z-10 pb-2">
-        <CardDescription className="uppercase tracking-wider text-xs font-semibold text-muted-foreground/80">{label}</CardDescription>
-        <CardTitle className="text-4xl font-display font-bold tracking-tight text-foreground drop-shadow-sm">{value}</CardTitle>
-      </CardHeader>
-      <CardContent className="relative z-10 mt-2">
-        <Badge tone={tone} className="gap-1.5 px-2 bg-background/50 border-white/5 shadow-sm">
-          <ArrowUpRight className="h-3.5 w-3.5" />
+    <Card className="flex flex-col justify-between p-6">
+      <div className="space-y-4">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">{label}</p>
+        <p className="font-display text-5xl font-black tracking-tighter text-black">{value}</p>
+      </div>
+      <div className="mt-4">
+        <div className="inline-flex w-fit items-center border-[3px] border-black bg-accent px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-black shadow-solid-sm">
+          <ArrowUpRight className="mr-1 h-3.5 w-3.5" />
           {delta}
-        </Badge>
-      </CardContent>
+        </div>
+      </div>
     </Card>
   );
 }

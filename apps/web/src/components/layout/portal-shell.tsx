@@ -24,29 +24,29 @@ export function PortalShell({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen bg-background text-foreground">
-      {/* Edge-Anchored Sidebar */}
-      <aside className="hidden h-screen w-[260px] shrink-0 flex-col border-r border-border/70 bg-surface/40 lg:sticky lg:top-0 lg:flex">
-        <div className="flex items-center px-6 pt-5 pb-4">
+    <div className="flex min-h-screen bg-background text-foreground selection:bg-accent selection:text-black">
+      {/* Edge-Anchored Sidebar - Technical Brutalist */}
+      <aside className="hidden h-screen w-[280px] shrink-0 flex-col border-r-2 border-border bg-surface lg:sticky lg:top-0 lg:flex">
+        <div className="flex items-center px-6 pt-6 pb-6 border-b-2 border-border bg-accent text-black">
           <LogoMark href={role === 'admin' || role === 'super_admin' ? '/admin/dashboard' : '/dashboard'} />
         </div>
         
-        <div className="flex min-h-0 flex-1 flex-col px-4 py-4">
-          <div className="rounded-[16px] border border-border/70 bg-background/50 p-3">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">Workspace Role</p>
+        <div className="flex min-h-0 flex-1 flex-col px-4 py-6 pattern-grid">
+          <div className="border-2 border-border bg-background p-4 shadow-solid-sm">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Workspace Role</p>
             <div className="flex items-center justify-between">
-              <p className="font-display text-sm font-semibold capitalize">{role.replace('_', ' ')}</p>
-              <Badge tone="accent" className="text-[10px] py-0">{role === 'client' ? 'Portal' : 'Admin'}</Badge>
+              <p className="font-display text-sm font-bold uppercase tracking-wider">{role.replace('_', ' ')}</p>
+              <Badge tone="accent" className="rounded-none border-2 border-border text-[10px] py-0 font-bold uppercase">{role === 'client' ? 'Portal' : 'Admin'}</Badge>
             </div>
           </div>
           
-          <div className="mt-6 min-h-0 flex-1 overflow-y-auto pr-1">
+          <div className="mt-8 min-h-0 flex-1 overflow-y-auto pr-1">
             <SidebarNav items={navItems} currentPath={currentPath} />
           </div>
         </div>
 
-        <div className="border-t border-border/70 p-4">
-          <LogoutButton variant="secondary" className="w-full justify-start gap-3">
+        <div className="border-t-2 border-border p-4 bg-surface">
+          <LogoutButton variant="secondary" className="w-full justify-start gap-3 rounded-none border-2 border-border shadow-solid-sm font-bold uppercase hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
             <LogOut className="h-4 w-4" />
             <span>Sign Out</span>
           </LogoutButton>
@@ -55,34 +55,35 @@ export function PortalShell({
 
       {/* Main Content Area */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Full-Width Topbar */}
-        <header className="sticky top-0 z-10 flex h-[72px] items-center justify-between border-b border-border/70 bg-background/80 px-6 backdrop-blur">
-          <div className="flex items-center gap-3">
-            <h1 className="font-display text-xl font-semibold tracking-tight">{title}</h1>
-            <span className="hidden rounded-full bg-accent/10 px-2.5 py-0.5 text-xs text-accent sm:inline-block">
+        {/* Full-Width Topbar - Precision Engineered */}
+        <header className="sticky top-0 z-10 flex h-[76px] items-center justify-between border-b-2 border-border bg-background px-6">
+          <div className="flex items-center gap-4">
+            <h1 className="font-display text-2xl font-bold tracking-tight uppercase">{title}</h1>
+            <span className="hidden border-2 border-accent bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent sm:inline-block">
               {role === 'client' ? 'Client Area' : 'Admin Area'}
             </span>
           </div>
           
-          <div className="flex items-center gap-4">
-            <label className="relative hidden w-[260px] md:block">
+          <div className="flex items-center gap-5">
+            <label className="relative hidden w-[280px] md:block">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search..." className="h-9 rounded-full bg-surface/50 pl-9 text-sm border-border/50 focus:border-accent" />
+              <Input placeholder="Search system..." className="h-10 rounded-none border-2 border-border bg-surface pl-10 text-sm focus:border-accent focus:ring-0 shadow-solid-sm transition-all" />
             </label>
             <button
               type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-surface/50 text-muted-foreground transition hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center border-2 border-border bg-surface text-muted-foreground shadow-solid-sm transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none hover:text-foreground"
             >
               <Bell className="h-4 w-4" />
             </button>
+            <div className="border-l-2 border-border h-8 mx-2 hidden md:block"></div>
             <ThemeToggle />
             <ProfileDropdown role={role} />
           </div>
         </header>
 
         {/* Fluid Content Wrapper */}
-        <main className="flex-1 p-6 lg:p-8">
-          <div className="mx-auto w-full">
+        <main className="flex-1 p-6 lg:p-10 animate-fade-in">
+          <div className="mx-auto w-full max-w-7xl">
             {children}
           </div>
         </main>

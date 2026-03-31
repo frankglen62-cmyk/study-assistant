@@ -41,66 +41,66 @@ export function AdminSessionDrilldownDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-background/55 backdrop-blur-sm">
-      <div className="h-full w-full max-w-xl overflow-y-auto border-l border-border/70 bg-background p-6 shadow-2xl">
-        <div className="flex items-start justify-between gap-4">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm">
+      <div className="h-full w-full max-w-xl overflow-y-auto border-l-4 border-black bg-background p-6 shadow-solid-xl sm:p-12">
+        <div className="flex items-start justify-between gap-4 border-b-4 border-black pb-8">
           <div className="space-y-1">
-            <p className="text-sm uppercase tracking-[0.18em] text-accent">Quick Session View</p>
-            <h3 className="text-2xl font-semibold tracking-tight">{session.userName}</h3>
-            <p className="text-sm text-muted-foreground">{session.userEmail}</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">Quick Session View</p>
+            <h3 className="font-display text-4xl font-black uppercase tracking-tighter text-black">{session.userName}</h3>
+            <p className="text-sm font-bold uppercase tracking-widest text-black/60">{session.userEmail}</p>
           </div>
-          <Button size="sm" variant="secondary" onClick={onClose}>
+          <Button size="sm" variant="secondary" onClick={onClose} className="border-4 border-black uppercase font-black tracking-widest hover:bg-black hover:text-white rounded-none">
             <X className="h-4 w-4" />
             Close
           </Button>
         </div>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Status</p>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-surface">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Status</p>
             <StatusBadge status={session.status} />
-            <p className="text-xs text-muted-foreground">{session.suspiciousFlag}</p>
+            <p className="border-t-2 border-black/10 pt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">{session.suspiciousFlag}</p>
           </Card>
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Billing</p>
-            <p className="text-xl font-semibold">{session.creditsUsed}</p>
-            <p className="text-xs text-muted-foreground">{`${session.analyzeCount} analyze attempt${session.analyzeCount === 1 ? '' : 's'}`}</p>
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-surface">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Billing</p>
+            <p className="font-display text-3xl font-black">{session.creditsUsed}</p>
+            <p className="border-t-2 border-black/10 pt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">{`${session.analyzeCount} analyze attempt${session.analyzeCount === 1 ? '' : 's'}`}</p>
           </Card>
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Site</p>
-            <p className="font-semibold">{session.siteDomain}</p>
-            <p className="text-xs text-muted-foreground break-all">{session.pagePath}</p>
-            <p className="text-xs text-muted-foreground">{session.pageTitle}</p>
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-surface">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Site</p>
+            <p className="font-black text-lg break-words">{session.siteDomain}</p>
+            <p className="border-t-2 border-black/10 pt-2 text-[10px] font-bold uppercase tracking-widest text-black/60 break-all">{session.pagePath}</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">{session.pageTitle}</p>
           </Card>
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Academic Context</p>
-            <p className="font-semibold">{session.subject}</p>
-            <p className="text-xs text-muted-foreground">{session.category ?? 'No category recorded'}</p>
-            <p className="text-xs text-muted-foreground">{`${session.detectionMode} detection`}</p>
-          </Card>
-        </div>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Started</p>
-            <p className="font-semibold">{session.startedAt}</p>
-          </Card>
-          <Card className="space-y-2 p-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Ended</p>
-            <p className="font-semibold">{session.endedAt ?? 'Still open'}</p>
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-surface">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Academic Context</p>
+            <p className="font-black text-lg">{session.subject}</p>
+            <p className="border-t-2 border-black/10 pt-2 text-[10px] font-bold uppercase tracking-widest text-black/60">{session.category ?? 'No category recorded'}</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">{`${session.detectionMode} detection`}</p>
           </Card>
         </div>
 
-        <Card className="mt-6 space-y-3 p-4">
-          <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Why This Session Matters</p>
-          <div className="space-y-2 text-sm text-muted-foreground">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-accent/10">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Started</p>
+            <p className="font-black">{session.startedAt}</p>
+          </Card>
+          <Card className="space-y-2 p-6 rounded-none border-4 border-black shadow-solid-sm bg-accent/10">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Ended</p>
+            <p className="font-black">{session.endedAt ?? 'Still open'}</p>
+          </Card>
+        </div>
+
+        <Card className="mt-8 space-y-4 p-8 rounded-none border-4 border-black shadow-solid-md bg-warning/20">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Why This Session Matters</p>
+          <div className="space-y-3 font-bold uppercase tracking-wide text-black/80 text-xs">
             <p>This is one billed extension usage window.</p>
             <p>It combines time spent, pages visited, subject detection, and analyze attempts under one audit record.</p>
-            <p>{`${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'} were logged in this session.`}</p>
+            <p className="font-black text-black">{`${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'} were logged in this session.`}</p>
           </div>
         </Card>
 
-        {footer ? <div className="mt-6">{footer}</div> : null}
+        {footer ? <div className="mt-8 border-t-4 border-black pt-8">{footer}</div> : null}
       </div>
     </div>
   );

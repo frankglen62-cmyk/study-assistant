@@ -33,44 +33,42 @@ export default async function BuyCreditsPage() {
       />
 
       {/* Active Balance Card */}
-      <Card className="bg-gradient-to-br from-surface/80 to-background/40 border-border/70 border-x-accent/20 border-t-accent/20">
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-muted-foreground flex items-center gap-2"><Zap className="h-4 w-4 text-accent" /> Active Balance</p>
-              <p className="text-4xl font-display font-semibold tracking-tight">{formatDuration(context.wallet.remaining_seconds)}</p>
-              <p className="text-sm text-muted-foreground">Available for immediate AI analysis.</p>
-            </div>
-            <div className="w-full md:max-w-md space-y-2 relative">
-              <div className="flex justify-between text-xs font-medium text-muted-foreground">
-                <span>0%</span>
-                <span>Max (5 hrs)</span>
-              </div>
-              <Progress value={remainingPercent} className="h-2.5" />
-            </div>
+      <div className="border-4 border-black bg-accent p-8 shadow-solid-md">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="space-y-2">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black flex items-center gap-2"><Zap className="h-5 w-5 text-black" /> Active Balance</p>
+            <p className="text-5xl font-display font-black uppercase tracking-tighter text-black">{formatDuration(context.wallet.remaining_seconds)}</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-black/70">Available for immediate AI analysis.</p>
           </div>
-        </CardContent>
-      </Card>
+          <div className="w-full md:max-w-md space-y-3 relative">
+            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-black/60">
+              <span>0%</span>
+              <span>Max (5 hrs)</span>
+            </div>
+            <Progress value={remainingPercent} className="h-6" />
+          </div>
+        </div>
+      </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
         {billing.packages.map((pkg) => (
-          <Card key={pkg.id} className={pkg.featured ? 'border-accent shadow-[0_0_40px_-15px_rgba(var(--accent),0.3)] relative overflow-hidden' : 'relative overflow-hidden'}>
+          <div key={pkg.id} className={`border-4 bg-surface p-0 shadow-solid-md relative overflow-hidden flex flex-col ${pkg.featured ? 'border-accent bg-accent/5' : 'border-black'}`}>
             {pkg.featured && (
-              <div className="absolute top-4 right-4 animate-in fade-in zoom-in spin-in-12">
-                <Badge tone="accent" className="shadow-lg">Recommended</Badge>
+              <div className="absolute top-0 right-0">
+                <div className="bg-accent text-black px-4 py-2 text-[10px] font-black uppercase tracking-widest border-l-4 border-b-4 border-black">Recommended</div>
               </div>
             )}
-            <CardHeader className="pb-4">
-              <CardTitle className="text-2xl font-display">{pkg.name}</CardTitle>
-              <CardDescription className="h-10">{pkg.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
+            <div className="p-6 pb-4 border-b-4 border-black/10">
+              <p className="font-display text-2xl font-black uppercase text-black">{pkg.name}</p>
+              <p className="mt-2 text-xs font-bold uppercase tracking-widest text-black/60 h-10">{pkg.description}</p>
+            </div>
+            <div className="p-6 space-y-6 flex-1 flex flex-col">
               <div className="space-y-1">
-                <p className="font-display text-5xl font-semibold tracking-tight">{pkg.price}</p>
-                <p className="text-sm text-muted-foreground text-opacity-80">One-time payment</p>
+                <p className="font-display text-6xl font-black tracking-tighter text-black">{pkg.price}</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/50">One-time payment</p>
               </div>
               
-              <ul className="space-y-3 py-2 text-sm text-foreground/80">
+              <ul className="space-y-3 py-2 text-xs font-bold uppercase tracking-widest text-black/80">
                 <li className="flex items-start gap-3">
                   <Check className="h-4 w-4 text-success shrink-0 mt-0.5" />
                   <span>Instant credit delivery</span>
@@ -86,7 +84,7 @@ export default async function BuyCreditsPage() {
                 {pkg.supportsPaymongo ? (
                   <li className="flex items-start gap-3">
                     <Smartphone className="h-4 w-4 text-success shrink-0 mt-0.5" />
-                    <span>GCash, Maya, and online bank checkout</span>
+                    <span>GCash, Maya, online bank</span>
                   </li>
                 ) : null}
                 {pkg.supportsStripe ? (
@@ -97,7 +95,7 @@ export default async function BuyCreditsPage() {
                 ) : null}
               </ul>
               
-              <div className="grid gap-3 pt-2">
+              <div className="grid gap-3 pt-2 mt-auto">
                 <PackageCardAction
                   packageId={pkg.id}
                   supportsStripe={pkg.supportsStripe}
@@ -105,40 +103,38 @@ export default async function BuyCreditsPage() {
                 />
                 <Button variant="secondary" className="w-full">Gift this package</Button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Landmark className="h-5 w-5 text-accent" />
-            Payment methods
-          </CardTitle>
-          <CardDescription>
-            Card checkout uses Stripe. GCash, Maya, and online bank checkout use PayMongo when the provider is enabled for your deployment.
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="border-4 border-black bg-surface p-6 shadow-solid-sm">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="flex h-12 w-12 items-center justify-center border-4 border-black bg-accent">
+            <Landmark className="h-6 w-6 text-black" />
+          </div>
+          <p className="font-display text-xl font-black uppercase text-black">Payment methods</p>
+        </div>
+        <p className="text-xs font-bold uppercase tracking-widest text-black/60">
+          Card checkout uses Stripe. GCash, Maya, and online bank checkout use PayMongo when the provider is enabled for your deployment.
+        </p>
+      </div>
       
-      <div className="space-y-4">
-        <h3 className="text-lg font-medium tracking-tight flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 text-muted-foreground" /> Recent Transactions
+      <div className="space-y-6 pt-4">
+        <h3 className="font-display text-3xl font-black uppercase text-black border-l-8 border-accent pl-4 flex items-center gap-3">
+          <ShieldCheck className="h-6 w-6" /> Recent Transactions
         </h3>
-        <Card className="overflow-hidden">
-          <DataTable
-            columns={['Date', 'Package', 'Provider', 'Amount', 'Status']}
-            emptyMessage="No billing history yet. Your transactions will appear here."
-            rows={billing.paymentHistory.map((payment) => [
-              payment.date,
-              payment.package,
-              payment.provider,
-              payment.amount,
-              <StatusBadge key={`${payment.id}-status`} status={payment.status} />,
-            ])}
-          />
-        </Card>
+        <DataTable
+          columns={['Date', 'Package', 'Provider', 'Amount', 'Status']}
+          emptyMessage="No billing history yet. Your transactions will appear here."
+          rows={billing.paymentHistory.map((payment) => [
+            payment.date,
+            payment.package,
+            payment.provider,
+            payment.amount,
+            <StatusBadge key={`${payment.id}-status`} status={payment.status} />,
+          ])}
+        />
       </div>
     </div>
   );
