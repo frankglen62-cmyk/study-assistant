@@ -95,13 +95,6 @@ export default function PricingPage() {
           {packages.map((pkg, index) => (
             <ScrollReveal key={pkg.name} delay={index * 0.06} className="h-full">
               <InteractiveCard
-                accent={pkg.highlighted ? 'rgba(45,212,191,0.2)' : 'rgba(45,212,191,0.12)'}
-                borderAccent={pkg.highlighted ? 'rgba(94, 234, 212, 0.22)' : 'rgba(255,255,255,0.16)'}
-                hoverLift={10}
-                hoverScale={1.045}
-                tiltIntensity={4}
-                hoverShadow="0 28px 84px rgba(0, 0, 0, 0.42)"
-                hoverBackgroundColor="rgba(255, 255, 255, 0.055)"
                 className="flex h-full flex-col rounded-[30px] border border-white/[0.08] bg-white/[0.025] p-8 shadow-[0_14px_48px_rgba(0,0,0,0.16)] transition-[border-color,background-color,box-shadow] duration-200 group-hover:border-white/[0.18]"
               >
                 <div className="mb-4 min-h-[32px]">
