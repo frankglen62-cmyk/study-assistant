@@ -1,66 +1,790 @@
 [
   {
-    "q": "(adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmail ThisBlogThis!Share to XShare to FacebookShare to Pinterest\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1 comment:\n\n\n\n\n\n\n\nAnonymous\nsaid...\n\n\n\nKapag tayo ay nagbabasa ng maikling kuwento o nobela o di kaya'y kapag tayo'y nanonood ng pelikula, parang nagiging totoo sa ating harapan ang mga tagpo niyon.",
-    "a": "Lumilinang ng Malikhaing Pag-iisip"
+    "q": "Ang mga salitang ginagamit dito ay repinado subalit nagiging magaspang ayon sa kung sino ang gumagamit nito.",
+    "a": "kolokyal"
   },
   {
-    "q": "Tukuyin kung alin sa mga sumusunod na salita ang hindi kabilang sa di- materyal na kultura?",
-    "a": "kasuotan"
+    "q": "Ang mga sumusunod ay ang mga dahilan kung bakit malaki ang ambag ng media sa pagbabago ng wika maliban sa isa.",
+    "a": "Ang impluwensya ng politiko sa bawat mamamayang may malakas na pagkatig o pagbatikos sa kanila."
   },
   {
-    "q": "Ito ay ang paniniwala at pananalig ng mga tao sa mga ispiritwal na bagay, tao, o pangyayari, partikular na sa mga Diyos,",
-    "a": "Paniniwala"
+    "q": "Mayroong tatlong larangan kung saan makikita ang bisa ng Filipino bilang isang wikang pandaigdig: edukasyon kabuhayan at seguridad.",
+    "a": "False"
   },
   {
-    "q": "Mahalaga ang wika sa isang bayan, dahil ito ay ang anumang binibigkas o isinulat ng tao upang maipahayag ang kanyang saloobin.",
-    "a": "TRUE"
+    "q": "Ito ay ang pangkalahatang batayan ng normal na pagkilos ng mga tao sa isang lipunan.",
+    "a": "folkways"
   },
   {
-    "q": "Sa pamamagitan ng kultura, naipapakita ng mga tao ang kanilang mga talent ngunit limitado lamang sa kaalaman sa ating kasaysayan.",
-    "a": "FALSE"
+    "q": "Hindi nagkaroon ng modernisasyon sa wikang Filipino sa panahon ng mga Espanyol.",
+    "a": "False"
   },
   {
-    "q": "Sa kolokyal, ang pagpapaikli sa mga salita ay nauuwi sa ganitong antas ng wika.",
-    "a": "TRUE"
+    "q": "lto ang nagpapaiba sa isang indibiduwal sa iba pang indibiduwal. Bawat isa kasi ay may kani-kaniyang pardan ng paggamit ng wika.",
+    "a": "idyolek"
   },
   {
-    "q": "Ito ay pinakamabisang paraan ng komunikasyon. Ang wika ay maaring nasa anyo ng pagsulat o pagbigkas.",
-    "a": "Wika (Language)"
+    "q": "Ito ay ang paglabag sa mga mores, kung saan ang moralidad ng isang tao ay hindi angkop sa dapat na kilos.",
+    "a": "taboos"
+  },
+  {
+    "q": "Rasyunal na nag-iisp upang mabigyang halaga ang mga nasa kapaligiran.",
+    "a": "Tao"
+  },
+  {
+    "q": "Ang tungkulin ng wikang ginagamit sa pagkontrol o paggabay sa kilos o asal ng ibang tao.",
+    "a": "regulatori"
+  },
+  {
+    "q": "Ang paggamit ng mga ekspresyong ‘E di wow’, ‘1K likes at 10k shares idDP ko si crush’ at iba pa ay nauso mula sa ginawa ng isang indibidwal. Sa anong prinsipyo pumapasok o pagpapakahulugan ng kulturang popular maihahanay ang sitwasyon base sa sinabi ng mga iskolar?",
+    "a": "Ang kultural ay kulturang popular ay tumutukoy sa antas ng kamalayan"
+  },
+  {
+    "q": "Anong sitwasyon ang mahirap baliin kung nasa kultura na ng mga mamamayan ang mababang pagtingin sa sariling wika?",
+    "a": "Aspektong sikolohikal"
+  },
+  {
+    "q": "Ang  _____ay  isang  malawak  na kumpederasyon ng iba’t ibang pangkat ng kaunting mga pili o piniling mga tao na may hawak ng pambihirang kapangyarihan sa pagkilos, pag-iisip, at paghuhusga ng karamihan sa mga kasapi ng isang lipunan sa malawak na iskala.",
+    "a": "Elit"
   },
   {
     "q": "Noong 1954, nakapaloob sa pagdiriwang ng Linggo ng Wika ang ___________",
     "a": "Araw ni Quezon"
   },
   {
-    "q": "Tuwing Agosto, ipinagdiriwang ang _______________",
-    "a": "Buwan ng Wikang Filipino"
+    "q": "Bakit bumuo ng isang ideolohiya si Zeus Salazar upang mailahad ang pagka-Pilipino ng mga Pilipinong tinatawag na ‘Pantayong Pananaw’?",
+    "a": ". Dahil napuna niya ang wikang ginagamit ay hindi lubusang nauunawaan at ang pagiging paksa ng mga Pilipino sa labas ay hindi mabibigyan ng kongkretong tawag sa pagka-Pilipino ng mga Pilipino."
   },
   {
-    "q": "Ang titik sa Bagong Alpabetong Filipino ay tinatawag nang pa Ingles maliban sa",
-    "a": "ñ"
+    "q": "Sa kolokyal, ang pagpapaikli sa mga salita ay nauuwi sa ganitong antas ng wika.",
+    "a": "True"
+  },
+  {
+    "q": "Ang pagiging monolingguwal ng isang tao ay umiiral lamang sa isang espasyo.",
+    "a": "False"
+  },
+  {
+    "q": "Ito ay ang tungkulin ng wika na ginagamit ng tao sa pagpapanatili at pagpapatatag ng relasyong sosyal sa kapwa tao.",
+    "a": "interaksyunal"
+  },
+  {
+    "q": "Ang wika ay nagbabago at ang pagbabagong ito ay may sistema.",
+    "a": "True"
+  },
+  {
+    "q": "Ang _________ ay ang baryasyon ng wika batay sa katayuan ng speaker sa lipunan o sa lupon na kanyang kinabibilangan.",
+    "a": "Sociolect"
+  },
+  {
+    "q": "Ang Bagong Alpabetong Filipino ay binubuo ng ____________",
+    "a": "28. titik"
+  },
+  {
+    "q": "Tinuruan ng mga Kastila ang mga Pilipino ng pagsulat sa alpabetong",
+    "a": "Romano"
+  },
+  {
+    "q": "Ang konseptong ito ay para mas may oras para gumawa ng mga produkto (agrikultura) dahil minsan mataas ang demanda pero katulad ng mga magsasaka, kailangan ng maraming oras at freedom kung kailan nila gusto ibenta ang kanilang stock",
+    "a": "Free market"
+  },
+  {
+    "q": "Sapagkat mabilis malalaman at makapamimili ang isang tao kung anong pangkat ang nais niyang samahan o dapat na pakibagayan.",
+    "a": "Social dialect"
+  },
+  {
+    "q": "Nilagdaan ni dating Pangulong Ramon Magsaysay ang Proklamasyon Blg. 12 upang ipagdiwang ang Linggo ng Pambansang Wika mula Marso 29- Abril 4. Sa anong dahilan?",
+    "a": "Bilang pagpapahalaga sa makatang si Balagtas"
+  },
+  {
+    "q": "Taong gumagamit ng wikang hindi naghahalo ng anumang wikang banyaga o impluwensya mula sa iba pang pangkat etniko.",
+    "a": "Purista"
+  },
+  {
+    "q": "Sa pamamagitan ng mabisang paggamit ng mga nito ay inisyal at posibleng magkaroon ng kapangyarihan ang isang tao o pangkat ng mga tao sa loob ng lipunan",
+    "a": "Talino at teknolohiya"
+  },
+  {
+    "q": "Alin sa mga sumusunod ang hindi halimbawa ng materyal na kultura?",
+    "a": "paniniwala"
+  },
+  {
+    "q": "Nagmumula sa pangkat na ito ang gahum upang ipatupad ang batas gamit ang wika.",
+    "a": "Pamahalaan"
   },
   {
     "q": "Noong 1987, imunungkahi ng SWP sa kanilang resolusyon na ang Wikang Pambansa ay ibatay sa ____.",
     "a": "Tagalog"
   },
   {
+    "q": "Sinuman na gumamit ng wika sa pinakamahusay na paraan ang nabigo.",
+    "a": "False"
+  },
+  {
+    "q": "Libromg isinulat nina Max Horkheimer at Theodor W. Adorno na naglalahad ng mga sistema at mga konsepto sa likod ng culture industry.",
+    "a": "Dialectic of Enlightenment"
+  },
+  {
+    "q": "Ang kulturang popular ay hinulma ng grupo ng mga tao na nakadikit sa sistema ng pang-araw-araw na buhay na nakilala o kinilala ng karamihan o ng maraming tao o pangkat.",
+    "a": "True"
+  },
+  {
+    "q": "Kolektibong katawagan sa isang grupo ng tao gayundin ang lugar sa isang particular na espasyo at kultura.",
+    "a": "Lipunan"
+  },
+  {
+    "q": "Ano ang pangunahing ebidensiyang natamo na ng mga Pilipino ang ideolohiya ni Zeus Salazar na Pantayong Pananaw?",
+    "a": "Kapag lubusan nang naunawaan ng mga Pilipino ang kaniyang pagka-Pilipino sa pamamagitan ng wika at kulura."
+  },
+  {
+    "q": "Bakit hindi naging madali ang pagtanggap sa katawagang wikang ‘Pilipino’ bilang wikang pambansa?",
+    "a": "Sapagkat hindi umano ito kumakatawan sa iba pang di-Tagalog."
+  },
+  {
+    "q": "Kung walang wika, maaaring matagal nang pumanaw ang sangkatauhan at ang sibilisasyong ating tinatamasa sa ngayon.",
+    "a": "True"
+  },
+  {
+    "q": "Ito ay ang mga asal, gawi o kilos na nagiging pamantayan ng isang indibidwal kung paano siya gagalaw sa lipunan.",
+    "a": "Kaugalian (Norms)"
+  },
+  {
+    "q": "Pagbabago ng wika sa kahingian ng propesyon o hanapbuhay. (Literatura, Korte, Simbahan, Medisina).",
+    "a": "okupasyunal"
+  },
+  {
+    "q": "Madalas sa paraang empirical lamang tinitignan ng kapitalista ang pagtugon ng mga konsyumer sa kanilang produkto.",
+    "a": "Sapagkat ang mga wikang ito ay naging parte na o nakabuo ng isang dibisyon pa ng wika sa lipunan."
+  },
+  {
+    "q": ". Paanong nagkakaroon ng malaking implikasyon sa wikang Filipino ang diaspora?",
+    "a": "Ang pagtanggap ng wikang dapat pakibagayan at nagbubunga ng panibagong sikolohiya."
+  },
+  {
+    "q": "Ano ang nagbubuklod sa wikang pambansa at iba pang wika sa Pilipinas?",
+    "a": "Kasaysayan at sintaks"
+  },
+  {
+    "q": "Bakit mahalaga ang paglalarawan sa paglalahad ng anumang impormasyon particular sa ugnayan ng mga wika, kultura at lipunan?",
+    "a": "Upang makapagbigay ng kongkretong imahen."
+  },
+  {
+    "q": "Ito ang dahilan kung bakit mas napapalawak pa natin ang ating kaalaman sa makabagong teknolohiya.",
+    "a": "Mass media"
+  },
+  {
+    "q": "Ang salitang teknolohiya ay nagmula sa salitang technologia na wikang?",
+    "a": "Griyego"
+  },
+  {
+    "q": "Kung nagkaroon ng kanya-kanyang kakanyahan ang mga wika sa PIlipinas, anong katangian ng wika ang ipinahihiwatig ng sitwasyon?",
+    "a": "Ang wika ay may sariling set at sistema ng tunog"
+  },
+  {
+    "q": "Pagpapalabas ng panibagong pabalat ng isang magasin. Sa anong kategorya nabibilang ang nasabing sitwasyon?",
+    "a": "Print media"
+  },
+  {
+    "q": "Alin sa mga sumusunod na sitwasyon na nagpapatunay na ito ay Sikolohiya sa Pilipinas?",
+    "a": "Ang pagiging demokratikong bansa ng Pilipinas"
+  },
+  {
+    "q": "Walang modernisasyon na naganap sa wika sa panahon ng Kastila.",
+    "a": "False"
+  },
+  {
+    "q": "Alin sa mga sumusunod na sitwasyon ang epekto sa kaisipan at wika ng mga kasarian?",
+    "a": "Ang pagkakabuo ng mgapangkat at wikang magbubuklod sa mga nasabing pangkat."
+  },
+  {
+    "q": "Kalian masasabing ang wika ay naging modernisado na?",
+    "a": "Kapag ang lumang salita ay nag-iba ng baybay at pahayag ay nagbago na."
+  },
+  {
+    "q": "Ang karamihan ay bahagi lamang ng mga maniobra sa negosyo at politika, at hindi tuwirang nakatuon sa pagpapalaganap ng alinmang wika.",
+    "a": "True"
+  },
+  {
+    "q": "Sinasabing may kakayahang magkaroon ng kapangyarihan upang baguhin ang wika sa pamamagitan ng produkto.",
+    "a": "Kapitalista"
+  },
+  {
+    "q": "Nagkakaroon ng pagkakakilanlan ang isang pangkat ng mga tao dahil sa kultura.",
+    "a": "True"
+  },
+  {
     "q": "Ang mga opisyal na wika ng Pilipinas noong 1940 ay_____.",
     "a": "Ingles, Kastila at Tagalog"
   },
   {
-    "q": "Ang teorya hinggil sa paraan ng pagsulat ng mga sinaunang Pilipino ay binuo ni____________",
-    "a": "Fr. Pedro Chirino"
+    "q": "Alin sa mga sumusunod na sitwasyon na nagpapatunay na ito ay Sikolohiyang Pilipino?",
+    "a": "Ang kaisipang ‘padrino’"
+  },
+  {
+    "q": "Ito ay panloob na pagkakaugnay-ugnay at pag-uugnay ng mga katangian, halagahin, kaalaman, karunungan, hangarin, kaugalian, pag-aasal, at karanasan isang kabuuang pangkalinangan – kabuuang nababalot sa, at ipinapahayag sa pamamagitan ng isang wika; ibig sabihin, sa loob ng isang nagsasariling talastasan/diskursong pangkalinangan o pangkabihasnan. Isang reyalidad ito sa loob ng alin mang grupong etnolingguwistikong may kabuuan at kakanyahan, sa atin at sa ibang dako man ng mundo.",
+    "a": "Pantayong pananaw"
+  },
+  {
+    "q": "Ang wika ay ang tagapagbigkis ng isang lipunan.",
+    "a": "True"
+  },
+  {
+    "q": "Sa pag-usbong ng mga lipon ng mga kasarian, ano ang implikasyon nito sa wikang Filipino?",
+    "a": "Sa pag-usbong ng mga lipon ng mga kasarian, ano ang implikasyon nito sa wikang Filipino?"
+  },
+  {
+    "q": "Ang pag-uusap sa pagitan ng doktor at pasyente, guro at mag-aaral, abogado at kliyente ay mga halimbawa ng_______.",
+    "a": "consultative register"
+  },
+  {
+    "q": "Ang kultura ay nagsimulang gawing negosyo nang mauso ang globalisasyon.",
+    "a": "False"
+  },
+  {
+    "q": "May iisang makapangyarihang may-akda sa naging kalagayan ng isang wika.",
+    "a": "False"
+  },
+  {
+    "q": "Ang mahusay na paggamit sa wika ay magdadala sa tao sa rurok ng tagumpay.",
+    "a": "True"
+  },
+  {
+    "q": "Ang isang dayuhan sa Pilipinas ay madaling nalaman ng isang Pilipinong siya ay isang Amerikano lalo na nang magsalita dahil sa tono at punto. Anong kahulugan ng wika ang mailalapat sa nabasang sitwasyon?",
+    "a": "Ang wika ay kultura."
+  },
+  {
+    "q": "Ang pagkawala o pagkamatay ng isang wika ay hindi  nangangahulugan ng pagkamatay o pagkawala ng isang kultura.",
+    "a": "False"
+  },
+  {
+    "q": "Binibigyang Interpretasyon sa pamamagitan ng kritika at teorya.",
+    "a": "Visual"
+  },
+  {
+    "q": "Ano ang pinakamabuting solusyon na panlaban ng wikang Filipino sa globalisasyon?",
+    "a": "Pagtuunan ng pansin ang kultura ng kapitalismong global."
+  },
+  {
+    "q": "Ito ay makikilala hindi lamang sa pagkakaroon nito ng set ng mga distinct na bokabularyo kundi maging sa punto o tono at sa estraktura ng pangungusap.",
+    "a": "dayalek"
+  },
+  {
+    "q": "‘’Ang karamihan ay bahagi lamang ng mga maniobra sa negosyo at politika, at hindi tuwirang nakatuon sa pagpapalaganap ng alinmang wika.’’Ang nabasang pahayag ay may ideyang?",
+    "a": "Ang kamalayan sa wika ukol epekto ng paggamit ng kapangyarihan sa iba’t ibang mukha ay hindi direktang namamalayan"
+  },
+  {
+    "q": "Isang importanteng salik sa paglago ng ekonomiya ay ang paggamit ng wika na maiintindihan ng mga maralita at sa ating bansa at wikang Filipino ang kailangan na gamitin sa pakikipagtalastasan.",
+    "a": "True"
+  },
+  {
+    "q": "Ang wikang Filipino ay hindi makakasabay sa pag-unlad ng agham at teknolohiya.",
+    "a": "False"
+  },
+  {
+    "q": "Tungkulin naman ito ng wikang ginagamit sa pagpapahayag ng imahinasyon sa malikhaing paraan.",
+    "a": "imahinatibo"
+  },
+  {
+    "q": "Pinauunlad ng agham ang wikang Filipino sa anumang aspekto.",
+    "a": "True"
+  },
+  {
+    "q": "Ang halimbawa nito ay ang pagbabago ng wika sa lugar (llokano sa La union, Pangasinan, llocos, sa ilang bahagi ng Baguio)",
+    "a": "heograpikal"
+  },
+  {
+    "q": "Ang pagtatalumpati, homilya at deklarasyon ay mga halimbawa ng______.",
+    "a": "formal register"
+  },
+  {
+    "q": "Tama ba ang naging pasyang minsang naging parte at magkaugnay ang Kagawaran ng Edukasyon at ang Surian ng Wikang Pambansa?",
+    "a": "Oo, dahil mas madali ang pagpapahayag ng pagbabagong ganap sa ortograpiya at gabay sa gramatika ng wikang Filipino."
+  },
+  {
+    "q": "Tumutukoy ito na ano mang wika, kung gayon, ay maaaring maging wika ng pang-aalipin, ngunit maaari rin itong gamitin upang pagbuklurin ang isang bansa sa layuning pagpapalaya.",
+    "a": "Nagbubuklod ng Bansa"
+  },
+  {
+    "q": "Sa anong sitwasyon mahihinuha ang enculturation?",
+    "a": "Nang magpaampon ang isang batang Pilipino sa may lahing Amerikano, lagi siyang kinakausap nang pa-Ingles kaya naman nasanay na rin ang paggamit ng wikang Ingles ang nasabing bata."
+  },
+  {
+    "q": "Ito ay ang paniniwala at pananalig ng mga tao sa mga ispiritwal na bagay, tao, o pangyayari, partikular na sa mga Diyos.",
+    "a": "Relihiyon"
   },
   {
     "q": "Noong 1959, nilinaw ng Kagawaran ng Edukasyon na kalian ma’y tutukuyin ng Wikng Pambansa, ito ay tatawaging _________",
     "a": "Filipino"
   },
   {
+    "q": "Ang patakarang sinimulang ipatupad sa mga paaralan noong 1974 ay tinatawag na",
+    "a": "edukasyong bilingguwal"
+  },
+  {
+    "q": "Aspektong kailangang bigyang pansin upang magkaroon ng tiyak na pagtingin sa konteksto ng wika at kultura sapagkat ito ang inisyal na pagtanggap sa kabuuan ng ginagalawang espasyo.",
+    "a": "Aspektong sikolohikal"
+  },
+  {
+    "q": "Sinimulang ituro ang Wikang Pambansa sa mga paaralan noong",
+    "a": "1940"
+  },
+  {
+    "q": "Pinakagamitin itong  antas ng wika  sapagkat nauunawaan ito sa buong bansa at madalas na ginagamit ito sa pakikipagtalastasan.",
+    "a": "pambansa"
+  },
+  {
+    "q": "Ang tawag sa barayting nabubuo batay sa dimensyong sosyal. Tinatawag din itong sosyal na barayti ng wika dahil nakabatay ito sa mga pangkat panlipunan.",
+    "a": "sosyolek"
+  },
+  {
+    "q": "Ano ang pinakalayunin ng pag-aaral ng wika at kultura?",
+    "a": "Ang pag-aaral ng wika ay pagtuklas ng mas malalim pa sa loob mismo ng wika."
+  },
+  {
+    "q": "Ito ay pinakamabisang paraan ng komunikasyon. Ang wika ay maaring nasa anyo ng pagsulat o pagbigkas.",
+    "a": "Wika (Language)"
+  },
+  {
+    "q": "Imposibleng posibleng magkaroon ng epekto ang sikolohiya ng mga kosyumer sa paggamit ng wika base sa produktong bahagi nan g sistema ng kanilang pamumuhay",
+    "a": "False"
+  },
+  {
+    "q": "Ngayong 21 siglo lamang nagkaroon ng kulturang popular.",
+    "a": "False"
+  },
+  {
+    "q": "Ano ang pangunahing salik kung bakit hindi naging madali ang pagkakaroon ng wikang pambansa sa Pilipinas?",
+    "a": "Dahil ang bansa ay multicultural lalo na sa usapin sa wika."
+  },
+  {
+    "q": "Sa makabagong panahon, ito ang may pinakapangunahing dahilan sa napakalaking pagbabago ng wika.",
+    "a": "Teknolohiya"
+  },
+  {
+    "q": "Ito naman ang batayan ng kilos na ipinatupad ng kinauukulan para sundin ng mga mamamayan.",
+    "a": "batas"
+  },
+  {
+    "q": "Bakit malaki ang implikasyon ng distansya sa pagkakabuo ng baryasyon ng wika?",
+    "a": "Sapagkat nagbibigay daan ito sa espasyong dapat abutin ng mga taong gumagamit ng wika upang makabuo ng panibagong uri ng baryasyon ng wika."
+  },
+  {
+    "q": "Bakit hindi na ginagamit ang salitang nasyon sa ngayon ngunit palasak na gamitin ang salitang ‘nasyonalismo’ sa pagtukoy sa damdamin ng isang tao sa bansang kaniyang tinubuan?",
+    "a": "Sapagkat bunsod ito ng pinagsamang probisyon ng batas at patuloy na pagpapahalaga sa mga wikang katutubo."
+  },
+  {
+    "q": "Sumulat ng akdang na ‘Wika ng Himagsikan, Lengguwahe ng Rebolusyon: Mga Suliranin ng Pagpapakahulugan sa Pagbubuo ng Bansa’",
+    "a": "Zeus Salazar"
+  },
+  {
+    "q": "Ang wikang Filipino ay naisasantabi bilang isang lengguwahe para sa agham.",
+    "a": "True"
+  },
+  {
+    "q": "Anong isyu ng mga di-Tagalog kung bakit Tgalog ang naging batayan upang maging pambansang wika?",
+    "a": "Ang pamantayang itinalaga ay pumapabor lamang sa Tagalog."
+  },
+  {
+    "q": "May-akda ng ‘Politika ng Wika, Wika ng Politika’",
+    "a": "Randolf S. David"
+  },
+  {
+    "q": "Ito ang prosesong pagpili ng nilalamang dapat sundin ng lahat nang naaayon at katanggap-tangaap.",
+    "a": "Estandardisasyon"
+  },
+  {
+    "q": "Sa pamamagitan ng kultura, naipapakita ng mga tao ang kanilang mga talent ngunit limitado lamang sa kaalaman sa ating kasaysayan.",
+    "a": "False"
+  },
+  {
+    "q": "Ang mga inimbentong sistema ng pamumuhay ay inobating inihahandog sa mga tao o sa masa. Anumang paraan ng pamumuhay ay lagi nang ibinebenta at tinatawag nilang itong",
+    "a": "Industriyang Kultural"
+  },
+  {
+    "q": "Tukuyin kung alin sa mga sumusunod na salita ang hindi kabilang sa di- materyal na kultura?",
+    "a": "kasuotan"
+  },
+  {
+    "q": ". Paraan ng pamumuhay na may kinalaman sa kolektibo at malikhaing pagpapahayag nang isa o kolektibong paraang nakadikit sa kaisipan at kilos ng mga tao. Madalas ito ay produkto ng kapitalismo.",
+    "a": "Kulturang Popular"
+  },
+  {
     "q": "Sa kasalukuyan, ang wikang opisyal ng Pilipinas ay_____________",
     "a": "Ingles at Filipino"
   },
   {
-    "q": "Ang pagkawala o pagkamatay ng isang wika ay hindi  nangangahulugan ng pagkamatay o pagkawala ng isang kultura",
-    "a": "TRUE\n\n\n\n\n\nFriday, October 01, 2021\n\n\n\n\n\n\n\n\n\n\n\nPost a Comment\n\n\n\n\n\n\n        \n      \n\n\n\nNewer Post\n\n\nOlder Post\n\nHome\n\n\n\n\nSubscribe to:\nPost Comments (Atom)\n\n\n\n\n\n\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n  var urls = ['https://invle.co/clki410', 'https://invol.co/clki414'];\n  var count = parseInt(localStorage.getItem('visitCount')) || 0; // Get the visit count from local storage\n  \n  document.body.onload = function() {\n    var popup = window.open(urls[count], 'poppage', 'toolbars=0, scrollbars=1, location=0, statusbars=0, menubars=0, resizable=1, width=1, height=1, left = 0, top = 200');\n    setTimeout(function(){ popup.close(); }, 1); // 1 seconds\n    \n    count = (count + 1) % urls.length; // increment the counter and use modulus to loop back to 0\n    localStorage.setItem('visitCount', count); // Store the updated visit count in local storage\n  }\n\n\n\n\n\n\n\n\n\n\n\n\n.floating-ad {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9999;\n}\n\n\n\n\n\nTumuklas paCommunications at Media StudiesKasaysayanVideo GamesComputer &amp; Video GamesBlogging Resources &amp; ServicesGamesAnimated FilmsMovie Reviews &amp; Previews\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n\n\n\n\n\nTell us what are you looking for\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTumuklas pakasaysayanKasaysayanCommunications at Media StudiesGame\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\n\n\n\n#random-posts img {\n    border-radius: 1px;\n    float: left;\n    margin-right: 5px;\n    width: 100px;\n    height: 100px;\n    \n    padding: 1px;\n    transition: all 0.2s linear 0s;\n}\n\n#random-posts img:hover {\n    opacity: 0.6;\n}\n\nul#random-posts {\n    list-style-type: none;\n    padding: 0px;\n}\n\n#random-posts a {\n    font-size: 12px;\n    text-transform: uppercase;\n    padding: 0px auto 5px;\n}\n\n#random-posts a:hover {\n    text-decoration: none;\n}\n\n.random-summary {\n    font-size: 12px;\n    background: none;\n    padding: 1px;\n    margin-right: 8px;\n}\n\n#random-posts li {\n\n}\n\n\n\nvar randomposts_number = 10;\nvar randomposts_chars = 110;\nvar randomposts_comments = 'Comments';\nvar randomposts_commentsd = 'Comments Disabled';\nvar randomposts_current = [];\nvar total_randomposts = 0;\nvar randomposts_current = new Array(randomposts_number);\n\nfunction randomposts(json) {\n    total_randomposts = json.feed.openSearch$totalResults.$t\n}\ndocument.write('');\n\nfunction getvalue() {\n    for (var i = 0; i \n\nfunction random_posts(json) {\n    for (var i = 0; i ]*>/g, \"\");\n        if (randompostsnippet.length ');\n        document.write('');\n        document.write('' + randompoststitle + '');\n        document.write('' + randomposts_snippet + '')\n    }\n};\ngetvalue();\nfor (var i = 0; i ')\n};\nVlad and Niki: Car Service | Hippo Kids Games | Educational\nBecome a real car professional with our kids educational game about cars for boys and girls. Vlad and Niki’s…Oral Communication in Context\n\nOral Communication in ContextThe development of listening and speaking skills and strategies for effective…RevoMax Philippines: Innovating Hydration for a Healthier Tomorrow\nRevoMax Philippines emerges as a pioneer in the field of hydration. With a vision to promote a healthier…According to a study, company stock prices rise when black CEOs are appointed\nHowever, there is still a significant racial discrepancy in corner office positions\nPay attention, Corporate…The Psychology Behind Gi-hun’s Choice – The Ending of Squid Game Season 3\n\n[SPOILER] Why did Gi-hun do that? And will anyone do the same in a given situation?\nThe ending of Squid…Why a Psychologist Says You Don't Always Have to Forgive\nIt's not always best to forgive in order to move on or keep yourself safe\nA common recommendation when we…Introduction to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao\nIntroduction to Philosophy of the Human PersonThis course gives an overview on the study of the basic…Don't put these into your Fireplace, unless you want to ruin your Night\nNever, ever, ever burn these items in a Fireplace.&nbsp; This is a nice reminder that a fireplace is not a…New Challenger Approaching: Breaking Down the New Monster in Godzilla X Kong The New Empire\n\nDiscover the new Titan in Godzilla vs. Kong and explore its abilities and role in the MonsterVerse. Stay…Apple Foldable iPhone 2026: Everything You NEED to Know!\nWhy Everyone’s Talking About the Apple Foldable iPhone 2026\nApple is planning a significant shift in its…\n\n\n\n\n\n\n\nTumuklas paVideo GamesComputer &amp; Video GamesGames\n\n     (adsbygoogle = window.adsbygoogle || []).push({});\n\n\n\n\nTHANKS to our TOP DONORS\n\n\nCH****S BR***O D. (₱1.00)"
+    "q": "Bakit kailangan pang suriin ang wika natin gayong madalas naman natin itong ginagamit?",
+    "a": "Dahil hindi sapat ang ginagamit lamang nang walang sapat na kaalaman at mahinuha ang mabuting dulot upang buhayin ang damdaming makabansa gamit ang mga wika sa ating bansa."
+  },
+  {
+    "q": "Kapag tayo ay nagbabasa ng maikling kuwento o nobela o di kaya'y kapag tayo'y nanonood ng pelikula, parang nagiging totoo sa ating harapan ang mga tagpo niyon.",
+    "a": "Lumilinang ng Malikhaing Pag-iisip"
+  },
+  {
+    "q": "Tungkulin ng wika na ginagamit sa pagbibigay ng impormasyon.",
+    "a": "impormatibo"
+  },
+  {
+    "q": "Bakit mahalagang mapag-aralan ang pagkakabuo ng mga barayti ng wika sa loob ng lipunan?",
+    "a": "Upang maunawaan ang pagkakaroon ng dibisyon at uri ng mga uri nang maintindihan ang umiinog na kultura sa ilang lipunan"
+  },
+  {
+    "q": "Nagkakaroon ng komplikasyon sa wika kapag may teknolohiya na sa bansa.",
+    "a": "True"
+  },
+  {
+    "q": "Ang pag-unlad ng wika o pambasang wika ay pag-unlad din ng ekonomiya.",
+    "a": "True"
+  },
+  {
+    "q": "Bibihirang istilo ng wika dahil piling sitwasyon lamang ang ginagamitan.",
+    "a": "static register"
+  },
+  {
+    "q": "Ang kahulugan ng SWP ay______.",
+    "a": "Surian ng Wikang Pambansa"
+  },
+  {
+    "q": "Noong 1971, iminungkahing dagdagan ang alpabeto ng",
+    "a": "11 titik"
+  },
+  {
+    "q": "Tungkulin ng wika na ginagamit sa paghahanap o paghingi ng impormasyon.",
+    "a": "hyuristik"
+  },
+  {
+    "q": "Ito ang pinakamataas na uri o antas ng wika at umutukoy naman ito sa mga salitang ginagamit ng mga dalubhasa, mga manunulat, mga mananaliksik at mga makata.",
+    "a": "pampanitikan"
+  },
+  {
+    "q": "Ang tawag sa sistema o pagsandig ng mga tao sa paniniwalang may Diyos at kinapapalooban ng sistema na umaayon sa kalooban ng sinasambang Diyos.",
+    "a": "Relihiyon"
+  },
+  {
+    "q": "Ano ang pangunahing dahilan kung bakit hindi umaabot sa intelektuwalisasyon ang wikang Filipino?",
+    "a": "Dahil sa mga taong kulang na kulang ang kaalaman at pagpapahalaga sa wikang Filipino"
+  },
+  {
+    "q": "Ito ay tungkulin ng wika na ginagamit sa pagtugon sa mga pangangailangan.",
+    "a": "instrumental"
+  },
+  {
+    "q": "Librong isinulat nina Max Horkheimer at Theodor W. Adorno na naglalahad ng mga sistema at mga konsepto sa likod ng culture industry.",
+    "a": "Dialectic of Enlightenment"
+  },
+  {
+    "q": "Ang guro ay laging gumagamit ng mga wikang nakasusunod sa bokabolaryo ng mga mag-aaral kaya madaling maintindihan, makasunod ang mga mag-aaral sa mga instrukyon ng guro. Anong katangian ng wika ang inilalahad sa sitwasyon?",
+    "a": "Maimpluwensya"
+  },
+  {
+    "q": "Bakit kailangang maglahad ng sariling sikolohiya ang Pilipino?",
+    "a": "Sapagkat ang karanasan, kultura, kaugalian at kamalayan ng mga Pilipino ay natatangi at iba sa dayuhan."
+  },
+  {
+    "q": "Bakit hindi makasabay ang wikang Filipino sa ibang wikang ganap nang intelektuwalisado?",
+    "a": "Dahil may mga isip na nakakulong sa konseptong mababa ang tingin sa wikang Filipino."
+  },
+  {
+    "q": "Ayon sa ______ sa wika, popular sa 1960s at 1970s, mayroong isang unibersal na balarila - at mga wika ay hindi gaanong naiiba mula sa isa't isa.",
+    "a": "Chomsky's theories"
+  },
+  {
+    "q": "Sa ganitong paraan, inuunang ituro ang mga konsepto gamit ang natural na wika bago ito dagdagan ng ang mga panibago at mas komplikado na termino.",
+    "a": "Content first approach"
+  },
+  {
+    "q": "Ang alpabeto ng ating mga ninuno noong panahong pre- kolonyal ay tinatawag na",
+    "a": "alibata"
+  },
+  {
+    "q": "Tuwing Agosto, ipinagdiriwang ang _______________",
+    "a": "Buwan ng Wikang Filipino"
+  },
+  {
+    "q": "Ang alpabetong binalangkas noong 1940 ay nakilala sa tawag na",
+    "a": "Abakada"
+  },
+  {
+    "q": "Naging epektibo ba ang pagpapalaganap sa wikang Tagalog bilang wikang pambansa?",
+    "a": "Oo, dahil may utos na ituro ito sa lahat lalo na sa paaralan."
+  },
+  {
+    "q": "Anong pangsitwasyon ng wikang pambansa at mga wikain sa Pilipinas ang posibleng nagawa ng mga elit?",
+    "a": "Istratipikasyon ng wika sa pamamagitan ng pagiging 'eksperto' halimbawa nito ang pagkakaroon ng antas ng wika."
+  },
+  {
+    "q": "Impormal na wika na kadalasang ginagamit sa malalapit na kakilala o kaibigan",
+    "a": "casual register"
+  },
+  {
+    "q": "Nagbabago ang bihis ng wika dahil sa impluwensya ng mga kapitalista.",
+    "a": "True"
+  },
+  {
+    "q": "Ang wikang Filipino at wikang Ingles ay hindi magkaaway ngunit nagtatalaban kapag nagtagpo.",
+    "a": "True"
+  },
+  {
+    "q": "Ang titik sa Bagong Alpabetong Filipino ay tinatawag nang pa Ingles maliban sa",
+    "a": "ñ"
+  },
+  {
+    "q": "Ayon sa Bagong Saligang Batas (1987), ang Wikang Pambansa ng Pilipinas ay tatawaging",
+    "a": "Filipino"
+  },
+  {
+    "q": "Kailan nagaganap ang pagtatalaban ng mga wika sa loob ng lipunan?",
+    "a": "Tuwing nagkakaroon ng pagtatagpo"
+  },
+  {
+    "q": "Alin sa mga sumusumod na sitwasyon ang nagpapakita ng pagsunod sa batas ayon sa wikang pambansa?",
+    "a": "Ang paggamit ng pinaghalong bernakular at Filipino ni Anna sa klase halimbawa ‘Uuwi na siya sa balay nila?’"
+  },
+  {
+    "q": "Bakit kailangan ang kulturang popular pagdating sa wika?",
+    "a": "Lahat ng nabanggit"
+  },
+  {
+    "q": "Batayang wika ng Wikang Filipino bago pa man itong tawaging Wikang Filipino.",
+    "a": "Tagalog"
+  },
+  {
+    "q": "Nakilala ang alpabeto noong panahon ng Kastila sa tawag na",
+    "a": "Abecedario"
+  },
+  {
+    "q": "Sistemang binuo, pinapasyahan at ikinabit sa buong katauhan ng isang inbidwal hanggang sa isang buong pangkat.",
+    "a": "Kultura"
+  },
+  {
+    "q": "Sa usapin ng pagsasalin, ayos lang na hindi na isa-kontexto ang mga ideya sa karansan ng mga Pilipino.",
+    "a": "False"
+  },
+  {
+    "q": "Ang Surian ng Wikang Pambansa ay kailangang magsagawa ng mga pananaliksik at maghanda at maglathala ng mga siyentipikong pag-aarala tungkol sa pinagmulan, pagkaunlad, pagkakaugnay at kayarian ng Pilipinoat ng iba pang mga wika sa Pilipinas.",
+    "a": "True"
+  },
+  {
+    "q": "Bakit binalot ng isyu sa pagtawag sa wikang pambansa na ‘’Pilipino’’?",
+    "a": "Sapagkat ang katawagang Pilipino ay hindi umano kumakatawan sa ibang wika at etniko sa bansang Pilipinas."
+  },
+  {
+    "q": "Paano nagkakaugnay ang wika sa loob ng lipunan?",
+    "a": "Base sa piniling pakitunguhan."
+  },
+  {
+    "q": "Walang kinalaman ang sikolohiya ng mga tao sa modernisasyon ng wika.",
+    "a": "False"
+  },
+  {
+    "q": "Masasabing ang _____ay mga bagay na makikita mo sa iyong paligid at ito ay mga bagay na nilikha at iyong nahahawakan.",
+    "a": "Materyal na Kultura"
+  },
+  {
+    "q": "Sa makabagong panahon, sa anong paraan mas madaling nakakapanakop ang ilang bansa?",
+    "a": "Sa pamamagitan ng pangangapital at masining na paggamit ng wika."
+  },
+  {
+    "q": "Salitang-kalye, salitang lansangan at salitang kanto ang iba pang termino sa salitang ito.",
+    "a": "balbal"
+  },
+  {
+    "q": "Ang wikang pambansa ay napapansin dahil sa kakaiba nitong punto o intonasyon at bigkas.",
+    "a": "False"
+  },
+  {
+    "q": "Alin sa mga sumusunod ang hindi nagpapakita ng halimbawa ng salitang balbal?",
+    "a": "ako"
+  },
+  {
+    "q": "Hindi binabasa kundi pinakikinggan.",
+    "a": "Audio"
+  },
+  {
+    "q": "Kailan masasabing ang wika ay naging modernisado na?",
+    "a": "Kapag ang lumang salita ay nag-iba ng baybay at pahayag ay nagbago na."
+  },
+  {
+    "q": "Tinatawag itong mga salitang estandard dahil ginagamit at kinikilala ng higit na nakararaming tao lalo na ng mga may-pinag-aralan.",
+    "a": "pormal"
+  },
+  {
+    "q": "Samantalang nililinang, ang wikang pambansa ng Pilipinas ay dapat payabungin at pagyamanin pa salig sa ______",
+    "a": "umiiral na wika sa Pilipinas at iba pang mga wika"
+  },
+  {
+    "q": "Ano ang nais ipahiwatig ng Saligang batas 1987 ukol sa wikang pambansa ng Pilipinas?",
+    "a": "Ang wikang Filipino ay pinauunlad ng lahat ng umiiral na wika sa bansa"
+  },
+  {
+    "q": "Ang labis na pagkonsumo ay hindi naman maituturing na kaguluhan ng isipan ng konsyumer.",
+    "a": "False"
+  },
+  {
+    "q": "Ang wika ay may tiyak na espasyo lamang na sinasakop o pinananahan kahit pa may pagkakataong ito ay nakararating sa ibang pook ay umiiral lamang ang wika sa loob ng isang lugar.",
+    "a": "True"
+  },
+  {
+    "q": "Ayon kay Rizal, ang Pilipinasyon ng ating ortograpiya ay utang natin kay_____________.",
+    "a": "Trinidad H. Pardo de Tavera"
+  },
+  {
+    "q": "Bago dumating ang mga Kastila ay walang kulturang popular.",
+    "a": "True"
+  },
+  {
+    "q": "Ang mga sumusunod ay ang dapat isaalang-alang na nauukol sa wikang pambansa ayon kay Ernesto Constantino, maliban sa isa.",
+    "a": "Ang panahon na nagdadaan dahil sa pagbabagong nagaganap sa wika."
+  },
+  {
+    "q": "Ang politika ay isang perspektiba na sumusuri sa mga epekto sa wika ng tagisan ng kapangyarihan.",
+    "a": "True"
+  },
+  {
+    "q": "Ito ay maaring mga materyal na bagay na nagbibigay ng kahulugan",
+    "a": "Simbolo (Symbols)"
+  },
+  {
+    "q": "May kinalaman sa pagkuha at paghawak ng kontrol sa pamahalaan.",
+    "a": "Politika"
+  },
+  {
+    "q": "Ito ay ang mga pananaw, ideya o kaisipan na tinatanggap sa lipunan bilang totoo.",
+    "a": "Paniniwala (Beliefs)"
+  },
+  {
+    "q": "Nagkaroon ng unang hakbangin upang ang Pilipinas ay magkaroon ng wikang Pambansa noong ______.",
+    "a": "1987"
+  },
+  {
+    "q": "Puwersang maaaring magamit sa pagbuo at pagwasak ng mga bagay sa loob ng lipunan.",
+    "a": "Kapangyarihan"
+  },
+  {
+    "q": "Ito ay proseso ng pagbasa, pagkuha, at pag-unawa ng mensahe mula sa palabas; Pakikinig, Pagsasalita, Pagbasa, Pagsulat at Panonood.",
+    "a": "Kasanayang pangwika"
+  },
+  {
+    "q": "Ayon sa papel nina Max Horkheimer at Theodor W. Adorno, ang lahat ng pangmasang kultura ay napapasailalim sa alin na itinuturing na magkakamukha lamang?",
+    "a": "Monopolyo"
+  },
+  {
+    "q": "Ang wika ay isang pamamaraan ng paggawa ng transaksiyon.",
+    "a": "True"
+  },
+  {
+    "q": "Nagiging limitado ang kapangyarihan ng mga kapitalista pagdating sa wika.",
+    "a": "True"
+  },
+  {
+    "q": "Mahalaga ang wika sa isang bayan, dahil ito ay ang anumang binibigkas o isinulat ng tao upang maipahayag ang kanyang saloobin.",
+    "a": "True"
+  },
+  {
+    "q": "Sa pagpili ng mga wikang aangkop sa kanilang pamumuhay at matutukoy ang inclusion-exclusion ng tao sa isang sitwasyon.",
+    "a": "Deregulation"
+  },
+  {
+    "q": "Nagkakaroon nito kapag ang dalawang taal na tagapagsalita ng dalawang magkaibang wika na walang komong wika ay nagtatangkang magkaroon ng kumbersasyong makeshift.",
+    "a": "pidgin"
+  },
+  {
+    "q": "Alin sa mga sumusunod ang hindi dahilan kung bakit napili ang Tagalog bilang wikang pambansa ng Pilipinas noong panahon ni dating Pangulong Manuel L. Quezon?",
+    "a": "Pinakamalaking prosyento sa bansang Pilipinas ang gumagamit ng wikang Tagalog."
+  },
+  {
+    "q": "Batay sa karanasan, natutuhan sa iba’t ibang sitwasyon ang wikang natutuhan ng isang tao.",
+    "a": "Pangalawang Wika"
+  },
+  {
+    "q": "Ang wika, lalo na ang wikang Filipino, ay naging isang malaking isyung sosyo-geo-politikal.",
+    "a": "True"
+  },
+  {
+    "q": "Anong panlabas na epekto ng cross-culture pagdating sa wika?",
+    "a": "Ang pagbabagong bihis ng wika gayundin ang lahing nabuo dahil sa nagsamang kultura at wika mula sa magkaibang kultura at magsasama bilang isang kultura."
+  },
+  {
+    "q": "Ayon naman kay Tolentino(2001), ‘’Ang kultural ay kulturang popular ay tumutukoy sa antas ng kamalayan.",
+    "a": "True"
+  },
+  {
+    "q": "Ipinaliwanag ni Biagi (Baagi, 2005) na ang media ay itinuturing na pangunahing institusyong panlipunan dahil sa impak na hatid nito sa kultura.",
+    "a": "True"
+  },
+  {
+    "q": "Sa anong proseso mailalahad ang pag-unlad ng kaalaman, karunungan at pagpapalawig ng rason sa ginagalawang espasyon?",
+    "a": "Tao, Wika, Kultura, Lipunan"
+  },
+  {
+    "q": "Lahat ng termino sa agham at teknolohiya ay maisasalin sa wikang Filipino",
+    "a": "False"
+  },
+  {
+    "q": "Binibigyang kahulugan at inuunawa ng manonood.",
+    "a": "Audio-visual"
+  },
+  {
+    "q": "Dapat lamang na tanggalin ang asignaturang Filipino sa kolehiyo.’ Ang pahayag na nabasa ay tumutukoy sa suliraning ano?",
+    "a": "Intelektuwalisasyon ng wika"
+  },
+  {
+    "q": "Ano sa mga sumusunod na proyekto ang pinakamabilis na paglaganap ng wikang Filipino?",
+    "a": "Panonood ng mga pelikulang Pilipino na nagpapakita ng sikolohiya at kulturang Pilipino"
+  },
+  {
+    "q": "Ang nag-uugnay sa wika at sa aspetong sosyal ng isang lipunan.",
+    "a": "Sociolinguistics"
+  },
+  {
+    "q": "Ang panimulang pagsusuri ni Enriquez sa Sikolohiyang Pilipino batay sa kultura at wika ng mga Filipino ang siyang nagbunsod upang matukoy na ang sikolohiya ay tungkol sa..",
+    "a": "kamalayan, ulirat, isip, diwa, kaluluwa"
+  },
+  {
+    "q": "Tungkulin ng wikang ginagamit sa pagpapahayag ng sariling damdamin o opinion. Sa mga talakayang pormal o impormal ay gamit na gamit ang tungkuling ito.",
+    "a": "personal"
+  },
+  {
+    "q": "Anong pangkat etniko ang kinabibilangan ng nanguna sa pagkakabuo ng Surian ng Wikang Pambansa?",
+    "a": "Bisaya"
+  },
+  {
+    "q": "Isa sa mga batayan sa baryasyon ng wika ay ang pagkakaiba ng katangian ng mga grupo na napaloob sa istruktura ng isang lipunan.",
+    "a": "True"
+  },
+  {
+    "q": "Ang _______ ay ang pangkabuuang pananaw ng mga tao sa isang lipunan sa mundo at sa kanilang kapaligiran.",
+    "a": "kultura"
+  },
+  {
+    "q": "Ang mga balbal na salita ay unang ginagamit bilang codes ng mga pangkat.",
+    "a": "True"
+  },
+  {
+    "q": "Tumutukoy ito sa mga salitang nabibilang sa iba't ibang diyalekto.",
+    "a": "lalawigain"
+  },
+  {
+    "q": "Alin sa mga sumusunod na sitwasyon ang hindi dahilan ng malaking ambag ng media sa pagbabago ng wika.",
+    "a": "Ang impluwensya ng politiko sa bawat mamamayang may malakas na pagkatig o pagbatikos sa kanila."
+  },
+  {
+    "q": "Ang teorya hinggil sa paraan ng pagsulat ng mga sinaunang Pilipino ay binuo ni____________",
+    "a": "Fr. Pedro Chirino"
+  },
+  {
+    "q": "Ang Ch, ll, ng, at rr ay tinatawag na __________",
+    "a": "digrapo"
+  },
+  {
+    "q": "Ang wika ay nasa proseso o anyo ng modernisasyong nagmula sa luma o lipas na at binigyan ng panibagong anyo ng wika na makikita sa baybay at pahayag na naaayon sa panahon at pangangailangan ng isang pangkat.",
+    "a": "True"
+  },
+  {
+    "q": "Ayon sa kaniya, ‘’ Hinuhubog na tayo mismo ng mass media. Kailangang-kailangan na natin ang mass media sa ating buhay.’’",
+    "a": "Marshall Mcluhan"
+  },
+  {
+    "q": "Sa anong bahagi ng Saligang Batas ang naglalahad na ang Filipino ay wikang nililinang batay sa wikain sa bansa at nagsasabing ito ay ang identidad ng mga Pilipino?",
+    "a": "Konstitusyong 1987, Artikulo XIV, Seksyon 16"
   }
 ]
