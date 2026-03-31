@@ -134,9 +134,7 @@ async function scrapeSubject(config, supabase, adminId) {
         if (ansMatch) {
           let aText = ansMatch[1].replace(/<[^>]*>?/gm, '').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#039;/g, "'").replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
           
-          if (!allQa.find(item => item.q === qText && item.a === aText)) {
-            allQa.push({ q: qText, a: aText });
-          }
+          allQa.push({ q: qText, a: aText });
         }
       }
     }

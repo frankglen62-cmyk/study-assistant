@@ -168,6 +168,14 @@
     "a": "2"
   },
   {
+    "q": "Complete the expression '27 = 128 = ___ (mod 63)'",
+    "a": "2"
+  },
+  {
+    "q": "Complete the expression '53 = 125 = 14 (mod ___ )'",
+    "a": "37"
+  },
+  {
     "q": "Complete the expression '53 = 125 = 14 (mod ___ )'",
     "a": "37"
   },
