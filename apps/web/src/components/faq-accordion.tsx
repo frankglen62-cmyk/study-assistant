@@ -1,56 +1,51 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import { faqExpandMotion, faqChevronMotion } from '@/lib/motion';
 
-import { faqExpandMotion, faqChevronMotion, ease } from '@/lib/motion';
-
-interface FaqItemProps {
+interface FaqItem {
   question: string;
   answer: string;
 }
 
-export function FaqAccordion({ items }: { items: FaqItemProps[] }) {
+export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const reduced = useReducedMotion();
 
   return (
-    <div className="space-y-4">
-      {items.map((item, i) => {
-        const isOpen = openIndex === i;
+    <div className="divide-y divide-border/40 rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+      {items.map((item, index) => {
+        const isOpen = openIndex === index;
+
         return (
-          <div
-            key={item.question}
-            className="rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-colors hover:border-white/[0.09]"
-          >
+          <div key={item.question}>
             <button
               type="button"
-              onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 p-6 text-left"
+              onClick={() => setOpenIndex(isOpen ? null : index)}
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-surface/30"
             >
-              <h3 className="text-base font-semibold text-white">{item.question}</h3>
-              <motion.div
-                variants={reduced ? undefined : faqChevronMotion}
+              <span className="text-sm font-medium text-foreground">{item.question}</span>
+              <motion.span
+                variants={faqChevronMotion}
                 animate={isOpen ? 'expanded' : 'collapsed'}
-                transition={{ duration: 0.22, ease: ease.snap }}
-                className="shrink-0 text-neutral-500"
+                transition={{ duration: 0.2 }}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface text-muted-foreground"
               >
-                <Plus className="h-5 w-5" />
-              </motion.div>
+                <Plus className="h-4 w-4" />
+              </motion.span>
             </button>
 
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  key="answer"
-                  variants={reduced ? undefined : faqExpandMotion}
+                  variants={faqExpandMotion}
                   initial="collapsed"
                   animate="expanded"
                   exit="collapsed"
                   className="overflow-hidden"
                 >
-                  <p className="px-6 pb-6 text-sm leading-relaxed text-neutral-500">
+                  <p className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">
                     {item.answer}
                   </p>
                 </motion.div>

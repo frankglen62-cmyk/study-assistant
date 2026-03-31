@@ -1,35 +1,30 @@
-import { Badge } from '@study-assistant/ui';
+import { cn } from '@study-assistant/ui';
 
-const statusToneMap: Record<string, 'accent' | 'success' | 'warning' | 'danger' | 'neutral'> = {
-  active: 'success',
-  paid: 'success',
-  ready: 'success',
-  resolved: 'success',
-  processing: 'warning',
-  pending: 'warning',
-  paused: 'warning',
-  low_confidence: 'warning',
-  refunded: 'warning',
-  no_credit: 'warning',
-  no_match: 'warning',
-  timed_out: 'warning',
-  pending_verification: 'warning',
-  failed: 'danger',
-  suspended: 'danger',
-  banned: 'danger',
-  locked: 'danger',
-  archived: 'neutral',
-  draft: 'neutral',
-  ended: 'neutral',
-  revoked: 'neutral',
-  canceled: 'neutral',
-  in_progress: 'neutral',
-  closed: 'neutral',
+const statusStyles: Record<string, string> = {
+  completed: 'bg-green-50 text-green-700',
+  succeeded: 'bg-green-50 text-green-700',
+  active: 'bg-emerald-50 text-emerald-700',
+  pending: 'bg-amber-50 text-amber-700',
+  processing: 'bg-blue-50 text-blue-700',
+  failed: 'bg-red-50 text-red-700',
+  cancelled: 'bg-gray-100 text-gray-600',
+  expired: 'bg-gray-100 text-gray-600',
+  paused: 'bg-orange-50 text-orange-700',
+  idle: 'bg-gray-100 text-gray-600',
 };
 
 export function StatusBadge({ status }: { status: string }) {
-  const tone = statusToneMap[status] ?? 'neutral';
-  const label = status.replace(/_/g, ' ');
+  const key = status.toLowerCase();
+  const style = statusStyles[key] || 'bg-gray-100 text-gray-600';
 
-  return <Badge tone={tone}>{label}</Badge>;
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium capitalize',
+        style,
+      )}
+    >
+      {status}
+    </span>
+  );
 }

@@ -4,19 +4,19 @@ import { cn } from '../lib/cn';
 
 const buttonVariants = {
   primary:
-    'bg-accent text-black font-black uppercase hover:bg-black hover:text-white border-2 border-black focus-visible:outline-accent shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
+    'bg-foreground text-background font-semibold hover:bg-foreground/90 focus-visible:outline-ring shadow-soft-sm hover:shadow-soft-md',
   secondary:
-    'bg-surface text-foreground font-black uppercase border-2 border-border hover:bg-foreground hover:text-background focus-visible:outline-border shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
+    'bg-white text-foreground font-medium border border-border hover:bg-surface hover:border-border focus-visible:outline-ring shadow-soft-sm',
   ghost:
-    'bg-transparent text-foreground font-black uppercase hover:bg-surface border-2 border-transparent hover:border-border hover:shadow-solid-sm focus-visible:outline-border',
+    'bg-transparent text-foreground font-medium hover:bg-surface focus-visible:outline-ring',
   danger:
-    'bg-danger text-white font-black uppercase border-2 border-danger hover:bg-white hover:text-danger focus-visible:outline-danger shadow-solid-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
+    'bg-danger text-white font-semibold hover:bg-danger/90 focus-visible:outline-danger shadow-soft-sm hover:shadow-soft-md',
 };
 
 const buttonSizes = {
-  md: 'h-12 px-6 text-sm tracking-widest',
-  sm: 'h-10 px-4 text-xs tracking-widest',
-  lg: 'h-14 px-8 text-base tracking-widest',
+  sm: 'h-9 px-4 text-sm gap-2',
+  md: 'h-11 px-6 text-sm gap-2',
+  lg: 'h-12 px-8 text-base gap-2.5',
 };
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,7 +28,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ asChild = false, children, className, variant = 'primary', size = 'md', type = 'button', ...props }, ref) => {
     const buttonClassName = cn(
-      'inline-flex items-center justify-center gap-3 rounded-none transition-all disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-solid-sm',
+      'inline-flex items-center justify-center rounded-full transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50',
       buttonVariants[variant],
       buttonSizes[size],
       className,

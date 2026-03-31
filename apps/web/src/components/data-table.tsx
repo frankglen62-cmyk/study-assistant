@@ -1,47 +1,51 @@
 import type { ReactNode } from 'react';
 
-import { Card, cn } from '@study-assistant/ui';
-
 export function DataTable({
   columns,
   rows,
-  emptyMessage = 'No rows available.',
+  emptyMessage = 'No data available.',
 }: {
   columns: string[];
   rows: ReactNode[][];
   emptyMessage?: string;
 }) {
+  if (rows.length === 0) {
+    return (
+      <div className="rounded-2xl border border-border/40 bg-white p-8 text-center text-sm text-muted-foreground shadow-card">
+        {emptyMessage}
+      </div>
+    );
+  }
+
   return (
-    <div className="border-4 border-black bg-background shadow-solid-md overflow-hidden">
+    <div className="overflow-hidden rounded-2xl border border-border/40 bg-white shadow-card">
       <div className="overflow-x-auto">
-        <table className="min-w-full text-left text-sm border-collapse">
-          <thead className="bg-surface border-b-4 border-black">
-            <tr>
-              {columns.map((column) => (
-                <th key={column} className="px-5 py-4 font-black uppercase tracking-widest text-black border-r-2 border-border/50 last:border-r-0">
-                  {column}
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-border/40 bg-surface/40">
+              {columns.map((col) => (
+                <th
+                  key={col}
+                  className="px-5 py-3.5 text-left text-xs font-medium text-muted-foreground"
+                >
+                  {col}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y-2 divide-border font-medium">
-            {rows.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length} className="px-5 py-16 text-center text-muted-foreground font-black uppercase tracking-widest bg-surface/50">
-                  {emptyMessage}
-                </td>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="border-b border-border/20 last:border-0 transition-colors hover:bg-surface/30"
+              >
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex} className="px-5 py-3.5 text-sm text-foreground">
+                    {cell}
+                  </td>
+                ))}
               </tr>
-            ) : (
-              rows.map((row, index) => (
-                <tr key={index} className="bg-background transition-colors hover:bg-accent/10 group">
-                  {row.map((cell, cellIndex) => (
-                    <td key={cellIndex} className="px-5 py-4 align-top border-r-2 border-border/50 text-foreground group-hover:text-black font-semibold">
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))
-            )}
+            ))}
           </tbody>
         </table>
       </div>

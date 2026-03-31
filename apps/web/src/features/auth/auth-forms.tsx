@@ -20,6 +20,8 @@ import { Input } from '@study-assistant/ui';
    Shared helpers
    ═══════════════════════════════════════════ */
 
+const styledInput = 'h-11 rounded-xl border-border bg-white text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-2 focus:ring-accent/20';
+
 function PasswordInput({ className, ...props }: React.ComponentProps<typeof Input>) {
   const [visible, setVisible] = useState(false);
 
@@ -28,13 +30,13 @@ function PasswordInput({ className, ...props }: React.ComponentProps<typeof Inpu
       <Input
         {...props}
         type={visible ? 'text' : 'password'}
-        className={`h-12 rounded-xl border-white/10 bg-white/[0.04] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20 ${className ?? ''}`}
+        className={`${styledInput} ${className ?? ''}`}
       />
       <button
         type="button"
         tabIndex={-1}
         onClick={() => setVisible((v) => !v)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 transition-colors hover:text-white"
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
         aria-label={visible ? 'Hide password' : 'Show password'}
       >
         {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -42,8 +44,6 @@ function PasswordInput({ className, ...props }: React.ComponentProps<typeof Inpu
     </div>
   );
 }
-
-const styledInput = 'h-12 rounded-xl border-white/10 bg-white/[0.04] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20';
 
 const loginSchema = z.object({
   email: z.string().email('Enter a valid email address.'),
@@ -85,10 +85,10 @@ function AuthCardShell({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#111111] p-8 shadow-2xl shadow-black/30">
+    <div className="rounded-2xl border border-border/40 bg-white p-8 shadow-soft-lg">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
-        <p className="mt-1 text-sm text-neutral-500">{description}</p>
+        <h2 className="font-display text-2xl text-foreground">{title}</h2>
+        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
       </div>
       {children}
     </div>
@@ -134,10 +134,10 @@ function getReadableAuthError(error: unknown, fallback: string) {
 function AuthNotice({ tone, message }: { tone: 'info' | 'success' | 'danger'; message: string }) {
   const className =
     tone === 'success'
-      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
       : tone === 'danger'
-        ? 'border-red-500/30 bg-red-500/10 text-red-300'
-        : 'border-white/10 bg-white/[0.04] text-neutral-400';
+        ? 'border-red-200 bg-red-50 text-red-800'
+        : 'border-border bg-surface text-muted-foreground';
 
   return <div className={`rounded-xl border px-4 py-3 text-sm ${className}`}>{message}</div>;
 }
@@ -196,12 +196,12 @@ function PasswordRequirements({ password }: { password: string }) {
   const checks = evaluatePasswordPolicy(password);
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-      <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">Password requirements</p>
-      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+    <div className="rounded-xl border border-border/60 bg-surface/50 px-4 py-3">
+      <p className="text-xs font-medium text-muted-foreground mb-2">Password requirements</p>
+      <div className="grid gap-2 sm:grid-cols-2">
         {checks.map((check) => (
-          <div key={check.id} className={`flex items-center gap-2 text-xs ${check.passed ? 'text-emerald-300' : 'text-neutral-500'}`}>
-            <span className={`flex h-4 w-4 items-center justify-center rounded-full border ${check.passed ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-white/10 bg-white/[0.02]'}`}>
+          <div key={check.id} className={`flex items-center gap-2 text-xs ${check.passed ? 'text-accent' : 'text-muted-foreground/60'}`}>
+            <span className={`flex h-4 w-4 items-center justify-center rounded-full ${check.passed ? 'bg-accent/10' : 'bg-muted/50'}`}>
               {check.passed ? <Check className="h-3 w-3" /> : null}
             </span>
             <span>{check.label}</span>
@@ -254,7 +254,7 @@ function SocialAuthButtons({
         type="button"
         onClick={() => handleSocialLogin('google')}
         disabled={loading !== null}
-        className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] text-sm font-medium text-white transition-all hover:bg-white/[0.08] disabled:opacity-50"
+        className="flex h-11 w-full items-center justify-center gap-3 rounded-xl border border-border bg-white text-sm font-medium text-foreground transition-all hover:bg-surface disabled:opacity-50"
       >
         <svg className="h-5 w-5" viewBox="0 0 24 24">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
@@ -269,7 +269,7 @@ function SocialAuthButtons({
         type="button"
         onClick={() => handleSocialLogin('facebook')}
         disabled={loading !== null}
-        className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] text-sm font-medium text-white transition-all hover:bg-white/[0.08] disabled:opacity-50"
+        className="flex h-11 w-full items-center justify-center gap-3 rounded-xl border border-border bg-white text-sm font-medium text-foreground transition-all hover:bg-surface disabled:opacity-50"
       >
         <svg className="h-5 w-5" viewBox="0 0 24 24" fill="#1877F2">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -284,10 +284,10 @@ function AuthDivider() {
   return (
     <div className="relative my-6">
       <div className="absolute inset-0 flex items-center">
-        <div className="w-full border-t border-white/[0.06]" />
+        <div className="w-full border-t border-border/60" />
       </div>
       <div className="relative flex justify-center">
-        <span className="bg-[#111111] px-4 text-sm text-neutral-600">OR</span>
+        <span className="bg-white px-4 text-sm text-muted-foreground">OR</span>
       </div>
     </div>
   );
@@ -369,10 +369,10 @@ export function LoginForm() {
         <CaptchaWidget action="login" resetKey={captchaResetKey} error={captchaError} onTokenChange={handleCaptchaChange} />
 
         <div className="flex items-center justify-between gap-3 text-sm">
-          <Link href="/forgot-password" className="text-teal-400 hover:text-teal-300">
+          <Link href="/forgot-password" className="text-accent hover:text-accent/80 font-medium">
             Forgot password?
           </Link>
-          <Link href="/register" className="text-neutral-500 hover:text-white">
+          <Link href="/register" className="text-muted-foreground hover:text-foreground">
             Create account
           </Link>
         </div>
@@ -380,15 +380,15 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black transition-all hover:bg-neutral-200 disabled:opacity-50"
+          className="flex h-11 w-full items-center justify-center rounded-full bg-foreground text-sm font-semibold text-background transition-all hover:bg-foreground/90 disabled:opacity-50"
         >
           {isSubmitting ? 'Signing in...' : 'Sign In'}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-neutral-600">
+      <p className="mt-6 text-center text-sm text-muted-foreground">
         Don't have an account?{' '}
-        <Link href="/register" className="font-medium text-teal-400 hover:text-teal-300">
+        <Link href="/register" className="font-medium text-accent hover:text-accent/80">
           Sign up
         </Link>
       </p>
@@ -488,15 +488,15 @@ export function RegisterForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black transition-all hover:bg-neutral-200 disabled:opacity-50"
+          className="flex h-11 w-full items-center justify-center rounded-full bg-foreground text-sm font-semibold text-background transition-all hover:bg-foreground/90 disabled:opacity-50"
         >
           {isSubmitting ? 'Creating account...' : 'Register'}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-neutral-600">
+      <p className="mt-6 text-center text-sm text-muted-foreground">
         Already have an account?{' '}
-        <Link href="/login" className="font-medium text-teal-400 hover:text-teal-300">
+        <Link href="/login" className="font-medium text-accent hover:text-accent/80">
           Sign in
         </Link>
       </p>
@@ -561,14 +561,14 @@ export function ForgotPasswordForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black transition-all hover:bg-neutral-200 disabled:opacity-50"
+          className="flex h-11 w-full items-center justify-center rounded-full bg-foreground text-sm font-semibold text-background transition-all hover:bg-foreground/90 disabled:opacity-50"
         >
           {isSubmitting ? 'Sending...' : 'Send Reset Link'}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-neutral-600">
-        <Link href="/login" className="font-medium text-teal-400 hover:text-teal-300">
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        <Link href="/login" className="font-medium text-accent hover:text-accent/80">
           Back to sign in
         </Link>
       </p>
@@ -633,7 +633,7 @@ export function ResetPasswordForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex h-12 w-full items-center justify-center rounded-xl bg-white text-sm font-semibold text-black transition-all hover:bg-neutral-200 disabled:opacity-50"
+          className="flex h-11 w-full items-center justify-center rounded-full bg-foreground text-sm font-semibold text-background transition-all hover:bg-foreground/90 disabled:opacity-50"
         >
           {isSubmitting ? 'Saving...' : 'Save Password'}
         </button>

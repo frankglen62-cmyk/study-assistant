@@ -61,17 +61,17 @@ export function SidebarNav({
             onMouseEnter={() => router.prefetch(item.href as any)}
             onFocus={() => router.prefetch(item.href as any)}
             className={cn(
-              'group relative flex items-center justify-between border-2 border-transparent px-4 py-3 text-sm font-bold uppercase tracking-wider transition-all duration-150',
+              'group relative flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
               isActive
-                ? 'border-border bg-accent text-black shadow-solid-sm translate-x-1'
-                : 'text-muted-foreground hover:border-border hover:bg-surface hover:text-foreground hover:translate-x-1',
+                ? 'bg-accent/10 text-foreground'
+                : 'text-muted-foreground hover:bg-surface hover:text-foreground',
             )}
           >
-            <div className="flex items-center gap-4">
-              {Icon ? <Icon className={cn('h-5 w-5 transition-colors', isActive ? 'text-black' : 'text-muted-foreground group-hover:text-foreground')} strokeWidth={isActive ? 3 : 2} /> : null}
-              <span className={cn('transition-all', isActive && 'font-black')}>{item.label}</span>
+            <div className="flex items-center gap-3">
+              {Icon ? <Icon className={cn('h-[18px] w-[18px] transition-colors', isActive ? 'text-accent' : 'text-muted-foreground group-hover:text-foreground')} strokeWidth={isActive ? 2 : 1.5} /> : null}
+              <span>{item.label}</span>
             </div>
-            {item.badge ? <Badge tone={isActive ? 'neutral' : 'accent'} className="rounded-none border-2 border-border bg-background px-2 font-bold text-foreground">{item.badge}</Badge> : null}
+            {item.badge ? <Badge tone={isActive ? 'accent' : 'neutral'} className="text-[10px] px-2 py-0.5">{item.badge}</Badge> : null}
           </Link>
         );
       })}

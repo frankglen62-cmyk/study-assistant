@@ -56,29 +56,29 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition hover:text-foreground"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface text-muted-foreground transition-colors hover:text-foreground"
         aria-label="Profile menu"
         disabled={isLoggingOut}
       >
         {isLoggingOut ? (
           <span className="h-4 w-4 animate-spin rounded-full border-2 border-muted-foreground border-r-transparent" />
         ) : (
-          <User className="h-5 w-5" />
+          <User className="h-4 w-4" />
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-56 origin-top-right rounded-2xl border border-border/70 bg-surface/95 p-2 shadow-[0_18px_50px_-10px_rgba(8,22,28,0.35)] backdrop-blur animate-in fade-in zoom-in-95 z-50">
+        <div className="absolute right-0 top-full mt-2 w-52 origin-top-right rounded-2xl border border-border/60 bg-white p-1.5 shadow-soft-lg backdrop-blur z-50 dark:bg-surface animate-fade-in">
           <div className="px-3 py-2">
-            <p className="text-sm font-medium">My Account</p>
+            <p className="text-sm font-medium text-foreground">My Account</p>
             <p className="text-xs text-muted-foreground capitalize">{role.replace('_', ' ')}</p>
           </div>
-          <div className="my-1 h-px bg-border/70" />
-          <div className="flex flex-col gap-1">
+          <div className="my-1 h-px bg-border/60" />
+          <div className="flex flex-col gap-0.5">
             <Link
               href={accountHref as any}
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted/70 hover:text-foreground"
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
             >
               <User className="h-4 w-4" />
               Account
@@ -86,20 +86,20 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
             <Link
               href={settingsHref as any}
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted/70 hover:text-foreground"
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
             >
               <Settings className="h-4 w-4" />
               Settings
             </Link>
           </div>
-          <div className="my-1 h-px bg-border/70" />
+          <div className="my-1 h-px bg-border/60" />
           <button
             type="button"
             onClick={handleLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-accent transition hover:bg-accent/10"
+            className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-danger transition-colors hover:bg-red-50 dark:hover:bg-red-950/20"
           >
             <LogOut className="h-4 w-4" />
-            Logout
+            Sign Out
           </button>
         </div>
       )}

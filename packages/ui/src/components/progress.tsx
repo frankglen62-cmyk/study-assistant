@@ -13,12 +13,12 @@ export function Progress({ className, value, ...props }: ProgressProps) {
 
   return (
     <div
-      className={cn('relative h-4 w-full overflow-hidden rounded-none border-4 border-black bg-background shadow-solid-sm', className)}
+      className={cn('relative h-2.5 w-full overflow-hidden rounded-full bg-muted/60', className)}
       aria-hidden="true"
       {...props}
     >
       <div
-        className="h-full rounded-none bg-accent transition-[width] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative overflow-hidden border-r-4 border-black"
+        className="h-full rounded-full bg-accent transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ width: `${percentage}%` }}
       />
     </div>
