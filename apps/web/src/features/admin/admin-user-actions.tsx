@@ -46,56 +46,58 @@ export function AdminUserActions({ userId, accountStatus }: AdminUserActionsProp
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="grid w-full max-w-[280px] grid-cols-2 gap-2">
       <Button
         size="sm"
         variant="secondary"
-        disabled={pendingAction !== null || !mayAdjustCredits}
+        className="w-full"
+        disabled={pendingAction !== null || !mayAdjustStatus}
         onClick={() => {
-          const rawMinutes = window.prompt('Add how many minutes?', '60');
-          if (!rawMinutes) {
-            return;
-          }
+          runAction('status', async () => {
+            const nextStatus = accountStatus === 'active' ? 'suspended' : 'active';
+            const confirmed = window.confirm(
+              accountStatus === 'active'
+                ? 'Suspend this account and lock the wallet?'
+                : 'Reactivate this account and unlock the wallet?',
+            );
 
-          const minutes = Number.parseInt(rawMinutes, 10);
-          if (!Number.isFinite(minutes) || minutes <= 0) {
-            pushToast({
-              tone: 'warning',
-              title: 'Invalid adjustment',
-              description: 'Enter a positive number of minutes.',
-            });
-            return;
-          }
+            if (!confirmed) {
+              return;
+            }
 
-          runAction('add', async () => {
-            const response = await fetch(`/api/admin/users/${userId}/credits`, {
+            const response = await fetch(`/api/admin/users/${userId}/status`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                deltaSeconds: minutes * 60,
-                description: `Admin credit adjustment +${minutes} minutes`,
+                status: nextStatus,
               }),
             });
             const payload = await readJson<{ message: string }>(response);
             if (!response.ok) {
-              throw new Error(payload.error ?? 'Credit adjustment failed.');
+              throw new Error(payload.error ?? 'Status change failed.');
             }
 
             pushToast({
               tone: 'success',
-              title: 'Credits added',
+              title: nextStatus === 'active' ? 'User reactivated' : 'User suspended',
               description: payload.message,
             });
           });
         }}
       >
-        {pendingAction === 'add' ? 'Adding...' : 'Add Credits'}
+        {pendingAction === 'status' ? 'Saving...' : accountStatus === 'active' ? 'Suspend' : 'Reactivate'}
+      </Button>
+      <Button asChild size="sm" variant="secondary" className="w-full" disabled={pendingAction !== null}>
+        <Link href={`/admin/users/${userId}/sessions`}>
+          View Sessions
+        </Link>
       </Button>
       <Button
         size="sm"
         variant="secondary"
+        className="w-full"
         disabled={pendingAction !== null || !mayAdjustCredits}
         onClick={() => {
           const rawMinutes = window.prompt('Deduct how many minutes?', '30');
@@ -142,49 +144,50 @@ export function AdminUserActions({ userId, accountStatus }: AdminUserActionsProp
       <Button
         size="sm"
         variant="secondary"
-        disabled={pendingAction !== null || !mayAdjustStatus}
+        className="w-full"
+        disabled={pendingAction !== null || !mayAdjustCredits}
         onClick={() => {
-          runAction('status', async () => {
-            const nextStatus = accountStatus === 'active' ? 'suspended' : 'active';
-            const confirmed = window.confirm(
-              accountStatus === 'active'
-                ? 'Suspend this account and lock the wallet?'
-                : 'Reactivate this account and unlock the wallet?',
-            );
+          const rawMinutes = window.prompt('Add how many minutes?', '60');
+          if (!rawMinutes) {
+            return;
+          }
 
-            if (!confirmed) {
-              return;
-            }
+          const minutes = Number.parseInt(rawMinutes, 10);
+          if (!Number.isFinite(minutes) || minutes <= 0) {
+            pushToast({
+              tone: 'warning',
+              title: 'Invalid adjustment',
+              description: 'Enter a positive number of minutes.',
+            });
+            return;
+          }
 
-            const response = await fetch(`/api/admin/users/${userId}/status`, {
+          runAction('add', async () => {
+            const response = await fetch(`/api/admin/users/${userId}/credits`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                status: nextStatus,
+                deltaSeconds: minutes * 60,
+                description: `Admin credit adjustment +${minutes} minutes`,
               }),
             });
             const payload = await readJson<{ message: string }>(response);
             if (!response.ok) {
-              throw new Error(payload.error ?? 'Status change failed.');
+              throw new Error(payload.error ?? 'Credit adjustment failed.');
             }
 
             pushToast({
               tone: 'success',
-              title: nextStatus === 'active' ? 'User reactivated' : 'User suspended',
+              title: 'Credits added',
               description: payload.message,
             });
           });
         }}
       >
-        {pendingAction === 'status' ? 'Saving...' : accountStatus === 'active' ? 'Suspend' : 'Reactivate'}
+        {pendingAction === 'add' ? 'Adding...' : 'Add Credits'}
       </Button>
-      <Link href={`/admin/users/${userId}/sessions`}>
-        <Button size="sm" variant="secondary" disabled={pendingAction !== null}>
-          View Sessions
-        </Button>
-      </Link>
     </div>
   );
 }

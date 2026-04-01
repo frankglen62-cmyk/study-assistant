@@ -193,37 +193,40 @@ export function EmailSecurityCard({
         title="Email Address"
         description="Used for sign-in, recovery, and security codes. Change your email below."
       >
-        <div className="mb-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-4 rounded-2xl border border-border/40 bg-surface p-4 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-500">Current email</p>
-              <p className="mt-2 truncate text-base font-medium text-white">{currentEmail}</p>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">Current email</p>
+              <div className="mt-2 flex items-center gap-2">
+                <p className="truncate text-base font-medium text-foreground">{currentEmail}</p>
+                <Badge tone="success" className="h-5 rounded-md px-1.5 text-[10px] uppercase">Verified</Badge>
+              </div>
             </div>
 
             {showComparison ? (
               <>
-                <div className="flex items-center justify-center text-neutral-500">
+                <div className="flex items-center justify-center pt-6 text-muted-foreground">
                   <ArrowRight className="h-4 w-4" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-500">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
                     {emailChangeStatus === 'confirmed' ? 'Confirmed email' : 'Pending new email'}
                   </p>
-                  <p className="mt-2 truncate text-base font-medium text-white">{pendingEmail}</p>
+                  <p className="mt-2 truncate text-base font-medium text-foreground">{pendingEmail}</p>
                 </div>
               </>
             ) : null}
           </div>
 
           {emailChangeStatus === 'requested' && pendingEmail ? (
-            <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/8 px-4 py-3">
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3">
               <Badge tone="warning" className="mt-0.5 text-[10px] uppercase">Pending</Badge>
-              <div className="space-y-1 text-sm text-neutral-300">
-                <p className="font-medium text-white">Verification pending</p>
+              <div className="space-y-1 text-sm text-amber-900 dark:text-amber-200">
+                <p className="font-medium">Verification pending</p>
                 <p>
                   Your current email was verified. We sent a confirmation button to
                   {' '}
-                  <span className="font-medium text-white">{pendingEmail}</span>
+                  <span className="font-medium">{pendingEmail}</span>
                   {' '}
                   to finish the email change.
                 </p>
@@ -232,14 +235,14 @@ export function EmailSecurityCard({
           ) : null}
 
           {emailChangeStatus === 'confirmed' && pendingEmail ? (
-            <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/8 px-4 py-3">
+            <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3">
               <Badge tone="success" className="mt-0.5 text-[10px] uppercase">Verified</Badge>
-              <div className="space-y-1 text-sm text-neutral-300">
-                <p className="font-medium text-white">Email change confirmed</p>
+              <div className="space-y-1 text-sm text-emerald-900 dark:text-emerald-200">
+                <p className="font-medium">Email change confirmed</p>
                 <p>
                   Your new sign-in email is now
                   {' '}
-                  <span className="font-medium text-white">{pendingEmail}</span>
+                  <span className="font-medium">{pendingEmail}</span>
                   . Sign in with the new email if you were signed out during the update.
                 </p>
               </div>
@@ -252,7 +255,7 @@ export function EmailSecurityCard({
             value={targetEmail}
             onChange={(e) => setTargetEmail(e.target.value)}
             placeholder="new-email@example.com"
-            className="h-10 w-full sm:w-64 bg-white/[0.04] border-white/10 text-sm"
+            className="h-10 w-full sm:w-64 text-sm"
           />
           <Button
             type="button"

@@ -130,7 +130,7 @@ export function MfaChallengeForm() {
 
       {isLoading ? (
         <div className="space-y-5">
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-neutral-400">
+          <div className="rounded-xl border border-border bg-surface px-4 py-3 text-sm text-muted-foreground">
             Checking whether this account needs an authenticator challenge...
           </div>
 
@@ -180,8 +180,8 @@ export function MfaChallengeForm() {
           }
         }}
       >
-        {statusMessage ? <div className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-neutral-400">{statusMessage}</div> : null}
-        {formError ? <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{formError}</div> : null}
+        {statusMessage ? <div className="rounded-xl border border-border bg-surface px-4 py-3 text-sm text-muted-foreground">{statusMessage}</div> : null}
+        {formError ? <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-600 dark:text-red-300">{formError}</div> : null}
 
         <FormField label="Authenticator code" description="Use the current 6-digit code from your app.">
           <Input
@@ -189,7 +189,7 @@ export function MfaChallengeForm() {
             onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
             placeholder="123456"
             inputMode="numeric"
-            className="h-12 rounded-xl border-white/10 bg-white/[0.04] font-mono text-lg tracking-[0.35em] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20"
+            className="h-12 rounded-xl font-mono text-lg tracking-[0.35em] focus:border-accent focus:ring-accent/20"
           />
         </FormField>
 
@@ -372,27 +372,29 @@ export function MfaSecurityCard() {
         {errorMessage ? <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{errorMessage}</div> : null}
 
         {pendingEnrollment ? (
-          <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+          <div className="rounded-[22px] border border-border/70 bg-background/40 p-5">
             <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <ShieldCheck className="h-4 w-4 text-accent" />
+              <ShieldCheck className="h-5 w-5 text-accent" />
               Finish authenticator setup
             </div>
             <p className="mt-2 text-sm text-muted-foreground">Scan the QR code, then enter the first code from your authenticator app.</p>
 
-            <div className="mt-4 grid gap-4 lg:grid-cols-[180px_1fr]">
-              <div className="overflow-hidden rounded-2xl border border-border/70 bg-white p-3">
-                <img src={pendingEnrollment.qrCode} alt="Authenticator QR code" className="h-full w-full" />
+            <div className="mt-6 flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-14">
+              <div className="flex shrink-0 flex-col items-center lg:items-start">
+                <div className="overflow-hidden rounded-3xl border border-border/70 bg-white p-4 inline-flex shadow-sm">
+                  <img src={pendingEnrollment.qrCode} alt="Authenticator QR code" className="block h-52 w-52 object-contain" />
+                </div>
               </div>
-              <div className="space-y-4">
-                <div className="rounded-xl border border-border/70 bg-background/60 p-3">
+              <div className="flex-1 w-full space-y-5 lg:pl-4">
+                <div className="rounded-xl border border-border/70 bg-background/60 p-4 shadow-sm">
                   <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Manual setup secret</p>
                   <div className="mt-2 flex items-center justify-between gap-3">
-                    <code className="break-all text-sm text-foreground">{pendingEnrollment.secret}</code>
+                    <code className="break-all text-sm font-mono text-foreground">{pendingEnrollment.secret}</code>
                     <Button
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-10 w-10 rounded-full p-0"
+                      className="h-9 w-9 shrink-0 rounded-full p-0 flex items-center justify-center bg-accent/5 hover:bg-accent/15 text-accent"
                       onClick={async () => {
                         await navigator.clipboard.writeText(pendingEnrollment.secret);
                         pushToast({ tone: 'success', title: 'Copied', description: 'Authenticator secret copied to clipboard.' });
@@ -403,17 +405,19 @@ export function MfaSecurityCard() {
                   </div>
                 </div>
 
-                <FormField label="Verification code" description="Enter the 6-digit code from the app you just connected.">
-                  <Input
-                    value={verifyCode}
-                    onChange={(event) => setVerifyCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
-                    inputMode="numeric"
-                    placeholder="123456"
-                    className="h-12 rounded-xl border-white/10 bg-white/[0.04] font-mono text-lg tracking-[0.35em] text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:ring-teal-500/20"
-                  />
-                </FormField>
+                <div className="rounded-xl border border-border/70 bg-background/60 p-4 shadow-sm">
+                  <FormField label="Verification code" description="Enter the 6-digit code from the app you just connected.">
+                    <Input
+                      value={verifyCode}
+                      onChange={(event) => setVerifyCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+                      inputMode="numeric"
+                      placeholder="123456"
+                      className="mt-2 h-12 w-full max-w-[200px] rounded-xl font-mono text-xl tracking-[0.35em] text-foreground focus:border-accent focus:ring-accent/20"
+                    />
+                  </FormField>
+                </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3 pt-2">
                   <Button type="button" onClick={handleVerifyEnrollment} disabled={isWorking || verifyCode.trim().length < 6}>
                     {isWorking ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
                     Verify and enable
@@ -434,7 +438,7 @@ export function MfaSecurityCard() {
             </div>
           </div>
         ) : activeFactor ? (
-          <div className="rounded-[22px] border border-border/70 bg-background/40 p-4">
+          <div className="rounded-[22px] border border-border/70 bg-background/40 p-5 shadow-sm">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-medium text-foreground">{activeFactor.friendly_name ?? 'Authenticator app'}</p>
@@ -447,19 +451,21 @@ export function MfaSecurityCard() {
             </div>
           </div>
         ) : (
-          <div className="rounded-[22px] border border-dashed border-border/70 bg-background/40 px-5 py-6">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
-                <Smartphone className="h-5 w-5 text-accent" />
-              </div>
-              <div className="space-y-3">
+          <div className="rounded-[22px] border border-dashed border-border/70 bg-background/40 p-5 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-start gap-4">
+                <div className="flex shrink-0 h-10 w-10 items-center justify-center rounded-full bg-accent/10">
+                  <Smartphone className="h-5 w-5 text-accent" />
+                </div>
                 <div>
                   <p className="text-sm font-medium text-foreground">Add an authenticator app</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-sm text-muted-foreground max-w-sm">
                     Optional but recommended. This protects your account even if your password gets reused elsewhere.
                   </p>
                 </div>
-                <Button type="button" onClick={handleEnroll} disabled={isLoading || isWorking}>
+              </div>
+              <div className="flex shrink-0 mt-2 md:mt-0 justify-end w-full sm:w-auto">
+                <Button type="button" onClick={handleEnroll} disabled={isLoading || isWorking} className="w-full sm:w-auto">
                   {isWorking ? <Loader2 className="h-4 w-4 animate-spin" /> : <KeyRound className="h-4 w-4" />}
                   Set up authenticator
                 </Button>

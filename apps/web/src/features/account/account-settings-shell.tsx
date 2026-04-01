@@ -82,7 +82,7 @@ export function AccountSettingsShell({
           currentEmail={profile.email}
           emailTwoFactorEnabled={security.emailTwoFactorEnabled}
           mfaEnabled={security.mfaEnabled}
-          activeDeviceCount={devices.filter((d) => d.status === 'active').length}
+          activeDevices={devices.filter((d) => d.status === 'active')}
           accountPath={security.accountPath}
           emailChangeStatus={security.emailChangeStatus}
           pendingEmail={security.pendingEmail}
