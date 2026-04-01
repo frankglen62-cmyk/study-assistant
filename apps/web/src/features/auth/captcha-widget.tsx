@@ -145,8 +145,8 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
 
   return (
     <div className="space-y-2 text-center">
-      <div className="flex min-h-[65px] items-center justify-center">
-        <div ref={containerRef} className="mx-auto" />
+      <div className="flex min-h-[65px] items-center justify-center overflow-hidden">
+        <div ref={containerRef} className="mx-auto origin-center scale-[0.75]" />
       </div>
       {isLoading ? <p className="text-xs text-neutral-500">Loading security check…</p> : null}
       {loadError ? <p className="text-xs text-red-400">{loadError}</p> : null}

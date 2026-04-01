@@ -186,15 +186,15 @@ export default async function ExtensionGuidePage() {
               );
             })}
 
-            <div className="rounded-xl border border-amber-200/60 bg-amber-50/50 p-5">
+            <div className="rounded-xl border border-amber-200/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10 p-5">
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400">
                   <AlertTriangle className="h-5 w-5" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-semibold text-amber-800">Important folder reminder</p>
-                  <p className="text-sm text-amber-700">
-                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-amber-900">{extensionManifestFileName}</span> is directly visible.
+                  <p className="text-sm font-semibold text-amber-800 dark:text-amber-400">Important folder reminder</p>
+                  <p className="text-sm text-amber-700 dark:text-amber-200/90">
+                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-amber-900 dark:text-amber-300">{extensionManifestFileName}</span> is directly visible.
                     Do not select the ZIP file itself or a parent folder above it.
                   </p>
                 </div>

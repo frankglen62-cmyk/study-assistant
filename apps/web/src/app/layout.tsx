@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 
 import '@/app/globals.css';
 import { ToastViewport } from '@/components/feedback/toast-viewport';
-import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ToastProvider } from '@/components/providers/toast-provider';
 
 const bodyFont = Inter({
@@ -30,12 +29,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${bodyFont.variable} ${displayFont.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <ToastProvider>
-            {children}
-            <ToastViewport />
-          </ToastProvider>
-        </ThemeProvider>
+        <ToastProvider>
+          {children}
+          <ToastViewport />
+        </ToastProvider>
       </body>
     </html>
   );

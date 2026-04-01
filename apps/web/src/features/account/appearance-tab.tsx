@@ -1,11 +1,12 @@
 'use client';
 
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Sun, Moon, Monitor, Check } from 'lucide-react';
 
+import { useScopedTheme } from '@/components/providers/scoped-theme-provider';
+
 export function AppearanceTab() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useScopedTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export function AppearanceTab() {
             <button
               key={t.id}
               type="button"
-              onClick={() => setTheme(t.id)}
+              onClick={() => setTheme(t.id as 'light' | 'dark' | 'system')}
               className={`group relative text-left rounded-2xl border-2 p-1.5 transition-all duration-300 ${
                 isSelected
                   ? 'border-accent shadow-soft-md ring-2 ring-accent/20'
@@ -101,9 +102,12 @@ export function AppearanceTab() {
                 {/* Sidebar */}
                 <div className={`absolute left-0 top-0 bottom-0 w-[30%] ${t.preview.sidebar} border-r border-white/10`}>
                   <div className="p-2 space-y-1.5 mt-3">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className={`h-2 rounded-full ${i === 2 ? t.preview.accent + ' opacity-30' : t.preview.text}`} style={{ width: `${60 + i * 8}%` }} />
-                    ))}
+                    {[1, 2, 3, 4].map((i) => {
+                      const widthClass = i === 1 ? 'w-[68%]' : i === 2 ? 'w-[76%]' : i === 3 ? 'w-[84%]' : 'w-[92%]';
+                      return (
+                        <div key={i} className={`h-2 rounded-full ${i === 2 ? t.preview.accent + ' opacity-30' : t.preview.text} ${widthClass}`} />
+                      );
+                    })}
                   </div>
                 </div>
                 {/* Main */}

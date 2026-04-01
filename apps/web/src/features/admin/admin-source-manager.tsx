@@ -1208,10 +1208,10 @@ export function AdminSourceManager({
               <select
                 value={selectedSubjectId}
                 onChange={(event) => { setSelectedSubjectId(event.target.value); setRecentlyAddedPairs([]); }}
-                className="h-10 w-full rounded-xl border border-border/40 bg-surface/30 px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20"
+                className="h-10 w-full rounded-xl border border-border/40 bg-background px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20"
               >
                 {subjectDropdownOptions.map((subject) => (
-                  <option key={subject.id} value={subject.id}>
+                  <option key={subject.id} value={subject.id} className="bg-background text-foreground">
                     {subject.name}
                     {subject.courseCode ? ` / ${subject.courseCode}` : ''}
                   </option>

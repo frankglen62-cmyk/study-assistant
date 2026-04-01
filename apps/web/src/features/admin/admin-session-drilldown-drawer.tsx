@@ -95,12 +95,12 @@ export function AdminSessionDrilldownDrawer({
         </div>
 
         {/* Summary */}
-        <div className="mt-6 rounded-xl border border-amber-200/60 bg-amber-50/50 p-5 space-y-3">
-          <p className="text-xs font-semibold text-amber-800">Why This Session Matters</p>
-          <div className="space-y-2 text-sm text-amber-700">
+        <div className="mt-6 rounded-xl border border-amber-200/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10 p-5 space-y-3">
+          <p className="text-xs font-semibold text-amber-800 dark:text-amber-400">Why This Session Matters</p>
+          <div className="space-y-2 text-sm text-amber-700 dark:text-amber-200/90">
             <p>This is one billed extension usage window.</p>
             <p>It combines time spent, pages visited, subject detection, and analyze attempts under one audit record.</p>
-            <p className="font-semibold text-amber-800">{`${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'} were logged in this session.`}</p>
+            <p className="font-semibold text-amber-800 dark:text-amber-400">{`${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'} were logged in this session.`}</p>
           </div>
         </div>
 
