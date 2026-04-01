@@ -1,39 +1,56 @@
 /* ================================================================
-   Study Assistant v0.1.3 — Premium Sidepanel Theme
+   Study Assistant v0.1.57 — Webapp-Matched Premium Sidepanel
+   Design tokens aligned with the web app's Tailwind config
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   color-scheme: dark;
-  --sa-bg: #0b0f15;
-  --sa-surface: #141a22;
-  --sa-surface-2: #1c232d;
-  --sa-surface-3: #222b37;
-  --sa-border: rgba(255, 255, 255, 0.06);
-  --sa-border-2: rgba(255, 255, 255, 0.03);
-  --sa-fg: #f1f6fb;
-  --sa-fg-2: #c4d1de;
-  --sa-muted: #8493a3;
-  --sa-accent: #3b82f6;
-  --sa-accent-2: #60a5fa;
-  --sa-accent-bg: rgba(59, 130, 246, 0.12);
-  --sa-green: #22c55e;
-  --sa-green-bg: rgba(34, 197, 94, 0.1);
-  --sa-green-border: rgba(34, 197, 94, 0.2);
-  --sa-yellow: #eab308;
-  --sa-yellow-bg: rgba(234, 179, 8, 0.1);
-  --sa-yellow-border: rgba(234, 179, 8, 0.2);
-  --sa-red: #ef4444;
-  --sa-red-bg: rgba(239, 68, 68, 0.1);
-  --sa-red-border: rgba(239, 68, 68, 0.2);
+
+  /* ─── Webapp Dark Palette (from globals.css .dark) ─── */
+  --sa-bg: hsl(220, 16%, 8%);              /* --background */
+  --sa-surface: hsl(220, 14%, 11%);        /* --surface */
+  --sa-surface-2: hsl(220, 12%, 16%);      /* --muted */
+  --sa-surface-3: hsl(220, 12%, 20%);
+  --sa-border: hsl(220, 12%, 16%);         /* --border */
+  --sa-border-2: hsl(220, 12%, 14%);
+  --sa-fg: hsl(40, 10%, 92%);              /* --foreground */
+  --sa-fg-2: hsl(40, 6%, 78%);
+  --sa-muted: hsl(220, 8%, 56%);           /* --muted-foreground */
+
+  /* ─── Accent: Sage Green (matching webapp --accent) ─── */
+  --sa-accent: hsl(152, 44%, 49%);
+  --sa-accent-2: hsl(152, 50%, 58%);
+  --sa-accent-bg: hsla(152, 44%, 49%, 0.1);
+
+  /* ─── Semantic Colors ─── */
+  --sa-green: hsl(152, 55%, 48%);
+  --sa-green-bg: hsla(152, 55%, 48%, 0.08);
+  --sa-green-border: hsla(152, 55%, 48%, 0.2);
+  --sa-yellow: hsl(38, 92%, 55%);
+  --sa-yellow-bg: hsla(38, 92%, 55%, 0.08);
+  --sa-yellow-border: hsla(38, 92%, 55%, 0.2);
+  --sa-red: hsl(0, 72%, 55%);
+  --sa-red-bg: hsla(0, 72%, 55%, 0.08);
+  --sa-red-border: hsla(0, 72%, 55%, 0.2);
   --sa-purple: #a855f7;
   --sa-purple-bg: rgba(168, 85, 247, 0.1);
+
+  /* ─── Radius (matching webapp tailwind.config) ─── */
   --sa-radius: 12px;
-  --sa-radius-lg: 18px;
+  --sa-radius-lg: 16px;
   --sa-radius-sm: 8px;
-  --sa-transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  --sa-shadow-sm: 0 4px 12px rgba(0,0,0,0.15);
+  --sa-radius-xl: 20px;
+  --sa-radius-full: 9999px;
+
+  /* ─── Transitions & Shadows ─── */
+  --sa-transition: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  --sa-shadow-card: 0 1px 3px rgba(0,0,0,0.03), 0 6px 24px rgba(0,0,0,0.04);
+  --sa-shadow-hover: 0 8px 32px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.03);
+  --sa-shadow-soft: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.03);
+
+  /* ─── Typography ─── */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 13px;
   line-height: 1.5;
@@ -48,6 +65,11 @@ body {
 }
 
 button, input, select, textarea { font: inherit; }
+
+.font-display {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+}
 
 /* ================================================================
    Shell Layout
@@ -67,14 +89,14 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Hero Header
+   Hero Header — matches webapp PortalShell topbar feel
    ================================================================ */
 .panel-hero {
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, rgba(168, 85, 247, 0.02) 100%), var(--sa-surface);
+  background: var(--sa-surface);
   border: 1px solid var(--sa-border);
   border-radius: var(--sa-radius-lg);
   padding: 20px;
-  box-shadow: var(--sa-shadow-sm);
+  box-shadow: var(--sa-shadow-card);
 }
 
 .panel-hero__brand {
@@ -87,14 +109,13 @@ button, input, select, textarea { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--sa-border);
-  background: linear-gradient(180deg, rgba(18, 23, 34, 0.96) 0%, rgba(11, 16, 24, 0.98) 100%);
+  background: hsla(220, 14%, 11%, 0.96);
   flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
 }
 
 .panel-hero__logo img {
@@ -113,8 +134,9 @@ button, input, select, textarea { font: inherit; }
 }
 
 .panel-hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
   color: var(--sa-fg);
   margin: 0;
@@ -127,7 +149,6 @@ button, input, select, textarea { font: inherit; }
   line-height: 1.5;
 }
 
-/* Status pills row */
 .panel-hero__status {
   display: flex;
   flex-wrap: wrap;
@@ -135,7 +156,6 @@ button, input, select, textarea { font: inherit; }
   margin-top: 10px;
 }
 
-/* Compact metrics */
 .hero-metrics-row {
   display: flex;
   flex-wrap: wrap;
@@ -153,7 +173,6 @@ button, input, select, textarea { font: inherit; }
 
 .hero-metric .text-danger { color: var(--sa-red); }
 
-/* Primary actions */
 .panel-hero__actions {
   display: flex;
   flex-direction: column;
@@ -162,29 +181,29 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Status Pills
+   Status Pills — matching webapp StatusBadge
    ================================================================ */
 .status-pill {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  border-radius: 100px;
+  border-radius: var(--sa-radius-full);
   padding: 4px 10px;
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
   line-height: 1;
 }
 
 .status-pill--success { background: var(--sa-green-bg); color: var(--sa-green); }
 .status-pill--warning { background: var(--sa-yellow-bg); color: var(--sa-yellow); }
 .status-pill--danger  { background: var(--sa-red-bg);    color: var(--sa-red); }
-.status-pill--muted   { background: rgba(139, 148, 158, 0.15); color: var(--sa-muted); }
+.status-pill--muted   { background: hsla(220, 8%, 56%, 0.12); color: var(--sa-muted); }
 .status-pill--accent  { background: var(--sa-accent-bg); color: var(--sa-accent); }
 
 /* ================================================================
-   Buttons
+   Buttons — matching webapp button patterns
    ================================================================ */
 .action-button {
   display: flex;
@@ -205,7 +224,7 @@ button, input, select, textarea { font: inherit; }
 
 .action-button:hover:not(:disabled) {
   background: var(--sa-surface-3);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: hsla(220, 8%, 56%, 0.3);
 }
 
 .action-button:active:not(:disabled) {
@@ -218,29 +237,27 @@ button, input, select, textarea { font: inherit; }
 }
 
 .action-button--primary {
-  background: linear-gradient(180deg, #3b82f6, #2563eb);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px rgba(37, 99, 235, 0.3);
+  background: var(--sa-accent);
+  border: 1px solid hsla(152, 44%, 55%, 0.3);
+  box-shadow: 0 2px 8px hsla(152, 44%, 49%, 0.2);
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .action-button--primary:hover:not(:disabled) {
-  background: linear-gradient(180deg, #60a5fa, #3b82f6);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 14px rgba(37, 99, 235, 0.4);
+  background: var(--sa-accent-2);
+  box-shadow: 0 4px 14px hsla(152, 44%, 49%, 0.3);
   transform: translateY(-1px);
 }
 
 .action-button--danger {
-  background: linear-gradient(180deg, #ef4444, #dc2626);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px rgba(220, 38, 38, 0.3);
+  background: var(--sa-red);
+  border: 1px solid hsla(0, 72%, 60%, 0.3);
+  box-shadow: 0 2px 8px hsla(0, 72%, 55%, 0.2);
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .action-button--danger:hover:not(:disabled) {
-  background: linear-gradient(180deg, #f87171, #ef4444);
+  background: hsl(0, 72%, 62%);
   transform: translateY(-1px);
 }
 
@@ -267,7 +284,6 @@ button, input, select, textarea { font: inherit; }
 .link-button:hover { color: var(--sa-accent-2); }
 .link-button:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* Action grids */
 .action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -290,8 +306,8 @@ button, input, select, textarea { font: inherit; }
   align-items: center;
   gap: 8px;
   border-radius: var(--sa-radius);
-  border: 1px solid rgba(56, 139, 253, 0.15);
-  background: rgba(56, 139, 253, 0.05);
+  border: 1px solid hsla(152, 44%, 49%, 0.12);
+  background: hsla(152, 44%, 49%, 0.04);
   padding: 8px 12px;
   font-size: 11px;
   color: var(--sa-fg-2);
@@ -318,9 +334,9 @@ button, input, select, textarea { font: inherit; }
   flex-direction: column;
   gap: 16px;
   border-radius: var(--sa-radius-lg);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
-  box-shadow: var(--sa-shadow-sm);
+  border: 1px solid hsla(152, 44%, 49%, 0.15);
+  background: linear-gradient(180deg, hsla(152, 44%, 49%, 0.06), hsla(152, 44%, 49%, 0.02));
+  box-shadow: var(--sa-shadow-soft);
   padding: 20px;
 }
 
@@ -343,8 +359,9 @@ button, input, select, textarea { font: inherit; }
 
 .pairing-code-spotlight__header strong {
   display: block;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--sa-fg);
 }
 
@@ -356,9 +373,9 @@ button, input, select, textarea { font: inherit; }
 
 .pairing-code-spotlight__step {
   flex-shrink: 0;
-  border-radius: 999px;
-  border: 1px solid rgba(56, 139, 253, 0.32);
-  background: rgba(12, 17, 24, 0.5);
+  border-radius: var(--sa-radius-full);
+  border: 1px solid hsla(152, 44%, 49%, 0.25);
+  background: hsla(220, 16%, 8%, 0.5);
   color: var(--sa-accent-2);
   padding: 5px 9px;
   font-size: 10px;
@@ -369,8 +386,8 @@ button, input, select, textarea { font: inherit; }
 
 .pairing-code-spotlight__hint {
   border-radius: var(--sa-radius-sm);
-  border: 1px dashed rgba(56, 139, 253, 0.25);
-  background: rgba(12, 17, 24, 0.42);
+  border: 1px dashed hsla(152, 44%, 49%, 0.2);
+  background: hsla(220, 16%, 8%, 0.42);
   padding: 9px 11px;
   font-size: 11px;
   color: var(--sa-fg-2);
@@ -395,7 +412,7 @@ button, input, select, textarea { font: inherit; }
   width: 100%;
   border-radius: var(--sa-radius);
   border: 1px solid var(--sa-border);
-  background: linear-gradient(180deg, rgba(19, 25, 35, 0.9), rgba(12, 17, 24, 0.98));
+  background: var(--sa-bg);
   color: var(--sa-fg);
   padding: 12px 14px;
   font-size: 13px;
@@ -408,9 +425,9 @@ button, input, select, textarea { font: inherit; }
 }
 
 .pairing-field--code input {
-  border-color: rgba(59, 130, 246, 0.4);
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-color: hsla(152, 44%, 49%, 0.3);
+  background: hsla(0, 0%, 0%, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
   padding: 16px 20px;
   font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 18px;
@@ -436,14 +453,15 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Panel Cards (Section Card component)
+   Panel Cards (Section Card) — matching webapp card pattern
    ================================================================ */
 .panel-card {
   border: 1px solid var(--sa-border);
   background: var(--sa-surface);
   border-radius: var(--sa-radius-lg);
   padding: 20px;
-  box-shadow: var(--sa-shadow-sm);
+  box-shadow: var(--sa-shadow-card);
+  transition: box-shadow var(--sa-transition);
 }
 
 .panel-card__header {
@@ -488,12 +506,12 @@ button, input, select, textarea { font: inherit; }
 .panel-card__actions { flex-shrink: 0; }
 
 .panel-card--primary {
-  border-color: rgba(59, 130, 246, 0.15);
-  background: linear-gradient(180deg, var(--sa-surface), rgba(59, 130, 246, 0.03));
+  border-color: hsla(152, 44%, 49%, 0.12);
+  background: linear-gradient(180deg, var(--sa-surface), hsla(152, 44%, 49%, 0.03));
 }
 
 /* ================================================================
-   Workspace Switcher / Split Views
+   Workspace Switcher — clean segmented control
    ================================================================ */
 .workspace-switcher {
   display: flex;
@@ -503,13 +521,13 @@ button, input, select, textarea { font: inherit; }
   background: var(--sa-surface);
   border-radius: var(--sa-radius-lg);
   padding: 16px;
-  box-shadow: var(--sa-shadow-sm);
+  box-shadow: var(--sa-shadow-card);
 }
 
 .workspace-switcher__buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: rgba(0, 0, 0, 0.2);
+  background: hsla(0, 0%, 0%, 0.15);
   border-radius: var(--sa-radius);
   padding: 4px;
 }
@@ -540,9 +558,9 @@ button, input, select, textarea { font: inherit; }
 }
 
 .workspace-switcher__button--active {
-  background: var(--sa-surface-3);
+  background: var(--sa-surface-2);
   color: var(--sa-fg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .workspace-switcher__summary {
@@ -570,8 +588,8 @@ button, input, select, textarea { font: inherit; }
   flex-direction: column;
   gap: 3px;
   border-radius: var(--sa-radius);
-  border: 1px solid rgba(56, 139, 253, 0.16);
-  background: rgba(56, 139, 253, 0.07);
+  border: 1px solid hsla(152, 44%, 49%, 0.12);
+  background: hsla(152, 44%, 49%, 0.05);
   padding: 9px 10px;
 }
 
@@ -639,7 +657,9 @@ button, input, select, textarea { font: inherit; }
 }
 
 .answering-hero__summary strong {
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 16px;
+  font-weight: 400;
   line-height: 1.25;
   color: var(--sa-fg);
 }
@@ -655,7 +675,7 @@ button, input, select, textarea { font: inherit; }
   align-items: center;
   gap: 5px;
   min-height: 26px;
-  border-radius: 999px;
+  border-radius: var(--sa-radius-full);
   background: var(--sa-surface-2);
   border: 1px solid var(--sa-border);
   color: var(--sa-fg-2);
@@ -672,6 +692,7 @@ button, input, select, textarea { font: inherit; }
   background: var(--sa-surface);
   border-radius: var(--sa-radius-lg);
   padding: 14px;
+  box-shadow: var(--sa-shadow-card);
 }
 
 .detection-summary__header {
@@ -720,7 +741,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Result Cards (Answer-First Design)
+   Result Cards — Answer-First Design
    ================================================================ */
 .results-list {
   display: flex;
@@ -733,8 +754,12 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid var(--sa-border);
   background: var(--sa-surface-2);
   overflow: hidden;
-  transition: border-color var(--sa-transition);
+  transition: border-color var(--sa-transition), box-shadow var(--sa-transition);
   animation: cardSlideIn 200ms ease-out both;
+}
+
+.result-card:hover {
+  box-shadow: var(--sa-shadow-hover);
 }
 
 @keyframes cardSlideIn {
@@ -742,9 +767,9 @@ button, input, select, textarea { font: inherit; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.result-card--high  { border-left: 4px solid var(--sa-green); }
+.result-card--high   { border-left: 4px solid var(--sa-green); }
 .result-card--medium { border-left: 4px solid var(--sa-yellow); }
-.result-card--low   { border-left: 4px solid var(--sa-red); }
+.result-card--low    { border-left: 4px solid var(--sa-red); }
 
 .result-card__header {
   display: flex;
@@ -762,7 +787,7 @@ button, input, select, textarea { font: inherit; }
   transition: background var(--sa-transition);
 }
 
-.result-card__header:hover { background: rgba(255, 255, 255, 0.03); }
+.result-card__header:hover { background: hsla(0, 0%, 100%, 0.02); }
 
 .result-card__header-left {
   display: flex;
@@ -801,7 +826,6 @@ button, input, select, textarea { font: inherit; }
   text-overflow: ellipsis;
 }
 
-/* Answer highlight — always visible */
 .result-card__answer-highlight {
   padding: 0 12px 10px;
   display: flex;
@@ -877,8 +901,8 @@ button, input, select, textarea { font: inherit; }
 .confidence-badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: var(--sa-radius-full);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -895,14 +919,14 @@ button, input, select, textarea { font: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: var(--sa-radius-full);
   font-size: 10px;
   font-weight: 600;
   width: fit-content;
 }
 
-.status-badge--pending { background: rgba(139, 148, 158, 0.15); color: var(--sa-muted); }
+.status-badge--pending { background: hsla(220, 8%, 56%, 0.12); color: var(--sa-muted); }
 .status-badge--success { background: var(--sa-green-bg); color: var(--sa-green); }
 .status-badge--info    { background: var(--sa-accent-bg); color: var(--sa-accent); }
 .status-badge--warning { background: var(--sa-yellow-bg); color: var(--sa-yellow); }
@@ -929,7 +953,7 @@ button, input, select, textarea { font: inherit; }
 .analyze-progress__fill {
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--sa-accent), var(--sa-purple));
+  background: linear-gradient(90deg, var(--sa-accent), var(--sa-accent-2));
   animation: progressSlide 1.5s ease-in-out infinite;
   width: 40%;
 }
@@ -1018,6 +1042,7 @@ button, input, select, textarea { font: inherit; }
   border-radius: var(--sa-radius-lg);
   background: var(--sa-surface);
   overflow: hidden;
+  box-shadow: var(--sa-shadow-card);
 }
 
 .panel-disclosure__summary {
@@ -1031,8 +1056,7 @@ button, input, select, textarea { font: inherit; }
   transition: background var(--sa-transition);
 }
 
-.panel-disclosure__summary:hover { background: rgba(255, 255, 255, 0.02); }
-
+.panel-disclosure__summary:hover { background: hsla(0, 0%, 100%, 0.02); }
 .panel-disclosure__summary::-webkit-details-marker { display: none; }
 
 .panel-disclosure__summary strong {
@@ -1122,7 +1146,7 @@ button, input, select, textarea { font: inherit; }
 .subject-mode-toggle__button--active {
   background: var(--sa-surface-3);
   color: var(--sa-fg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .subject-mode-toggle__button:disabled {
@@ -1160,15 +1184,13 @@ button, input, select, textarea { font: inherit; }
   font-size: 12px;
 }
 
-.subject-picker-field input:focus {
-  outline: none;
-}
+.subject-picker-field input:focus { outline: none; }
 
 .subject-picker-search {
   display: flex;
   align-items: center;
   gap: 8px;
-  border-radius: var(--sa-radius-sm);
+  border-radius: var(--sa-radius);
   border: 1px solid var(--sa-border);
   background: var(--sa-surface-2);
   padding: 10px 12px;
@@ -1176,7 +1198,7 @@ button, input, select, textarea { font: inherit; }
 
 .subject-picker-search:focus-within {
   border-color: var(--sa-accent);
-  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.15);
+  box-shadow: 0 0 0 2px hsla(152, 44%, 49%, 0.12);
 }
 
 .subject-picker-search svg {
@@ -1197,7 +1219,7 @@ button, input, select, textarea { font: inherit; }
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  border-radius: var(--sa-radius-sm);
+  border-radius: var(--sa-radius);
   border: 1px solid var(--sa-border);
   background: var(--sa-surface-2);
   color: var(--sa-fg);
@@ -1211,8 +1233,8 @@ button, input, select, textarea { font: inherit; }
 
 .subject-combobox__trigger:hover:not(:disabled),
 .subject-combobox--open .subject-combobox__trigger {
-  border-color: rgba(56, 139, 253, 0.35);
-  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.12);
+  border-color: hsla(152, 44%, 49%, 0.3);
+  box-shadow: 0 0 0 2px hsla(152, 44%, 49%, 0.1);
 }
 
 .subject-combobox__menu {
@@ -1220,8 +1242,8 @@ button, input, select, textarea { font: inherit; }
   flex-direction: column;
   gap: 8px;
   border-radius: var(--sa-radius);
-  border: 1px solid rgba(56, 139, 253, 0.18);
-  background: rgba(20, 27, 38, 0.96);
+  border: 1px solid hsla(152, 44%, 49%, 0.15);
+  background: hsla(220, 14%, 11%, 0.96);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
   padding: 10px;
 }
@@ -1271,14 +1293,14 @@ button, input, select, textarea { font: inherit; }
 }
 
 .subject-suggestion:hover {
-  border-color: rgba(56, 139, 253, 0.28);
-  background: rgba(56, 139, 253, 0.08);
+  border-color: hsla(152, 44%, 49%, 0.25);
+  background: hsla(152, 44%, 49%, 0.06);
   color: var(--sa-fg);
 }
 
 .subject-suggestion--active {
-  border-color: rgba(63, 185, 80, 0.35);
-  background: rgba(63, 185, 80, 0.12);
+  border-color: hsla(152, 55%, 48%, 0.3);
+  background: hsla(152, 55%, 48%, 0.1);
   color: var(--sa-fg);
 }
 
@@ -1307,7 +1329,7 @@ button, input, select, textarea { font: inherit; }
   gap: 8px;
   border-radius: var(--sa-radius-sm);
   border: 1px dashed var(--sa-border);
-  background: rgba(12, 17, 24, 0.28);
+  background: hsla(220, 16%, 8%, 0.28);
   padding: 10px 12px;
   font-size: 11px;
   color: var(--sa-muted);
@@ -1315,8 +1337,8 @@ button, input, select, textarea { font: inherit; }
 
 .subject-picker-selection {
   border-radius: var(--sa-radius-sm);
-  border: 1px solid rgba(56, 139, 253, 0.16);
-  background: rgba(56, 139, 253, 0.05);
+  border: 1px solid hsla(152, 44%, 49%, 0.12);
+  background: hsla(152, 44%, 49%, 0.04);
   padding: 10px 12px;
 }
 
@@ -1384,10 +1406,9 @@ button, input, select, textarea { font: inherit; }
 .override-grid input:focus {
   outline: none;
   border-color: var(--sa-accent);
-  box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.2);
+  box-shadow: 0 0 0 2px hsla(152, 44%, 49%, 0.15);
 }
 
-/* Detection Grid */
 .detection-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1423,7 +1444,7 @@ button, input, select, textarea { font: inherit; }
   flex: 1;
   border-radius: var(--sa-radius);
   border: 1px solid var(--sa-green-border);
-  background: linear-gradient(180deg, rgba(63, 185, 80, 0.12), rgba(63, 185, 80, 0.05));
+  background: linear-gradient(180deg, hsla(152, 55%, 48%, 0.1), hsla(152, 55%, 48%, 0.04));
   padding: 10px 12px;
 }
 
@@ -1441,7 +1462,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Notices
+   Notices — matching webapp alert patterns
    ================================================================ */
 .notice {
   border-radius: var(--sa-radius-sm);
@@ -1456,7 +1477,7 @@ button, input, select, textarea { font: inherit; }
   color: var(--sa-muted);
 }
 
-.notice--info    { border-color: rgba(56, 139, 253, 0.2); }
+.notice--info    { border-color: hsla(152, 44%, 49%, 0.15); }
 .notice--danger  { border-color: var(--sa-red-border); }
 .notice--warning { border-color: var(--sa-yellow-border); }
 .notice--success { border-color: var(--sa-green-border); }
@@ -1470,8 +1491,8 @@ button, input, select, textarea { font: inherit; }
 
 .session-timer-card {
   border-radius: var(--sa-radius);
-  border: 1px solid rgba(56, 139, 253, 0.2);
-  background: linear-gradient(180deg, rgba(56, 139, 253, 0.08), rgba(56, 139, 253, 0.03));
+  border: 1px solid hsla(152, 44%, 49%, 0.15);
+  background: linear-gradient(180deg, hsla(152, 44%, 49%, 0.06), hsla(152, 44%, 49%, 0.02));
   padding: 12px;
 }
 
@@ -1487,8 +1508,9 @@ button, input, select, textarea { font: inherit; }
 
 .session-timer-card strong {
   display: block;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--sa-fg);
 }
@@ -1505,7 +1527,7 @@ button, input, select, textarea { font: inherit; }
   gap: 10px;
   border-radius: var(--sa-radius);
   border: 1px solid var(--sa-red-border);
-  background: rgba(248, 81, 73, 0.06);
+  background: hsla(0, 72%, 55%, 0.04);
   padding: 12px;
 }
 
@@ -1729,10 +1751,10 @@ button, input, select, textarea { font: inherit; }
   border-color: var(--sa-green-border);
   background: var(--sa-green-bg);
   color: var(--sa-green);
-  box-shadow: 0 0 12px rgba(63, 185, 80, 0.2);
+  box-shadow: 0 0 12px hsla(152, 55%, 48%, 0.15);
 }
 .quick-action-btn--active:hover:not(:disabled) {
-  background: rgba(63, 185, 80, 0.25);
+  background: hsla(152, 55%, 48%, 0.18);
   border-color: var(--sa-green);
 }
 
@@ -1746,7 +1768,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* ================================================================
-   Steps Section — Detect Subject + Find Answers
+   Steps Section
    ================================================================ */
 .steps-section {
   display: flex;
@@ -1776,7 +1798,7 @@ button, input, select, textarea { font: inherit; }
   color: var(--sa-accent);
   font-size: 12px;
   font-weight: 700;
-  border: 1px solid rgba(56, 139, 253, 0.3);
+  border: 1px solid hsla(152, 44%, 49%, 0.25);
 }
 
 .step-cached-label {
