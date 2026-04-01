@@ -103,7 +103,7 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
         widgetIdRef.current = window.turnstile.render(containerRef.current, {
           sitekey: env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
           action,
-          theme: 'dark',
+          theme: 'light',
           callback: (token) => {
             onTokenChange(token);
             setIsLoading(false);
@@ -145,13 +145,12 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
 
   return (
     <div className="space-y-2 text-center">
-      <div className="flex min-h-[70px] items-center justify-center">
+      <div className="flex min-h-[65px] items-center justify-center">
         <div ref={containerRef} className="mx-auto" />
       </div>
       {isLoading ? <p className="text-xs text-neutral-500">Loading security check…</p> : null}
-      {loadError ? <p className="text-xs text-red-300">{loadError}</p> : null}
-      {error ? <p className="text-xs text-red-300">{error}</p> : null}
-      <p className="text-xs text-neutral-600">Protected by Cloudflare Turnstile.</p>
+      {loadError ? <p className="text-xs text-red-400">{loadError}</p> : null}
+      {error ? <p className="text-xs text-red-400">{error}</p> : null}
     </div>
   );
 }
