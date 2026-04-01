@@ -37,7 +37,7 @@ export default async function AdminDashboardPage() {
       {/* Metrics Row */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {dashboard.metrics.map((metric) => (
-          <div key={metric.label} className="rounded-2xl border border-border/40 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover">
+          <div key={metric.label} className="rounded-2xl border border-border/40 bg-background p-5 shadow-card transition-all duration-300 hover:shadow-card-hover">
             <p className="text-xs font-medium text-muted-foreground mb-3">{metric.label}</p>
             <p className="text-3xl font-semibold text-foreground">{metric.value}</p>
             {metric.delta && (

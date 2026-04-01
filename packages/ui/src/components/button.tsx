@@ -6,7 +6,7 @@ const buttonVariants = {
   primary:
     'bg-foreground text-background font-semibold hover:bg-foreground/90 focus-visible:outline-ring shadow-soft-sm hover:shadow-soft-md',
   secondary:
-    'bg-white text-foreground font-medium border border-border hover:bg-surface hover:border-border focus-visible:outline-ring shadow-soft-sm',
+    'bg-background text-foreground font-medium border border-border hover:bg-surface hover:border-border focus-visible:outline-ring shadow-soft-sm',
   ghost:
     'bg-transparent text-foreground font-medium hover:bg-surface focus-visible:outline-ring',
   danger:

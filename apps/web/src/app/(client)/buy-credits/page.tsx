@@ -53,7 +53,7 @@ export default async function BuyCreditsPage() {
       {/* Pricing Cards */}
       <div className="grid gap-6 lg:grid-cols-3">
         {billing.packages.map((pkg) => (
-          <div key={pkg.id} className={`rounded-2xl border bg-white p-0 shadow-card relative overflow-hidden flex flex-col transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 ${pkg.featured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}>
+          <div key={pkg.id} className={`rounded-2xl border bg-background p-0 shadow-card relative overflow-hidden flex flex-col transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 ${pkg.featured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}>
             {pkg.featured && (
               <div className="absolute top-4 right-4">
                 <Badge tone="accent" className="text-xs">Recommended</Badge>
@@ -110,7 +110,7 @@ export default async function BuyCreditsPage() {
       </div>
 
       {/* Payment Methods Info */}
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex items-center gap-3 mb-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
             <Landmark className="h-5 w-5 text-blue-600" />

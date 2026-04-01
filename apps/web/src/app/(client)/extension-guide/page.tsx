@@ -161,7 +161,7 @@ export default async function ExtensionGuidePage() {
 
       <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
         {/* Install Steps */}
-        <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+        <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
           <div className="border-b border-border/40 px-6 py-5">
             <h3 className="text-base font-semibold text-foreground">Install or update in 3 simple steps</h3>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -204,7 +204,7 @@ export default async function ExtensionGuidePage() {
         </div>
 
         {/* Extension Status */}
-        <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+        <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
           <div className="border-b border-border/40 px-6 py-5">
             <h3 className="text-base font-semibold text-foreground">Current extension status</h3>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -284,7 +284,7 @@ export default async function ExtensionGuidePage() {
       </div>
 
       {/* Help Section */}
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h3 className="text-base font-semibold text-foreground">Need help?</h3>

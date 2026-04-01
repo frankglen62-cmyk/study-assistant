@@ -49,7 +49,7 @@ export default async function ClientDashboardPage() {
 
       {/* Quick Stats */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card">
+        <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card">
           <p className="text-xs font-medium text-muted-foreground mb-2">Remaining Credits</p>
           <p className="text-2xl font-semibold text-foreground">{formatDuration(context.wallet.remaining_seconds)}</p>
           <p className="mt-2 text-xs text-accent font-medium flex items-center gap-1.5">
@@ -57,7 +57,7 @@ export default async function ClientDashboardPage() {
             Active balance
           </p>
         </div>
-        <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card">
+        <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card">
           <p className="text-xs font-medium text-muted-foreground mb-2">Used This Week</p>
           <p className="text-2xl font-semibold text-foreground">{formatDuration(dashboard.usedThisWeek)}</p>
           <p className="mt-2 text-xs text-muted-foreground font-medium flex items-center gap-1.5">
@@ -65,7 +65,7 @@ export default async function ClientDashboardPage() {
             Across recent sessions
           </p>
         </div>
-        <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card">
+        <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card">
           <p className="text-xs font-medium text-muted-foreground mb-2">Last Detected Subject</p>
           <p className="text-lg font-semibold text-foreground leading-tight">{dashboard.lastDetectedSubject || 'None yet'}</p>
           <p className="mt-2 text-xs text-muted-foreground font-medium flex items-center gap-1.5">
@@ -73,7 +73,7 @@ export default async function ClientDashboardPage() {
             Latest attempt
           </p>
         </div>
-        <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card">
+        <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card">
           <p className="text-xs font-medium text-muted-foreground mb-2">Last Used Category</p>
           <p className="text-lg font-semibold text-foreground leading-tight">{dashboard.lastUsedCategory || 'None yet'}</p>
           <p className="mt-2 text-xs text-muted-foreground font-medium flex items-center gap-1.5">
@@ -185,7 +185,7 @@ export default async function ClientDashboardPage() {
                 <a
                   href={extensionDownloadPath}
                   download={extensionDownloadFileName}
-                  className="group flex items-center justify-between rounded-xl border border-border/40 bg-white p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5"
+                  className="group flex items-center justify-between rounded-xl border border-border/40 bg-background p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5"
                 >
                   <span className="flex items-center gap-2.5">
                     <Download className="h-4 w-4 text-muted-foreground" />
@@ -193,14 +193,14 @@ export default async function ClientDashboardPage() {
                   </span>
                   <ArrowRight className="h-4 w-4 text-muted-foreground" />
                 </a>
-                <Link href="/extension-guide" className="group flex items-center justify-between rounded-xl border border-border/40 bg-white p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5">
+                <Link href="/extension-guide" className="group flex items-center justify-between rounded-xl border border-border/40 bg-background p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5">
                   <span className="flex items-center gap-2.5">
                     <Settings className="h-4 w-4 text-muted-foreground" />
                     Open extension guide
                   </span>
                   <ArrowRight className="h-4 w-4 text-muted-foreground" />
                 </Link>
-                <Link href="/account" className="group flex items-center justify-between rounded-xl border border-border/40 bg-white p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5">
+                <Link href="/settings" className="group flex items-center justify-between rounded-xl border border-border/40 bg-background p-3.5 text-sm font-medium text-foreground shadow-soft-sm transition-all hover:shadow-soft-md hover:-translate-y-0.5">
                   <span className="flex items-center gap-2.5">
                     <ShieldCheck className="h-4 w-4 text-muted-foreground" />
                     Review paired browsers
