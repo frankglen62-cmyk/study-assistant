@@ -18,7 +18,7 @@ export default async function ClientDashboardPage() {
   return (
     <div className="space-y-8 pb-12">
       {/* Welcome Hero */}
-      <div className="rounded-2xl bg-gradient-to-br from-accent/10 via-emerald-50/50 to-blue-50/30 p-8 sm:p-10">
+      <div className="rounded-2xl bg-gradient-to-br from-accent/10 via-emerald-50/50 to-blue-50/30 dark:from-accent/5 dark:via-accent/5 dark:to-transparent p-8 sm:p-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-3">
             <Badge tone="accent">Client Portal</Badge>
@@ -110,7 +110,7 @@ export default async function ClientDashboardPage() {
                 <Progress value={remainingPercent} className={cn('h-3', remainingPercent < 15 && '[&>div]:bg-danger')} />
               </div>
 
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
                     <History className="h-5 w-5 text-accent" />
@@ -169,8 +169,8 @@ export default async function ClientDashboardPage() {
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-xl border border-border/40 bg-amber-50/50 p-4">
-                <p className="text-xs font-medium text-amber-700 mb-1">Current browser status</p>
+              <div className="rounded-xl border border-border/40 bg-amber-50/50 dark:bg-amber-500/10 dark:border-amber-500/20 p-4">
+                <p className="text-xs font-medium text-amber-700 dark:text-amber-400 mb-1">Current browser status</p>
                 <p className="text-base font-semibold text-foreground">
                   {dashboard.latestActiveDevice?.name ?? 'No browser paired yet'}
                 </p>

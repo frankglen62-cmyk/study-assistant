@@ -85,7 +85,7 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10">
                 <TrendingUp className="h-4 w-4 text-blue-600" />
               </div>
               <div>
@@ -96,25 +96,25 @@ export default async function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4 transition-colors hover:bg-surface/50">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4 transition-colors hover:bg-surface/80">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Failed Detections</p>
                 <p className="text-2xl font-semibold text-foreground">{`${Math.round(dashboard.lowConfidenceRate * 100)}%`}</p>
                 {dashboard.lowConfidenceRate > 0.15 && (
                   <Badge tone="danger" className="mt-3"><AlertTriangle className="h-3 w-3" />Threshold Break</Badge>
                 )}
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4 transition-colors hover:bg-surface/50">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4 transition-colors hover:bg-surface/80">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Source Failures</p>
                 <p className="text-2xl font-semibold text-foreground">{dashboard.sourceFailures}</p>
                 {dashboard.sourceFailures === 0 && (
                   <Badge tone="success" className="mt-3"><ShieldCheck className="h-3 w-3" />Optimal</Badge>
                 )}
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4 transition-colors hover:bg-surface/50">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4 transition-colors hover:bg-surface/80">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Primary Subject</p>
                 <p className="text-lg font-semibold text-foreground leading-tight break-words">{dashboard.mostUsedSubject || 'N/A'}</p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4 transition-colors hover:bg-surface/50">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4 transition-colors hover:bg-surface/80">
                 <p className="text-xs font-medium text-muted-foreground mb-2">Webhook Queue</p>
                 <p className="text-2xl font-semibold text-foreground">0</p>
                 <Badge tone="success" className="mt-3"><ShieldCheck className="h-3 w-3" />Synchronized</Badge>

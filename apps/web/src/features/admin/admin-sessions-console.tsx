@@ -104,8 +104,8 @@ export function AdminSessionsConsole({
 
   const toneMap: Record<string, string> = {
     accent: 'bg-accent/10 text-accent',
-    success: 'bg-emerald-50 text-emerald-700',
-    warning: 'bg-amber-50 text-amber-700',
+    success: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400',
+    warning: 'bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400',
   };
 
   return (
@@ -140,7 +140,7 @@ export function AdminSessionsConsole({
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search by client, email, site..."
-              className="pl-10 h-10 bg-surface/30 text-sm"
+              className="pl-10 h-10 bg-background text-sm"
             />
           </div>
           <div className="grid w-full gap-3 md:grid-cols-2 xl:grid-cols-4 xl:max-w-5xl">
@@ -148,7 +148,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by client"
               value={clientFilter}
               onChange={(event) => setClientFilter(event.target.value)}
-              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All clients</option>
               {clientOptions.map((clientOption) => {
@@ -164,7 +164,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by status"
               value={statusFilter}
               onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All statuses</option>
               <option value="active">Active</option>
@@ -179,7 +179,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by site"
               value={siteFilter}
               onChange={(event) => setSiteFilter(event.target.value)}
-              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All sites</option>
               {siteOptions.map((site) => (
@@ -192,7 +192,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by subject"
               value={subjectFilter}
               onChange={(event) => setSubjectFilter(event.target.value)}
-              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-background px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All subjects</option>
               {subjectOptions.map((subject) => (

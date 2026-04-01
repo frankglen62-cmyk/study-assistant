@@ -33,7 +33,7 @@ export default async function BuyCreditsPage() {
       />
 
       {/* Active Balance Card */}
-      <div className="rounded-2xl bg-gradient-to-br from-accent/10 via-emerald-50/50 to-blue-50/30 p-8">
+      <div className="rounded-2xl bg-gradient-to-br from-accent/10 via-emerald-50/50 to-blue-50/30 dark:from-accent/5 dark:via-accent/5 dark:to-transparent p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-2">
             <p className="text-xs font-medium text-muted-foreground flex items-center gap-2"><Zap className="h-4 w-4 text-accent" /> Active Balance</p>
@@ -112,7 +112,7 @@ export default async function BuyCreditsPage() {
       {/* Payment Methods Info */}
       <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10">
             <Landmark className="h-5 w-5 text-blue-600" />
           </div>
           <p className="text-lg font-semibold text-foreground">Payment Methods</p>

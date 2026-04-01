@@ -127,11 +127,11 @@ export default async function ExtensionGuidePage() {
       />
 
       {isOutdatedInstalledVersion ? (
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+        <div className="rounded-2xl border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-1">
-              <p className="text-sm font-semibold text-amber-800">Update available for your installed browser</p>
-              <p className="text-sm text-amber-700">
+              <p className="text-sm font-semibold text-amber-800 dark:text-amber-400">Update available for your installed browser</p>
+              <p className="text-sm text-amber-700 dark:text-amber-200/90">
                 {`Your latest active browser is still on ${installedVersion}. Download ZIP v${extensionVersion}, extract it, then reload the unpacked extension from chrome://extensions.`}
               </p>
             </div>
@@ -173,7 +173,7 @@ export default async function ExtensionGuidePage() {
               const Icon = step.icon;
 
               return (
-                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/30 p-5 transition-all hover:shadow-soft-sm">
+                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5 transition-all hover:shadow-soft-sm">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <Icon className="h-5 w-5" />
                   </div>
@@ -220,7 +220,7 @@ export default async function ExtensionGuidePage() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
                 <p className="text-[11px] font-medium text-muted-foreground">Pairing status</p>
                 <p className="mt-2 text-lg font-semibold text-foreground">{pairingStatusLabel}</p>
                 <p className="mt-1.5 text-xs text-muted-foreground">
@@ -229,7 +229,7 @@ export default async function ExtensionGuidePage() {
                     : 'No browser is connected to your account yet.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
                 <p className="text-[11px] font-medium text-muted-foreground">Installed build</p>
                 <p className="mt-2 text-lg font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
                 <p className="mt-1.5 text-xs text-muted-foreground">
@@ -238,7 +238,7 @@ export default async function ExtensionGuidePage() {
                     : 'Matches the current ZIP build.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
                 <p className="text-[11px] font-medium text-muted-foreground">Latest active browser</p>
                 <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
                 <p className="mt-1.5 text-xs text-muted-foreground">

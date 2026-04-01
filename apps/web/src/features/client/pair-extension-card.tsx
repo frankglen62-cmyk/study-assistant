@@ -124,15 +124,15 @@ export function PairExtensionCard({
       <div className="p-6 space-y-5">
         {/* Status row */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-xl border border-border/40 bg-surface/30 p-3.5 text-center">
+          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
             <p className="text-[11px] font-medium text-muted-foreground">Status</p>
             <p className="mt-1.5 text-sm font-semibold text-foreground">{pairedDeviceCount > 0 ? 'Paired' : 'Ready'}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-surface/30 p-3.5 text-center">
+          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
             <p className="text-[11px] font-medium text-muted-foreground">ZIP Build</p>
             <p className="mt-1.5 text-sm font-semibold text-foreground">v{extensionVersion}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-surface/30 p-3.5 text-center">
+          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
             <p className="text-[11px] font-medium text-muted-foreground">Installed</p>
             <p className="mt-1.5 text-sm font-semibold text-foreground truncate">{latestInstalledVersion ?? '—'}</p>
           </div>
@@ -167,7 +167,7 @@ export function PairExtensionCard({
         </div>
 
         {/* Pairing Code */}
-        <div className="rounded-xl border border-border/40 bg-surface/20 p-5">
+        <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5">
           <div className="flex items-center justify-between mb-4">
             <div>
               <p className="text-xs font-semibold text-foreground">Current Pairing Code</p>
