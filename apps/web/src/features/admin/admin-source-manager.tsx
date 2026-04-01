@@ -1189,11 +1189,11 @@ export function AdminSourceManager({
   return (
     <div className="flex flex-col gap-6 w-full">
       <Card className="overflow-hidden rounded-xl border border-border/40 shadow-card">
-        <CardHeader className="space-y-4 border-b-4 border-border bg-surface pb-5">
+        <CardHeader className="space-y-4 border-b border-border/40 bg-surface/30 pb-5">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1">
-              <CardTitle className="uppercase font-black tracking-widest text-xl">Subject folders</CardTitle>
-              <CardDescription className="uppercase font-bold tracking-wider text-xs">
+              <CardTitle className="text-lg font-semibold">Subject folders</CardTitle>
+              <CardDescription className="text-xs">
                 Search, jump, and manage one subject library at a time.
               </CardDescription>
             </div>
@@ -1204,11 +1204,11 @@ export function AdminSourceManager({
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <div className="flex-1 min-w-[240px] max-w-sm">
-              <label className="text-[11px] uppercase tracking-[0.2em] font-black text-foreground mb-2 block">Quick select</label>
+              <label className="text-xs font-medium text-muted-foreground mb-2 block">Quick select</label>
               <select
                 value={selectedSubjectId}
                 onChange={(event) => { setSelectedSubjectId(event.target.value); setRecentlyAddedPairs([]); }}
-                className="h-12 w-full rounded-xl border border-border/40 bg-surface px-4 text-sm font-bold uppercase text-foreground outline-none transition focus:border-accent shadow-card"
+                className="h-10 w-full rounded-xl border border-border/40 bg-surface/30 px-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20"
               >
                 {subjectDropdownOptions.map((subject) => (
                   <option key={subject.id} value={subject.id}>
@@ -1220,12 +1220,12 @@ export function AdminSourceManager({
             </div>
             
             <div className="flex-1 min-w-[240px] max-w-sm">
-              <label className="text-[11px] uppercase tracking-[0.2em] font-black text-foreground mb-2 block">Search subjects</label>
+              <label className="text-xs font-medium text-muted-foreground mb-2 block">Search subjects</label>
               <Input
                 value={subjectFolderSearch}
                 onChange={(event) => setSubjectFolderSearch(event.target.value)}
-                placeholder="SEARCH BY NAME..."
-                className="rounded-xl border border-border/40 bg-surface shadow-card h-12 uppercase font-bold"
+                placeholder="Search by name..."
+                className="rounded-xl border border-border/40 bg-surface/30 h-10 text-sm"
               />
             </div>
           </div>
@@ -1265,7 +1265,7 @@ export function AdminSourceManager({
       <div className="space-y-6">
         {/* Header Card with Navigation */}
         <div className="rounded-xl border border-border/40 bg-background shadow-card-hover overflow-hidden flex flex-col pt-6 sm:pt-8 w-full">
-          <div className="px-6 sm:px-8 pb-6 border-b-4 border-border bg-surface">
+          <div className="px-6 sm:px-8 pb-6 border-b border-border/40 bg-surface/30">
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -1279,17 +1279,16 @@ export function AdminSourceManager({
                   {selectedSubject?.courseCode ? <span className="font-mono uppercase tracking-[0.2em]">{selectedSubject.courseCode}</span> : 'No course code set'}
                 </div>
               </div>
-
               {selectedRootFolder && (
-                <div className="flex shrink-0 items-center gap-6 rounded-none bg-surface px-6 py-4 shadow-card border border-border/40">
+                <div className="flex shrink-0 items-center gap-6 rounded-xl bg-surface/50 px-6 py-4 border border-border/40">
                   <div className="text-center">
-                    <p className="font-display text-4xl font-black text-foreground">{qaPairCountsBySubjectId[selectedSubjectId] ?? selectedSubjectPairs.length}</p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-foreground mt-1 font-black">Q&A Pairs</p>
+                    <p className="font-display text-3xl text-foreground">{qaPairCountsBySubjectId[selectedSubjectId] ?? selectedSubjectPairs.length}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Q&A Pairs</p>
                   </div>
-                  <div className="h-12 w-1 bg-border" />
+                  <div className="h-12 w-px bg-border/40" />
                   <div className="text-center">
-                    <p className="font-display text-4xl font-black text-foreground">{selectedSubjectFiles.length}</p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-foreground mt-1 font-black">Files</p>
+                    <p className="font-display text-3xl text-foreground">{selectedSubjectFiles.length}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Files</p>
                   </div>
                 </div>
               )}
@@ -1297,12 +1296,12 @@ export function AdminSourceManager({
           </div>
 
           {selectedRootFolder && (
-            <div className="flex overflow-x-auto px-6 sm:px-8 gap-8 border-b-4 border-border bg-surface no-scrollbar pt-4 uppercase tracking-widest font-black text-xs">
+            <div className="flex overflow-x-auto px-6 sm:px-8 gap-6 border-b border-border/40 bg-surface/30 no-scrollbar pt-3 text-sm font-medium">
               <button
                 type="button"
                 onClick={() => setActiveTab('qa')}
-                className={`pb-4 transition-all whitespace-nowrap border-b-4 ${
-                  activeTab === 'qa' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground hover:border-black'
+                className={`pb-3 transition-all whitespace-nowrap border-b-2 ${
+                  activeTab === 'qa' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 Stored Q&A Library
@@ -1310,8 +1309,8 @@ export function AdminSourceManager({
               <button
                 type="button"
                 onClick={() => setActiveTab('add')}
-                className={`pb-4 transition-all whitespace-nowrap border-b-4 ${
-                  activeTab === 'add' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground hover:border-black'
+                className={`pb-3 transition-all whitespace-nowrap border-b-2 ${
+                  activeTab === 'add' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 + Add Content
@@ -1319,8 +1318,8 @@ export function AdminSourceManager({
               <button
                 type="button"
                 onClick={() => setActiveTab('files')}
-                className={`pb-4 transition-all whitespace-nowrap border-b-4 ${
-                  activeTab === 'files' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground hover:border-black'
+                className={`pb-3 transition-all whitespace-nowrap border-b-2 ${
+                  activeTab === 'files' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 Supporting Files
@@ -1328,8 +1327,8 @@ export function AdminSourceManager({
               <button
                 type="button"
                 onClick={() => setActiveTab('settings')}
-                className={`pb-4 transition-all whitespace-nowrap border-b-4 ${
-                  activeTab === 'settings' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground hover:border-black'
+                className={`pb-3 transition-all whitespace-nowrap border-b-2 ${
+                  activeTab === 'settings' ? 'border-accent text-accent' : 'border-transparent text-muted-foreground hover:text-foreground'
                 }`}
               >
                 Folder Settings
@@ -1340,20 +1339,20 @@ export function AdminSourceManager({
 
         <div className="min-h-[400px]">
           {!selectedRootFolder ? (
-            <Card className="rounded-xl border border-warning shadow-card bg-warning/10">
+            <Card className="rounded-2xl border border-amber-200/60 shadow-card bg-amber-50/30">
               <CardContent className="space-y-4 pt-12 pb-12 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-none rounded-xl border border-border/40 bg-white text-black mb-6 shadow-card">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"><path d="M20 20V8H4v12zM12 2v6"></path></svg>
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl border border-border/40 bg-white text-foreground mb-6 shadow-soft-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 20V8H4v12zM12 2v6"></path></svg>
                 </div>
-                <h3 className="font-display text-2xl font-semibold text-foreground tracking-tighter">Subject folder not initialized</h3>
-                <p className="mx-auto max-w-md text-sm font-bold uppercase text-foreground/80 tracking-wider">
-                  Create the subject folder here to enable Q&A storage and supporting feature files for this subject. No prelim, midterm, or finals subfolders are used.
+                <h3 className="font-display text-2xl font-semibold text-foreground">Subject folder not initialized</h3>
+                <p className="mx-auto max-w-md text-sm text-muted-foreground">
+                  Create the subject folder here to enable Q&A storage and supporting feature files for this subject.
                 </p>
                 <div className="mt-8">
                   <Button
                     onClick={() => void handleCreateSubjectFolder()}
                     disabled={busyAction === `create-folder-${selectedSubjectId}`}
-                    className="px-8 shadow-card border-2 border-foreground rounded-none bg-foreground text-background hover:bg-background hover:text-foreground hover:translate-x-[2px] hover:translate-y-[2px] transition-all uppercase font-black"
+                    className="px-8 shadow-soft-sm"
                   >
                     {busyAction === `create-folder-${selectedSubjectId}` ? 'Creating folder...' : 'Initialize Subject Folder'}
                   </Button>

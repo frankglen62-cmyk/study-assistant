@@ -9,7 +9,6 @@ import type { NavItem } from '@study-assistant/shared-types';
 import { cn } from '@study-assistant/ui';
 
 import { LogoMark } from '@/components/layout/logo-mark';
-import { ThemeToggle } from '@/components/layout/theme-toggle';
 import {
   navReveal,
   navItemStagger,
@@ -72,7 +71,7 @@ export function PublicShell({
     <div className="min-h-screen bg-background text-foreground">
       {/* ─── Clean Premium Navbar ─── */}
       <motion.header
-        className="sticky top-0 z-50 border-b border-border/40 bg-white/80 backdrop-blur-xl dark:bg-background/80"
+        className="sticky top-0 z-50 border-b border-border/40 bg-white/80 backdrop-blur-xl"
         variants={navReveal}
         initial={reduced ? undefined : 'hidden'}
         animate={reduced ? undefined : 'visible'}
@@ -119,9 +118,7 @@ export function PublicShell({
             initial={reduced ? undefined : 'hidden'}
             animate={reduced ? undefined : 'visible'}
           >
-            <motion.div variants={navItem}>
-              <ThemeToggle />
-            </motion.div>
+
             <motion.div variants={navItem}>
               <Link
                 href="/login"

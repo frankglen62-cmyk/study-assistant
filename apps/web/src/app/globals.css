@@ -32,25 +32,7 @@
     --radius-full: 9999px;
   }
 
-  .dark {
-    --background: 224 14% 8%;
-    --foreground: 40 20% 96%;
-    --surface: 224 12% 11%;
-    --surface-foreground: 40 20% 96%;
-    --muted: 224 10% 16%;
-    --muted-foreground: 220 8% 56%;
-    --border: 224 10% 18%;
-    --input: 224 10% 16%;
-    --ring: 152 44% 49%;
-    --accent: 152 44% 49%;
-    --accent-foreground: 0 0% 100%;
-    --success: 152 55% 48%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 55%;
-    --warning-foreground: 220 14% 10%;
-    --danger: 0 72% 55%;
-    --danger-foreground: 0 0% 100%;
-  }
+
 
   * {
     @apply border-border;

@@ -139,12 +139,12 @@ export function AdminUserSessionsAudit({
       <Card className="space-y-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative w-full max-w-xl">
-            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="SEARCH BY SITE, TITLE, PATH, OR SUBJECT..."
-              className="pl-12"
+              placeholder="Search by site, title, path, or subject..."
+              className="pl-10 h-10 bg-surface/30 text-sm"
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -174,7 +174,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by status"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+            className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
           >
             <option value="all">All statuses</option>
             <option value="active">Active</option>
@@ -189,7 +189,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by site"
             value={siteFilter}
             onChange={(event) => setSiteFilter(event.target.value)}
-            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+            className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
           >
             <option value="all">All sites</option>
             {siteOptions.map((site) => (
@@ -202,7 +202,7 @@ export function AdminUserSessionsAudit({
             aria-label="Filter by subject"
             value={subjectFilter}
             onChange={(event) => setSubjectFilter(event.target.value)}
-            className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+            className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
           >
             <option value="all">All subjects</option>
             {subjectOptions.map((subject) => (
@@ -221,62 +221,61 @@ export function AdminUserSessionsAudit({
       <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm border-collapse">
-            <thead className="bg-surface border-b-4 border-black">
+            <thead className="border-b border-border/60 bg-surface/50">
               <tr>
                 {['Started', 'Site', 'Subject', 'Billed Time', 'Status', 'Signals', 'Actions'].map((column) => (
-                  <th key={column} className="px-5 py-4 font-medium text-black ">
+                  <th key={column} className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {column}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y-2 divide-black/20 font-medium">
+            <tbody className="divide-y divide-border/40">
               {filteredSessions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-medium bg-surface/50">
+                  <td colSpan={7} className="px-5 py-16 text-center text-sm text-muted-foreground bg-surface/20">
                     No sessions match the current filters for this client.
                   </td>
                 </tr>
               ) : (
                 filteredSessions.map((session) => (
-                  <tr key={session.id} className="bg-background transition-colors hover:bg-accent/10 group">
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.startedAt}</p>
-                        <p className="text-xs font-medium text-muted-foreground/80">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
+                  <tr key={session.id} className="transition-colors hover:bg-surface/30 group">
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground">{session.startedAt}</p>
+                        <p className="text-xs text-muted-foreground">{session.endedAt ? `Ended ${session.endedAt}` : 'Still open'}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black break-words">{session.siteDomain}</p>
-                        <p className="border-t-2 border-black/10 pt-2 text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80 break-all">{session.pagePath}</p>
-                        <p className="text-xs text-muted-foreground text-muted-foreground/80">{session.pageTitle}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground break-words">{session.siteDomain}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-1">{session.pageTitle}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.subject}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
-                          {session.category ? `Category: ${session.category}` : 'No category recorded'}
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground">{session.subject}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {session.category ?? 'No category'}
                         </p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-display font-black text-lg text-foreground group-hover:text-black">{session.creditsUsed}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'}`}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-semibold text-foreground">{session.creditsUsed}</p>
+                        <p className="text-xs text-muted-foreground">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
+                    <td className="px-5 py-4 align-top">
                       <StatusBadge status={session.status} />
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.suspiciousFlag}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="text-sm text-foreground">{session.suspiciousFlag}</p>
+                        <p className="text-xs text-muted-foreground">{`${session.detectionMode} · ${session.noMatchCount} no-match`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
+                    <td className="px-5 py-4 align-top">
                       <div className="flex flex-wrap gap-2">
                         <Button size="sm" variant="secondary" onClick={() => setSelectedSessionId(session.id)}>
                           Quick View

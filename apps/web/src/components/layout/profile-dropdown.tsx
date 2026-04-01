@@ -68,7 +68,7 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-52 origin-top-right rounded-2xl border border-border/60 bg-white p-1.5 shadow-soft-lg backdrop-blur z-50 dark:bg-surface animate-fade-in">
+        <div className="absolute right-0 top-full mt-2 w-52 origin-top-right rounded-2xl border border-border/60 bg-white p-1.5 shadow-soft-lg backdrop-blur z-50 animate-fade-in">
           <div className="px-3 py-2">
             <p className="text-sm font-medium text-foreground">My Account</p>
             <p className="text-xs text-muted-foreground capitalize">{role.replace('_', ' ')}</p>
@@ -96,7 +96,7 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
           <button
             type="button"
             onClick={handleLogout}
-            className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-danger transition-colors hover:bg-red-50 dark:hover:bg-red-950/20"
+            className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-danger transition-colors hover:bg-red-50"
           >
             <LogOut className="h-4 w-4" />
             Sign Out

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import {
   AlertTriangle,
   ArrowRight,
+  CheckCircle2,
   Download,
   FolderOpen,
   KeyRound,
@@ -10,7 +11,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 
-import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@study-assistant/ui';
+import { Badge, Button } from '@study-assistant/ui';
 
 import { PageHeading } from '@/components/page-heading';
 import { PairExtensionCard } from '@/features/client/pair-extension-card';
@@ -159,24 +160,25 @@ export default async function ExtensionGuidePage() {
       />
 
       <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-        <Card>
-          <CardHeader>
-            <CardTitle>Install or update in 3 simple steps</CardTitle>
-            <CardDescription>
+        {/* Install Steps */}
+        <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+          <div className="border-b border-border/40 px-6 py-5">
+            <h3 className="text-base font-semibold text-foreground">Install or update in 3 simple steps</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
               This is the only install flow that matters. Everything else is optional.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            {setupSteps.map((step) => {
+            </p>
+          </div>
+          <div className="p-6 space-y-4">
+            {setupSteps.map((step, index) => {
               const Icon = step.icon;
 
               return (
-                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/30 p-5">
+                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/30 p-5 transition-all hover:shadow-soft-sm">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground">{step.label}</p>
+                    <p className="text-xs font-medium text-accent">{step.label}</p>
                     <p className="text-sm font-semibold text-foreground">{step.title}</p>
                     <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
@@ -184,7 +186,7 @@ export default async function ExtensionGuidePage() {
               );
             })}
 
-            <div className="rounded-xl border border-amber-200 bg-amber-50 p-5">
+            <div className="rounded-xl border border-amber-200/60 bg-amber-50/50 p-5">
               <div className="flex items-start gap-4">
                 <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
                   <AlertTriangle className="h-5 w-5" />
@@ -198,17 +200,18 @@ export default async function ExtensionGuidePage() {
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Current extension status</CardTitle>
-            <CardDescription>
-              This is the live portal view of your latest ZIP build and paired browser state.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        {/* Extension Status */}
+        <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+          <div className="border-b border-border/40 px-6 py-5">
+            <h3 className="text-base font-semibold text-foreground">Current extension status</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Live portal view of your latest ZIP build and paired browser state.
+            </p>
+          </div>
+          <div className="p-6 space-y-5">
             <div className="flex flex-wrap gap-2">
               <Badge tone={hasPairedDevice ? 'success' : 'warning'}>{pairingStatusLabel}</Badge>
               <Badge tone="accent">{`Current ZIP v${extensionVersion}`}</Badge>
@@ -216,44 +219,47 @@ export default async function ExtensionGuidePage() {
               <Badge tone="neutral">{latestPackageDateLabel}</Badge>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
-                <p className="text-xs font-medium text-muted-foreground">Pairing status</p>
-                <p className="mt-2 text-xl font-semibold text-foreground">{pairingStatusLabel}</p>
-                <p className="mt-2 text-xs text-muted-foreground">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+                <p className="text-[11px] font-medium text-muted-foreground">Pairing status</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">{pairingStatusLabel}</p>
+                <p className="mt-1.5 text-xs text-muted-foreground">
                   {hasPairedDevice
-                    ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser is' : 'browsers are'} connected to your account.`
+                    ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser is' : 'browsers are'} connected.`
                     : 'No browser is connected to your account yet.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
-                <p className="text-xs font-medium text-muted-foreground">Installed build</p>
-                <p className="mt-2 text-xl font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
-                <p className="mt-2 text-xs text-muted-foreground">
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+                <p className="text-[11px] font-medium text-muted-foreground">Installed build</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
+                <p className="mt-1.5 text-xs text-muted-foreground">
                   {isOutdatedInstalledVersion
-                    ? 'This browser is behind the latest ZIP and needs a manual refresh.'
-                    : 'The latest active browser matches the current ZIP build or has not reported a version yet.'}
+                    ? 'This browser is behind the latest ZIP.'
+                    : 'Matches the current ZIP build.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/30 p-5">
-                <p className="text-xs font-medium text-muted-foreground">Latest active browser</p>
+              <div className="rounded-xl border border-border/40 bg-surface/30 p-4">
+                <p className="text-[11px] font-medium text-muted-foreground">Latest active browser</p>
                 <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {latestDevice ? `Last seen ${latestDevice.lastSeen}.` : 'Pair a browser first so the portal can track its state.'}
+                <p className="mt-1.5 text-xs text-muted-foreground">
+                  {latestDevice ? `Last seen ${latestDevice.lastSeen}.` : 'Pair a browser first.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-accent/30 bg-accent/5 p-5">
-                <p className="text-xs font-medium text-muted-foreground">Next step</p>
+              <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
+                  <p className="text-[11px] font-medium text-accent">Next step</p>
+                </div>
                 <p className="mt-2 text-lg font-semibold text-foreground">{nextStepLabel}</p>
-                <p className="mt-2 text-xs text-muted-foreground">
+                <p className="mt-1.5 text-xs text-muted-foreground">
                   {hasOpenSession
-                    ? 'A session is already active, so the extension can continue immediately after setup.'
-                    : 'If pairing is already complete, open or resume a session before using analysis.'}
+                    ? 'A session is already active, so the extension can continue immediately.'
+                    : 'If pairing is complete, open a session before using analysis.'}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               <Button asChild>
                 <a href={extensionDownloadPath} download={extensionDownloadFileName}>
                   <Download className="h-4 w-4" />
@@ -273,38 +279,41 @@ export default async function ExtensionGuidePage() {
                 </Link>
               </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Need help?</CardTitle>
-          <CardDescription>
-            Keep it simple: if install or pairing still fails, use one of these next actions.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap gap-3">
-          <Button asChild variant="secondary">
-            <Link href="/contact">
-              <ShieldCheck className="h-4 w-4" />
-              Contact Support
-            </Link>
-          </Button>
-          <Button asChild variant="secondary">
-            <Link href="/account#paired-devices">
-              <Monitor className="h-4 w-4" />
-              Review Paired Browsers
-            </Link>
-          </Button>
-          <Button asChild variant="secondary">
-            <a href="#pairing-mode">
-              Go To Pairing Mode
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </Button>
-        </CardContent>
-      </Card>
+      {/* Help Section */}
+      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-base font-semibold text-foreground">Need help?</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Keep it simple: if install or pairing still fails, use one of these next actions.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button asChild variant="secondary">
+              <Link href="/contact">
+                <ShieldCheck className="h-4 w-4" />
+                Contact Support
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href="/account#paired-devices">
+                <Monitor className="h-4 w-4" />
+                Review Paired Browsers
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <a href="#pairing-mode">
+                Go To Pairing Mode
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

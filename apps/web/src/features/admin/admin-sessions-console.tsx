@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Filter, Users, Clock, Activity, BarChart3 } from 'lucide-react';
 
 import { Badge, Button, Card, Input } from '@study-assistant/ui';
 
@@ -43,6 +43,13 @@ interface UserWithoutSessionRow {
   email: string;
   joinedAt: string;
 }
+
+const metricIcons: Record<string, typeof Activity> = {
+  'Live Sessions': Activity,
+  'Clients With Sessions': Users,
+  'Clients With No Sessions': Users,
+  'Recent Billed Time': Clock,
+};
 
 function uniqueSorted(items: string[]) {
   return Array.from(new Set(items.filter(Boolean))).sort((left, right) => left.localeCompare(right));
@@ -95,42 +102,57 @@ export function AdminSessionsConsole({
     sessions.find((session) => session.id === selectedSessionId) ??
     null;
 
+  const toneMap: Record<string, string> = {
+    accent: 'bg-accent/10 text-accent',
+    success: 'bg-emerald-50 text-emerald-700',
+    warning: 'bg-amber-50 text-amber-700',
+  };
+
   return (
     <div className="space-y-6">
+      {/* Metric Cards */}
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {metrics.map((metric) => (
-          <Card key={metric.label} className="space-y-2 flex flex-col justify-between p-6">
-            <p className="text-xs font-medium text-foreground">{metric.label}</p>
-            <p className="font-display text-5xl font-black tracking-tighter text-black">{metric.value}</p>
-            <div className="inline-flex w-fit items-center border border-border/40 bg-accent px-2 py-0.5 text-xs font-medium text-black shadow-card">
-              {metric.delta}
+        {metrics.map((metric) => {
+          const Icon = metricIcons[metric.label] ?? BarChart3;
+          return (
+            <div key={metric.label} className="rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
+              <div className="flex items-start justify-between">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
+                  <Icon className="h-5 w-5 text-accent" />
+                </div>
+                <span className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-medium ${toneMap[metric.tone] ?? toneMap.accent}`}>
+                  {metric.delta}
+                </span>
+              </div>
+              <p className="mt-4 font-display text-3xl text-foreground">{metric.value}</p>
+              <p className="mt-1 text-xs font-medium text-muted-foreground">{metric.label}</p>
             </div>
-          </Card>
-        ))}
+          );
+        })}
       </div>
 
-      <Card className="space-y-4">
+      {/* Filters */}
+      <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card space-y-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative w-full max-w-xl">
-            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="SEARCH BY CLIENT, EMAIL, SITE..."
-              className="pl-12"
+              placeholder="Search by client, email, site..."
+              className="pl-10 h-10 bg-surface/30 text-sm"
             />
           </div>
-          <div className="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-4 xl:max-w-5xl">
+          <div className="grid w-full gap-3 md:grid-cols-2 xl:grid-cols-4 xl:max-w-5xl">
             <select
               aria-label="Filter by client"
               value={clientFilter}
               onChange={(event) => setClientFilter(event.target.value)}
-              className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All clients</option>
               {clientOptions.map((clientOption) => {
                 const [clientName, clientId] = clientOption.split('|||');
-
                 return (
                   <option key={clientId} value={clientId}>
                     {clientName}
@@ -142,7 +164,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by status"
               value={statusFilter}
               onChange={(event) => setStatusFilter(event.target.value as typeof statusFilter)}
-              className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All statuses</option>
               <option value="active">Active</option>
@@ -157,7 +179,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by site"
               value={siteFilter}
               onChange={(event) => setSiteFilter(event.target.value)}
-              className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All sites</option>
               {siteOptions.map((site) => (
@@ -170,7 +192,7 @@ export function AdminSessionsConsole({
               aria-label="Filter by subject"
               value={subjectFilter}
               onChange={(event) => setSubjectFilter(event.target.value)}
-              className="h-11 w-full appearance-none rounded-xl rounded-xl border border-border/40 bg-surface/30 px-4 py-2 text-xs font-medium text-black outline-none transition focus:border-accent focus:shadow-card cursor-pointer"
+              className="h-10 w-full appearance-none rounded-xl border border-border/40 bg-surface/30 px-3 py-2 text-sm text-foreground outline-none transition focus:border-accent focus:ring-1 focus:ring-accent/20 cursor-pointer"
             >
               <option value="all">All subjects</option>
               {subjectOptions.map((subject) => (
@@ -200,67 +222,68 @@ export function AdminSessionsConsole({
             </Button>
           ) : null}
         </div>
-      </Card>
+      </div>
 
+      {/* Table */}
       <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-sm border-collapse">
-            <thead className="bg-surface border-b-4 border-black">
+          <table className="min-w-full text-left text-sm">
+            <thead className="border-b border-border/60 bg-surface/50">
               <tr>
                 {['User', 'Site', 'Subject', 'Usage', 'Status', 'Signals', 'Actions'].map((column) => (
-                  <th key={column} className="px-5 py-4 font-medium text-black ">
+                  <th key={column} className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {column}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y-2 divide-border font-medium">
+            <tbody className="divide-y divide-border/40">
               {filteredSessions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-16 text-center text-muted-foreground font-medium bg-surface/50">
+                  <td colSpan={7} className="px-5 py-16 text-center text-sm text-muted-foreground bg-surface/20">
                     No sessions match the current filters.
                   </td>
                 </tr>
               ) : (
                 filteredSessions.map((session) => (
-                  <tr key={session.id} className="bg-background transition-colors hover:bg-accent/10 group">
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.userName}</p>
-                        <p className="text-[10px] font-mono font-bold tracking-wider text-muted-foreground/80">{session.userEmail}</p>
+                  <tr key={session.id} className="transition-colors hover:bg-surface/30 group">
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground">{session.userName}</p>
+                        <p className="text-xs text-muted-foreground">{session.userEmail}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.siteDomain}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{session.pageTitle}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground">{session.siteDomain}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-1">{session.pageTitle}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.subject}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
-                          {session.category ? `${session.category} category` : 'No category assigned'}
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-medium text-foreground">{session.subject}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {session.category ?? 'No category'}
                         </p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-display font-black text-lg text-foreground group-hover:text-black">{session.creditsUsed}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'} | ${session.startedAt}`}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="font-semibold text-foreground">{session.creditsUsed}</p>
+                        <p className="text-xs text-muted-foreground">{`${session.analyzeCount} analyze${session.analyzeCount === 1 ? '' : 's'} · ${session.startedAt}`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
+                    <td className="px-5 py-4 align-top">
                       <StatusBadge status={session.status} />
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="space-y-1">
-                        <p className="font-bold text-base text-foreground group-hover:text-black">{session.suspiciousFlag}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">{`${session.detectionMode} detection | ${session.noMatchCount} no-match event${session.noMatchCount === 1 ? '' : 's'}`}</p>
+                    <td className="px-5 py-4 align-top">
+                      <div className="space-y-0.5">
+                        <p className="text-sm text-foreground">{session.suspiciousFlag}</p>
+                        <p className="text-xs text-muted-foreground">{`${session.detectionMode} · ${session.noMatchCount} no-match`}</p>
                       </div>
                     </td>
-                    <td className="px-5 py-4 align-top border-r-2 border-border/50">
-                      <div className="flex flex-wrap gap-2">
+                    <td className="px-5 py-4 align-top">
+                      <div className="flex flex-wrap gap-1.5">
                         <Button size="sm" variant="secondary" onClick={() => setSelectedSessionId(session.id)}>
                           Quick View
                         </Button>
@@ -280,29 +303,33 @@ export function AdminSessionsConsole({
         </div>
       </div>
 
-      <Card className="space-y-6">
-        <div className="space-y-2">
-          <p className="text-sm font-medium text-foreground">Clients Without Sessions Yet</p>
-          <p className="text-xs font-medium text-muted-foreground">
-            These users are registered but have not started any billed extension session yet, so they will not appear in the session table above.
+      {/* Users Without Sessions */}
+      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card space-y-5">
+        <div className="space-y-1">
+          <p className="text-sm font-semibold text-foreground">Clients Without Sessions Yet</p>
+          <p className="text-xs text-muted-foreground">
+            These users are registered but have not started any billed extension session yet.
           </p>
         </div>
         {usersWithoutSessions.length === 0 ? (
-          <div className="border border-border/40 border-dashed bg-surface p-6 sm:p-12 text-center text-xs font-medium text-muted-foreground">
+          <div className="rounded-xl border border-dashed border-border/60 bg-surface/30 p-10 text-center text-sm text-muted-foreground">
             Every current client has at least one session record.
           </div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {usersWithoutSessions.map((user) => (
-              <div key={user.id} className="rounded-none rounded-xl border border-border/40 bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:translate-x-1 hover:shadow-card group cursor-default">
-                <p className="font-medium text-black/80 group-hover:text-black">{user.name}</p>
-                <p className="mt-1 text-xs font-mono font-bold text-black/60 group-hover:text-black/80">{user.email}</p>
-                <p className="mt-4 text-xs font-medium text-black/50 group-hover:text-black/80">{`Joined ${user.joinedAt}`}</p>
+              <div key={user.id} className="group rounded-2xl border border-border/40 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-muted-foreground">
+                  <Users className="h-4 w-4" />
+                </div>
+                <p className="font-medium text-foreground">{user.name}</p>
+                <p className="mt-0.5 text-xs text-muted-foreground">{user.email}</p>
+                <p className="mt-3 text-xs text-muted-foreground">{`Joined ${user.joinedAt}`}</p>
               </div>
             ))}
           </div>
         )}
-      </Card>
+      </div>
 
       <AdminSessionDrilldownDrawer
         session={selectedSession}
