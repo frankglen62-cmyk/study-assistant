@@ -26,7 +26,7 @@ export function MetricCard({
   }[tone];
 
   return (
-    <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover">
+    <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card transition-all duration-300 hover:shadow-card-hover">
       <p className="text-xs font-medium text-muted-foreground mb-3">{label}</p>
       <p className="text-2xl font-semibold text-foreground">{value}</p>
       <p className={`mt-3 text-xs font-medium flex items-center gap-1.5 ${toneColor}`}>

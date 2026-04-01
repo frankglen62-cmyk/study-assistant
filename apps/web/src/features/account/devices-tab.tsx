@@ -41,7 +41,7 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
   return (
     <div className="space-y-6">
       {/* Summary card */}
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex items-center gap-2.5 mb-5">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
             <Monitor className="h-4 w-4 text-accent" />
@@ -75,8 +75,8 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
             onClick={() => setFilter(f.id)}
             className={`flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
               filter === f.id
-                ? 'bg-white text-foreground shadow-soft-sm'
-                : 'text-muted-foreground hover:bg-white/50 hover:text-foreground'
+                ? 'bg-background text-foreground shadow-soft-sm'
+                : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
             }`}
           >
             {f.label}
@@ -98,7 +98,7 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
                   ? 'border-accent/30 bg-accent/5 ring-1 ring-accent/10'
                   : device.status === 'revoked'
                     ? 'border-border/30 bg-surface/30 opacity-60'
-                    : 'border-border/40 bg-white shadow-card'
+                    : 'border-border/40 bg-background shadow-card'
               }`}
             >
               <div className="flex items-start gap-4 min-w-0">

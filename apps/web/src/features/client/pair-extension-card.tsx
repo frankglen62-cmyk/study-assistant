@@ -104,7 +104,7 @@ export function PairExtensionCard({
   }
 
   return (
-    <div id={cardId} className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+    <div id={cardId} className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between gap-3 border-b border-border/40 px-6 py-4">
         <div className="flex items-center gap-3">
@@ -189,7 +189,7 @@ export function PairExtensionCard({
             </Button>
           </div>
 
-          <div className="relative rounded-xl border border-border/40 bg-white px-4 py-3 pr-12">
+          <div className="relative rounded-xl border border-border/40 bg-background px-4 py-3 pr-12">
             <p className={`font-mono ${hasPairingCode ? 'text-xl font-semibold tracking-wider text-foreground' : 'text-sm text-muted-foreground/40'}`}>
               {pairingCode ?? 'Not generated yet'}
             </p>

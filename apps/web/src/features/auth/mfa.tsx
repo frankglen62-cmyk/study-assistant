@@ -381,7 +381,7 @@ export function MfaSecurityCard() {
 
             <div className="mt-6 flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-14">
               <div className="flex shrink-0 flex-col items-center lg:items-start">
-                <div className="overflow-hidden rounded-3xl border border-border/70 bg-white p-4 inline-flex shadow-sm">
+                <div className="overflow-hidden rounded-3xl border border-border/70 bg-[#ffffff] p-4 inline-flex shadow-sm">
                   <img src={pendingEnrollment.qrCode} alt="Authenticator QR code" className="block h-52 w-52 object-contain" />
                 </div>
               </div>

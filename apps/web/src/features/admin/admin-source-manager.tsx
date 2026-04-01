@@ -1341,7 +1341,7 @@ export function AdminSourceManager({
           {!selectedRootFolder ? (
             <Card className="rounded-2xl border border-amber-200/60 shadow-card bg-amber-50/30">
               <CardContent className="space-y-4 pt-12 pb-12 text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl border border-border/40 bg-white text-foreground mb-6 shadow-soft-sm">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl border border-border/40 bg-background text-foreground mb-6 shadow-soft-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 20V8H4v12zM12 2v6"></path></svg>
                 </div>
                 <h3 className="font-display text-2xl font-semibold text-foreground">Subject folder not initialized</h3>

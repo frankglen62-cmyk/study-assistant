@@ -11,14 +11,14 @@ export function DataTable({
 }) {
   if (rows.length === 0) {
     return (
-      <div className="rounded-2xl border border-border/40 bg-white p-8 text-center text-sm text-muted-foreground shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-8 text-center text-sm text-muted-foreground shadow-card">
         {emptyMessage}
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border/40 bg-white shadow-card">
+    <div className="overflow-hidden rounded-2xl border border-border/40 bg-background shadow-card">
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>

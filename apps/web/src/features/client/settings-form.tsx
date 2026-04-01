@@ -79,7 +79,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
           <CardContent className="space-y-5">
             <FormField label="Answer style" error={errors.answerStyle?.message}>
               <select
-                className="h-11 w-full appearance-none rounded-xl border border-border bg-white px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer"
+                className="h-11 w-full appearance-none rounded-xl border border-border bg-background px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer"
                 {...register('answerStyle')}
               >
                 <option value="concise">Concise & direct</option>
@@ -88,7 +88,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
             </FormField>
             <FormField label="Default detection mode" error={errors.detectionMode?.message}>
               <select
-                className="h-11 w-full appearance-none rounded-xl border border-border bg-white px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer"
+                className="h-11 w-full appearance-none rounded-xl border border-border bg-background px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer"
                 {...register('detectionMode')}
               >
                 <option value="auto">Automatic (seamless)</option>
@@ -114,7 +114,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
             </CardHeader>
             <CardContent className="space-y-5">
               <FormField label="Theme" error={errors.theme?.message}>
-                <select className="h-11 w-full appearance-none rounded-xl border border-border bg-white px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer" {...register('theme')}>
+                <select className="h-11 w-full appearance-none rounded-xl border border-border bg-background px-4 py-2 text-sm text-foreground outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/20 cursor-pointer" {...register('theme')}>
                   <option value="system">System match</option>
                   <option value="light">Light mode</option>
                   <option value="dark">Dark mode</option>
@@ -145,7 +145,7 @@ export function ClientSettingsForm({ initialSettings }: { initialSettings: Clien
       </div>
 
       {/* Sticky Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-end gap-4 border-t border-border/40 bg-white/80 backdrop-blur-md px-6 py-4 shadow-soft-lg lg:left-[280px]">
+      <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-end gap-4 border-t border-border/40 bg-background/80 backdrop-blur-md px-6 py-4 shadow-soft-lg lg:left-[280px]">
         <p className="mr-auto text-xs text-muted-foreground hidden sm:block">
           Settings apply instantly to active sessions.
         </p>

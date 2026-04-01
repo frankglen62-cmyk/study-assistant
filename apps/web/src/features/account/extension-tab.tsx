@@ -14,7 +14,7 @@ export function ExtensionTab({
 }) {
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex items-center gap-2.5 mb-5">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
             <Package className="h-4 w-4 text-accent" />
@@ -48,7 +48,7 @@ export function ExtensionTab({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <h3 className="mb-2 text-sm font-semibold text-foreground flex items-center gap-2">
           <Monitor className="h-4 w-4 text-muted-foreground" />
           Quick Actions

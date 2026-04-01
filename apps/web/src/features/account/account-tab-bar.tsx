@@ -28,8 +28,8 @@ export function AccountTabBar({
           className={cn(
             'relative z-10 whitespace-nowrap rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200',
             activeTab === tab.id
-              ? 'bg-white text-foreground shadow-soft-sm'
-              : 'text-muted-foreground hover:bg-white/50 hover:text-foreground',
+              ? 'bg-background text-foreground shadow-soft-sm'
+              : 'text-muted-foreground hover:bg-background/50 hover:text-foreground',
           )}
         >
           {tab.label}

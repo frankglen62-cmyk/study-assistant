@@ -218,7 +218,7 @@ export function AdminUserSessionsAudit({
         </div>
       </Card>
 
-      <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+      <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm border-collapse">
             <thead className="border-b border-border/60 bg-surface/50">

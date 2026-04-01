@@ -32,6 +32,26 @@
     --radius-full: 9999px;
   }
 
+  .dark {
+    /* ─── Premium Dark Palette ─── */
+    --background: 220 16% 8%;           /* Deep charcoal */
+    --foreground: 40 10% 92%;           /* Warm white */
+    --surface: 220 14% 11%;             /* Elevated surface */
+    --surface-foreground: 40 10% 92%;
+    --muted: 220 12% 16%;              /* Dark muted */
+    --muted-foreground: 220 8% 56%;    /* Soft gray text */
+    --border: 220 12% 16%;             /* Subtle dark border */
+    --input: 220 12% 14%;
+    --ring: 152 44% 49%;               /* Same sage green */
+    --accent: 152 44% 49%;             /* Same sage green */
+    --accent-foreground: 0 0% 100%;
+    --success: 152 55% 48%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 14% 10%;
+    --danger: 0 72% 55%;
+    --danger-foreground: 0 0% 100%;
+  }
 
 
   * {

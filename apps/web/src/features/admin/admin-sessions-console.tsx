@@ -115,7 +115,7 @@ export function AdminSessionsConsole({
         {metrics.map((metric) => {
           const Icon = metricIcons[metric.label] ?? BarChart3;
           return (
-            <div key={metric.label} className="rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
+            <div key={metric.label} className="rounded-2xl border border-border/40 bg-background p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
               <div className="flex items-start justify-between">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
                   <Icon className="h-5 w-5 text-accent" />
@@ -132,7 +132,7 @@ export function AdminSessionsConsole({
       </div>
 
       {/* Filters */}
-      <div className="rounded-2xl border border-border/40 bg-white p-5 shadow-card space-y-4">
+      <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card space-y-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative w-full max-w-xl">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -225,7 +225,7 @@ export function AdminSessionsConsole({
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+      <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
             <thead className="border-b border-border/60 bg-surface/50">
@@ -304,7 +304,7 @@ export function AdminSessionsConsole({
       </div>
 
       {/* Users Without Sessions */}
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card space-y-5">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card space-y-5">
         <div className="space-y-1">
           <p className="text-sm font-semibold text-foreground">Clients Without Sessions Yet</p>
           <p className="text-xs text-muted-foreground">
@@ -318,7 +318,7 @@ export function AdminSessionsConsole({
         ) : (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {usersWithoutSessions.map((user) => (
-              <div key={user.id} className="group rounded-2xl border border-border/40 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div key={user.id} className="group rounded-2xl border border-border/40 bg-background p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-muted-foreground">
                   <Users className="h-4 w-4" />
                 </div>

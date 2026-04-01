@@ -19,7 +19,6 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
 
   const isAdmin = role === 'admin' || role === 'super_admin';
   const settingsHref = isAdmin ? '/admin/settings' : '/settings';
-  const accountHref = isAdmin ? '/admin/account' : '/account';
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -68,21 +67,13 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-52 origin-top-right rounded-2xl border border-border/60 bg-white p-1.5 shadow-soft-lg backdrop-blur z-50 animate-fade-in">
+        <div className="absolute right-0 top-full mt-2 w-52 origin-top-right rounded-2xl border border-border/60 bg-background p-1.5 shadow-soft-lg backdrop-blur z-50 animate-fade-in">
           <div className="px-3 py-2">
             <p className="text-sm font-medium text-foreground">My Account</p>
             <p className="text-xs text-muted-foreground capitalize">{role.replace('_', ' ')}</p>
           </div>
           <div className="my-1 h-px bg-border/60" />
           <div className="flex flex-col gap-0.5">
-            <Link
-              href={accountHref as any}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
-            >
-              <User className="h-4 w-4" />
-              Account
-            </Link>
             <Link
               href={settingsHref as any}
               onClick={() => setIsOpen(false)}
@@ -96,7 +87,7 @@ export function ProfileDropdown({ role }: { role: UserRole }) {
           <button
             type="button"
             onClick={handleLogout}
-            className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-danger transition-colors hover:bg-red-50"
+            className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-danger transition-colors hover:bg-danger/10"
           >
             <LogOut className="h-4 w-4" />
             Sign Out

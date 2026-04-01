@@ -42,7 +42,7 @@ export function AdminSessionDrilldownDrawer({
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm">
-      <div className="h-full w-full max-w-xl overflow-y-auto border-l border-border/40 bg-white p-6 shadow-soft-xl sm:p-10">
+      <div className="h-full w-full max-w-xl overflow-y-auto border-l border-border/40 bg-background p-6 shadow-soft-xl sm:p-10">
         {/* Header */}
         <div className="flex items-start justify-between gap-4 border-b border-border/40 pb-6">
           <div className="space-y-1">

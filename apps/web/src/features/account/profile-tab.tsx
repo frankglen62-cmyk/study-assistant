@@ -22,7 +22,7 @@ export function ProfileTab({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-xl font-semibold text-accent">
             {initials}
@@ -55,7 +55,7 @@ export function ProfileTab({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
         <h3 className="mb-4 text-sm font-semibold text-foreground flex items-center gap-2">
           <User className="h-4 w-4 text-muted-foreground" />
           Account Details

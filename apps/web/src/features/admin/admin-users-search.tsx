@@ -57,7 +57,7 @@ export function AdminUsersSearch({ users }: { users: UserRow[] }) {
       )}
 
       {/* Table */}
-      <div className="rounded-2xl border border-border/40 bg-white shadow-card overflow-hidden">
+      <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
             <thead className="border-b border-border/60 bg-surface/50">

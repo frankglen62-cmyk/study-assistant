@@ -13,7 +13,6 @@ export const clientNavItems: NavItem[] = [
   { href: '/buy-credits', label: 'Buy Credits', iconName: 'buy_credits' },
   { href: '/usage-logs', label: 'Usage Logs', iconName: 'usage_logs' },
   { href: '/settings', label: 'Settings', iconName: 'settings' },
-  { href: '/account', label: 'Account', iconName: 'account' },
   { href: '/extension-guide', label: 'Extension Guide', iconName: 'extension_guide' },
 ];
 
@@ -27,6 +26,5 @@ export const adminNavItems: NavItem[] = [
   { href: '/admin/sessions', label: 'Sessions', iconName: 'sessions' },
   { href: '/admin/reports', label: 'Reports', iconName: 'reports' },
   { href: '/admin/audit-logs', label: 'Audit Logs', iconName: 'audit_logs' },
-  { href: '/admin/account', label: 'Account', iconName: 'account' },
   { href: '/admin/settings', label: 'Settings', iconName: 'settings' },
 ];

@@ -20,7 +20,7 @@ export function SettingRow({
   className?: string;
 }) {
   return (
-    <div className={cn('rounded-xl border border-border/40 bg-white p-5', className)}>
+    <div className={cn('rounded-xl border border-border/40 bg-background p-5', className)}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4 min-w-0">
           {icon ? (
