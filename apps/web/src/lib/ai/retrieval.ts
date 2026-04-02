@@ -273,15 +273,45 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
     return 0;
   }
 
+  // ── Tiered scoring for duplicate-question disambiguation ──────────────
+  // When two Q&A pairs share the same question text but have different
+  // answers, the pair whose answer EXACTLY matches a visible choice must
+  // rank higher than a pair whose answer only partially matches.
+  const normalizedAnswer = normalizeComparableText(answerText);
+
+  if (normalizedAnswer) {
+    const normalizedOpts = options.map((o) => normalizeComparableText(o)).filter(Boolean);
+
+    // Tier 1: exact full-answer text matches a choice → 1.0
+    if (normalizedOpts.some((no) => no === normalizedAnswer)) {
+      return 1.0;
+    }
+
+    // Tier 2: near-exact containment (high length ratio) → 0.96
+    for (const no of normalizedOpts) {
+      const shorter = Math.min(no.length, normalizedAnswer.length);
+      const longer = Math.max(no.length, normalizedAnswer.length);
+      if (
+        shorter > 0 &&
+        longer > 0 &&
+        shorter / longer >= 0.85 &&
+        (no.includes(normalizedAnswer) || normalizedAnswer.includes(no))
+      ) {
+        return 0.96;
+      }
+    }
+  }
+
+  // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.82
   if (resolveSuggestedOption(options, answerText)) {
-    return 1;
+    return 0.82;
   }
 
   const multiSegments = splitMultiAnswerSegments(answerText);
   if (multiSegments.length >= 2) {
     const matchedSegments = multiSegments.filter((segment) => Boolean(resolveSuggestedOption(options, segment))).length;
     if (matchedSegments > 0) {
-      return matchedSegments / multiSegments.length;
+      return (matchedSegments / multiSegments.length) * 0.75;
     }
   }
 
@@ -294,6 +324,7 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
     ),
   );
 }
+
 
 function lexicalScore(queryText: string, chunkText: string) {
   const queryTokens = Array.from(new Set(tokenize(queryText))).filter((token) => token.length >= 2);

@@ -324,8 +324,9 @@ function resolveQuestionSuggestionFromPreloaded(params: {
     if (suggestion.suggestedOption) {
       // This QA pair's answer maps to a real choice on the page — strong candidate
       if (!bestWithOption) bestWithOption = suggestion;
-      // Exact match in the options list — use immediately
-      if (optionText.includes(suggestion.suggestedOption)) {
+      // Exact match in the options list — use immediately (case-insensitive)
+      const suggestedLower = suggestion.suggestedOption.toLowerCase();
+      if (optionText.some((o) => o.toLowerCase() === suggestedLower || normalizeComparableText(o) === normalizeComparableText(suggestion.suggestedOption!))) {
         return suggestion;
       }
     } else if (hasOptions) {

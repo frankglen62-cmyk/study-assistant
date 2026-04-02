@@ -227,6 +227,34 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
     }
   }
 
+  // ── Direct full-answer match (BEFORE multi-segment splitting) ────────
+  // When an answer like "SAN Management, RAID Arrays and Tape drives" is
+  // itself one of the available choices, the multi-segment split logic
+  // would incorrectly return null because each comma/and-separated segment
+  // also matches individual choices. Check for exact and near-exact
+  // full-answer matches first to prevent this false negative.
+  for (const option of parsedOptions) {
+    if (option.normalizedText === normalizedAnswer || option.normalizedRaw === normalizedAnswer) {
+      return option.display;
+    }
+  }
+
+  // Near-exact containment: answer and choice are essentially the same text.
+  // Require high length similarity (>= 85%) so a short answer like
+  // "SAN Management" doesn't accidentally match a long choice.
+  for (const option of parsedOptions) {
+    const shorterLen = Math.min(option.normalizedText.length, normalizedAnswer.length);
+    const longerLen = Math.max(option.normalizedText.length, normalizedAnswer.length);
+    if (
+      shorterLen > 0 &&
+      longerLen > 0 &&
+      shorterLen / longerLen >= 0.85 &&
+      (option.normalizedText.includes(normalizedAnswer) || normalizedAnswer.includes(option.normalizedText))
+    ) {
+      return option.display;
+    }
+  }
+
   const multiAnswerSegments = splitMultiAnswerSegments(answerText);
   if (multiAnswerSegments.length >= 2) {
     const matchedSegments = multiAnswerSegments
