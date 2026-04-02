@@ -17,6 +17,7 @@ import {
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
   RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft, Clock, Pause, Square,
+  Moon, Sun,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -262,9 +263,30 @@ export function SidePanelApp() {
     message: 'Enter your portal URL, request connection permission, then paste the short-lived pairing code.',
   });
   const [pairingJustCompleted, setPairingJustCompleted] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
+
+  // ─── Theme persistence via chrome.storage ───
+  useEffect(() => {
+    chrome.storage.local.get(['sa_theme'], (result) => {
+      const savedTheme = result.sa_theme as 'dark' | 'light' | undefined;
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        setTheme(savedTheme);
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    chrome.storage.local.set({ sa_theme: theme });
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+  }
 
   useEffect(() => {
     if (!state) return;
@@ -834,10 +856,18 @@ export function SidePanelApp() {
           <div className="panel-hero__logo">
             <img src="../../brand/study-assistant-crest.svg" alt="" />
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <p className="panel-hero__eyebrow">Study Assistant</p>
             <h1>{isPaired ? (manualSubject || cachedSubject || 'Ready') : 'Pair This Browser'}</h1>
           </div>
+          <button
+            type="button"
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
         </div>
 
         {isPaired ? (

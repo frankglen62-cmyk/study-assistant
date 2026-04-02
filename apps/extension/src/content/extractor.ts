@@ -1490,7 +1490,7 @@ export function installExtractorContentScript() {
       .toLowerCase()
       .replace(/^[a-e]\.\s*/i, '') // strip choice prefix like "a. ", "b. "
       .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
-      .replace(/[^\p{L}\p{N}\s.,+\-%=]/gu, '')
+      .replace(/[^\p{L}\p{N}\s.,+\-%=#*@]/gu, '') // preserve # * @ for C#, C++, etc
       .replace(/\s+/g, ' ')
       .trim();
   }
@@ -1725,22 +1725,25 @@ export function installExtractorContentScript() {
             break;
           }
 
-          // Contains match
+          // Contains match — only accept if the ratio is strong (≥ 80%)
           if (normalizedOpt.includes(normalizedDropdownAnswer) || normalizedDropdownAnswer.includes(normalizedOpt)) {
-            if (0.9 > bestScore) {
+            const shorter = Math.min(normalizedOpt.length, normalizedDropdownAnswer.length);
+            const longer = Math.max(normalizedOpt.length, normalizedDropdownAnswer.length);
+            const ratio = longer > 0 ? shorter / longer : 0;
+            if (ratio >= 0.8 && 0.9 > bestScore) {
               bestOption = opt;
               bestScore = 0.9;
               bestMethod = 'dropdown_contains';
             }
           }
 
-          // Word fuzzy match
+          // Word fuzzy match — strict threshold
           const targetWords = normalizedDropdownAnswer.split(/\s+/).filter(w => w.length > 2);
           if (targetWords.length > 0) {
             const optWords = new Set(normalizedOpt.split(/\s+/));
             const matchCount = targetWords.filter(w => optWords.has(w)).length;
             const score = matchCount / targetWords.length;
-            if (score > bestScore && score >= 0.5) {
+            if (score > bestScore && score >= 0.8) {
               bestOption = opt;
               bestScore = score;
               bestMethod = 'dropdown_fuzzy';
@@ -1859,28 +1862,45 @@ export function installExtractorContentScript() {
       return { clicked: false, clickedText: null, matchMethod: 'no_clickables_found' };
     }
 
-    // Match priority: exact → normalized exact → starts with → contains → fuzzy
+    // Match priority: raw exact → normalized exact → lowercase → strict starts_with → strict contains → strict fuzzy
+    // STRICT MATCHING: For multiple choice, only accept a match if there's a strong
+    // correspondence. If no good match exists, SKIP the question instead of guessing.
     function findBestClickableForText(matchText: string) {
       const normalizedMatch = normalizeForMatch(matchText);
       const lowerMatch = matchText.trim().toLowerCase();
+      // Raw trimmed text preserving all original characters (for C#, C++ matching)
+      const rawTrimmed = matchText.trim();
 
-      if (!normalizedMatch) {
+      if (!normalizedMatch && !rawTrimmed) {
         return { bestMatch: null as (typeof filteredClickables)[number] | null, matchMethod: 'empty' };
       }
 
       let bestMatch: (typeof filteredClickables)[number] | null = null;
       let matchMethod = 'none';
 
-      // 1. Exact normalized match
+      // 0. RAW exact match (case-insensitive, preserves special chars like C#, C++)
+      // This is critical for short answers with special characters
       for (const c of filteredClickables) {
-        if (c.normalized === normalizedMatch) {
+        const rawChoiceText = c.text.replace(/^[a-e]\.\s*/i, '').replace(/^\d+\.\s*/, '').trim();
+        if (rawChoiceText.toLowerCase() === rawTrimmed.toLowerCase()) {
           bestMatch = c;
-          matchMethod = 'exact';
+          matchMethod = 'raw_exact';
           break;
         }
       }
 
-    // 2. Lowercase trimmed match
+      // 1. Exact normalized match
+      if (!bestMatch) {
+        for (const c of filteredClickables) {
+          if (c.normalized === normalizedMatch) {
+            bestMatch = c;
+            matchMethod = 'exact';
+            break;
+          }
+        }
+      }
+
+      // 2. Lowercase trimmed match
       if (!bestMatch) {
         for (const c of filteredClickables) {
           if (c.text.trim().toLowerCase() === lowerMatch) {
@@ -1891,29 +1911,41 @@ export function installExtractorContentScript() {
         }
       }
 
-    // 3. Target starts with choice text or choice starts with target
+      // 3. Strict starts_with — only accept if overlap ratio is ≥ 80%
+      // Prevents "SAN Management" from matching "SAN Management, RAID Arrays and Tape drives"
       if (!bestMatch) {
         for (const c of filteredClickables) {
           if (normalizedMatch.startsWith(c.normalized) || c.normalized.startsWith(normalizedMatch)) {
-            bestMatch = c;
-            matchMethod = 'starts_with';
-            break;
+            const shorter = Math.min(normalizedMatch.length, c.normalized.length);
+            const longer = Math.max(normalizedMatch.length, c.normalized.length);
+            const ratio = longer > 0 ? shorter / longer : 0;
+            if (ratio >= 0.8) {
+              bestMatch = c;
+              matchMethod = 'starts_with';
+              break;
+            }
           }
         }
       }
 
-    // 4. Contains match
+      // 4. Strict contains — only accept if the contained portion covers ≥ 80% of the containing text
       if (!bestMatch) {
         for (const c of filteredClickables) {
           if (c.normalized.includes(normalizedMatch) || normalizedMatch.includes(c.normalized)) {
-            bestMatch = c;
-            matchMethod = 'contains';
-            break;
+            const shorter = Math.min(normalizedMatch.length, c.normalized.length);
+            const longer = Math.max(normalizedMatch.length, c.normalized.length);
+            const ratio = longer > 0 ? shorter / longer : 0;
+            if (ratio >= 0.8) {
+              bestMatch = c;
+              matchMethod = 'contains';
+              break;
+            }
           }
         }
       }
 
-      // 5. Word-level fuzzy: check if most words in target appear in choice
+      // 5. Strict fuzzy: require ≥ 85% word overlap for radio/multiple-choice
+      // This prevents selecting a partial match (e.g. only first few words match)
       if (!bestMatch) {
         const targetWords = normalizedMatch.split(/\s+/).filter((word) => word.length > 2);
         let bestScore = 0;
@@ -1923,8 +1955,16 @@ export function installExtractorContentScript() {
           const matchCount = targetWords.filter((word) => choiceWords.has(word)).length;
           const score = targetWords.length > 0 ? matchCount / targetWords.length : 0;
 
-          if (score > bestScore && score >= 0.6) {
-            bestScore = score;
+          // Also check reverse: what fraction of choice words appear in the target
+          const choiceWordsList = c.normalized.split(/\s+/).filter((w) => w.length > 2);
+          const reverseMatches = choiceWordsList.filter((w) => normalizedMatch.includes(w)).length;
+          const reverseScore = choiceWordsList.length > 0 ? reverseMatches / choiceWordsList.length : 0;
+
+          // Both directions must be strong to accept a fuzzy match
+          const combinedScore = Math.min(score, reverseScore);
+
+          if (combinedScore > bestScore && combinedScore >= 0.85) {
+            bestScore = combinedScore;
             bestMatch = c;
             matchMethod = 'fuzzy';
           }

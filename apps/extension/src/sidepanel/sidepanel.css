@@ -1,6 +1,7 @@
 /* ================================================================
-   Study Assistant v0.1.57 — Webapp-Matched Premium Sidepanel
+   Study Assistant v0.1.58 — Webapp-Matched Premium Sidepanel
    Design tokens aligned with the web app's Tailwind config
+   Supports dark (default) and light themes via [data-theme]
    ================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -54,6 +55,107 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   font-size: 13px;
   line-height: 1.5;
+}
+
+/* ================================================================
+   Light Theme — Webapp-Matched Light Palette
+   Activated via [data-theme="light"] on <html>
+   ================================================================ */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --sa-bg: hsl(40, 15%, 97%);
+  --sa-surface: hsl(0, 0%, 100%);
+  --sa-surface-2: hsl(40, 10%, 95%);
+  --sa-surface-3: hsl(40, 8%, 91%);
+  --sa-border: hsl(40, 8%, 88%);
+  --sa-border-2: hsl(40, 8%, 85%);
+  --sa-fg: hsl(220, 20%, 14%);
+  --sa-fg-2: hsl(220, 12%, 30%);
+  --sa-muted: hsl(220, 8%, 50%);
+
+  --sa-accent: hsl(152, 44%, 42%);
+  --sa-accent-2: hsl(152, 50%, 36%);
+  --sa-accent-bg: hsla(152, 44%, 42%, 0.08);
+
+  --sa-green: hsl(152, 55%, 38%);
+  --sa-green-bg: hsla(152, 55%, 38%, 0.06);
+  --sa-green-border: hsla(152, 55%, 38%, 0.18);
+  --sa-yellow: hsl(38, 85%, 48%);
+  --sa-yellow-bg: hsla(38, 85%, 48%, 0.06);
+  --sa-yellow-border: hsla(38, 85%, 48%, 0.18);
+  --sa-red: hsl(0, 72%, 50%);
+  --sa-red-bg: hsla(0, 72%, 50%, 0.06);
+  --sa-red-border: hsla(0, 72%, 50%, 0.18);
+  --sa-purple: #9333ea;
+  --sa-purple-bg: rgba(147, 51, 234, 0.06);
+
+  --sa-shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+  --sa-shadow-hover: 0 6px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03);
+  --sa-shadow-soft: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+}
+
+/* Light-mode overrides for elements using hardcoded dark colors */
+[data-theme="light"] .panel-hero__logo {
+  background: hsla(0, 0%, 100%, 0.96);
+}
+
+[data-theme="light"] .workspace-switcher__buttons {
+  background: hsla(0, 0%, 0%, 0.04);
+}
+
+[data-theme="light"] .pairing-code-spotlight {
+  border-color: hsla(152, 44%, 42%, 0.2);
+  background: linear-gradient(180deg, hsla(152, 44%, 42%, 0.04), hsla(152, 44%, 42%, 0.01));
+}
+
+[data-theme="light"] .pairing-code-spotlight__step {
+  background: hsla(40, 15%, 97%, 0.7);
+}
+
+[data-theme="light"] .pairing-field--code input {
+  border-color: hsla(152, 44%, 42%, 0.3);
+  background: hsla(0, 0%, 100%, 0.6);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .result-card__header:hover {
+  background: hsla(0, 0%, 0%, 0.02);
+}
+
+[data-theme="light"] .action-button--primary {
+  color: #fff;
+}
+
+[data-theme="light"] .action-button--danger {
+  color: #fff;
+}
+
+[data-theme="light"] .panel-card--primary {
+  border-color: hsla(152, 44%, 42%, 0.15);
+  background: linear-gradient(180deg, var(--sa-surface), hsla(152, 44%, 42%, 0.02));
+}
+
+/* ─── Theme toggle button ─── */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sa-radius-sm);
+  border: 1px solid var(--sa-border);
+  background: var(--sa-surface-2);
+  color: var(--sa-muted);
+  cursor: pointer;
+  transition: all var(--sa-transition);
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--sa-fg);
+  background: var(--sa-surface-3);
+  border-color: hsla(220, 8%, 56%, 0.3);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

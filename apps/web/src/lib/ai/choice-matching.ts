@@ -22,7 +22,7 @@ function normalizeBlankMarkers(value: string) {
 export function normalizeComparableText(value: string) {
   return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(value))))
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s.,+\-%=_]+/gu, ' ')
+    .replace(/[^\p{L}\p{N}\s.,+\-%=_#*@]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -259,7 +259,7 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
     }))
     .sort((left, right) => right.score - left.score)[0];
 
-  if (!bestOption || bestOption.score < 0.2) {
+  if (!bestOption || bestOption.score < 0.65) {
     return null;
   }
 
