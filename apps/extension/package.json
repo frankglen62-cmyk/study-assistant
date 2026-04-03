@@ -1,7 +1,7 @@
 {
   "name": "@study-assistant/extension",
   "private": true,
-  "version": "0.1.63",
+  "version": "0.1.64",
   "description": "Chrome extension for Admin-Managed Study Assistant",
   "type": "module",
   "scripts": {

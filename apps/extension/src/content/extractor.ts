@@ -270,7 +270,12 @@ export function installExtractorContentScript() {
   function extractOptionLabel(input: Element): string {
     const id = input.getAttribute('id');
     if (id) {
-      const label = document.querySelector(`label[for="${id}"]`);
+      let label: Element | null = null;
+      try {
+        label = document.querySelector(`label[for="${CSS.escape(id)}"]`) ?? document.querySelector(`label[for="${id}"]`);
+      } catch {
+        // Ignore invalid selectors
+      }
       if (label && isElementVisible(label)) {
         // Clone the label and strip hidden accessibility text AND review-page
         // feedback elements before reading, otherwise Moodle's ".accesshide"
@@ -282,12 +287,44 @@ export function installExtractorContentScript() {
       }
     }
 
+    const ariaLabelledBy = input.getAttribute('aria-labelledby');
+    if (ariaLabelledBy) {
+      // aria-labelledby can have multiple IDs separated by space
+      const ids = ariaLabelledBy.split(/\s+/).filter(Boolean);
+      for (const labelId of ids) {
+        let labelEl: Element | null = null;
+        try {
+          labelEl = document.getElementById(labelId);
+        } catch {
+          // Ignore
+        }
+        if (labelEl && isElementVisible(labelEl)) {
+          const clone = labelEl.cloneNode(true) as HTMLElement;
+          clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+          const text = normalizeText(clone.textContent ?? '');
+          if (text) return text;
+        }
+      }
+    }
+
     const wrapped = input.closest('label');
     if (wrapped) {
       const clone = wrapped.cloneNode(true) as HTMLElement;
       clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
       return normalizeText(clone.textContent ?? '');
     }
+
+    // Last resort: scan the input's immediate parent for text, common in custom Moodle themes
+    const parent = input.parentElement;
+    if (parent && isElementVisible(parent)) {
+      const clone = parent.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+      // Remove the input itself from the clone so we don't accidentally read its value
+      clone.querySelectorAll('input').forEach(el => el.remove());
+      const text = normalizeText(clone.textContent ?? '');
+      if (text) return text;
+    }
+
     return '';
   }
 
@@ -298,6 +335,8 @@ export function installExtractorContentScript() {
       .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, '')
       // Strip 'Correct'/'Incorrect' feedback text that leaks into labels
       .replace(/\b(?:Your answer is (?:correct|incorrect)\.?|Correct\.?|Incorrect\.?|Partially correct\.?)\b/gi, '')
+      .replace(/^[a-e]\.\s*/i, '') // strip choice prefix like "a. ", "b. "
+      .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
       .replace(/\s+/g, ' ')
       .trim();
   }

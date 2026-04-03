@@ -933,17 +933,24 @@ When continuing work on this project, the next AI agent should:
    - confirm Q&A exists in `subject_qa_pairs`
    - confirm visible choice mapping is correct
 
-## 20. CRITICAL: Moodle Review Pages & Global Choice Fallback
+## 20. CRITICAL: Moodle / AmaOEd Structure & Global Choice Fallback
 
-A major bug was resolved where "Duplicate Questions" with different choices were incorrectly disambiguated during the Moodle "Attempt review" page.
+A major bug was resolved where "Duplicate Questions" with different choices were incorrectly disambiguated during the Moodle "Attempt review" page. Future AI MUST understand the DOM structure of AmaOEd/Moodle:
 
-**The DOM Issue:**
-- In normal Moodle quizzes, the question text (`.qtext`) and choices (`input[type="radio"]`) are inside the same container. The extension extracts them as `candidate.options`.
-- In Moodle **"Attempt review"** pages, the DOM separates the question text and the choices (`.ablock`) into completely different parent elements. The extension extracts the question text, but `candidate.options` becomes empty `[]`.
+**The Moodle DOM Architecture:**
+1. Every question box is wrapped in a main container: `<div class="que">`.
+2. Inside `.que` is `<div class="content">`, which holds `<div class="formulation">`.
+3. Inside `.formulation`, the actual question prompt is inside `<div class="qtext">`.
+4. The choices (A, B, C, D) are separated into a sibling `<div class="ablock">` containing `<div class="answer">`.
+5. Each individual radio button choice is inside `<div class="r0">` or `<div class="r1">`.
+
+**The DOM Extraction Issue:**
+- In normal active quizzes, inputs are reachable, but in **"Attempt review"** pages, radio buttons have `disabled="disabled"` and extracting the `.qtext` separately from `ablock` causes the localized `candidate.options` to return empty `[]`.
+- If `candidate.options` is empty, the Vercel backend's "Choice-Aware Disambiguation" logic will assign a `0.0` score to all duplicate questions, and fall back to whatever order the database returned, causing WRONG answers.
 
 **The Solution:**
-- The extension's `extractOptions()` scans the entire document as a fallback, so `pageSignals.options` (the global list) DOES contain the correct options.
-- The Vercel Backend (`apps/web/src/lib/ai/analyze.ts`) has a strict fallback:
+- The extension's `extractOptions()` scans the entire document as a fallback, meaning `pageSignals.options` (the global page list) DOES contain the correct options even if local extraction fails.
+- The Vercel Backend (`apps/web/src/lib/ai/analyze.ts`) integrates this strict fallback:
   ```typescript
   const optionText = params.candidate.options.length > 0 ? params.candidate.options : params.globalOptions;
   ```
