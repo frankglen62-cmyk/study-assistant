@@ -933,28 +933,31 @@ When continuing work on this project, the next AI agent should:
    - confirm Q&A exists in `subject_qa_pairs`
    - confirm visible choice mapping is correct
 
-## 20. CRITICAL: Moodle / AmaOEd Structure & Global Choice Fallback
+## 20. CRITICAL: Moodle / AmaOEd Structure (Attempt Review vs. Live Exam)
 
-A major bug was resolved where "Duplicate Questions" with different choices were incorrectly disambiguated during the Moodle "Attempt review" page. Future AI MUST understand the DOM structure of AmaOEd/Moodle:
+A major bug was resolved where "Duplicate Questions" with different choices were incorrectly disambiguated. Future AI MUST understand the DOM structure of AmaOEd/Moodle and the difference between "Attempt Review" and "Live Quizzes".
 
 **The Moodle DOM Architecture:**
 1. Every question box is wrapped in a main container: `<div class="que">`.
 2. Inside `.que` is `<div class="content">`, which holds `<div class="formulation">`.
 3. Inside `.formulation`, the actual question prompt is inside `<div class="qtext">`.
 4. The choices (A, B, C, D) are separated into a sibling `<div class="ablock">` containing `<div class="answer">`.
-5. Each individual radio button choice is inside `<div class="r0">` or `<div class="r1">`.
 
-**The DOM Extraction Issue:**
-- In normal active quizzes, inputs are reachable, but in **"Attempt review"** pages, radio buttons have `disabled="disabled"` and extracting the `.qtext` separately from `ablock` causes the localized `candidate.options` to return empty `[]`.
-- If `candidate.options` is empty, the Vercel backend's "Choice-Aware Disambiguation" logic will assign a `0.0` score to all duplicate questions, and fall back to whatever order the database returned, causing WRONG answers.
+**The Differences & Extraction Issues:**
+- **Attempt Review Pages:** Radio buttons have `disabled="disabled"`. Sometimes extracting `.qtext` separately from `ablock` caused the localized `candidate.options` to return empty `[]`.
+- **Live Quizzes:** Moodle assigns inputs with colons in the IDs, e.g. `q94106:20_answer0`. Passing this to `document.querySelector('label[for="q94106:20_answer0"]')` will throw a `SyntaxError: Invalid Selector` DOMException because colons signify pseudo-classes in CSS.
+- **Missing Labels:** In live quizzes, Moodle often drops the `<label>` tag entirely and replaces it with a structurally detached `<div aria-labelledby="id">` or sibling `div` elements.
 
-**The Solution:**
-- The extension's `extractOptions()` scans the entire document as a fallback, meaning `pageSignals.options` (the global page list) DOES contain the correct options even if local extraction fails.
-- The Vercel Backend (`apps/web/src/lib/ai/analyze.ts`) integrates this strict fallback:
-  ```typescript
-  const optionText = params.candidate.options.length > 0 ? params.candidate.options : params.globalOptions;
-  ```
-- **LESSON:** Future agents MUST respect this fallback. Do not rely solely on `candidate.options` if DOM traversal fails. Use the global `pageSignals.options` as a safety net when checking choice alignments.
+**The Crash Impact:**
+- When `extractOptions` fails due to the DOMException or missing labels, `candidate.options` resolves to an EMPTY ARRAY `[]`.
+- If `candidate.options` is empty, the Vercel backend (`hasChoices = false`) cannot use Choice-Aware Disambiguation and drops all Choice Scores to `0.0`.
+- The backend defaults to ranking answers by their Database `updated_at` (Newest wins), ignoring actual on-screen choices and providing incorrect answers.
+
+**The Solution Implemented:**
+- `extractor.ts` now uses `CSS.escape(id)` to prevent DOM crashes when extracting `label[for=""]`.
+- The extractor explicitly uses `input.getAttribute('aria-labelledby')` and immediate parent fallbacks to parse text successfully without needing `<label>` wrapper tags.
+- `cleanOptionLabel()` strictly strips `"a. "`, `"b. "`, `"1. "` prefixes to guarantee that extracted on-screen options are EXACT string matches with the normalized options saved in the database, allowing for a pure 1.0 Choice Match ranking.
+- **LESSON:** Future agents MUST preserve `CSS.escape()` and `aria-labelledby` extractions. If `TP-Heavy` misses its context again, check if `cleanOptionLabel` actually stripped out unwanted HTML elements or artifacts like "Correct/Incorrect" and letter prefixes.
 
 ## 21. CRITICAL: Vercel Deployment & Code Verification Rules
 
