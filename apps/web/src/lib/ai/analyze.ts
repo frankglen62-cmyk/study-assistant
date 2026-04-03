@@ -312,40 +312,86 @@ function resolveQuestionSuggestionFromPreloaded(params: {
     ? `Matched ${rankedPairs.length} stored answer pair${rankedPairs.length === 1 ? '' : 's'} in ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`
     : `No matching subject answer pairs were found for ${params.subjectName}${params.category ? ` / ${params.category.name}` : ''}.`;
 
-  // Check more candidates so we can skip wrong-option matches
+  // ── Explicit choice-aware disambiguation for duplicate questions ──────
+  // When the same question text appears multiple times in the database with
+  // different answers, we MUST pick the answer that matches a visible choice
+  // on the current page. This is the definitive disambiguation mechanism.
   const topPairs = rankedPairs.slice(0, 12);
-  let bestWithOption: ExtensionQuestionSuggestion | null = null;
-  let bestWithoutOption: ExtensionQuestionSuggestion | null = null;
 
-  for (const pair of topPairs) {
+  // Helper: score how well an answer text matches the visible choices (0–1).
+  // 1.0 = exact match to a choice, 0.9+ = near-exact, 0 = no match.
+  function scoreAnswerChoiceAlignment(answerText: string): number {
+    if (!hasOptions) return 0;
+    const normAnswer = normalizeComparableText(answerText);
+    if (!normAnswer) return 0;
+    const normOpts = optionText
+      .map((o) => normalizeComparableText(o))
+      .filter(Boolean);
+
+    // Exact match
+    if (normOpts.some((no) => no === normAnswer)) return 1.0;
+
+    // Near-exact containment (high length ratio)
+    for (const no of normOpts) {
+      const shorter = Math.min(no.length, normAnswer.length);
+      const longer = Math.max(no.length, normAnswer.length);
+      if (
+        shorter > 0 &&
+        longer > 0 &&
+        shorter / longer >= 0.80 &&
+        (no.includes(normAnswer) || normAnswer.includes(no))
+      ) {
+        return 0.92;
+      }
+    }
+
+    // Weak partial match (answer partially overlaps a choice)
+    return 0;
+  }
+
+  // Build suggestions for ALL top pairs, then pick the best one
+  type ScoredSuggestion = {
+    suggestion: ExtensionQuestionSuggestion;
+    choiceScore: number;
+    pairIndex: number;
+  };
+  const scoredSuggestions: ScoredSuggestion[] = [];
+
+  for (let i = 0; i < topPairs.length; i++) {
+    const pair = topPairs[i]!;
     const suggestion = buildQaSuggestion(pair, retrievalStatus, 'subject_folder');
     if (!suggestion) continue;
 
-    if (suggestion.suggestedOption) {
-      // This QA pair's answer maps to a real choice on the page — strong candidate
-      if (!bestWithOption) bestWithOption = suggestion;
-      // Exact match in the options list — use immediately (case-insensitive)
-      const suggestedLower = suggestion.suggestedOption.toLowerCase();
-      if (optionText.some((o) => o.toLowerCase() === suggestedLower || normalizeComparableText(o) === normalizeComparableText(suggestion.suggestedOption!))) {
-        return suggestion;
-      }
-    } else if (hasOptions) {
-      // Answer doesn't map to any choice — keep as fallback only
-      if (!bestWithoutOption) bestWithoutOption = suggestion;
-    } else {
-      // No choices on the page — any answer is valid
-      if (!bestWithOption) bestWithOption = suggestion;
+    const choiceScore = scoreAnswerChoiceAlignment(pair.answer_text);
+    scoredSuggestions.push({ suggestion, choiceScore, pairIndex: i });
+  }
+
+  if (hasOptions && scoredSuggestions.length > 0) {
+    // Sort by choice alignment score (descending), then by original rank
+    scoredSuggestions.sort((a, b) => {
+      if (b.choiceScore !== a.choiceScore) return b.choiceScore - a.choiceScore;
+      return a.pairIndex - b.pairIndex;
+    });
+
+    // Pick the best choice-aligned suggestion
+    const best = scoredSuggestions[0]!;
+    if (best.suggestion.suggestedOption || best.choiceScore > 0) {
+      return best.suggestion;
     }
+
+    // If nothing has good choice alignment, fall back to first with suggestedOption
+    const firstWithOption = scoredSuggestions.find((s) => s.suggestion.suggestedOption);
+    if (firstWithOption) return firstWithOption.suggestion;
+
+    // Last resort: first available suggestion
+    return scoredSuggestions[0]!.suggestion;
   }
 
-  // Prefer suggestions that map to an actual choice
-  if (bestWithOption) {
-    return bestWithOption;
-  }
-
-  // Fallback: return the best no-option match if nothing else worked
-  if (bestWithoutOption) {
-    return bestWithoutOption;
+  // No choices on the page — just use the top-ranked pair
+  if (scoredSuggestions.length > 0) {
+    const firstWithOption = scoredSuggestions.find((s) => s.suggestion.suggestedOption);
+    if (firstWithOption) return firstWithOption.suggestion;
+    return scoredSuggestions[0]!.suggestion;
   }
 
   return buildNoMatchQuestionSuggestion({

@@ -248,7 +248,7 @@ function rankQaPairRows(params: {
       (left, right) =>
         right.similarity - left.similarity ||
         scoreBlankStructureAlignment(params.queryText, right.question_text) -
-          scoreBlankStructureAlignment(params.queryText, left.question_text) ||
+        scoreBlankStructureAlignment(params.queryText, left.question_text) ||
         Number(Boolean(right.category_id)) - Number(Boolean(left.category_id)) ||
         new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime(),
     );
@@ -302,16 +302,18 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
     }
   }
 
-  // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.82
+  // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.35
+  // Intentionally LOW so that exact matches (1.0) dominate when the same
+  // question appears with different answer sets in the database.
   if (resolveSuggestedOption(options, answerText)) {
-    return 0.82;
+    return 0.35;
   }
 
   const multiSegments = splitMultiAnswerSegments(answerText);
   if (multiSegments.length >= 2) {
     const matchedSegments = multiSegments.filter((segment) => Boolean(resolveSuggestedOption(options, segment))).length;
     if (matchedSegments > 0) {
-      return (matchedSegments / multiSegments.length) * 0.75;
+      return (matchedSegments / multiSegments.length) * 0.30;
     }
   }
 
@@ -356,15 +358,15 @@ function qaPairScore(params: {
   const answerScore = lexicalScore(params.queryText, params.pair.answer_text);
   const containmentBoost =
     normalizedQuery &&
-    normalizedQuestion &&
-    (
-      normalizedQuery.includes(normalizedQuestion) ||
-      normalizedQuestion.includes(normalizedQuery) ||
-      (normalizedQuerySkeleton &&
-        normalizedQuestionSkeleton &&
-        (normalizedQuerySkeleton.includes(normalizedQuestionSkeleton) ||
-          normalizedQuestionSkeleton.includes(normalizedQuerySkeleton)))
-    )
+      normalizedQuestion &&
+      (
+        normalizedQuery.includes(normalizedQuestion) ||
+        normalizedQuestion.includes(normalizedQuery) ||
+        (normalizedQuerySkeleton &&
+          normalizedQuestionSkeleton &&
+          (normalizedQuerySkeleton.includes(normalizedQuestionSkeleton) ||
+            normalizedQuestionSkeleton.includes(normalizedQuerySkeleton)))
+      )
       ? 0.28
       : 0;
   const keywordScore =
@@ -372,13 +374,13 @@ function qaPairScore(params: {
     0.08;
   const optionSupport = params.options.length
     ? Math.max(
-        ...params.options.map((option) =>
-          Math.max(
-            lexicalScore(option, params.pair.answer_text),
-            lexicalScore(option, params.pair.question_text),
-          ),
+      ...params.options.map((option) =>
+        Math.max(
+          lexicalScore(option, params.pair.answer_text),
+          lexicalScore(option, params.pair.question_text),
         ),
-      )
+      ),
+    )
     : 0;
 
   const extractSignificantNumbers = (text: string) => {
@@ -389,12 +391,12 @@ function qaPairScore(params: {
 
   const queryNums = extractSignificantNumbers(params.queryText);
   const pairNums = extractSignificantNumbers(params.pair.question_text);
-  
+
   let numberPenalty = 0;
   if (queryNums.length > 0 || pairNums.length > 0) {
     const unmatchedPairNums = pairNums.filter(n => !queryNums.includes(n));
     const unmatchedQueryNums = queryNums.filter(n => !pairNums.includes(n));
-    
+
     if (unmatchedPairNums.length > 0 && unmatchedQueryNums.length > 0) {
       numberPenalty = 0.5;
     } else if (unmatchedPairNums.length > 0) {

@@ -269,12 +269,22 @@ export function installExtractorContentScript() {
     if (id) {
       const label = document.querySelector(`label[for="${id}"]`);
       if (label && isElementVisible(label)) {
-        return normalizeText(label.textContent ?? '');
+        // Clone the label and strip hidden accessibility text before reading,
+        // otherwise Moodle's ".accesshide" spans (e.g. "Answer ") leak into
+        // the option text and break answer-to-choice matching.
+        const clone = label.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        return normalizeText(clone.textContent ?? '');
       }
     }
 
     const wrapped = input.closest('label');
-    return wrapped ? normalizeText(wrapped.textContent ?? '') : '';
+    if (wrapped) {
+      const clone = wrapped.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+      return normalizeText(clone.textContent ?? '');
+    }
+    return '';
   }
 
   function cleanOptionLabel(value: string): string {
@@ -302,14 +312,22 @@ export function installExtractorContentScript() {
 
     const fromDataOptions = Array.from(container.querySelectorAll('[data-question-option], [role="option"], .option, .choice'))
       .filter((node) => isElementVisible(node))
-      .map((node) => cleanOptionLabel(node.textContent ?? ''))
+      .map((node) => {
+        const clone = node.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        return cleanOptionLabel(clone.textContent ?? '');
+      })
       .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
 
     const fromAnswerRows = Array.from(
       container.querySelectorAll('.answer label, .answer .r0, .answer .r1, .answer .r2, .answer .r3, .answer .flex-fill'),
     )
       .filter((node) => isElementVisible(node))
-      .map((node) => cleanOptionLabel(node.textContent ?? ''))
+      .map((node) => {
+        const clone = node.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        return cleanOptionLabel(clone.textContent ?? '');
+      })
       .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
 
     const fromListItems = Array.from(container.querySelectorAll('li'))

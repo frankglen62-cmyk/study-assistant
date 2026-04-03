@@ -4,7 +4,7 @@ const archiver = require('archiver');
 
 const targetObj = {
   source: path.join(__dirname, 'apps', 'extension', 'dist'),
-  dest: path.join(__dirname, 'apps', 'web', 'public', 'downloads', 'study-assistant-extension-v1.3.0.zip')
+  dest: path.join(__dirname, 'apps', 'web', 'public', 'downloads', 'study-assistant-extension-v0.1.62.zip')
 };
 
 // Ensure downloads directory exists
