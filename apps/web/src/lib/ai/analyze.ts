@@ -261,9 +261,10 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   subject: SubjectRecord;
   category: CategoryRecord | null;
   preloadedRows: PreloadedQaPairRow[];
+  globalOptions: string[];
 }): ExtensionQuestionSuggestion {
   const queryText = params.candidate.prompt;
-  const optionText = params.candidate.options;
+  const optionText = params.candidate.options.length > 0 ? params.candidate.options : params.globalOptions;
   const hasOptions = optionText.length > 0;
 
   const buildQaSuggestion = (pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number], retrievalStatus: string, sourceScope: ExtensionSourceScope) => {
@@ -440,6 +441,7 @@ async function buildQuestionSuggestions(params: {
   detectionConfidence: number | null;
   subject: SubjectRecord;
   category: CategoryRecord | null;
+  globalOptions: string[];
 }): Promise<ExtensionQuestionSuggestion[]> {
   // Pre-load ALL QA pairs for this subject in ONE database call
   const preloadedRows = await preloadSubjectQaPairs({
@@ -458,6 +460,7 @@ async function buildQuestionSuggestions(params: {
       subject: params.subject,
       category: params.category,
       preloadedRows,
+      globalOptions: params.globalOptions,
     }),
   );
 }
@@ -603,6 +606,7 @@ export async function analyzeStudyPage(params: {
     detectionConfidence: detection.subjectConfidence,
     subject: detection.subject,
     category: detection.category,
+    globalOptions: extracted.options ?? [],
   });
 
   const primarySuggestion = selectPrimarySuggestion(questionSuggestions);
