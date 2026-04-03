@@ -13,10 +13,12 @@ import {
   normalizeComparableText,
   normalizeQuestionLookupSkeleton,
   normalizeQuestionLookupText,
+  overlapScore,
   resolveSuggestedOption,
   scoreBlankStructureAlignment,
   splitMultiAnswerSegments,
 } from '@/lib/ai/choice-matching';
+import { logEvent } from '@/lib/observability/logger';
 import { RouteError } from '@/lib/http/route';
 
 export interface RetrievalResult {
@@ -214,34 +216,80 @@ function rankQaPairRows(params: {
     )
     .filter((row) => row.similarity >= 0.16);
 
+  const opts = params.options ?? [];
+  const hasChoices = opts.length > 0;
+
   const exactMatches = rankedRows
-    .filter((row) => isExactQuestionMatch(params.queryText, row.question_text))
-    .sort((left, right) => {
-      const blankAlignmentDelta =
-        scoreBlankStructureAlignment(params.queryText, right.question_text) -
-        scoreBlankStructureAlignment(params.queryText, left.question_text);
+    .filter((row) => isExactQuestionMatch(params.queryText, row.question_text));
 
-      if (blankAlignmentDelta !== 0) {
-        return blankAlignmentDelta;
+  // ── Choice-aware hard disambiguation for duplicate questions ──────────
+  // When the same question text has multiple Q&A pairs with different answers,
+  // we MUST pick the pair whose answer matches one of the visible choices.
+  // Compute choice alignment scores up-front for all exact matches.
+  const exactMatchScores = exactMatches.map((row) => ({
+    row,
+    choiceScore: hasChoices ? scoreAnswerAgainstOptions(opts, row.answer_text) : 0,
+    blankAlignment: scoreBlankStructureAlignment(params.queryText, row.question_text),
+  }));
+
+  // Diagnostic: log when duplicate questions are found with different choice scores
+  if (exactMatchScores.length >= 2 && hasChoices) {
+    const distinctAnswers = new Set(exactMatchScores.map((e) => normalizeComparableText(e.row.answer_text)));
+    if (distinctAnswers.size >= 2) {
+      logEvent('info', 'ai.retrieval.duplicate_question_disambiguation', {
+        queryText: params.queryText.slice(0, 120),
+        candidateCount: exactMatchScores.length,
+        scores: exactMatchScores.map((e) => ({
+          answerId: e.row.id,
+          answer: e.row.answer_text.slice(0, 80),
+          choiceScore: e.choiceScore,
+          blankAlignment: e.blankAlignment,
+        })),
+        options: opts.slice(0, 8).map((o) => o.slice(0, 80)),
+      });
+    }
+  }
+
+  // Sort exact matches: choice alignment is the PRIMARY criterion when choices exist.
+  // This ensures that when question #8 has choices [A,B,C,D] and question #30 has
+  // choices [E,F,G,H], the pair whose answer matches the current choices always wins.
+  exactMatchScores.sort((a, b) => {
+    // If choices are present, choice alignment is the DOMINANT factor.
+    if (hasChoices) {
+      // Hard tier separation: Tier 1 (1.0) >> Tier 2 (0.96) >> Tier 3 (0.35) >> Tier 4 (< 0.35)
+      // Any pair with a significantly higher choice score wins, period.
+      const choiceDelta = b.choiceScore - a.choiceScore;
+      if (Math.abs(choiceDelta) >= 0.05) {
+        return choiceDelta;
       }
+    }
 
-      const optionAlignmentDelta =
-        scoreAnswerAgainstOptions(params.options ?? [], right.answer_text) -
-        scoreAnswerAgainstOptions(params.options ?? [], left.answer_text);
+    // Secondary: blank structure alignment
+    const blankDelta = b.blankAlignment - a.blankAlignment;
+    if (blankDelta !== 0) {
+      return blankDelta;
+    }
 
-      if (optionAlignmentDelta !== 0) {
-        return optionAlignmentDelta;
+    // Tertiary: choice score (for small differences)
+    if (hasChoices) {
+      const smallChoiceDelta = b.choiceScore - a.choiceScore;
+      if (smallChoiceDelta !== 0) {
+        return smallChoiceDelta;
       }
+    }
 
-      const categorySpecificDelta = Number(Boolean(right.category_id)) - Number(Boolean(left.category_id));
-      if (categorySpecificDelta !== 0) {
-        return categorySpecificDelta;
-      }
+    // Quaternary: category specificity
+    const categoryDelta = Number(Boolean(b.row.category_id)) - Number(Boolean(a.row.category_id));
+    if (categoryDelta !== 0) {
+      return categoryDelta;
+    }
 
-      return new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime();
-    });
+    // Last resort: most recently updated
+    return new Date(b.row.updated_at).getTime() - new Date(a.row.updated_at).getTime();
+  });
 
-  const exactMatchIds = new Set(exactMatches.map((row) => row.id));
+  const sortedExactMatches = exactMatchScores.map((e) => e.row);
+  const exactMatchIds = new Set(sortedExactMatches.map((row) => row.id));
   const nonExactMatches = rankedRows
     .filter((row) => !exactMatchIds.has(row.id))
     .sort(
@@ -253,7 +301,7 @@ function rankQaPairRows(params: {
         new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime(),
     );
 
-  return [...exactMatches, ...nonExactMatches].slice(0, 12);
+  return [...sortedExactMatches, ...nonExactMatches].slice(0, 12);
 }
 
 function pickJoinedName(value: QaPairRow['subjects'] | QaPairRow['categories']) {
@@ -277,6 +325,10 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
   // When two Q&A pairs share the same question text but have different
   // answers, the pair whose answer EXACTLY matches a visible choice must
   // rank higher than a pair whose answer only partially matches.
+  //
+  // CRITICAL: The gap between tiers must be LARGE (>= 0.3) so that the
+  // sort in rankQaPairRows can always distinguish between a correct and
+  // incorrect answer for duplicate questions.
   const normalizedAnswer = normalizeComparableText(answerText);
 
   if (normalizedAnswer) {
@@ -287,37 +339,53 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
       return 1.0;
     }
 
-    // Tier 2: near-exact containment (high length ratio) → 0.96
+    // Tier 2: near-exact containment (high length ratio) → 0.92
     for (const no of normalizedOpts) {
       const shorter = Math.min(no.length, normalizedAnswer.length);
       const longer = Math.max(no.length, normalizedAnswer.length);
       if (
         shorter > 0 &&
         longer > 0 &&
-        shorter / longer >= 0.85 &&
+        shorter / longer >= 0.80 &&
         (no.includes(normalizedAnswer) || normalizedAnswer.includes(no))
       ) {
-        return 0.96;
+        return 0.92;
       }
+    }
+
+    // Tier 2.5: high token overlap between answer and a choice → 0.60–0.75
+    // This catches cases where the answer text is almost the same as a choice
+    // but has minor formatting differences (extra commas, word order).
+    const bestTokenOverlap = Math.max(
+      ...normalizedOpts.map((no) => {
+        const forward = overlapScore(normalizedAnswer, no);
+        const backward = overlapScore(no, normalizedAnswer);
+        return Math.min(forward, backward); // require BOTH directions to be high
+      }),
+    );
+    if (bestTokenOverlap >= 0.85) {
+      return 0.60 + bestTokenOverlap * 0.15; // 0.73–0.75
     }
   }
 
-  // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.35
-  // Intentionally LOW so that exact matches (1.0) dominate when the same
-  // question appears with different answer sets in the database.
+  // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.25
+  // Intentionally VERY LOW so that exact matches (1.0) and near-exact (0.92)
+  // dominate when the same question appears with different answer sets.
+  // Previously 0.35 — lowered to 0.25 to widen the gap with Tier 1/2.
   if (resolveSuggestedOption(options, answerText)) {
-    return 0.35;
+    return 0.25;
   }
 
   const multiSegments = splitMultiAnswerSegments(answerText);
   if (multiSegments.length >= 2) {
     const matchedSegments = multiSegments.filter((segment) => Boolean(resolveSuggestedOption(options, segment))).length;
     if (matchedSegments > 0) {
-      return (matchedSegments / multiSegments.length) * 0.30;
+      return (matchedSegments / multiSegments.length) * 0.20;
     }
   }
 
-  return Math.max(
+  // Tier 4: pure lexical overlap — lowest possible score
+  const bestLex = Math.max(
     ...options.map((option) =>
       Math.max(
         lexicalScore(option, answerText),
@@ -325,6 +393,8 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
       ),
     ),
   );
+  // Cap at 0.18 so it never competes with Tier 3
+  return Math.min(bestLex, 0.18);
 }
 
 

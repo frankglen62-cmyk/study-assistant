@@ -22,6 +22,10 @@ function normalizeBlankMarkers(value: string) {
 export function normalizeComparableText(value: string) {
   return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(value))))
     .toLowerCase()
+    // Strip Moodle review-page artifacts: checkmarks, correct/incorrect markers,
+    // "Your answer is correct/incorrect", feedback text, etc.
+    .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, ' ')
+    .replace(/\b(?:your answer is (?:correct|incorrect)|correct|incorrect|partially correct)\b/gi, ' ')
     .replace(/[^\p{L}\p{N}\s.,+\-%=_#*@]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();

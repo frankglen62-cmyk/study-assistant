@@ -316,10 +316,13 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   // When the same question text appears multiple times in the database with
   // different answers, we MUST pick the answer that matches a visible choice
   // on the current page. This is the definitive disambiguation mechanism.
+  //
+  // GLOBAL FIX: This works for ALL subjects — any duplicate question with
+  // different answers will be resolved by matching against visible choices.
   const topPairs = rankedPairs.slice(0, 12);
 
   // Helper: score how well an answer text matches the visible choices (0–1).
-  // 1.0 = exact match to a choice, 0.9+ = near-exact, 0 = no match.
+  // 1.0 = exact match to a choice, 0.92 = near-exact, 0.3–0.6 = token overlap, 0 = no match.
   function scoreAnswerChoiceAlignment(answerText: string): number {
     if (!hasOptions) return 0;
     const normAnswer = normalizeComparableText(answerText);
@@ -328,24 +331,38 @@ function resolveQuestionSuggestionFromPreloaded(params: {
       .map((o) => normalizeComparableText(o))
       .filter(Boolean);
 
-    // Exact match
+    // Tier 1: Exact match → 1.0
     if (normOpts.some((no) => no === normAnswer)) return 1.0;
 
-    // Near-exact containment (high length ratio)
+    // Tier 2: Near-exact containment (high length ratio) → 0.92
     for (const no of normOpts) {
       const shorter = Math.min(no.length, normAnswer.length);
       const longer = Math.max(no.length, normAnswer.length);
       if (
         shorter > 0 &&
         longer > 0 &&
-        shorter / longer >= 0.80 &&
+        shorter / longer >= 0.75 &&
         (no.includes(normAnswer) || normAnswer.includes(no))
       ) {
         return 0.92;
       }
     }
 
-    // Weak partial match (answer partially overlaps a choice)
+    // Tier 3: Token overlap — gives intermediate scores (0.3–0.6) so the sort
+    // can distinguish between a partially-matching answer and a non-matching one.
+    // This is critical: without it, two non-exact answers both get 0, making
+    // disambiguation impossible.
+    const bestOverlap = Math.max(
+      ...normOpts.map((no) => {
+        const forward = overlapScore(normAnswer, no);
+        const backward = overlapScore(no, normAnswer);
+        return Math.min(forward, backward); // require BOTH directions
+      }),
+    );
+    if (bestOverlap >= 0.5) {
+      return 0.30 + bestOverlap * 0.30; // 0.45–0.60
+    }
+
     return 0;
   }
 
@@ -369,7 +386,17 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   if (hasOptions && scoredSuggestions.length > 0) {
     // Sort by choice alignment score (descending), then by original rank
     scoredSuggestions.sort((a, b) => {
-      if (b.choiceScore !== a.choiceScore) return b.choiceScore - a.choiceScore;
+      // Hard tier gap: if one has a strong match (≥ 0.9) and another doesn't, force it
+      const aStrong = a.choiceScore >= 0.9;
+      const bStrong = b.choiceScore >= 0.9;
+      if (aStrong !== bStrong) return aStrong ? -1 : 1;
+
+      // Within the same tier, use score difference
+      if (Math.abs(b.choiceScore - a.choiceScore) >= 0.05) {
+        return b.choiceScore - a.choiceScore;
+      }
+
+      // Tie-break: original ranking order (from retrieval)
       return a.pairIndex - b.pairIndex;
     });
 

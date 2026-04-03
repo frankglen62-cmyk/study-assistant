@@ -264,16 +264,20 @@ export function installExtractorContentScript() {
       .slice(0, limit);
   }
 
+  // Selectors for elements that leak feedback/review text into option labels
+  const REVIEW_ARTIFACT_SELECTORS = '.accesshide, .sr-only, [aria-hidden="true"], .feedback, .correctness, .specificfeedback, .generalfeedback, .rightanswer, .state, .grade, .outcome';
+
   function extractOptionLabel(input: Element): string {
     const id = input.getAttribute('id');
     if (id) {
       const label = document.querySelector(`label[for="${id}"]`);
       if (label && isElementVisible(label)) {
-        // Clone the label and strip hidden accessibility text before reading,
-        // otherwise Moodle's ".accesshide" spans (e.g. "Answer ") leak into
-        // the option text and break answer-to-choice matching.
+        // Clone the label and strip hidden accessibility text AND review-page
+        // feedback elements before reading, otherwise Moodle's ".accesshide"
+        // spans (e.g. "Answer ") and review artifacts (e.g. checkmarks,
+        // "Correct"/"Incorrect" markers) leak into the option text.
         const clone = label.cloneNode(true) as HTMLElement;
-        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return normalizeText(clone.textContent ?? '');
       }
     }
@@ -281,7 +285,7 @@ export function installExtractorContentScript() {
     const wrapped = input.closest('label');
     if (wrapped) {
       const clone = wrapped.cloneNode(true) as HTMLElement;
-      clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+      clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
       return normalizeText(clone.textContent ?? '');
     }
     return '';
@@ -290,6 +294,11 @@ export function installExtractorContentScript() {
   function cleanOptionLabel(value: string): string {
     return normalizeText(value)
       .replace(/^\u2022\s*/, '')
+      // Strip checkmark/cross symbols that Moodle review pages inject
+      .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, '')
+      // Strip 'Correct'/'Incorrect' feedback text that leaks into labels
+      .replace(/\b(?:Your answer is (?:correct|incorrect)\.?|Correct\.?|Incorrect\.?|Partially correct\.?)\b/gi, '')
+      .replace(/\s+/g, ' ')
       .trim();
   }
 
@@ -314,7 +323,7 @@ export function installExtractorContentScript() {
       .filter((node) => isElementVisible(node))
       .map((node) => {
         const clone = node.cloneNode(true) as HTMLElement;
-        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return cleanOptionLabel(clone.textContent ?? '');
       })
       .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
@@ -325,7 +334,7 @@ export function installExtractorContentScript() {
       .filter((node) => isElementVisible(node))
       .map((node) => {
         const clone = node.cloneNode(true) as HTMLElement;
-        clone.querySelectorAll('.accesshide, .sr-only, [aria-hidden="true"]').forEach(el => el.remove());
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return cleanOptionLabel(clone.textContent ?? '');
       })
       .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
