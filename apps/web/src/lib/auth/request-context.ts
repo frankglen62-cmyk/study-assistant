@@ -83,7 +83,7 @@ export async function requireExtensionUser(request: Request): Promise<ExtensionC
   }
 
   const context = await getProfileWithWalletByUserId(payload.userId);
-  assertActiveProfile(context.profile, ['client']);
+  assertActiveProfile(context.profile, ['client', 'admin', 'super_admin']);
 
   await touchInstallation(installation.id, requestExtensionVersion);
 
@@ -117,6 +117,6 @@ export async function requireClientUser(request: Request): Promise<PortalClientC
       throw error;
     }
 
-    return requirePortalUser(request, ['client']);
+    return requirePortalUser(request, ['client', 'admin', 'super_admin']);
   }
 }

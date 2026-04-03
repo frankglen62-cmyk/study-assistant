@@ -79,7 +79,7 @@ function getNextStep({
 }
 
 export default async function ExtensionGuidePage() {
-  const context = await requirePageUser(['client']);
+  const context = await requirePageUser(['admin', 'super_admin']);
   const [account, overview] = await Promise.all([
     getClientAccountData(context.userId),
     getClientPortalOverview(context.userId),
@@ -92,7 +92,7 @@ export default async function ExtensionGuidePage() {
   const installedVersion = latestDevice?.version?.trim() ?? null;
   const isOutdatedInstalledVersion = Boolean(installedVersion) && installedVersion !== extensionVersion;
   const hasOpenSession = Boolean(overview.openSession);
-  const hasCredits = context.wallet.remaining_seconds > 0;
+  const hasCredits = true; // Admin bypasses credit constraints
   const pairingStatusLabel = hasPairedDevice ? 'Paired' : 'Not paired';
   const nextStepLabel = getNextStep({
     hasPairedDevice,
@@ -107,7 +107,7 @@ export default async function ExtensionGuidePage() {
         eyebrow="Chrome Extension"
         title="Extension Guide"
         description="Simple setup only: download the ZIP, load it in Chrome, then use Pairing Mode to connect the browser."
-        badge="Client Area"
+        badge="Admin Area"
         actions={
           <>
             <Button asChild>
@@ -120,7 +120,7 @@ export default async function ExtensionGuidePage() {
               <a href="#pairing-mode">Pairing Mode</a>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/dashboard">Back To Dashboard</Link>
+              <Link href="/admin/dashboard">Back To Dashboard</Link>
             </Button>
           </>
         }
@@ -267,13 +267,13 @@ export default async function ExtensionGuidePage() {
                 </a>
               </Button>
               <Button asChild variant="secondary">
-                <Link href="/account#paired-devices">
+                <Link href="/admin/settings">
                   <Monitor className="h-4 w-4" />
                   Manage Devices
                 </Link>
               </Button>
               <Button asChild variant="secondary">
-                <Link href="/sessions">
+                <Link href="/admin/dashboard">
                   <KeyRound className="h-4 w-4" />
                   Open Sessions
                 </Link>
@@ -300,7 +300,7 @@ export default async function ExtensionGuidePage() {
               </Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/account#paired-devices">
+              <Link href="/admin/settings">
                 <Monitor className="h-4 w-4" />
                 Review Paired Browsers
               </Link>

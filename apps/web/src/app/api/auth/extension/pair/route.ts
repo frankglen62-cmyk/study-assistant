@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   const { requestId, ipAddress, userAgent } = getRequestMeta(request);
 
   try {
-    const context = await requirePortalUser(request, ['client']);
+    const context = await requirePortalUser(request, ['client', 'admin', 'super_admin']);
     assertRateLimit(`pair:${context.userId}`, { max: 10, windowMs: 10 * 60 * 1000 });
 
     const body = await parseJsonBody(request, requestSchema);
