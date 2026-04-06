@@ -154,6 +154,38 @@ describe('payment service', () => {
     expect(paymentMocks.createPaymentCustomerRecord).not.toHaveBeenCalled();
   });
 
+  it('rejects PayMongo checkout when the package is not priced in PHP', async () => {
+    paymentMocks.getActivePaymentPackage.mockResolvedValue({
+      id: 'pkg-3',
+      code: 'five-hours',
+      name: '5 Hours',
+      description: 'Popular package',
+      seconds_to_credit: 18000,
+      amount_minor: 1999,
+      currency: 'USD',
+      provider_price_reference: null,
+      is_active: true,
+    });
+
+    const { createTopupCheckout } = await import('@/lib/payments/service');
+
+    await expect(
+      createTopupCheckout({
+        userId: 'user-3',
+        email: 'wallet@example.com',
+        fullName: 'Wallet User',
+        packageId: 'pkg-3',
+        provider: 'paymongo',
+        successUrl: 'http://localhost:3000/success',
+        cancelUrl: 'http://localhost:3000/cancel',
+      }),
+    ).rejects.toMatchObject({
+      code: 'paymongo_currency_not_supported',
+    });
+
+    expect(paymentMocks.createPendingPayment).not.toHaveBeenCalled();
+  });
+
   it('credits the wallet once when a Stripe checkout completes', async () => {
     paymentMocks.getPaymentByCheckoutSessionId.mockResolvedValue({
       id: 'pay_1',

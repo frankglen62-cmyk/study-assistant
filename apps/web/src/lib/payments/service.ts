@@ -60,6 +60,20 @@ function assertProviderAvailable(provider: PaymentProvider) {
   );
 }
 
+function assertPackageCurrencySupported(provider: PaymentProvider, currency: string) {
+  if (provider !== 'paymongo') {
+    return;
+  }
+
+  if (currency.toUpperCase() !== 'PHP') {
+    throw new RouteError(
+      400,
+      'paymongo_currency_not_supported',
+      'PayMongo checkout for GCash, Maya, and bank payments requires PHP-priced packages.',
+    );
+  }
+}
+
 async function resolveWebhookPayment(params: { paymentId?: string | null; checkoutSessionId?: string | null }) {
   if (params.paymentId) {
     return getPaymentById(params.paymentId);
@@ -142,6 +156,7 @@ export async function createTopupCheckout(params: {
   assertAllowedReturnUrl(params.cancelUrl);
 
   const paymentPackage = await getActivePaymentPackage(params.packageId);
+  assertPackageCurrencySupported(params.provider, paymentPackage.currency);
   let customerId: string | null = null;
 
   if (params.provider === 'stripe') {

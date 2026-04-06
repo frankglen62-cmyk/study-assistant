@@ -19,10 +19,10 @@ on conflict (user_id) do nothing;
 
 insert into public.payment_packages (id, code, name, description, seconds_to_credit, amount_minor, currency, is_active, sort_order)
 values
-  ('55555555-5555-5555-5555-555555555551', 'one-hour', '1 Hour', 'Starter top-up package', 3600, 499, 'USD', true, 1),
-  ('55555555-5555-5555-5555-555555555552', 'three-hours', '3 Hours', 'Extended study package', 10800, 1299, 'USD', true, 2),
-  ('55555555-5555-5555-5555-555555555553', 'five-hours', '5 Hours', 'Popular top-up package', 18000, 1999, 'USD', true, 3),
-  ('55555555-5555-5555-5555-555555555554', 'ten-hours', '10 Hours', 'Best-value top-up package', 36000, 3499, 'USD', true, 4)
+  ('55555555-5555-5555-5555-555555555551', 'one-hour', '1 Hour', 'Starter top-up package', 3600, 499, 'PHP', true, 1),
+  ('55555555-5555-5555-5555-555555555552', 'three-hours', '3 Hours', 'Extended study package', 10800, 1299, 'PHP', true, 2),
+  ('55555555-5555-5555-5555-555555555553', 'five-hours', '5 Hours', 'Popular top-up package', 18000, 1999, 'PHP', true, 3),
+  ('55555555-5555-5555-5555-555555555554', 'ten-hours', '10 Hours', 'Best-value top-up package', 36000, 3499, 'PHP', true, 4)
 on conflict (id) do nothing;
 
 insert into public.subjects (id, name, slug, course_code, keywords, url_patterns, is_active)
