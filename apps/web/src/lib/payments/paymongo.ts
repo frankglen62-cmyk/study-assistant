@@ -51,7 +51,7 @@ function parseSignatureHeader(signature: string) {
     }, {});
 
   const timestamp = parsed.t?.[0] ?? null;
-  const signatures = parsed.v1 ?? [];
+  const signatures = [...(parsed.te ?? []), ...(parsed.li ?? []), ...(parsed.v1 ?? [])];
 
   if (!timestamp || signatures.length === 0) {
     throw new RouteError(400, 'invalid_paymongo_signature', 'PayMongo signature header is invalid.');
@@ -143,11 +143,13 @@ export class PaymongoBillingProvider implements BillingProvider {
     const expectedSignature = createHmac('sha256', env.PAYMONGO_WEBHOOK_SECRET).update(signedPayload).digest('hex');
 
     const matched = signatures.some((entry) => {
-      if (entry.length !== expectedSignature.length) {
+      const normalizedEntry = entry.toLowerCase();
+
+      if (normalizedEntry.length !== expectedSignature.length) {
         return false;
       }
 
-      return timingSafeEqual(Buffer.from(entry), Buffer.from(expectedSignature));
+      return timingSafeEqual(Buffer.from(normalizedEntry), Buffer.from(expectedSignature));
     });
 
     if (!matched) {
