@@ -58,7 +58,7 @@ export function PackageCardAction({ packageId, supportsStripe, supportsPaymongo 
         disabled={pendingProvider !== null || !supportsPaymongo}
         className="w-full"
       >
-        {pendingProvider === 'paymongo' ? 'Preparing GCash / Maya Checkout...' : 'GCash / Maya / Bank'}
+        {pendingProvider === 'paymongo' ? 'Preparing QRPh / Wallet Checkout...' : 'QRPh / Wallet / Bank'}
       </Button>
       <Button
         onClick={() => handleBuyNow('stripe')}
@@ -69,7 +69,7 @@ export function PackageCardAction({ packageId, supportsStripe, supportsPaymongo 
         {pendingProvider === 'stripe' ? 'Preparing Card Checkout...' : 'Pay with Card'}
       </Button>
       {!supportsPaymongo ? (
-        <p className="text-xs text-muted-foreground">GCash, Maya, and bank checkout will appear here once PayMongo is configured.</p>
+        <p className="text-xs text-muted-foreground">QRPh, wallet, and bank checkout will appear here once PayMongo is configured.</p>
       ) : null}
       {!supportsStripe ? (
         <p className="text-xs text-muted-foreground">Card checkout will appear here once Stripe is configured.</p>

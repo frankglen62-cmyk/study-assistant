@@ -8,7 +8,7 @@ import type { BillingProvider, CheckoutSessionInput, CheckoutSessionResult, Veri
 
 function getPaymongoKey() {
   if (!env.PAYMONGO_SECRET_KEY) {
-    throw new RouteError(503, 'paymongo_not_configured', 'GCash, Maya, and bank checkout is not configured yet.');
+    throw new RouteError(503, 'paymongo_not_configured', 'QRPh, wallet, and bank checkout is not configured yet.');
   }
 
   return env.PAYMONGO_SECRET_KEY;
@@ -92,7 +92,7 @@ export class PaymongoBillingProvider implements BillingProvider {
               },
             ],
             metadata: input.metadata,
-            payment_method_types: input.paymentMethodTypes ?? ['gcash', 'paymaya', 'dob', 'dob_ubp', 'card'],
+            payment_method_types: input.paymentMethodTypes ?? ['qrph', 'gcash', 'paymaya', 'dob', 'dob_ubp', 'card'],
             send_email_receipt: true,
             show_description: true,
             show_line_items: true,

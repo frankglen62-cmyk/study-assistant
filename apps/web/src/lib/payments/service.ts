@@ -55,7 +55,7 @@ function assertProviderAvailable(provider: PaymentProvider) {
     503,
     'payment_provider_unavailable',
     provider === 'paymongo'
-      ? 'GCash, Maya, and bank checkout is not configured yet.'
+      ? 'QRPh, wallet, and bank checkout is not configured yet.'
       : 'Card checkout is not configured yet.',
   );
 }
@@ -69,7 +69,7 @@ function assertPackageCurrencySupported(provider: PaymentProvider, currency: str
     throw new RouteError(
       400,
       'paymongo_currency_not_supported',
-      'PayMongo checkout for GCash, Maya, and bank payments requires PHP-priced packages.',
+      'PayMongo checkout for QRPh, wallets, and bank payments requires PHP-priced packages.',
     );
   }
 }
@@ -216,7 +216,7 @@ export async function createTopupCheckout(params: {
       userId: params.userId,
       provider: params.provider,
     },
-    paymentMethodTypes: params.provider === 'paymongo' ? ['gcash', 'paymaya', 'dob', 'dob_ubp', 'card'] : undefined,
+    paymentMethodTypes: params.provider === 'paymongo' ? ['qrph', 'gcash', 'paymaya', 'dob', 'dob_ubp', 'card'] : undefined,
   });
 
   await attachCheckoutSession({

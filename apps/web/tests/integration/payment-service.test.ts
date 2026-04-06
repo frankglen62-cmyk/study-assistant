@@ -40,12 +40,12 @@ vi.mock('@/lib/payments/paymongo', () => ({
   PaymongoBillingProvider: class {
     provider = 'paymongo' as const;
 
-    async createTopupCheckout() {
+    async createTopupCheckout(input: { paymentMethodTypes?: string[] }) {
       return {
         checkoutUrl: 'https://checkout.paymongo.test/session',
         checkoutSessionId: 'paymongo_cs_test_123',
         providerPaymentId: 'paymongo_pi_test_123',
-        rawPayload: { data: { id: 'paymongo_cs_test_123' } },
+        rawPayload: { data: { id: 'paymongo_cs_test_123' }, paymentMethodTypes: input.paymentMethodTypes ?? [] },
       };
     }
 
@@ -124,7 +124,7 @@ describe('payment service', () => {
     expect(paymentMocks.createPaymentCustomerRecord).toHaveBeenCalledOnce();
   });
 
-  it('creates a PayMongo checkout session for GCash, Maya, and bank methods', async () => {
+  it('creates a PayMongo checkout session for QRPh, GCash, Maya, and bank methods', async () => {
     paymentMocks.getActivePaymentPackage.mockResolvedValue({
       id: 'pkg-2',
       code: 'three-hours',
@@ -152,6 +152,13 @@ describe('payment service', () => {
     expect(result.checkoutSessionId).toBe('paymongo_cs_test_123');
     expect(result.provider).toBe('paymongo');
     expect(paymentMocks.createPaymentCustomerRecord).not.toHaveBeenCalled();
+    expect(paymentMocks.attachCheckoutSession).toHaveBeenCalledWith(
+      expect.objectContaining({
+        rawPayload: expect.objectContaining({
+          paymentMethodTypes: expect.arrayContaining(['qrph', 'gcash', 'paymaya', 'dob', 'dob_ubp', 'card']),
+        }),
+      }),
+    );
   });
 
   it('rejects PayMongo checkout when the package is not priced in PHP', async () => {

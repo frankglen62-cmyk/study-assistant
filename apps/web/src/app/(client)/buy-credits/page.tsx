@@ -22,7 +22,7 @@ export default async function BuyCreditsPage() {
       <PageHeading
         eyebrow="Billing"
         title="Buy Credits"
-        description="Choose a time package to top up your account. Pay with card or PH-friendly wallets like GCash and Maya."
+        description="Choose a time package to top up your account. Pay with card or scan-to-pay options like QRPh, GCash, Maya, and supported bank apps."
         actions={
           <>
             <Button asChild variant="secondary" size="sm">
@@ -85,7 +85,7 @@ export default async function BuyCreditsPage() {
                 {pkg.supportsPaymongo ? (
                   <li className="flex items-start gap-2.5">
                     <Smartphone className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                    <span>GCash, Maya, online bank</span>
+                    <span>QRPh, GCash, Maya, bank app scan</span>
                   </li>
                 ) : null}
                 {pkg.supportsStripe ? (
@@ -118,7 +118,7 @@ export default async function BuyCreditsPage() {
           <p className="text-lg font-semibold text-foreground">Payment Methods</p>
         </div>
         <p className="text-sm text-muted-foreground">
-          Card checkout uses Stripe. GCash, Maya, and online bank checkout use PayMongo when the provider is enabled for your deployment.
+          Card checkout uses Stripe. PayMongo handles QRPh, GCash, Maya, and supported bank app checkout when the provider is enabled for your deployment.
         </p>
       </div>
 
