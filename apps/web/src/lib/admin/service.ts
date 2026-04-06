@@ -1,4 +1,5 @@
 import type {
+  AdminPaymentPackageCreateRequest,
   AdminPaymentPackageUpdateRequest,
   AdminCategoryMutationRequest,
   AdminFolderCreateRequest,
@@ -180,6 +181,18 @@ async function getPaymentPackageByIdForAdmin(packageId: string) {
   return data;
 }
 
+async function getPaymentPackageByCode(code: string) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payment_packages')
+    .select('id, code')
+    .eq('code', code)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load payment package code.');
+  return data;
+}
+
 export async function adjustUserCredits(
   input: AdminUserCreditAdjustmentRequest & AuditContext & { userId: string },
 ) {
@@ -272,6 +285,76 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
   };
 }
 
+export async function createPaymentPackage(
+  input: AdminPaymentPackageCreateRequest & AuditContext,
+) {
+  const supabase = getSupabaseAdmin();
+  const code = slugify(input.code ?? input.name);
+
+  if (!code) {
+    throw new RouteError(400, 'payment_package_code_invalid', 'Enter a package code or name that can be converted into a valid code.');
+  }
+
+  const existing = await getPaymentPackageByCode(code);
+  if (existing) {
+    throw new RouteError(409, 'payment_package_code_taken', `A payment package with code "${code}" already exists.`);
+  }
+
+  const amountMinor = Math.round(input.priceMajor * 100);
+
+  if (!Number.isFinite(amountMinor) || amountMinor <= 0) {
+    throw new RouteError(400, 'invalid_price', 'Enter a valid positive price.');
+  }
+
+  const secondsToCredit = input.minutesToCredit * 60;
+
+  const inserted = await supabase
+    .from('payment_packages')
+    .insert({
+      code,
+      name: input.name,
+      description: input.description ?? '',
+      seconds_to_credit: secondsToCredit,
+      amount_minor: amountMinor,
+      currency: 'PHP',
+      is_active: input.isActive ?? true,
+      provider_price_reference: null,
+      sort_order: input.sortOrder ?? 0,
+    })
+    .select('id')
+    .single();
+
+  assertSupabaseResult(inserted.error, 'Failed to create payment package.');
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'payment_package.created',
+    entityType: 'payment_packages',
+    entityId: inserted.data!.id,
+    eventSummary: `Created payment package ${code}.`,
+    newValues: {
+      code,
+      name: input.name,
+      description: input.description ?? '',
+      secondsToCredit,
+      amountMinor,
+      currency: 'PHP',
+      isActive: input.isActive ?? true,
+      sortOrder: input.sortOrder ?? 0,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    packageId: inserted.data!.id,
+    amountMinor,
+    minutesToCredit: input.minutesToCredit,
+    message: 'Payment package created successfully.',
+  };
+}
+
 export async function updatePaymentPackage(
   input: AdminPaymentPackageUpdateRequest & AuditContext & { packageId: string },
 ) {
@@ -332,6 +415,60 @@ export async function updatePaymentPackage(
     amountMinor,
     minutesToCredit: input.minutesToCredit,
     message: 'Payment package updated successfully.',
+  };
+}
+
+export async function deletePaymentPackage(input: AuditContext & { packageId: string }) {
+  const supabase = getSupabaseAdmin();
+  const existing = await getPaymentPackageByIdForAdmin(input.packageId);
+  const relatedPayments = await supabase
+    .from('payments')
+    .select('*', { head: true, count: 'exact' })
+    .eq('package_id', input.packageId);
+
+  assertSupabaseResult(relatedPayments.error, 'Failed to inspect related payments.');
+
+  if ((relatedPayments.count ?? 0) > 0) {
+    throw new RouteError(
+      409,
+      'payment_package_has_history',
+      'This package already has payment history. Hide it instead of deleting so your old payment records stay readable.',
+    );
+  }
+
+  const deleted = await supabase
+    .from('payment_packages')
+    .delete()
+    .eq('id', input.packageId);
+
+  assertSupabaseResult(deleted.error, 'Failed to delete payment package.');
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'payment_package.deleted',
+    entityType: 'payment_packages',
+    entityId: input.packageId,
+    eventSummary: `Deleted payment package ${existing.code}.`,
+    oldValues: {
+      code: existing.code,
+      name: existing.name,
+      description: existing.description,
+      secondsToCredit: existing.seconds_to_credit,
+      amountMinor: existing.amount_minor,
+      currency: existing.currency,
+      isActive: existing.is_active,
+      sortOrder: existing.sort_order,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    packageId: input.packageId,
+    amountMinor: existing.amount_minor,
+    minutesToCredit: Math.round(existing.seconds_to_credit / 60),
+    message: 'Payment package deleted successfully.',
   };
 }
 

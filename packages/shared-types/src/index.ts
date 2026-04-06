@@ -500,6 +500,16 @@ export interface AdminPaymentPackageUpdateRequest {
   sortOrder?: number;
 }
 
+export interface AdminPaymentPackageCreateRequest {
+  code?: string;
+  name: string;
+  description?: string | null;
+  minutesToCredit: number;
+  priceMajor: number;
+  isActive?: boolean;
+  sortOrder?: number;
+}
+
 export interface AdminPaymentPackageMutationResponse extends AdminMutationResponse {
   packageId: string;
   amountMinor: number;
