@@ -30,6 +30,11 @@ import {
   staggerContainer,
   staggerItem,
   trustStripReveal,
+  cardHover,
+  cardTap,
+  pricingCardHover,
+  buttonHover,
+  buttonTap,
 } from '@/lib/motion';
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -106,7 +111,7 @@ export default function HomePage() {
               variants={reduced ? undefined : heroCtaRow}
               className="mt-10 flex flex-wrap items-center justify-center gap-4"
             >
-              <motion.div variants={reduced ? undefined : heroCtaItem}>
+              <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
                 <Link
                   href="/register"
                   className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
@@ -115,7 +120,7 @@ export default function HomePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>
-              <motion.div variants={reduced ? undefined : heroCtaItem}>
+              <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
                 <Link
                   href="/#how-it-works"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
@@ -133,11 +138,12 @@ export default function HomePage() {
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <motion.div
-                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card"
-                animate={reduced ? undefined : { y: [0, -6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card cursor-pointer"
+                variants={reduced ? undefined : staggerItem}
+                whileHover={cardHover}
+                whileTap={cardTap}
               >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
                   <BrainCircuit className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">Subject Detection</h3>
@@ -145,11 +151,12 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card sm:mt-8"
-                animate={reduced ? undefined : { y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card sm:mt-8 cursor-pointer"
+                variants={reduced ? undefined : staggerItem}
+                whileHover={cardHover}
+                whileTap={cardTap}
               >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-transform group-hover:scale-110 group-hover:-rotate-3 duration-300">
                   <MonitorSmartphone className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">Browser Extension</h3>
@@ -157,11 +164,12 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card"
-                animate={reduced ? undefined : { y: [0, -5, 0] }}
-                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="rounded-2xl border border-border/40 bg-white p-5 shadow-card cursor-pointer"
+                variants={reduced ? undefined : staggerItem}
+                whileHover={cardHover}
+                whileTap={cardTap}
               >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-transform group-hover:scale-110 group-hover:rotate-6 duration-300">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">Private by Design</h3>
@@ -222,12 +230,18 @@ export default function HomePage() {
             whileInView={reduced ? undefined : 'visible'}
             viewport={{ once: true, amount: 0.15 }}
           >
-            {featureCards.map((feature) => {
+            {featureCards.map((feature, idx) => {
               const Icon = iconMap[feature.icon] ?? Sparkles;
               return (
-                <motion.div key={feature.title} variants={staggerItem}>
-                  <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">
+                <motion.div 
+                  key={feature.title} 
+                  variants={staggerItem}
+                  whileHover={cardHover}
+                  whileTap={cardTap}
+                  className="cursor-pointer"
+                >
+                  <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 duration-300">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">{feature.title}</h3>
@@ -267,10 +281,16 @@ export default function HomePage() {
             whileInView={reduced ? undefined : 'visible'}
             viewport={{ once: true, amount: 0.15 }}
           >
-            {howItWorks.map((item) => (
-              <motion.div key={item.step} variants={staggerItem}>
-                <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+            {howItWorks.map((item, idx) => (
+              <motion.div 
+                key={item.step} 
+                variants={staggerItem}
+                whileHover={cardHover}
+                whileTap={cardTap}
+                className="cursor-pointer"
+              >
+                <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent transition-transform group-hover:scale-110 group-hover:bg-accent group-hover:text-white duration-300">
                     {item.step}
                   </div>
                   <h3 className="mb-2 text-base font-semibold text-foreground">{item.title}</h3>
@@ -310,30 +330,42 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.15 }}
           >
             {pricingTeaser.map((item, index) => (
-              <motion.div key={item.name} variants={staggerItem}>
-                <div className={`rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 ${index === 1 ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}>
+              <motion.div 
+                key={item.name} 
+                variants={staggerItem}
+                whileHover={pricingCardHover}
+                className="cursor-pointer"
+              >
+                <div className={`group rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full flex flex-col ${index === 1 ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}>
                   {index === 1 && (
-                    <span className="mb-4 inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                    <motion.span 
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 }}
+                      className="mb-4 inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                    >
                       Most Popular
-                    </span>
+                    </motion.span>
                   )}
-                  <p className="text-sm font-medium text-muted-foreground">{item.name}</p>
-                  <p className="mt-2 font-display text-4xl text-foreground">{item.amount}</p>
+                  <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">{item.name}</p>
+                  <p className="mt-2 font-display text-4xl text-foreground group-hover:text-accent transition-colors duration-300">{item.amount}</p>
                   <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
-                  <div className="mt-6 space-y-2.5">
+                  <div className="mt-6 space-y-2.5 flex-1">
                     {['Instant credit delivery', 'Credits never expire', 'Full model access'].map((feat) => (
                       <div key={feat} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Check className="h-4 w-4 text-accent" />
+                        <Check className="h-4 w-4 text-accent transition-transform group-hover:scale-125 duration-300" />
                         {feat}
                       </div>
                     ))}
                   </div>
-                  <Link
-                    href="/register"
-                    className={`mt-6 inline-flex w-full items-center justify-center rounded-full py-3 text-sm font-semibold transition-all duration-200 ${index === 1 ? 'bg-foreground text-background hover:bg-foreground/90' : 'border border-border bg-white text-foreground hover:bg-surface'}`}
-                  >
-                    Get Started
-                  </Link>
+                  <motion.div whileHover={buttonHover} whileTap={buttonTap} className="mt-6 w-full">
+                    <Link
+                      href="/register"
+                      className={`inline-flex w-full items-center justify-center rounded-full py-3 text-sm font-semibold transition-all duration-200 ${index === 1 ? 'bg-foreground text-background hover:bg-foreground/90' : 'border border-border bg-white text-foreground hover:bg-surface'}`}
+                    >
+                      Get Started
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
@@ -373,26 +405,39 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.1 }}
           >
             {testimonials.map((item) => (
-              <motion.div key={item.name} variants={staggerItem}>
-                <div className="rounded-2xl border border-border/40 bg-white p-6 shadow-card">
+              <motion.div 
+                key={item.name} 
+                variants={staggerItem}
+                whileHover={cardHover}
+                className="cursor-pointer"
+              >
+                <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full">
                   <div className="mb-4 flex items-center gap-2">
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, index) => (
-                        <Star key={index} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                        <motion.div 
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1, duration: 0.3 }}
+                        >
+                          <Star className="h-4 w-4 fill-amber-400 text-amber-400 transition-transform group-hover:scale-125 duration-300" />
+                        </motion.div>
                       ))}
                     </div>
                     <span className="text-sm font-medium text-muted-foreground">{item.rating}</span>
                   </div>
                   <p className="mb-6 text-sm leading-relaxed text-foreground/80">&quot;{item.quote}&quot;</p>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent transition-transform group-hover:scale-110 group-hover:bg-accent group-hover:text-white duration-300">
                       {item.name
                         .split(' ')
                         .map((chunk) => chunk[0])
                         .join('')}
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-foreground">{item.name}</div>
+                      <div className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{item.name}</div>
                       <div className="text-xs text-muted-foreground">{item.role}</div>
                     </div>
                   </div>
@@ -458,7 +503,7 @@ export default function HomePage() {
             variants={reduced ? undefined : heroCtaRow}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <motion.div variants={reduced ? undefined : heroCtaItem}>
+            <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
               <Link
                 href="/register"
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
@@ -467,7 +512,7 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
-            <motion.div variants={reduced ? undefined : heroCtaItem}>
+            <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
               <Link
                 href="/#how-it-works"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"

@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentType } from 'react';
 import {
   ArrowRight,
@@ -11,8 +13,10 @@ import {
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 import { ScrollReveal } from '@/components/scroll-reveal';
+import { cardHover, cardTap, buttonHover, buttonTap } from '@/lib/motion';
 
 const sections = [
   {
@@ -92,19 +96,23 @@ export default function FeaturesPage() {
             experience without exposing the internals behind the workflow.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
-            >
-              Get Started
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
-            >
-              View Pricing
-            </Link>
+            <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
+              >
+                View Pricing
+              </Link>
+            </motion.div>
           </div>
         </ScrollReveal>
       </section>
@@ -134,13 +142,17 @@ export default function FeaturesPage() {
                 const Icon = item.icon;
                 return (
                   <ScrollReveal key={item.title} delay={index * 0.08}>
-                    <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">
+                    <motion.div 
+                      className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover cursor-pointer"
+                      whileHover={cardHover}
+                      whileTap={cardTap}
+                    >
+                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:-rotate-3 duration-300">
                         <Icon className="h-6 w-6" />
                       </div>
                       <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                    </div>
+                    </motion.div>
                   </ScrollReveal>
                 );
               })}
@@ -162,13 +174,17 @@ export default function FeaturesPage() {
               const Icon = section.icon;
               return (
                 <ScrollReveal key={section.title} delay={(index % 3) * 0.06}>
-                  <div className="group rounded-2xl border border-border/40 bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">
+                  <motion.div 
+                    className="group h-full rounded-2xl border border-border/40 bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover cursor-pointer"
+                    whileHover={cardHover}
+                    whileTap={cardTap}
+                  >
+                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-accent transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 duration-300">
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="mb-3 text-lg font-semibold text-foreground">{section.title}</h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">{section.description}</p>
-                  </div>
+                  </motion.div>
                 </ScrollReveal>
               );
             })}
@@ -186,19 +202,23 @@ export default function FeaturesPage() {
             See how a cleaner subject-based workflow transforms your review experience.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
-            >
-              Get Started
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
-            >
-              Contact Us
-            </Link>
+            <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
           </div>
         </ScrollReveal>
       </section>

@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { ScrollReveal } from '@/components/scroll-reveal';
+import { pricingCardHover, buttonHover, buttonTap } from '@/lib/motion';
 
 const packages = [
   {
@@ -81,25 +85,33 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-stretch gap-6 lg:grid-cols-3">
             {packages.map((pkg, index) => (
-              <ScrollReveal key={pkg.name} delay={index * 0.06} className="h-full">
-                <div className={`flex h-full flex-col rounded-2xl border bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 ${pkg.highlighted ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}>
+              <ScrollReveal key={pkg.name} delay={index * 0.06} className="h-full cursor-pointer">
+                <motion.div 
+                  className={`flex h-full flex-col rounded-2xl border bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover group ${pkg.highlighted ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'}`}
+                  whileHover={pricingCardHover}
+                >
                   <div className="mb-4 min-h-[32px]">
                     {pkg.highlighted ? (
-                      <span className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                      <motion.span 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                      >
                         Most chosen
-                      </span>
+                      </motion.span>
                     ) : pkg.label ? (
-                      <span className="inline-flex rounded-full bg-surface px-3 py-1 text-xs font-medium text-muted-foreground">
+                      <span className="inline-flex rounded-full bg-surface px-3 py-1 text-xs font-medium text-muted-foreground group-hover:bg-muted/20 transition-colors">
                         {pkg.label}
                       </span>
                     ) : (
                       <span aria-hidden="true" className="inline-block h-[26px]" />
                     )}
                   </div>
-                  <h3 className="mb-1 text-lg font-medium text-muted-foreground">{pkg.name}</h3>
+                  <h3 className="mb-1 text-lg font-medium text-muted-foreground group-hover:text-foreground transition-colors">{pkg.name}</h3>
 
                   <div className="mb-4 flex items-baseline gap-2">
-                    <span className="font-display text-4xl text-foreground">{pkg.price}</span>
+                    <span className="font-display text-4xl text-foreground group-hover:text-accent transition-colors duration-300">{pkg.price}</span>
                     {pkg.period ? <span className="text-sm text-muted-foreground">{pkg.period}</span> : null}
                   </div>
 
@@ -113,7 +125,7 @@ export default function PricingPage() {
                             <span className="text-sm font-semibold text-accent">{feature}</span>
                           ) : (
                             <>
-                              <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                              <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent transition-transform group-hover:scale-125 duration-300" />
                               <span className="text-sm text-muted-foreground">{feature}</span>
                             </>
                           )}
@@ -122,15 +134,15 @@ export default function PricingPage() {
                     </ul>
                   </div>
 
-                  <div className="mt-auto">
+                  <motion.div className="mt-auto" whileHover={buttonHover} whileTap={buttonTap}>
                     <Link
                       href="/register"
                       className={`block w-full rounded-full py-3 text-center text-sm font-semibold transition-all duration-200 ${pkg.highlighted ? 'bg-foreground text-background hover:bg-foreground/90 shadow-soft-sm' : 'border border-border bg-white text-foreground hover:bg-surface'}`}
                     >
                       Get Started
                     </Link>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
@@ -144,13 +156,15 @@ export default function PricingPage() {
                 library setup.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background shadow-soft-sm transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-md"
-                >
-                  Contact Sales
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background shadow-soft-sm transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-md"
+                  >
+                    Contact Sales
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </ScrollReveal>

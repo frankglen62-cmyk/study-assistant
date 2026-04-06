@@ -1,7 +1,11 @@
+'use client';
+
 import { ArrowRight, Mail, MessageSquareText, ShieldEllipsis, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 import { ScrollReveal } from '@/components/scroll-reveal';
+import { cardHover, cardTap } from '@/lib/motion';
 import { ContactForm } from '@/features/public/contact-form';
 
 const channels = [
@@ -58,13 +62,17 @@ export default function ContactPage() {
                 const Icon = channel.icon;
                 return (
                   <ScrollReveal key={channel.title} delay={index * 0.06}>
-                    <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                      <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">
+                    <motion.div 
+                      className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover cursor-pointer"
+                      whileHover={cardHover}
+                      whileTap={cardTap}
+                    >
+                      <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:-rotate-3 duration-300">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="mb-1 text-base font-semibold text-foreground">{channel.title}</h3>
+                      <h3 className="mb-1 text-base font-semibold text-foreground group-hover:text-accent transition-colors">{channel.title}</h3>
                       <p className="text-sm leading-relaxed text-muted-foreground">{channel.description}</p>
-                    </div>
+                    </motion.div>
                   </ScrollReveal>
                 );
               })}
@@ -74,15 +82,21 @@ export default function ContactPage() {
                 <div className="rounded-2xl border border-border/40 bg-surface/50 p-6">
                   <h3 className="mb-3 text-sm font-semibold text-foreground">Quick links</h3>
                   <div className="space-y-2">
-                    <Link href="/features" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      <ArrowRight className="h-3.5 w-3.5" /> Explore features
-                    </Link>
-                    <Link href="/pricing" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      <ArrowRight className="h-3.5 w-3.5" /> View pricing
-                    </Link>
-                    <Link href="/#faq" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      <ArrowRight className="h-3.5 w-3.5" /> Read FAQ
-                    </Link>
+                    <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
+                      <Link href="/features" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                        <ArrowRight className="h-3.5 w-3.5" /> Explore features
+                      </Link>
+                    </motion.div>
+                    <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
+                      <Link href="/pricing" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                        <ArrowRight className="h-3.5 w-3.5" /> View pricing
+                      </Link>
+                    </motion.div>
+                    <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
+                      <Link href="/#faq" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                        <ArrowRight className="h-3.5 w-3.5" /> Read FAQ
+                      </Link>
+                    </motion.div>
                   </div>
                 </div>
               </ScrollReveal>

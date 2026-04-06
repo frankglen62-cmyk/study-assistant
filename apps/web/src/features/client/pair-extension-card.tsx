@@ -17,6 +17,7 @@ interface PairExtensionCardProps {
   description?: string;
   pairedDeviceCount?: number;
   latestInstalledVersion?: string | null;
+  simplified?: boolean;
 }
 
 export function PairExtensionCard({
@@ -27,6 +28,7 @@ export function PairExtensionCard({
   description = 'Generate a short-lived code and use it in the extension onboarding screen.',
   pairedDeviceCount = 0,
   latestInstalledVersion = null,
+  simplified = false,
 }: PairExtensionCardProps) {
   const { pushToast } = useToast();
   const [deviceName, setDeviceName] = useState(initialDeviceName);
@@ -139,7 +141,8 @@ export function PairExtensionCard({
         </div>
 
         {/* App URL */}
-        <div className="space-y-2">
+        {!simplified && (
+          <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label className="text-xs font-medium text-foreground">App URL</label>
             <button
@@ -153,8 +156,10 @@ export function PairExtensionCard({
           <Input value={appBaseUrl} readOnly className="font-mono text-xs h-9 bg-surface/30 border-border/40" />
           <p className="text-[11px] text-muted-foreground">Use this exact portal host inside the extension so pairing and API calls stay on the trusted origin.</p>
         </div>
+        )}
 
         {/* Device name */}
+        {!simplified && (
         <div className="space-y-2">
           <label className="text-xs font-medium text-foreground">Device Name</label>
           <Input
@@ -165,6 +170,7 @@ export function PairExtensionCard({
           />
           <p className="text-[11px] text-muted-foreground">Give this browser a clear name so you can revoke the correct device later.</p>
         </div>
+        )}
 
         {/* Pairing Code */}
         <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5">

@@ -172,7 +172,7 @@ export const cardTap = {
 export const pricingCardHover = {
   y: -8,
   scale: 1.015,
-  transition: { type: 'spring', stiffness: 250, damping: 24, mass: 0.6 },
+  transition: { type: 'spring' as const, stiffness: 250, damping: 24, mass: 0.6 },
 };
 
 /* ═══════════════════════════════════════════
