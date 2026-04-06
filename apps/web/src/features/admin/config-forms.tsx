@@ -1,11 +1,13 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { FormField } from '@/components/forms/form-field';
 import { useToast } from '@/components/providers/toast-provider';
+import { defaultSystemSettings, systemSettingsSchema, type SystemSettings } from '@/lib/platform/system-settings-schema';
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
 
 const subjectSchema = z.object({
@@ -20,24 +22,6 @@ const categorySchema = z.object({
   subject: z.string().min(2, 'Choose a subject.'),
   keywords: z.string().min(3, 'Enter default keywords.'),
   sortOrder: z.coerce.number().int().min(0),
-});
-
-const systemSettingsSchema = z.object({
-  lowCreditThresholdSeconds: z.coerce.number().int().min(60),
-  sessionIdleSeconds: z.coerce.number().int().min(60),
-  liveModeDefault: z.enum(['disabled', 'confirm', 'enabled']),
-  confidenceThresholds: z.string().min(5, 'Enter threshold values.'),
-  allowedFileTypes: z.string().min(3, 'Enter allowed file types.'),
-  maxUploadSizeMb: z.coerce.number().int().min(1),
-  systemBanner: z.string().min(2, 'Enter a banner message.'),
-  maintenanceMode: z.boolean(),
-  allowNewRegistrations: z.boolean(),
-  requireEmailVerification: z.boolean(),
-  showDefaultCreditPackages: z.boolean(),
-  extensionPairingExpiration: z.coerce.number().int().min(60),
-  rateLimitDefaults: z.coerce.number().int().min(10),
-  supportEmail: z.string().email('Enter a valid email.'),
-  platformName: z.string().min(2, 'Enter a platform name.'),
 });
 
 export function AdminSubjectForm() {
@@ -142,39 +126,65 @@ export function AdminCategoryForm() {
   );
 }
 
-export function AdminSystemSettingsForm() {
+async function readJson<T>(response: Response) {
+  return (await response.json()) as T & { error?: string };
+}
+
+export function AdminSystemSettingsForm({ initialSettings }: { initialSettings: SystemSettings }) {
   const { pushToast } = useToast();
-  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof systemSettingsSchema>>({
+  const [isSaving, setIsSaving] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm<SystemSettings>({
     resolver: zodResolver(systemSettingsSchema),
-    defaultValues: {
-      lowCreditThresholdSeconds: 900,
-      sessionIdleSeconds: 300,
-      liveModeDefault: 'confirm',
-      confidenceThresholds: 'high=0.80, medium=0.65',
-      allowedFileTypes: 'pdf, docx, pptx, txt, md, csv, jpg, png, webp, zip',
-      maxUploadSizeMb: 100,
-      systemBanner: 'Scheduled maintenance every Sunday at 02:00 UTC.',
-      maintenanceMode: false,
-      allowNewRegistrations: true,
-      requireEmailVerification: true,
-      showDefaultCreditPackages: true,
-      extensionPairingExpiration: 600,
-      rateLimitDefaults: 120,
-      supportEmail: 'support@study-assistant.com',
-      platformName: 'Codex AI',
-    },
+    defaultValues: initialSettings,
   });
+  const maintenanceMode = watch('maintenanceMode');
+
+  useEffect(() => {
+    reset(initialSettings);
+  }, [initialSettings, reset]);
 
   return (
     <form
       className="space-y-8 pb-32"
-      onSubmit={handleSubmit((values) =>
-        pushToast({
-          tone: 'success',
-          title: 'Settings saved',
-          description: `System configuration updated for ${values.platformName}.`,
-        }),
-      )}
+      onSubmit={handleSubmit(async (values) => {
+        setIsSaving(true);
+
+        try {
+          const response = await fetch('/api/admin/system-settings', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+          const payload = await readJson<{ message: string; settings: SystemSettings }>(response);
+
+          if (!response.ok) {
+            throw new Error(payload.error ?? 'Failed to update platform settings.');
+          }
+
+          reset(payload.settings);
+          pushToast({
+            tone: 'success',
+            title: 'Settings saved',
+            description: payload.message,
+          });
+        } catch (error) {
+          pushToast({
+            tone: 'danger',
+            title: 'Save failed',
+            description: error instanceof Error ? error.message : 'Unknown error.',
+          });
+        } finally {
+          setIsSaving(false);
+        }
+      })}
     >
       <div className="grid gap-6 xl:grid-cols-2">
         {/* Platform Controls */}
@@ -193,10 +203,17 @@ export function AdminSystemSettingsForm() {
             <div className="flex items-center justify-between rounded-lg border border-border/50 bg-background/30 p-4">
               <div className="space-y-0.5">
                 <p className="text-sm font-medium">Maintenance Mode</p>
-                <p className="text-xs text-muted-foreground">Locks out all non-admin traffic.</p>
+                <p className="text-xs text-muted-foreground">Blocks client portal and extension access while admins keep working.</p>
               </div>
               <input type="checkbox" className="h-4 w-4 rounded border-border bg-background" {...register('maintenanceMode')} />
             </div>
+            <FormField label="Maintenance Message" error={errors.maintenanceMessage?.message as string}>
+              <Textarea
+                {...register('maintenanceMessage')}
+                placeholder="We are applying updates right now. Please try again in a few minutes."
+                className="min-h-[96px]"
+              />
+            </FormField>
           </CardContent>
         </Card>
 
@@ -287,11 +304,11 @@ export function AdminSystemSettingsForm() {
       </div>
 
       {/* System Banner */}
-      <Card>
-        <CardHeader>
-          <CardTitle>System Banner</CardTitle>
-          <CardDescription>Show a global announcement across the portal and extension.</CardDescription>
-        </CardHeader>
+        <Card>
+          <CardHeader>
+            <CardTitle>System Banner</CardTitle>
+            <CardDescription>Show a global announcement across the portal and extension.</CardDescription>
+          </CardHeader>
         <CardContent>
           <FormField label="Banner Message (Markdown supported)" error={errors.systemBanner?.message as string}>
             <Textarea {...register('systemBanner')} placeholder="Leave blank to disable banner." className="min-h-[110px]" />
@@ -301,11 +318,35 @@ export function AdminSystemSettingsForm() {
 
       {/* Sticky Action Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-10 flex items-center justify-end gap-4 border-t border-border/70 bg-surface/85 px-6 py-4 shadow-[0_-18px_50px_-34px_rgba(8,22,28,0.35)] backdrop-blur lg:left-[280px]">
-        <p className="mr-auto text-sm text-muted-foreground hidden sm:block">You have unsaved changes</p>
-        <Button type="button" variant="secondary" onClick={() => pushToast({ title: 'Reverted to defaults' })}>
+        <p className="mr-auto text-sm text-muted-foreground hidden sm:block">
+          {maintenanceMode
+            ? 'Maintenance mode is enabled. Client portal and extension requests will be blocked after save.'
+            : isDirty
+              ? 'You have unsaved platform changes.'
+              : 'Platform settings are synced with the database.'}
+        </p>
+        <Button
+          type="button"
+          variant="secondary"
+          disabled={isSaving}
+          onClick={() => {
+            reset(initialSettings);
+            pushToast({ title: 'Reverted to last saved settings' });
+          }}
+        >
+          Reset Saved
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          disabled={isSaving}
+          onClick={() => reset(defaultSystemSettings, { keepDefaultValues: true })}
+        >
           Reset Defaults
         </Button>
-        <Button type="submit">Save Changes</Button>
+        <Button type="submit" disabled={isSaving || !isDirty}>
+          {isSaving ? 'Saving...' : 'Save Changes'}
+        </Button>
       </div>
     </form>
   );

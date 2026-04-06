@@ -9,6 +9,7 @@ import type { NavItem } from '@study-assistant/shared-types';
 import { cn } from '@study-assistant/ui';
 
 import { LogoMark } from '@/components/layout/logo-mark';
+import { SystemBanner } from '@/components/layout/system-banner';
 import {
   navReveal,
   navItemStagger,
@@ -57,9 +58,11 @@ const footerColumns = [
 export function PublicShell({
   children,
   navItems,
+  systemBanner,
 }: {
   children: ReactNode;
   navItems: NavItem[];
+  systemBanner?: string | null;
 }) {
   const reduced = useReducedMotion();
   const pathname = usePathname();
@@ -69,6 +72,7 @@ export function PublicShell({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {systemBanner ? <SystemBanner message={systemBanner} /> : null}
       {/* ─── Clean Premium Navbar ─── */}
       <motion.header
         className="sticky top-0 z-50 border-b border-border/40 bg-white/80 backdrop-blur-xl"

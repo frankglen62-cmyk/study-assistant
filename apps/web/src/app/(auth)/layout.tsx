@@ -3,10 +3,18 @@ import type { ReactNode } from 'react';
 import { Sparkles, ShieldCheck, BookOpenText, GraduationCap } from 'lucide-react';
 
 import { LogoMark } from '@/components/layout/logo-mark';
+import { SystemBanner } from '@/components/layout/system-banner';
+import { getSystemSettings } from '@/lib/platform/system-settings';
 
-export default function AuthLayout({ children }: { children: ReactNode }) {
+export default async function AuthLayout({ children }: { children: ReactNode }) {
+  const settings = await getSystemSettings();
+  const banner = settings.maintenanceMode
+    ? settings.maintenanceMessage
+    : settings.systemBanner.trim() || null;
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50/50 via-background to-emerald-50/30">
+      {banner ? <SystemBanner message={banner} tone={settings.maintenanceMode ? 'warning' : 'info'} /> : null}
       <div className="relative mx-auto flex h-[100dvh] max-w-6xl flex-col px-6 py-6">
         {/* Top bar */}
         <div className="flex shrink-0 items-center justify-between">

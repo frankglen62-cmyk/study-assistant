@@ -12,10 +12,12 @@ import { PortalShell } from '@/components/layout/portal-shell';
 export function PortalLayoutClient({
   role,
   navItems,
+  systemBanner,
   children,
 }: {
   role: UserRole;
   navItems: NavItem[];
+  systemBanner?: string | null;
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -70,6 +72,7 @@ export function PortalLayoutClient({
       navItems={navItems}
       currentPath={pathname}
       title={current?.label ?? (role === 'client' ? 'Client Portal' : 'Admin Portal')}
+      systemBanner={systemBanner}
     >
       {children}
     </PortalShell>

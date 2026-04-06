@@ -5,9 +5,8 @@ import type { AnalyzeRequestPayload } from '@study-assistant/shared-types';
 import { requireClientUser } from '@/lib/auth/request-context';
 import { analyzeStudyPage } from '@/lib/ai/analyze';
 import { assertWalletSpendable } from '@/lib/billing/wallet';
-import { env } from '@/lib/env/server';
-import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
-import { requireActiveSession } from '@/lib/sessions/service';
+import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { requireActiveSession, settleActiveSessionUsage } from '@/lib/sessions/service';
 import { assertRateLimit } from '@/lib/security/rate-limit';
 
 const requestSchema = z.object({
@@ -84,15 +83,11 @@ export async function POST(request: Request) {
 
   try {
     const context = await requireClientUser(request);
-    assertWalletSpendable({
-      walletStatus: context.wallet.status,
-      remainingSeconds: context.wallet.remaining_seconds,
-      requiredSeconds: env.ANALYSIS_DEBIT_SECONDS,
-      lockedMessage: 'Wallet access is locked. Contact support or an administrator.',
-      insufficientMessage: 'Not enough credits remain for analysis.',
-    });
-
-    assertRateLimit(`analyze:${context.userId}`, {
+    const limiterKey = 'installationId' in context 
+      ? `analyze:${context.installationId}`
+      : `analyze:${context.userId}`;
+      
+    assertRateLimit(limiterKey, {
       max: 600,
       windowMs: 60 * 60 * 1000,
     });
@@ -101,16 +96,39 @@ export async function POST(request: Request) {
       request,
       requestSchema as z.ZodType<AnalyzeRequestPayload>,
     )) as AnalyzeRequestPayload;
-    const session = await requireActiveSession(context.userId, body.sessionId);
+    const activeSession = await requireActiveSession(context.userId, body.sessionId);
+    const settled = await settleActiveSessionUsage({
+      userId: context.userId,
+      sessionId: activeSession.id,
+    });
+
+    assertWalletSpendable({
+      walletStatus: context.wallet.status,
+      remainingSeconds: settled.wallet.remaining_seconds,
+      requiredSeconds: 1,
+      lockedMessage: 'Wallet access is locked. Contact support or an administrator.',
+      insufficientMessage: 'No study time remains for this session.',
+    });
+
+    if (settled.session.status !== 'active') {
+      throw new RouteError(402, 'insufficient_credits', 'No study time remains for this session.');
+    }
+
     const response = await analyzeStudyPage({
       userId: context.userId,
-      sessionId: session.id,
-      sessionSubjectId: body.forceRedetect ? null : session.current_subject_id,
-      sessionCategoryId: body.forceRedetect ? null : session.current_category_id,
+      sessionId: settled.session.id,
+      sessionSubjectId: body.forceRedetect ? null : settled.session.current_subject_id,
+      sessionCategoryId: body.forceRedetect ? null : settled.session.current_category_id,
       request: body,
     });
 
-    return jsonOk(response, requestId);
+    return jsonOk(
+      {
+        ...response,
+        remainingSeconds: settled.wallet.remaining_seconds,
+      },
+      requestId,
+    );
   } catch (error) {
     return jsonError(error, requestId);
   }

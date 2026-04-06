@@ -102,6 +102,7 @@ export const sessionRecordSchema = z.object({
   current_category_id: z.string().uuid().nullable(),
   used_seconds: z.number().int().nonnegative(),
   start_time: z.string(),
+  last_activity_at: z.string().nullable().optional(),
   end_time: z.string().nullable(),
 });
 

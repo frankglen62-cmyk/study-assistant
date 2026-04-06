@@ -5,6 +5,7 @@ import type { User } from '@supabase/supabase-js';
 
 import type { UserRole } from '@study-assistant/shared-types';
 
+import { getSystemSettings, isMaintenanceBlockedForRole } from '@/lib/platform/system-settings';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
 
@@ -17,6 +18,7 @@ export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
   }
 
   const context = await getProfileWithWalletByUserId(data.user.id);
+  const systemSettings = await getSystemSettings();
 
   if (!allowedRoles.includes(context.profile.role)) {
     redirect(context.profile.role === 'client' ? '/dashboard' : '/admin/dashboard');
@@ -24,6 +26,10 @@ export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
 
   if (context.profile.account_status !== 'active') {
     redirect('/login');
+  }
+
+  if (isMaintenanceBlockedForRole(context.profile.role, systemSettings)) {
+    redirect('/maintenance');
   }
 
   const authEmailTwoFactorValue = data.user.user_metadata?.email_2fa_enabled;
@@ -39,5 +45,6 @@ export async function requirePageUser(allowedRoles: UserRole[] = ['client']) {
     emailTwoFactorEnabled,
     profile: context.profile,
     wallet: context.wallet,
+    systemSettings,
   };
 }

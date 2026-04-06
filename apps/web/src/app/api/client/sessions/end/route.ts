@@ -4,7 +4,7 @@ import { requireClientUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
 import { assertRateLimit } from '@/lib/security/rate-limit';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
-import { endSession } from '@/lib/sessions/service';
+import { endSession, settleActiveSessionUsage } from '@/lib/sessions/service';
 
 export async function POST(request: Request) {
   const { requestId } = getRequestMeta(request);
@@ -12,12 +12,16 @@ export async function POST(request: Request) {
   try {
     const context = await requireClientUser(request);
     assertRateLimit(`session-end:${context.userId}`, { max: 30, windowMs: 60 * 60 * 1000 });
-    const session = await endSession({ userId: context.userId });
+    const settled = await settleActiveSessionUsage({ userId: context.userId });
+    const session =
+      settled.session.status === 'active' || settled.session.status === 'paused'
+        ? await endSession({ userId: context.userId, sessionId: settled.session.id })
+        : settled.session;
 
     const response: ClientSessionMutationResponse = {
       sessionId: session.id,
       status: toExtensionSessionStatus(session.status),
-      remainingSeconds: context.wallet.remaining_seconds,
+      remainingSeconds: settled.wallet.remaining_seconds,
       detectionMode: session.detection_mode,
     };
 

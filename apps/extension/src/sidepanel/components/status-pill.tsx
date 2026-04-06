@@ -3,6 +3,7 @@ import type { ExtensionSessionStateStatus, ExtensionUiStatus } from '@study-assi
 const uiStatusLabels: Record<ExtensionUiStatus, string> = {
   ready: 'Ready',
   not_connected: 'Not connected',
+  maintenance: 'Maintenance',
   no_credits: 'No credits',
   scanning_page: 'Scanning page',
   detecting_subject: 'Detecting subject',
@@ -16,6 +17,7 @@ const uiStatusLabels: Record<ExtensionUiStatus, string> = {
 const uiStatusClassNames: Record<ExtensionUiStatus, string> = {
   ready: 'status-pill status-pill--success',
   not_connected: 'status-pill status-pill--muted',
+  maintenance: 'status-pill status-pill--warning',
   no_credits: 'status-pill status-pill--danger',
   scanning_page: 'status-pill status-pill--warning',
   detecting_subject: 'status-pill status-pill--warning',

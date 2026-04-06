@@ -42,6 +42,7 @@ export function createDefaultState(browserName = 'Chrome', extensionVersion = '0
     browserName,
     extensionVersion,
     creditsRemainingSeconds: 0,
+    sessionCreditExpiresAt: null,
     session: {
       sessionId: null,
       status: 'session_inactive',
@@ -192,6 +193,7 @@ export function clearAuthState(current: ExtensionState): ExtensionState {
     accessToken: null,
     refreshToken: null,
     creditsRemainingSeconds: 0,
+    sessionCreditExpiresAt: null,
     currentPage: null,
     capturedSections: [],
     lastSuggestion: defaultSuggestion,

@@ -38,6 +38,7 @@ export default async function AdminUsersPage() {
           lastSessionAt: user.lastSessionAt,
           sessionCount: user.sessionCount,
           joinedAt: user.joinedAt,
+          hasActiveSession: user.hasActiveSession,
         }))}
       />
     </div>

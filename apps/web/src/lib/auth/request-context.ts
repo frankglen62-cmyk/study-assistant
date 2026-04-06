@@ -2,6 +2,7 @@ import type { UserRole } from '@study-assistant/shared-types';
 
 import { RouteError, getBearerToken } from '@/lib/http/route';
 import { logEvent } from '@/lib/observability/logger';
+import { assertMaintenanceAccess } from '@/lib/platform/system-settings';
 import { getInstallationById, touchInstallation } from '@/lib/supabase/extension';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
@@ -61,6 +62,10 @@ export async function requirePortalUser(request: Request, allowedRoles: UserRole
 
   const context = await getProfileWithWalletByUserId(userId);
   assertActiveProfile(context.profile, allowedRoles);
+  await assertMaintenanceAccess({
+    role: context.profile.role,
+    target: 'portal_api',
+  });
   return {
     userId,
     profile: context.profile,
@@ -84,6 +89,10 @@ export async function requireExtensionUser(request: Request): Promise<ExtensionC
 
   const context = await getProfileWithWalletByUserId(payload.userId);
   assertActiveProfile(context.profile, ['client', 'admin', 'super_admin']);
+  await assertMaintenanceAccess({
+    role: context.profile.role,
+    target: 'extension',
+  });
 
   await touchInstallation(installation.id, requestExtensionVersion);
 

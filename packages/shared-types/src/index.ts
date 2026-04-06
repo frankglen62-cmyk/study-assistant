@@ -115,6 +115,7 @@ export type ExtensionPairingStatus = 'not_paired' | 'paired' | 'revoked';
 export type ExtensionUiStatus =
   | 'ready'
   | 'not_connected'
+  | 'maintenance'
   | 'no_credits'
   | 'scanning_page'
   | 'detecting_subject'
@@ -205,6 +206,7 @@ export interface ExtensionState {
   browserName: string;
   extensionVersion: string;
   creditsRemainingSeconds: number;
+  sessionCreditExpiresAt: string | null;
   session: ExtensionSessionSnapshot;
   currentPage: ExtensionPageSignals | null;
   capturedSections: ExtensionCapturedSection[];
@@ -531,6 +533,7 @@ export interface AdminUserCreditAdjustmentResponse extends AdminMutationResponse
   remainingSeconds: number;
   lifetimeSecondsPurchased: number;
   lifetimeSecondsUsed: number;
+  openSessionsClosed?: number;
 }
 
 export interface AdminUserStatusRequest {
@@ -541,6 +544,7 @@ export interface AdminUserStatusResponse extends AdminMutationResponse {
   userId: string;
   accountStatus: AccountStatus;
   walletStatus: WalletStatus;
+  openSessionsClosed?: number;
 }
 
 export interface AdminSubjectMutationRequest {

@@ -32,6 +32,22 @@ interface SiteAccessResult {
   tabUrl: string;
 }
 
+function getEffectiveRemainingSeconds(state: ExtensionState | null) {
+  if (!state) {
+    return 0;
+  }
+
+  if (state.session.status === 'session_active' && state.sessionCreditExpiresAt) {
+    const expiresAt = new Date(state.sessionCreditExpiresAt).getTime();
+
+    if (Number.isFinite(expiresAt)) {
+      return Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+    }
+  }
+
+  return Math.max(0, state.creditsRemainingSeconds);
+}
+
 /* ------------------------------------------------------------------ */
 /*  Hooks                                                              */
 /* ------------------------------------------------------------------ */
@@ -305,11 +321,13 @@ export function SidePanelApp() {
     });
     setSubjectMode(state.session.manualSubject ? 'picker' : 'auto');
     setSubjectPickerOpen(Boolean(state.session.manualSubject));
-    setDisplayRemainingSeconds(state.creditsRemainingSeconds);
+    setDisplayRemainingSeconds(getEffectiveRemainingSeconds(state));
   }, [
     state?.appBaseUrl,
     state?.creditsRemainingSeconds,
     state?.deviceName,
+    state?.session.status,
+    state?.sessionCreditExpiresAt,
     state?.session.manualCategory,
     state?.session.manualSubject,
   ]);
@@ -379,18 +397,14 @@ export function SidePanelApp() {
   }, [isPaired, state?.accessToken, state?.appBaseUrl, state?.refreshToken]);
 
   useEffect(() => {
-    if (state?.session.status !== 'session_active') {
-      return;
-    }
-
     const intervalId = window.setInterval(() => {
-      setDisplayRemainingSeconds((current) => Math.max(0, current - 1));
+      setDisplayRemainingSeconds(getEffectiveRemainingSeconds(state ?? null));
     }, 1000);
 
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [state?.session.status]);
+  }, [state]);
 
   useEffect(() => {
     if (!state || isPaired) {
@@ -429,9 +443,11 @@ export function SidePanelApp() {
   const sourceSubject = state?.lastSuggestion.sourceSubject ?? state?.lastSuggestion.detectedSubject ?? 'No source yet';
   const quizTitle = state?.currentPage?.quizTitle ?? null;
   const quizNumber = state?.currentPage?.quizNumber ?? null;
+  const effectiveRemainingSeconds = getEffectiveRemainingSeconds(state ?? null);
+  const isMaintenanceMode = state?.uiStatus === 'maintenance';
 
   const siteAccessGranted = access?.status === 'granted';
-  const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted;
+  const canAnalyze = isPaired && state?.session.status === 'session_active' && siteAccessGranted && effectiveRemainingSeconds > 0 && !isMaintenanceMode;
   const isFullAutoOn = state?.autoPilotEnabled ?? false;
   const subjectSuggestions = getSubjectSuggestions(availableSubjects, subjectSearch, 100);
   const selectedSubjectEntry =
@@ -917,7 +933,7 @@ export function SidePanelApp() {
                 <button
                   className="action-button action-button--primary"
                   onClick={() => void sendSimple('EXTENSION/START_SESSION')}
-                  disabled={pendingAction !== null || state.creditsRemainingSeconds === 0}
+                  disabled={pendingAction !== null || effectiveRemainingSeconds === 0 || isMaintenanceMode}
                 >
                   <Play size={16} /> Start Session
                 </button>
@@ -1606,7 +1622,7 @@ export function SidePanelApp() {
             <button
               className="action-button action-button--primary action-button--sm"
               onClick={() => void sendSimple('EXTENSION/START_SESSION')}
-              disabled={pendingAction !== null || state.session.status === 'session_active' || state.creditsRemainingSeconds === 0}
+              disabled={pendingAction !== null || state.session.status === 'session_active' || effectiveRemainingSeconds === 0 || isMaintenanceMode}
               title="Start"
               style={{ padding: '6px' }}
             >
@@ -1624,7 +1640,7 @@ export function SidePanelApp() {
             <button
               className="action-button action-button--sm"
               onClick={() => void sendSimple('EXTENSION/RESUME_SESSION')}
-              disabled={pendingAction !== null || state.session.status !== 'session_paused' || state.creditsRemainingSeconds === 0}
+              disabled={pendingAction !== null || state.session.status !== 'session_paused' || effectiveRemainingSeconds === 0 || isMaintenanceMode}
               title="Resume"
               style={{ padding: '6px' }}
             >
@@ -1641,9 +1657,14 @@ export function SidePanelApp() {
             </button>
           </div>
 
-          {state.creditsRemainingSeconds === 0 && (
+          {effectiveRemainingSeconds === 0 && !isMaintenanceMode && (
             <div className="notice notice--danger mt-2" style={{ padding: '6px 8px' }}>
               <p style={{ fontSize: 11 }}>No credits remaining. Top up in portal.</p>
+            </div>
+          )}
+          {isMaintenanceMode && (
+            <div className="notice notice--warning mt-2" style={{ padding: '6px 8px' }}>
+              <p style={{ fontSize: 11 }}>Maintenance mode is active. Client actions are temporarily paused.</p>
             </div>
           )}
 

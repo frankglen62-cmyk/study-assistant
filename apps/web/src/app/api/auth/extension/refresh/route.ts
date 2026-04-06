@@ -4,7 +4,9 @@ import type { ExtensionRefreshTokenResponse } from '@study-assistant/shared-type
 
 import { createExtensionAccessToken, hashOpaqueToken, issueRefreshToken } from '@/lib/auth/extension-tokens';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { assertMaintenanceAccess } from '@/lib/platform/system-settings';
 import { getInstallationById, getRefreshTokenRecord, revokeRefreshToken, storeRefreshToken } from '@/lib/supabase/extension';
+import { getProfileByUserId } from '@/lib/supabase/users';
 import { assertRateLimit } from '@/lib/security/rate-limit';
 
 const requestSchema = z.object({
@@ -20,6 +22,11 @@ export async function POST(request: Request) {
     const body = await parseJsonBody(request, requestSchema);
     const tokenRecord = await getRefreshTokenRecord(body.installationId, hashOpaqueToken(body.refreshToken));
     const installation = await getInstallationById(body.installationId);
+    const profile = await getProfileByUserId(installation.user_id);
+    await assertMaintenanceAccess({
+      role: profile.role,
+      target: 'extension',
+    });
 
     if (installation.installation_status !== 'active') {
       await revokeRefreshToken(tokenRecord.id);

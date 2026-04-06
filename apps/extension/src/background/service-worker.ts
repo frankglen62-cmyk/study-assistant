@@ -53,6 +53,7 @@ import { installExtractorContentScript } from '../content/extractor';
 const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
 const AUTO_PILOT_ANALYZE_TIMEOUT_MS = 15_500;
+const SESSION_EXPIRY_ALARM = 'study-assistant-session-expiry';
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
 let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
@@ -66,6 +67,12 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.runtime.onStartup.addListener(async () => {
   await initializeRuntime();
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === SESSION_EXPIRY_ALARM) {
+    void handleSessionCreditExpired('scheduled_expiry');
+  }
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -251,10 +258,124 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
 async function initializeRuntime(): Promise<void> {
   await chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 
-  const current = await readState(browserName, extensionVersion);
+  let current = await readState(browserName, extensionVersion);
   if (!current.browserName || !current.extensionVersion) {
     await writeState(createDefaultState(browserName, extensionVersion));
+    return;
   }
+
+  if (current.session.status === 'session_active' && !current.sessionCreditExpiresAt && current.creditsRemainingSeconds > 0) {
+    current = await updateState(
+      (existing) => ({
+        ...existing,
+        sessionCreditExpiresAt: buildSessionExpiry(existing.creditsRemainingSeconds, true),
+      }),
+      browserName,
+      extensionVersion,
+    );
+  }
+
+  await syncSessionExpiryAlarm(current);
+}
+
+function getEffectiveRemainingSeconds(state: ExtensionState, now = Date.now()) {
+  if (state.session.status === 'session_active' && state.sessionCreditExpiresAt) {
+    const expiry = new Date(state.sessionCreditExpiresAt).getTime();
+
+    if (Number.isFinite(expiry)) {
+      return Math.max(0, Math.floor((expiry - now) / 1000));
+    }
+  }
+
+  return Math.max(0, state.creditsRemainingSeconds);
+}
+
+function buildSessionExpiry(remainingSeconds: number, active: boolean, now = Date.now()) {
+  if (!active || remainingSeconds <= 0) {
+    return null;
+  }
+
+  return new Date(now + remainingSeconds * 1000).toISOString();
+}
+
+async function syncSessionExpiryAlarm(state: ExtensionState) {
+  await chrome.alarms.clear(SESSION_EXPIRY_ALARM);
+
+  if (state.session.status !== 'session_active' || !state.sessionCreditExpiresAt) {
+    return;
+  }
+
+  const expiresAt = new Date(state.sessionCreditExpiresAt).getTime();
+
+  if (!Number.isFinite(expiresAt) || expiresAt <= Date.now() || getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('expired_sync');
+    return;
+  }
+
+  chrome.alarms.create(SESSION_EXPIRY_ALARM, {
+    when: expiresAt,
+  });
+}
+
+async function handleSessionCreditExpired(reason: string) {
+  const state = await readState(browserName, extensionVersion);
+
+  if (state.session.status !== 'session_active' && state.creditsRemainingSeconds === 0) {
+    await syncSessionExpiryAlarm({
+      ...state,
+      sessionCreditExpiresAt: null,
+    });
+    return;
+  }
+
+  if (currentAnalyzeController) {
+    currentAnalyzeController.abort(`Study time exhausted: ${reason}`);
+    currentAnalyzeController = null;
+  }
+
+  autoPilotTabId = null;
+
+  for (const timer of liveAssistTimers.values()) {
+    clearTimeout(timer);
+  }
+  liveAssistTimers.clear();
+
+  try {
+    if (state.pairingStatus === 'paired' && state.session.status === 'session_active') {
+      await withAuthRetry((current) => endSession(current));
+    }
+  } catch (error) {
+    console.warn('Unable to end session after credits expired:', error);
+  }
+
+  const nextState = await updateState(
+    (current) =>
+      appendNotice(
+        {
+          ...current,
+          uiStatus: 'no_credits',
+          creditsRemainingSeconds: 0,
+          sessionCreditExpiresAt: null,
+          autoPilotEnabled: false,
+          autoClickEnabled: false,
+          lastError: 'No study time remains for this session.',
+          session: {
+            ...current.session,
+            status: 'session_inactive',
+            liveAssistEnabled: false,
+          },
+        },
+        {
+          tone: 'warning',
+          title: 'Study time exhausted',
+          message: 'No study time remains. Top up in the portal before continuing.',
+        },
+      ),
+    browserName,
+    extensionVersion,
+  );
+
+  await syncSessionExpiryAlarm(nextState);
 }
 
 function success<T>(data: T): ExtensionResponse<T> {
@@ -362,13 +483,21 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
     }
 
     if (error.status === 402 || error.code === 'insufficient_credits') {
-      await updateState(
+      const nextState = await updateState(
         (current) =>
           appendNotice(
             {
               ...current,
               uiStatus: 'no_credits',
               creditsRemainingSeconds: 0,
+              sessionCreditExpiresAt: null,
+              autoPilotEnabled: false,
+              autoClickEnabled: false,
+              session: {
+                ...current.session,
+                status: 'session_inactive',
+                liveAssistEnabled: false,
+              },
               lastError: error.message,
             },
             {
@@ -381,16 +510,25 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
         extensionVersion,
       );
 
+      await syncSessionExpiryAlarm(nextState);
       return error.message;
     }
 
     if (error.status === 403 && error.code === 'wallet_locked') {
-      await updateState(
+      const nextState = await updateState(
         (current) =>
           appendNotice(
             {
               ...current,
               uiStatus: 'error',
+              sessionCreditExpiresAt: null,
+              autoPilotEnabled: false,
+              autoClickEnabled: false,
+              session: {
+                ...current.session,
+                status: 'session_inactive',
+                liveAssistEnabled: false,
+              },
               lastError: error.message,
             },
             {
@@ -403,6 +541,69 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
         extensionVersion,
       );
 
+      await syncSessionExpiryAlarm(nextState);
+      return error.message;
+    }
+
+    if (error.status === 403 && error.code === 'account_inactive') {
+      const nextState = await updateState(
+        (current) =>
+          appendNotice(
+            {
+              ...current,
+              uiStatus: 'error',
+              sessionCreditExpiresAt: null,
+              autoPilotEnabled: false,
+              autoClickEnabled: false,
+              session: {
+                ...current.session,
+                status: 'session_inactive',
+                liveAssistEnabled: false,
+              },
+              lastError: error.message,
+            },
+            {
+              tone: 'warning',
+              title: 'Account unavailable',
+              message: error.message,
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      await syncSessionExpiryAlarm(nextState);
+      return error.message;
+    }
+
+    if (error.status === 503 && error.code === 'maintenance_mode') {
+      const nextState = await updateState(
+        (current) =>
+          appendNotice(
+            {
+              ...current,
+              uiStatus: 'maintenance',
+              sessionCreditExpiresAt: null,
+              autoPilotEnabled: false,
+              autoClickEnabled: false,
+              session: {
+                ...current.session,
+                status: 'session_inactive',
+                liveAssistEnabled: false,
+              },
+              lastError: error.message,
+            },
+            {
+              tone: 'warning',
+              title: 'Maintenance mode',
+              message: error.message,
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      await syncSessionExpiryAlarm(nextState);
       return error.message;
     }
   }
@@ -459,11 +660,15 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
 }
 
 function computeUiStatus(state: ExtensionState, fallback: ExtensionUiStatus = 'ready'): ExtensionUiStatus {
+  if (state.uiStatus === 'maintenance') {
+    return 'maintenance';
+  }
+
   if (state.pairingStatus !== 'paired') {
     return 'not_connected';
   }
 
-  if (state.creditsRemainingSeconds === 0) {
+  if (getEffectiveRemainingSeconds(state) === 0) {
     return 'no_credits';
   }
 
@@ -594,6 +799,10 @@ async function handlePairExtension(payload: PairExtensionPayload) {
             accessToken: result.accessToken,
             refreshToken: result.refreshToken,
             creditsRemainingSeconds: result.remainingSeconds,
+            sessionCreditExpiresAt: buildSessionExpiry(
+              result.remainingSeconds,
+              result.sessionStatus === 'session_active',
+            ),
             session: {
               ...current.session,
               status: result.sessionStatus,
@@ -612,6 +821,8 @@ async function handlePairExtension(payload: PairExtensionPayload) {
     extensionVersion,
   );
 
+  await syncSessionExpiryAlarm(nextState);
+
   return nextState;
 }
 
@@ -626,13 +837,6 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
           : endSession(state),
   );
 
-  const statusMap = {
-    start: 'session_active',
-    pause: 'session_paused',
-    resume: 'session_active',
-    end: 'session_inactive',
-  } as const;
-
   const actionMap = {
     start: 'Start Session',
     pause: 'Pause Session',
@@ -643,6 +847,7 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
   const nextState = await updateState(
     (current) => {
       const remainingSeconds = response.remainingSeconds ?? current.creditsRemainingSeconds;
+      const nextSessionStatus = response.status;
 
       return appendRecentAction(
         {
@@ -651,14 +856,16 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
             {
               ...current,
               creditsRemainingSeconds: remainingSeconds,
+              sessionCreditExpiresAt: buildSessionExpiry(remainingSeconds, nextSessionStatus === 'session_active'),
             },
             'ready',
           ),
           creditsRemainingSeconds: remainingSeconds,
+          sessionCreditExpiresAt: buildSessionExpiry(remainingSeconds, nextSessionStatus === 'session_active'),
           session: {
             ...current.session,
-            sessionId: mode === 'end' ? null : response.sessionId,
-            status: statusMap[mode],
+            sessionId: nextSessionStatus === 'session_inactive' ? null : response.sessionId,
+            status: nextSessionStatus,
             detectionMode: response.detectionMode,
             lastActivityAt: new Date().toISOString(),
           },
@@ -669,6 +876,8 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
     browserName,
     extensionVersion,
   );
+
+  await syncSessionExpiryAlarm(nextState);
 
   return nextState;
 }
@@ -704,7 +913,7 @@ async function handleUnpairBrowser() {
 
   await withAuthRetry((current) => revokeCurrentInstallation(current));
 
-  return updateState(
+  const nextState = await updateState(
     (current) =>
       appendNotice(
         appendRecentAction(
@@ -726,6 +935,9 @@ async function handleUnpairBrowser() {
     browserName,
     extensionVersion,
   );
+
+  await syncSessionExpiryAlarm(nextState);
+  return nextState;
 }
 
 async function injectExtractor(tabId: number): Promise<void> {
@@ -1099,6 +1311,15 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
   let state = await readState(browserName, extensionVersion);
   requirePairing(state);
 
+  if (state.uiStatus === 'maintenance') {
+    throw new Error('The portal is under maintenance. Please try again after the admin reopens access.');
+  }
+
+  if (getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('pre_analyze_guard');
+    throw new Error('No study time remains for this session.');
+  }
+
   if (state.session.status !== 'session_active') {
     throw new Error('Start a session before analyzing the current page.');
   }
@@ -1187,7 +1408,7 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     }
   }
 
-  const creditsRemainingSeconds = response.remainingSeconds ?? state.creditsRemainingSeconds;
+  const creditsRemainingSeconds = response.remainingSeconds ?? getEffectiveRemainingSeconds(state);
   const nextStatus =
     creditsRemainingSeconds === 0
       ? 'no_credits'
@@ -1205,6 +1426,10 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
             ...current,
             uiStatus: nextStatus,
             creditsRemainingSeconds,
+            sessionCreditExpiresAt: buildSessionExpiry(
+              creditsRemainingSeconds,
+              creditsRemainingSeconds > 0 && current.session.status === 'session_active',
+            ),
             lastSuggestion: {
               answerText: response.answerText,
               shortExplanation: response.shortExplanation,
@@ -1225,6 +1450,8 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
             },
             session: {
               ...current.session,
+              status: creditsRemainingSeconds === 0 ? 'session_inactive' : current.session.status,
+              liveAssistEnabled: creditsRemainingSeconds === 0 ? false : current.session.liveAssistEnabled,
               lastActivityAt: new Date().toISOString(),
             },
           },
@@ -1255,6 +1482,8 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
     extensionVersion,
   );
 
+  await syncSessionExpiryAlarm(nextState);
+
   // Cache detected subject for future analyses (skip re-detection)
   if (response.detectedSubject && response.subject) {
     await updateState(
@@ -1272,6 +1501,11 @@ async function handleAnalyze(payload: AnalyzeCurrentPagePayload) {
   }
 
   // Always auto-click matched answers after successful analysis
+  if (nextStatus === 'no_credits') {
+    await handleSessionCreditExpired('post_analyze_zero');
+    return readState(browserName, extensionVersion);
+  }
+
   if (nextStatus === 'suggestion_ready' && nextState.lastSuggestion.questionSuggestions.length > 0) {
     try {
       const clickedState = await performAutoClickAll(nextState);
@@ -1387,6 +1621,15 @@ async function handleToggleAutoPilot(enabled: boolean) {
   const state = await readState(browserName, extensionVersion);
   requirePairing(state);
 
+  if (enabled && state.uiStatus === 'maintenance') {
+    throw new Error('Auto Pilot is unavailable while the portal is under maintenance.');
+  }
+
+  if (enabled && getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('auto_pilot_enable_guard');
+    throw new Error('No study time remains for this session.');
+  }
+
   if (enabled) {
     // Store the current active tab as the autopilot target — this lets Full Auto
     // keep working even when the user switches to another tab.
@@ -1445,6 +1688,15 @@ async function handleToggleAutoPilot(enabled: boolean) {
 async function handleAutoClickAll() {
   const state = await readState(browserName, extensionVersion);
   requirePairing(state);
+
+  if (state.uiStatus === 'maintenance') {
+    throw new Error('Auto-click is unavailable while the portal is under maintenance.');
+  }
+
+  if (getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('auto_click_guard');
+    throw new Error('No study time remains for this session.');
+  }
 
   if (state.lastSuggestion.questionSuggestions.length === 0) {
     throw new Error('No suggestions available. Analyze the page first.');
@@ -1510,6 +1762,16 @@ async function performAutoClickAll(state: ExtensionState) {
   const updatedSuggestions: ExtensionQuestionSuggestion[] = [];
 
   for (let i = 0; i < suggestions.length; i++) {
+    const liveState = await readState(browserName, extensionVersion);
+    if (liveState.uiStatus === 'maintenance') {
+      break;
+    }
+
+    if (getEffectiveRemainingSeconds(liveState) <= 0) {
+      await handleSessionCreditExpired('auto_click_loop');
+      break;
+    }
+
     const suggestion = suggestions[i]!;
     const answer = suggestion.suggestedOption ?? suggestion.answerText;
 
@@ -1634,8 +1896,13 @@ async function performAutoClickAll(state: ExtensionState) {
         }
 
         // Check if credits are still available
-        if (currentState.creditsRemainingSeconds <= 0) {
+        if (currentState.uiStatus === 'maintenance') {
           await handleToggleAutoPilot(false);
+          return;
+        }
+
+        if (getEffectiveRemainingSeconds(currentState) <= 0) {
+          await handleSessionCreditExpired('auto_pilot_next_page');
           return;
         }
 
@@ -1694,6 +1961,15 @@ async function performAutoClickAll(state: ExtensionState) {
 async function handleToggleLiveAssist(enabled: boolean) {
   const state = await readState(browserName, extensionVersion);
   requirePairing(state);
+
+  if (enabled && state.uiStatus === 'maintenance') {
+    throw new Error('Live Assist is unavailable while the portal is under maintenance.');
+  }
+
+  if (enabled && getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('live_assist_enable_guard');
+    throw new Error('No study time remains for this session.');
+  }
 
   const tab = await getActiveTab();
   if (enabled) {
@@ -1764,6 +2040,10 @@ async function handleRefreshCredits() {
           const nextSnapshot = {
             ...current,
             creditsRemainingSeconds: wallet.remainingSeconds,
+            sessionCreditExpiresAt: buildSessionExpiry(
+              wallet.remainingSeconds,
+              current.session.status === 'session_active',
+            ),
           };
 
           return {
@@ -1776,6 +2056,13 @@ async function handleRefreshCredits() {
     browserName,
     extensionVersion,
   );
+
+  await syncSessionExpiryAlarm(nextState);
+
+  if (wallet.remainingSeconds <= 0 && nextState.session.status === 'session_active') {
+    await handleSessionCreditExpired('manual_refresh');
+    return readState(browserName, extensionVersion);
+  }
 
   return nextState;
 }
@@ -1813,6 +2100,15 @@ async function handleLiveAssistSignal(tabId: number | undefined, payload: LiveAs
   }
 
   const state = await readState(browserName, extensionVersion);
+  if (state.uiStatus === 'maintenance') {
+    return false;
+  }
+
+  if (getEffectiveRemainingSeconds(state) <= 0) {
+    await handleSessionCreditExpired('live_assist_signal_guard');
+    return false;
+  }
+
   if (!state.session.liveAssistEnabled || state.session.status !== 'session_active' || state.autoPilotEnabled || currentAnalyzeController) {
     return false;
   }

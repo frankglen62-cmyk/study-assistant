@@ -215,6 +215,7 @@ export async function getAdminUsersPageData() {
     const wallet = walletByUserId.get(user.id) ?? null;
     const userSessions = sessionsByUserId.get(user.id) ?? [];
     const lastSession = userSessions[0] ?? null;
+    const hasActiveSession = userSessions.some((s) => s.status === 'active');
 
     return {
       id: user.id,
@@ -227,6 +228,7 @@ export async function getAdminUsersPageData() {
       sessionCount: userSessions.length,
       lastSessionAt: lastSession ? new Date(lastSession.start_time).toLocaleString() : 'No sessions yet',
       joinedAt: user.created_at ? new Date(user.created_at).toLocaleDateString() : 'Unknown',
+      hasActiveSession,
     };
   });
 }

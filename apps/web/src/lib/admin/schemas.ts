@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 import { slugify } from '@study-assistant/shared-utils';
 
+import { systemSettingsSchema } from '@/lib/platform/system-settings-schema';
+
 const optionalSlugSchema = z
   .string()
   .trim()
@@ -23,6 +25,8 @@ export const adminUserCreditAdjustmentSchema = z.object({
 export const adminUserStatusSchema = z.object({
   status: z.enum(['active', 'suspended']),
 });
+
+export const adminSystemSettingsUpdateSchema = systemSettingsSchema;
 
 export const adminPaymentPackageUpdateSchema = z.object({
   name: z.string().trim().min(2).max(120),

@@ -22,6 +22,7 @@ import { invalidatePreloadedQaPairCache } from '@/lib/ai/retrieval';
 import { RouteError } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
+import { updateOpenSessionsStatusForUser } from '@/lib/supabase/sessions';
 import { invalidateActiveCatalogCache } from '@/lib/supabase/catalog';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 import { getProfileWithWalletByUserId, setUserAccountStatusAtomic } from '@/lib/supabase/users';
@@ -215,6 +216,14 @@ export async function adjustUserCredits(
     },
   });
 
+  const sessionClosure =
+    input.deltaSeconds < 0 && wallet.remaining_seconds === 0
+      ? await updateOpenSessionsStatusForUser({
+          userId: input.userId,
+          status: 'no_credit',
+        })
+      : { count: 0, sessions: [] };
+
   await writeAuditLog({
     actorUserId: input.actorUserId,
     actorRole: input.actorRole,
@@ -229,6 +238,7 @@ export async function adjustUserCredits(
       remainingSeconds: wallet.remaining_seconds,
       deltaSeconds: input.deltaSeconds,
       description: input.description,
+      openSessionsClosed: sessionClosure.count,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -239,7 +249,11 @@ export async function adjustUserCredits(
     remainingSeconds: wallet.remaining_seconds,
     lifetimeSecondsPurchased: wallet.lifetime_seconds_purchased,
     lifetimeSecondsUsed: wallet.lifetime_seconds_used,
-    message: 'Wallet balance updated successfully.',
+    openSessionsClosed: sessionClosure.count,
+    message:
+      sessionClosure.count > 0
+        ? `Wallet balance updated successfully. ${sessionClosure.count} open session${sessionClosure.count === 1 ? ' was' : 's were'} stopped because no study time remained.`
+        : 'Wallet balance updated successfully.',
   };
 }
 
@@ -258,6 +272,14 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     walletStatus: nextWalletStatus,
   });
 
+  const sessionClosure =
+    input.status === 'suspended'
+      ? await updateOpenSessionsStatusForUser({
+          userId: input.userId,
+          status: 'ended',
+        })
+      : { count: 0, sessions: [] };
+
   await writeAuditLog({
     actorUserId: input.actorUserId,
     actorRole: input.actorRole,
@@ -272,6 +294,7 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     newValues: {
       accountStatus: input.status,
       walletStatus: nextWalletStatus,
+      openSessionsClosed: sessionClosure.count,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -281,7 +304,11 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     userId: input.userId,
     accountStatus: input.status,
     walletStatus: nextWalletStatus,
-    message: 'User status updated successfully.',
+    openSessionsClosed: sessionClosure.count,
+    message:
+      sessionClosure.count > 0
+        ? `User status updated successfully. ${sessionClosure.count} open session${sessionClosure.count === 1 ? ' was' : 's were'} ended.`
+        : 'User status updated successfully.',
   };
 }
 

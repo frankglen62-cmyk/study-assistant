@@ -14,7 +14,6 @@ import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
 import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
 import { rankQaPairRowsLocal } from '@/lib/ai/retrieval';
-import { applyWalletSeconds } from '@/lib/billing/wallet';
 import { env } from '@/lib/env/server';
 import { logEvent } from '@/lib/observability/logger';
 import { getActiveCatalog } from '@/lib/supabase/catalog';
@@ -637,21 +636,6 @@ export async function analyzeStudyPage(params: {
     1,
   );
 
-  const walletResult = await applyWalletSeconds({
-    userId: params.userId,
-    deltaSeconds: -env.ANALYSIS_DEBIT_SECONDS,
-    transactionType: 'usage_debit',
-    description: `AI page analysis for ${detection.subject.name}${detection.category ? ` / ${detection.category.name}` : ''}`,
-    relatedSessionId: params.sessionId,
-    metadata: {
-      mode: params.request.mode,
-      candidateCount: questionSuggestions.length,
-      searchScope,
-      sourceScope: primarySuggestion.sourceScope,
-      confidence: finalConfidence,
-    },
-  });
-
   const response: AnalyzeResponsePayload = {
     answerText: primarySuggestion.answerText,
     shortExplanation: primarySuggestion.shortExplanation,
@@ -672,7 +656,6 @@ export async function analyzeStudyPage(params: {
       primarySuggestion.warning ??
       (confidenceToLevel(finalConfidence) === 'low' ? 'Confidence is low. Confirm the subject manually if needed.' : null),
     retrievalStatus: primarySuggestion.retrievalStatus,
-    remainingSeconds: walletResult.remaining_seconds,
   };
 
   await Promise.all([
@@ -703,7 +686,7 @@ export async function analyzeStudyPage(params: {
       subjectId: detection.subject.id,
       categoryId: detection.category?.id ?? null,
       detectionMode: detection.detectionMode,
-      usedSecondsDelta: env.ANALYSIS_DEBIT_SECONDS,
+      usedSecondsDelta: 0,
       pageUrl: pageSignals.pageUrl,
       pageDomain: pageSignals.pageDomain,
       pageTitle: pageSignals.pageTitle,

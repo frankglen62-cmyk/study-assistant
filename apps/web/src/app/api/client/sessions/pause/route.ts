@@ -3,19 +3,23 @@ import type { ClientSessionMutationResponse } from '@study-assistant/shared-type
 import { requireClientUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
-import { pauseSession } from '@/lib/sessions/service';
+import { pauseSession, settleActiveSessionUsage } from '@/lib/sessions/service';
 
 export async function POST(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
     const context = await requireClientUser(request);
-    const session = await pauseSession({ userId: context.userId });
+    const settled = await settleActiveSessionUsage({ userId: context.userId });
+    const session =
+      settled.session.status === 'active'
+        ? await pauseSession({ userId: context.userId, sessionId: settled.session.id })
+        : settled.session;
 
     const response: ClientSessionMutationResponse = {
       sessionId: session.id,
       status: toExtensionSessionStatus(session.status),
-      remainingSeconds: context.wallet.remaining_seconds,
+      remainingSeconds: settled.wallet.remaining_seconds,
       detectionMode: session.detection_mode,
     };
 

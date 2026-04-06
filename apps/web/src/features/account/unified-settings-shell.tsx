@@ -22,6 +22,7 @@ import { ExtensionTab } from '@/features/account/extension-tab';
 import { ClientSettingsForm } from '@/features/client/settings-form';
 import { AdminSystemSettingsForm } from '@/features/admin/config-forms';
 import { LogoutButton } from '@/features/auth/logout-button';
+import type { SystemSettings } from '@/lib/platform/system-settings-schema';
 
 import type { ClientSettings } from '@study-assistant/shared-types';
 
@@ -67,6 +68,7 @@ type UnifiedSettingsShellProps = {
   wallet?: { remaining_seconds: number };
   paymentHistory?: PaymentEntry[];
   clientSettings?: ClientSettings;
+  platformSettings?: SystemSettings;
   defaultTab?: SettingsTab;
 };
 
@@ -79,6 +81,7 @@ export function UnifiedSettingsShell({
   wallet,
   paymentHistory = [],
   clientSettings,
+  platformSettings,
   defaultTab = 'account',
 }: UnifiedSettingsShellProps) {
   const [activeTab, setActiveTab] = useState<SettingsTab>(defaultTab);
@@ -160,8 +163,8 @@ export function UnifiedSettingsShell({
           />
         )}
 
-        {activeTab === 'platform' && variant === 'admin' && (
-          <AdminSystemSettingsForm />
+        {activeTab === 'platform' && variant === 'admin' && platformSettings && (
+          <AdminSystemSettingsForm initialSettings={platformSettings} />
         )}
       </div>
 

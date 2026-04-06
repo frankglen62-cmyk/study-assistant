@@ -5,6 +5,7 @@ import type { NavItem, UserRole } from '@study-assistant/shared-types';
 import { Input } from '@study-assistant/ui';
 
 import { LogoMark } from '@/components/layout/logo-mark';
+import { SystemBanner } from '@/components/layout/system-banner';
 import { SidebarNav } from '@/components/layout/sidebar-nav';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
 import { ProfileDropdown } from '@/components/layout/profile-dropdown';
@@ -15,12 +16,14 @@ export function PortalShell({
   role,
   currentPath,
   navItems,
+  systemBanner,
   children,
 }: {
   title: string;
   role: UserRole;
   currentPath: string;
   navItems: NavItem[];
+  systemBanner?: string | null;
   children: ReactNode;
 }) {
   return (
@@ -47,6 +50,7 @@ export function PortalShell({
 
       {/* ─── Main Content Area ─── */}
       <div className="flex min-w-0 flex-1 flex-col">
+        {systemBanner ? <SystemBanner message={systemBanner} tone="warning" /> : null}
         {/* ─── Clean Topbar ─── */}
         <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border/60 bg-background/80 px-6 backdrop-blur-xl">
           <div className="flex items-center gap-3">

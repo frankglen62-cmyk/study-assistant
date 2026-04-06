@@ -37,6 +37,7 @@ export default async function AdminSettingsPage({
           emailChangeStatus: emailChangeStatus === 'requested' || emailChangeStatus === 'confirmed' ? emailChangeStatus : null,
           pendingEmail: pendingEmail ?? null,
         }}
+        platformSettings={context.systemSettings}
       />
     </div>
   );

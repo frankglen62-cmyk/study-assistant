@@ -139,6 +139,7 @@ export const extensionStateSchema = z.object({
   uiStatus: z.enum([
     'ready',
     'not_connected',
+    'maintenance',
     'no_credits',
     'scanning_page',
     'detecting_subject',
@@ -155,6 +156,7 @@ export const extensionStateSchema = z.object({
   browserName: z.string(),
   extensionVersion: z.string(),
   creditsRemainingSeconds: z.number().int().nonnegative(),
+  sessionCreditExpiresAt: z.string().nullable().default(null),
   session: extensionSessionSchema,
   currentPage: pageSignalsSchema.nullable(),
   capturedSections: z.array(capturedSectionSchema).default([]),

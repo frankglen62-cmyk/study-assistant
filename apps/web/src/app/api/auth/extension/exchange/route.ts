@@ -5,8 +5,9 @@ import type { ExtensionPairingExchangeResponse } from '@study-assistant/shared-t
 import { createExtensionAccessToken, hashOpaqueToken, issueRefreshToken } from '@/lib/auth/extension-tokens';
 import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
+import { assertMaintenanceAccess } from '@/lib/platform/system-settings';
 import { getOpenSessionForUser } from '@/lib/supabase/sessions';
-import { getWalletByUserId } from '@/lib/supabase/users';
+import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
 import {
   assignPairingCodeInstallation,
   consumePairingCode,
@@ -30,6 +31,11 @@ export async function POST(request: Request) {
     assertRateLimit(`exchange:${ipAddress ?? 'unknown'}`, { max: 20, windowMs: 10 * 60 * 1000 });
     const body = await parseJsonBody(request, requestSchema);
     const pairing = await consumePairingCode(hashOpaqueToken(body.pairingCode.trim().toUpperCase()));
+    const account = await getProfileWithWalletByUserId(pairing.user_id);
+    await assertMaintenanceAccess({
+      role: account.profile.role,
+      target: 'extension',
+    });
     const installation = await createInstallation({
       userId: pairing.user_id,
       deviceName: body.deviceName,
@@ -46,7 +52,6 @@ export async function POST(request: Request) {
       expiresAt: refreshToken.expiresAt,
     });
 
-    const wallet = await getWalletByUserId(pairing.user_id);
     const openSession = await getOpenSessionForUser(pairing.user_id);
 
     await writeAuditLog({
@@ -72,7 +77,7 @@ export async function POST(request: Request) {
         userId: pairing.user_id,
       }),
       refreshToken: refreshToken.token,
-      remainingSeconds: wallet.remaining_seconds,
+      remainingSeconds: account.wallet.remaining_seconds,
       sessionStatus: openSession ? toExtensionSessionStatus(openSession.status) : 'session_inactive',
     };
 
