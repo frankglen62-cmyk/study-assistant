@@ -276,7 +276,26 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
 
     const distinctMatches = Array.from(new Set(matchedSegments));
     if (distinctMatches.length >= 2) {
-      return null;
+      return distinctMatches.join(' | ');
+    }
+  } else {
+    // Fallback for concatenated DB answers without commas (e.g. "Choice A Choice B Choice C")
+    // Find all choices that are strictly contained within the raw answer text
+    const containedMatches = parsedOptions.filter((option) => {
+      // Must be long enough to avoid false positive short words
+      if (option.normalizedText.length > 3) {
+        if (
+          normalizedAnswer.includes(option.normalizedText) ||
+          answerText.toLowerCase().includes(option.text.toLowerCase())
+        ) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+    if (containedMatches.length >= 2) {
+      return containedMatches.map((o) => o.display).join(' | ');
     }
   }
 

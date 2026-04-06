@@ -2108,6 +2108,56 @@ export function installExtractorContentScript() {
       }
     }
 
+    if (hasCheckboxChoices && targetText.includes(' | ')) {
+      const pipedSegments = targetText.split(' | ').map((s) => s.trim()).filter(Boolean);
+      if (pipedSegments.length >= 2) {
+        const matchedSegments = pipedSegments
+          .map((segment) => findBestClickableForText(segment))
+          .filter((result) => result.bestMatch)
+          .map((result) => result.bestMatch!);
+
+        const distinctMatches = Array.from(
+          new Map(
+            matchedSegments.map((match) => {
+              const inputKey = match.input
+                ? match.input.id || match.input.name || match.input.value || match.normalized
+                : match.normalized;
+              return [inputKey, match] as const;
+            })
+          ).values()
+        );
+
+        if (distinctMatches.length > 0) {
+          try {
+            for (const match of distinctMatches) {
+              if (match.input) {
+                if (!match.input.checked) {
+                  match.input.focus();
+                  match.input.click();
+                  match.input.dispatchEvent(new Event('change', { bubbles: true }));
+                  match.input.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+              } else {
+                match.element.click();
+              }
+            }
+
+            return {
+              clicked: true,
+              clickedText: distinctMatches.map((m) => m.text).join(' | '),
+              matchMethod: 'checkbox_multi_piped',
+            };
+          } catch {
+            return {
+              clicked: false,
+              clickedText: distinctMatches.map((m) => m.text).join(' | '),
+              matchMethod: 'checkbox_multi_piped_error',
+            };
+          }
+        }
+      }
+    }
+
     const { bestMatch, matchMethod } = findBestClickableForText(targetText);
     if (!bestMatch) {
       return { clicked: false, clickedText: null, matchMethod: 'no_match' };
