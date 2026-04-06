@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
 
 import { FormField } from '@/components/forms/form-field';
+import { formatPaymentPackageDurationLabel } from '@/lib/payments/package-display';
 import { useToast } from '@/components/providers/toast-provider';
 
 interface AdminPaymentPackageManagerProps {
@@ -51,6 +52,16 @@ const emptyPackageDraft: PackageDraft = {
 
 function readJson<T>(response: Response) {
   return response.json() as Promise<T & { error?: string }>;
+}
+
+function readDurationLabel(minutesToCredit: string) {
+  const parsedMinutes = Number.parseInt(minutesToCredit, 10);
+
+  if (!Number.isFinite(parsedMinutes) || parsedMinutes <= 0) {
+    return 'Enter minutes to preview the credited study time.';
+  }
+
+  return `${formatPaymentPackageDurationLabel(parsedMinutes * 60)} of active study time`;
 }
 
 export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageManagerProps) {
@@ -218,6 +229,9 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                 onChange={(event) => setNewPackageDraft((current) => ({ ...current, minutesToCredit: event.target.value }))}
                 disabled={createPending}
               />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Visible client label: {readDurationLabel(newPackageDraft.minutesToCredit)}.
+              </p>
             </FormField>
             <FormField label="Sort order">
               <Input
@@ -340,7 +354,7 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
                   Next checkout preview: {paymentPackage.currency} {draft.amountDisplay || '0.00'} for{' '}
-                  {draft.minutesToCredit || '0'} minutes.
+                  {readDurationLabel(draft.minutesToCredit).toLowerCase()}.
                 </p>
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
                   <FormField label="Package name">
@@ -378,6 +392,9 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                       onChange={(event) => updateDraft(paymentPackage.id, { minutesToCredit: event.target.value })}
                       disabled={pendingId === paymentPackage.id}
                     />
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      Visible client label: {readDurationLabel(draft.minutesToCredit)}.
+                    </p>
                   </FormField>
                   <div className="md:col-span-2">
                     <FormField label="Description">

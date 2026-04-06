@@ -370,8 +370,13 @@ export interface PublicPaymentPackageSummary {
   name: string;
   description: string;
   secondsToCredit: number;
+  minutesToCredit: number;
   amountMinor: number;
   currency: string;
+  priceDisplay: string;
+  durationLabel: string;
+  durationSummary: string;
+  hasDistinctName: boolean;
 }
 
 export interface PublicPaymentPackagesResponse {

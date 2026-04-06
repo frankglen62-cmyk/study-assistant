@@ -6,7 +6,8 @@ import { getClientSettingsByUserId } from '@/lib/supabase/client-settings';
 import { listRecentQuestionAttempts } from '@/lib/supabase/admin';
 import { listInstallationsForUser } from '@/lib/supabase/extension';
 import { getBillingProviderAvailability } from '@/lib/payments/service';
-import { listPaymentsForUser, listActivePaymentPackages } from '@/lib/supabase/payments';
+import { listPublishedPaymentPackageDisplays } from '@/lib/payments/package-catalog';
+import { listPaymentsForUser } from '@/lib/supabase/payments';
 import { listSessionsForUser, getOpenSessionForUser } from '@/lib/supabase/sessions';
 
 export async function getClientDashboardData(userId: string) {
@@ -63,17 +64,21 @@ export async function getClientSessionsTableData(userId: string) {
 }
 
 export async function getClientBillingData(userId: string) {
-  const [packages, payments] = await Promise.all([listActivePaymentPackages(), listPaymentsForUser(userId)]);
+  const [packages, payments] = await Promise.all([listPublishedPaymentPackageDisplays(), listPaymentsForUser(userId)]);
   const providerAvailability = getBillingProviderAvailability();
 
   return {
     providerAvailability,
-    packages: packages.map((entry, index) => ({
+    packages: packages.map((entry) => ({
       id: entry.id,
       name: entry.name,
-      price: formatCurrency(entry.amount_minor, entry.currency),
+      price: entry.price,
       description: entry.description,
-      featured: index === 1,
+      durationLabel: entry.durationLabel,
+      durationSummary: entry.durationSummary,
+      minutesToCredit: entry.minutesToCredit,
+      hasDistinctName: entry.hasDistinctName,
+      featured: entry.featured,
       supportsStripe: providerAvailability.stripe,
       supportsPaymongo: providerAvailability.paymongo,
       currency: entry.currency,

@@ -66,12 +66,6 @@ export const howItWorks = [
   },
 ];
 
-export const pricingTeaser = [
-  { name: '1 hour', amount: '$9', detail: 'Ideal for occasional review sessions' },
-  { name: '3 hours', amount: '$24', detail: 'Best for weekly quiz prep' },
-  { name: '5 hours', amount: '$36', detail: 'For active semester support' },
-];
-
 export const testimonials = [
   {
     rating: 4.9,
@@ -125,7 +119,7 @@ export const faqItems = [
   {
     question: 'How are credits charged?',
     answer:
-      'Credits are stored in seconds and deducted during active use. Idle sessions auto-pause, and payments only provision credits after verified webhooks.',
+      'Packages credit study time instantly after verified payment. We track usage precisely in the background so idle sessions can pause cleanly and billing stays accurate.',
   },
   {
     question: 'Can admins control subject routing rules?',

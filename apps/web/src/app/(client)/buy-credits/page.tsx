@@ -60,19 +60,24 @@ export default async function BuyCreditsPage() {
               </div>
             )}
             <div className="p-6 pb-4">
+              <div className="mb-3 inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                {pkg.durationLabel}
+              </div>
               <p className="text-lg font-semibold text-foreground">{pkg.name}</p>
-              <p className="mt-1.5 text-sm text-muted-foreground h-10">{pkg.description}</p>
+              <p className="mt-1.5 text-sm text-muted-foreground min-h-10">{pkg.description}</p>
             </div>
             <div className="px-6 pb-6 space-y-6 flex-1 flex flex-col">
               <div className="space-y-1">
                 <p className="font-display text-5xl text-foreground">{pkg.price}</p>
-                <p className="text-xs font-medium text-muted-foreground">One-time payment</p>
+                <p className="text-xs font-medium text-muted-foreground">
+                  One-time payment for {pkg.durationLabel.toLowerCase()}
+                </p>
               </div>
 
               <ul className="space-y-3 py-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                  <span>Instant credit delivery</span>
+                  <span>{pkg.durationSummary} credited after payment</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
