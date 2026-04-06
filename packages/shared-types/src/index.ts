@@ -499,6 +499,7 @@ export interface AdminMutationResponse {
 }
 
 export interface AdminPaymentPackageUpdateRequest {
+  code?: string;
   name: string;
   description?: string | null;
   minutesToCredit: number;

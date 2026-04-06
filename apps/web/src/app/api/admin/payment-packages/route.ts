@@ -1,4 +1,5 @@
 import type { AdminPaymentPackageCreateRequest, AdminPaymentPackageMutationResponse } from '@study-assistant/shared-types';
+import { revalidatePath } from 'next/cache';
 
 import { adminPaymentPackageCreateSchema } from '@/lib/admin/schemas';
 import { createPaymentPackage } from '@/lib/admin/service';
@@ -23,6 +24,9 @@ export async function POST(request: Request) {
       success: true,
       ...result,
     };
+
+    revalidatePath('/pricing');
+    revalidatePath('/buy-credits');
 
     return jsonOk(response, requestId);
   } catch (error) {

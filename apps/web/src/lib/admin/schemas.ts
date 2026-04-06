@@ -29,6 +29,12 @@ export const adminUserStatusSchema = z.object({
 export const adminSystemSettingsUpdateSchema = systemSettingsSchema;
 
 export const adminPaymentPackageUpdateSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .max(120)
+    .optional()
+    .transform((value) => (value && value.length > 0 ? slugify(value) : undefined)),
   name: z.string().trim().min(2).max(120),
   description: optionalNullableStringSchema,
   minutesToCredit: z.number().int().min(1).max(60 * 24 * 30),

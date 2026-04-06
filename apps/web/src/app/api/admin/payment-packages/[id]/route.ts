@@ -1,4 +1,5 @@
 import type { AdminPaymentPackageMutationResponse, AdminPaymentPackageUpdateRequest } from '@study-assistant/shared-types';
+import { revalidatePath } from 'next/cache';
 
 import { adminPaymentPackageUpdateSchema } from '@/lib/admin/schemas';
 import { deletePaymentPackage, updatePaymentPackage } from '@/lib/admin/service';
@@ -29,6 +30,9 @@ export async function PATCH(
       ...result,
     };
 
+    revalidatePath('/pricing');
+    revalidatePath('/buy-credits');
+
     return jsonOk(response, requestId);
   } catch (error) {
     return jsonError(error, requestId);
@@ -56,6 +60,9 @@ export async function DELETE(
       success: true,
       ...result,
     };
+
+    revalidatePath('/pricing');
+    revalidatePath('/buy-credits');
 
     return jsonOk(response, requestId);
   } catch (error) {

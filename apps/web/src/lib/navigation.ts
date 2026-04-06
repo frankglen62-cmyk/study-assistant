@@ -18,6 +18,7 @@ export const clientNavItems: NavItem[] = [
 
 export const adminNavItems: NavItem[] = [
   { href: '/admin/dashboard', label: 'Dashboard', iconName: 'dashboard' },
+  { href: '/admin/announcements', label: 'Announcements', iconName: 'dashboard' },
   { href: '/admin/sources', label: 'Sources', iconName: 'sources' },
   { href: '/admin/subjects', label: 'Subjects', iconName: 'subjects' },
   { href: '/admin/categories', label: 'Categories', iconName: 'categories' },

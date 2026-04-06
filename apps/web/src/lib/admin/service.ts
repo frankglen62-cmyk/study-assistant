@@ -398,6 +398,7 @@ export async function updatePaymentPackage(
   const updated = await supabase
     .from('payment_packages')
     .update({
+      code: input.code ?? existing.code,
       name: input.name,
       description: input.description ?? '',
       seconds_to_credit: secondsToCredit,
@@ -418,6 +419,7 @@ export async function updatePaymentPackage(
     entityId: input.packageId,
     eventSummary: `Updated payment package ${existing.code}.`,
     oldValues: {
+      code: existing.code,
       name: existing.name,
       description: existing.description,
       secondsToCredit: existing.seconds_to_credit,
@@ -426,6 +428,7 @@ export async function updatePaymentPackage(
       sortOrder: existing.sort_order,
     },
     newValues: {
+      code: input.code ?? existing.code,
       name: input.name,
       description: input.description ?? '',
       secondsToCredit,

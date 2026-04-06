@@ -23,7 +23,7 @@ interface PackageDraft {
   code?: string;
   name: string;
   description: string;
-  minutesToCredit: string;
+  hoursToCredit: string;
   amountDisplay: string;
   isActive: boolean;
   sortOrder: string;
@@ -33,7 +33,7 @@ function buildPackageDraft(paymentPackage: AdminPaymentPackageSummary): PackageD
   return {
     name: paymentPackage.name,
     description: paymentPackage.description,
-    minutesToCredit: String(paymentPackage.minutesToCredit),
+    hoursToCredit: String(paymentPackage.minutesToCredit / 60),
     amountDisplay: paymentPackage.amountDisplay,
     isActive: paymentPackage.isActive,
     sortOrder: String(paymentPackage.sortOrder),
@@ -44,7 +44,7 @@ const emptyPackageDraft: PackageDraft = {
   code: '',
   name: '',
   description: '',
-  minutesToCredit: '60',
+  hoursToCredit: '1',
   amountDisplay: '4.99',
   isActive: true,
   sortOrder: '0',
@@ -54,14 +54,14 @@ function readJson<T>(response: Response) {
   return response.json() as Promise<T & { error?: string }>;
 }
 
-function readDurationLabel(minutesToCredit: string) {
-  const parsedMinutes = Number.parseInt(minutesToCredit, 10);
+function readDurationLabel(hoursToCredit: string) {
+  const parsedHours = Number.parseFloat(hoursToCredit);
 
-  if (!Number.isFinite(parsedMinutes) || parsedMinutes <= 0) {
-    return 'Enter minutes to preview the credited study time.';
+  if (!Number.isFinite(parsedHours) || parsedHours <= 0) {
+    return 'Enter hours to preview the credited study time.';
   }
 
-  return `${formatPaymentPackageDurationLabel(parsedMinutes * 60)} of active study time`;
+  return `${formatPaymentPackageDurationLabel(parsedHours * 3600)} of active study time`;
 }
 
 export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageManagerProps) {
@@ -111,7 +111,8 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
 
   function validateDraft(draft: PackageDraft, options?: { requireCode?: boolean }) {
     const priceMajor = Number.parseFloat(draft.amountDisplay);
-    const minutesToCredit = Number.parseInt(draft.minutesToCredit, 10);
+    const parsedHours = Number.parseFloat(draft.hoursToCredit);
+    const minutesToCredit = Math.max(1, Math.round((Number.isFinite(parsedHours) ? parsedHours : 0) * 60));
     const sortOrder = Number.parseInt(draft.sortOrder, 10);
     const normalizedCode = draft.code?.trim() ?? '';
 
@@ -127,8 +128,8 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
       throw new Error('Maglagay ng valid positive amount.');
     }
 
-    if (!Number.isFinite(minutesToCredit) || minutesToCredit <= 0) {
-      throw new Error('Maglagay ng positive number of minutes.');
+    if (!Number.isFinite(parsedHours) || parsedHours <= 0) {
+      throw new Error('Maglagay ng positive number of hours.');
     }
 
     if (!Number.isFinite(sortOrder) || sortOrder < 0) {
@@ -220,17 +221,17 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                 disabled={createPending}
               />
             </FormField>
-            <FormField label="Credit duration (minutes)">
+            <FormField label="Credit duration (hours)">
               <Input
                 type="number"
-                min={1}
-                step={1}
-                value={newPackageDraft.minutesToCredit}
-                onChange={(event) => setNewPackageDraft((current) => ({ ...current, minutesToCredit: event.target.value }))}
+                min={0.1}
+                step="any"
+                value={newPackageDraft.hoursToCredit}
+                onChange={(event) => setNewPackageDraft((current) => ({ ...current, hoursToCredit: event.target.value }))}
                 disabled={createPending}
               />
               <p className="mt-2 text-xs text-muted-foreground">
-                Visible client label: {readDurationLabel(newPackageDraft.minutesToCredit)}.
+                Visible client label: {readDurationLabel(newPackageDraft.hoursToCredit)}.
               </p>
             </FormField>
             <FormField label="Sort order">
@@ -336,10 +337,11 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
             }
 
             const isDirty =
+              draft.code !== paymentPackage.code ||
               draft.name !== paymentPackage.name ||
               draft.description !== paymentPackage.description ||
               draft.amountDisplay !== paymentPackage.amountDisplay ||
-              draft.minutesToCredit !== String(paymentPackage.minutesToCredit) ||
+              draft.hoursToCredit !== String(paymentPackage.minutesToCredit / 60) ||
               draft.isActive !== paymentPackage.isActive ||
               draft.sortOrder !== String(paymentPackage.sortOrder);
 
@@ -354,9 +356,16 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
                   Next checkout preview: {paymentPackage.currency} {draft.amountDisplay || '0.00'} for{' '}
-                  {readDurationLabel(draft.minutesToCredit).toLowerCase()}.
+                  {readDurationLabel(draft.hoursToCredit).toLowerCase()}.
                 </p>
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  <FormField label="Package code" description="Internal slug like three-hours.">
+                    <Input
+                      value={draft.code || ''}
+                      onChange={(event) => updateDraft(paymentPackage.id, { code: event.target.value })}
+                      disabled={pendingId === paymentPackage.id}
+                    />
+                  </FormField>
                   <FormField label="Package name">
                     <Input
                       value={draft.name}
@@ -383,17 +392,17 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                       disabled={pendingId === paymentPackage.id}
                     />
                   </FormField>
-                  <FormField label="Credit duration (minutes)" description="Saved as seconds in the wallet package table.">
+                  <FormField label="Credit duration (hours)" description="Saved as minutes in the backend, and seconds in the wallet.">
                     <Input
                       type="number"
-                      min={1}
-                      step={1}
-                      value={draft.minutesToCredit}
-                      onChange={(event) => updateDraft(paymentPackage.id, { minutesToCredit: event.target.value })}
+                      min={0.1}
+                      step="any"
+                      value={draft.hoursToCredit}
+                      onChange={(event) => updateDraft(paymentPackage.id, { hoursToCredit: event.target.value })}
                       disabled={pendingId === paymentPackage.id}
                     />
                     <p className="mt-2 text-xs text-muted-foreground">
-                      Visible client label: {readDurationLabel(draft.minutesToCredit)}.
+                      Visible client label: {readDurationLabel(draft.hoursToCredit)}.
                     </p>
                   </FormField>
                   <div className="md:col-span-2">
