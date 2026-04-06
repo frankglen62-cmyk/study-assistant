@@ -2,9 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
 
+const extensionPkg = require(path.join(__dirname, 'apps', 'extension', 'package.json'));
+const version = extensionPkg.version;
+
 const targetObj = {
   source: path.join(__dirname, 'apps', 'extension', 'dist'),
-  dest: path.join(__dirname, 'apps', 'web', 'public', 'downloads', 'study-assistant-extension-v0.1.62.zip')
+  dest: path.join(__dirname, 'apps', 'web', 'public', 'downloads', `study-assistant-extension-v${version}.zip`)
 };
 
 // Ensure downloads directory exists
