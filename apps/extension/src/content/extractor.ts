@@ -966,13 +966,25 @@ export function installExtractorContentScript() {
         );
       });
 
-    const groupedInputs = new Map<string, HTMLInputElement[]>();
+    const groupedInputs = new Map<string | HTMLElement, HTMLInputElement[]>();
 
     Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'))
       .filter((node) => isElementVisible(node))
       .forEach((node, index) => {
         const input = node as HTMLInputElement;
-        const groupKey = input.name || input.id || `ungrouped-${index + 1}`;
+        
+        let groupKey: string | HTMLElement = '';
+        if (input.type === 'radio' && input.name) {
+          groupKey = input.name;
+        } else {
+          const container = input.closest('.answer, .ablock, .que, .formulation, [data-question-block], fieldset, [role="group"]');
+          if (container instanceof HTMLElement) {
+            groupKey = container;
+          } else {
+            groupKey = input.name || input.id || `ungrouped-${index + 1}`;
+          }
+        }
+        
         const existing = groupedInputs.get(groupKey) ?? [];
         existing.push(input);
         groupedInputs.set(groupKey, existing);
@@ -980,7 +992,7 @@ export function installExtractorContentScript() {
 
     Array.from(groupedInputs.entries()).forEach(([groupKey, inputs], index) => {
       const container = findQuestionContainerForInputs(inputs);
-      const id = groupKey || `group-${index + 1}`;
+      const id = typeof groupKey === 'string' && groupKey ? groupKey : `group-${index + 1}`;
 
       if (container instanceof HTMLElement) {
         container.dataset.studyAssistantId = id;
