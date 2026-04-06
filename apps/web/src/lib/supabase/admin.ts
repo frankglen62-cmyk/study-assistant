@@ -5,6 +5,7 @@ import { RouteError } from '@/lib/http/route';
 import {
   categoryRecordSchema,
   folderRecordSchema,
+  paymentPackageSchema,
   paymentRecordSchema,
   profileRecordSchema,
   questionAttemptSummarySchema,
@@ -14,6 +15,7 @@ import {
   walletRecordSchema,
   type CategoryRecord,
   type FolderRecord,
+  type PaymentPackageRecord,
   type PaymentRecord,
   type ProfileRecord,
   type QuestionAttemptSummaryRecord,
@@ -50,6 +52,10 @@ const adminPaymentSummarySchema = z.object({
     })
     .nullable()
     .optional(),
+});
+
+const adminPaymentPackageSchema = paymentPackageSchema.extend({
+  sort_order: z.number().int(),
 });
 
 const adminSessionSummarySchema = z.object({
@@ -157,6 +163,7 @@ const adminCreditTransactionSchema = z.object({
 });
 
 export type AdminPaymentSummaryRecord = z.infer<typeof adminPaymentSummarySchema>;
+export type AdminPaymentPackageRecord = z.infer<typeof adminPaymentPackageSchema>;
 export type AdminSessionSummaryRecord = z.infer<typeof adminSessionSummarySchema>;
 export type AdminSessionAttemptSignalRecord = z.infer<typeof adminSessionAttemptSignalSchema>;
 export type AdminAuditLogRecord = z.infer<typeof adminAuditLogSchema>;
@@ -295,6 +302,18 @@ export async function listAdminPayments(): Promise<PaymentRecord[]> {
 
   assertSupabaseResult(error, 'Failed to load payments.');
   return parseArray(data ?? [], paymentRecordSchema, 'Payment rows are invalid.');
+}
+
+export async function listAdminPaymentPackages(): Promise<AdminPaymentPackageRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payment_packages')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, sort_order')
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false });
+
+  assertSupabaseResult(error, 'Failed to load payment packages.');
+  return parseArray(data ?? [], adminPaymentPackageSchema, 'Admin payment package rows are invalid.');
 }
 
 export async function listAdminPaymentSummaries(): Promise<AdminPaymentSummaryRecord[]> {

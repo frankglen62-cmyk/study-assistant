@@ -5,6 +5,7 @@ import { MetricCard } from '@/components/metric-card';
 import { PageHeading } from '@/components/page-heading';
 import { StatusBadge } from '@/components/status-badge';
 import { requirePageUser } from '@/lib/auth/page-context';
+import { AdminPaymentPackageManager } from '@/features/admin/admin-payment-package-manager';
 import { getAdminPaymentsPageData } from '@/features/admin/server';
 
 export default async function AdminPaymentsPage() {
@@ -23,6 +24,7 @@ export default async function AdminPaymentsPage() {
           <MetricCard key={metric.label} label={metric.label} value={metric.value} delta={metric.delta} tone={metric.tone} />
         ))}
       </div>
+      <AdminPaymentPackageManager packages={payments.packages} />
       <DataTable
         columns={['Date', 'User', 'Package', 'Provider', 'Amount', 'Status', 'Actions']}
         emptyMessage="No payment records are available yet."

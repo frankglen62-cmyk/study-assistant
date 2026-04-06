@@ -15,6 +15,7 @@ import {
   listAdminCategories,
   listAdminCreditTransactionsForSession,
   listAdminFolders,
+  listAdminPaymentPackages,
   listAdminPaymentSummaries,
   listAdminQuestionAttemptsForSession,
   listAdminSessionAttemptSignals,
@@ -231,7 +232,10 @@ export async function getAdminUsersPageData() {
 }
 
 export async function getAdminPaymentsPageData() {
-  const payments = await listAdminPaymentSummaries();
+  const [payments, packages] = await Promise.all([
+    listAdminPaymentSummaries(),
+    listAdminPaymentPackages(),
+  ]);
   const paidPayments = payments.filter((payment) => payment.status === 'paid');
   const refundedPayments = payments.filter((payment) => payment.status === 'refunded');
   const failedPayments = payments.filter((payment) => payment.status === 'failed');
@@ -248,7 +252,7 @@ export async function getAdminPaymentsPageData() {
         label: 'Gross revenue',
         value: formatCurrency(
           paidPayments.reduce((sum, payment) => sum + payment.amount_minor, 0),
-          paidPayments[0]?.currency ?? 'USD',
+          paidPayments[0]?.currency ?? packages[0]?.currency ?? 'USD',
         ),
         delta: 'Paid transactions only',
         tone: 'accent' as const,
@@ -266,6 +270,18 @@ export async function getAdminPaymentsPageData() {
         tone: 'warning' as const,
       },
     ],
+    packages: packages.map((paymentPackage) => ({
+      id: paymentPackage.id,
+      code: paymentPackage.code,
+      name: paymentPackage.name,
+      description: paymentPackage.description,
+      minutesToCredit: Math.round(paymentPackage.seconds_to_credit / 60),
+      amountMinor: paymentPackage.amount_minor,
+      amountDisplay: (paymentPackage.amount_minor / 100).toFixed(2),
+      currency: paymentPackage.currency,
+      isActive: paymentPackage.is_active,
+      sortOrder: paymentPackage.sort_order,
+    })),
     payments: payments.map((payment) => ({
       id: payment.id,
       createdAt: new Date(payment.created_at).toLocaleString(),

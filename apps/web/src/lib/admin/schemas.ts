@@ -24,6 +24,15 @@ export const adminUserStatusSchema = z.object({
   status: z.enum(['active', 'suspended']),
 });
 
+export const adminPaymentPackageUpdateSchema = z.object({
+  name: z.string().trim().min(2).max(120),
+  description: optionalNullableStringSchema,
+  minutesToCredit: z.number().int().min(1).max(60 * 24 * 30),
+  priceMajor: z.number().positive().max(1_000_000),
+  isActive: z.boolean().optional().default(true),
+  sortOrder: z.number().int().min(0).optional().default(0),
+});
+
 export const adminSubjectMutationSchema = z.object({
   name: z.string().trim().min(2).max(120),
   slug: optionalSlugSchema,

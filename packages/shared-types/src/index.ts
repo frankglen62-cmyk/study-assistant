@@ -412,8 +412,22 @@ export interface AdminPaymentSummary {
   status: PaymentStatus;
 }
 
+export interface AdminPaymentPackageSummary {
+  id: string;
+  code: string;
+  name: string;
+  description: string;
+  minutesToCredit: number;
+  amountMinor: number;
+  amountDisplay: string;
+  currency: string;
+  isActive: boolean;
+  sortOrder: number;
+}
+
 export interface AdminPaymentsResponse {
   metrics: MetricSummary[];
+  packages: AdminPaymentPackageSummary[];
   payments: AdminPaymentSummary[];
 }
 
@@ -475,6 +489,21 @@ export interface AdminReportsResponse {
 export interface AdminMutationResponse {
   success: boolean;
   message: string;
+}
+
+export interface AdminPaymentPackageUpdateRequest {
+  name: string;
+  description?: string | null;
+  minutesToCredit: number;
+  priceMajor: number;
+  isActive?: boolean;
+  sortOrder?: number;
+}
+
+export interface AdminPaymentPackageMutationResponse extends AdminMutationResponse {
+  packageId: string;
+  amountMinor: number;
+  minutesToCredit: number;
 }
 
 export interface AdminUserCreditAdjustmentRequest {

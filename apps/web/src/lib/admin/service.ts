@@ -1,4 +1,5 @@
 import type {
+  AdminPaymentPackageUpdateRequest,
   AdminCategoryMutationRequest,
   AdminFolderCreateRequest,
   AdminFolderUpdateRequest,
@@ -162,6 +163,23 @@ async function getSubjectQaPairById(pairId: string) {
   return data;
 }
 
+async function getPaymentPackageByIdForAdmin(packageId: string) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payment_packages')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, is_active, sort_order, provider_price_reference')
+    .eq('id', packageId)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load payment package.');
+
+  if (!data) {
+    throw new RouteError(404, 'payment_package_not_found', 'Payment package not found.');
+  }
+
+  return data;
+}
+
 export async function adjustUserCredits(
   input: AdminUserCreditAdjustmentRequest & AuditContext & { userId: string },
 ) {
@@ -251,6 +269,69 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     accountStatus: input.status,
     walletStatus: nextWalletStatus,
     message: 'User status updated successfully.',
+  };
+}
+
+export async function updatePaymentPackage(
+  input: AdminPaymentPackageUpdateRequest & AuditContext & { packageId: string },
+) {
+  const supabase = getSupabaseAdmin();
+  const existing = await getPaymentPackageByIdForAdmin(input.packageId);
+  const amountMinor = Math.round(input.priceMajor * 100);
+
+  if (!Number.isFinite(amountMinor) || amountMinor <= 0) {
+    throw new RouteError(400, 'invalid_price', 'Enter a valid positive price.');
+  }
+
+  const secondsToCredit = input.minutesToCredit * 60;
+
+  const updated = await supabase
+    .from('payment_packages')
+    .update({
+      name: input.name,
+      description: input.description ?? '',
+      seconds_to_credit: secondsToCredit,
+      amount_minor: amountMinor,
+      is_active: input.isActive ?? true,
+      sort_order: input.sortOrder ?? existing.sort_order,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', input.packageId);
+
+  assertSupabaseResult(updated.error, 'Failed to update payment package.');
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'payment_package.updated',
+    entityType: 'payment_packages',
+    entityId: input.packageId,
+    eventSummary: `Updated payment package ${existing.code}.`,
+    oldValues: {
+      name: existing.name,
+      description: existing.description,
+      secondsToCredit: existing.seconds_to_credit,
+      amountMinor: existing.amount_minor,
+      isActive: existing.is_active,
+      sortOrder: existing.sort_order,
+    },
+    newValues: {
+      name: input.name,
+      description: input.description ?? '',
+      secondsToCredit,
+      amountMinor,
+      isActive: input.isActive ?? true,
+      sortOrder: input.sortOrder ?? existing.sort_order,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    packageId: input.packageId,
+    amountMinor,
+    minutesToCredit: input.minutesToCredit,
+    message: 'Payment package updated successfully.',
   };
 }
 
