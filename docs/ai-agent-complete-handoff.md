@@ -958,8 +958,34 @@ Future AI agents: You must understand the difference between fixing something *l
 3. **Vercel Dashboard:** Inform the user to check their Vercel Deployments log. Even if you pushed the code, Vercel takes 1-2 minutes to build. If they test the site while it's still building, they will see the OLD bug and tell you "it still doesn't work".
 4. **Agent Integrity:** Do not make false assurances. Do not say "I have fixed it on your live site" unless you literally committed the code, pushed it to GitHub, and the Vercel build succeeded.
 
-## 22. Quick Resume Prompt for Another AI Agent
+## 22. CRITICAL: Extension ZIP Distribution & Version Updating Workflow
+
+A major point of confusion occurred where an AI agent updated the extension code and version in `manifest.json`, built the ZIP, but the Admin/Client Portal continued to show and download the OLD version. This happened because the extension version and ZIP filename shown in the portal are **hardcoded in a backend distribution file**, not read dynamically from the ZIP or manifest.
+
+**The Process You MUST Follow When Updating the Extension:**
+
+1. **Update Extension Source Code Versions:**
+   - Bump `version` in `apps/extension/package.json`
+   - Bump `version` in `apps/extension/public/manifest.json`
+2. **Update the Web Portal Backend Distribution Version:**
+   - Open `apps/web/src/lib/extension-distribution.ts`
+   - Change `export const extensionVersion = '0.X.X';` to match your new version exactly.
+3. **Build the Extension:**
+   - Run `pnpm.cmd --filter @study-assistant/extension build`
+4. **Create the Required ZIP Files inside the Web's public directory:**
+   - Compress `apps/extension/dist/*` to `apps/web/public/downloads/study-assistant-extension.zip` (the generic path).
+   - **CRITICAL:** Because `extension-distribution.ts` uses `study-assistant-extension-v${extensionVersion}.zip`, you **must also copy/rename** the zip to that exact versioned filename in `apps/web/public/downloads/`. Otherwise, the download link will 404!
+5. **Rebuild the Web App (especially for local testing):**
+   - Run `pnpm.cmd --filter @study-assistant/web build` so Next.js embeds the updated version text strings into the static pages and API routes.
+6. **Push to GitHub to Update Live Sites:**
+   - A newly created extension ZIP inside `apps/web/public/downloads/` MUST be committed along with all code changes!
+   - Run `git add .`, `git commit`, and `git push` so that Vercel deploys BOTH the updated Next.js app AND the new ZIP files to the live environment.
+   - Remind the user to Hard Refresh (`Ctrl + Shift + R`) their browser to drop cached page chunks.
+
+**Lesson Learned:** If you change ANY code in the application, including the UI or the backend logic, pushing to GitHub is absolutely required so the Vercel (Online) instance gets the changes. However, when updating the Extension specifically, remember that updating the extension code alone is just half the battle: you must repackage the ZIP, update the `extension-distribution.ts` registry so the portal knows there is a new version, and commit the new ZIP files into the web app's `public` directory.
+
+## 23. Quick Resume Prompt for Another AI Agent
 
 If another AI agent needs to continue, use this:
 
-`Continue from docs/ai-agent-complete-handoff.md. Check current web runtime, extension version, subject sources, and ensure all changes have been pushed to GitHub to trigger Vercel deployment. Review Section 20 and 21 before continuing.`
+`Continue from docs/ai-agent-complete-handoff.md. Check current web runtime, extension version, subject sources, and ensure all changes have been pushed to GitHub to trigger Vercel deployment. Review Section 21 and 22 before continuing.`
