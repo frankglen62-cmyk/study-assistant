@@ -17,6 +17,7 @@ import {
   resolveSuggestedOption,
   scoreBlankStructureAlignment,
   splitMultiAnswerSegments,
+  splitMultiAnswerByChoices,
 } from '@/lib/ai/choice-matching';
 import { logEvent } from '@/lib/observability/logger';
 import { RouteError } from '@/lib/http/route';
@@ -322,13 +323,6 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
   }
 
   // ── Tiered scoring for duplicate-question disambiguation ──────────────
-  // When two Q&A pairs share the same question text but have different
-  // answers, the pair whose answer EXACTLY matches a visible choice must
-  // rank higher than a pair whose answer only partially matches.
-  //
-  // CRITICAL: The gap between tiers must be LARGE (>= 0.3) so that the
-  // sort in rankQaPairRows can always distinguish between a correct and
-  // incorrect answer for duplicate questions.
   const normalizedAnswer = normalizeComparableText(answerText);
 
   if (normalizedAnswer) {
@@ -353,14 +347,45 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
       }
     }
 
+    // ── Multi-answer handling (checkbox questions) ──────────────────────
+    // When the answer is "Grid Computing, Utility Computing, Cloud Computing,
+    // Software as a Service", split into segments and check each against choices.
+    const multiSegments = splitMultiAnswerSegments(answerText);
+    if (multiSegments.length >= 2) {
+      let segmentMatches = 0;
+      for (const segment of multiSegments) {
+        const normSegment = normalizeComparableText(segment);
+        if (!normSegment) continue;
+        const segmentHit = normalizedOpts.some((no) => {
+          if (no === normSegment) return true;
+          const shorter = Math.min(no.length, normSegment.length);
+          const longer = Math.max(no.length, normSegment.length);
+          if (shorter > 0 && longer > 0 && shorter / longer >= 0.75 &&
+            (no.includes(normSegment) || normSegment.includes(no))) return true;
+          const fwd = overlapScore(normSegment, no);
+          const bwd = overlapScore(no, normSegment);
+          return Math.min(fwd, bwd) >= 0.75;
+        });
+        if (segmentHit) segmentMatches++;
+      }
+      if (segmentMatches >= 2) {
+        // Score proportional to match rate: 4/4 = 0.88, 3/4 = 0.78, 2/4 = 0.65
+        return 0.42 + (segmentMatches / multiSegments.length) * 0.46;
+      }
+    }
+
+    // Fallback: concatenated answers without commas
+    const choicesBySubstring = splitMultiAnswerByChoices(answerText, options);
+    if (choicesBySubstring.length >= 2) {
+      return 0.42 + (choicesBySubstring.length / Math.max(choicesBySubstring.length, 4)) * 0.46;
+    }
+
     // Tier 2.5: high token overlap between answer and a choice → 0.60–0.75
-    // This catches cases where the answer text is almost the same as a choice
-    // but has minor formatting differences (extra commas, word order).
     const bestTokenOverlap = Math.max(
       ...normalizedOpts.map((no) => {
         const forward = overlapScore(normalizedAnswer, no);
         const backward = overlapScore(no, normalizedAnswer);
-        return Math.min(forward, backward); // require BOTH directions to be high
+        return Math.min(forward, backward);
       }),
     );
     if (bestTokenOverlap >= 0.85) {
@@ -369,9 +394,6 @@ function scoreAnswerAgainstOptions(options: string[], answerText: string) {
   }
 
   // Tier 3: resolveSuggestedOption found a match (partial/segment) → 0.25
-  // Intentionally VERY LOW so that exact matches (1.0) and near-exact (0.92)
-  // dominate when the same question appears with different answer sets.
-  // Previously 0.35 — lowered to 0.25 to widen the gap with Tier 1/2.
   if (resolveSuggestedOption(options, answerText)) {
     return 0.25;
   }

@@ -9,7 +9,7 @@ import type {
 } from '@study-assistant/shared-types';
 
 import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
-import { isQuestionTextEquivalent, normalizeComparableText, overlapScore } from '@/lib/ai/choice-matching';
+import { isQuestionTextEquivalent, normalizeComparableText, overlapScore, splitMultiAnswerSegments, splitMultiAnswerByChoices } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
 import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
@@ -323,6 +323,7 @@ function resolveQuestionSuggestionFromPreloaded(params: {
 
   // Helper: score how well an answer text matches the visible choices (0–1).
   // 1.0 = exact match to a choice, 0.92 = near-exact, 0.3–0.6 = token overlap, 0 = no match.
+  // For MULTI-ANSWER Q&A pairs (checkboxes), each answer segment is scored individually.
   function scoreAnswerChoiceAlignment(answerText: string): number {
     if (!hasOptions) return 0;
     const normAnswer = normalizeComparableText(answerText);
@@ -348,10 +349,45 @@ function resolveQuestionSuggestionFromPreloaded(params: {
       }
     }
 
+    // ── Multi-answer handling (checkbox questions) ──────────────────────
+    // When the answer is "Grid Computing, Utility Computing, Cloud Computing,
+    // Software as a Service", split into segments and check each against choices.
+    const multiSegments = splitMultiAnswerSegments(answerText);
+    if (multiSegments.length >= 2) {
+      let segmentMatches = 0;
+      for (const segment of multiSegments) {
+        const normSegment = normalizeComparableText(segment);
+        if (!normSegment) continue;
+        // Check if this segment matches any visible choice
+        const segmentHit = normOpts.some((no) => {
+          if (no === normSegment) return true;
+          const shorter = Math.min(no.length, normSegment.length);
+          const longer = Math.max(no.length, normSegment.length);
+          if (shorter > 0 && longer > 0 && shorter / longer >= 0.75 &&
+            (no.includes(normSegment) || normSegment.includes(no))) return true;
+          // Token overlap for fuzzy segment match
+          const fwd = overlapScore(normSegment, no);
+          const bwd = overlapScore(no, normSegment);
+          return Math.min(fwd, bwd) >= 0.75;
+        });
+        if (segmentHit) segmentMatches++;
+      }
+      if (segmentMatches >= 2) {
+        // Score proportional to how many segments matched choices
+        // 4/4 = 0.96, 3/4 = 0.82, 2/4 = 0.68
+        return 0.50 + (segmentMatches / multiSegments.length) * 0.46;
+      }
+    }
+
+    // Fallback: concatenated answers without commas
+    // Check how many visible choices appear within the answer text
+    const choicesBySubstring = splitMultiAnswerByChoices(answerText, optionText);
+    if (choicesBySubstring.length >= 2) {
+      return 0.50 + (choicesBySubstring.length / Math.max(choicesBySubstring.length, 4)) * 0.46;
+    }
+
     // Tier 3: Token overlap — gives intermediate scores (0.3–0.6) so the sort
     // can distinguish between a partially-matching answer and a non-matching one.
-    // This is critical: without it, two non-exact answers both get 0, making
-    // disambiguation impossible.
     const bestOverlap = Math.max(
       ...normOpts.map((no) => {
         const forward = overlapScore(normAnswer, no);

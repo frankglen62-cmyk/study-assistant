@@ -115,11 +115,43 @@ export function splitMultiAnswerSegments(value: string) {
     .map((segment) => collapseWhitespace(segment))
     .filter((segment) => segment.length >= 2);
 
-  if (segments.length < 2 || segments.length > 5) {
+  if (segments.length < 2 || segments.length > 8) {
     return [];
   }
 
   return Array.from(new Set(segments));
+}
+
+/**
+ * Split a concatenated answer (no commas) by checking which visible choices
+ * appear as substrings within the answer text. This handles answers like:
+ * "Software as a Service Utility Computing Cloud Computing Grid Computing"
+ * where no delimiter separates the individual answers.
+ */
+export function splitMultiAnswerByChoices(answerText: string, choices: string[]): string[] {
+  const normalizedAnswer = normalizeComparableText(answerText);
+  if (!normalizedAnswer || choices.length < 2) {
+    return [];
+  }
+
+  const matchedChoices: string[] = [];
+  for (const choice of choices) {
+    const normalizedChoice = normalizeComparableText(choice);
+    // Choice must be long enough to avoid false positives (e.g. short words like "a", "of")
+    if (!normalizedChoice || normalizedChoice.length < 4) {
+      continue;
+    }
+
+    if (
+      normalizedAnswer.includes(normalizedChoice) ||
+      answerText.toLowerCase().includes(choice.toLowerCase().replace(/^[a-e]\.\s*/i, '').trim())
+    ) {
+      matchedChoices.push(choice);
+    }
+  }
+
+  // Only return if at least 2 choices matched — otherwise it's not a multi-answer
+  return matchedChoices.length >= 2 ? matchedChoices : [];
 }
 
 function extractReferencedChoiceLabel(value: string) {
@@ -270,17 +302,21 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
           }))
           .sort((left, right) => right.score - left.score)[0];
 
-        return bestSegmentMatch && bestSegmentMatch.score >= 0.85 ? bestSegmentMatch.display : null;
+        return bestSegmentMatch && bestSegmentMatch.score >= 0.70 ? bestSegmentMatch.display : null;
       })
       .filter((display): display is string => Boolean(display));
 
     const distinctMatches = Array.from(new Set(matchedSegments));
+    // Return all matches as long as at least 2 segments matched
+    // (no longer requires ALL segments to match)
     if (distinctMatches.length >= 2) {
       return distinctMatches.join(' | ');
     }
-  } else {
-    // Fallback for concatenated DB answers without commas (e.g. "Choice A Choice B Choice C")
-    // Find all choices that are strictly contained within the raw answer text
+  }
+
+  // Fallback for concatenated DB answers without commas (e.g. "Choice A Choice B Choice C")
+  // Find all choices that are strictly contained within the raw answer text
+  {
     const containedMatches = parsedOptions.filter((option) => {
       // Must be long enough to avoid false positive short words
       if (option.normalizedText.length > 3) {

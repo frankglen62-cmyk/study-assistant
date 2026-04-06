@@ -956,6 +956,7 @@ export function installExtractorContentScript() {
         }
         const id = element.dataset.questionId || `block-${index + 1}`;
         element.dataset.studyAssistantId = id;
+        structuredContainers.add(id);
         pushCandidate(
           createQuestionCandidate({
             id,
@@ -991,6 +992,18 @@ export function installExtractorContentScript() {
       });
 
     Array.from(groupedInputs.entries()).forEach(([groupKey, inputs], index) => {
+      // Avoid creating a duplicate standalone candidate if these inputs 
+      // are already part of a structured question block that we processed
+      const parentContainer = inputs[0]?.closest('[data-study-assistant-id]');
+      const parentId = parentContainer?.getAttribute('data-study-assistant-id');
+      if (parentId && structuredContainers.has(parentId)) {
+        // Tag these inputs with the parent ID so they can be securely found during click fallback
+        inputs.forEach((input) => {
+          input.dataset.studyAssistantId = parentId;
+        });
+        return;
+      }
+
       const container = findQuestionContainerForInputs(inputs);
       const id = typeof groupKey === 'string' && groupKey ? groupKey : `group-${index + 1}`;
 
@@ -1595,7 +1608,7 @@ export function installExtractorContentScript() {
       .map((segment) => normalizeText(segment))
       .filter((segment) => segment.length >= 2);
 
-    if (segments.length < 2 || segments.length > 5) {
+    if (segments.length < 2 || segments.length > 8) {
       return [];
     }
 
@@ -2078,7 +2091,9 @@ export function installExtractorContentScript() {
         ).values(),
       );
 
-      if (distinctMatches.length === multiAnswerSegments.length) {
+      // Click all matched checkboxes as long as at least 2 matched
+      // (no longer requires ALL segments to match)
+      if (distinctMatches.length >= 2) {
         try {
           for (const entry of distinctMatches) {
             if (entry.match.input) {
@@ -2103,6 +2118,46 @@ export function installExtractorContentScript() {
             clicked: false,
             clickedText: distinctMatches.map((entry) => entry.match.text).join(', '),
             matchMethod: 'checkbox_multi_error',
+          };
+        }
+      }
+    }
+
+    // Strategy for concatenated answers without commas (e.g. "Software as a Service Utility Computing Cloud Computing Grid Computing")
+    // Check which checkbox choice labels appear as substrings within the raw answer text
+    if (hasCheckboxChoices && multiAnswerSegments.length < 2) {
+      const answerLower = normalizeForMatch(payload.answerText || targetText);
+      const containedCheckboxMatches = filteredClickables.filter((clickable) => {
+        if (clickable.input?.type !== 'checkbox') return false;
+        const choiceNorm = clickable.normalized;
+        // Choice must be at least 4 chars to avoid false positives
+        if (!choiceNorm || choiceNorm.length < 4) return false;
+        return answerLower.includes(choiceNorm) || choiceNorm.includes(answerLower);
+      });
+
+      if (containedCheckboxMatches.length >= 2) {
+        try {
+          for (const match of containedCheckboxMatches) {
+            if (match.input && !match.input.checked) {
+              match.input.focus();
+              match.input.click();
+              match.input.dispatchEvent(new Event('change', { bubbles: true }));
+              match.input.dispatchEvent(new Event('input', { bubbles: true }));
+            } else if (!match.input) {
+              match.element.click();
+            }
+          }
+
+          return {
+            clicked: true,
+            clickedText: containedCheckboxMatches.map((m) => m.text).join(', '),
+            matchMethod: 'checkbox_contained',
+          };
+        } catch {
+          return {
+            clicked: false,
+            clickedText: containedCheckboxMatches.map((m) => m.text).join(', '),
+            matchMethod: 'checkbox_contained_error',
           };
         }
       }
