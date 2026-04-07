@@ -13,11 +13,21 @@ export function buildQaPairAnswerSuggestion(params: {
   subjectName: string;
   categoryName: string | null;
 }) {
+  // ── DEBUG: trace multi-answer resolution ──
+  console.log('[DEBUG answering] buildQaPairAnswerSuggestion called');
+  console.log('[DEBUG answering]   question:', params.pair.question_text?.slice(0, 80));
+  console.log('[DEBUG answering]   answer_text:', params.pair.answer_text?.slice(0, 120));
+  console.log('[DEBUG answering]   options count:', params.options.length);
+  console.log('[DEBUG answering]   options:', JSON.stringify(params.options.slice(0, 10)));
+
   const suggestedOption = resolveSuggestedOption(
     params.options,
     params.pair.answer_text,
     params.pair.question_text,
   );
+
+  console.log('[DEBUG answering]   suggestedOption:', suggestedOption);
+  console.log('[DEBUG answering]   has pipe:', suggestedOption?.includes(' | '));
 
   return {
     answerText: params.pair.answer_text,

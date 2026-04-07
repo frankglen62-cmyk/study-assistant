@@ -11,6 +11,7 @@ import type {
   AdminSubjectMutationResponse,
   AdminSubjectQaPairListResponse,
   AdminSubjectQaPairMutationResponse,
+  QuestionType,
 } from '@study-assistant/shared-types';
 import { slugify } from '@study-assistant/shared-utils';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
@@ -40,6 +41,8 @@ interface QaEditorState {
   keywordsText: string;
   sortOrder: string;
   isActive: boolean;
+  questionType: QuestionType;
+  questionImageUrl: string;
 }
 
 interface JsonErrorPayload {
@@ -71,7 +74,22 @@ function buildEmptyEditor(sortOrder: number): QaEditorState {
     keywordsText: '',
     sortOrder: String(sortOrder),
     isActive: true,
+    questionType: 'multiple_choice' as QuestionType,
+    questionImageUrl: '',
   };
+}
+
+const QUESTION_TYPE_OPTIONS: { value: QuestionType; label: string; icon: string }[] = [
+  { value: 'multiple_choice', label: 'Multiple Choice', icon: '🔘' },
+  { value: 'checkbox', label: 'Checkbox', icon: '☑️' },
+  { value: 'fill_in_blank', label: 'Fill in the Blank', icon: '✏️' },
+  { value: 'dropdown', label: 'Dropdown', icon: '📋' },
+  { value: 'picture', label: 'Picture Question', icon: '🖼️' },
+];
+
+function getQuestionTypeBadge(qt: string) {
+  const opt = QUESTION_TYPE_OPTIONS.find(o => o.value === qt);
+  return opt ? `${opt.icon} ${opt.label}` : '🔘 MC';
 }
 
 function getNextSortOrder(pairs: SubjectQaPairRecord[]) {
@@ -125,6 +143,8 @@ function mapSummaryToRecord(summary: AdminSubjectQaPairListResponse['pairs'][num
     deleted_at: null,
     updated_at: summary.updatedAt,
     subjects: summary.subjectName ? { name: summary.subjectName } : null,
+    question_type: summary.questionType ?? 'multiple_choice',
+    question_image_url: summary.questionImageUrl ?? null,
     categories: summary.categoryName ? { name: summary.categoryName } : null,
   };
 }
@@ -401,6 +421,8 @@ export function AdminSourceManager({
       keywordsText: pair.keywords.join(', '),
       sortOrder: String(pair.sort_order),
       isActive: pair.is_active,
+      questionType: (pair.question_type ?? 'multiple_choice') as QuestionType,
+      questionImageUrl: pair.question_image_url ?? '',
     };
   }
 
@@ -802,6 +824,8 @@ export function AdminSourceManager({
         keywords,
         sortOrder,
         isActive: draft.isActive,
+        questionType: draft.questionType ?? 'multiple_choice',
+        questionImageUrl: draft.questionImageUrl || null,
       };
 
       const response = await fetch(
@@ -837,6 +861,8 @@ export function AdminSourceManager({
         keywords,
         sort_order: sortOrder,
         is_active: draft.isActive,
+        question_type: draft.questionType ?? 'multiple_choice',
+        question_image_url: draft.questionImageUrl || null,
         deleted_at: null,
         updated_at: new Date().toISOString(),
         subjects: {
@@ -1455,6 +1481,24 @@ export function AdminSourceManager({
                                     </div>
                                   </div>
 
+                                  {/* Inline question type selector */}
+                                  <div className="space-y-2">
+                                    <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">Question Type</label>
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {QUESTION_TYPE_OPTIONS.map((opt) => (
+                                        <button
+                                          key={opt.value}
+                                          type="button"
+                                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all ${inlineEditor.questionType === opt.value ? 'bg-accent text-accent-foreground border-accent' : 'bg-background/50 text-muted-foreground border-border/30 hover:bg-background/60'}`}
+                                          onClick={() => setInlineEditor((current) => current ? { ...current, questionType: opt.value } : current)}
+                                        >
+                                          <span>{opt.icon}</span>
+                                          <span>{opt.label}</span>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+
                                   <label className="flex items-center gap-3 rounded-[20px] border border-border/30 bg-background/40 px-4 py-3 text-sm text-foreground cursor-pointer transition-colors hover:bg-background/60">
                                     <input type="checkbox" className="h-4 w-4 accent-accent rounded" checked={inlineEditor.isActive} onChange={(event) => setInlineEditor((current) => (current ? { ...current, isActive: event.target.checked } : current))} />
                                     Use this pair in extension retrieval immediately
@@ -1477,6 +1521,7 @@ export function AdminSourceManager({
                                       <div className="flex items-center gap-2">
                                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 text-xs font-bold text-accent">Q</div>
                                         <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">Question</p>
+                                        <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">{getQuestionTypeBadge(pair.question_type ?? 'multiple_choice')}</span>
                                       </div>
                                       <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground/90 pl-8">{pair.question_text}</p>
                                     </div>
@@ -1546,6 +1591,34 @@ export function AdminSourceManager({
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-6">
+                      {/* ── Question Type Selector ── */}
+                      <div className="space-y-2">
+                        <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Question Type</label>
+                        <div className="flex flex-wrap gap-2">
+                          {QUESTION_TYPE_OPTIONS.map((opt) => (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all ${editor.questionType === opt.value ? 'bg-accent text-accent-foreground border-accent shadow-md' : 'bg-background/50 text-muted-foreground border-border/50 hover:bg-background/80 hover:border-border'}`}
+                              onClick={() => setEditor((current) => ({ ...current, questionType: opt.value }))}
+                              disabled={!selectedRootFolder}
+                            >
+                              <span>{opt.icon}</span>
+                              <span>{opt.label}</span>
+                            </button>
+                          ))}
+                        </div>
+                        {editor.questionType === 'checkbox' && (
+                          <p className="text-xs text-muted-foreground mt-1">💡 For checkbox answers, separate each correct answer with a pipe <code className="bg-muted px-1 rounded">|</code> character. Example: <code className="bg-muted px-1 rounded">Choice A | Choice B | Choice C</code></p>
+                        )}
+                        {editor.questionType === 'fill_in_blank' && (
+                          <p className="text-xs text-muted-foreground mt-1">💡 The answer will be typed directly into the text input field on the quiz page.</p>
+                        )}
+                        {editor.questionType === 'dropdown' && (
+                          <p className="text-xs text-muted-foreground mt-1">💡 The answer will be selected from a dropdown menu. Enter the exact text of the correct option.</p>
+                        )}
+                      </div>
+
                       <div className="grid gap-6 xl:grid-cols-2">
                         <div className="space-y-3">
                           <label className="text-sm font-semibold text-foreground flex items-center gap-2">
@@ -1721,6 +1794,8 @@ export function AdminSourceManager({
                                   id: pairId,
                                   subject_id: selectedSubject.id,
                                   category_id: null,
+                                  question_type: 'multiple_choice',
+                                  question_image_url: null,
                                   question_text: validPairs[i]!.questionText.trim(),
                                   answer_text: validPairs[i]!.answerText.trim(),
                                   short_explanation: null,

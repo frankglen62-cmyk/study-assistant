@@ -42,6 +42,8 @@ export type ConfidenceLevel = 'high' | 'medium' | 'low';
 
 export type AnalyzeSearchScope = 'subject_first' | 'all_subjects';
 
+export type QuestionType = 'multiple_choice' | 'fill_in_blank' | 'checkbox' | 'dropdown' | 'picture';
+
 export type ExtensionSourceScope = 'subject_folder' | 'all_subject_folders' | 'file_sources' | 'no_match';
 
 export interface ExtensionQuestionCandidate {
@@ -49,6 +51,7 @@ export interface ExtensionQuestionCandidate {
   prompt: string;
   options: string[];
   contextLabel: string | null;
+  questionType: QuestionType | null;
 }
 
 export interface ExtensionExtractionDiagnostics {
@@ -77,6 +80,7 @@ export interface ExtensionQuestionSuggestion {
   sourceScope: ExtensionSourceScope;
   clickStatus: AutoClickStatus;
   clickedText: string | null;
+  questionType: QuestionType | null;
 }
 
 export interface ExtensionCapturedSection {
@@ -628,6 +632,8 @@ export interface AdminSubjectQaPairSummary {
   updatedAt: string;
   subjectName: string | null;
   categoryName: string | null;
+  questionType: QuestionType;
+  questionImageUrl: string | null;
 }
 
 export interface AdminSubjectQaPairCreateRequest {
@@ -639,6 +645,8 @@ export interface AdminSubjectQaPairCreateRequest {
   keywords: string[];
   sortOrder?: number;
   isActive?: boolean;
+  questionType?: QuestionType;
+  questionImageUrl?: string | null;
 }
 
 export type AdminSubjectQaPairUpdateRequest =
@@ -652,6 +660,8 @@ export type AdminSubjectQaPairUpdateRequest =
       keywords: string[];
       sortOrder?: number;
       isActive?: boolean;
+      questionType?: QuestionType;
+      questionImageUrl?: string | null;
     }
   | {
       action: 'set_activation';

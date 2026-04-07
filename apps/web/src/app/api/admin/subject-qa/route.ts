@@ -27,6 +27,8 @@ function mapPairToSummary(pair: Awaited<ReturnType<typeof listAdminSubjectQaPair
     updatedAt: pair.updated_at,
     subjectName: pair.subjects?.name ?? null,
     categoryName: pair.categories?.name ?? null,
+    questionType: pair.question_type ?? 'multiple_choice',
+    questionImageUrl: pair.question_image_url ?? null,
   };
 }
 

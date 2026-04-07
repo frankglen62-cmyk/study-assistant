@@ -335,7 +335,7 @@ export function installExtractorContentScript() {
       .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, '')
       // Strip 'Correct'/'Incorrect' feedback text that leaks into labels
       .replace(/\b(?:Your answer is (?:correct|incorrect)\.?|Correct\.?|Incorrect\.?|Partially correct\.?)\b/gi, '')
-      .replace(/^[a-e]\.\s*/i, '') // strip choice prefix like "a. ", "b. "
+      .replace(/^[a-z]\.\s*/i, '') // strip choice prefix like "a. ", "b. ", "f. ", etc.
       .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
       .replace(/\s+/g, ' ')
       .trim();
@@ -841,6 +841,7 @@ export function installExtractorContentScript() {
     prompt: string | null;
     options: string[];
     contextLabel?: string | null;
+    questionType?: string | null;
   }) {
     const prompt = normalizeText(input.prompt ?? '');
     const normalizedOptions = input.options.map((option) => normalizeText(option)).filter(Boolean);
@@ -855,7 +856,31 @@ export function installExtractorContentScript() {
       prompt: prompt.slice(0, 500),
       options: normalizedOptions.slice(0, MAX_EXTRACTED_OPTIONS),
       contextLabel: input.contextLabel ? normalizeText(input.contextLabel).slice(0, 120) : null,
+      questionType: input.questionType ?? null,
     };
+  }
+
+  /** Detect the question type from the DOM container */
+  function detectQuestionType(container: Element): string {
+    // Check for checkboxes first (most specific)
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    if (checkboxes.length > 0) return 'checkbox';
+
+    // Check for fill-in-the-blank (text inputs, no radio/checkbox/select)
+    const textInputs = container.querySelectorAll('input[type="text"], input:not([type])');
+    const hasRadioOrCheckbox = container.querySelector('input[type="radio"], input[type="checkbox"]');
+    const hasSelect = container.querySelector('select');
+    if (textInputs.length > 0 && !hasRadioOrCheckbox && !hasSelect) return 'fill_in_blank';
+
+    // Check for dropdowns
+    if (hasSelect) return 'dropdown';
+
+    // Check for picture question (image in the question text area)
+    const qtext = container.querySelector('.qtext, .questiontext, .question-text, .prompt');
+    if (qtext && qtext.querySelector('img')) return 'picture';
+
+    // Default: multiple choice (radio buttons or generic)
+    return 'multiple_choice';
   }
 
   function extractQuestionCandidates() {
@@ -864,6 +889,7 @@ export function installExtractorContentScript() {
       prompt: string;
       options: string[];
       contextLabel: string | null;
+      questionType: string | null;
     }> = [];
     const seenIds = new Set<string>();
     const seenKeys = new Set<string>();
@@ -881,6 +907,7 @@ export function installExtractorContentScript() {
       prompt: string;
       options: string[];
       contextLabel: string | null;
+      questionType: string | null;
     } | null) {
       if (!candidate) {
         return;
@@ -936,6 +963,7 @@ export function installExtractorContentScript() {
           prompt,
           options: extractOptionsFromContainer(container),
           contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
+          questionType: detectQuestionType(container),
         }),
       );
     });
@@ -963,6 +991,7 @@ export function installExtractorContentScript() {
             prompt: derivePromptFromContainer(element),
             options: extractOptionsFromContainer(element),
             contextLabel: element.dataset.questionLabel ?? null,
+            questionType: detectQuestionType(element),
           }),
         );
       });
@@ -1022,6 +1051,7 @@ export function installExtractorContentScript() {
           contextLabel:
             (container instanceof HTMLElement ? container.dataset.questionLabel ?? null : null) ??
             deriveQuestionLabel(container),
+          questionType: container instanceof HTMLElement ? detectQuestionType(container) : 'multiple_choice',
         }),
       );
     });
@@ -1061,6 +1091,7 @@ export function installExtractorContentScript() {
           prompt: derivePromptFromContainer(container),
           options: [],
           contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
+          questionType: 'fill_in_blank',
         }),
       );
     });
@@ -1257,6 +1288,7 @@ export function installExtractorContentScript() {
               prompt: subPrompt,
               options: selectOptions,
               contextLabel: subContextLabel,
+              questionType: 'dropdown',
             }),
           );
         }
@@ -1527,6 +1559,7 @@ export function installExtractorContentScript() {
         answerText: string;
         suggestedOption: string | null;
         options: string[];
+        questionType?: string | null;
       };
 
       const result = autoClickAnswer(payload);
@@ -1628,6 +1661,7 @@ export function installExtractorContentScript() {
     answerText: string;
     suggestedOption: string | null;
     options: string[];
+    questionType?: string | null;
   }): { clicked: boolean; clickedText: string | null; matchMethod: string } {
     function setControlValue(input: HTMLInputElement | HTMLTextAreaElement, value: string) {
       input.focus();
@@ -1659,6 +1693,11 @@ export function installExtractorContentScript() {
     // Scope to the specific question container if available
     const scopedContainer = document.querySelector(`[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`);
     const searchRoot = scopedContainer ?? document;
+    
+    // ═══════════════════════════════════════════════════════════════
+    // Type-aware routing: use backend questionType to skip irrelevant strategies
+    // ═══════════════════════════════════════════════════════════════
+    const knownType = payload.questionType ?? null;
 
     // ═══════════════════════════════════════════════════════════════
     // Strategy A: Fill-in-the-blank — text inputs and textareas
@@ -1691,6 +1730,12 @@ export function installExtractorContentScript() {
         !el.closest('nav, .quiznav, .question-nav, .submitbtns, header, footer'),
     );
 
+    // Skip fill-in-blank strategy if we know this is a radio/checkbox/dropdown question
+    if (knownType && knownType !== 'fill_in_blank' && knownType !== 'picture') {
+      // Skip to the appropriate strategy
+    } else if (false) {
+      // placeholder
+    } else
     // For fill-in-the-blank: if there's exactly 1 text input in the question,
     // fill it with the raw answer text (not the suggestedOption which is for choices).
     // If multiple inputs, try to match by proximity or just fill the first empty one.
@@ -2065,8 +2110,17 @@ export function installExtractorContentScript() {
       return { bestMatch, matchMethod };
     }
 
-    const hasCheckboxChoices = filteredClickables.some((clickable) => clickable.input?.type === 'checkbox');
-    const multiAnswerSegments = splitAnswerSegments(payload.answerText || targetText);
+    const hasCheckboxChoices = filteredClickables.some((clickable) => clickable.input?.type === 'checkbox') || knownType === 'checkbox';
+    
+    // When backend says this is a checkbox question, also try pipe-delimited split
+    let multiAnswerSegments = splitAnswerSegments(payload.answerText || targetText);
+    if (knownType === 'checkbox' && multiAnswerSegments.length < 2) {
+      // Try pipe delimiter explicitly for type-aware checkbox handling
+      const pipeSegments = (payload.answerText || targetText).split(' | ').map(s => s.trim()).filter(Boolean);
+      if (pipeSegments.length >= 2) {
+        multiAnswerSegments = pipeSegments;
+      }
+    }
 
     if (hasCheckboxChoices && multiAnswerSegments.length >= 2) {
       const matchedSegments = multiAnswerSegments

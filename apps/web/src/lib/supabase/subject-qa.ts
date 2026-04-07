@@ -17,6 +17,8 @@ async function fetchSubjectQaBatch(offset: number, pageSize: number) {
       keywords,
       sort_order,
       is_active,
+      question_type,
+      question_image_url,
       deleted_at,
       updated_at,
       subjects:subject_id (
@@ -82,6 +84,8 @@ export async function listAdminSubjectQaPairsBySubjectId(subjectId: string): Pro
         keywords,
         sort_order,
         is_active,
+        question_type,
+        question_image_url,
         deleted_at,
         updated_at,
         subjects:subject_id (

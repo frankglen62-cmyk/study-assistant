@@ -60,6 +60,8 @@ interface QaPairRow {
   short_explanation: string | null;
   keywords: string[] | null;
   sort_order: number;
+  question_type: string;
+  question_image_url: string | null;
   subjects?: { name: string } | { name: string }[] | null;
   categories?: { name: string } | { name: string }[] | null;
   updated_at: string;
@@ -128,6 +130,8 @@ export async function preloadSubjectQaPairs(params: {
           short_explanation,
           keywords,
           sort_order,
+          question_type,
+          question_image_url,
           updated_at,
           subjects:subject_id (
             name
@@ -669,6 +673,8 @@ export async function retrieveRelevantQaPairs(params: {
         short_explanation,
         keywords,
         sort_order,
+        question_type,
+        question_image_url,
         updated_at,
         subjects:subject_id (
           name
@@ -731,6 +737,8 @@ export async function retrieveRelevantQaPairs(params: {
           short_explanation,
           keywords,
           sort_order,
+          question_type,
+          question_image_url,
           updated_at,
           subjects:subject_id (
             name
@@ -812,6 +820,8 @@ export async function retrieveRelevantQaPairsAcrossSubjects(params: {
         short_explanation,
         keywords,
         sort_order,
+        question_type,
+        question_image_url,
         updated_at,
         subjects:subject_id (
           name

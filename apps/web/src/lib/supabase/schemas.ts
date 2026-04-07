@@ -194,6 +194,8 @@ export const subjectQaPairRecordSchema = z.object({
   keywords: z.array(z.string()).default([]),
   sort_order: z.number().int(),
   is_active: z.boolean(),
+  question_type: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).default('multiple_choice'),
+  question_image_url: z.string().nullable().optional(),
   deleted_at: z.string().nullable().optional(),
   updated_at: z.string(),
   subjects: z
@@ -220,6 +222,8 @@ export const retrievalQaPairSchema = z.object({
   keywords: z.array(z.string()).default([]),
   sort_order: z.number().int(),
   similarity: z.number(),
+  question_type: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).default('multiple_choice'),
+  question_image_url: z.string().nullable().optional(),
   subject_name: z.string().nullable().optional(),
   category_name: z.string().nullable().optional(),
   updated_at: z.string(),

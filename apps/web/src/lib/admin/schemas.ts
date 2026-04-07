@@ -146,6 +146,8 @@ export const adminSubjectQaPairCreateSchema = z.object({
   keywords: z.array(z.string().trim().min(1).max(80)).max(30),
   sortOrder: z.number().int().min(0).optional().default(0),
   isActive: z.boolean().optional().default(true),
+  questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).optional().default('multiple_choice'),
+  questionImageUrl: z.string().trim().nullable().optional().default(null),
 });
 
 export const adminSubjectQaPairUpdateSchema = z.discriminatedUnion('action', [
@@ -159,6 +161,8 @@ export const adminSubjectQaPairUpdateSchema = z.discriminatedUnion('action', [
     keywords: z.array(z.string().trim().min(1).max(80)).max(30),
     sortOrder: z.number().int().min(0).optional().default(0),
     isActive: z.boolean().optional().default(true),
+    questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).optional().default('multiple_choice'),
+    questionImageUrl: z.string().trim().nullable().optional().default(null),
   }),
   z.object({
     action: z.literal('set_activation'),

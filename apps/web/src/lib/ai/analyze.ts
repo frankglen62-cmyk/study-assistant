@@ -167,6 +167,7 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
         prompt: enrichedPrompt,
         options: candidate.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
         contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
+      questionType: candidate.questionType ?? null,
       };
     })
     // Allow short prompts (e.g. "what", "who", "when") when they have dropdown options (2+)
@@ -221,6 +222,7 @@ function deriveQuestionCandidates(
       prompt: fallbackPrompt,
       options: (extracted.options ?? pageSignals.options).slice(0, MAX_OPTIONS_PER_QUESTION),
       contextLabel: null,
+    questionType: null,
     },
   ];
 }
@@ -248,6 +250,7 @@ function buildNoMatchQuestionSuggestion(params: {
     sourceScope: 'no_match',
     clickStatus: 'pending' as const,
     clickedText: null,
+    questionType: null,
   } satisfies ExtensionQuestionSuggestion;
 }
 
@@ -296,6 +299,7 @@ function resolveQuestionSuggestionFromPreloaded(params: {
       sourceScope,
       clickStatus: 'pending' as const,
       clickedText: null,
+      questionType: (pair).question_type ?? null,
     } satisfies ExtensionQuestionSuggestion;
   };
 
@@ -776,6 +780,7 @@ async function persistNoMatch(params: {
       sourceScope: 'no_match' as const,
       clickStatus: 'pending' as const,
       clickedText: null,
+      questionType: null,
     }));
 
   const response: AnalyzeResponsePayload = {
