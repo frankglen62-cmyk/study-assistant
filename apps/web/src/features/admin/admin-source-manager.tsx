@@ -15,6 +15,7 @@ import type {
 } from '@study-assistant/shared-types';
 import { slugify } from '@study-assistant/shared-utils';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
+import { Plus, XCircle, GripVertical } from 'lucide-react';
 
 import { useToast } from '@/components/providers/toast-provider';
 import type { FolderRecord, SourceFileRecord, SubjectQaPairRecord } from '@/lib/supabase/schemas';
@@ -1458,11 +1459,55 @@ export function AdminSourceManager({
                                     </div>
                                     <div className="space-y-2 rounded-[24px] border border-border/30 bg-background/50 p-4">
                                       <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">Answer</label>
+                                      {inlineEditor.questionType === 'checkbox' ? (
+                                        <div className="space-y-2 mt-2 w-full pr-4 pb-4">
+                                          {(inlineEditor.answerText || '').split(' | ').map((ans, i, arr) => (
+                                            <div key={i} className="flex gap-2 items-center">
+                                              <span className="text-muted-foreground/50 opacity-50"><GripVertical size={14} /></span>
+                                              <Input
+                                                type="text"
+                                                value={ans}
+                                                placeholder={`Checkbox answer option ${i + 1}`}
+                                                className="h-8 text-sm flex w-full rounded-md border border-input bg-background/50 px-3 py-1 shadow-sm"
+                                                onChange={(e) => {
+                                                  const nextArr = [...arr];
+                                                  nextArr[i] = e.target.value;
+                                                  setInlineEditor((current) => (current ? { ...current, answerText: nextArr.join(' | ') } : current));
+                                                }}
+                                              />
+                                              <button
+                                                type="button"
+                                                title="Remove this option"
+                                                className="text-muted-foreground hover:text-danger p-1 rounded-md"
+                                                onClick={() => {
+                                                  const nextArr = arr.filter((_, idx) => idx !== i);
+                                                  setInlineEditor((current) => (current ? { ...current, answerText: nextArr.join(' | ') } : current));
+                                                }}
+                                              >
+                                                <XCircle size={16} />
+                                              </button>
+                                            </div>
+                                          ))}
+                                          <Button
+                                            type="button"
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => {
+                                              const nextArr = [...(inlineEditor.answerText ? inlineEditor.answerText.split(' | ') : []), ''];
+                                              setInlineEditor((current) => (current ? { ...current, answerText: nextArr.join(' | ') } : current));
+                                            }}
+                                            className="h-8 mt-2 w-full border-dashed border-2 flex items-center justify-center gap-1 text-muted-foreground"
+                                          >
+                                            <Plus size={14} /> Add an option
+                                          </Button>
+                                        </div>
+                                      ) : (
                                       <Textarea
                                         value={inlineEditor.answerText}
                                         onChange={(event) => setInlineEditor((current) => (current ? { ...current, answerText: event.target.value } : current))}
                                         className="min-h-[100px] border-none bg-transparent resize-none p-0 focus-visible:ring-0"
                                       />
+                                      )}
                                     </div>
                                   </div>
 
@@ -1535,7 +1580,20 @@ export function AdminSourceManager({
                                           {pair.is_active ? 'Active' : 'Inactive'}
                                         </Badge>
                                       </div>
-                                      <p className="whitespace-pre-wrap text-[15px] cursor-text selection:bg-accent/30 leading-relaxed text-foreground font-medium pl-8">{pair.answer_text}</p>
+                                                                            {pair.question_type === 'checkbox' ? (
+                                        <ul className="pl-12 space-y-2 mt-1">
+                                          {(pair.answer_text || '').split(' | ').filter(Boolean).map((ans, i) => (
+                                            <li key={i} className="flex items-start gap-2">
+                                              <span className="mt-1 flex h-2 w-2 shrink-0 rounded-full bg-accent/60" />
+                                              <span className="text-[15px] leading-snug font-medium text-foreground">{ans.trim()}</span>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      ) : (
+                                        <p className="whitespace-pre-wrap text-[15px] cursor-text selection:bg-accent/30 leading-relaxed text-foreground font-medium pl-8">
+                                          {pair.answer_text}
+                                        </p>
+                                      )}
                                     </div>
                                   </div>
 
@@ -1609,7 +1667,7 @@ export function AdminSourceManager({
                           ))}
                         </div>
                         {editor.questionType === 'checkbox' && (
-                          <p className="text-xs text-muted-foreground mt-1">💡 For checkbox answers, separate each correct answer with a pipe <code className="bg-muted px-1 rounded">|</code> character. Example: <code className="bg-muted px-1 rounded">Choice A | Choice B | Choice C</code></p>
+                          <p className="text-xs text-muted-foreground mt-1">💡 Checkbox questions require multiple exact correct outputs. Use the 'Add another answer' button below to list them out.</p>
                         )}
                         {editor.questionType === 'fill_in_blank' && (
                           <p className="text-xs text-muted-foreground mt-1">💡 The answer will be typed directly into the text input field on the quiz page.</p>
@@ -1636,6 +1694,51 @@ export function AdminSourceManager({
                           <label className="text-sm font-semibold text-foreground flex items-center gap-2">
                             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">2</span> Answer Content
                           </label>
+                          {editor.questionType === 'checkbox' ? (
+                            <div className="space-y-3 mt-1">
+                              {(editor.answerText || '').split(' | ').map((ans, i, arr) => (
+                                <div key={i} className="flex gap-2 items-center">
+                                  <span className="text-muted-foreground/30"><GripVertical size={16} /></span>
+                                  <Input
+                                    type="text"
+                                    value={ans}
+                                    disabled={!selectedRootFolder}
+                                    placeholder={`Exact text for correct checkbox ${i + 1}`}
+                                    className="flex w-full rounded-md border border-input px-3 py-2 text-sm bg-background/50 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+                                    onChange={(e) => {
+                                      const nextArr = [...arr];
+                                      nextArr[i] = e.target.value;
+                                      setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
+                                    }}
+                                  />
+                                  <button
+                                    type="button"
+                                    disabled={!selectedRootFolder}
+                                    onClick={() => {
+                                      const nextArr = arr.filter((_, idx) => idx !== i);
+                                      setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
+                                    }}
+                                    className="p-2 text-muted-foreground hover:text-danger rounded-md hover:bg-danger/10 transition-colors"
+                                  >
+                                    <XCircle size={18} />
+                                  </button>
+                                </div>
+                              ))}
+                              <Button
+                                type="button"
+                                variant="secondary"
+                                size="sm"
+                                disabled={!selectedRootFolder}
+                                onClick={() => {
+                                  const nextArr = [...(editor.answerText ? editor.answerText.split(' | ') : []), ''];
+                                  setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
+                                }}
+                                className="w-full mt-2 border-dashed border-2 flex items-center justify-center gap-2 text-muted-foreground"
+                              >
+                                <Plus size={16} /> Add another answer
+                              </Button>
+                            </div>
+                          ) : (
                           <Textarea
                             value={editor.answerText}
                             onChange={(event) => setEditor((current) => ({ ...current, answerText: event.target.value }))}
@@ -1643,6 +1746,7 @@ export function AdminSourceManager({
                             className="min-h-[100px] text-base resize-none"
                             disabled={!selectedRootFolder}
                           />
+                          )}
                         </div>
                       </div>
 
