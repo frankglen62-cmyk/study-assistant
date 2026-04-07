@@ -124,11 +124,21 @@ export function installExtractorContentScript() {
       return true;
     }
 
-    return (
+    if (
       /^(question\s*\d+|select one:?|select one or more:?|true|false|yes|no|answer:?|response:?|your answer:?|fill in the blank:?|blank:?|blanks:?)$/i.test(normalized) ||
       /^question\s*\d+\s*(select one:?|select one or more:?)?$/i.test(normalized) ||
       /^(complete|flag question|mark\b|answered|not answered|finish review)$/i.test(normalized)
-    );
+    ) {
+      return true;
+    }
+
+    // Aggressive catch-all for any combination of Question X and Select One without actual question content
+    const stripped = normalized.replace(/question\s*\d+/i, '').replace(/select one( or more)?:?/i, '').replace(/[^a-z0-9]/ig, '');
+    if (stripped.length === 0 && normalized.toLowerCase().includes('select')) {
+      return true;
+    }
+
+    return false;
   }
 
   function collectTextNodeCandidates(container: ParentNode | null, optionLookup: Set<string>): string[] {
@@ -557,19 +567,29 @@ export function installExtractorContentScript() {
         .filter(Boolean),
     );
 
-    const explicitPrompt = container.querySelector(
-      [
-        '[data-question-prompt]',
-        '.qtext',
-        '.questiontext',
-        '.question-text',
-        '.prompt',
-        '.question-prompt',
-        '.question-stem',
-        '.stem',
-        'legend',
-      ].join(', '),
-    );
+    const safePromptSelectors = [
+      '[data-question-prompt]',
+      '.qtext',
+      '.questiontext',
+      '.question-text',
+      '.question-stem',
+      '.stem'
+    ].join(', ');
+
+    const dangerousPromptSelectors = [
+      '.prompt',
+      '.question-prompt',
+      'legend'
+    ].join(', ');
+
+    // Try safe selectors first!
+    let explicitPrompt = container.querySelector(safePromptSelectors);
+    
+    // Only try dangerous selectors if no safe prompt was found, and ensure it isn't literally "Select one"
+    if (!explicitPrompt) {
+      explicitPrompt = container.querySelector(dangerousPromptSelectors);
+    }
+
     if (explicitPrompt && isElementVisible(explicitPrompt) && !looksLikeQuestionNavigation(explicitPrompt)) {
       const text = extractCleanedPromptText(explicitPrompt);
       if (text.length >= 12 && !isBoilerplateQuestionText(text, optionLookup)) {
