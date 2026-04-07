@@ -846,7 +846,7 @@ export function installExtractorContentScript() {
     const prompt = normalizeText(input.prompt ?? '');
     const normalizedOptions = input.options.map((option) => normalizeText(option)).filter(Boolean);
     // Allow very short prompts (e.g. 'what', 'who') if there are dropdown options
-    const minimumPromptLength = normalizedOptions.length >= 2 ? 1 : 12;
+    const minimumPromptLength = input.questionType === 'dropdown' && normalizedOptions.length >= 2 ? 3 : 12;
     if (prompt.length < minimumPromptLength) {
       return null;
     }
@@ -1637,7 +1637,7 @@ export function installExtractorContentScript() {
     }
 
     const segments = normalized
-      .split(/\s*(?:,|;|\/|\band\b|&|\+)\s*/i)
+      .split(/\s*(?:\||,|;|\/|\band\b|&|\+)\s*/i)
       .map((segment) => normalizeText(segment))
       .filter((segment) => segment.length >= 2);
 
