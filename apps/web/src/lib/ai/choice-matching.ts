@@ -111,7 +111,7 @@ export function splitMultiAnswerSegments(value: string) {
   }
 
   const segments = collapsed
-    .split(/\s*(?:,|;|\/|\band\b|&|\+)\s*/i)
+    .split(/\s*(?:\||,|;|\/|\band\b|&|\+)\s*/i)
     .map((segment) => collapseWhitespace(segment))
     .filter((segment) => segment.length >= 2);
 
