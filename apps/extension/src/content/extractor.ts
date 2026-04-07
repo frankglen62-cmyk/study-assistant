@@ -1007,10 +1007,20 @@ export function installExtractorContentScript() {
         if (input.type === 'radio' && input.name) {
           groupKey = input.name;
         } else {
-          const container = input.closest('.answer, .ablock, .que, .formulation, [data-question-block], fieldset, [role="group"]');
-          if (container instanceof HTMLElement) {
-            groupKey = container;
+          const container = input.closest([
+            '.answer', '.answers', '.ablock', '.que', '.formulation', '.question',
+            '[data-question-block]', 'fieldset', '[role="group"]', '[role="radiogroup"]',
+            '.options', '.choices', '.mcq-options', 'ul', 'ol', 'table', 'tbody',
+            '.multichoice', '.checkbox-group'
+          ].join(', '));
+          
+          // Fallback to finding the nearest common parent that looks like a question boundary
+          const boundaryContainer = container || input.closest('article, section, .question-container');
+          
+          if (boundaryContainer instanceof HTMLElement) {
+            groupKey = boundaryContainer;
           } else {
+            // Unlikely fallback if it's completely loose in the body
             groupKey = input.name || input.id || `ungrouped-${index + 1}`;
           }
         }
