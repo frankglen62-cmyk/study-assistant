@@ -201,6 +201,44 @@ export function overlapScore(left: string, right: string) {
   return hits / leftTokens.size;
 }
 
+// Stop words that carry little meaning for question matching.
+// "windows" vs "browsers" differ by ONE word, but the 5 matching tokens
+// ("it", "is", "a", "based", "application") are mostly stop words.
+// Stripping them reveals the real content overlap: 2/3 = 0.667 instead of 5/6 = 0.833.
+const STOP_WORDS = new Set([
+  'a', 'an', 'the', 'it', 'its', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+  'in', 'on', 'at', 'to', 'for', 'of', 'and', 'or', 'but', 'not', 'no', 'nor',
+  'this', 'that', 'these', 'those', 'with', 'from', 'by', 'as',
+  'has', 'have', 'had', 'will', 'would', 'can', 'could', 'may', 'might',
+  'shall', 'should', 'do', 'does', 'did',
+  'what', 'which', 'who', 'whom', 'where', 'when', 'how', 'why',
+  'all', 'each', 'every', 'both', 'few', 'more', 'most', 'some', 'any',
+  'also', 'just', 'only', 'very', 'so', 'too', 'than', 'then',
+]);
+
+export function contentOverlapScore(left: string, right: string) {
+  const leftTokens = tokenize(left).filter((t) => !STOP_WORDS.has(t));
+  const rightTokens = tokenize(right).filter((t) => !STOP_WORDS.has(t));
+
+  if (leftTokens.length === 0 || rightTokens.length === 0) {
+    return 1; // If no content words, fall back to regular overlap
+  }
+
+  const leftSet = new Set(leftTokens);
+  const rightSet = new Set(rightTokens);
+  let hits = 0;
+
+  for (const token of leftSet) {
+    if (rightSet.has(token)) {
+      hits += 1;
+    }
+  }
+
+  // Use Jaccard: intersection / union — accounts for words in BOTH sides
+  const union = new Set([...leftSet, ...rightSet]);
+  return hits / union.size;
+}
+
 export interface ParsedChoiceOption {
   raw: string;
   label: string | null;

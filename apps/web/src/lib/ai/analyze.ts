@@ -9,7 +9,7 @@ import type {
 } from '@study-assistant/shared-types';
 
 import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
-import { isQuestionTextEquivalent, normalizeComparableText, overlapScore, splitMultiAnswerSegments, splitMultiAnswerByChoices } from '@/lib/ai/choice-matching';
+import { isQuestionTextEquivalent, normalizeComparableText, overlapScore, contentOverlapScore, splitMultiAnswerSegments, splitMultiAnswerByChoices } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
 import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
@@ -110,6 +110,17 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
   // For regular multiple choice (under 5 options), we can use answerSupport as a
   // secondary signal since each question has its own distinct options.
   const answerSupport = optionAnswerSupportScore(candidate.options, pair.answer_text);
+
+  // CONTENT WORD GATE: Even if overall token overlap is high (e.g. 83%),
+  // the match might be false if the CONTENT words (non-stop-words) differ.
+  // Example: 'It is a windows-based application' vs 'It is a browsers-based application'
+  // has 5/6 = 0.83 token overlap but only 2/3 = 0.67 content Jaccard.
+  // This gate catches questions where filler words inflate the overlap score.
+  const contentJaccard = contentOverlapScore(candidate.prompt, pair.question_text);
+  if (contentJaccard < 0.70) {
+    return false;
+  }
+
   return questionOverlap >= 0.72 || (questionOverlap >= 0.45 && answerSupport >= 0.90);
 }
 
