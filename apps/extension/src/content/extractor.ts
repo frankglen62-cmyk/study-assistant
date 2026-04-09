@@ -133,8 +133,14 @@ export function installExtractorContentScript() {
     }
 
     // Aggressive catch-all for any combination of Question X and Select One without actual question content
-    const stripped = normalized.replace(/question\s*\d+/i, '').replace(/select one( or more)?[: ]*/i, '').replace(/[^a-z0-9]/ig, '');
-    if (stripped.length === 0 && normalized.toLowerCase().includes('select')) {
+    const stripped = normalized.replace(/question\s*\d+/gi, '').replace(/select one( or more)?[: ]*/gi, '').replace(/[^a-z0-9]/gi, '');
+    if (stripped.length === 0 && (normalized.includes('select') || normalized.match(/^question\s*\d+$/i))) {
+      return true;
+    }
+
+    // Also catch just the word "select one" or "select one or more" even if buried with whitespace/punctuation
+    const strippedNoQNo = normalized.replace(/question\s*\d+/gi, '').trim();
+    if (/^select one( or more)?[: .!]*$/i.test(strippedNoQNo)) {
       return true;
     }
 
@@ -693,7 +699,7 @@ export function installExtractorContentScript() {
           score += 4;
         }
 
-        if (current.querySelector('.qtext, .questiontext, .question-text, .prompt, .question-prompt')) {
+        if (current.querySelector('.qtext, .questiontext, .question-text, .question-prompt')) {
           score += 6;
         }
 
@@ -864,7 +870,8 @@ export function installExtractorContentScript() {
           '.question',
           '.quiz-question',
           '[data-region="question"]',
-          'fieldset',
+          // NOTE: 'fieldset' is intentionally NOT here — Moodle wraps answer choices
+          // in <fieldset class="ablock"> which is a sub-container, not the question itself.
           'article',
           'section',
           'div',
@@ -922,7 +929,7 @@ export function installExtractorContentScript() {
     if (hasSelect) return 'dropdown';
 
     // Check for picture question (image in the question text area)
-    const qtext = container.querySelector('.qtext, .questiontext, .question-text, .prompt');
+    const qtext = container.querySelector('.qtext, .questiontext, .question-text');
     if (qtext && qtext.querySelector('img')) return 'picture';
 
     // Default: multiple choice (radio buttons or generic)
@@ -942,7 +949,9 @@ export function installExtractorContentScript() {
     const structuredContainers = new Set<string>();
     const visiblePromptNodes = Array.from(
       document.querySelectorAll(
-        ['[data-question-prompt]', '.qtext', '.questiontext', '.question-text', '.prompt', '.question-prompt', '.question-stem', '.stem'].join(
+        // NOTE: '.prompt' is intentionally NOT here — Moodle uses <legend class="prompt">
+        // for boilerplate "Select one:" / "Select one or more:" text which is NOT the question.
+        ['[data-question-prompt]', '.qtext', '.questiontext', '.question-text', '.question-prompt', '.question-stem', '.stem'].join(
           ', ',
         ),
       ),
