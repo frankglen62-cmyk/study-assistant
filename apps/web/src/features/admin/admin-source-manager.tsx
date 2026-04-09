@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 
@@ -81,16 +81,16 @@ function buildEmptyEditor(sortOrder: number): QaEditorState {
 }
 
 const QUESTION_TYPE_OPTIONS: { value: QuestionType; label: string; icon: string }[] = [
-  { value: 'multiple_choice', label: 'Multiple Choice', icon: 'Ã°Å¸â€Ëœ' },
-  { value: 'checkbox', label: 'Checkbox', icon: 'Ã¢Ëœâ€˜Ã¯Â¸Â' },
-  { value: 'fill_in_blank', label: 'Fill in the Blank', icon: 'Ã¢Å“ÂÃ¯Â¸Â' },
-  { value: 'dropdown', label: 'Dropdown', icon: 'Ã°Å¸â€œâ€¹' },
-  { value: 'picture', label: 'Picture Question', icon: 'Ã°Å¸â€“Â¼Ã¯Â¸Â' },
+  { value: 'multiple_choice', label: 'Multiple Choice', icon: '\u{1F4D8}' },
+  { value: 'checkbox', label: 'Checkbox', icon: '\u2611\uFE0F' },
+  { value: 'fill_in_blank', label: 'Fill in the Blank', icon: '\u270F\uFE0F' },
+  { value: 'dropdown', label: 'Dropdown', icon: '\u{1F4CB}' },
+  { value: 'picture', label: 'Picture Question', icon: '\u{1F5BC}\uFE0F' },
 ];
 
 function getQuestionTypeBadge(qt: string) {
   const opt = QUESTION_TYPE_OPTIONS.find(o => o.value === qt);
-  return opt ? `${opt.icon} ${opt.label}` : 'Ã°Å¸â€Ëœ MC';
+  return opt ? `${opt.icon} ${opt.label}` : '\u{1F4D8} MC';
 }
 
 function getNextSortOrder(pairs: SubjectQaPairRecord[]) {
@@ -196,7 +196,7 @@ export function AdminSourceManager({
   const [activeTab, setActiveTab] = useState<'qa' | 'add' | 'files' | 'settings'>('qa');
   const [isLoadingSelectedPairs, setIsLoadingSelectedPairs] = useState(false);
 
-  // Unified Add Content state Ã¢â‚¬â€ each pair has full fields
+  // Unified Add Content state — each pair has full fields
   interface UnifiedPairRow {
     questionText: string;
     answerText: string;
@@ -632,7 +632,7 @@ export function AdminSourceManager({
   }, [loadedSubjectIds, pushToast, qaPairCache, qaPairCountsBySubjectId, selectedSubjectId]);
 
   // Refresh counts once on mount.  Do NOT include qaPairCache or
-  // loadedSubjectIds in the dependency array Ã¢â‚¬â€ that creates a re-run loop
+  // loadedSubjectIds in the dependency array — that creates a re-run loop
   // because this effect updates those same values.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
