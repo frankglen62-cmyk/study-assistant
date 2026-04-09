@@ -234,9 +234,23 @@ export function contentOverlapScore(left: string, right: string) {
     }
   }
 
-  // Use Jaccard: intersection / union — accounts for words in BOTH sides
-  const union = new Set([...leftSet, ...rightSet]);
-  return hits / union.size;
+  // Shorter-side containment: intersection / min(leftSet.size, rightSet.size).
+  // This requires that ALL content words from the SHORTER text appear in the
+  // LONGER text. If even ONE key content word is missing, the score drops
+  // below the gate threshold.
+  //
+  // Examples:
+  //   "windows based application" vs "browsers based application"
+  //   → intersection=2, min=3 → 2/3=0.667 → REJECT
+  //
+  //   "Click the Support button" vs "Click the Links button"
+  //   → intersection=2 (click,button), min=3 → 2/3=0.667 → REJECT
+  //
+  //   Identical questions → intersection=N, min=N → 1.0 → ACCEPT
+  //
+  //   Extra word in quiz → shorter=library(5), intersection=5 → 5/5=1.0 → ACCEPT
+  const minSetSize = Math.min(leftSet.size, rightSet.size);
+  return hits / minSetSize;
 }
 
 export interface ParsedChoiceOption {
