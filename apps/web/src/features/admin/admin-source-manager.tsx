@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 
@@ -81,16 +81,16 @@ function buildEmptyEditor(sortOrder: number): QaEditorState {
 }
 
 const QUESTION_TYPE_OPTIONS: { value: QuestionType; label: string; icon: string }[] = [
-  { value: 'multiple_choice', label: 'Multiple Choice', icon: '🔘' },
-  { value: 'checkbox', label: 'Checkbox', icon: '☑️' },
-  { value: 'fill_in_blank', label: 'Fill in the Blank', icon: '✏️' },
-  { value: 'dropdown', label: 'Dropdown', icon: '📋' },
-  { value: 'picture', label: 'Picture Question', icon: '🖼️' },
+  { value: 'multiple_choice', label: 'Multiple Choice', icon: 'Ã°Å¸â€Ëœ' },
+  { value: 'checkbox', label: 'Checkbox', icon: 'Ã¢Ëœâ€˜Ã¯Â¸Â' },
+  { value: 'fill_in_blank', label: 'Fill in the Blank', icon: 'Ã¢Å“ÂÃ¯Â¸Â' },
+  { value: 'dropdown', label: 'Dropdown', icon: 'Ã°Å¸â€œâ€¹' },
+  { value: 'picture', label: 'Picture Question', icon: 'Ã°Å¸â€“Â¼Ã¯Â¸Â' },
 ];
 
 function getQuestionTypeBadge(qt: string) {
   const opt = QUESTION_TYPE_OPTIONS.find(o => o.value === qt);
-  return opt ? `${opt.icon} ${opt.label}` : '🔘 MC';
+  return opt ? `${opt.icon} ${opt.label}` : 'Ã°Å¸â€Ëœ MC';
 }
 
 function getNextSortOrder(pairs: SubjectQaPairRecord[]) {
@@ -195,10 +195,35 @@ export function AdminSourceManager({
   const [newSubjectCode, setNewSubjectCode] = useState('');
   const [activeTab, setActiveTab] = useState<'qa' | 'add' | 'files' | 'settings'>('qa');
   const [isLoadingSelectedPairs, setIsLoadingSelectedPairs] = useState(false);
-  const [batchPairs, setBatchPairs] = useState<Array<{ questionText: string; answerText: string }>>([]);
+
+  // Unified Add Content state Ã¢â‚¬â€ each pair has full fields
+  interface UnifiedPairRow {
+    questionText: string;
+    answerText: string;
+    questionType: QuestionType;
+    keywordsText: string;
+    shortExplanation: string;
+    isActive: boolean;
+    showAdvanced: boolean;
+  }
+  const createEmptyPairRow = (): UnifiedPairRow => ({
+    questionText: '',
+    answerText: '',
+    questionType: 'multiple_choice' as QuestionType,
+    keywordsText: '',
+    shortExplanation: '',
+    isActive: true,
+    showAdvanced: false,
+  });
+  const [unifiedPairs, setUnifiedPairs] = useState<UnifiedPairRow[]>([createEmptyPairRow()]);
   const [isSavingBatch, setIsSavingBatch] = useState(false);
   const [batchSaveProgress, setBatchSaveProgress] = useState<{ saved: number; total: number } | null>(null);
   const [recentlyAddedPairs, setRecentlyAddedPairs] = useState<SubjectQaPairRecord[]>([]);
+
+  // Stored Q&A Library state
+  const [qaPairPage, setQaPairPage] = useState(0);
+  const [qaPairSort, setQaPairSort] = useState<'sort_order' | 'date' | 'alpha'>('sort_order');
+  const QA_PAGE_SIZE = 25;
 
   useEffect(() => {
     setSubjectRows(subjects);
@@ -318,6 +343,36 @@ export function AdminSourceManager({
       return queryWords.every((word: string) => haystack.includes(word));
     });
   }, [pairSearch, selectedSubjectPairs]);
+
+  // Sorted pairs
+  const sortedPairs = useMemo(() => {
+    const arr = [...filteredPairs];
+    switch (qaPairSort) {
+      case 'date':
+        arr.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+        break;
+      case 'alpha':
+        arr.sort((a, b) => a.question_text.localeCompare(b.question_text));
+        break;
+      case 'sort_order':
+      default:
+        arr.sort((a, b) => a.sort_order - b.sort_order);
+        break;
+    }
+    return arr;
+  }, [filteredPairs, qaPairSort]);
+
+  // Paginated pairs
+  const totalQaPairPages = Math.max(1, Math.ceil(sortedPairs.length / QA_PAGE_SIZE));
+  const paginatedPairs = useMemo(() => {
+    const start = qaPairPage * QA_PAGE_SIZE;
+    return sortedPairs.slice(start, start + QA_PAGE_SIZE);
+  }, [sortedPairs, qaPairPage, QA_PAGE_SIZE]);
+
+  // Reset page when search/sort/subject changes
+  useEffect(() => {
+    setQaPairPage(0);
+  }, [pairSearch, qaPairSort, selectedSubjectId]);
 
   useEffect(() => {
     setFolderNameDraft(selectedRootFolder?.name ?? selectedSubject?.name ?? '');
@@ -577,7 +632,7 @@ export function AdminSourceManager({
   }, [loadedSubjectIds, pushToast, qaPairCache, qaPairCountsBySubjectId, selectedSubjectId]);
 
   // Refresh counts once on mount.  Do NOT include qaPairCache or
-  // loadedSubjectIds in the dependency array — that creates a re-run loop
+  // loadedSubjectIds in the dependency array Ã¢â‚¬â€ that creates a re-run loop
   // because this effect updates those same values.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -1431,11 +1486,32 @@ export function AdminSourceManager({
                       className="h-12 text-base rounded-[20px] bg-background/50 border-border/80 focus-visible:ring-accent"
                     />
 
+
+                    {/* Sort + Count Controls */}
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="text-sm text-muted-foreground">
+                        Showing {Math.min(paginatedPairs.length, QA_PAGE_SIZE)} of {sortedPairs.length} pair{sortedPairs.length === 1 ? '' : 's'}
+                        {pairSearch.trim() ? ` matching ""${pairSearch.trim()}""` : ''}
+                      </p>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mr-1">Sort:</span>
+                        {([["sort_order", "Order"], ["date", "Newest"], ["alpha", "A-Z"]] as const).map(([value, label]) => (
+                          <button
+                            key={value}
+                            type="button"
+                            className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${qaPairSort === value ? "bg-accent text-accent-foreground" : "bg-background/50 text-muted-foreground border border-border/40 hover:bg-background/80"}`}
+                            onClick={() => setQaPairSort(value)}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                     {isLoadingSelectedPairs ? (
                       <div className="rounded-[28px] border border-dashed border-border/60 bg-background/20 p-10 text-center text-sm text-muted-foreground">
                         Loading stored Q&A pairs for this subject folder...
                       </div>
-                    ) : !filteredPairs.length ? (
+                    ) : !sortedPairs.length ? (
                       <div className="rounded-[28px] border border-dashed border-border/60 bg-background/20 p-10 text-center text-sm text-muted-foreground">
                         {selectedSubjectPairs.length
                           ? 'No stored pairs match your current search.'
@@ -1443,7 +1519,7 @@ export function AdminSourceManager({
                       </div>
                     ) : (
                       <div className="space-y-5">
-                        {filteredPairs.map((pair) => (
+                        {paginatedPairs.map((pair) => (
                           <div key={pair.id} className="group overflow-hidden rounded-[28px] border border-border/40 bg-surface/40 p-1 transition-all hover:border-border/80 hover:shadow-md">
                             <div className="rounded-[24px] bg-background/80 p-5">
                               {inlineEditor?.editingId === pair.id ? (
@@ -1635,328 +1711,361 @@ export function AdminSourceManager({
                         ))}
                       </div>
                     )}
+
+                    {/* Pagination controls */}
+                    {totalQaPairPages > 1 && (
+                      <div className="flex items-center justify-center gap-2 pt-4 border-t border-border/40">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          disabled={qaPairPage === 0}
+                          onClick={() => setQaPairPage((p) => Math.max(0, p - 1))}
+                          className="h-8 px-3"
+                        >
+                          ← Prev
+                        </Button>
+                        <span className="text-sm text-muted-foreground px-3">
+                          Page {qaPairPage + 1} of {totalQaPairPages}
+                        </span>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          disabled={qaPairPage >= totalQaPairPages - 1}
+                          onClick={() => setQaPairPage((p) => Math.min(totalQaPairPages - 1, p + 1))}
+                          className="h-8 px-3"
+                        >
+                          Next →
+                        </Button>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               )}
 
               {activeTab === 'add' && (
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                  {/* ── Single-pair quick add ── */}
-                  <Card id="qa-editor" className="shadow-lg border-accent/20">
+                  {/* â”€â”€ Unified Add Q&A Pairs â”€â”€ */}
+                  <Card className="shadow-lg border-accent/20">
                     <CardHeader>
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                          <CardTitle>Quick Add Q&A Pair</CardTitle>
+                          <CardTitle>Add Q&A Pairs</CardTitle>
                           <CardDescription>
-                            Add a single question-and-answer pair to {selectedSubject?.name}. Short questions like &quot;what&quot; or &quot;who&quot; are allowed for dropdown matching.
+                            Add one or more question-answer pairs to {selectedSubject?.name}. Fill in each pair then click &quot;Save All&quot; to store them.
                           </CardDescription>
                         </div>
-                        <Badge tone={editor.isActive ? 'success' : 'warning'}>
-                          {editor.isActive ? 'Will be Active' : 'Will be Inactive'}
-                        </Badge>
+                        <Badge tone="accent">{unifiedPairs.length} pair{unifiedPairs.length === 1 ? '' : 's'} queued</Badge>
                       </div>
                     </CardHeader>
-                    <CardContent className="space-y-6">
-                      {/* ── Question Type Selector ── */}
-                      <div className="space-y-2">
-                        <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Question Type</label>
-                        <div className="flex flex-wrap gap-2">
-                          {QUESTION_TYPE_OPTIONS.map((opt) => (
-                            <button
-                              key={opt.value}
-                              type="button"
-                              className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all ${editor.questionType === opt.value ? 'bg-accent text-accent-foreground border-accent shadow-md' : 'bg-background/50 text-muted-foreground border-border/50 hover:bg-background/80 hover:border-border'}`}
-                              onClick={() => setEditor((current) => ({ ...current, questionType: opt.value }))}
-                              disabled={!selectedRootFolder}
-                            >
-                              <span>{opt.icon}</span>
-                              <span>{opt.label}</span>
-                            </button>
-                          ))}
-                        </div>
-                        {editor.questionType === 'checkbox' && (
-                          <p className="text-xs text-muted-foreground mt-1">💡 Checkbox questions require multiple exact correct outputs. Use the 'Add another answer' button below to list them out.</p>
-                        )}
-                        {editor.questionType === 'fill_in_blank' && (
-                          <p className="text-xs text-muted-foreground mt-1">💡 The answer will be typed directly into the text input field on the quiz page.</p>
-                        )}
-                        {editor.questionType === 'dropdown' && (
-                          <p className="text-xs text-muted-foreground mt-1">💡 The answer will be selected from a dropdown menu. Enter the exact text of the correct option.</p>
-                        )}
-                      </div>
+                    <CardContent className="space-y-5">
+                      {unifiedPairs.map((pair, index) => (
+                        <div key={index} className="rounded-[24px] border border-border/40 bg-surface/20 p-5 space-y-4 transition-all hover:border-border/60">
+                          {/* Pair header */}
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-bold text-accent-foreground shadow-sm">{index + 1}</span>
+                              <span className="text-sm font-semibold text-foreground">Pair {index + 1}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Badge tone={pair.isActive ? 'success' : 'warning'} className="scale-90">
+                                {pair.isActive ? 'Active' : 'Inactive'}
+                              </Badge>
+                              {unifiedPairs.length > 1 && (
+                                <button
+                                  type="button"
+                                  className="p-1.5 text-muted-foreground hover:text-danger rounded-lg hover:bg-danger/10 transition-colors"
+                                  onClick={() => setUnifiedPairs((current) => current.filter((_, i) => i !== index))}
+                                >
+                                  <XCircle size={18} />
+                                </button>
+                              )}
+                            </div>
+                          </div>
 
-                      <div className="grid gap-6 xl:grid-cols-2">
-                        <div className="space-y-3">
-                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] text-accent-foreground font-bold">1</span> Question Formulation
-                          </label>
-                          <Textarea
-                            value={editor.questionText}
-                            onChange={(event) => setEditor((current) => ({ ...current, questionText: event.target.value }))}
-                            placeholder="Enter the question text (even short words like 'what' or 'who' are valid)..."
-                            className="min-h-[100px] text-base resize-none"
-                            disabled={!selectedRootFolder}
-                          />
-                        </div>
-                        <div className="space-y-3">
-                          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">2</span> Answer Content
-                          </label>
-                          {editor.questionType === 'checkbox' ? (
-                            <div className="space-y-3 mt-1">
-                              {(editor.answerText || '').split(' | ').map((ans, i, arr) => (
-                                <div key={i} className="flex gap-2 items-center">
-                                  <span className="text-muted-foreground/30"><GripVertical size={16} /></span>
-                                  <Input
-                                    type="text"
-                                    value={ans}
-                                    disabled={!selectedRootFolder}
-                                    placeholder={`Exact text for correct checkbox ${i + 1}`}
-                                    className="flex w-full rounded-md border border-input px-3 py-2 text-sm bg-background/50 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                                    onChange={(e) => {
-                                      const nextArr = [...arr];
-                                      nextArr[i] = e.target.value;
-                                      setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
-                                    }}
-                                  />
-                                  <button
+                          {/* Question Type */}
+                          <div className="space-y-2">
+                            <label className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Question Type</label>
+                            <div className="flex flex-wrap gap-1.5">
+                              {QUESTION_TYPE_OPTIONS.map((opt) => (
+                                <button
+                                  key={opt.value}
+                                  type="button"
+                                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all ${pair.questionType === opt.value ? 'bg-accent text-accent-foreground border-accent shadow-sm' : 'bg-background/50 text-muted-foreground border-border/40 hover:bg-background/80'}`}
+                                  onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, questionType: opt.value } : p))}
+                                  disabled={!selectedRootFolder}
+                                >
+                                  <span>{opt.icon}</span>
+                                  <span>{opt.label}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Question + Answer */}
+                          <div className="grid gap-4 xl:grid-cols-2">
+                            <div className="space-y-2">
+                              <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] text-accent-foreground font-bold">Q</span> Question
+                              </label>
+                              <Textarea
+                                value={pair.questionText}
+                                onChange={(event) => {
+                                  const value = event.target.value;
+                                  setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, questionText: value } : p));
+                                }}
+                                placeholder="Enter the question text..."
+                                className="min-h-[90px] text-sm resize-none"
+                                disabled={!selectedRootFolder}
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">A</span> Answer
+                              </label>
+                              {pair.questionType === 'checkbox' ? (
+                                <div className="space-y-2">
+                                  {(pair.answerText || '').split(' | ').map((ans, ansIdx, arr) => (
+                                    <div key={ansIdx} className="flex gap-2 items-center">
+                                      <span className="text-muted-foreground/30"><GripVertical size={14} /></span>
+                                      <Input
+                                        type="text"
+                                        value={ans}
+                                        placeholder={`Checkbox option ${ansIdx + 1}`}
+                                        className="text-sm"
+                                        disabled={!selectedRootFolder}
+                                        onChange={(e) => {
+                                          const nextArr = [...arr];
+                                          nextArr[ansIdx] = e.target.value;
+                                          setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: nextArr.join(' | ') } : p));
+                                        }}
+                                      />
+                                      <button
+                                        type="button"
+                                        className="p-1 text-muted-foreground hover:text-danger rounded-md"
+                                        onClick={() => {
+                                          const nextArr = arr.filter((_, idx) => idx !== ansIdx);
+                                          setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: nextArr.join(' | ') } : p));
+                                        }}
+                                      >
+                                        <XCircle size={16} />
+                                      </button>
+                                    </div>
+                                  ))}
+                                  <Button
                                     type="button"
+                                    variant="secondary"
+                                    size="sm"
                                     disabled={!selectedRootFolder}
                                     onClick={() => {
-                                      const nextArr = arr.filter((_, idx) => idx !== i);
-                                      setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
+                                      const nextArr = [...(pair.answerText ? pair.answerText.split(' | ') : []), ''];
+                                      setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: nextArr.join(' | ') } : p));
                                     }}
-                                    className="p-2 text-muted-foreground hover:text-danger rounded-md hover:bg-danger/10 transition-colors"
+                                    className="w-full border-dashed border-2 flex items-center justify-center gap-1 text-muted-foreground"
                                   >
-                                    <XCircle size={18} />
-                                  </button>
+                                    <Plus size={14} /> Add checkbox option
+                                  </Button>
                                 </div>
-                              ))}
-                              <Button
-                                type="button"
-                                variant="secondary"
-                                size="sm"
-                                disabled={!selectedRootFolder}
-                                onClick={() => {
-                                  const nextArr = [...(editor.answerText ? editor.answerText.split(' | ') : []), ''];
-                                  setEditor((c) => ({ ...c, answerText: nextArr.join(' | ') }));
-                                }}
-                                className="w-full mt-2 border-dashed border-2 flex items-center justify-center gap-2 text-muted-foreground"
-                              >
-                                <Plus size={16} /> Add another answer
-                              </Button>
+                              ) : (
+                                <Textarea
+                                  value={pair.answerText}
+                                  onChange={(event) => {
+                                    const value = event.target.value;
+                                    setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
+                                  }}
+                                  placeholder="Enter the precise answer..."
+                                  className="min-h-[90px] text-sm resize-none"
+                                  disabled={!selectedRootFolder}
+                                />
+                              )}
                             </div>
-                          ) : (
-                          <Textarea
-                            value={editor.answerText}
-                            onChange={(event) => setEditor((current) => ({ ...current, answerText: event.target.value }))}
-                            placeholder="Enter the precise answer to be suggested..."
-                            className="min-h-[100px] text-base resize-none"
-                            disabled={!selectedRootFolder}
-                          />
+                          </div>
+
+                          {/* Advanced toggle */}
+                          <button
+                            type="button"
+                            className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                            onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, showAdvanced: !p.showAdvanced } : p))}
+                          >
+                            <span className={`transition-transform ${pair.showAdvanced ? 'rotate-90' : ''}`}>â–¶</span>
+                            {pair.showAdvanced ? 'Hide advanced options' : 'Show advanced options (keywords, explanation)'}
+                          </button>
+
+                          {pair.showAdvanced && (
+                            <div className="grid gap-4 lg:grid-cols-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                              <div className="space-y-2">
+                                <label className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Keywords (comma-separated)</label>
+                                <Input
+                                  value={pair.keywordsText}
+                                  onChange={(event) => {
+                                    const value = event.target.value;
+                                    setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, keywordsText: value } : p));
+                                  }}
+                                  placeholder="force, current, volts..."
+                                  disabled={!selectedRootFolder}
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <label className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Short explanation</label>
+                                <Input
+                                  value={pair.shortExplanation}
+                                  onChange={(event) => {
+                                    const value = event.target.value;
+                                    setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, shortExplanation: value } : p));
+                                  }}
+                                  placeholder="Optional context for this pair..."
+                                  disabled={!selectedRootFolder}
+                                />
+                              </div>
+                              <div className="col-span-full">
+                                <label className="flex items-center gap-3 rounded-[20px] border border-border/40 bg-background/50 px-4 py-3 text-sm text-foreground cursor-pointer transition-colors hover:bg-background/80">
+                                  <input
+                                    type="checkbox"
+                                    className="h-4 w-4 accent-accent rounded"
+                                    checked={pair.isActive}
+                                    onChange={(event) => {
+                                      const checked = event.target.checked;
+                                      setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, isActive: checked } : p));
+                                    }}
+                                    disabled={!selectedRootFolder}
+                                  />
+                                  Use this pair in extension retrieval immediately
+                                </label>
+                              </div>
+                            </div>
                           )}
                         </div>
-                      </div>
+                      ))}
 
-                      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_140px]">
-                        <div className="space-y-2">
-                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Keywords (Comma-separated)</label>
-                          <Input value={editor.keywordsText} onChange={(event) => setEditor((current) => ({ ...current, keywordsText: event.target.value }))} placeholder="force, current, volts..." disabled={!selectedRootFolder} />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Short explanation</label>
-                          <Input value={editor.shortExplanation} onChange={(event) => setEditor((current) => ({ ...current, shortExplanation: event.target.value }))} placeholder="Optional context..." disabled={!selectedRootFolder} />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Sort order</label>
-                          <Input type="number" min={0} value={editor.sortOrder} onChange={(event) => setEditor((current) => ({ ...current, sortOrder: event.target.value }))} disabled={!selectedRootFolder} />
-                        </div>
-                      </div>
+                      {/* Add Another Pair button */}
+                      <Button
+                        variant="secondary"
+                        className="w-full h-12 rounded-[20px] border-dashed border-2 border-border/60 hover:border-accent/60 hover:bg-accent/5 text-muted-foreground hover:text-accent transition-all"
+                        onClick={() => setUnifiedPairs((current) => [...current, createEmptyPairRow()])}
+                        disabled={!selectedRootFolder}
+                      >
+                        <Plus size={16} className="mr-2" /> Add Another Pair
+                      </Button>
 
-                      <div className="pt-2">
-                        <label className="flex items-center gap-3 rounded-[24px] border border-border/50 bg-background/50 px-5 py-4 text-sm font-medium text-foreground cursor-pointer transition-colors hover:bg-background/80 hover:border-border">
-                          <input type="checkbox" className="h-5 w-5 accent-accent rounded" checked={editor.isActive} onChange={(event) => setEditor((current) => ({ ...current, isActive: event.target.checked }))} disabled={!selectedRootFolder} />
-                          Use this pair in extension retrieval immediately upon saving
-                        </label>
-                      </div>
+                      {/* Save progress */}
+                      {batchSaveProgress && (
+                        <div className="space-y-2">
+                          <div className="rounded-[16px] bg-accent/10 border border-accent/30 px-5 py-3 text-sm text-accent font-medium">
+                            Saving {batchSaveProgress.saved} / {batchSaveProgress.total} pairs...
+                          </div>
+                          <div className="h-2 rounded-full bg-border/30 overflow-hidden">
+                            <div
+                              className="h-full bg-accent rounded-full transition-all duration-300"
+                              style={{ width: `${(batchSaveProgress.saved / batchSaveProgress.total) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                      )}
 
-                      <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-border/40">
-                        <Button variant="secondary" className="px-6" onClick={resetEditor} disabled={!selectedRootFolder}>Reset</Button>
-                        <Button className="px-8 shadow-lg shadow-accent/20" onClick={() => void handleSavePair()} disabled={!selectedSubject || !selectedRootFolder || busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false)}>
-                          {busyAction === 'create-pair' || (busyAction?.startsWith('save-pair-') ?? false) ? 'Saving...' : 'Save Pair'}
+                      {/* Action buttons */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border/40">
+                        <Button
+                          variant="secondary"
+                          className="px-6"
+                          onClick={() => setUnifiedPairs([createEmptyPairRow()])}
+                          disabled={isSavingBatch}
+                        >
+                          Reset All
+                        </Button>
+                        <Button
+                          className="px-8 shadow-lg shadow-accent/20"
+                          disabled={
+                            !selectedSubject ||
+                            !selectedRootFolder ||
+                            isSavingBatch ||
+                            unifiedPairs.every((p) => !p.questionText.trim() || !p.answerText.trim())
+                          }
+                          onClick={async () => {
+                            if (!selectedSubject) return;
+                            const validPairs = unifiedPairs.filter((p) => p.questionText.trim() && p.answerText.trim());
+                            if (validPairs.length === 0) {
+                              pushToast({ tone: 'warning', title: 'No valid pairs', description: 'Fill in at least one question and answer.' });
+                              return;
+                            }
+                            setIsSavingBatch(true);
+                            setBatchSaveProgress({ saved: 0, total: validPairs.length });
+                            const baseSortOrder = getNextSortOrder(selectedSubjectPairs);
+                            try {
+                              const response = await fetch('/api/admin/subject-qa/batch', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                  pairs: validPairs.map((p, i) => ({
+                                    subjectId: selectedSubject.id,
+                                    categoryId: null,
+                                    questionText: p.questionText.trim(),
+                                    answerText: p.answerText.trim(),
+                                    shortExplanation: p.shortExplanation.trim() || null,
+                                    keywords: parseKeywordInput(p.keywordsText),
+                                    sortOrder: baseSortOrder + i,
+                                    isActive: p.isActive,
+                                    questionType: p.questionType ?? 'multiple_choice',
+                                  })),
+                                }),
+                              });
+                              const result = await response.json() as { savedCount: number; failedCount: number; pairIds: string[]; message: string };
+                              const savedCount = result.savedCount ?? 0;
+                              const failedCount = result.failedCount ?? 0;
+                              setBatchSaveProgress({ saved: savedCount, total: validPairs.length });
+
+                              const newPairs: SubjectQaPairRecord[] = (result.pairIds ?? []).map((pairId: string, i: number) => ({
+                                id: pairId,
+                                subject_id: selectedSubject.id,
+                                category_id: null,
+                                question_type: validPairs[i]!.questionType ?? 'multiple_choice',
+                                question_image_url: null,
+                                question_text: validPairs[i]!.questionText.trim(),
+                                answer_text: validPairs[i]!.answerText.trim(),
+                                short_explanation: validPairs[i]!.shortExplanation.trim() || null,
+                                keywords: parseKeywordInput(validPairs[i]!.keywordsText),
+                                sort_order: baseSortOrder + i,
+                                is_active: validPairs[i]!.isActive,
+                                deleted_at: null,
+                                updated_at: new Date().toISOString(),
+                                subjects: { name: selectedSubject.name },
+                                categories: null,
+                              }));
+
+                              if (newPairs.length > 0) {
+                                setQaPairCache((current) => ({
+                                  ...current,
+                                  [selectedSubject.id]: [...newPairs, ...(current[selectedSubject.id] ?? [])],
+                                }));
+                                setQaPairCountsBySubjectId((current) => ({
+                                  ...current,
+                                  [selectedSubject.id]: (current[selectedSubject.id] ?? 0) + newPairs.length,
+                                }));
+                                setRecentlyAddedPairs((current) => [...newPairs, ...current]);
+                              }
+
+                              setUnifiedPairs([createEmptyPairRow()]);
+                              pushToast({
+                                tone: failedCount === 0 ? 'success' : 'warning',
+                                title: 'Pairs saved',
+                                description: `${savedCount} pair${savedCount === 1 ? '' : 's'} saved${failedCount > 0 ? `, ${failedCount} failed` : ''} to ${selectedSubject.name}.`,
+                              });
+                            } catch (error) {
+                              pushToast({
+                                tone: 'danger',
+                                title: 'Save failed',
+                                description: error instanceof Error ? error.message : 'Unknown error.',
+                              });
+                            }
+                            setBatchSaveProgress(null);
+                            setIsSavingBatch(false);
+                          }}
+                        >
+                          {isSavingBatch ? 'Saving...' : `Save All ${unifiedPairs.filter((p) => p.questionText.trim() && p.answerText.trim()).length} Pair${unifiedPairs.filter((p) => p.questionText.trim() && p.answerText.trim()).length === 1 ? '' : 's'}`}
                         </Button>
                       </div>
                     </CardContent>
                   </Card>
 
-                  {/* ── Batch add ── */}
-                  <Card className="shadow-lg border-accent/20">
-                    <CardHeader>
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <CardTitle>Batch Add Q&A Pairs</CardTitle>
-                          <CardDescription>
-                            Queue multiple question-answer pairs and save them all at once to {selectedSubject?.name}.
-                          </CardDescription>
-                        </div>
-                        <Badge tone="accent">{batchPairs.length} pair{batchPairs.length === 1 ? '' : 's'} queued</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      {batchPairs.map((pair, index) => (
-                        <div key={index} className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-start rounded-[20px] border border-border/40 bg-background/40 p-4">
-                          <div className="space-y-1">
-                            <label className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">Question {index + 1}</label>
-                            <Input
-                              value={pair.questionText}
-                              onChange={(event) => {
-                                const value = event.target.value;
-                                setBatchPairs((current) => current.map((p, i) => i === index ? { ...p, questionText: value } : p));
-                              }}
-                              placeholder="Question text..."
-                              disabled={!selectedRootFolder}
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <label className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">Answer {index + 1}</label>
-                            <Input
-                              value={pair.answerText}
-                              onChange={(event) => {
-                                const value = event.target.value;
-                                setBatchPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
-                              }}
-                              placeholder="Answer text..."
-                              disabled={!selectedRootFolder}
-                            />
-                          </div>
-                          <div className="flex items-end">
-                            <Button
-                              size="sm"
-                              variant="danger"
-                              className="h-10 px-3 mt-5"
-                              onClick={() => setBatchPairs((current) => current.filter((_, i) => i !== index))}
-                            >
-                              ✕
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-
-                      <Button
-                        variant="secondary"
-                        className="w-full h-12 rounded-[20px] border-dashed border-2 border-border/60 hover:border-accent/60 hover:bg-accent/5 text-muted-foreground hover:text-accent transition-all"
-                        onClick={() => setBatchPairs((current) => [...current, { questionText: '', answerText: '' }])}
-                        disabled={!selectedRootFolder}
-                      >
-                        + Add Another Pair
-                      </Button>
-
-                      {batchSaveProgress && (
-                        <div className="rounded-[16px] bg-accent/10 border border-accent/30 px-5 py-3 text-sm text-accent font-medium">
-                          Saving {batchSaveProgress.saved} / {batchSaveProgress.total} pairs...
-                        </div>
-                      )}
-
-                      {batchPairs.length > 0 && (
-                        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border/40">
-                          <Button
-                            variant="secondary"
-                            className="px-6"
-                            onClick={() => setBatchPairs([])}
-                            disabled={isSavingBatch}
-                          >
-                            Clear All
-                          </Button>
-                          <Button
-                            className="px-8 shadow-lg shadow-accent/20"
-                            disabled={!selectedSubject || !selectedRootFolder || isSavingBatch || batchPairs.every((p) => !p.questionText.trim() || !p.answerText.trim())}
-                            onClick={async () => {
-                              if (!selectedSubject) return;
-                              const validPairs = batchPairs.filter((p) => p.questionText.trim() && p.answerText.trim());
-                              if (validPairs.length === 0) {
-                                pushToast({ tone: 'warning', title: 'No valid pairs', description: 'Fill in at least one question and answer.' });
-                                return;
-                              }
-                              setIsSavingBatch(true);
-                              setBatchSaveProgress({ saved: 0, total: validPairs.length });
-                              const baseSortOrder = getNextSortOrder(selectedSubjectPairs);
-                              try {
-                                const response = await fetch('/api/admin/subject-qa/batch', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    pairs: validPairs.map((p, i) => ({
-                                      subjectId: selectedSubject.id,
-                                      categoryId: null,
-                                      questionText: p.questionText.trim(),
-                                      answerText: p.answerText.trim(),
-                                      shortExplanation: null,
-                                      keywords: [],
-                                      sortOrder: baseSortOrder + i,
-                                      isActive: true,
-                                    })),
-                                  }),
-                                });
-                                const result = await response.json() as { savedCount: number; failedCount: number; pairIds: string[]; message: string };
-                                const savedCount = result.savedCount ?? 0;
-                                const failedCount = result.failedCount ?? 0;
-                                setBatchSaveProgress({ saved: savedCount, total: validPairs.length });
-
-                                const newPairs: SubjectQaPairRecord[] = (result.pairIds ?? []).map((pairId: string, i: number) => ({
-                                  id: pairId,
-                                  subject_id: selectedSubject.id,
-                                  category_id: null,
-                                  question_type: 'multiple_choice',
-                                  question_image_url: null,
-                                  question_text: validPairs[i]!.questionText.trim(),
-                                  answer_text: validPairs[i]!.answerText.trim(),
-                                  short_explanation: null,
-                                  keywords: [],
-                                  sort_order: baseSortOrder + i,
-                                  is_active: true,
-                                  deleted_at: null,
-                                  updated_at: new Date().toISOString(),
-                                  subjects: { name: selectedSubject.name },
-                                  categories: null,
-                                }));
-
-                                if (newPairs.length > 0) {
-                                  setQaPairCache((current) => ({
-                                    ...current,
-                                    [selectedSubject.id]: [...newPairs, ...(current[selectedSubject.id] ?? [])],
-                                  }));
-                                  setQaPairCountsBySubjectId((current) => ({
-                                    ...current,
-                                    [selectedSubject.id]: (current[selectedSubject.id] ?? 0) + newPairs.length,
-                                  }));
-                                  setRecentlyAddedPairs((current) => [...newPairs, ...current]);
-                                }
-
-                                setBatchPairs([]);
-                                pushToast({
-                                  tone: failedCount === 0 ? 'success' : 'warning',
-                                  title: 'Batch save complete',
-                                  description: `${savedCount} pair${savedCount === 1 ? '' : 's'} saved${failedCount > 0 ? `, ${failedCount} failed` : ''} to ${selectedSubject.name}.`,
-                                });
-                              } catch (error) {
-                                pushToast({
-                                  tone: 'danger',
-                                  title: 'Batch save failed',
-                                  description: error instanceof Error ? error.message : 'Unknown error.',
-                                });
-                              }
-                              setBatchSaveProgress(null);
-                              setIsSavingBatch(false);
-                            }}
-                          >
-                            {isSavingBatch ? 'Saving batch...' : `Save All ${batchPairs.filter((p) => p.questionText.trim() && p.answerText.trim()).length} Pairs`}
-                          </Button>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-
-                  {/* ── Recently Added Pairs ── */}
+                  {/* â”€â”€ Recently Added Pairs â”€â”€ */}
                   {recentlyAddedPairs.length > 0 && (
                     <Card className="shadow-lg border-success/20 animate-in fade-in slide-in-from-bottom-2 duration-300">
                       <CardHeader>
@@ -1978,7 +2087,10 @@ export function AdminSourceManager({
                           <div key={pair.id} className="rounded-[20px] border border-success/20 bg-success/5 p-4 transition-all hover:bg-success/10">
                             <div className="grid gap-4 xl:grid-cols-2">
                               <div className="space-y-1">
-                                <p className="text-[10px] uppercase tracking-[0.15em] text-success font-semibold">Question</p>
+                                <div className="flex items-center gap-2">
+                                  <p className="text-[10px] uppercase tracking-[0.15em] text-success font-semibold">Question</p>
+                                  <span className="text-[9px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{getQuestionTypeBadge(pair.question_type ?? 'multiple_choice')}</span>
+                                </div>
                                 <p className="text-sm text-foreground whitespace-pre-wrap">{pair.question_text}</p>
                               </div>
                               <div className="space-y-1">
@@ -1987,8 +2099,9 @@ export function AdminSourceManager({
                               </div>
                             </div>
                             <div className="mt-2 flex items-center gap-2">
-                              <Badge tone="success" className="scale-90">Saved ✓</Badge>
+                              <Badge tone="success" className="scale-90">Saved âœ“</Badge>
                               {pair.short_explanation && <span className="text-xs text-muted-foreground italic">{pair.short_explanation}</span>}
+                              {pair.keywords.length > 0 && <span className="text-xs text-muted-foreground">Keywords: {pair.keywords.join(', ')}</span>}
                             </div>
                           </div>
                         ))}
@@ -2006,10 +2119,16 @@ export function AdminSourceManager({
                         <div>
                           <CardTitle>Supporting File Sources</CardTitle>
                           <CardDescription>
-                            Keep imported documents inside the same subject folder.
+                            Upload and manage documents to supplement Q&A pairs for this subject.
                           </CardDescription>
                         </div>
-                        <Badge tone="neutral">{selectedSubjectFiles.length} file{selectedSubjectFiles.length === 1 ? '' : 's'}</Badge>
+                        <div className="flex items-center gap-2">
+                          {selectedSubjectFiles.length > 0 && (
+                            <Badge tone="neutral">
+                              {selectedSubjectFiles.filter((f) => f.source_status === 'active').length} active / {selectedSubjectFiles.length} total
+                            </Badge>
+                          )}
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-6">
@@ -2030,18 +2149,25 @@ export function AdminSourceManager({
                       </div>
 
                       {!selectedSubjectFiles.length ? (
-                        <div className="rounded-[24px] border border-dashed border-border/60 bg-background/25 p-10 text-center text-sm text-muted-foreground">
-                          No optional file sources are stored for this subject yet.
+                        <div className="rounded-[28px] border border-dashed border-border/60 bg-background/20 p-12 text-center">
+                          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl border border-border/40 bg-background text-muted-foreground mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                          </div>
+                          <p className="text-sm font-medium text-foreground">No files uploaded yet</p>
+                          <p className="mt-1 text-xs text-muted-foreground">Upload PDFs, documents, or text files to supplement the Q&A library.</p>
                         </div>
                       ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                           {selectedSubjectFiles.map((file) => (
                             <div key={file.id} className="flex flex-wrap items-center justify-between gap-4 rounded-[24px] border border-border/40 bg-surface/30 p-5 transition-all hover:bg-surface/50 hover:shadow-sm">
                               <div className="min-w-0 flex-1">
-                                <p className="truncate font-semibold text-foreground text-base">{file.title}</p>
-                                <p className="mt-1 text-xs text-muted-foreground">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-lg">📄</span>
+                                  <p className="truncate font-semibold text-foreground text-base">{file.title}</p>
+                                </div>
+                                <p className="mt-1 text-xs text-muted-foreground pl-7">
                                   Updated {formatTimestamp(file.updated_at)}
-                                  {file.processing_error ? ` - Error: ${file.processing_error}` : ''}
+                                  {file.processing_error ? ` — Error: ${file.processing_error}` : ''}
                                 </p>
                               </div>
                               <div className="flex flex-wrap items-center gap-2">
@@ -2063,11 +2189,40 @@ export function AdminSourceManager({
               )}
 
               {activeTab === 'settings' && (
-                <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                  <Card className="shadow-lg border-danger/10">
+                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  {/* Folder Statistics */}
+                  <Card className="shadow-lg">
+                    <CardHeader>
+                      <CardTitle>Folder Overview</CardTitle>
+                      <CardDescription>Quick statistics for the {selectedRootFolder.name} folder.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="rounded-[20px] border border-border/40 bg-background/50 p-5 text-center">
+                          <p className="text-3xl font-bold text-accent">{selectedSubjectPairs.length}</p>
+                          <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider font-semibold">Total Q&A Pairs</p>
+                        </div>
+                        <div className="rounded-[20px] border border-border/40 bg-background/50 p-5 text-center">
+                          <p className="text-3xl font-bold text-success">{selectedSubjectPairs.filter((p) => p.is_active).length}</p>
+                          <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider font-semibold">Active Pairs</p>
+                        </div>
+                        <div className="rounded-[20px] border border-border/40 bg-background/50 p-5 text-center">
+                          <p className="text-3xl font-bold text-warning">{selectedSubjectPairs.filter((p) => !p.is_active).length}</p>
+                          <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider font-semibold">Inactive Pairs</p>
+                        </div>
+                        <div className="rounded-[20px] border border-border/40 bg-background/50 p-5 text-center">
+                          <p className="text-3xl font-bold text-foreground">{selectedSubjectFiles.length}</p>
+                          <p className="mt-1 text-xs text-muted-foreground uppercase tracking-wider font-semibold">Supporting Files</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Folder Configuration */}
+                  <Card className="shadow-lg">
                     <CardHeader>
                       <CardTitle>Folder Configuration</CardTitle>
-                      <CardDescription>Advanced controls for the {selectedRootFolder.name} folder.</CardDescription>
+                      <CardDescription>Manage the {selectedRootFolder.name} folder settings.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
                       <div className="space-y-4 rounded-[28px] border border-border/50 bg-background/40 p-6">
@@ -2092,6 +2247,93 @@ export function AdminSourceManager({
                         </div>
                       </div>
 
+                      {/* Bulk Actions */}
+                      <div className="space-y-4 rounded-[28px] border border-accent/20 bg-accent/5 p-6">
+                        <div>
+                          <h4 className="font-semibold text-accent">Bulk Actions</h4>
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            Quickly activate or deactivate all Q&A pairs in this subject folder at once.
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                          <Button
+                            variant="secondary"
+                            disabled={
+                              !selectedSubject ||
+                              busyAction === 'bulk-activate' ||
+                              selectedSubjectPairs.every((p) => p.is_active)
+                            }
+                            onClick={async () => {
+                              if (!selectedSubject) return;
+                              const inactivePairs = selectedSubjectPairs.filter((p) => !p.is_active);
+                              if (inactivePairs.length === 0) {
+                                pushToast({ tone: 'info', title: 'All pairs are already active', description: 'No changes needed.' });
+                                return;
+                              }
+                              setBusyAction('bulk-activate');
+                              try {
+                                for (const pair of inactivePairs) {
+                                  await fetch(`/api/admin/subject-qa/${pair.id}`, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ action: 'set_active', isActive: true }),
+                                  });
+                                }
+                                setQaPairCache((current) => ({
+                                  ...current,
+                                  [selectedSubject.id]: (current[selectedSubject.id] ?? []).map((p) => ({ ...p, is_active: true })),
+                                }));
+                                pushToast({ tone: 'success', title: 'All pairs activated', description: `${inactivePairs.length} pair${inactivePairs.length === 1 ? '' : 's'} activated.` });
+                              } catch (error) {
+                                pushToast({ tone: 'danger', title: 'Bulk activate failed', description: error instanceof Error ? error.message : 'Unknown error.' });
+                              }
+                              setBusyAction(null);
+                            }}
+                          >
+                            {busyAction === 'bulk-activate' ? 'Activating...' : `Activate All (${selectedSubjectPairs.filter((p) => !p.is_active).length} inactive)`}
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            disabled={
+                              !selectedSubject ||
+                              busyAction === 'bulk-deactivate' ||
+                              selectedSubjectPairs.every((p) => !p.is_active)
+                            }
+                            onClick={async () => {
+                              if (!selectedSubject) return;
+                              const activePairs = selectedSubjectPairs.filter((p) => p.is_active);
+                              if (activePairs.length === 0) {
+                                pushToast({ tone: 'info', title: 'All pairs are already inactive', description: 'No changes needed.' });
+                                return;
+                              }
+                              const confirmed = window.confirm(`Deactivate all ${activePairs.length} active Q&A pairs? They will stop appearing in extension answers until reactivated.`);
+                              if (!confirmed) return;
+                              setBusyAction('bulk-deactivate');
+                              try {
+                                for (const pair of activePairs) {
+                                  await fetch(`/api/admin/subject-qa/${pair.id}`, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ action: 'set_active', isActive: false }),
+                                  });
+                                }
+                                setQaPairCache((current) => ({
+                                  ...current,
+                                  [selectedSubject.id]: (current[selectedSubject.id] ?? []).map((p) => ({ ...p, is_active: false })),
+                                }));
+                                pushToast({ tone: 'success', title: 'All pairs deactivated', description: `${activePairs.length} pair${activePairs.length === 1 ? '' : 's'} deactivated.` });
+                              } catch (error) {
+                                pushToast({ tone: 'danger', title: 'Bulk deactivate failed', description: error instanceof Error ? error.message : 'Unknown error.' });
+                              }
+                              setBusyAction(null);
+                            }}
+                          >
+                            {busyAction === 'bulk-deactivate' ? 'Deactivating...' : `Deactivate All (${selectedSubjectPairs.filter((p) => p.is_active).length} active)`}
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Danger Zone */}
                       <div className="space-y-4 rounded-[28px] border border-danger/20 bg-danger/5 p-6">
                         <div>
                           <h4 className="font-semibold text-danger">Danger Zone</h4>
