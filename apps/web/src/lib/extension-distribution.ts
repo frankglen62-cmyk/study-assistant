@@ -1,4 +1,4 @@
-export const extensionVersion = '0.1.73';
+export const extensionVersion = '0.1.74';
 export const extensionDownloadFileName = `study-assistant-extension-v${extensionVersion}.zip`;
 export const extensionDownloadPath = `/downloads/${extensionDownloadFileName}`;
 export const genericDownloadPath = `/downloads/study-assistant-extension.zip`;

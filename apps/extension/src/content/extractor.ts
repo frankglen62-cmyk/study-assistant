@@ -125,15 +125,15 @@ export function installExtractorContentScript() {
     }
 
     if (
-      /^(question\s*\d+|select one:?|select one or more:?|true|false|yes|no|answer:?|response:?|your answer:?|fill in the blank:?|blank:?|blanks:?)$/i.test(normalized) ||
-      /^question\s*\d+\s*(select one:?|select one or more:?)?$/i.test(normalized) ||
+      /^(question\s*\d+|select one[: ]*|select one or more[: ]*|type an answer|true|false|yes|no|answer[: ]*|response[: ]*|your answer[: ]*|fill in the blank[: ]*|blank[: ]*|blanks[: ]*)$/i.test(normalized) ||
+      /^question\s*\d+\s*(select one( or more)?[: ]*)?$/i.test(normalized) ||
       /^(complete|flag question|mark\b|answered|not answered|finish review)$/i.test(normalized)
     ) {
       return true;
     }
 
     // Aggressive catch-all for any combination of Question X and Select One without actual question content
-    const stripped = normalized.replace(/question\s*\d+/i, '').replace(/select one( or more)?:?/i, '').replace(/[^a-z0-9]/ig, '');
+    const stripped = normalized.replace(/question\s*\d+/i, '').replace(/select one( or more)?[: ]*/i, '').replace(/[^a-z0-9]/ig, '');
     if (stripped.length === 0 && normalized.toLowerCase().includes('select')) {
       return true;
     }
@@ -279,27 +279,12 @@ export function installExtractorContentScript() {
 
   function extractOptionLabel(input: Element): string {
     const id = input.getAttribute('id');
-    if (id) {
-      let label: Element | null = null;
-      try {
-        label = document.querySelector(`label[for="${CSS.escape(id)}"]`) ?? document.querySelector(`label[for="${id}"]`);
-      } catch {
-        // Ignore invalid selectors
-      }
-      if (label && isElementVisible(label)) {
-        // Clone the label and strip hidden accessibility text AND review-page
-        // feedback elements before reading, otherwise Moodle's ".accesshide"
-        // spans (e.g. "Answer ") and review artifacts (e.g. checkmarks,
-        // "Correct"/"Incorrect" markers) leak into the option text.
-        const clone = label.cloneNode(true) as HTMLElement;
-        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
-        return normalizeText(clone.textContent ?? '');
-      }
-    }
 
+    // ─── Priority 1: Moodle's aria-labelledby → [data-region="answer-label"] ───
+    // Moodle multichoice/checkbox questions use aria-labelledby pointing to a
+    // sibling div with data-region="answer-label" that wraps the visible option text.
     const ariaLabelledBy = input.getAttribute('aria-labelledby');
     if (ariaLabelledBy) {
-      // aria-labelledby can have multiple IDs separated by space
       const ids = ariaLabelledBy.split(/\s+/).filter(Boolean);
       for (const labelId of ids) {
         let labelEl: Element | null = null;
@@ -311,12 +296,30 @@ export function installExtractorContentScript() {
         if (labelEl && isElementVisible(labelEl)) {
           const clone = labelEl.cloneNode(true) as HTMLElement;
           clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+          // Also remove screen-reader-only answernumber spans that prefix "a. ", "b. "
+          clone.querySelectorAll('.answernumber').forEach(el => el.remove());
           const text = normalizeText(clone.textContent ?? '');
           if (text) return text;
         }
       }
     }
 
+    // ─── Priority 2: Standard label[for="id"] association ───
+    if (id) {
+      let label: Element | null = null;
+      try {
+        label = document.querySelector(`label[for="${CSS.escape(id)}"]`) ?? document.querySelector(`label[for="${id}"]`);
+      } catch {
+        // Ignore invalid selectors
+      }
+      if (label && isElementVisible(label)) {
+        const clone = label.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+        return normalizeText(clone.textContent ?? '');
+      }
+    }
+
+    // ─── Priority 3: Input wrapped inside a <label> ───
     const wrapped = input.closest('label');
     if (wrapped) {
       const clone = wrapped.cloneNode(true) as HTMLElement;
@@ -324,12 +327,25 @@ export function installExtractorContentScript() {
       return normalizeText(clone.textContent ?? '');
     }
 
-    // Last resort: scan the input's immediate parent for text, common in custom Moodle themes
+    // ─── Priority 4: Moodle data-region="answer-label" sibling ───
+    // Some Moodle themes put the label div as a sibling of the input, not referenced by aria-labelledby
     const parent = input.parentElement;
+    if (parent) {
+      const answerLabel = parent.querySelector('[data-region="answer-label"]') ??
+        (parent.nextElementSibling?.matches('[data-region="answer-label"]') ? parent.nextElementSibling : null);
+      if (answerLabel && isElementVisible(answerLabel)) {
+        const clone = answerLabel.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+        clone.querySelectorAll('.answernumber').forEach(el => el.remove());
+        const text = normalizeText(clone.textContent ?? '');
+        if (text) return text;
+      }
+    }
+
+    // ─── Priority 5: Last resort — parent element text ───
     if (parent && isElementVisible(parent)) {
       const clone = parent.cloneNode(true) as HTMLElement;
       clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
-      // Remove the input itself from the clone so we don't accidentally read its value
       clone.querySelectorAll('input').forEach(el => el.remove());
       const text = normalizeText(clone.textContent ?? '');
       if (text) return text;
@@ -487,6 +503,7 @@ export function installExtractorContentScript() {
           '.question-nav',
           '.question-navigation',
           'label',
+          'legend',
           'button',
           'nav',
         ].join(', '),
@@ -576,18 +593,27 @@ export function installExtractorContentScript() {
       '.stem'
     ].join(', ');
 
+    // NOTE: '.prompt' and 'legend' are intentionally NOT in dangerousPromptSelectors anymore.
+    // Moodle uses <legend class="prompt"> for "Select one:" / "Select one or more:" boilerplate
+    // which was causing the extension to use that phrase as the question text.
+    // Any good question text can be found via .qtext or the pruned container approach.
     const dangerousPromptSelectors = [
-      '.prompt',
       '.question-prompt',
-      'legend'
     ].join(', ');
 
     // Try safe selectors first!
     let explicitPrompt = container.querySelector(safePromptSelectors);
     
-    // Only try dangerous selectors if no safe prompt was found, and ensure it isn't literally "Select one"
+    // Only try dangerous selectors if no safe prompt was found
     if (!explicitPrompt) {
-      explicitPrompt = container.querySelector(dangerousPromptSelectors);
+      const dangerous = container.querySelector(dangerousPromptSelectors);
+      // Extra gate: never accept if it reads like moodle boilerplate
+      if (dangerous) {
+        const dangerousText = extractCleanedPromptText(dangerous);
+        if (!isBoilerplateQuestionText(dangerousText, optionLookup)) {
+          explicitPrompt = dangerous;
+        }
+      }
     }
 
     if (explicitPrompt && isElementVisible(explicitPrompt) && !looksLikeQuestionNavigation(explicitPrompt)) {
@@ -2142,14 +2168,47 @@ export function installExtractorContentScript() {
 
     const hasCheckboxChoices = filteredClickables.some((clickable) => clickable.input?.type === 'checkbox') || knownType === 'checkbox';
     
-    // When backend says this is a checkbox question, also try pipe-delimited split
-    let multiAnswerSegments = splitAnswerSegments(payload.answerText || targetText);
-    if (knownType === 'checkbox' && multiAnswerSegments.length < 2) {
-      // Try pipe delimiter explicitly for type-aware checkbox handling
-      const pipeSegments = (payload.answerText || targetText).split(' | ').map(s => s.trim()).filter(Boolean);
-      if (pipeSegments.length >= 2) {
-        multiAnswerSegments = pipeSegments;
+    // ─── Build multi-answer segments for checkbox questions ───
+    // Try multiple splitting strategies in priority order:
+    // 1. Newline-separated (most common when answers are stored per-line in Q&A library)
+    // 2. Bullet/dot-separated 
+    // 3. Pipe-delimited
+    // 4. General splitAnswerSegments (comma, semicolon, "and", etc.)
+    let multiAnswerSegments: string[] = [];
+    const rawAnswer = payload.answerText || targetText;
+
+    if (hasCheckboxChoices || knownType === 'checkbox') {
+      // Strategy 1: newline-separated (library stores each answer on its own line)
+      const newlineSegments = rawAnswer.split(/\n+/).map(s => s.trim()).filter(s => s.length >= 2);
+      if (newlineSegments.length >= 2) {
+        multiAnswerSegments = newlineSegments;
       }
+
+      // Strategy 2: bullet/dash lines ("• Grid Computing\n• Utility Computing")
+      if (multiAnswerSegments.length < 2) {
+        const bulletSegments = rawAnswer.split(/[\n•\-–—]+/).map(s => s.trim()).filter(s => s.length >= 2);
+        if (bulletSegments.length >= 2) {
+          multiAnswerSegments = bulletSegments;
+        }
+      }
+
+      // Strategy 3: pipe-delimited
+      if (multiAnswerSegments.length < 2) {
+        const pipeSegments = rawAnswer.split(' | ').map(s => s.trim()).filter(Boolean);
+        if (pipeSegments.length >= 2) {
+          multiAnswerSegments = pipeSegments;
+        }
+      }
+
+      // Strategy 4: General splitting (comma, semicolon, "and", &)
+      if (multiAnswerSegments.length < 2) {
+        multiAnswerSegments = splitAnswerSegments(rawAnswer);
+      }
+
+      // Strategy 5: If answer text contains choice labels as substrings (no delimiter)
+      // e.g. "Grid Computing Utility Computing Cloud Computing" -- handled by containedCheckboxMatches below
+    } else {
+      multiAnswerSegments = splitAnswerSegments(rawAnswer);
     }
 
     if (hasCheckboxChoices && multiAnswerSegments.length >= 2) {

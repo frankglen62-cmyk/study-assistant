@@ -105,6 +105,20 @@ export function isIgnoredChoiceOption(value: string) {
 }
 
 export function splitMultiAnswerSegments(value: string) {
+  if (!value || !value.trim()) {
+    return [];
+  }
+
+  // Priority 1: Newline-separated (how Q&A library stores checkbox answers)
+  // e.g. "Grid Computing\nUtility Computing\nCloud Computing\nSoftware as a Service"
+  const newlineSegments = value
+    .split(/\r?\n+/)
+    .map((s) => collapseWhitespace(s.replace(/^[\s\u2022\-\–\—\*•]+/, ''))) // strip leading bullet chars
+    .filter((s) => s.length >= 2);
+  if (newlineSegments.length >= 2 && newlineSegments.length <= 20) {
+    return Array.from(new Set(newlineSegments));
+  }
+
   const collapsed = collapseWhitespace(value);
   if (!collapsed) {
     return [];
