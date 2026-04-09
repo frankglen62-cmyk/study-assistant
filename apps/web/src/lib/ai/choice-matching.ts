@@ -22,6 +22,10 @@ function normalizeBlankMarkers(value: string) {
 export function normalizeComparableText(value: string) {
   return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(value))))
     .toLowerCase()
+    // Normalize semicolons to commas so "service-oriented; elastic" matches
+    // "service-oriented, elastic" — the LMS and Q&A library often use them
+    // interchangeably.
+    .replace(/;/g, ',')
     // Strip Moodle review-page artifacts: checkmarks, correct/incorrect markers,
     // "Your answer is correct/incorrect", feedback text, etc.
     .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, ' ')
@@ -253,7 +257,12 @@ export function scoreChoiceOption(params: {
   return Math.max(answerOverlap - questionPenalty, 0);
 }
 
-export function resolveSuggestedOption(options: string[], answerText: string, questionText?: string | null) {
+export function resolveSuggestedOption(
+  options: string[],
+  answerText: string,
+  questionText?: string | null,
+  questionType?: string | null,
+) {
   const parsedOptions = options
     .filter((option) => !isIgnoredChoiceOption(option))
     .map(parseChoiceOption)
@@ -305,8 +314,16 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
     }
   }
 
+  // ── Multi-answer segment matching (ONLY for checkbox questions) ──────
+  // For radio / dropdown / fill-in-the-blank, we must NOT split the answer
+  // into segments — the library answer IS the full text of a single choice.
+  // Splitting "service-oriented, elastic, cost-efficient" on commas would
+  // incorrectly match segments against different options and produce
+  // pipe-separated garbage.
+  const isMultiAnswerQuestion = !questionType || questionType === 'checkbox';
+
   const multiAnswerSegments = splitMultiAnswerSegments(answerText);
-  if (multiAnswerSegments.length >= 2) {
+  if (isMultiAnswerQuestion && multiAnswerSegments.length >= 2) {
     const matchedSegments = multiAnswerSegments
       .map((segment) => {
         const bestSegmentMatch = parsedOptions
@@ -330,7 +347,8 @@ export function resolveSuggestedOption(options: string[], answerText: string, qu
 
   // Fallback for concatenated DB answers without commas (e.g. "Choice A Choice B Choice C")
   // Find all choices that are strictly contained within the raw answer text
-  {
+  // Only for checkbox questions — for radio/dropdown, skip this path.
+  if (isMultiAnswerQuestion) {
     const containedMatches = parsedOptions.filter((option) => {
       // Must be long enough to avoid false positive short words
       if (option.normalizedText.length > 3) {

@@ -279,6 +279,7 @@ function resolveQuestionSuggestionFromPreloaded(params: {
       options: optionText,
       subjectName: pair.subject_name ?? params.subjectName,
       categoryName: pair.category_name ?? params.categoryName,
+      questionType: params.candidate.questionType ?? (pair).question_type ?? null,
     });
 
     return {

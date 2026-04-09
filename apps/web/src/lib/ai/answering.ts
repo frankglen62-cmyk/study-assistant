@@ -12,6 +12,7 @@ export function buildQaPairAnswerSuggestion(params: {
   options: string[];
   subjectName: string;
   categoryName: string | null;
+  questionType?: string | null;
 }) {
   // ── DEBUG: trace multi-answer resolution ──
   console.log('[DEBUG answering] buildQaPairAnswerSuggestion called');
@@ -24,6 +25,7 @@ export function buildQaPairAnswerSuggestion(params: {
     params.options,
     params.pair.answer_text,
     params.pair.question_text,
+    params.questionType ?? (params.pair as any).question_type ?? null,
   );
 
   console.log('[DEBUG answering]   suggestedOption:', suggestedOption);
