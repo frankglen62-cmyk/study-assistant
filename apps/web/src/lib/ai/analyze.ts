@@ -104,13 +104,13 @@ function isReliableQaPairMatch(candidate: ExtensionQuestionCandidate, pair: { qu
   // will always be present in the shared options, causing every sub-question to match
   // the same pair. Rely ONLY on question text overlap with a high threshold.
   if (candidate.options.length >= 5) {
-    return questionOverlap >= 0.55;
+    return questionOverlap >= 0.65;
   }
 
   // For regular multiple choice (under 5 options), we can use answerSupport as a
   // secondary signal since each question has its own distinct options.
   const answerSupport = optionAnswerSupportScore(candidate.options, pair.answer_text);
-  return questionOverlap >= 0.54 || (questionOverlap >= 0.15 && answerSupport >= 0.85);
+  return questionOverlap >= 0.72 || (questionOverlap >= 0.45 && answerSupport >= 0.90);
 }
 
 function sanitizeText(value: string, limit: number) {

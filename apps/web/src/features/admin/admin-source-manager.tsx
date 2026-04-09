@@ -303,12 +303,20 @@ export function AdminSourceManager({
       return selectedSubjectPairs;
     }
 
-    return selectedSubjectPairs.filter((pair) =>
-      [pair.question_text, pair.answer_text, pair.short_explanation ?? '', pair.keywords.join(' ')]
+    // Word-by-word matching: ALL words in the search query must appear
+    // somewhere in the pair's combined text. This is much more forgiving
+    // than substring matching for long question text searches.
+    const queryWords = query.split(/\s+/).filter((w: string) => w.length >= 2);
+    if (queryWords.length === 0) {
+      return selectedSubjectPairs;
+    }
+
+    return selectedSubjectPairs.filter((pair) => {
+      const haystack = [pair.question_text, pair.answer_text, pair.short_explanation ?? '', pair.keywords.join(' ')]
         .join(' ')
-        .toLowerCase()
-        .includes(query),
-    );
+        .toLowerCase();
+      return queryWords.every((word: string) => haystack.includes(word));
+    });
   }, [pairSearch, selectedSubjectPairs]);
 
   useEffect(() => {
