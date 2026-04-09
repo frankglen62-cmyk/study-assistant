@@ -226,31 +226,43 @@ export function contentOverlapScore(left: string, right: string) {
 
   const leftSet = new Set(leftTokens);
   const rightSet = new Set(rightTokens);
-  let hits = 0;
 
+  // Count how many left content words appear in right
+  let leftInRight = 0;
   for (const token of leftSet) {
     if (rightSet.has(token)) {
-      hits += 1;
+      leftInRight += 1;
     }
   }
 
-  // Shorter-side containment: intersection / min(leftSet.size, rightSet.size).
-  // This requires that ALL content words from the SHORTER text appear in the
-  // LONGER text. If even ONE key content word is missing, the score drops
-  // below the gate threshold.
+  // Count how many right content words appear in left
+  let rightInLeft = 0;
+  for (const token of rightSet) {
+    if (leftSet.has(token)) {
+      rightInLeft += 1;
+    }
+  }
+
+  // BIDIRECTIONAL MINIMUM: Both sides must contain each other's content words.
+  // This catches ALL false-match scenarios:
   //
-  // Examples:
+  //   "Mercury Tools browsers based application" vs "browsers based application"
+  //   → left→right: 3/5=0.60, right→left: 3/3=1.0, min=0.60 → REJECT
+  //
   //   "windows based application" vs "browsers based application"
-  //   → intersection=2, min=3 → 2/3=0.667 → REJECT
+  //   → left→right: 2/3=0.667, right→left: 2/3=0.667, min=0.667 → REJECT
   //
-  //   "Click the Support button" vs "Click the Links button"
-  //   → intersection=2 (click,button), min=3 → 2/3=0.667 → REJECT
+  //   "Support button open links uft gui testing" vs "Links button open uft gui testing help"
+  //   → left→right: 6/7=0.857, right→left: 6/7=0.857, min=0.857 → REJECT
   //
-  //   Identical questions → intersection=N, min=N → 1.0 → ACCEPT
+  //   Identical → min(1.0, 1.0) → ACCEPT
   //
-  //   Extra word in quiz → shorter=library(5), intersection=5 → 5/5=1.0 → ACCEPT
-  const minSetSize = Math.min(leftSet.size, rightSet.size);
-  return hits / minSetSize;
+  //   "This is a browsers-based application" vs "It is a browsers-based application"
+  //   → After stop-word removal both = {browsers, based, application}
+  //   → min(1.0, 1.0) → ACCEPT (because "this" and "it" are stop words)
+  const leftContainment = leftInRight / leftSet.size;
+  const rightContainment = rightInLeft / rightSet.size;
+  return Math.min(leftContainment, rightContainment);
 }
 
 export interface ParsedChoiceOption {
