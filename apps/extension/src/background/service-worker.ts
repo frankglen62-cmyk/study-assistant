@@ -54,6 +54,9 @@ const browserName = detectBrowserName();
 const extensionVersion = getExtensionVersion();
 const AUTO_PILOT_ANALYZE_TIMEOUT_MS = 15_500;
 const SESSION_EXPIRY_ALARM = 'study-assistant-session-expiry';
+const CREDIT_REFRESH_ALARM = 'study-assistant-credit-refresh';
+const IDLE_CHECK_ALARM = 'study-assistant-idle-check';
+const IDLE_AUTO_END_MS = 10 * 60 * 1000; // 10 minutes of inactivity → auto-end session
 const liveAssistTimers = new Map<number, number>();
 let currentAnalyzeController: AbortController | null = null;
 let autoPilotTabId: number | null = null; // Track the tab Full Auto is running on
@@ -72,6 +75,10 @@ chrome.runtime.onStartup.addListener(async () => {
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === SESSION_EXPIRY_ALARM) {
     void handleSessionCreditExpired('scheduled_expiry');
+  } else if (alarm.name === CREDIT_REFRESH_ALARM) {
+    void handlePeriodicCreditRefresh();
+  } else if (alarm.name === IDLE_CHECK_ALARM) {
+    void handleIdleCheck();
   }
 });
 
@@ -276,6 +283,11 @@ async function initializeRuntime(): Promise<void> {
   }
 
   await syncSessionExpiryAlarm(current);
+
+  // Resume periodic alarms if session was already active (e.g. after browser restart)
+  if (current.session.status === 'session_active') {
+    await startPeriodicAlarms();
+  }
 }
 
 function getEffectiveRemainingSeconds(state: ExtensionState, now = Date.now()) {
@@ -375,6 +387,7 @@ async function handleSessionCreditExpired(reason: string) {
     extensionVersion,
   );
 
+  await stopPeriodicAlarms();
   await syncSessionExpiryAlarm(nextState);
 }
 
@@ -424,6 +437,59 @@ async function recordError(error: string): Promise<void> {
 
 async function handleExtensionFailure(error: unknown): Promise<string> {
   if (error instanceof ApiError) {
+    // AUTO-RECOVER from "session not found" errors.
+    // This happens when the server ended the session (timeout, credits exhausted)
+    // but the extension still thinks it's active. Reset local state immediately.
+    if (
+      (error.code === 'session_not_found' ||
+        error.code === 'no_active_session' ||
+        error.message.toLowerCase().includes('active or paused session was not found')) &&
+      error.status !== 401
+    ) {
+      const nextState = await updateState(
+        (current) => {
+          if (current.session.status === 'session_inactive') {
+            // Already inactive — just record the error
+            return appendNotice(
+              { ...current, uiStatus: 'error', lastError: error.message },
+              { tone: 'warning', title: 'No active session', message: 'Start a new session to continue.' },
+            );
+          }
+
+          return appendNotice(
+            appendRecentAction(
+              {
+                ...current,
+                sessionCreditExpiresAt: null,
+                autoPilotEnabled: false,
+                autoClickEnabled: false,
+                uiStatus: computeUiStatus(current, 'ready'),
+                lastError: null,
+                session: {
+                  ...current.session,
+                  sessionId: null,
+                  status: 'session_inactive',
+                  liveAssistEnabled: false,
+                },
+              },
+              'Session Reset (Server)',
+            ),
+            {
+              tone: 'info',
+              title: 'Session ended by server',
+              message: 'The previous session expired or was closed. Start a new session to continue.',
+            },
+          );
+        },
+        browserName,
+        extensionVersion,
+      );
+
+      await stopPeriodicAlarms();
+      await syncSessionExpiryAlarm(nextState);
+      return error.message;
+    }
+
     if (error.status === 400 && error.code === 'invalid_request') {
       await updateState(
         (current) =>
@@ -827,15 +893,65 @@ async function handlePairExtension(payload: PairExtensionPayload) {
 }
 
 async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end') {
-  const response = await withAuthRetry((state) =>
-    mode === 'start'
-      ? startSession(state)
-      : mode === 'pause'
-        ? pauseSession(state)
-        : mode === 'resume'
-          ? resumeSession(state)
-          : endSession(state),
-  );
+  let response;
+
+  try {
+    response = await withAuthRetry((state) =>
+      mode === 'start'
+        ? startSession(state)
+        : mode === 'pause'
+          ? pauseSession(state)
+          : mode === 'resume'
+            ? resumeSession(state)
+            : endSession(state),
+    );
+  } catch (error) {
+    // CRITICAL FIX: If End/Pause/Resume fails because the server session
+    // already expired, force-reset local state to inactive instead of
+    // leaving the extension stuck in "Session is live" forever.
+    if (
+      mode !== 'start' &&
+      error instanceof ApiError &&
+      (error.message.toLowerCase().includes('session') ||
+        error.code === 'session_not_found' ||
+        error.code === 'no_active_session')
+    ) {
+      const nextState = await updateState(
+        (current) =>
+          appendNotice(
+            appendRecentAction(
+              {
+                ...current,
+                sessionCreditExpiresAt: null,
+                autoPilotEnabled: false,
+                autoClickEnabled: false,
+                session: {
+                  ...current.session,
+                  sessionId: null,
+                  status: 'session_inactive',
+                  liveAssistEnabled: false,
+                },
+                uiStatus: computeUiStatus(current, 'ready'),
+              },
+              mode === 'end' ? 'End Session' : `${mode.charAt(0).toUpperCase() + mode.slice(1)} Session`,
+            ),
+            {
+              tone: 'info',
+              title: 'Session ended',
+              message: 'The previous session was already closed by the server. You can start a new session.',
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      await stopPeriodicAlarms();
+      await syncSessionExpiryAlarm(nextState);
+      return nextState;
+    }
+
+    throw error;
+  }
 
   const actionMap = {
     start: 'Start Session',
@@ -876,6 +992,13 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
     browserName,
     extensionVersion,
   );
+
+  // Start/stop periodic alarms based on session state
+  if (response.status === 'session_active') {
+    await startPeriodicAlarms();
+  } else {
+    await stopPeriodicAlarms();
+  }
 
   await syncSessionExpiryAlarm(nextState);
 
@@ -2129,6 +2252,125 @@ async function handleLiveAssistSignal(tabId: number | undefined, payload: LiveAs
 
   liveAssistTimers.set(tabId, timer);
   return true;
+}
+
+// ─── Periodic alarms: credit refresh + idle check ───────────────────────────
+
+async function startPeriodicAlarms() {
+  // Refresh credits every 60 seconds so admin/portal top-ups appear live
+  await chrome.alarms.create(CREDIT_REFRESH_ALARM, {
+    periodInMinutes: 1,
+  });
+  // Check for idle every 2 minutes
+  await chrome.alarms.create(IDLE_CHECK_ALARM, {
+    periodInMinutes: 2,
+  });
+}
+
+async function stopPeriodicAlarms() {
+  await chrome.alarms.clear(CREDIT_REFRESH_ALARM);
+  await chrome.alarms.clear(IDLE_CHECK_ALARM);
+}
+
+async function handlePeriodicCreditRefresh() {
+  try {
+    const state = await readState(browserName, extensionVersion);
+    if (state.pairingStatus !== 'paired' || state.session.status !== 'session_active') {
+      await stopPeriodicAlarms();
+      return;
+    }
+
+    const wallet = await withAuthRetry((s) => refreshWallet(s));
+
+    await updateState(
+      (current) => {
+        const nextSnapshot = {
+          ...current,
+          creditsRemainingSeconds: wallet.remainingSeconds,
+          sessionCreditExpiresAt: buildSessionExpiry(
+            wallet.remainingSeconds,
+            current.session.status === 'session_active',
+          ),
+        };
+
+        return {
+          ...nextSnapshot,
+          uiStatus: wallet.remainingSeconds > 0 ? computeUiStatus(nextSnapshot, 'ready') : 'no_credits',
+        };
+      },
+      browserName,
+      extensionVersion,
+    );
+
+    if (wallet.remainingSeconds <= 0) {
+      await handleSessionCreditExpired('periodic_refresh');
+    }
+  } catch (error) {
+    // Silent failure — don't spam the activity log with periodic refresh errors
+    console.warn('Periodic credit refresh failed:', error);
+  }
+}
+
+async function handleIdleCheck() {
+  try {
+    const state = await readState(browserName, extensionVersion);
+
+    // Only check idle for active sessions
+    if (state.session.status !== 'session_active') {
+      await stopPeriodicAlarms();
+      return;
+    }
+
+    const lastActivity = state.session.lastActivityAt;
+    if (!lastActivity) {
+      return;
+    }
+
+    const idleMs = Date.now() - new Date(lastActivity).getTime();
+
+    if (idleMs >= IDLE_AUTO_END_MS) {
+      // Auto-end the session after 10 minutes of inactivity
+      try {
+        await withAuthRetry((current) => endSession(current));
+      } catch {
+        // Server session might already be ended — that's fine
+      }
+
+      const nextState = await updateState(
+        (current) =>
+          appendNotice(
+            appendRecentAction(
+              {
+                ...current,
+                sessionCreditExpiresAt: null,
+                autoPilotEnabled: false,
+                autoClickEnabled: false,
+                session: {
+                  ...current.session,
+                  sessionId: null,
+                  status: 'session_inactive',
+                  liveAssistEnabled: false,
+                },
+                uiStatus: computeUiStatus(current, 'ready'),
+              },
+              'Auto-End (Idle)',
+            ),
+            {
+              tone: 'info',
+              title: 'Session auto-ended',
+              message: 'No activity for 10 minutes. Session was ended automatically to save your credits.',
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      await stopPeriodicAlarms();
+      await syncSessionExpiryAlarm(nextState);
+    }
+  } catch (error) {
+    console.warn('Idle check failed:', error);
+  }
 }
 
 async function withAuthRetry<T>(operation: (state: ExtensionState) => Promise<T>): Promise<T> {
