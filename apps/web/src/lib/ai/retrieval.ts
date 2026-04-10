@@ -235,6 +235,10 @@ function rankQaPairRows(params: {
     row,
     choiceScore: hasChoices ? scoreAnswerAgainstOptions(opts, row.answer_text) : 0,
     blankAlignment: scoreBlankStructureAlignment(params.queryText, row.question_text),
+    // Raw character distance: lower = more precise match.
+    // This breaks ties between near-duplicate questions that differ only in
+    // punctuation (e.g. "an awareness" vs 'an awareness').
+    rawDistance: rawCharacterDistance(params.queryText, row.question_text),
   }));
 
   // Diagnostic: log when duplicate questions are found with different choice scores
@@ -249,6 +253,7 @@ function rankQaPairRows(params: {
           answer: e.row.answer_text.slice(0, 80),
           choiceScore: e.choiceScore,
           blankAlignment: e.blankAlignment,
+          rawDistance: e.rawDistance,
         })),
         options: opts.slice(0, 8).map((o) => o.slice(0, 80)),
       });
@@ -283,6 +288,15 @@ function rankQaPairRows(params: {
       }
     }
 
+    // ── NEW: Raw text precision tie-breaker ──────────────────────────────
+    // When two Q&A pairs are "equivalent" after normalization but differ in
+    // punctuation (e.g. "an awareness" vs 'an awareness'), prefer the one
+    // whose raw question text is character-for-character closest to the query.
+    const distanceDelta = a.rawDistance - b.rawDistance;
+    if (distanceDelta !== 0) {
+      return distanceDelta;
+    }
+
     // Quaternary: category specificity
     const categoryDelta = Number(Boolean(b.row.category_id)) - Number(Boolean(a.row.category_id));
     if (categoryDelta !== 0) {
@@ -315,6 +329,38 @@ function pickJoinedName(value: QaPairRow['subjects'] | QaPairRow['categories']) 
   }
 
   return value?.name ?? null;
+}
+
+/**
+ * Compute a simple character-level edit distance between two strings.
+ * Used as a precision tie-breaker when multiple Q&A pairs are "equivalent"
+ * after normalization but differ in punctuation (e.g. "quotes" vs 'quotes').
+ *
+ * Uses a lightweight approach: count character-by-character mismatches after
+ * lowercasing (no full Levenshtein needed since the strings are already
+ * known to be nearly identical via normalizeQuestionLookupText).
+ */
+function rawCharacterDistance(a: string, b: string): number {
+  const la = a.toLowerCase().trim();
+  const lb = b.toLowerCase().trim();
+
+  // Fast path: identical raw text
+  if (la === lb) return 0;
+
+  const maxLen = Math.max(la.length, lb.length);
+  if (maxLen === 0) return 0;
+
+  let mismatches = 0;
+  const minLen = Math.min(la.length, lb.length);
+
+  for (let i = 0; i < minLen; i++) {
+    if (la[i] !== lb[i]) mismatches++;
+  }
+
+  // Count length difference as additional mismatches
+  mismatches += maxLen - minLen;
+
+  return mismatches;
 }
 
 function tokenize(value: string) {
