@@ -10,7 +10,7 @@ function stripDiacritics(value: string) {
 }
 
 function stripLeadingChoiceMarker(value: string) {
-  return value.replace(/^\s*[(\[]?([a-z]|\d{1,2}|[ivxlcdm]{1,5})[)\].:-]?\s+/iu, '');
+  return value.replace(/^\s*[(\[]?([a-z]|\d{1,2}|[ivxlcdm]{1,5})[)\].:-]\s+/iu, '');
 }
 
 function normalizeBlankMarkers(value: string) {
@@ -309,7 +309,7 @@ export interface ParsedChoiceOption {
 
 export function parseChoiceOption(option: string): ParsedChoiceOption {
   const collapsed = collapseWhitespace(option);
-  const match = collapsed.match(/^\s*[(\[]?([a-z]|\d{1,2}|[ivxlcdm]{1,5})[)\].:-]?\s+(.+)$/iu);
+  const match = collapsed.match(/^\s*[(\[]?([a-z]|\d{1,2}|[ivxlcdm]{1,5})[)\].:-]\s+(.+)$/iu);
   const label = match?.[1] ? match[1].toUpperCase() : null;
   const text = collapseWhitespace(match?.[2] ?? collapsed);
 
