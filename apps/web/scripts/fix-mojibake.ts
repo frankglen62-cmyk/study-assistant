@@ -8,7 +8,7 @@ try {
   const envContent = fs.readFileSync(envPath, 'utf-8');
   for (const line of envContent.split('\n')) {
     const match = line.match(/^([^=]+)=(.*)$/);
-    if (match) {
+    if (match && match[1]) {
       process.env[match[1]] = match[2].trim();
     }
   }
