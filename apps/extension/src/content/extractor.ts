@@ -53,8 +53,60 @@ export function installExtractorContentScript() {
     // Also strip out screen-reader only elements that inject "Answer"
     clone.querySelectorAll('.accesshide, .sr-only').forEach(el => el.remove());
 
-    return normalizeText(clone.textContent ?? '');
+    // Use extractTextWithSpacing instead of .textContent to preserve
+    // word boundaries between block-level elements (p, div, br, li, etc.)
+    return normalizeText(extractTextWithSpacing(clone));
   }
+
+  /**
+   * Extract text from a DOM node, inserting spaces at block-level element
+   * boundaries so that multi-line questions don't merge words.
+   *
+   * .textContent concatenates everything without spacing, which causes:
+   *   "customerii. SRS" instead of "customer ii. SRS"
+   *
+   * This function walks all child nodes and inserts a space before/after
+   * block-level elements (p, div, br, li, tr, h1-h6, etc.)
+   */
+  function extractTextWithSpacing(node: Node): string {
+    const BLOCK_TAGS = new Set([
+      'P', 'DIV', 'BR', 'LI', 'TR', 'TD', 'TH', 'DT', 'DD',
+      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+      'BLOCKQUOTE', 'PRE', 'HR', 'UL', 'OL', 'DL',
+      'SECTION', 'ARTICLE', 'HEADER', 'FOOTER',
+    ]);
+
+    const parts: string[] = [];
+
+    for (const child of Array.from(node.childNodes)) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        parts.push(child.textContent ?? '');
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        const el = child as Element;
+        const tag = el.tagName?.toUpperCase() ?? '';
+
+        if (tag === 'BR') {
+          parts.push(' ');
+          continue;
+        }
+
+        const isBlock = BLOCK_TAGS.has(tag);
+        if (isBlock) {
+          parts.push(' ');
+        }
+
+        // Recurse into children
+        parts.push(extractTextWithSpacing(el));
+
+        if (isBlock) {
+          parts.push(' ');
+        }
+      }
+    }
+
+    return parts.join('');
+  }
+
 
   function hasVisibleFreeformInputs(container: ParentNode | null): boolean {
     if (!container) {

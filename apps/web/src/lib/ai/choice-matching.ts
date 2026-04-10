@@ -19,8 +19,40 @@ function normalizeBlankMarkers(value: string) {
     .replace(/[_\s]*_{2,}[_\s]*/g, ' _ ');
 }
 
+/**
+ * Insert spaces before roman-numeral and letter list markers that got merged
+ * with the preceding word during DOM text extraction.
+ *
+ * Examples:
+ *   "customerii. SRS"  -> "customer ii. SRS"
+ *   "developeriii. SRS" -> "developer iii. SRS"
+ *   "test1. hello"     -> "test 1. hello"
+ */
+function normalizeListMarkers(value: string) {
+  // Insert space before roman numeral markers (i. ii. iii. iv. v. vi. etc.)
+  // Pattern: a letter immediately followed by a roman numeral + "." + space/end
+  let result = value.replace(
+    /([a-zA-Z])((?:viii|vii|vi|iv|ix|xii|xi|iii|ii|x|v|i)\.)(\s|$)/gi,
+    '$1 $2$3'
+  );
+
+  // Insert space before single-letter markers: "texta. hello" -> "text a. hello"
+  result = result.replace(
+    /([a-zA-Z]{2,})([a-d]\.)(\s|$)/g,
+    '$1 $2$3'
+  );
+
+  // Insert space before number markers: "test1. hello" -> "test 1. hello"
+  result = result.replace(
+    /([a-zA-Z]{2,})(\d{1,2}\.)(\s|$)/g,
+    '$1 $2$3'
+  );
+
+  return result;
+}
+
 export function normalizeComparableText(value: string) {
-  return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(value))))
+  return collapseWhitespace(normalizeBlankMarkers(stripLeadingChoiceMarker(stripDiacritics(normalizeListMarkers(value)))))
     .toLowerCase()
     // Normalize semicolons to commas so "service-oriented; elastic" matches
     // "service-oriented, elastic" — the LMS and Q&A library often use them
@@ -34,6 +66,7 @@ export function normalizeComparableText(value: string) {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
 
 export function normalizeQuestionLookupText(value: string) {
   return normalizeComparableText(value)
