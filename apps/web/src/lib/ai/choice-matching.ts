@@ -319,7 +319,7 @@ export function parseChoiceOption(option: string): ParsedChoiceOption {
     text,
     normalizedRaw: normalizeComparableText(collapsed),
     normalizedText: normalizeComparableText(text),
-    display: label ? `${label}. ${text}` : collapsed,
+    display: text,
   };
 }
 
