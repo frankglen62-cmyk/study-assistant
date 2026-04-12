@@ -100,6 +100,16 @@ async function main() {
         return row.has_wallet_grants && row.has_package_expiry && row.has_rollup_view;
       },
     },
+    {
+      id: '0015',
+      file: path.join(repoRoot, 'supabase', 'migrations', '0015_fix_ambiguous_columns.sql'),
+      isApplied: async () => {
+        const [row] = await sql`
+          select pg_get_functiondef('public.process_expired_wallet_grants(integer, timestamp with time zone)'::regprocedure) as def
+        `;
+        return row && row.def && row.def.includes('wg.user_id');
+      },
+    },
   ];
 
   try {
