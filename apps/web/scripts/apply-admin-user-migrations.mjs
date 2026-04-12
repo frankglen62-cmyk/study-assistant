@@ -105,9 +105,9 @@ async function main() {
       file: path.join(repoRoot, 'supabase', 'migrations', '0015_fix_ambiguous_columns.sql'),
       isApplied: async () => {
         const [row] = await sql`
-          select pg_get_functiondef('public.process_expired_wallet_grants(integer, timestamp with time zone)'::regprocedure) as def
+          select pg_get_functiondef('public.expire_wallet_grants_for_user(uuid, timestamp with time zone)'::regprocedure) as def
         `;
-        return row && row.def && row.def.includes('wg.user_id');
+        return row && row.def && row.def.includes('variable_conflict');
       },
     },
   ];
