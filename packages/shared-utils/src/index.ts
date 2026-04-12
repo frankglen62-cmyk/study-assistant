@@ -107,3 +107,45 @@ export function createShortCode(length = 8): string {
 
   return Array.from(values, (value) => alphabet[value % alphabet.length]).join('');
 }
+
+export function timeAgo(dateInput: string | Date | null | undefined): string {
+  if (!dateInput) {
+    return 'Never';
+  }
+
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  const now = Date.now();
+  const diffMs = now - date.getTime();
+
+  if (diffMs < 0) {
+    return 'Just now';
+  }
+
+  const seconds = Math.floor(diffMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (seconds < 60) {
+    return 'Just now';
+  }
+
+  if (minutes < 60) {
+    return `${minutes}m ago`;
+  }
+
+  if (hours < 24) {
+    return `${hours}h ago`;
+  }
+
+  if (days < 30) {
+    return `${days}d ago`;
+  }
+
+  const months = Math.floor(days / 30);
+  if (months < 12) {
+    return `${months}mo ago`;
+  }
+
+  return `${Math.floor(months / 12)}y ago`;
+}
