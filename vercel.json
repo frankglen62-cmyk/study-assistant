@@ -3,5 +3,11 @@
   "framework": "nextjs",
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm --filter @study-assistant/web build",
-  "devCommand": "pnpm --filter @study-assistant/web dev"
+  "devCommand": "pnpm --filter @study-assistant/web dev",
+  "crons": [
+    {
+      "path": "/api/cron/user-maintenance",
+      "schedule": "15 0 * * *"
+    }
+  ]
 }

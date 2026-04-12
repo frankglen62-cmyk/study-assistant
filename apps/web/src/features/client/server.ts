@@ -9,6 +9,7 @@ import { getBillingProviderAvailability } from '@/lib/payments/service';
 import { listPublishedPaymentPackageDisplays } from '@/lib/payments/package-catalog';
 import { listPaymentsForUser } from '@/lib/supabase/payments';
 import { listSessionsForUser, getOpenSessionForUser } from '@/lib/supabase/sessions';
+import { getWalletGrantOverviewForUser } from '@/lib/supabase/users';
 
 export async function getClientDashboardData(userId: string) {
   const [sessions, recentAttempts, devices] = await Promise.all([
@@ -64,11 +65,16 @@ export async function getClientSessionsTableData(userId: string) {
 }
 
 export async function getClientBillingData(userId: string) {
-  const [packages, payments] = await Promise.all([listPublishedPaymentPackageDisplays(), listPaymentsForUser(userId)]);
+  const [packages, payments, grantOverview] = await Promise.all([
+    listPublishedPaymentPackageDisplays(),
+    listPaymentsForUser(userId),
+    getWalletGrantOverviewForUser(userId),
+  ]);
   const providerAvailability = getBillingProviderAvailability();
 
   return {
     providerAvailability,
+    walletGrantOverview: grantOverview,
     packages: packages.map((entry) => ({
       id: entry.id,
       name: entry.name,
@@ -76,6 +82,8 @@ export async function getClientBillingData(userId: string) {
       description: entry.description,
       durationLabel: entry.durationLabel,
       durationSummary: entry.durationSummary,
+      expirySummary: entry.expirySummary,
+      creditExpiresAfterDays: entry.creditExpiresAfterDays,
       minutesToCredit: entry.minutesToCredit,
       hasDistinctName: entry.hasDistinctName,
       featured: entry.featured,

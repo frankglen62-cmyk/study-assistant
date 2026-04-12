@@ -80,7 +80,7 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
 
                     <div className="mb-8 border-t border-border/40 pt-6">
                       <ul className="space-y-3">
-                        {[pkg.durationSummary, 'Instant credit delivery after payment', 'Credits never expire', 'Works across the portal and extension'].map((feature) => (
+                        {[pkg.durationSummary, 'Instant credit delivery after payment', pkg.expirySummary, 'Works across the portal and extension'].map((feature) => (
                           <li key={feature} className="flex items-start gap-3">
                             <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent transition-transform duration-300 group-hover:scale-125" />
                             <span className="text-sm text-muted-foreground">{feature}</span>

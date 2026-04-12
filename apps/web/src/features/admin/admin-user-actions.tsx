@@ -1,60 +1,89 @@
 'use client';
 
-import { startTransition, useState, useRef, useEffect } from 'react';
+import { startTransition, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
-  ShieldOff, ShieldCheck, Eye, Plus, Minus, Square, X, Check,
-  Clock, AlertTriangle, Loader2
+  AlertTriangle,
+  Eye,
+  Loader2,
+  Minus,
+  Plus,
+  ShieldCheck,
+  ShieldOff,
+  Square,
+  X,
 } from 'lucide-react';
 
-import { Button } from '@study-assistant/ui';
+import { Button, Input, Textarea } from '@study-assistant/ui';
+
 import { useToast } from '@/components/providers/toast-provider';
 
 interface AdminUserActionsProps {
   userId: string;
   accountStatus: 'active' | 'suspended' | 'pending_verification' | 'banned';
   hasActiveSession?: boolean;
+  onCompleted?: () => void;
+}
+
+interface ConfirmModalState {
+  action: 'suspend' | 'reactivate' | 'ban' | 'restore' | 'force_end';
+  title: string;
+  message: string;
+  confirmLabel: string;
+  danger?: boolean;
+  requiresReason?: boolean;
+  reasonPlaceholder?: string;
+  supportsSuspendedUntil?: boolean;
 }
 
 async function readJson<T>(response: Response) {
   return (await response.json()) as T & { error?: string };
 }
 
-/* ─── Modal primitives ─── */
-function Modal({ open, onClose, title, children }: {
+function Modal({
+  open,
+  onClose,
+  title,
+  children,
+}: {
   open: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
 }) {
-  const overlayRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (!open) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    if (!open) {
+      return;
+    }
+
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div
-        ref={overlayRef}
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      {/* Panel */}
-      <div className="relative z-10 w-full max-w-md rounded-2xl border border-border/60 bg-background shadow-2xl ring-1 ring-white/5 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative z-10 w-full max-w-md rounded-2xl border border-border/60 bg-background shadow-2xl ring-1 ring-white/5">
         <div className="flex items-center justify-between border-b border-border/50 px-6 py-4">
           <h2 className="text-base font-semibold text-foreground">{title}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-surface/60 hover:text-foreground transition-colors"
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-surface/60 hover:text-foreground"
           >
             <X size={15} />
           </button>
@@ -72,37 +101,47 @@ const CREDIT_PRESETS = [
   { label: '5 hr', minutes: 300 },
 ];
 
-export function AdminUserActions({ userId, accountStatus, hasActiveSession }: AdminUserActionsProps) {
+export function AdminUserActions({ userId, accountStatus, hasActiveSession, onCompleted }: AdminUserActionsProps) {
   const router = useRouter();
   const { pushToast } = useToast();
-  const [pendingAction, setPendingAction] = useState<string | null>(null);
 
-  // Modal state
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [addModal, setAddModal] = useState(false);
   const [deductModal, setDeductModal] = useState(false);
-  const [confirmModal, setConfirmModal] = useState<{
-    action: 'suspend' | 'reactivate' | 'ban' | 'restore' | 'force_end';
-    title: string;
-    message: string;
-    confirmLabel: string;
-    danger?: boolean;
-  } | null>(null);
+  const [confirmModal, setConfirmModal] = useState<ConfirmModalState | null>(null);
   const [creditMinutes, setCreditMinutes] = useState('');
   const [creditReason, setCreditReason] = useState('');
   const [customMinutes, setCustomMinutes] = useState('');
+  const [confirmReason, setConfirmReason] = useState('');
+  const [confirmSuspendedUntil, setConfirmSuspendedUntil] = useState('');
 
   const mayAdjustStatus = accountStatus === 'active' || accountStatus === 'suspended';
   const canBan = accountStatus !== 'banned';
   const canRestore = accountStatus === 'banned';
   const mayAdjustCredits = accountStatus !== 'banned';
+  const isLoading = pendingAction !== null;
+
+  function resetCreditInputs() {
+    setCreditMinutes('');
+    setCustomMinutes('');
+    setCreditReason('');
+  }
+
+  function openConfirmModal(next: ConfirmModalState) {
+    setConfirmReason('');
+    setConfirmSuspendedUntil('');
+    setConfirmModal(next);
+  }
 
   function runAction(action: string, callback: () => Promise<void>) {
     startTransition(() => {
       void (async () => {
         setPendingAction(action);
+
         try {
           await callback();
           router.refresh();
+          onCompleted?.();
         } catch (error) {
           pushToast({
             tone: 'danger',
@@ -116,14 +155,22 @@ export function AdminUserActions({ userId, accountStatus, hasActiveSession }: Ad
     });
   }
 
-  async function executeStatusChange(status: 'active' | 'suspended' | 'banned') {
+  async function executeStatusChange(
+    status: 'active' | 'suspended' | 'banned',
+    reason?: string,
+    suspendedUntil?: string | null,
+  ) {
     const response = await fetch(`/api/admin/users/${userId}/status`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status }),
+      body: JSON.stringify({ status, reason, suspendedUntil }),
     });
     const payload = await readJson<{ message: string }>(response);
-    if (!response.ok) throw new Error(payload.error ?? 'Status change failed.');
+
+    if (!response.ok) {
+      throw new Error(payload.error ?? 'Status change failed.');
+    }
+
     pushToast({ tone: 'success', title: 'Status updated', description: payload.message });
   }
 
@@ -134,7 +181,11 @@ export function AdminUserActions({ userId, accountStatus, hasActiveSession }: Ad
       body: JSON.stringify({ deltaSeconds, description }),
     });
     const payload = await readJson<{ message: string }>(response);
-    if (!response.ok) throw new Error(payload.error ?? 'Credit change failed.');
+
+    if (!response.ok) {
+      throw new Error(payload.error ?? 'Credit change failed.');
+    }
+
     pushToast({ tone: 'success', title: 'Credits updated', description: payload.message });
   }
 
@@ -144,193 +195,277 @@ export function AdminUserActions({ userId, accountStatus, hasActiveSession }: Ad
       headers: { 'Content-Type': 'application/json' },
     });
     const payload = await readJson<{ message: string }>(response);
-    if (!response.ok) throw new Error(payload.error ?? 'Force-end session failed.');
+
+    if (!response.ok) {
+      throw new Error(payload.error ?? 'Force-end session failed.');
+    }
+
     pushToast({ tone: 'success', title: 'Session ended', description: payload.message });
   }
 
   function handleConfirmAction() {
-    if (!confirmModal) return;
+    if (!confirmModal) {
+      return;
+    }
+
+    if (confirmModal.requiresReason && confirmReason.trim().length < 4) {
+      pushToast({
+        tone: 'warning',
+        title: 'Reason required',
+        description: 'Add a short reason so this moderation action is traceable.',
+      });
+      return;
+    }
+
     const { action } = confirmModal;
+    const reason = confirmReason.trim();
+    const suspendedUntil =
+      action === 'suspend' && confirmSuspendedUntil
+        ? new Date(confirmSuspendedUntil).toISOString()
+        : null;
     setConfirmModal(null);
+    setConfirmReason('');
+    setConfirmSuspendedUntil('');
 
     runAction(action, async () => {
-      if (action === 'suspend') return executeStatusChange('suspended');
-      if (action === 'reactivate') return executeStatusChange('active');
-      if (action === 'ban') return executeStatusChange('banned');
-      if (action === 'restore') return executeStatusChange('active');
-      if (action === 'force_end') return executeForceEnd();
+      if (action === 'suspend') {
+        return executeStatusChange('suspended', reason, suspendedUntil);
+      }
+      if (action === 'reactivate') {
+        return executeStatusChange('active', reason || undefined);
+      }
+      if (action === 'ban') {
+        return executeStatusChange('banned', reason);
+      }
+      if (action === 'restore') {
+        return executeStatusChange('active', reason || undefined);
+      }
+      return executeForceEnd();
     });
   }
 
   function handleAddCredits() {
-    const mins = Number.parseInt(customMinutes || creditMinutes, 10);
-    if (!Number.isFinite(mins) || mins <= 0) {
-      pushToast({ tone: 'warning', title: 'Invalid amount', description: 'Enter a positive number of minutes.' });
+    const minutes = Number.parseInt(customMinutes || creditMinutes, 10);
+
+    if (!Number.isFinite(minutes) || minutes <= 0) {
+      pushToast({
+        tone: 'warning',
+        title: 'Invalid amount',
+        description: 'Enter a positive number of minutes.',
+      });
       return;
     }
+
     setAddModal(false);
-    setCreditMinutes('');
-    setCustomMinutes('');
-    setCreditReason('');
-    runAction('add', () => executeCreditChange(
-      mins * 60,
-      creditReason.trim() || `Admin credit adjustment +${mins} minutes`,
-    ));
+    runAction('add', () =>
+      executeCreditChange(
+        minutes * 60,
+        creditReason.trim() || `Admin credit adjustment +${minutes} minutes`,
+      ),
+    );
+    resetCreditInputs();
   }
 
   function handleDeductCredits() {
-    const mins = Number.parseInt(customMinutes || creditMinutes, 10);
-    if (!Number.isFinite(mins) || mins <= 0) {
-      pushToast({ tone: 'warning', title: 'Invalid amount', description: 'Enter a positive number of minutes.' });
+    const minutes = Number.parseInt(customMinutes || creditMinutes, 10);
+
+    if (!Number.isFinite(minutes) || minutes <= 0) {
+      pushToast({
+        tone: 'warning',
+        title: 'Invalid amount',
+        description: 'Enter a positive number of minutes.',
+      });
       return;
     }
-    setDeductModal(false);
-    setCreditMinutes('');
-    setCustomMinutes('');
-    setCreditReason('');
-    runAction('deduct', () => executeCreditChange(
-      mins * -60,
-      creditReason.trim() || `Admin credit adjustment -${mins} minutes`,
-    ));
-  }
 
-  const isLoading = pendingAction !== null;
+    setDeductModal(false);
+    runAction('deduct', () =>
+      executeCreditChange(
+        minutes * -60,
+        creditReason.trim() || `Admin credit adjustment -${minutes} minutes`,
+      ),
+    );
+    resetCreditInputs();
+  }
 
   return (
     <>
-      {/* ─── Action Buttons ─── */}
       <div className="flex flex-wrap gap-1.5">
-        {/* Suspend / Reactivate */}
         {mayAdjustStatus && !canRestore && (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => setConfirmModal(
-              accountStatus === 'active'
-                ? { action: 'suspend', title: 'Suspend Account', message: 'This will lock the wallet and stop any active session. The user will be unable to log in.', confirmLabel: 'Suspend', danger: true }
-                : { action: 'reactivate', title: 'Reactivate Account', message: 'This will unlock the wallet and restore portal access for this user.', confirmLabel: 'Reactivate' }
-            )}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-surface/80 transition-colors disabled:opacity-50"
-            title={accountStatus === 'active' ? 'Suspend user' : 'Reactivate user'}
-          >
-            {isLoading && pendingAction === 'suspend' || isLoading && pendingAction === 'reactivate'
-              ? <Loader2 size={11} className="animate-spin" />
-              : accountStatus === 'active' ? <ShieldOff size={11} /> : <ShieldCheck size={11} />
+            onClick={() =>
+              openConfirmModal(
+                accountStatus === 'active'
+                  ? {
+                      action: 'suspend',
+                      title: 'Suspend Account',
+                      message: 'This locks the wallet, ends any live session, and blocks portal access until reactivated.',
+                      confirmLabel: 'Suspend',
+                      danger: true,
+                      requiresReason: true,
+                      reasonPlaceholder: 'Support issue, billing hold, misuse...',
+                      supportsSuspendedUntil: true,
+                    }
+                  : {
+                      action: 'reactivate',
+                      title: 'Reactivate Account',
+                      message: 'This restores portal access and unlocks the wallet for future sessions.',
+                      confirmLabel: 'Reactivate',
+                      reasonPlaceholder: 'Issue resolved, payment received...',
+                    },
+              )
             }
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-surface/80 disabled:opacity-50"
+          >
+            {isLoading && (pendingAction === 'suspend' || pendingAction === 'reactivate') ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : accountStatus === 'active' ? (
+              <ShieldOff size={11} />
+            ) : (
+              <ShieldCheck size={11} />
+            )}
             {accountStatus === 'active' ? 'Suspend' : 'Reactivate'}
           </button>
         )}
 
-        {/* Ban */}
         {canBan && (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => setConfirmModal({
-              action: 'ban',
-              title: 'Ban User',
-              message: 'Banning permanently locks this account and wallet. The user cannot log in or use any service. This action should only be used for serious violations.',
-              confirmLabel: 'Ban Permanently',
-              danger: true,
-            })}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-2.5 py-1.5 text-xs font-medium text-red-400 hover:bg-red-500/20 transition-colors disabled:opacity-50"
-            title="Ban user permanently"
+            onClick={() =>
+              openConfirmModal({
+                action: 'ban',
+                title: 'Ban User',
+                message: 'Banning permanently locks the account and wallet. Use this only for severe abuse or fraud cases.',
+                confirmLabel: 'Ban Permanently',
+                danger: true,
+                requiresReason: true,
+                reasonPlaceholder: 'Fraud, abusive behavior, repeated violation...',
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-2.5 py-1.5 text-xs font-medium text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
           >
-            {isLoading && pendingAction === 'ban' ? <Loader2 size={11} className="animate-spin" /> : <AlertTriangle size={11} />}
+            {isLoading && pendingAction === 'ban' ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : (
+              <AlertTriangle size={11} />
+            )}
             Ban
           </button>
         )}
 
-        {/* Restore (from banned) */}
         {canRestore && (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => setConfirmModal({
-              action: 'restore',
-              title: 'Restore Banned Account',
-              message: 'This will restore this banned account to active status and unlock the wallet.',
-              confirmLabel: 'Restore Account',
-            })}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-green-500/30 bg-green-500/10 px-2.5 py-1.5 text-xs font-medium text-green-400 hover:bg-green-500/20 transition-colors disabled:opacity-50"
-            title="Restore banned account"
+            onClick={() =>
+              openConfirmModal({
+                action: 'restore',
+                title: 'Restore Banned Account',
+                message: 'This returns the banned account to active status and unlocks the wallet.',
+                confirmLabel: 'Restore Account',
+                reasonPlaceholder: 'Appeal approved, review completed...',
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-lg border border-green-500/30 bg-green-500/10 px-2.5 py-1.5 text-xs font-medium text-green-400 transition-colors hover:bg-green-500/20 disabled:opacity-50"
           >
-            {isLoading && pendingAction === 'restore' ? <Loader2 size={11} className="animate-spin" /> : <ShieldCheck size={11} />}
+            {isLoading && pendingAction === 'restore' ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : (
+              <ShieldCheck size={11} />
+            )}
             Restore
           </button>
         )}
 
-        {/* View Sessions */}
         <Link
           href={`/admin/users/${userId}/sessions`}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-surface/80 transition-colors"
-          title="View sessions"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-surface/80"
         >
           <Eye size={11} />
           Sessions
         </Link>
 
-        {/* Add Credits */}
         {mayAdjustCredits && (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => { setCreditMinutes(''); setCustomMinutes(''); setCreditReason(''); setAddModal(true); }}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-surface/80 transition-colors disabled:opacity-50"
-            title="Add credits"
+            onClick={() => {
+              resetCreditInputs();
+              setAddModal(true);
+            }}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-surface/80 disabled:opacity-50"
           >
-            {isLoading && pendingAction === 'add' ? <Loader2 size={11} className="animate-spin" /> : <Plus size={11} />}
+            {isLoading && pendingAction === 'add' ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : (
+              <Plus size={11} />
+            )}
             Add
           </button>
         )}
 
-        {/* Deduct Credits */}
         {mayAdjustCredits && (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => { setCreditMinutes(''); setCustomMinutes(''); setCreditReason(''); setDeductModal(true); }}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-surface/80 transition-colors disabled:opacity-50"
-            title="Deduct credits"
+            onClick={() => {
+              resetCreditInputs();
+              setDeductModal(true);
+            }}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-surface/40 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-surface/80 disabled:opacity-50"
           >
-            {isLoading && pendingAction === 'deduct' ? <Loader2 size={11} className="animate-spin" /> : <Minus size={11} />}
+            {isLoading && pendingAction === 'deduct' ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : (
+              <Minus size={11} />
+            )}
             Deduct
           </button>
         )}
 
-        {/* Force End Session */}
-        {hasActiveSession && (
+        {hasActiveSession ? (
           <button
             type="button"
             disabled={isLoading}
-            onClick={() => setConfirmModal({
-              action: 'force_end',
-              title: 'Force-End Session',
-              message: 'This will immediately end the user\'s active session and stop credit consumption.',
-              confirmLabel: 'Force End',
-              danger: true,
-            })}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-xs font-medium text-amber-400 hover:bg-amber-500/20 transition-colors disabled:opacity-50"
-            title="Force-end active session"
+            onClick={() =>
+              openConfirmModal({
+                action: 'force_end',
+                title: 'Force-End Session',
+                message: 'This immediately ends the live session and stops credit consumption.',
+                confirmLabel: 'Force End',
+                danger: true,
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-xs font-medium text-amber-400 transition-colors hover:bg-amber-500/20 disabled:opacity-50"
           >
-            {isLoading && pendingAction === 'force_end' ? <Loader2 size={11} className="animate-spin" /> : <Square size={11} />}
+            {isLoading && pendingAction === 'force_end' ? (
+              <Loader2 size={11} className="animate-spin" />
+            ) : (
+              <Square size={11} />
+            )}
             Stop
           </button>
-        )}
+        ) : null}
       </div>
 
-      {/* ─── Add Credits Modal ─── */}
       <Modal open={addModal} onClose={() => setAddModal(false)} title="Add Credits">
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">Select a preset or enter a custom amount to add to this user's wallet.</p>
+          <p className="text-sm text-muted-foreground">
+            Select a preset or enter a custom amount to add to this user&apos;s wallet.
+          </p>
 
-          {/* Presets */}
           <div className="grid grid-cols-4 gap-2">
             {CREDIT_PRESETS.map((preset) => (
               <button
                 key={preset.minutes}
                 type="button"
-                onClick={() => { setCreditMinutes(String(preset.minutes)); setCustomMinutes(''); }}
+                onClick={() => {
+                  setCreditMinutes(String(preset.minutes));
+                  setCustomMinutes('');
+                }}
                 className={`rounded-xl border py-2.5 text-sm font-medium transition-all ${
                   creditMinutes === String(preset.minutes) && !customMinutes
                     ? 'border-accent bg-accent/10 text-accent'
@@ -342,65 +477,67 @@ export function AdminUserActions({ userId, accountStatus, hasActiveSession }: Ad
             ))}
           </div>
 
-          {/* Custom */}
           <div>
             <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Custom minutes</label>
-            <input
+            <Input
               type="number"
               min="1"
               placeholder="e.g. 45"
               value={customMinutes}
-              onChange={(e) => { setCustomMinutes(e.target.value); setCreditMinutes(''); }}
-              className="h-10 w-full rounded-xl border border-input bg-background/60 px-4 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/20"
+              onChange={(event) => {
+                setCustomMinutes(event.target.value);
+                setCreditMinutes('');
+              }}
+              className="h-10"
             />
           </div>
 
-          {/* Reason */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Reason (optional)</label>
-            <input
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Reason</label>
+            <Input
               type="text"
               placeholder="Bonus credit, support adjustment..."
               value={creditReason}
-              onChange={(e) => setCreditReason(e.target.value)}
-              className="h-10 w-full rounded-xl border border-input bg-background/60 px-4 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/20"
+              onChange={(event) => setCreditReason(event.target.value)}
+              className="h-10"
             />
           </div>
 
-          {/* Preview */}
-          {(creditMinutes || customMinutes) && (
+          {creditMinutes || customMinutes ? (
             <div className="rounded-xl border border-green-500/20 bg-green-500/5 px-4 py-3">
               <p className="text-sm font-medium text-green-400">
                 +{customMinutes || creditMinutes} minutes will be added
               </p>
             </div>
-          )}
+          ) : null}
 
           <div className="flex gap-2 pt-2">
-            <Button variant="secondary" className="flex-1" onClick={() => setAddModal(false)}>Cancel</Button>
-            <Button
-              className="flex-1 bg-accent hover:bg-accent/90"
-              onClick={handleAddCredits}
-              disabled={!creditMinutes && !customMinutes}
-            >
-              <Plus size={14} /> Add Credits
+            <Button variant="secondary" className="flex-1" onClick={() => setAddModal(false)}>
+              Cancel
+            </Button>
+            <Button className="flex-1 bg-accent hover:bg-accent/90" onClick={handleAddCredits} disabled={!creditMinutes && !customMinutes}>
+              <Plus size={14} />
+              Add Credits
             </Button>
           </div>
         </div>
       </Modal>
 
-      {/* ─── Deduct Credits Modal ─── */}
       <Modal open={deductModal} onClose={() => setDeductModal(false)} title="Deduct Credits">
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">Select a preset or enter a custom amount to remove from this user's wallet. If the balance reaches zero, any open session will stop automatically.</p>
+          <p className="text-sm text-muted-foreground">
+            Select a preset or enter a custom amount to remove. If the balance reaches zero, any live session stops automatically.
+          </p>
 
-          {/* Presets */}
           <div className="grid grid-cols-4 gap-2">
             {CREDIT_PRESETS.map((preset) => (
               <button
                 key={preset.minutes}
                 type="button"
-                onClick={() => { setCreditMinutes(String(preset.minutes)); setCustomMinutes(''); }}
+                onClick={() => {
+                  setCreditMinutes(String(preset.minutes));
+                  setCustomMinutes('');
+                }}
                 className={`rounded-xl border py-2.5 text-sm font-medium transition-all ${
                   creditMinutes === String(preset.minutes) && !customMinutes
                     ? 'border-red-500/50 bg-red-500/10 text-red-400'
@@ -412,77 +549,98 @@ export function AdminUserActions({ userId, accountStatus, hasActiveSession }: Ad
             ))}
           </div>
 
-          {/* Custom */}
           <div>
             <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Custom minutes</label>
-            <input
+            <Input
               type="number"
               min="1"
               placeholder="e.g. 45"
               value={customMinutes}
-              onChange={(e) => { setCustomMinutes(e.target.value); setCreditMinutes(''); }}
-              className="h-10 w-full rounded-xl border border-input bg-background/60 px-4 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/20"
+              onChange={(event) => {
+                setCustomMinutes(event.target.value);
+                setCreditMinutes('');
+              }}
+              className="h-10"
             />
           </div>
 
-          {/* Reason */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Reason (optional)</label>
-            <input
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Reason</label>
+            <Input
               type="text"
-              placeholder="Penalty, correction..."
+              placeholder="Correction, penalty, refund adjustment..."
               value={creditReason}
-              onChange={(e) => setCreditReason(e.target.value)}
-              className="h-10 w-full rounded-xl border border-input bg-background/60 px-4 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/20"
+              onChange={(event) => setCreditReason(event.target.value)}
+              className="h-10"
             />
           </div>
 
-          {/* Preview */}
-          {(creditMinutes || customMinutes) && (
+          {creditMinutes || customMinutes ? (
             <div className="rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3">
               <p className="text-sm font-medium text-red-400">
                 -{customMinutes || creditMinutes} minutes will be deducted
               </p>
             </div>
-          )}
+          ) : null}
 
           <div className="flex gap-2 pt-2">
-            <Button variant="secondary" className="flex-1" onClick={() => setDeductModal(false)}>Cancel</Button>
-            <Button
-              className="flex-1 bg-red-500 hover:bg-red-600 text-white"
-              onClick={handleDeductCredits}
-              disabled={!creditMinutes && !customMinutes}
-            >
-              <Minus size={14} /> Deduct Credits
+            <Button variant="secondary" className="flex-1" onClick={() => setDeductModal(false)}>
+              Cancel
+            </Button>
+            <Button className="flex-1 bg-red-500 text-white hover:bg-red-600" onClick={handleDeductCredits} disabled={!creditMinutes && !customMinutes}>
+              <Minus size={14} />
+              Deduct Credits
             </Button>
           </div>
         </div>
       </Modal>
 
-      {/* ─── Confirm Action Modal ─── */}
-      <Modal
-        open={confirmModal !== null}
-        onClose={() => setConfirmModal(null)}
-        title={confirmModal?.title ?? ''}
-      >
-        {confirmModal && (
+      <Modal open={confirmModal !== null} onClose={() => setConfirmModal(null)} title={confirmModal?.title ?? ''}>
+        {confirmModal ? (
           <div className="space-y-5">
             <div className={`rounded-xl border p-4 ${confirmModal.danger ? 'border-red-500/20 bg-red-500/5' : 'border-border/50 bg-surface/30'}`}>
               <p className="text-sm text-muted-foreground">{confirmModal.message}</p>
             </div>
+
+            <div>
+              <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+                {confirmModal.requiresReason ? 'Reason (required)' : 'Reason (optional)'}
+              </label>
+              <Textarea
+                value={confirmReason}
+                onChange={(event) => setConfirmReason(event.target.value)}
+                placeholder={confirmModal.reasonPlaceholder ?? 'Add extra context for the audit trail...'}
+                className="min-h-[110px]"
+              />
+            </div>
+
+            {confirmModal.supportsSuspendedUntil ? (
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+                  Suspend until (optional)
+                </label>
+                <Input
+                  type="datetime-local"
+                  value={confirmSuspendedUntil}
+                  onChange={(event) => setConfirmSuspendedUntil(event.target.value)}
+                  className="h-10"
+                />
+              </div>
+            ) : null}
+
             <div className="flex gap-2">
               <Button variant="secondary" className="flex-1" onClick={() => setConfirmModal(null)}>
-                <X size={14} /> Cancel
+                Cancel
               </Button>
               <Button
-                className={`flex-1 ${confirmModal.danger ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-accent hover:bg-accent/90'}`}
+                className={`flex-1 ${confirmModal.danger ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-accent hover:bg-accent/90'}`}
                 onClick={handleConfirmAction}
               >
-                <Check size={14} /> {confirmModal.confirmLabel}
+                {confirmModal.confirmLabel}
               </Button>
             </div>
           </div>
-        )}
+        ) : null}
       </Modal>
     </>
   );

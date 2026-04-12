@@ -277,6 +277,8 @@ export interface ExtensionRefreshTokenResponse {
 
 export interface ClientWalletResponse {
   remainingSeconds: number;
+  nextExpiryAt?: string | null;
+  expiringSeconds?: number;
 }
 
 export interface ClientSettings {
@@ -383,6 +385,7 @@ export interface PublicPaymentPackageSummary {
   durationLabel: string;
   durationSummary: string;
   hasDistinctName: boolean;
+  creditExpiresAfterDays: number | null;
 }
 
 export interface PublicPaymentPackagesResponse {
@@ -406,10 +409,132 @@ export interface AdminUserSummary {
   walletStatus: WalletStatus;
   sessionCount: number;
   lastSessionAt: string;
+  joinedAt: string;
+  joinedAtIso: string | null;
+  hasActiveSession: boolean;
+  remainingSeconds: number;
+  lifetimeSecondsPurchased: number;
+  lifetimeSecondsUsed: number;
+  lastActiveAt: string | null;
+  lastActiveLabel: string;
+  lowCredit: boolean;
+  packageName: string | null;
+  paymentStatus: PaymentStatus | null;
+  nextCreditExpiryAt: string | null;
+  expiringCreditSeconds: number;
+  flags: AdminUserFlagSummary[];
+}
+
+export type AdminUsersQuickFilter = 'all' | 'live' | 'suspended' | 'banned' | 'low_credit';
+
+export type AdminUsersRoleFilter = 'all' | UserRole;
+
+export type AdminUsersSortMode =
+  | 'recent_joined'
+  | 'name_az'
+  | 'credits_low'
+  | 'credits_high'
+  | 'activity_recent';
+
+export interface AdminUsersFilterState {
+  q: string;
+  role: AdminUsersRoleFilter;
+  quickFilter: AdminUsersQuickFilter;
+  sort: AdminUsersSortMode;
+}
+
+export interface AdminUsersSummary {
+  totalUsers: number;
+  liveNow: number;
+  lowCredits: number;
+  suspended: number;
+  adminsCount: number;
 }
 
 export interface AdminUsersResponse {
   users: AdminUserSummary[];
+  totalCount: number;
+  totalPages: number;
+  page: number;
+  pageSize: number;
+  filters: AdminUsersFilterState;
+  summary: AdminUsersSummary;
+}
+
+export interface AdminUserDetailMetric {
+  label: string;
+  value: string;
+  helper: string;
+}
+
+export interface AdminUserCreditTransactionSummary {
+  id: string;
+  createdAt: string;
+  transactionType: CreditTransactionType;
+  deltaLabel: string;
+  balanceAfterLabel: string;
+  description: string;
+}
+
+export interface AdminUserDeviceSummary {
+  id: string;
+  installationStatus: InstallationStatus;
+  deviceName: string | null;
+  browserName: string | null;
+  extensionVersion: string | null;
+  lastSeenAt: string | null;
+}
+
+export interface AdminUserNoteSummary {
+  id: string;
+  note: string;
+  createdAt: string;
+  createdByName: string;
+  createdByEmail: string;
+}
+
+export interface AdminUserFlagSummary {
+  id: string;
+  flag: string;
+  color: string | null;
+  createdAt: string;
+}
+
+export interface AdminUserAccessOverrideSummary {
+  canUseExtension: boolean;
+  canBuyCredits: boolean;
+  maxActiveDevices: number | null;
+  dailyUsageLimitSeconds: number | null;
+  monthlyUsageLimitSeconds: number | null;
+  featureFlags: string[];
+  updatedAt: string | null;
+}
+
+export interface AdminUserWalletGrantSummary {
+  id: string;
+  totalLabel: string;
+  remainingLabel: string;
+  expiresAt: string | null;
+  status: 'active' | 'expired' | 'depleted';
+  description: string;
+}
+
+export interface AdminUserDetailResponse {
+  user: AdminUserSummary & {
+    joinedAtFull: string;
+    statusReason: string | null;
+    suspendedUntil: string | null;
+  };
+  metrics: AdminUserDetailMetric[];
+  transactions: AdminUserCreditTransactionSummary[];
+  payments: AdminPaymentSummary[];
+  sessions: AdminSessionSummary[];
+  devices: AdminUserDeviceSummary[];
+  auditLogs: AdminAuditLogSummary[];
+  notes: AdminUserNoteSummary[];
+  flags: AdminUserFlagSummary[];
+  access: AdminUserAccessOverrideSummary;
+  walletGrants: AdminUserWalletGrantSummary[];
 }
 
 export interface AdminPaymentSummary {
@@ -434,6 +559,7 @@ export interface AdminPaymentPackageSummary {
   currency: string;
   isActive: boolean;
   sortOrder: number;
+  creditExpiresAfterDays: number | null;
 }
 
 export interface AdminPaymentsResponse {
@@ -510,6 +636,7 @@ export interface AdminPaymentPackageUpdateRequest {
   priceMajor: number;
   isActive?: boolean;
   sortOrder?: number;
+  creditExpiresAfterDays?: number | null;
 }
 
 export interface AdminPaymentPackageCreateRequest {
@@ -520,12 +647,14 @@ export interface AdminPaymentPackageCreateRequest {
   priceMajor: number;
   isActive?: boolean;
   sortOrder?: number;
+  creditExpiresAfterDays?: number | null;
 }
 
 export interface AdminPaymentPackageMutationResponse extends AdminMutationResponse {
   packageId: string;
   amountMinor: number;
   minutesToCredit: number;
+  creditExpiresAfterDays?: number | null;
 }
 
 export interface AdminUserCreditAdjustmentRequest {
@@ -542,14 +671,80 @@ export interface AdminUserCreditAdjustmentResponse extends AdminMutationResponse
 }
 
 export interface AdminUserStatusRequest {
-  status: Extract<AccountStatus, 'active' | 'suspended'>;
+  status: Extract<AccountStatus, 'active' | 'suspended' | 'banned'>;
+  reason?: string;
+  suspendedUntil?: string | null;
 }
 
 export interface AdminUserStatusResponse extends AdminMutationResponse {
   userId: string;
   accountStatus: AccountStatus;
   walletStatus: WalletStatus;
+  suspendedUntil?: string | null;
   openSessionsClosed?: number;
+}
+
+export interface AdminUserNoteCreateRequest {
+  note: string;
+}
+
+export interface AdminUserNoteMutationResponse extends AdminMutationResponse {
+  noteId: string;
+}
+
+export interface AdminUserFlagCreateRequest {
+  flag: string;
+  color?: string | null;
+}
+
+export interface AdminUserFlagDeleteRequest {
+  flagId: string;
+}
+
+export interface AdminUserFlagMutationResponse extends AdminMutationResponse {
+  flagId: string;
+}
+
+export interface AdminUserAccessOverrideRequest {
+  canUseExtension: boolean;
+  canBuyCredits: boolean;
+  maxActiveDevices?: number | null;
+  dailyUsageLimitSeconds?: number | null;
+  monthlyUsageLimitSeconds?: number | null;
+  featureFlags: string[];
+}
+
+export interface AdminUserAccessOverrideResponse extends AdminMutationResponse {
+  userId: string;
+  access: AdminUserAccessOverrideSummary;
+}
+
+export interface AdminUserDeviceRevokeRequest {
+  installationId?: string | null;
+  revokeAll?: boolean;
+}
+
+export interface AdminUserDeviceRevokeResponse extends AdminMutationResponse {
+  userId: string;
+  revokedCount: number;
+}
+
+export interface AdminBulkUserActionRequest {
+  userIds: string[];
+  action: 'suspend' | 'add_credits' | 'deduct_credits';
+  reason: string;
+  minutes?: number;
+}
+
+export interface AdminBulkUserActionFailure {
+  userId: string;
+  error: string;
+}
+
+export interface AdminBulkUserActionResponse extends AdminMutationResponse {
+  processed: number;
+  succeeded: number;
+  failures: AdminBulkUserActionFailure[];
 }
 
 export interface AdminSubjectMutationRequest {

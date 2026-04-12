@@ -3,9 +3,10 @@ import { z } from 'zod';
 import type { PaymentCheckoutRequest } from '@study-assistant/shared-types';
 
 import { requirePortalUser } from '@/lib/auth/request-context';
-import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { createTopupCheckout } from '@/lib/payments/service';
 import { assertRateLimit } from '@/lib/security/rate-limit';
+import { getUserAccessOverrideByUserId } from '@/lib/supabase/users';
 
 const requestSchema = z.object({
   packageId: z.string().uuid(),
@@ -20,6 +21,11 @@ export async function POST(request: Request) {
   try {
     const context = await requirePortalUser(request, ['client']);
     assertRateLimit(`checkout:${context.userId}`, { max: 20, windowMs: 60 * 60 * 1000 });
+    const accessOverride = await getUserAccessOverrideByUserId(context.userId);
+
+    if (accessOverride?.can_buy_credits === false) {
+      throw new RouteError(403, 'credit_purchases_disabled', 'Credit purchases are disabled for this account.');
+    }
 
     const body = await parseJsonBody<PaymentCheckoutRequest>(request, requestSchema);
     const response = await createTopupCheckout({

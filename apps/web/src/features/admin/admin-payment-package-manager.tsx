@@ -27,6 +27,7 @@ interface PackageDraft {
   amountDisplay: string;
   isActive: boolean;
   sortOrder: string;
+  creditExpiresAfterDays: string;
 }
 
 function buildPackageDraft(paymentPackage: AdminPaymentPackageSummary): PackageDraft {
@@ -37,6 +38,7 @@ function buildPackageDraft(paymentPackage: AdminPaymentPackageSummary): PackageD
     amountDisplay: paymentPackage.amountDisplay,
     isActive: paymentPackage.isActive,
     sortOrder: String(paymentPackage.sortOrder),
+    creditExpiresAfterDays: paymentPackage.creditExpiresAfterDays?.toString() ?? '',
   };
 }
 
@@ -48,6 +50,7 @@ const emptyPackageDraft: PackageDraft = {
   amountDisplay: '4.99',
   isActive: true,
   sortOrder: '0',
+  creditExpiresAfterDays: '',
 };
 
 function readJson<T>(response: Response) {
@@ -114,6 +117,9 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
     const parsedHours = Number.parseFloat(draft.hoursToCredit);
     const minutesToCredit = Math.max(1, Math.round((Number.isFinite(parsedHours) ? parsedHours : 0) * 60));
     const sortOrder = Number.parseInt(draft.sortOrder, 10);
+    const creditExpiresAfterDays = draft.creditExpiresAfterDays.trim()
+      ? Number.parseInt(draft.creditExpiresAfterDays, 10)
+      : null;
     const normalizedCode = draft.code?.trim() ?? '';
 
     if (options?.requireCode && normalizedCode.length === 0) {
@@ -136,6 +142,13 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
       throw new Error('Sort order must be zero or higher.');
     }
 
+    if (
+      creditExpiresAfterDays !== null &&
+      (!Number.isFinite(creditExpiresAfterDays) || creditExpiresAfterDays <= 0)
+    ) {
+      throw new Error('Credit expiry days must be a positive whole number.');
+    }
+
     return {
       code: normalizedCode || undefined,
       name: draft.name.trim(),
@@ -144,6 +157,7 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
       priceMajor,
       isActive: draft.isActive,
       sortOrder,
+      creditExpiresAfterDays,
     };
   }
 
@@ -241,6 +255,18 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                 value={newPackageDraft.sortOrder}
                 onChange={(event) => setNewPackageDraft((current) => ({ ...current, sortOrder: event.target.value }))}
                 disabled={createPending}
+              />
+            </FormField>
+            <FormField label="Credit expiry (days)" description="Leave blank if credits should not expire.">
+              <Input
+                type="number"
+                min={1}
+                value={newPackageDraft.creditExpiresAfterDays}
+                onChange={(event) =>
+                  setNewPackageDraft((current) => ({ ...current, creditExpiresAfterDays: event.target.value }))
+                }
+                disabled={createPending}
+                placeholder="No expiry"
               />
             </FormField>
             <div className="flex items-center rounded-2xl border border-border/40 bg-background/40 px-4 py-3">
@@ -343,7 +369,8 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
               draft.amountDisplay !== paymentPackage.amountDisplay ||
               draft.hoursToCredit !== String(paymentPackage.minutesToCredit / 60) ||
               draft.isActive !== paymentPackage.isActive ||
-              draft.sortOrder !== String(paymentPackage.sortOrder);
+              draft.sortOrder !== String(paymentPackage.sortOrder) ||
+              draft.creditExpiresAfterDays !== (paymentPackage.creditExpiresAfterDays?.toString() ?? '');
 
             return (
               <div key={paymentPackage.id} className="rounded-2xl border border-border/50 bg-background/70 p-5 shadow-soft-sm">
@@ -380,6 +407,18 @@ export function AdminPaymentPackageManager({ packages }: AdminPaymentPackageMana
                       value={draft.sortOrder}
                       onChange={(event) => updateDraft(paymentPackage.id, { sortOrder: event.target.value })}
                       disabled={pendingId === paymentPackage.id}
+                    />
+                  </FormField>
+                  <FormField label="Credit expiry (days)" description="Leave blank for non-expiring credits.">
+                    <Input
+                      type="number"
+                      min={1}
+                      value={draft.creditExpiresAfterDays}
+                      onChange={(event) =>
+                        updateDraft(paymentPackage.id, { creditExpiresAfterDays: event.target.value })
+                      }
+                      disabled={pendingId === paymentPackage.id}
+                      placeholder="No expiry"
                     />
                   </FormField>
                   <FormField label={`Price (${paymentPackage.currency})`} description="Enter peso value like 4.99 or 49.00.">

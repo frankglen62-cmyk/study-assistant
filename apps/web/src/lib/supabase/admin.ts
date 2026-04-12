@@ -5,6 +5,7 @@ import { RouteError } from '@/lib/http/route';
 import {
   categoryRecordSchema,
   folderRecordSchema,
+  installationRecordSchema,
   paymentPackageSchema,
   paymentRecordSchema,
   profileRecordSchema,
@@ -12,9 +13,14 @@ import {
   sessionRecordSchema,
   sourceFileRecordSchema,
   subjectRecordSchema,
+  userAccessOverrideRecordSchema,
+  userAdminNoteRecordSchema,
+  userFlagRecordSchema,
+  walletGrantRecordSchema,
   walletRecordSchema,
   type CategoryRecord,
   type FolderRecord,
+  type InstallationRecord,
   type PaymentPackageRecord,
   type PaymentRecord,
   type ProfileRecord,
@@ -22,10 +28,18 @@ import {
   type SessionRecord,
   type SourceFileRecord,
   type SubjectRecord,
+  type UserAccessOverrideRecord,
+  type UserAdminNoteRecord,
+  type UserFlagRecord,
+  type WalletGrantRecord,
   type WalletRecord,
 } from './schemas';
 import { getSupabaseAdmin } from './server';
 import { assertSupabaseResult, parseArray } from './utils';
+
+function escapeIlikePattern(value: string) {
+  return value.replace(/[%_,]/g, (char) => `\\${char}`);
+}
 
 const adminPaymentSummarySchema = z.object({
   id: z.string().uuid(),
@@ -58,6 +72,33 @@ const adminPaymentPackageSchema = paymentPackageSchema.extend({
   sort_order: z.number().int(),
 });
 
+const adminUserRollupSchema = z.object({
+  user_id: z.string().uuid(),
+  full_name: z.string(),
+  email: z.string().email(),
+  role: z.enum(['super_admin', 'admin', 'client']),
+  account_status: z.enum(['active', 'suspended', 'pending_verification', 'banned']),
+  created_at: z.string(),
+  status_reason: z.string().nullable().optional(),
+  suspended_until: z.string().nullable().optional(),
+  wallet_status: z.enum(['active', 'locked']),
+  remaining_seconds: z.number().int().nonnegative(),
+  lifetime_seconds_purchased: z.number().int().nonnegative(),
+  lifetime_seconds_used: z.number().int().nonnegative(),
+  session_count: z.number().int().nonnegative(),
+  has_active_session: z.boolean(),
+  last_active_at: z.string().nullable().optional(),
+  last_session_at: z.string().nullable().optional(),
+  current_package_name: z.string().nullable().optional(),
+  current_package_code: z.string().nullable().optional(),
+  last_payment_status: z.enum(['pending', 'paid', 'failed', 'canceled', 'refunded']).nullable().optional(),
+  last_payment_at: z.string().nullable().optional(),
+  next_credit_expiry_at: z.string().nullable().optional(),
+  expiring_credit_seconds: z.number().int().nonnegative(),
+  flag_labels: z.array(z.string()).default([]),
+  flags_text: z.string().default(''),
+});
+
 const adminSessionSummarySchema = z.object({
   id: z.string().uuid(),
   user_id: z.string().uuid(),
@@ -68,6 +109,7 @@ const adminSessionSummarySchema = z.object({
   used_seconds: z.number().int().nonnegative(),
   start_time: z.string(),
   end_time: z.string().nullable(),
+  last_activity_at: z.string().nullable().optional(),
   page_url: z.string().nullable().optional(),
   page_domain: z.string().nullable().optional(),
   page_title: z.string().nullable().optional(),
@@ -164,11 +206,15 @@ const adminCreditTransactionSchema = z.object({
 
 export type AdminPaymentSummaryRecord = z.infer<typeof adminPaymentSummarySchema>;
 export type AdminPaymentPackageRecord = z.infer<typeof adminPaymentPackageSchema>;
+export type AdminUserRollupRecord = z.infer<typeof adminUserRollupSchema>;
 export type AdminSessionSummaryRecord = z.infer<typeof adminSessionSummarySchema>;
 export type AdminSessionAttemptSignalRecord = z.infer<typeof adminSessionAttemptSignalSchema>;
 export type AdminAuditLogRecord = z.infer<typeof adminAuditLogSchema>;
 export type AdminSessionDetailRecord = z.infer<typeof adminSessionDetailSchema>;
 export type AdminCreditTransactionRecord = z.infer<typeof adminCreditTransactionSchema>;
+export type AdminUserNoteRecord = UserAdminNoteRecord;
+export type AdminUserFlagRecord = UserFlagRecord;
+export type AdminUserAccessOverrideAdminRecord = UserAccessOverrideRecord;
 
 export async function listAdminSubjects(): Promise<SubjectRecord[]> {
   const supabase = getSupabaseAdmin();
@@ -255,26 +301,312 @@ export async function listAdminSourceFiles(): Promise<SourceFileRecord[]> {
   return parseArray(rows, sourceFileRecordSchema, 'Source file rows are invalid.');
 }
 
-export async function listAdminUsers(): Promise<ProfileRecord[]> {
+export async function listAdminUsers(options?: {
+  userIds?: string[];
+  role?: 'client' | 'admin' | 'super_admin';
+  accountStatuses?: Array<'active' | 'suspended' | 'pending_verification' | 'banned'>;
+  search?: string;
+  page?: number;
+  pageSize?: number;
+  sort?: 'created_desc' | 'name_asc';
+}): Promise<ProfileRecord[]> {
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase
+  let query = supabase
     .from('profiles')
-    .select('id, email, full_name, role, account_status, created_at')
-    .order('created_at', { ascending: false });
+    .select('id, email, full_name, role, account_status, email_2fa_enabled, status_reason, status_changed_at, status_changed_by, suspended_until, created_at');
+
+  if (options?.userIds && options.userIds.length > 0) {
+    query = query.in('id', options.userIds);
+  }
+
+  if (options?.role) {
+    query = query.eq('role', options.role);
+  }
+
+  if (options?.accountStatuses && options.accountStatuses.length > 0) {
+    query = query.in('account_status', options.accountStatuses);
+  }
+
+  if (options?.search?.trim()) {
+    const escaped = escapeIlikePattern(options.search.trim());
+    query = query.or(`full_name.ilike.%${escaped}%,email.ilike.%${escaped}%`);
+  }
+
+  query =
+    options?.sort === 'name_asc'
+      ? query.order('full_name', { ascending: true }).order('created_at', { ascending: false })
+      : query.order('created_at', { ascending: false });
+
+  if (typeof options?.page === 'number' && typeof options?.pageSize === 'number') {
+    const start = Math.max(0, (options.page - 1) * options.pageSize);
+    query = query.range(start, start + options.pageSize - 1);
+  }
+
+  const { data, error } = await query;
 
   assertSupabaseResult(error, 'Failed to load users.');
   return parseArray(data ?? [], profileRecordSchema, 'User rows are invalid.');
 }
 
-export async function listAdminWallets(): Promise<WalletRecord[]> {
+export async function countAdminUsers(options?: {
+  role?: 'client' | 'admin' | 'super_admin';
+  accountStatuses?: Array<'active' | 'suspended' | 'pending_verification' | 'banned'>;
+  search?: string;
+  userIds?: string[];
+}) {
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase
+  let query = supabase.from('profiles').select('*', { head: true, count: 'exact' });
+
+  if (options?.userIds && options.userIds.length > 0) {
+    query = query.in('id', options.userIds);
+  }
+
+  if (options?.role) {
+    query = query.eq('role', options.role);
+  }
+
+  if (options?.accountStatuses && options.accountStatuses.length > 0) {
+    query = query.in('account_status', options.accountStatuses);
+  }
+
+  if (options?.search?.trim()) {
+    const escaped = escapeIlikePattern(options.search.trim());
+    query = query.or(`full_name.ilike.%${escaped}%,email.ilike.%${escaped}%`);
+  }
+
+  const { count, error } = await query;
+  assertSupabaseResult(error, 'Failed to count users.');
+  return count ?? 0;
+}
+
+function applyAdminUserRollupFilters(
+  query: any,
+  options?: {
+    q?: string;
+    role?: 'client' | 'admin' | 'super_admin';
+    accountStatuses?: Array<'active' | 'suspended' | 'pending_verification' | 'banned'>;
+    quickFilter?: 'all' | 'live' | 'suspended' | 'banned' | 'low_credit';
+  },
+) {
+  let nextQuery = query;
+
+  if (options?.role) {
+    nextQuery = nextQuery.eq('role', options.role);
+  }
+
+  if (options?.accountStatuses && options.accountStatuses.length > 0) {
+    nextQuery = nextQuery.in('account_status', options.accountStatuses);
+  }
+
+  if (options?.quickFilter === 'live') {
+    nextQuery = nextQuery.eq('has_active_session', true);
+  }
+
+  if (options?.quickFilter === 'low_credit') {
+    nextQuery = nextQuery.gt('remaining_seconds', 0).lte('remaining_seconds', 30 * 60);
+  }
+
+  if (options?.quickFilter === 'suspended') {
+    nextQuery = nextQuery.eq('account_status', 'suspended');
+  }
+
+  if (options?.quickFilter === 'banned') {
+    nextQuery = nextQuery.eq('account_status', 'banned');
+  }
+
+  if (options?.q?.trim()) {
+    const escaped = escapeIlikePattern(options.q.trim());
+    nextQuery = nextQuery.or(`full_name.ilike.%${escaped}%,email.ilike.%${escaped}%,flags_text.ilike.%${escaped}%`);
+  }
+
+  return nextQuery;
+}
+
+export async function listAdminUserRollups(options?: {
+  q?: string;
+  role?: 'client' | 'admin' | 'super_admin';
+  accountStatuses?: Array<'active' | 'suspended' | 'pending_verification' | 'banned'>;
+  quickFilter?: 'all' | 'live' | 'suspended' | 'banned' | 'low_credit';
+  page?: number;
+  pageSize?: number;
+  sort?: 'recent_joined' | 'name_az' | 'credits_low' | 'credits_high' | 'activity_recent';
+}): Promise<AdminUserRollupRecord[]> {
+  const supabase = getSupabaseAdmin();
+  let query = applyAdminUserRollupFilters(
+    supabase
+      .from('admin_user_rollups')
+      .select(`
+        user_id,
+        full_name,
+        email,
+        role,
+        account_status,
+        created_at,
+        status_reason,
+        suspended_until,
+        wallet_status,
+        remaining_seconds,
+        lifetime_seconds_purchased,
+        lifetime_seconds_used,
+        session_count,
+        has_active_session,
+        last_active_at,
+        last_session_at,
+        current_package_name,
+        current_package_code,
+        last_payment_status,
+        last_payment_at,
+        next_credit_expiry_at,
+        expiring_credit_seconds,
+        flag_labels,
+        flags_text
+      `),
+    options,
+  );
+
+  if (options?.sort === 'name_az') {
+    query = query.order('full_name', { ascending: true }).order('created_at', { ascending: false });
+  } else if (options?.sort === 'credits_low') {
+    query = query.order('remaining_seconds', { ascending: true }).order('created_at', { ascending: false });
+  } else if (options?.sort === 'credits_high') {
+    query = query.order('remaining_seconds', { ascending: false }).order('created_at', { ascending: false });
+  } else if (options?.sort === 'activity_recent') {
+    query = query.order('last_active_at', { ascending: false, nullsFirst: false }).order('created_at', { ascending: false });
+  } else {
+    query = query.order('created_at', { ascending: false });
+  }
+
+  if (typeof options?.page === 'number' && typeof options?.pageSize === 'number') {
+    const start = Math.max(0, (options.page - 1) * options.pageSize);
+    query = query.range(start, start + options.pageSize - 1);
+  }
+
+  const { data, error } = await query;
+  assertSupabaseResult(error, 'Failed to load admin user rollups.');
+  return parseArray(data ?? [], adminUserRollupSchema, 'Admin user rollup rows are invalid.');
+}
+
+export async function countAdminUserRollups(options?: {
+  q?: string;
+  role?: 'client' | 'admin' | 'super_admin';
+  accountStatuses?: Array<'active' | 'suspended' | 'pending_verification' | 'banned'>;
+  quickFilter?: 'all' | 'live' | 'suspended' | 'banned' | 'low_credit';
+}) {
+  const supabase = getSupabaseAdmin();
+  const query = applyAdminUserRollupFilters(
+    supabase.from('admin_user_rollups').select('user_id', { head: true, count: 'exact' }),
+    options,
+  );
+
+  const { count, error } = await query;
+  assertSupabaseResult(error, 'Failed to count admin user rollups.');
+  return count ?? 0;
+}
+
+export async function listAdminWallets(options?: { userIds?: string[] }): Promise<WalletRecord[]> {
+  const supabase = getSupabaseAdmin();
+  let query = supabase
     .from('wallets')
     .select('id, user_id, remaining_seconds, lifetime_seconds_purchased, lifetime_seconds_used, status')
     .order('updated_at', { ascending: false });
 
+  if (options?.userIds && options.userIds.length > 0) {
+    query = query.in('user_id', options.userIds);
+  }
+
+  const { data, error } = await query;
+
   assertSupabaseResult(error, 'Failed to load wallets.');
   return parseArray(data ?? [], walletRecordSchema, 'Wallet rows are invalid.');
+}
+
+export async function listAdminLowCreditUserIds(thresholdSeconds = 30 * 60) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('wallets')
+    .select('user_id')
+    .gt('remaining_seconds', 0)
+    .lte('remaining_seconds', thresholdSeconds);
+
+  assertSupabaseResult(error, 'Failed to load low-credit users.');
+  return Array.from(new Set((data ?? []).map((row) => row.user_id as string)));
+}
+
+export async function listAdminWalletGrantsForUser(userId: string, limit = 12): Promise<WalletGrantRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('wallet_grants')
+    .select(`
+      id,
+      user_id,
+      wallet_id,
+      source_transaction_id,
+      grant_type,
+      total_seconds,
+      remaining_seconds,
+      expires_at,
+      description,
+      metadata,
+      created_by,
+      created_at,
+      updated_at,
+      depleted_at,
+      expired_at
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load wallet grants.');
+  return parseArray(data ?? [], walletGrantRecordSchema, 'Wallet grant rows are invalid.');
+}
+
+export async function listAdminUserIdsByFlagSearch(search: string) {
+  const supabase = getSupabaseAdmin();
+  const escaped = escapeIlikePattern(search.trim());
+  const { data, error } = await supabase
+    .from('user_flags')
+    .select('user_id')
+    .ilike('flag', `%${escaped}%`);
+
+  assertSupabaseResult(error, 'Failed to search user flags.');
+  return Array.from(new Set((data ?? []).map((row) => row.user_id as string)));
+}
+
+export async function listAdminUserFlags(userId?: string, userIds?: string[]): Promise<UserFlagRecord[]> {
+  const supabase = getSupabaseAdmin();
+  let query = supabase
+    .from('user_flags')
+    .select('id, user_id, flag, color, created_by, created_at')
+    .order('created_at', { ascending: false });
+
+  if (userId) {
+    query = query.eq('user_id', userId);
+  } else if (userIds && userIds.length > 0) {
+    query = query.in('user_id', userIds);
+  }
+
+  const { data, error } = await query;
+
+  assertSupabaseResult(error, 'Failed to load user flags.');
+  return parseArray(data ?? [], userFlagRecordSchema, 'User flag rows are invalid.');
+}
+
+export async function listAdminActiveSessionUserIds(userIds?: string[]) {
+  const supabase = getSupabaseAdmin();
+  let query = supabase
+    .from('sessions')
+    .select('user_id')
+    .eq('status', 'active');
+
+  if (userIds && userIds.length > 0) {
+    query = query.in('user_id', userIds);
+  }
+
+  const { data, error } = await query;
+
+  assertSupabaseResult(error, 'Failed to load active session user ids.');
+  return Array.from(new Set((data ?? []).map((row) => row.user_id as string)));
 }
 
 export async function listAdminPayments(): Promise<PaymentRecord[]> {
@@ -308,7 +640,7 @@ export async function listAdminPaymentPackages(): Promise<AdminPaymentPackageRec
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, sort_order')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, sort_order, credit_expires_after_days')
     .order('sort_order', { ascending: true })
     .order('created_at', { ascending: false });
 
@@ -347,6 +679,38 @@ export async function listAdminPaymentSummaries(): Promise<AdminPaymentSummaryRe
   return parseArray(data ?? [], adminPaymentSummarySchema, 'Admin payment rows are invalid.');
 }
 
+export async function listAdminPaymentSummariesForUser(userId: string, limit = 10): Promise<AdminPaymentSummaryRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payments')
+    .select(`
+      id,
+      user_id,
+      provider,
+      provider_payment_id,
+      amount_minor,
+      currency,
+      status,
+      payment_type,
+      created_at,
+      paid_at,
+      payment_packages (
+        code,
+        name
+      ),
+      profiles:user_id (
+        full_name,
+        email
+      )
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load payment summaries for the selected user.');
+  return parseArray(data ?? [], adminPaymentSummarySchema, 'Admin payment rows are invalid.');
+}
+
 export async function listAdminSessions(): Promise<SessionRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
@@ -361,6 +725,7 @@ export async function listAdminSessions(): Promise<SessionRecord[]> {
 
 export async function listAdminSessionSummaries(options?: {
   userId?: string;
+  userIds?: string[];
   limit?: number;
 }): Promise<AdminSessionSummaryRecord[]> {
   const supabase = getSupabaseAdmin();
@@ -376,6 +741,7 @@ export async function listAdminSessionSummaries(options?: {
       used_seconds,
       start_time,
       end_time,
+      last_activity_at,
       page_url,
       page_domain,
       page_title,
@@ -394,6 +760,10 @@ export async function listAdminSessionSummaries(options?: {
 
   if (options?.userId) {
     query = query.eq('user_id', options.userId);
+  }
+
+  if (options?.userIds && options.userIds.length > 0) {
+    query = query.in('user_id', options.userIds);
   }
 
   if (typeof options?.limit === 'number') {
@@ -529,6 +899,90 @@ export async function listAdminCreditTransactionsForSession(sessionId: string): 
 
   assertSupabaseResult(error, 'Failed to load session credit transactions.');
   return parseArray(data ?? [], adminCreditTransactionSchema, 'Session credit transactions are invalid.');
+}
+
+export async function listAdminCreditTransactionsForUser(userId: string, limit = 12): Promise<AdminCreditTransactionRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('credit_transactions')
+    .select(`
+      id,
+      user_id,
+      wallet_id,
+      transaction_type,
+      delta_seconds,
+      balance_after_seconds,
+      related_payment_id,
+      related_session_id,
+      description,
+      metadata,
+      created_by,
+      created_at
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load credit transactions for the selected user.');
+  return parseArray(data ?? [], adminCreditTransactionSchema, 'User credit transactions are invalid.');
+}
+
+export async function listAdminUserDevices(userId: string): Promise<InstallationRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('extension_installations')
+    .select('id, user_id, installation_status, device_name, browser_name, extension_version, last_seen_at')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+
+  assertSupabaseResult(error, 'Failed to load extension installations for the selected user.');
+  return parseArray(data ?? [], installationRecordSchema, 'Installation rows are invalid.');
+}
+
+export async function listAdminUserNotes(userId: string, limit = 20): Promise<UserAdminNoteRecord[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('user_admin_notes')
+    .select(`
+      id,
+      user_id,
+      note,
+      created_by,
+      created_at,
+      profiles:created_by (
+        full_name,
+        email
+      )
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  assertSupabaseResult(error, 'Failed to load admin notes for the selected user.');
+  return parseArray(data ?? [], userAdminNoteRecordSchema, 'User admin note rows are invalid.');
+}
+
+export async function getAdminUserAccessOverride(userId: string): Promise<UserAccessOverrideRecord | null> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('user_access_overrides')
+    .select(`
+      user_id,
+      can_use_extension,
+      can_buy_credits,
+      max_active_devices,
+      daily_usage_limit_seconds,
+      monthly_usage_limit_seconds,
+      feature_flags,
+      updated_by,
+      created_at,
+      updated_at
+    `)
+    .eq('user_id', userId)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load user access overrides.');
+  return data ? userAccessOverrideRecordSchema.parse(data) : null;
 }
 
 export async function listRecentQuestionAttempts(userId: string, limit = 10): Promise<QuestionAttemptSummaryRecord[]> {

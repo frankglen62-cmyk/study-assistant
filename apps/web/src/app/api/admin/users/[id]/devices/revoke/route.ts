@@ -1,7 +1,9 @@
-import type { AdminUserStatusRequest, AdminUserStatusResponse } from '@study-assistant/shared-types';
+import type {
+  AdminUserDeviceRevokeResponse,
+} from '@study-assistant/shared-types';
 
-import { adminUserStatusSchema } from '@/lib/admin/schemas';
-import { updateUserStatus } from '@/lib/admin/service';
+import { adminUserDeviceRevokeSchema } from '@/lib/admin/schemas';
+import { revokeAdminUserDevices } from '@/lib/admin/service';
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { assertRateLimit } from '@/lib/security/rate-limit';
@@ -15,21 +17,20 @@ export async function POST(
   try {
     const context = await requirePortalUser(request, ['admin', 'super_admin']);
     const { id } = await params;
-    const body = await parseJsonBody(request, adminUserStatusSchema);
-    assertRateLimit(`admin-user-status:${context.userId}`, { max: 120, windowMs: 60 * 60 * 1000 });
+    const body = await parseJsonBody(request, adminUserDeviceRevokeSchema);
+    assertRateLimit(`admin-user-device-revoke:${context.userId}`, { max: 120, windowMs: 60 * 60 * 1000 });
 
-    const result = await updateUserStatus({
+    const result = await revokeAdminUserDevices({
       userId: id,
-      status: body.status,
-      reason: body.reason,
-      suspendedUntil: body.suspendedUntil ?? null,
+      installationId: body.installationId ?? null,
+      revokeAll: body.revokeAll ?? false,
       actorUserId: context.userId,
       actorRole: context.profile.role,
       ipAddress,
       userAgent,
     });
 
-    const response: AdminUserStatusResponse = {
+    const response: AdminUserDeviceRevokeResponse = {
       success: true,
       ...result,
     };

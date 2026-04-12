@@ -8,6 +8,7 @@ interface PaymentPackageDisplayInput {
   secondsToCredit: number;
   amountMinor: number;
   currency: string;
+  creditExpiresAfterDays?: number | null;
 }
 
 export interface PaymentPackageDisplay {
@@ -24,6 +25,8 @@ export interface PaymentPackageDisplay {
   durationSummary: string;
   hasDistinctName: boolean;
   featured: boolean;
+  creditExpiresAfterDays: number | null;
+  expirySummary: string;
 }
 
 function pluralize(value: number, singular: string, plural = `${singular}s`) {
@@ -61,6 +64,7 @@ export function buildPaymentPackageDisplay(
   const durationLabel = formatPaymentPackageDurationLabel(entry.secondsToCredit);
   const normalizedName = normalizeLabel(entry.name);
   const normalizedDuration = normalizeLabel(durationLabel);
+  const creditExpiresAfterDays = entry.creditExpiresAfterDays ?? null;
 
   return {
     id: entry.id,
@@ -76,5 +80,10 @@ export function buildPaymentPackageDisplay(
     durationSummary: formatPaymentPackageDurationSummary(entry.secondsToCredit),
     hasDistinctName: normalizedName !== normalizedDuration,
     featured: options?.featured ?? false,
+    creditExpiresAfterDays,
+    expirySummary:
+      creditExpiresAfterDays === null
+        ? 'Credits never expire'
+        : `Credits expire ${creditExpiresAfterDays} day${creditExpiresAfterDays === 1 ? '' : 's'} after payment`,
   };
 }

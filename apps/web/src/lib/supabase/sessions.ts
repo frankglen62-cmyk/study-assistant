@@ -32,6 +32,29 @@ export async function listSessionsForUser(userId: string, limit = 20): Promise<S
   return parseArray(data ?? [], sessionRecordSchema, 'Session history rows are invalid.');
 }
 
+export async function sumUsageDebitsForUserSince(params: {
+  userId: string;
+  since: string;
+  until?: string | null;
+}) {
+  const supabase = getSupabaseAdmin();
+  let query = supabase
+    .from('credit_transactions')
+    .select('delta_seconds')
+    .eq('user_id', params.userId)
+    .eq('transaction_type', 'usage_debit')
+    .gte('created_at', params.since);
+
+  if (params.until) {
+    query = query.lt('created_at', params.until);
+  }
+
+  const { data, error } = await query;
+
+  assertSupabaseResult(error, 'Failed to load session usage debits.');
+  return (data ?? []).reduce((sum, row) => sum + Math.max(0, Math.abs(row.delta_seconds ?? 0)), 0);
+}
+
 export async function createActiveSession(params: {
   userId: string;
   installationId: string | null;

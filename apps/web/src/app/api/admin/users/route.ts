@@ -9,8 +9,16 @@ export async function GET(request: Request) {
 
   try {
     await requirePortalUser(request, ['admin', 'super_admin']);
-    const users = await getAdminUsersPageData();
-    const response: AdminUsersResponse = { users };
+    const url = new URL(request.url);
+    const result = await getAdminUsersPageData({
+      q: url.searchParams.get('q') ?? undefined,
+      role: url.searchParams.get('role') ?? undefined,
+      filter: url.searchParams.get('filter') ?? undefined,
+      sort: url.searchParams.get('sort') ?? undefined,
+      page: url.searchParams.get('page') ?? undefined,
+      pageSize: url.searchParams.get('pageSize') ?? undefined,
+    });
+    const response: AdminUsersResponse = result;
     return jsonOk(response, requestId);
   } catch (error) {
     return jsonError(error, requestId);

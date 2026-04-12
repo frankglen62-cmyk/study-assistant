@@ -38,7 +38,11 @@ export default async function BuyCreditsPage() {
           <div className="space-y-2">
             <p className="text-xs font-medium text-muted-foreground flex items-center gap-2"><Zap className="h-4 w-4 text-accent" /> Active Balance</p>
             <p className="text-4xl font-display text-foreground">{formatDuration(context.wallet.remaining_seconds)}</p>
-            <p className="text-sm text-muted-foreground">Available for immediate AI analysis.</p>
+            <p className="text-sm text-muted-foreground">
+              {billing.walletGrantOverview.nextExpiryAt && billing.walletGrantOverview.expiringSeconds > 0
+                ? `${formatDuration(billing.walletGrantOverview.expiringSeconds)} may expire on ${new Date(billing.walletGrantOverview.nextExpiryAt).toLocaleString()}.`
+                : 'Available for immediate AI analysis.'}
+            </p>
           </div>
           <div className="w-full md:max-w-md space-y-2">
             <div className="flex justify-between text-xs font-medium text-muted-foreground">
@@ -81,7 +85,7 @@ export default async function BuyCreditsPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                  <span>Credits never expire</span>
+                  <span>{pkg.expirySummary}</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />

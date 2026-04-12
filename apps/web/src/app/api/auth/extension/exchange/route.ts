@@ -3,15 +3,16 @@ import { z } from 'zod';
 import type { ExtensionPairingExchangeResponse } from '@study-assistant/shared-types';
 
 import { createExtensionAccessToken, hashOpaqueToken, issueRefreshToken } from '@/lib/auth/extension-tokens';
-import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { assertMaintenanceAccess } from '@/lib/platform/system-settings';
 import { getOpenSessionForUser } from '@/lib/supabase/sessions';
-import { getProfileWithWalletByUserId } from '@/lib/supabase/users';
+import { getProfileWithWalletByUserId, getUserAccessOverrideByUserId } from '@/lib/supabase/users';
 import {
   assignPairingCodeInstallation,
   consumePairingCode,
   createInstallation,
+  listInstallationsForUser,
   storeRefreshToken,
 } from '@/lib/supabase/extension';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
@@ -32,10 +33,30 @@ export async function POST(request: Request) {
     const body = await parseJsonBody(request, requestSchema);
     const pairing = await consumePairingCode(hashOpaqueToken(body.pairingCode.trim().toUpperCase()));
     const account = await getProfileWithWalletByUserId(pairing.user_id);
+    const accessOverride = await getUserAccessOverrideByUserId(pairing.user_id);
     await assertMaintenanceAccess({
       role: account.profile.role,
       target: 'extension',
     });
+
+    if (accessOverride?.can_use_extension === false) {
+      throw new RouteError(403, 'extension_access_disabled', 'Extension access is disabled for this account.');
+    }
+
+    if (typeof accessOverride?.max_active_devices === 'number') {
+      const activeInstallations = (await listInstallationsForUser(pairing.user_id)).filter(
+        (installation) => installation.installation_status === 'active',
+      );
+
+      if (activeInstallations.length >= accessOverride.max_active_devices) {
+        throw new RouteError(
+          409,
+          'device_limit_reached',
+          `This account already reached its ${accessOverride.max_active_devices} active device limit.`,
+        );
+      }
+    }
+
     const installation = await createInstallation({
       userId: pairing.user_id,
       deviceName: body.deviceName,

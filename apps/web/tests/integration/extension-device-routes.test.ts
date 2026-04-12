@@ -6,11 +6,16 @@ setTestEnv();
 
 const authMocks = vi.hoisted(() => ({
   requirePortalUser: vi.fn(),
+  requireClientUser: vi.fn(),
 }));
 
 const extensionMocks = vi.hoisted(() => ({
   createPairingCode: vi.fn(),
   revokeInstallation: vi.fn(),
+}));
+
+const userMocks = vi.hoisted(() => ({
+  getUserAccessOverrideByUserId: vi.fn(),
 }));
 
 const auditMocks = vi.hoisted(() => ({
@@ -28,6 +33,7 @@ const tokenMocks = vi.hoisted(() => ({
 
 vi.mock('@/lib/auth/request-context', () => authMocks);
 vi.mock('@/lib/supabase/extension', () => extensionMocks);
+vi.mock('@/lib/supabase/users', () => userMocks);
 vi.mock('@/lib/observability/audit', () => auditMocks);
 vi.mock('@/lib/security/rate-limit', () => securityMocks);
 vi.mock('@/lib/auth/extension-tokens', () => tokenMocks);
@@ -48,9 +54,18 @@ describe('extension device routes', () => {
         remaining_seconds: 3600,
       },
     });
+    authMocks.requireClientUser.mockResolvedValue({
+      userId: 'client-1',
+      profile: {
+        role: 'client',
+        full_name: 'Client User',
+        email: 'client@example.com',
+      },
+    });
     tokenMocks.issuePairingCode.mockReturnValue('PAIR1234');
     tokenMocks.hashOpaqueToken.mockReturnValue('hashed-pairing-code');
     extensionMocks.createPairingCode.mockResolvedValue({ id: 'pairing-1' });
+    userMocks.getUserAccessOverrideByUserId.mockResolvedValue(null);
   });
 
   it('issues a short-lived pairing code for the client portal', async () => {

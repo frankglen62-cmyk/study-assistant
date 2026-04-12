@@ -9,6 +9,7 @@ const sessionMocks = vi.hoisted(() => ({
   getOpenSessionForUser: vi.fn(),
   getSessionByIdForUser: vi.fn(),
   recordSessionUsage: vi.fn(),
+  sumUsageDebitsForUserSince: vi.fn(),
   updateSessionStatus: vi.fn(),
 }));
 
@@ -18,6 +19,7 @@ const walletMocks = vi.hoisted(() => ({
 
 const userMocks = vi.hoisted(() => ({
   getWalletByUserId: vi.fn(),
+  getUserAccessOverrideByUserId: vi.fn(),
 }));
 
 vi.mock('@/lib/supabase/sessions', () => sessionMocks);
@@ -34,6 +36,8 @@ vi.mock('@/lib/supabase/users', () => userMocks);
 describe('session service', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    sessionMocks.sumUsageDebitsForUserSince.mockResolvedValue(0);
+    userMocks.getUserAccessOverrideByUserId.mockResolvedValue(null);
   });
 
   it('starts a new session when the wallet is spendable and no session is open', async () => {
@@ -75,6 +79,31 @@ describe('session service', () => {
         detectionMode: 'auto',
       }),
     ).rejects.toThrow(/locked/i);
+  });
+
+  it('blocks session start when the daily usage limit is already exhausted', async () => {
+    userMocks.getUserAccessOverrideByUserId.mockResolvedValue({
+      user_id: 'user-1',
+      can_use_extension: true,
+      can_buy_credits: true,
+      max_active_devices: null,
+      daily_usage_limit_seconds: 3600,
+      monthly_usage_limit_seconds: null,
+      feature_flags: {},
+    });
+    sessionMocks.sumUsageDebitsForUserSince.mockResolvedValue(3600);
+
+    const { startSession } = await import('@/lib/sessions/service');
+
+    await expect(
+      startSession({
+        userId: 'user-1',
+        installationId: null,
+        remainingSeconds: 3600,
+        walletStatus: 'active',
+        detectionMode: 'auto',
+      }),
+    ).rejects.toThrow(/daily usage limit/i);
   });
 
   it('ends the open session through the stored session helper', async () => {
@@ -238,6 +267,79 @@ describe('session service', () => {
         userId: 'user-1',
         usedSeconds: 160,
         status: 'active',
+      }),
+    );
+
+    vi.useRealTimers();
+  });
+
+  it('stops an active session when the monthly usage limit is reached during settlement', async () => {
+    const now = new Date('2026-04-06T10:10:00.000Z');
+    vi.useFakeTimers();
+    vi.setSystemTime(now);
+
+    sessionMocks.getSessionByIdForUser.mockResolvedValue({
+      id: 'session-6',
+      user_id: 'user-1',
+      status: 'active',
+      detection_mode: 'manual',
+      current_subject_id: null,
+      current_category_id: null,
+      used_seconds: 120,
+      start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
+      last_activity_at: new Date('2026-04-06T10:09:20.000Z').toISOString(),
+      end_time: null,
+    });
+    userMocks.getWalletByUserId.mockResolvedValue({
+      id: 'wallet-1',
+      user_id: 'user-1',
+      remaining_seconds: 600,
+      lifetime_seconds_purchased: 1200,
+      lifetime_seconds_used: 600,
+      status: 'active',
+    });
+    userMocks.getUserAccessOverrideByUserId.mockResolvedValue({
+      user_id: 'user-1',
+      can_use_extension: true,
+      can_buy_credits: true,
+      max_active_devices: null,
+      daily_usage_limit_seconds: null,
+      monthly_usage_limit_seconds: 150,
+      feature_flags: {},
+    });
+    sessionMocks.sumUsageDebitsForUserSince.mockResolvedValue(120);
+    walletMocks.applyWalletSeconds.mockResolvedValue({
+      wallet_id: 'wallet-1',
+      remaining_seconds: 570,
+      lifetime_seconds_purchased: 1200,
+      lifetime_seconds_used: 630,
+    });
+    sessionMocks.recordSessionUsage.mockResolvedValue({
+      id: 'session-6',
+      user_id: 'user-1',
+      status: 'timed_out',
+      detection_mode: 'manual',
+      current_subject_id: null,
+      current_category_id: null,
+      used_seconds: 150,
+      start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
+      last_activity_at: now.toISOString(),
+      end_time: now.toISOString(),
+    });
+
+    const { settleActiveSessionUsage } = await import('@/lib/sessions/service');
+    const result = await settleActiveSessionUsage({
+      userId: 'user-1',
+      sessionId: 'session-6',
+    });
+
+    expect(result.consumedSeconds).toBe(30);
+    expect(result.usageLimitReached).toBe('monthly');
+    expect(sessionMocks.recordSessionUsage).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sessionId: 'session-6',
+        status: 'timed_out',
+        usedSeconds: 150,
       }),
     );
 

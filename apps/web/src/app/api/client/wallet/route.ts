@@ -4,6 +4,7 @@ import { requireClientUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
 import { settleActiveSessionUsage } from '@/lib/sessions/service';
 import { getOpenSessionForUser } from '@/lib/supabase/sessions';
+import { getWalletGrantOverviewForUser } from '@/lib/supabase/users';
 
 export async function GET(request: Request) {
   const { requestId } = getRequestMeta(request);
@@ -15,9 +16,12 @@ export async function GET(request: Request) {
       openSession?.status === 'active'
         ? (await settleActiveSessionUsage({ userId: context.userId, sessionId: openSession.id })).wallet.remaining_seconds
         : context.wallet.remaining_seconds;
+    const grantOverview = await getWalletGrantOverviewForUser(context.userId);
 
     const response: ClientWalletResponse = {
       remainingSeconds,
+      nextExpiryAt: grantOverview.nextExpiryAt,
+      expiringSeconds: grantOverview.expiringSeconds,
     };
     return jsonOk(response, requestId);
   } catch (error) {

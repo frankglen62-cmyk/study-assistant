@@ -7,6 +7,10 @@ export const profileRecordSchema = z.object({
   role: z.enum(['super_admin', 'admin', 'client']),
   account_status: z.enum(['active', 'suspended', 'pending_verification', 'banned']),
   email_2fa_enabled: z.boolean().optional().default(false),
+  status_reason: z.string().nullable().optional(),
+  status_changed_at: z.string().nullable().optional(),
+  status_changed_by: z.string().uuid().nullable().optional(),
+  suspended_until: z.string().nullable().optional(),
   created_at: z.string().optional(),
 });
 
@@ -62,6 +66,7 @@ export const paymentPackageSchema = z.object({
   currency: z.string(),
   provider_price_reference: z.string().nullable(),
   is_active: z.boolean(),
+  credit_expires_after_days: z.number().int().positive().nullable().optional(),
 });
 
 export const paymentRecordSchema = z.object({
@@ -252,6 +257,70 @@ export const questionAttemptSummarySchema = z.object({
     .optional(),
 });
 
+export const userAdminNoteRecordSchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  note: z.string(),
+  created_by: z.string().uuid().nullable().optional(),
+  created_at: z.string(),
+  profiles: z
+    .object({
+      full_name: z.string(),
+      email: z.string().email(),
+    })
+    .nullable()
+    .optional(),
+});
+
+export const userFlagRecordSchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  flag: z.string(),
+  color: z.string().nullable().optional(),
+  created_by: z.string().uuid().nullable().optional(),
+  created_at: z.string(),
+});
+
+export const userAccessOverrideRecordSchema = z.object({
+  user_id: z.string().uuid(),
+  can_use_extension: z.boolean(),
+  can_buy_credits: z.boolean(),
+  max_active_devices: z.number().int().nullable().optional(),
+  daily_usage_limit_seconds: z.number().int().nullable().optional(),
+  monthly_usage_limit_seconds: z.number().int().nullable().optional(),
+  feature_flags: z.record(z.string(), z.unknown()).default({}),
+  updated_by: z.string().uuid().nullable().optional(),
+  created_at: z.string().optional(),
+  updated_at: z.string().optional(),
+});
+
+export const walletGrantRecordSchema = z.object({
+  id: z.string().uuid(),
+  user_id: z.string().uuid(),
+  wallet_id: z.string().uuid(),
+  source_transaction_id: z.string().uuid().nullable().optional(),
+  grant_type: z.enum([
+    'purchase',
+    'usage_debit',
+    'admin_adjustment_add',
+    'admin_adjustment_subtract',
+    'refund',
+    'promo',
+    'expiration',
+    'restoration',
+  ]),
+  total_seconds: z.number().int().positive(),
+  remaining_seconds: z.number().int().nonnegative(),
+  expires_at: z.string().nullable().optional(),
+  description: z.string(),
+  metadata: z.record(z.string(), z.unknown()).default({}),
+  created_by: z.string().uuid().nullable().optional(),
+  created_at: z.string(),
+  updated_at: z.string().optional(),
+  depleted_at: z.string().nullable().optional(),
+  expired_at: z.string().nullable().optional(),
+});
+
 export type ProfileRecord = z.infer<typeof profileRecordSchema>;
 export type WalletRecord = z.infer<typeof walletRecordSchema>;
 export type ClientSettingsRecord = z.infer<typeof clientSettingsRecordSchema>;
@@ -269,3 +338,7 @@ export type SourceFileRecord = z.infer<typeof sourceFileRecordSchema>;
 export type SubjectQaPairRecord = z.infer<typeof subjectQaPairRecordSchema>;
 export type RetrievalQaPairRecord = z.infer<typeof retrievalQaPairSchema>;
 export type QuestionAttemptSummaryRecord = z.infer<typeof questionAttemptSummarySchema>;
+export type UserAdminNoteRecord = z.infer<typeof userAdminNoteRecordSchema>;
+export type UserFlagRecord = z.infer<typeof userFlagRecordSchema>;
+export type UserAccessOverrideRecord = z.infer<typeof userAccessOverrideRecordSchema>;
+export type WalletGrantRecord = z.infer<typeof walletGrantRecordSchema>;

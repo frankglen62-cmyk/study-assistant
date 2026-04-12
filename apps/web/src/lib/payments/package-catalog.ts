@@ -22,6 +22,7 @@ export async function listPublishedPaymentPackageDisplays() {
         secondsToCredit: entry.seconds_to_credit,
         amountMinor: entry.amount_minor,
         currency: entry.currency,
+        creditExpiresAfterDays: entry.credit_expires_after_days ?? null,
       },
       { featured: index === featuredIndex },
     ),

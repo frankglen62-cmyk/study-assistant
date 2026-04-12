@@ -50,6 +50,10 @@ function getMutationErrorMessage(payload: SessionMutationErrorPayload | null, fa
       return 'Your wallet is locked. Contact support or an administrator.';
     case 'session_not_found':
       return 'No open session was found. Start a new session first.';
+    case 'daily_usage_limit_reached':
+      return 'The account already reached its daily usage limit.';
+    case 'monthly_usage_limit_reached':
+      return 'The account already reached its monthly usage limit.';
     default:
       return payload?.error ?? fallback;
   }

@@ -103,6 +103,16 @@ export async function POST(request: Request) {
       sessionId: activeSession.id,
     });
 
+    if (settled.usageLimitReached) {
+      throw new RouteError(
+        403,
+        settled.usageLimitReached === 'daily' ? 'daily_usage_limit_reached' : 'monthly_usage_limit_reached',
+        settled.usageLimitReached === 'daily'
+          ? 'Daily usage limit reached for this account.'
+          : 'Monthly usage limit reached for this account.',
+      );
+    }
+
     assertWalletSpendable({
       walletStatus: context.wallet.status,
       remainingSeconds: settled.wallet.remaining_seconds,

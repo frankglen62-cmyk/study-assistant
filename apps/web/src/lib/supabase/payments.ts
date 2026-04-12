@@ -8,7 +8,7 @@ export async function getActivePaymentPackage(packageId: string): Promise<Paymen
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, credit_expires_after_days')
     .eq('id', packageId)
     .eq('is_active', true)
     .maybeSingle();
@@ -26,7 +26,7 @@ export async function listActivePaymentPackages(): Promise<PaymentPackageRecord[
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, credit_expires_after_days')
     .eq('is_active', true)
     .order('sort_order', { ascending: true });
 
@@ -38,7 +38,7 @@ export async function getPaymentPackageById(packageId: string): Promise<PaymentP
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, credit_expires_after_days')
     .eq('id', packageId)
     .maybeSingle();
 

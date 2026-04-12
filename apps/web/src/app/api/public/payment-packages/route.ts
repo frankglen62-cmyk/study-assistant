@@ -25,6 +25,7 @@ export async function GET(request: Request) {
         durationLabel: entry.durationLabel,
         durationSummary: entry.durationSummary,
         hasDistinctName: entry.hasDistinctName,
+        creditExpiresAfterDays: entry.creditExpiresAfterDays,
       })),
     };
 

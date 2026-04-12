@@ -54,7 +54,7 @@ export function PublicPricingPreview({ packages }: PublicPricingPreviewProps) {
             </p>
             <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
             <div className="mt-6 space-y-2.5 flex-1">
-              {[item.durationSummary, 'Instant credit delivery', 'Credits never expire'].map((feature) => (
+              {[item.durationSummary, 'Instant credit delivery', item.expirySummary].map((feature) => (
                 <div key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Check className="h-4 w-4 text-accent transition-transform duration-300 group-hover:scale-125" />
                   {feature}

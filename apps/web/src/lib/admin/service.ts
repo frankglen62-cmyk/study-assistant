@@ -1,4 +1,5 @@
 import type {
+  AdminBulkUserActionRequest,
   AdminPaymentPackageCreateRequest,
   AdminPaymentPackageUpdateRequest,
   AdminCategoryMutationRequest,
@@ -8,7 +9,12 @@ import type {
   AdminSubjectQaPairCreateRequest,
   AdminSubjectQaPairUpdateRequest,
   AdminSubjectMutationRequest,
+  AdminUserAccessOverrideRequest,
   AdminUserCreditAdjustmentRequest,
+  AdminUserDeviceRevokeRequest,
+  AdminUserFlagCreateRequest,
+  AdminUserFlagDeleteRequest,
+  AdminUserNoteCreateRequest,
   AdminUserStatusRequest,
   AccountStatus,
   SourceStatus,
@@ -26,6 +32,7 @@ import { updateOpenSessionsStatusForUser } from '@/lib/supabase/sessions';
 import { invalidateActiveCatalogCache } from '@/lib/supabase/catalog';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 import { getProfileWithWalletByUserId, setUserAccountStatusAtomic } from '@/lib/supabase/users';
+import { listInstallationsForUser, revokeInstallation } from '@/lib/supabase/extension';
 
 import { retrySourceProcessing, uploadAndProcessSource } from './source-ingestion';
 
@@ -71,6 +78,32 @@ function assertActorMayManageTarget(params: {
   if (params.actorRole !== 'super_admin' && params.targetRole !== 'client') {
     throw new RouteError(403, 'insufficient_role', 'Only super admins may modify admin or super admin accounts.');
   }
+}
+
+function toFeatureFlagMap(flags: string[]) {
+  return Object.fromEntries(
+    flags
+      .map((flag) => flag.trim())
+      .filter(Boolean)
+      .map((flag) => [flag, true]),
+  );
+}
+
+async function getUserFlagById(flagId: string) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('user_flags')
+    .select('id, user_id, flag, color, created_by, created_at')
+    .eq('id', flagId)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load user flag.');
+
+  if (!data) {
+    throw new RouteError(404, 'user_flag_not_found', 'User flag not found.');
+  }
+
+  return data;
 }
 
 async function getFolderById(folderId: string) {
@@ -169,7 +202,7 @@ async function getPaymentPackageByIdForAdmin(packageId: string) {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, is_active, sort_order, provider_price_reference')
+    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, is_active, sort_order, provider_price_reference, credit_expires_after_days')
     .eq('id', packageId)
     .maybeSingle();
 
@@ -263,22 +296,36 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     actorRole: input.actorRole,
     targetRole: target.profile.role,
   });
-  ensureMutableClientAccount(target.profile.account_status);
 
-  const nextWalletStatus: WalletStatus = input.status === 'suspended' ? 'locked' : 'active';
+  const nextWalletStatus: WalletStatus = input.status === 'active' ? 'active' : 'locked';
   await setUserAccountStatusAtomic({
     userId: input.userId,
     accountStatus: input.status,
     walletStatus: nextWalletStatus,
   });
 
+  const supabase = getSupabaseAdmin();
+  const suspendedUntil =
+    input.status === 'suspended' && input.suspendedUntil ? input.suspendedUntil : null;
+  const metadataResult = await supabase
+    .from('profiles')
+    .update({
+      status_reason: input.reason?.trim() || null,
+      status_changed_at: new Date().toISOString(),
+      status_changed_by: input.actorUserId,
+      suspended_until: suspendedUntil,
+    })
+    .eq('id', input.userId);
+
+  assertSupabaseResult(metadataResult.error, 'Failed to persist moderation metadata.');
+
   const sessionClosure =
-    input.status === 'suspended'
-      ? await updateOpenSessionsStatusForUser({
+    input.status === 'active'
+      ? { count: 0, sessions: [] }
+      : await updateOpenSessionsStatusForUser({
           userId: input.userId,
           status: 'ended',
-        })
-      : { count: 0, sessions: [] };
+        });
 
   await writeAuditLog({
     actorUserId: input.actorUserId,
@@ -286,15 +333,18 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     eventType: 'profile.status_changed',
     entityType: 'profiles',
     entityId: input.userId,
-    eventSummary: `Changed account status for ${target.profile.email} to ${input.status}.`,
+    eventSummary: `Changed account status for ${target.profile.email} from ${target.profile.account_status} to ${input.status}.${input.reason ? ` Reason: ${input.reason}` : ''}${suspendedUntil ? ` Until: ${suspendedUntil}` : ''}`,
     oldValues: {
       accountStatus: target.profile.account_status,
       walletStatus: target.wallet.status,
+      suspendedUntil: target.profile.suspended_until ?? null,
     },
     newValues: {
       accountStatus: input.status,
       walletStatus: nextWalletStatus,
       openSessionsClosed: sessionClosure.count,
+      reason: input.reason?.trim() || null,
+      suspendedUntil,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -304,11 +354,336 @@ export async function updateUserStatus(input: AdminUserStatusRequest & AuditCont
     userId: input.userId,
     accountStatus: input.status,
     walletStatus: nextWalletStatus,
+    suspendedUntil,
     openSessionsClosed: sessionClosure.count,
     message:
       sessionClosure.count > 0
         ? `User status updated successfully. ${sessionClosure.count} open session${sessionClosure.count === 1 ? ' was' : 's were'} ended.`
         : 'User status updated successfully.',
+  };
+}
+
+export async function addAdminUserNote(
+  input: AdminUserNoteCreateRequest & AuditContext & { userId: string },
+) {
+  const target = await getProfileWithWalletByUserId(input.userId);
+  assertActorMayManageTarget({
+    actorRole: input.actorRole,
+    targetRole: target.profile.role,
+  });
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('user_admin_notes')
+    .insert({
+      user_id: input.userId,
+      note: input.note,
+      created_by: input.actorUserId,
+    })
+    .select('id')
+    .single();
+
+  assertSupabaseResult(error, 'Failed to create admin note.');
+
+  if (!data) {
+    throw new RouteError(500, 'user_note_insert_failed', 'Admin note could not be created.');
+  }
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'profile.note_added',
+    entityType: 'user_admin_notes',
+    entityId: data.id,
+    eventSummary: `Added admin note for ${target.profile.email}.`,
+    newValues: {
+      userId: input.userId,
+      note: input.note,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    noteId: data.id,
+    message: 'Admin note added successfully.',
+  };
+}
+
+export async function addAdminUserFlag(
+  input: AdminUserFlagCreateRequest & AuditContext & { userId: string },
+) {
+  const target = await getProfileWithWalletByUserId(input.userId);
+  assertActorMayManageTarget({
+    actorRole: input.actorRole,
+    targetRole: target.profile.role,
+  });
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('user_flags')
+    .insert({
+      user_id: input.userId,
+      flag: input.flag,
+      color: input.color ?? null,
+      created_by: input.actorUserId,
+    })
+    .select('id')
+    .single();
+
+  if (error?.message?.toLowerCase().includes('duplicate')) {
+    throw new RouteError(409, 'user_flag_exists', 'This flag is already assigned to the user.');
+  }
+
+  assertSupabaseResult(error, 'Failed to add user flag.');
+
+  if (!data) {
+    throw new RouteError(500, 'user_flag_insert_failed', 'User flag could not be created.');
+  }
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'profile.flag_added',
+    entityType: 'user_flags',
+    entityId: data.id,
+    eventSummary: `Added flag "${input.flag}" for ${target.profile.email}.`,
+    newValues: {
+      userId: input.userId,
+      flag: input.flag,
+      color: input.color ?? null,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    flagId: data.id,
+    message: 'User flag added successfully.',
+  };
+}
+
+export async function removeAdminUserFlag(
+  input: AdminUserFlagDeleteRequest & AuditContext & { userId: string },
+) {
+  const target = await getProfileWithWalletByUserId(input.userId);
+  assertActorMayManageTarget({
+    actorRole: input.actorRole,
+    targetRole: target.profile.role,
+  });
+
+  const existing = await getUserFlagById(input.flagId);
+
+  if (existing.user_id !== input.userId) {
+    throw new RouteError(400, 'user_flag_mismatch', 'This flag does not belong to the selected user.');
+  }
+
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase
+    .from('user_flags')
+    .delete()
+    .eq('id', input.flagId);
+
+  assertSupabaseResult(error, 'Failed to remove user flag.');
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'profile.flag_removed',
+    entityType: 'user_flags',
+    entityId: input.flagId,
+    eventSummary: `Removed flag "${existing.flag}" from ${target.profile.email}.`,
+    oldValues: {
+      userId: input.userId,
+      flag: existing.flag,
+      color: existing.color ?? null,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    flagId: input.flagId,
+    message: 'User flag removed successfully.',
+  };
+}
+
+export async function upsertAdminUserAccessOverrides(
+  input: AdminUserAccessOverrideRequest & AuditContext & { userId: string },
+) {
+  const target = await getProfileWithWalletByUserId(input.userId);
+  assertActorMayManageTarget({
+    actorRole: input.actorRole,
+    targetRole: target.profile.role,
+  });
+
+  const supabase = getSupabaseAdmin();
+  const featureFlags = toFeatureFlagMap(input.featureFlags);
+  const { data, error } = await supabase
+    .from('user_access_overrides')
+    .upsert({
+      user_id: input.userId,
+      can_use_extension: input.canUseExtension,
+      can_buy_credits: input.canBuyCredits,
+      max_active_devices: input.maxActiveDevices ?? null,
+      daily_usage_limit_seconds: input.dailyUsageLimitSeconds ?? null,
+      monthly_usage_limit_seconds: input.monthlyUsageLimitSeconds ?? null,
+      feature_flags: featureFlags,
+      updated_by: input.actorUserId,
+    })
+    .select(`
+      user_id,
+      can_use_extension,
+      can_buy_credits,
+      max_active_devices,
+      daily_usage_limit_seconds,
+      monthly_usage_limit_seconds,
+      feature_flags,
+      updated_at
+    `)
+    .single();
+
+  assertSupabaseResult(error, 'Failed to save user access overrides.');
+
+  if (!data) {
+    throw new RouteError(500, 'user_access_override_failed', 'Access overrides could not be saved.');
+  }
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'profile.access_overrides_updated',
+    entityType: 'user_access_overrides',
+    entityId: input.userId,
+    eventSummary: `Updated access overrides for ${target.profile.email}.`,
+    newValues: {
+      canUseExtension: input.canUseExtension,
+      canBuyCredits: input.canBuyCredits,
+      maxActiveDevices: input.maxActiveDevices ?? null,
+      dailyUsageLimitSeconds: input.dailyUsageLimitSeconds ?? null,
+      monthlyUsageLimitSeconds: input.monthlyUsageLimitSeconds ?? null,
+      featureFlags: input.featureFlags,
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    userId: input.userId,
+    access: {
+      canUseExtension: data.can_use_extension,
+      canBuyCredits: data.can_buy_credits,
+      maxActiveDevices: data.max_active_devices ?? null,
+      dailyUsageLimitSeconds: data.daily_usage_limit_seconds ?? null,
+      monthlyUsageLimitSeconds: data.monthly_usage_limit_seconds ?? null,
+      featureFlags: Object.keys((data.feature_flags as Record<string, unknown>) ?? {}).filter(
+        (key) => Boolean((data.feature_flags as Record<string, unknown>)?.[key]),
+      ),
+      updatedAt: data.updated_at ?? null,
+    },
+    message: 'Access overrides saved successfully.',
+  };
+}
+
+export async function revokeAdminUserDevices(
+  input: AdminUserDeviceRevokeRequest & AuditContext & { userId: string },
+) {
+  const target = await getProfileWithWalletByUserId(input.userId);
+  assertActorMayManageTarget({
+    actorRole: input.actorRole,
+    targetRole: target.profile.role,
+  });
+
+  const installations = await listInstallationsForUser(input.userId);
+  const candidates = input.revokeAll
+    ? installations.filter((installation) => installation.installation_status === 'active')
+    : installations.filter((installation) => installation.id === input.installationId);
+
+  if (candidates.length === 0) {
+    throw new RouteError(404, 'installation_not_found', 'No matching installation was found to revoke.');
+  }
+
+  for (const installation of candidates) {
+    await revokeInstallation(installation.id, input.userId);
+  }
+
+  await writeAuditLog({
+    actorUserId: input.actorUserId,
+    actorRole: input.actorRole,
+    eventType: 'extension.installation.admin_revoked',
+    entityType: 'extension_installations',
+    entityId: input.revokeAll ? input.userId : candidates[0]!.id,
+    eventSummary: input.revokeAll
+      ? `Revoked all extension installations for ${target.profile.email}.`
+      : `Revoked extension installation ${candidates[0]!.id} for ${target.profile.email}.`,
+    newValues: {
+      userId: input.userId,
+      revokedCount: candidates.length,
+      revokeAll: input.revokeAll ?? false,
+      installationIds: candidates.map((installation) => installation.id),
+    },
+    ipAddress: input.ipAddress,
+    userAgent: input.userAgent,
+  });
+
+  return {
+    userId: input.userId,
+    revokedCount: candidates.length,
+    message:
+      candidates.length === 1
+        ? 'Device revoked successfully.'
+        : `${candidates.length} devices revoked successfully.`,
+  };
+}
+
+export async function applyAdminBulkUserAction(
+  input: AdminBulkUserActionRequest & AuditContext,
+) {
+  const failures: Array<{ userId: string; error: string }> = [];
+  let succeeded = 0;
+
+  for (const userId of input.userIds) {
+    try {
+      if (input.action === 'suspend') {
+        await updateUserStatus({
+          userId,
+          status: 'suspended',
+          reason: input.reason,
+          actorUserId: input.actorUserId,
+          actorRole: input.actorRole,
+          ipAddress: input.ipAddress,
+          userAgent: input.userAgent,
+        });
+      } else {
+        const minutes = input.minutes ?? 0;
+        await adjustUserCredits({
+          userId,
+          deltaSeconds: (input.action === 'add_credits' ? 1 : -1) * minutes * 60,
+          description: input.reason,
+          actorUserId: input.actorUserId,
+          actorRole: input.actorRole,
+          ipAddress: input.ipAddress,
+          userAgent: input.userAgent,
+        });
+      }
+
+      succeeded += 1;
+    } catch (error) {
+      failures.push({
+        userId,
+        error: error instanceof Error ? error.message : 'Unknown error.',
+      });
+    }
+  }
+
+  return {
+    processed: input.userIds.length,
+    succeeded,
+    failures,
+    message:
+      failures.length === 0
+        ? `Bulk action completed for ${succeeded} user${succeeded === 1 ? '' : 's'}.`
+        : `Bulk action completed with ${succeeded} success${succeeded === 1 ? '' : 'es'} and ${failures.length} failure${failures.length === 1 ? '' : 's'}.`,
   };
 }
 
@@ -347,6 +722,7 @@ export async function createPaymentPackage(
       is_active: input.isActive ?? true,
       provider_price_reference: null,
       sort_order: input.sortOrder ?? 0,
+      credit_expires_after_days: input.creditExpiresAfterDays ?? null,
     })
     .select('id')
     .single();
@@ -369,6 +745,7 @@ export async function createPaymentPackage(
       currency: 'PHP',
       isActive: input.isActive ?? true,
       sortOrder: input.sortOrder ?? 0,
+      creditExpiresAfterDays: input.creditExpiresAfterDays ?? null,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -378,6 +755,7 @@ export async function createPaymentPackage(
     packageId: inserted.data!.id,
     amountMinor,
     minutesToCredit: input.minutesToCredit,
+    creditExpiresAfterDays: input.creditExpiresAfterDays ?? null,
     message: 'Payment package created successfully.',
   };
 }
@@ -405,6 +783,7 @@ export async function updatePaymentPackage(
       amount_minor: amountMinor,
       is_active: input.isActive ?? true,
       sort_order: input.sortOrder ?? existing.sort_order,
+      credit_expires_after_days: input.creditExpiresAfterDays ?? existing.credit_expires_after_days ?? null,
       updated_at: new Date().toISOString(),
     })
     .eq('id', input.packageId);
@@ -426,6 +805,7 @@ export async function updatePaymentPackage(
       amountMinor: existing.amount_minor,
       isActive: existing.is_active,
       sortOrder: existing.sort_order,
+      creditExpiresAfterDays: existing.credit_expires_after_days ?? null,
     },
     newValues: {
       code: input.code ?? existing.code,
@@ -435,6 +815,7 @@ export async function updatePaymentPackage(
       amountMinor,
       isActive: input.isActive ?? true,
       sortOrder: input.sortOrder ?? existing.sort_order,
+      creditExpiresAfterDays: input.creditExpiresAfterDays ?? existing.credit_expires_after_days ?? null,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -444,6 +825,7 @@ export async function updatePaymentPackage(
     packageId: input.packageId,
     amountMinor,
     minutesToCredit: input.minutesToCredit,
+    creditExpiresAfterDays: input.creditExpiresAfterDays ?? existing.credit_expires_after_days ?? null,
     message: 'Payment package updated successfully.',
   };
 }
@@ -489,6 +871,7 @@ export async function deletePaymentPackage(input: AuditContext & { packageId: st
       currency: existing.currency,
       isActive: existing.is_active,
       sortOrder: existing.sort_order,
+      creditExpiresAfterDays: existing.credit_expires_after_days ?? null,
     },
     ipAddress: input.ipAddress,
     userAgent: input.userAgent,
@@ -498,6 +881,7 @@ export async function deletePaymentPackage(input: AuditContext & { packageId: st
     packageId: input.packageId,
     amountMinor: existing.amount_minor,
     minutesToCredit: Math.round(existing.seconds_to_credit / 60),
+    creditExpiresAfterDays: existing.credit_expires_after_days ?? null,
     message: 'Payment package deleted successfully.',
   };
 }
