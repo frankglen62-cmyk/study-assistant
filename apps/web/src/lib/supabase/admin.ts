@@ -648,9 +648,15 @@ export async function listAdminPaymentPackages(): Promise<AdminPaymentPackageRec
   return parseArray(data ?? [], adminPaymentPackageSchema, 'Admin payment package rows are invalid.');
 }
 
-export async function listAdminPaymentSummaries(): Promise<AdminPaymentSummaryRecord[]> {
+export async function listAdminPaymentSummaries(options?: {
+  status?: 'pending' | 'paid' | 'failed' | 'canceled' | 'refunded';
+  provider?: 'stripe' | 'paymongo';
+  search?: string;
+  page?: number;
+  pageSize?: number;
+}): Promise<AdminPaymentSummaryRecord[]> {
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase
+  let query = supabase
     .from('payments')
     .select(`
       id,
@@ -672,11 +678,60 @@ export async function listAdminPaymentSummaries(): Promise<AdminPaymentSummaryRe
         email
       )
     `)
-    .order('created_at', { ascending: false })
-    .limit(50);
+    .order('created_at', { ascending: false });
+
+  if (options?.status) {
+    query = query.eq('status', options.status);
+  }
+
+  if (options?.provider) {
+    query = query.eq('provider', options.provider);
+  }
+
+  const pageSize = options?.pageSize ?? 50;
+  const page = options?.page ?? 1;
+  const start = Math.max(0, (page - 1) * pageSize);
+  query = query.range(start, start + pageSize - 1);
+
+  const { data, error } = await query;
 
   assertSupabaseResult(error, 'Failed to load payment summaries.');
-  return parseArray(data ?? [], adminPaymentSummarySchema, 'Admin payment rows are invalid.');
+  let rows = parseArray(data ?? [], adminPaymentSummarySchema, 'Admin payment rows are invalid.');
+
+  // Client-side search filter (supabase can't filter on joined table columns in .or())
+  if (options?.search?.trim()) {
+    const needle = options.search.trim().toLowerCase();
+    rows = rows.filter(
+      (row) =>
+        (row.profiles?.full_name ?? '').toLowerCase().includes(needle) ||
+        (row.profiles?.email ?? '').toLowerCase().includes(needle) ||
+        (row.payment_packages?.name ?? '').toLowerCase().includes(needle) ||
+        (row.payment_packages?.code ?? '').toLowerCase().includes(needle) ||
+        row.provider_payment_id.toLowerCase().includes(needle),
+    );
+  }
+
+  return rows;
+}
+
+export async function countAdminPaymentSummaries(options?: {
+  status?: 'pending' | 'paid' | 'failed' | 'canceled' | 'refunded';
+  provider?: 'stripe' | 'paymongo';
+}) {
+  const supabase = getSupabaseAdmin();
+  let query = supabase.from('payments').select('*', { head: true, count: 'exact' });
+
+  if (options?.status) {
+    query = query.eq('status', options.status);
+  }
+
+  if (options?.provider) {
+    query = query.eq('provider', options.provider);
+  }
+
+  const { count, error } = await query;
+  assertSupabaseResult(error, 'Failed to count payments.');
+  return count ?? 0;
 }
 
 export async function listAdminPaymentSummariesForUser(userId: string, limit = 10): Promise<AdminPaymentSummaryRecord[]> {

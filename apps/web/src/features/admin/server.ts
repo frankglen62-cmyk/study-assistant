@@ -17,6 +17,7 @@ import {
 } from '@study-assistant/shared-utils';
 
 import {
+  countAdminPaymentSummaries,
   countAdminUserRollups,
   countAdminUsers,
   getAdminDashboardSummary,
@@ -748,44 +749,57 @@ export async function getAdminUserDetailData(userId: string) {
 }
 
 export async function getAdminPaymentsPageData() {
-  const [payments, packages] = await Promise.all([
-    listAdminPaymentSummaries(),
+  const [payments, packages, totalCount, paidCount, pendingCount, failedCount, canceledCount, refundedCount] = await Promise.all([
+    listAdminPaymentSummaries({ pageSize: 100 }),
     listAdminPaymentPackages(),
+    countAdminPaymentSummaries(),
+    countAdminPaymentSummaries({ status: 'paid' }),
+    countAdminPaymentSummaries({ status: 'pending' }),
+    countAdminPaymentSummaries({ status: 'failed' }),
+    countAdminPaymentSummaries({ status: 'canceled' }),
+    countAdminPaymentSummaries({ status: 'refunded' }),
   ]);
   const paidPayments = payments.filter((payment) => payment.status === 'paid');
-  const refundedPayments = payments.filter((payment) => payment.status === 'refunded');
-  const failedPayments = payments.filter((payment) => payment.status === 'failed');
+  const defaultCurrency = paidPayments[0]?.currency ?? packages[0]?.currency ?? 'PHP';
 
   return {
     metrics: [
       {
-        label: 'Successful payments',
-        value: String(paidPayments.length),
-        delta: 'Latest 50 records',
-        tone: 'success' as const,
+        label: 'Total payments',
+        value: String(totalCount),
+        delta: 'All-time payment records',
+        tone: 'accent' as const,
       },
       {
         label: 'Gross revenue',
         value: formatCurrency(
           paidPayments.reduce((sum, payment) => sum + payment.amount_minor, 0),
-          paidPayments[0]?.currency ?? packages[0]?.currency ?? 'USD',
+          defaultCurrency,
         ),
         delta: 'Paid transactions only',
-        tone: 'accent' as const,
+        tone: 'success' as const,
       },
       {
-        label: 'Refunded',
-        value: String(refundedPayments.length),
-        delta: 'Requires follow-up',
+        label: 'Pending',
+        value: String(pendingCount),
+        delta: 'Awaiting payment confirmation',
         tone: 'warning' as const,
       },
       {
-        label: 'Failed',
-        value: String(failedPayments.length),
-        delta: 'Check provider logs',
-        tone: 'warning' as const,
+        label: 'Successful',
+        value: String(paidCount),
+        delta: 'Completed and credited',
+        tone: 'success' as const,
       },
     ],
+    statusCounts: {
+      total: totalCount,
+      paid: paidCount,
+      pending: pendingCount,
+      failed: failedCount,
+      canceled: canceledCount,
+      refunded: refundedCount,
+    },
     packages: packages.map((paymentPackage) => ({
       id: paymentPackage.id,
       code: paymentPackage.code,
@@ -801,13 +815,22 @@ export async function getAdminPaymentsPageData() {
     })),
     payments: payments.map((payment) => ({
       id: payment.id,
+      userId: payment.user_id,
       createdAt: new Date(payment.created_at).toLocaleString(),
+      createdAtIso: payment.created_at,
+      paidAt: payment.paid_at ? new Date(payment.paid_at).toLocaleString() : null,
+      paidAtIso: payment.paid_at,
       userName: payment.profiles?.full_name ?? 'Unknown user',
       userEmail: payment.profiles?.email ?? 'No email',
       provider: payment.provider,
+      providerPaymentId: payment.provider_payment_id,
       packageName: payment.payment_packages?.name ?? payment.payment_packages?.code ?? 'Package removed',
+      packageCode: payment.payment_packages?.code ?? null,
+      amountMinor: payment.amount_minor,
+      currency: payment.currency,
       amount: formatCurrency(payment.amount_minor, payment.currency),
       status: payment.status,
+      paymentType: payment.payment_type,
     })),
   };
 }
