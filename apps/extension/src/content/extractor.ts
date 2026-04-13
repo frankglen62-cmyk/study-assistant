@@ -1108,74 +1108,12 @@ export function installExtractorContentScript() {
           (input as HTMLElement).dataset.studyAssistantId = queId;
         });
 
-        // For dropdown sub-questions: also handle inline selects
+        // Tag dropdown selects with their parent question ID for auto-click targeting
         const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'))
           .filter(sel => isElementVisible(sel) && !sel.disabled);
-        if (inlineSelects.length > 1) {
-          // Multiple selects = matching/dropdown sub-questions within one .que
-          // Process each select as a separate sub-question
-          const parentContext = prompt;
-          for (let si = 0; si < inlineSelects.length; si++) {
-            const sel = inlineSelects[si]!;
-            const subId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
-            sel.dataset.studyAssistantId = subId;
-            sel.dataset.studyAssistantDropdownId = subId;
-
-            // Extract sub-prompt from table row or label
-            let subPrompt: string | null = null;
-            // Check table row
-            const parentTd = sel.closest('td');
-            if (parentTd) {
-              const row = parentTd.closest('tr');
-              if (row) {
-                const cells = Array.from(row.querySelectorAll('td'));
-                const textParts: string[] = [];
-                for (const cell of cells) {
-                  if (cell === parentTd || cell.contains(sel)) continue;
-                  const cellText = normalizeText(cell.textContent ?? '');
-                  if (cellText.length >= 1) textParts.push(cellText);
-                }
-                const rowText = textParts.join(' ').trim();
-                if (rowText.length >= 1) subPrompt = rowText;
-              }
-            }
-
-            if (!subPrompt || subPrompt.length < 1) {
-              // Try label
-              if (sel.id) {
-                try {
-                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
-                  if (label) subPrompt = normalizeText(label.textContent ?? '');
-                } catch {
-                  // ignore invalid selector  
-                }
-              }
-            }
-
-            if (!subPrompt || subPrompt.length < 1) continue;
-
-            const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
-              .map(opt => normalizeText(opt.textContent ?? ''))
-              .filter(text => text.length > 0 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose');
-
-            const subContextLabel =
-              subPrompt.length < 12 && parentContext
-                ? `${deriveQuestionLabel(que) ?? ''} ${parentContext}`.trim().slice(0, 120) || null
-                : deriveQuestionLabel(que);
-
-            pushCandidate(
-              createQuestionCandidate({
-                id: subId,
-                prompt: subPrompt,
-                options: selectOptions,
-                contextLabel: subContextLabel,
-                questionType: 'dropdown',
-              }),
-              sel
-            );
-          }
-          // Don't create a parent candidate for multi-dropdown questions
-          continue;
+        for (const sel of inlineSelects) {
+          sel.dataset.studyAssistantId = queId;
+          sel.dataset.studyAssistantDropdownId = sel.name || sel.id || queId;
         }
 
         pushCandidate(
