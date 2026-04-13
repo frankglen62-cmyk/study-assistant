@@ -1018,12 +1018,12 @@ export function installExtractorContentScript() {
       options: string[];
       contextLabel: string | null;
       questionType: string | null;
-    } | null, node: Element) {
-      if (!candidate) {
-        return;
-      }
+    } | null, node: Element, bypassDedupe: boolean = false) {
+      if (!candidate) return;
 
       const normalizedId = normalizeText(candidate.id);
+      
+      // Strict exact-ID deduplication (we never want two elements with the exact same ID)
       if (normalizedId && seenIds.has(normalizedId)) {
         return;
       }
@@ -1036,12 +1036,17 @@ export function installExtractorContentScript() {
         return;
       }
 
-      const key = `${candidate.contextLabel?.toLowerCase() ?? ''}::${candidate.prompt.toLowerCase()}::${candidate.options.join('|').toLowerCase()}`;
-      if (seenKeys.has(key)) {
-        return;
+      // Semantic deduplication (prevent duplications in unstructured scans)
+      // We skip this for Moodle fast-path because Moodle guarantees each .que is a distinct item
+      // on the page, even if the text matches exactly.
+      if (!bypassDedupe) {
+        const key = `${candidate.contextLabel?.toLowerCase() ?? ''}::${candidate.prompt.toLowerCase()}::${candidate.options.join('|').toLowerCase()}`;
+        if (seenKeys.has(key)) {
+          return;
+        }
+        seenKeys.add(key);
       }
-
-      seenKeys.add(key);
+      
       candidates.push(candidateWithNode);
     }
 
