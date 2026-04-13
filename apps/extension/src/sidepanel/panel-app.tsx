@@ -908,14 +908,15 @@ export function SidePanelApp() {
             </div>
 
             {/* Metrics */}
-            <div className="hero-metrics-row">
-              <div className="hero-metric">
-                <Zap size={11} />
+            <div className="hero-metrics-row" style={{ alignItems: 'flex-start', marginTop: '4px' }}>
+              <div className="hero-metric" style={{ fontSize: '18px', fontWeight: 600, color: 'var(--sa-text)', flex: 1 }}>
+                <Zap size={14} style={{ position: 'relative', top: '-1px' }} />
                 <span className={displayRemainingSeconds < 1800 ? 'text-danger' : ''}>
                   {formatDurationDetailed(displayRemainingSeconds)}
                 </span>
+                <div style={{ fontSize: '10px', color: 'var(--sa-muted)', fontWeight: 'normal', marginLeft: '18px', marginTop: '-2px' }}>Remaining Time</div>
               </div>
-              <div className="hero-metric">
+              <div className="hero-metric" style={{ marginTop: '4px' }}>
                 <BookOpen size={11} />
                 <span className="truncate">{activeSubjectSummary}</span>
               </div>
@@ -1358,33 +1359,38 @@ export function SidePanelApp() {
                   {state.currentPage.courseCodes[0]}
                 </span>
               )}
+              {state?.lastSuggestion?.confidence !== null && (
+                <span className="answering-hero__pill">
+                   <ConfidenceBadge confidence={state.lastSuggestion.confidence} />
+                </span>
+              )}
             </div>
 
             <section className="steps-section" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {/* Step 1: Detect Subject */}
               <div className="step-row" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sa-background-alt)', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>1</span>
+                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: (!cachedSubject && !manualSubject) ? 'var(--sa-accent)' : 'var(--sa-background-alt)', color: (!cachedSubject && !manualSubject) ? 'white' : 'var(--sa-text)', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>1</span>
                 <button
-                  className="action-button action-button--detect"
+                  className={`action-button ${(!cachedSubject && !manualSubject) ? 'action-button--primary action-button--lg' : 'action-button--detect'}`}
                   onClick={() => void sendAnalyze('detect', 'current')}
                   disabled={!canAnalyze || pendingAction !== null}
-                  style={{ flex: 1, backgroundColor: 'var(--sa-background-alt)' }}
+                  style={{ flex: 1, ...((cachedSubject || manualSubject) ? { backgroundColor: 'var(--sa-background-alt)' } : {}) }}
                 >
                   {state!.uiStatus === 'detecting_subject'
                     ? <><Loader2 size={15} className="animate-spin" /> Detecting…</>
-                    : <><FileSearch size={15} /> Detect Subject</>
+                    : <><FileSearch size={15} /> {(!cachedSubject && !manualSubject) ? 'Detect Subject' : 'Re-detect Subject' }</>
                   }
                 </button>
               </div>
 
               {/* Step 2: Find Answers */}
               <div className="step-row" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sa-accent)', color: 'white', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>2</span>
+                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: (cachedSubject || manualSubject) ? 'var(--sa-accent)' : 'var(--sa-background-alt)', color: (cachedSubject || manualSubject) ? 'white' : 'var(--sa-muted)', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>2</span>
                 <button
-                  className="action-button action-button--primary action-button--lg"
+                  className={`action-button ${(!cachedSubject && !manualSubject) ? '' : 'action-button--primary action-button--lg'}`}
                   onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
                   disabled={!canAnalyze || pendingAction !== null || (!cachedSubject && !manualSubject)}
-                  style={{ flex: 1 }}
+                  style={{ flex: 1, ...((!cachedSubject && !manualSubject) ? { background: 'var(--sa-background-alt)', color: 'var(--sa-muted)', cursor: 'not-allowed', opacity: 0.8 } : {}) }}
                 >
                   {isAnalyzing && state!.uiStatus !== 'detecting_subject'
                     ? <><Loader2 size={16} className="animate-spin" /> Finding Answers…</>
@@ -1437,44 +1443,7 @@ export function SidePanelApp() {
         </SectionCard>
       )}
 
-      {/* ======== DETECTION SUMMARY (always visible when available) ======== */}
-      {showAnswerWorkspace && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
-        <div className="detection-summary-card">
-          <div className="detection-summary__header">
-            <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
-            <h2>Detection Summary</h2>
-          </div>
-          <div className="detection-summary__grid">
-            <div className="detection-summary__item">
-              <span>Subject</span>
-              <strong>{currentSubject}</strong>
-            </div>
-            <div className="detection-summary__item">
-              <span>Questions</span>
-              <strong>{detectedQuestionCount > 0 ? detectedQuestionCount : '—'}</strong>
-            </div>
-            {quizTitle && (
-              <div className="detection-summary__item detection-summary__item--wide">
-                <span>Quiz / Assessment</span>
-                <strong>{quizTitle}{quizNumber ? ` (#${quizNumber})` : ''}</strong>
-              </div>
-            )}
-            <div className="detection-summary__item">
-              <span>Source Folder</span>
-              <strong>{sourceSubject}</strong>
-            </div>
-            <div className="detection-summary__item">
-              <span>Confidence</span>
-              <strong><ConfidenceBadge confidence={state!.lastSuggestion.confidence} /></strong>
-            </div>
-          </div>
-          {state!.lastSuggestion.fallbackApplied && (
-            <div className="notice notice--warning mt-2" style={{ fontSize: 11 }}>
-              <p>Fallback sources used — no direct match in detected subject folder.</p>
-            </div>
-          )}
-        </div>
-      )}
+
 
       {/* ======== RESULTS SECTION ======== */}
       {showAnswerWorkspace && (
