@@ -1052,7 +1052,23 @@ export function installExtractorContentScript() {
     // ═══════════════════════════════════════════════════════════════
     const moodleQueContainers = Array.from(
       document.querySelectorAll('.que'),
-    ).filter((node) => isElementVisible(node) && !looksLikeQuestionNavigation(node));
+    ).filter((node) => {
+      if (!isElementVisible(node) || looksLikeQuestionNavigation(node)) return false;
+
+      // Skip Moodle "description" type .que blocks — they have no answerable content
+      // Description blocks have class "description" and contain only informational text
+      if (node.classList.contains('description')) return false;
+
+      // A real question must have EITHER:
+      // 1. A question number element (.no, .questionnumber)
+      // 2. OR interactive inputs (radio, checkbox, text input, select)
+      const hasQuestionNumber = !!node.querySelector('.info .no, .info .questionnumber, .questionnumber');
+      const hasInteractiveInputs = node.querySelectorAll(
+        'input[type="radio"], input[type="checkbox"], input[type="text"], input:not([type]), textarea, select'
+      ).length > 0;
+
+      return hasQuestionNumber || hasInteractiveInputs;
+    });
 
     if (moodleQueContainers.length >= 2) {
       // This is a Moodle page with multiple questions — use the fast path

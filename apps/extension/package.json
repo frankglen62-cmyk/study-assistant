@@ -1,7 +1,7 @@
 {
   "name": "@study-assistant/extension",
   "private": true,
-  "version": "0.1.83",
+  "version": "0.1.84",
   "description": "Chrome extension for the study assistant platform",
   "type": "module",
   "scripts": {
