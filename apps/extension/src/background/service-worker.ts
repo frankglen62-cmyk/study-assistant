@@ -250,6 +250,10 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
           sendResponse(success(await handleCancelAnalyze()));
           return;
         }
+        case 'EXTENSION/DETECT_FROM_PAGE': {
+          sendResponse(success(await handleDetectFromPage()));
+          return;
+        }
         default:
           sendResponse(failure('Unsupported extension action.'));
       }
@@ -1005,9 +1009,109 @@ async function handleSessionMutation(mode: 'start' | 'pause' | 'resume' | 'end')
   return nextState;
 }
 
+let cachedSubjectCatalog: {
+  subjects: { id: string; name: string; slug: string | null; course_code: string | null }[];
+  categories: { id: string; name: string; subject_id: string | null }[];
+} | null = null;
+
 async function handleGetSubjects() {
   const catalog = await withAuthRetry((state) => fetchSubjects(state));
+  cachedSubjectCatalog = catalog;
   return catalog;
+}
+
+function normalizeMoodleCourseCodeLocal(code: string): string {
+  return code
+    .trim()
+    .toUpperCase()
+    .replace(/^(UGRD|GRAD|GEN|BSCS|BSIT|BSIS)-?/i, '')
+    .replace(/-\d{3,4}[A-Z]?$/i, '')
+    .replace(/[\s-]+/g, '');
+}
+
+function normalizeCompactLocal(value: string) {
+  return value.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[^a-z0-9]+/g, '');
+}
+
+async function handleDetectFromPage() {
+  const state = await readState(browserName, extensionVersion);
+  requirePairing(state);
+
+  if (!cachedSubjectCatalog || cachedSubjectCatalog.subjects.length === 0) {
+    return null;
+  }
+
+  const tab = await getActiveTab();
+  if (!tab?.id) return null;
+
+  let pageSignals;
+  try {
+    pageSignals = await requestPageSignals(tab.id);
+  } catch {
+    return null;
+  }
+
+  let bestMatch = null;
+  for (const subject of cachedSubjectCatalog.subjects) {
+    const compactCourseCode = normalizeCompactLocal(subject.course_code ?? '');
+    const normalizedSubjectCode = normalizeMoodleCourseCodeLocal(subject.course_code ?? '');
+
+    let isMatch = false;
+
+    for (const pageCode of pageSignals.courseCodes) {
+      if (compactCourseCode && normalizeCompactLocal(pageCode) === compactCourseCode) {
+        isMatch = true;
+        break;
+      }
+      if (normalizedSubjectCode) {
+        const normalizedPageCode = normalizeMoodleCourseCodeLocal(pageCode);
+        if (normalizedPageCode === normalizedSubjectCode) {
+          isMatch = true;
+          break;
+        }
+        if (normalizedPageCode.length >= 4 && normalizedSubjectCode.length >= 4) {
+          const pageNum = normalizedPageCode.replace(/^[A-Z]+/, '');
+          const subjectNum = normalizedSubjectCode.replace(/^[A-Z]+/, '');
+          if (pageNum === subjectNum && pageNum.length >= 3) {
+            isMatch = true;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!isMatch && normalizedSubjectCode) {
+      for (const text of [...pageSignals.breadcrumbs, ...pageSignals.headings]) {
+        const normalizedText = normalizeMoodleCourseCodeLocal(text);
+        if (normalizedText === normalizedSubjectCode) {
+          isMatch = true;
+          break;
+        }
+      }
+    }
+
+    if (isMatch) {
+      bestMatch = subject;
+      break;
+    }
+  }
+
+  if (bestMatch) {
+    await updateState(
+      (current) => ({
+        ...current,
+        session: {
+          ...current.session,
+          cachedSubjectId: bestMatch.id,
+          cachedSubjectName: bestMatch.name,
+        },
+      }),
+      browserName,
+      extensionVersion,
+    );
+  }
+
+  return { subject: bestMatch, pageSignals };
 }
 
 async function handleUnpairBrowser() {

@@ -477,6 +477,13 @@ export function SidePanelApp() {
     }
   }, [hasSuggestion, isAnalyzing, isPaired]);
 
+  const currentPageUrl = state?.currentPage?.pageUrl;
+  useEffect(() => {
+    if (workspaceView === 'answering' && currentPageUrl) {
+      void sendExtensionMessage({ type: 'EXTENSION/DETECT_FROM_PAGE' });
+    }
+  }, [currentPageUrl, workspaceView]);
+
   async function runAction(action: string, operation: () => Promise<void>) {
     setPendingAction(action);
     try { await operation(); } finally { setPendingAction(null); }
@@ -1311,7 +1318,7 @@ export function SidePanelApp() {
 
       {showAnswerWorkspace && (
         <SectionCard
-          title="Find All Answers"
+          title="Find Answers"
           icon={Sparkles}
           className="panel-card--primary"
           actions={(
@@ -1326,69 +1333,68 @@ export function SidePanelApp() {
         >
           <div className="answering-hero">
             <div className="answering-hero__summary">
-              <span className="answering-hero__eyebrow">Current subject</span>
-              <strong>{activeSubjectLabel}</strong>
+              <span className="answering-hero__eyebrow">Answering Subject</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <strong style={{ fontSize: '14px' }}>{activeSubjectLabel}</strong>
+                {manualSubject ? (
+                  <span className="status-badge status-badge--info" style={{ padding: '2px 6px', fontSize: '9px' }}>Locked</span>
+                ) : cachedSubject ? (
+                  <span className="status-badge status-badge--success" style={{ padding: '2px 6px', fontSize: '9px' }}>Auto-Detected</span>
+                ) : null}
+              </div>
             </div>
-            <div className="answering-hero__pills">
-              <span className="answering-hero__pill">{answeringModeLabel}</span>
+
+            <div className="answering-hero__pills" style={{ marginBottom: '16px' }}>
+              <span className="answering-hero__pill">
+                <FileSearch size={11} /> {detectedQuestionCount > 0 ? `${detectedQuestionCount} questions` : 'No questions'} 
+              </span>
               {quizTitle && (
-                <span className="answering-hero__pill">
+                <span className="answering-hero__pill truncate" style={{ maxWidth: '140px' }}>
                   {quizTitle}{quizNumber ? ` (#${quizNumber})` : ''}
                 </span>
               )}
+              {state?.currentPage?.courseCodes && state.currentPage.courseCodes.length > 0 && (
+                <span className="answering-hero__pill truncate" style={{ maxWidth: '80px' }}>
+                  {state.currentPage.courseCodes[0]}
+                </span>
+              )}
             </div>
-            <button
-              className="action-button action-button--primary action-button--lg"
-              onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
-              disabled={!canAnalyze || pendingAction !== null}
-            >
-              {isAnalyzing && state.uiStatus !== 'detecting_subject'
-                ? <><Loader2 size={16} className="animate-spin" /> Finding Answers...</>
-                : <><Sparkles size={16} /> Find All Answers</>
-              }
-            </button>
+
+            <section className="steps-section" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {/* Step 1: Detect Subject */}
+              <div className="step-row" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sa-background-alt)', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>1</span>
+                <button
+                  className="action-button action-button--detect"
+                  onClick={() => void sendAnalyze('detect', 'current')}
+                  disabled={!canAnalyze || pendingAction !== null}
+                  style={{ flex: 1, backgroundColor: 'var(--sa-background-alt)' }}
+                >
+                  {state!.uiStatus === 'detecting_subject'
+                    ? <><Loader2 size={15} className="animate-spin" /> Detecting…</>
+                    : <><FileSearch size={15} /> Detect Subject</>
+                  }
+                </button>
+              </div>
+
+              {/* Step 2: Find Answers */}
+              <div className="step-row" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <span className="step-badge" style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sa-accent)', color: 'white', borderRadius: '50%', fontSize: '11px', fontWeight: 600 }}>2</span>
+                <button
+                  className="action-button action-button--primary action-button--lg"
+                  onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
+                  disabled={!canAnalyze || pendingAction !== null || (!cachedSubject && !manualSubject)}
+                  style={{ flex: 1 }}
+                >
+                  {isAnalyzing && state!.uiStatus !== 'detecting_subject'
+                    ? <><Loader2 size={16} className="animate-spin" /> Finding Answers…</>
+                    : <><Sparkles size={16} /> Find All Answers</>
+                  }
+                </button>
+              </div>
+            </section>
           </div>
         </SectionCard>
-      )}
-
-      {/* ======== STEP 1 & 2: DETECT + ANALYZE ======== */}
-      {false && showAnswerWorkspace && (
-        <section className="steps-section">
-          {/* Step 1: Detect Subject */}
-          <div className="step-row">
-            <span className="step-badge">1</span>
-            <button
-              className="action-button action-button--detect"
-              onClick={() => void sendAnalyze('detect', 'current')}
-              disabled={!canAnalyze || pendingAction !== null}
-            >
-              {state!.uiStatus === 'detecting_subject'
-                ? <><Loader2 size={15} className="animate-spin" /> Detecting…</>
-                : <><FileSearch size={15} /> {cachedSubject ? `Re-detect Subject` : `Detect Subject`}</>
-              }
-            </button>
-            {cachedSubject && (
-              <span className="step-cached-label" title="Cached subject — won't re-detect per question">
-                <CheckCircle2 size={11} /> {cachedSubject}
-              </span>
-            )}
-          </div>
-
-          {/* Step 2: Find Answers */}
-          <div className="step-row">
-            <span className="step-badge">2</span>
-            <button
-              className="action-button action-button--primary action-button--lg"
-              onClick={() => void sendAnalyze('analyze', 'current', 'subject_first')}
-              disabled={!canAnalyze || pendingAction !== null}
-            >
-              {isAnalyzing && state!.uiStatus !== 'detecting_subject'
-                ? <><Loader2 size={16} className="animate-spin" /> Finding Answers…</>
-                : <><Sparkles size={16} /> Find All Answers</>
-              }
-            </button>
-          </div>
-        </section>
       )}
 
       {/* ======== PRIVACY STRIP ======== */}
@@ -1432,7 +1438,7 @@ export function SidePanelApp() {
       )}
 
       {/* ======== DETECTION SUMMARY (always visible when available) ======== */}
-      {false && showAnswerWorkspace && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
+      {showAnswerWorkspace && siteAccessGranted && (hasSuggestion || cachedSubject || manualSubject) && (
         <div className="detection-summary-card">
           <div className="detection-summary__header">
             <BookOpen size={14} style={{ color: 'var(--sa-accent)' }} />
