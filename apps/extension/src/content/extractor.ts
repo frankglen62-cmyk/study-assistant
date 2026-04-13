@@ -2723,10 +2723,25 @@ export function installExtractorContentScript() {
 
     try {
       if (bestMatch.input && !bestMatch.input.checked) {
+        // Simulate a full user interaction: mousedown → mouseup → click → change
+        // Some Moodle themes require the full event chain to register the selection
         bestMatch.input.focus();
+        bestMatch.input.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+        bestMatch.input.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
         bestMatch.input.click();
+        bestMatch.input.checked = true; // Force the checked state
         bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
         bestMatch.input.dispatchEvent(new Event('input', { bubbles: true }));
+
+        // Also click the label element if available — Moodle sometimes only responds to label clicks
+        if (bestMatch.input.id) {
+          try {
+            const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(bestMatch.input.id)}"]`);
+            if (label) label.click();
+          } catch {
+            // ignore label click errors
+          }
+        }
       } else if (!bestMatch.input) {
         bestMatch.element.click();
       }
