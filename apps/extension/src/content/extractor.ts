@@ -1108,9 +1108,82 @@ export function installExtractorContentScript() {
           (input as HTMLElement).dataset.studyAssistantId = queId;
         });
 
-        // Tag dropdown selects with their parent question ID for auto-click targeting
+        // ── Handle multi-dropdown (matching) questions ─────────────────
+        // These .que containers contain multiple <select> elements, each
+        // representing a separate sub-question that needs its own answer.
+        // We expand them into individual candidates so the server can
+        // match each one, but diagnostics still count the parent .que as 1.
         const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'))
           .filter(sel => isElementVisible(sel) && !sel.disabled);
+
+        if (inlineSelects.length > 1) {
+          const parentContext = prompt;
+          let addedAnySubCandidate = false;
+
+          for (let si = 0; si < inlineSelects.length; si++) {
+            const sel = inlineSelects[si]!;
+            const subId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
+            sel.dataset.studyAssistantId = subId;
+            sel.dataset.studyAssistantDropdownId = subId;
+
+            // Extract sub-prompt from the table row or label
+            let subPrompt: string | null = null;
+            const parentTd = sel.closest('td');
+            if (parentTd) {
+              const row = parentTd.closest('tr');
+              if (row) {
+                const cells = Array.from(row.querySelectorAll('td'));
+                const textParts: string[] = [];
+                for (const cell of cells) {
+                  if (cell === parentTd || cell.contains(sel)) continue;
+                  const cellText = normalizeText(cell.textContent ?? '');
+                  if (cellText.length >= 1) textParts.push(cellText);
+                }
+                const rowText = textParts.join(' ').trim();
+                if (rowText.length >= 1) subPrompt = rowText;
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) {
+              if (sel.id) {
+                try {
+                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
+                  if (label) subPrompt = normalizeText(label.textContent ?? '');
+                } catch {
+                  // ignore
+                }
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) continue;
+
+            const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
+              .map(opt => normalizeText(opt.textContent ?? ''))
+              .filter(text => text.length > 0 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose');
+
+            const subContextLabel =
+              subPrompt.length < 12 && parentContext
+                ? `${deriveQuestionLabel(que) ?? ''} ${parentContext}`.trim().slice(0, 120) || null
+                : deriveQuestionLabel(que);
+
+            pushCandidate(
+              createQuestionCandidate({
+                id: subId,
+                prompt: subPrompt,
+                options: selectOptions,
+                contextLabel: subContextLabel,
+                questionType: 'dropdown',
+              }),
+              sel
+            );
+            addedAnySubCandidate = true;
+          }
+
+          // If we expanded into sub-candidates, skip the parent candidate
+          if (addedAnySubCandidate) continue;
+        }
+
+        // For non-dropdown .que or single-select .que, tag selects normally
         for (const sel of inlineSelects) {
           sel.dataset.studyAssistantId = queId;
           sel.dataset.studyAssistantDropdownId = sel.name || sel.id || queId;
@@ -1887,7 +1960,7 @@ export function installExtractorContentScript() {
       courseCodes,
       quizTitle: quizMeta.quizTitle,
       quizNumber: quizMeta.quizNumber,
-      totalQuestionsDetected: questionCandidates.length,
+      totalQuestionsDetected: extractedQuestions.diagnostics.structuredQuestionBlockCount || questionCandidates.length,
       extractedAt: new Date().toISOString(),
     };
   }

@@ -1318,7 +1318,10 @@ function mergeCapturedSections(sections: ExtensionCapturedSection[]): ExtensionP
     courseCodes: dedupe(sections.flatMap((section) => section.pageSignals.courseCodes), 10),
     quizTitle: sections.find((s) => s.pageSignals.quizTitle)?.pageSignals.quizTitle ?? null,
     quizNumber: sections.find((s) => s.pageSignals.quizNumber)?.pageSignals.quizNumber ?? null,
-    totalQuestionsDetected: questionCandidates.length,
+    totalQuestionsDetected: sections.reduce(
+      (total, section) => total + section.pageSignals.diagnostics.structuredQuestionBlockCount,
+      0,
+    ) || questionCandidates.length,
     extractedAt: new Date().toISOString(),
   };
 }
