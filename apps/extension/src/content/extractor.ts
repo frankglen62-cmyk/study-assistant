@@ -1045,6 +1045,161 @@ export function installExtractorContentScript() {
       candidates.push(candidateWithNode);
     }
 
+    // ═══════════════════════════════════════════════════════════════
+    // MOODLE FAST PATH: Process all .que containers in DOM order
+    // This guarantees correct question ordering on multi-question pages
+    // by iterating .que elements sequentially instead of scanning by type.
+    // ═══════════════════════════════════════════════════════════════
+    const moodleQueContainers = Array.from(
+      document.querySelectorAll('.que'),
+    ).filter((node) => isElementVisible(node) && !looksLikeQuestionNavigation(node));
+
+    if (moodleQueContainers.length >= 2) {
+      // This is a Moodle page with multiple questions — use the fast path
+      for (let qi = 0; qi < moodleQueContainers.length; qi++) {
+        const que = moodleQueContainers[qi] as HTMLElement;
+        const queId = que.id || `moodle-que-${qi + 1}`;
+        que.dataset.studyAssistantId = queId;
+        structuredContainers.add(queId);
+
+        // Extract the question prompt from .qtext or .formulation
+        let prompt: string | null = null;
+        const qtextEl = que.querySelector('.qtext, .questiontext, .question-text');
+        if (qtextEl && isElementVisible(qtextEl)) {
+          prompt = extractCleanedPromptText(qtextEl);
+        }
+        if (!prompt || prompt.length < 3) {
+          prompt = derivePromptFromContainer(que);
+        }
+        if (!prompt || prompt.length < 3) {
+          continue; // Skip questions with no extractable text
+        }
+
+        // Detect question type and extract options
+        const questionType = detectQuestionType(que);
+        const options = extractOptionsFromContainer(que);
+
+        // Tag all inputs inside this question
+        que.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="text"], input:not([type]), textarea, select').forEach((input) => {
+          (input as HTMLElement).dataset.studyAssistantId = queId;
+        });
+
+        // For dropdown sub-questions: also handle inline selects
+        const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'))
+          .filter(sel => isElementVisible(sel) && !sel.disabled);
+        if (inlineSelects.length > 1) {
+          // Multiple selects = matching/dropdown sub-questions within one .que
+          // Process each select as a separate sub-question
+          const parentContext = prompt;
+          for (let si = 0; si < inlineSelects.length; si++) {
+            const sel = inlineSelects[si]!;
+            const subId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
+            sel.dataset.studyAssistantId = subId;
+            sel.dataset.studyAssistantDropdownId = subId;
+
+            // Extract sub-prompt from table row or label
+            let subPrompt: string | null = null;
+            // Check table row
+            const parentTd = sel.closest('td');
+            if (parentTd) {
+              const row = parentTd.closest('tr');
+              if (row) {
+                const cells = Array.from(row.querySelectorAll('td'));
+                const textParts: string[] = [];
+                for (const cell of cells) {
+                  if (cell === parentTd || cell.contains(sel)) continue;
+                  const cellText = normalizeText(cell.textContent ?? '');
+                  if (cellText.length >= 1) textParts.push(cellText);
+                }
+                const rowText = textParts.join(' ').trim();
+                if (rowText.length >= 1) subPrompt = rowText;
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) {
+              // Try label
+              if (sel.id) {
+                try {
+                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
+                  if (label) subPrompt = normalizeText(label.textContent ?? '');
+                } catch {
+                  // ignore invalid selector  
+                }
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) continue;
+
+            const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
+              .map(opt => normalizeText(opt.textContent ?? ''))
+              .filter(text => text.length > 0 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose');
+
+            const subContextLabel =
+              subPrompt.length < 12 && parentContext
+                ? `${deriveQuestionLabel(que) ?? ''} ${parentContext}`.trim().slice(0, 120) || null
+                : deriveQuestionLabel(que);
+
+            pushCandidate(
+              createQuestionCandidate({
+                id: subId,
+                prompt: subPrompt,
+                options: selectOptions,
+                contextLabel: subContextLabel,
+                questionType: 'dropdown',
+              }),
+              sel
+            );
+          }
+          // Don't create a parent candidate for multi-dropdown questions
+          continue;
+        }
+
+        pushCandidate(
+          createQuestionCandidate({
+            id: queId,
+            prompt,
+            options,
+            contextLabel: que.dataset.questionLabel ?? deriveQuestionLabel(que),
+            questionType,
+          }),
+          que
+        );
+      }
+
+      // Skip all the multi-phase scanning below — we already have all questions
+      // in correct DOM order from the .que containers
+      const questionCandidates = candidates.slice(0, MAX_QUESTION_CANDIDATES).map(({ node, ...rest }) => ({
+        id: rest.id,
+        prompt: rest.prompt,
+        options: rest.options,
+        contextLabel: rest.contextLabel,
+        questionType: rest.questionType as any,
+      }));
+
+      return {
+        candidates: questionCandidates,
+        diagnostics: {
+          explicitQuestionBlockCount: 0,
+          structuredQuestionBlockCount: moodleQueContainers.length,
+          groupedInputCount: 0,
+          promptCandidateCount: moodleQueContainers.length,
+          questionCandidateCount: questionCandidates.length,
+          visibleOptionCount: Array.from(
+            new Set(
+              questionCandidates.flatMap((candidate) =>
+                candidate.options.map((option) => option.toLowerCase()),
+              ),
+            ),
+          ).length,
+        },
+      };
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // GENERIC FALLBACK: Multi-phase scanning for non-Moodle LMS pages
+    // (one question per tab, or non-standard DOM structures)
+    // ═══════════════════════════════════════════════════════════════
+
     visiblePromptNodes.forEach((node, index) => {
       const container = resolveStructuredQuestionContainer(node);
       if (!container) {
