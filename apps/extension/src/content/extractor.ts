@@ -1910,7 +1910,10 @@ export function installExtractorContentScript() {
       .toLowerCase()
       .replace(/^[a-e]\.\s+/i, '') // strip choice prefix like "a. ", "b. "
       .replace(/^\d+\.\s+/, '')    // strip numeric prefix like "1. ", "2. "
-      .replace(/[^\p{L}\p{N}\s.,+\-%=#*@]/gu, '') // preserve # * @ for C#, C++, etc
+      // Preserve ALL programming-relevant special characters:
+      // () [] {} $ ; : ! ? < > / \ | ~ ^ & ' " → - # * @ + = % , .
+      // Only strip control characters, zero-width spaces, and truly invisible chars
+      .replace(/[\u0000-\u001f\u007f\u200b-\u200f\u2028-\u202f\ufeff]/g, '')
       .replace(/\s+/g, ' ')
       .trim();
   }

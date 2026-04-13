@@ -62,7 +62,9 @@ export function normalizeComparableText(value: string) {
     // "Your answer is correct/incorrect", feedback text, etc.
     .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, ' ')
     .replace(/\b(?:your answer is (?:correct|incorrect)|correct|incorrect|partially correct)\b/gi, ' ')
-    .replace(/[^\p{L}\p{N}\s.,+\-%=_#*@]+/gu, ' ')
+    // Only strip control characters and zero-width invisible chars.
+    // Preserve ALL programming-relevant characters: () [] {} $ : ! ? < > / \ | ~ ^ & ' "
+    .replace(/[\u0000-\u001f\u007f\u200b-\u200f\u2028-\u202f\ufeff]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
