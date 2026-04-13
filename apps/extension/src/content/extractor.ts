@@ -16,6 +16,8 @@ export function installExtractorContentScript() {
   globalState.__studyAssistantLastDigest = '';
 
   const courseCodePattern = /\b[A-Z]{2,10}(?:-[A-Z]{2,10})?\s*-?\s*\d{3,5}[A-Z]?\b/g;
+  // Enhanced pattern for Moodle shortnames like UGRD-IT6206-2522S, UGRD-ITE6220-2522S
+  const moodleShortnamePattern = /\b(UGRD|GRAD|GEN|BSCS|BSIT|BSIS|IT|CS|IS|ITE?|NSCI|FILI|ECE|EE|ME|CE|CPE|COE)[\s-]?([A-Z]{0,4}\d{3,5}[A-Z]?)(?:-\d{3,4}[A-Z]?)?\b/gi;
   const MAX_VISIBLE_CONTEXT_ITEMS = 300;
   const MAX_EXTRACTED_OPTIONS = 50;
   const MAX_QUESTION_CANDIDATES = 5000;
@@ -419,8 +421,8 @@ export function installExtractorContentScript() {
       .replace(/[\u2713\u2714\u2715\u2716\u2717\u2718✓✗✔✘☑☐⬜⬛●○◉]/g, '')
       // Strip 'Correct'/'Incorrect' feedback text that leaks into labels
       .replace(/\b(?:Your answer is (?:correct|incorrect)\.?|Correct\.?|Incorrect\.?|Partially correct\.?)\b/gi, '')
-      .replace(/^[a-z]\.\s*/i, '') // strip choice prefix like "a. ", "b. ", "f. ", etc.
-      .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
+      .replace(/^[a-z]\.\s+/i, '') // strip choice prefix like "a. ", "b. ", "f. ", etc.
+      .replace(/^\d+\.\s+/, '')    // strip numeric prefix like "1. ", "2. "
       .replace(/\s+/g, ' ')
       .trim();
   }
@@ -1463,6 +1465,124 @@ export function installExtractorContentScript() {
     return questionLike ? questionLike.slice(0, 500) : null;
   }
 
+  /**
+   * Extract the current course name from Moodle LMS page structure.
+   * Priority: breadcrumb course shortname > sidebar active course > page heading
+   *
+   * Moodle breadcrumbs typically show:
+   *   Home > My courses > UGRD-IT6206-2522S > Final Examination > Final Exam
+   * The course shortname (e.g., UGRD-IT6206-2522S) is the most reliable signal.
+   */
+  function extractMoodleCourseName(): { courseName: string | null; courseCode: string | null; courseShortname: string | null } {
+    let courseName: string | null = null;
+    let courseCode: string | null = null;
+    let courseShortname: string | null = null;
+
+    // Strategy 1: Breadcrumb — course link is usually the 3rd breadcrumb item
+    // Pattern: Home > My courses > [COURSE_SHORTNAME] > [ACTIVITY_SECTION] > [QUIZ_NAME]
+    const breadcrumbLinks = Array.from(
+      document.querySelectorAll(
+        'nav[aria-label*="breadcrumb" i] a, .breadcrumb a, .breadcrumb-item a, ol.breadcrumb li a'
+      ),
+    ).filter(el => isElementVisible(el));
+
+    for (const link of breadcrumbLinks) {
+      const href = (link as HTMLAnchorElement).href ?? '';
+      const text = normalizeText(link.textContent ?? '');
+      // Course view links contain /course/view.php?id= — the text is the course shortname
+      if (href.includes('/course/view.php') || href.includes('/course/')) {
+        courseShortname = text;
+        // Extract course code from shortname like "UGRD-IT6206-2522S" → "IT6206"
+        const codeMatch = text.match(moodleShortnamePattern);
+        if (codeMatch) {
+          courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
+        }
+        break;
+      }
+    }
+
+    // Strategy 2: Sidebar nav drawer — look for the currently active course link
+    if (!courseShortname) {
+      const sidebarCourseLinks = Array.from(
+        document.querySelectorAll(
+          '#nav-drawer a[href*="/course/view.php"], .nav-drawer a[href*="/course/view.php"], ' +
+          '[data-key="mycourses"] a[href*="/course/view.php"], ' +
+          '.list-group a[href*="/course/view.php"], ' +
+          'nav a[href*="/course/view.php"]'
+        ),
+      );
+
+      // The active course might share a URL path segment with the current page
+      const currentPath = window.location.pathname;
+      for (const link of sidebarCourseLinks) {
+        const el = link as HTMLAnchorElement;
+        const linkUrl = new URL(el.href, window.location.origin);
+        // Check if this course is "active" (has aria-current or active class)
+        const isActive = el.getAttribute('aria-current') === 'true'
+          || el.classList.contains('active')
+          || el.closest('.active') !== null;
+
+        if (isActive || currentPath.startsWith(linkUrl.pathname.replace('/course/view.php', ''))) {
+          const text = normalizeText(el.textContent ?? '');
+          if (text && text.length > 2) {
+            courseShortname = text;
+            const codeMatch = text.match(moodleShortnamePattern);
+            if (codeMatch) {
+              courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
+            }
+            break;
+          }
+        }
+      }
+    }
+
+    // Strategy 3: Page heading — Moodle sometimes shows course name in .page-header-headings
+    if (!courseShortname) {
+      const courseHeading = document.querySelector('.page-context-header h1, .page-header-headings h1');
+      if (courseHeading && isElementVisible(courseHeading)) {
+        const text = normalizeText(courseHeading.textContent ?? '');
+        const codeMatch = text.match(moodleShortnamePattern);
+        if (codeMatch) {
+          courseShortname = text;
+          courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
+        }
+      }
+    }
+
+    // Strategy 4: Extract from the current URL path
+    // Some Moodle URLs contain the course id or shortname directly
+    if (!courseCode) {
+      const urlMatch = window.location.href.match(moodleShortnamePattern);
+      if (urlMatch) {
+        courseCode = (urlMatch[1] + urlMatch[2]).replace(/[\s-]/g, '').toUpperCase();
+      }
+    }
+
+    // Strategy 5: Document title sometimes has the course shortname
+    // e.g., "Final Exam (page 1 of 50)" doesn't help, but "UGRD-IT6206: Final Exam" would
+    if (!courseCode) {
+      const titleMatch = document.title.match(moodleShortnamePattern);
+      if (titleMatch) {
+        courseCode = (titleMatch[1] + titleMatch[2]).replace(/[\s-]/g, '').toUpperCase();
+      }
+    }
+
+    // Try to extract a readable course name from the shortname
+    // e.g., "UGRD-IT6206-2522S" → look for nearby full name text
+    if (courseShortname && !courseName) {
+      // Check if there's an expanded name in the sidebar or breadcrumb title attribute
+      const courseLink = document.querySelector(`a[title][href*="/course/view.php"]`) as HTMLAnchorElement;
+      if (courseLink) {
+        const titleAttr = courseLink.getAttribute('title');
+        if (titleAttr && titleAttr.length > courseShortname.length) {
+          courseName = normalizeText(titleAttr);
+        }
+      }
+    }
+
+    return { courseName, courseCode, courseShortname };
+  }
+
   function extractBreadcrumbs(): string[] {
     return Array.from(
       document.querySelectorAll(
@@ -1562,14 +1682,52 @@ export function installExtractorContentScript() {
     const primaryHeading = headings[0] ?? '';
     const pageTitle = Array.from(new Set([document.title, primaryHeading].map((value) => normalizeText(value)).filter(Boolean))).join(' | ')
       || window.location.hostname;
-    const courseCodeSource = [pageTitle, ...headings, ...breadcrumbs, visibleTextExcerpt].join(' ');
-    const courseCodes = Array.from(
+
+    // ─── Moodle-specific course detection ─────────────────────────
+    const moodleCourse = extractMoodleCourseName();
+
+    // Inject the Moodle course shortname and name into headings for better scoring
+    const enhancedHeadings = [...headings];
+    if (moodleCourse.courseShortname && !enhancedHeadings.includes(moodleCourse.courseShortname)) {
+      enhancedHeadings.unshift(moodleCourse.courseShortname);
+    }
+    if (moodleCourse.courseName && !enhancedHeadings.includes(moodleCourse.courseName)) {
+      enhancedHeadings.unshift(moodleCourse.courseName);
+    }
+
+    const courseCodeSource = [pageTitle, ...enhancedHeadings, ...breadcrumbs, visibleTextExcerpt].join(' ');
+    const rawCourseCodes = Array.from(
       new Set(
         (courseCodeSource.match(courseCodePattern) ?? [])
           .map((code) => normalizeText(code))
           .filter(Boolean),
       ),
-    ).slice(0, 6);
+    );
+
+    // Also extract Moodle-format codes and add the cleaned course code
+    const moodleCodes = Array.from(
+      new Set(
+        (courseCodeSource.match(moodleShortnamePattern) ?? [])
+          .map((match) => {
+            // Strip Moodle-specific prefix/suffix: UGRD-IT6206-2522S → IT6206
+            return match
+              .replace(/^(UGRD|GRAD|GEN)-?/i, '')
+              .replace(/-\d{3,4}[A-Z]?$/i, '')
+              .replace(/[\s-]+/g, '')
+              .toUpperCase();
+          })
+          .filter(Boolean),
+      ),
+    );
+
+    // Add the detected Moodle course code if present
+    if (moodleCourse.courseCode) {
+      moodleCodes.push(moodleCourse.courseCode);
+    }
+
+    const courseCodes = Array.from(
+      new Set([...rawCourseCodes, ...moodleCodes]),
+    ).slice(0, 10);
 
     const quizMeta = detectQuizMeta();
 
@@ -1577,7 +1735,7 @@ export function installExtractorContentScript() {
       pageUrl: window.location.href,
       pageDomain: window.location.hostname,
       pageTitle,
-      headings,
+      headings: enhancedHeadings.slice(0, 20),
       breadcrumbs,
       visibleLabels,
       visibleTextExcerpt,
@@ -1729,8 +1887,8 @@ export function installExtractorContentScript() {
   function normalizeForMatch(s: string): string {
     return s
       .toLowerCase()
-      .replace(/^[a-e]\.\s*/i, '') // strip choice prefix like "a. ", "b. "
-      .replace(/^\d+\.\s*/, '')    // strip numeric prefix like "1. ", "2. "
+      .replace(/^[a-e]\.\s+/i, '') // strip choice prefix like "a. ", "b. "
+      .replace(/^\d+\.\s+/, '')    // strip numeric prefix like "1. ", "2. "
       .replace(/[^\p{L}\p{N}\s.,+\-%=#*@]/gu, '') // preserve # * @ for C#, C++, etc
       .replace(/\s+/g, ' ')
       .trim();
@@ -2134,7 +2292,7 @@ export function installExtractorContentScript() {
       // 0. RAW exact match (case-insensitive, preserves special chars like C#, C++)
       // This is critical for short answers with special characters
       for (const c of filteredClickables) {
-        const rawChoiceText = c.text.replace(/^[a-e]\.\s*/i, '').replace(/^\d+\.\s*/, '').trim();
+        const rawChoiceText = c.text.replace(/^[a-e]\.\s+/i, '').replace(/^\d+\.\s+/, '').trim();
         if (rawChoiceText.toLowerCase() === rawTrimmed.toLowerCase()) {
           bestMatch = c;
           matchMethod = 'raw_exact';

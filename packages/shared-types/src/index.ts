@@ -253,7 +253,8 @@ export type ExtensionActionType =
   | 'EXTENSION/TOGGLE_AUTO_PILOT'
   | 'EXTENSION/AUTO_CLICK_NEXT_PAGE'
   | 'EXTENSION/RESET_EXAM'
-  | 'EXTENSION/CANCEL_ANALYZE';
+  | 'EXTENSION/CANCEL_ANALYZE'
+  | 'EXTENSION/DETECT_FROM_PAGE';
 
 export type AnalyzeMode = 'analyze' | 'detect' | 'suggest';
 

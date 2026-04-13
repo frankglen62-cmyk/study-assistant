@@ -26,6 +26,21 @@ function normalizeCompact(value: string) {
   return normalize(value).replace(/[^a-z0-9]+/g, '');
 }
 
+/**
+ * Strip common Moodle LMS shortname prefixes and suffixes.
+ * e.g., "UGRD-IT6206-2522S" → "IT6206"
+ *       "UGRD-ITE6220-2522S" → "ITE6220"
+ *       "IT6206" → "IT6206" (passthrough)
+ */
+function normalizeMoodleCourseCode(code: string): string {
+  return code
+    .trim()
+    .toUpperCase()
+    .replace(/^(UGRD|GRAD|GEN|BSCS|BSIT|BSIS)-?/i, '')
+    .replace(/-\d{3,4}[A-Z]?$/i, '') // strip semester suffix like -2522S
+    .replace(/[\s-]+/g, '');
+}
+
 function tokenize(value: string) {
   return Array.from(
     new Set(
@@ -236,6 +251,19 @@ function scoreSubject(subject: SubjectRecord, page: string, signals: ExtensionPa
     (signals.courseCodes.some((courseCode) => normalizeCompact(courseCode) === subjectSignals.compactCourseCode) ||
       pageCompact.includes(subjectSignals.compactCourseCode));
 
+  // Moodle-normalized course code match:
+  // Handles "UGRD-IT6206-2522S" on page matching stored course_code="IT6206"
+  const normalizedSubjectCode = normalizeMoodleCourseCode(subject.course_code ?? '');
+  const moodleCourseCodeMatch = !exactCourseCodeMatch && Boolean(normalizedSubjectCode) &&
+    signals.courseCodes.some((pageCode) => {
+      const normalizedPageCode = normalizeMoodleCourseCode(pageCode);
+      if (normalizedPageCode === normalizedSubjectCode) return true;
+      // Numeric-part match: ITE6206 vs IT6206 → both have "6206"
+      const pageNum = normalizedPageCode.replace(/^[A-Z]+/, '');
+      const subjectNum = normalizedSubjectCode.replace(/^[A-Z]+/, '');
+      return pageNum === subjectNum && pageNum.length >= 3;
+    });
+
   for (const pattern of subject.url_patterns) {
     if (pattern && includesLoose(signals.pageUrl, pattern)) {
       score += 0.48;
@@ -245,6 +273,9 @@ function scoreSubject(subject: SubjectRecord, page: string, signals: ExtensionPa
 
   if (exactCourseCodeMatch) {
     score += 0.62;
+  } else if (moodleCourseCodeMatch) {
+    // Moodle-normalized match is very strong but slightly less than exact
+    score += 0.58;
   }
 
   if (subjectSignals.name && titleBlock.includes(subjectSignals.name)) {
@@ -274,7 +305,7 @@ function scoreSubject(subject: SubjectRecord, page: string, signals: ExtensionPa
   score += Math.min(pageTokenMatches * 0.04, 0.22);
   score += Math.min(titleTokenMatches * 0.07, 0.28);
 
-  if (!exactCourseCodeMatch && pageTokenMatches === 0 && titleTokenMatches === 0 && keywordMatches === 0 && score < 0.48) {
+  if (!exactCourseCodeMatch && !moodleCourseCodeMatch && pageTokenMatches === 0 && titleTokenMatches === 0 && keywordMatches === 0 && score < 0.48) {
     score = 0;
   }
 
@@ -331,7 +362,43 @@ function hasExactCourseCodeSignal(subject: SubjectRecord, signals: ExtensionPage
     ].join(' '),
   );
 
-  return signals.courseCodes.some((courseCode) => normalizeCompact(courseCode) === compactCourseCode) || searchableText.includes(compactCourseCode);
+  // Direct match
+  if (signals.courseCodes.some((courseCode) => normalizeCompact(courseCode) === compactCourseCode) || searchableText.includes(compactCourseCode)) {
+    return true;
+  }
+
+  // Moodle-normalized match: strip UGRD- prefix and -2522S suffix from page codes,
+  // then compare against the stored course_code.
+  // This handles: page has "UGRD-IT6206-2522S" and DB has course_code="IT6206"
+  const normalizedSubjectCode = normalizeMoodleCourseCode(subject.course_code ?? '');
+  if (normalizedSubjectCode) {
+    for (const pageCode of signals.courseCodes) {
+      const normalizedPageCode = normalizeMoodleCourseCode(pageCode);
+      if (normalizedPageCode === normalizedSubjectCode) {
+        return true;
+      }
+      // Also check if the normalized page code ends with the subject code
+      // e.g., "ITE6206" ends with "6206" when subject stores "IT6206"
+      if (normalizedPageCode.length >= 4 && normalizedSubjectCode.length >= 4) {
+        // Extract just the numeric part for comparison
+        const pageNum = normalizedPageCode.replace(/^[A-Z]+/, '');
+        const subjectNum = normalizedSubjectCode.replace(/^[A-Z]+/, '');
+        if (pageNum === subjectNum && pageNum.length >= 3) {
+          return true;
+        }
+      }
+    }
+
+    // Also check breadcrumbs and headings for Moodle shortnames
+    for (const text of [...signals.breadcrumbs, ...signals.headings]) {
+      const normalizedText = normalizeMoodleCourseCode(text);
+      if (normalizedText === normalizedSubjectCode) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 function hasDirectSubjectTitleSignal(subject: SubjectRecord, signals: ExtensionPageSignals) {
