@@ -4,13 +4,13 @@ export const catalogResponseSchema = z.object({
   subjects: z.array(z.object({
     id: z.string(),
     name: z.string(),
-    slug: z.string().nullable().optional(),
-    course_code: z.string().nullable().optional(),
+    slug: z.string().nullable().default(null),
+    course_code: z.string().nullable().default(null),
   })),
   categories: z.array(z.object({
     id: z.string(),
     name: z.string(),
-    subject_id: z.string().nullable().optional().default(null),
+    subject_id: z.string().nullable().default(null),
   })),
 });
 
@@ -31,7 +31,7 @@ export const pageSignalsSchema = z.object({
         prompt: z.string(),
         options: z.array(z.string()),
         contextLabel: z.string().nullable(),
-        questionType: z.string().nullable().optional(),
+        questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).nullable().default(null),
       }),
     )
     .default([]),
@@ -81,6 +81,7 @@ export const answerSuggestionSchema = z.object({
         sourceScope: z.enum(['subject_folder', 'all_subject_folders', 'file_sources', 'no_match']).default('no_match'),
         clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
         clickedText: z.string().nullable().default(null),
+        questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).nullable().default(null),
       }),
     )
     .default([]),
@@ -231,6 +232,7 @@ export const analyzeResponseSchema = z.object({
         sourceScope: z.enum(['subject_folder', 'all_subject_folders', 'file_sources', 'no_match']).default('no_match'),
         clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
         clickedText: z.string().nullable().default(null),
+        questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).nullable().default(null),
       }),
     )
     .default([]),

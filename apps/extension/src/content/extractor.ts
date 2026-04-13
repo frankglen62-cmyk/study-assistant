@@ -997,6 +997,7 @@ export function installExtractorContentScript() {
       options: string[];
       contextLabel: string | null;
       questionType: string | null;
+      node: Element;
     }> = [];
     const seenIds = new Set<string>();
     const seenKeys = new Set<string>();
@@ -1017,7 +1018,7 @@ export function installExtractorContentScript() {
       options: string[];
       contextLabel: string | null;
       questionType: string | null;
-    } | null) {
+    } | null, node: Element) {
       if (!candidate) {
         return;
       }
@@ -1027,9 +1028,11 @@ export function installExtractorContentScript() {
         return;
       }
 
+      const candidateWithNode = { ...candidate, node };
+
       if (normalizedId) {
         seenIds.add(normalizedId);
-        candidates.push(candidate);
+        candidates.push(candidateWithNode);
         return;
       }
 
@@ -1039,7 +1042,7 @@ export function installExtractorContentScript() {
       }
 
       seenKeys.add(key);
-      candidates.push(candidate);
+      candidates.push(candidateWithNode);
     }
 
     visiblePromptNodes.forEach((node, index) => {
@@ -1074,6 +1077,7 @@ export function installExtractorContentScript() {
           contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
           questionType: detectQuestionType(container),
         }),
+        container
       );
     });
 
@@ -1102,6 +1106,7 @@ export function installExtractorContentScript() {
             contextLabel: element.dataset.questionLabel ?? null,
             questionType: detectQuestionType(element),
           }),
+          element
         );
       });
 
@@ -1172,6 +1177,7 @@ export function installExtractorContentScript() {
             deriveQuestionLabel(container),
           questionType: container instanceof HTMLElement ? detectQuestionType(container) : 'multiple_choice',
         }),
+        container instanceof HTMLElement ? container : inputs[0]!
       );
     });
 
@@ -1212,6 +1218,7 @@ export function installExtractorContentScript() {
           contextLabel: container.dataset.questionLabel ?? deriveQuestionLabel(container),
           questionType: 'fill_in_blank',
         }),
+        container instanceof HTMLElement ? container : input
       );
     });
 
@@ -1409,12 +1416,26 @@ export function installExtractorContentScript() {
               contextLabel: subContextLabel,
               questionType: 'dropdown',
             }),
+            sel
           );
         }
       }
     }
 
-    const questionCandidates = candidates.slice(0, MAX_QUESTION_CANDIDATES);
+    candidates.sort((a, b) => {
+      const position = a.node.compareDocumentPosition(b.node);
+      if (position & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+      if (position & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+      return 0;
+    });
+
+    const questionCandidates = candidates.slice(0, MAX_QUESTION_CANDIDATES).map(({ node, ...rest }) => ({
+      id: rest.id,
+      prompt: rest.prompt,
+      options: rest.options,
+      contextLabel: rest.contextLabel,
+      questionType: rest.questionType as any,
+    }));
 
     return {
       candidates: questionCandidates,

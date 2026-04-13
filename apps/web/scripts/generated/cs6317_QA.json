@@ -1,0 +1,230 @@
+[
+  {
+    "q": "The _______ has become a symbolic point of entry to art and design education.",
+    "a": "Symbolism"
+  },
+  {
+    "q": "For_________, it is a good idea to stay away from system fonts! Web designers have to rely on them for body copy",
+    "a": "print designers"
+  },
+  {
+    "q": "The _______ are created to be well-kerned at smaller font choices (such as 10 – 12 points).",
+    "a": "digital fonts"
+  },
+  {
+    "q": "Although neither Mondrian nor van Doesburg were masters at The Bauhaus, Bauhaus members were aware of De Stijl and influenced by _______",
+    "a": "contemporary art move"
+  },
+  {
+    "q": "When you set _____ (for instance, a letter typed in Microsoft Word), you usually do not have to be concerned with kerning",
+    "a": "body copy"
+  },
+  {
+    "q": "An 8-bit sample allows 256 values that are used to describe audio, whereas a 16-bit sample provides 65, _________ values.",
+    "a": "536"
+  },
+  {
+    "q": "Sound is important in multimedia to catch the interest of the",
+    "a": "audience"
+  },
+  {
+    "q": "While the black and white paintings with brief areas of vibrant hues in primary colors appear to be simple horizontal and vertical intersections, the renderings might allude to a city map, an electrical circuit board, or an abstracted ______",
+    "a": "blueprint"
+  },
+  {
+    "q": "This refers to the reproduction and transmission of sound stored in a digital format.",
+    "a": "digital sound"
+  },
+  {
+    "q": "Using a _____ for headlines is not a rule, but often commands attention as they are sleek and authoritative in comparison to serif fonts.",
+    "a": "sans-serif"
+  },
+  {
+    "q": "By understanding the relationship between the _______ and the organizational requirements of automation and mass replication, The Bauhaus is responsible for design solutions utilizing the grid that became popular in the 1920s and is still noticeable today.",
+    "a": "grid"
+  },
+  {
+    "q": "There are two factors that affect the quality of the digitized audio: __________ and sample size.",
+    "a": "sample rate"
+  },
+  {
+    "q": "_______ was a Dutch painter who contributed to the De Stijl (in English, “The Style”) movement founded by Theo van Doesbur",
+    "a": "Mondrian"
+  },
+  {
+    "q": "A ______ is the result of connecting any two points on a plane.",
+    "a": "line"
+  },
+  {
+    "q": "The three most common sample rates are; 11.025 kHz, 22.05 kHz, and",
+    "a": "44.1 kHz"
+  },
+  {
+    "q": "Sounds also can be combined in a ________ to provide information and enhance the other media being presented",
+    "a": "multimedia presentation"
+  },
+  {
+    "q": "in the number of cycles a sound wave creates in one second.",
+    "a": "frequency"
+  },
+  {
+    "q": "s the amount of information stored about the sample",
+    "a": "sample size"
+  },
+  {
+    "q": "A __________ starts with an analog-to-digital converter (ADC) that converts an analog signal to a digital signal.",
+    "a": "digital audio signal"
+  },
+  {
+    "q": "While there are four distinct properties and six laws (termed, Pragnanz), one of the main themes is the understanding that viewers see a group of like objects as a _______ before seeing the individual part",
+    "a": "whole unit"
+  },
+  {
+    "q": "Two main characteristic in sound waves are FREQUENCY and",
+    "a": "amplitude"
+  },
+  {
+    "q": "A ______ is created by the contrast of value and hue.",
+    "a": "focal point"
+  },
+  {
+    "q": "The unit of measure for loudness or volume is decibe",
+    "a": "dB"
+  },
+  {
+    "q": "The louder the sound, the higher the",
+    "a": "amplitude"
+  },
+  {
+    "q": "___ are typically larger than body copy and maintain a heavier weight on the page than most other elements.",
+    "a": "Headlines"
+  },
+  {
+    "q": "The higher the sample rate, the more samples that are taken and, thus, the better the quality of the",
+    "a": "digitized audio"
+  },
+  {
+    "q": "is the volume or loudness a particular sound makes.",
+    "a": "amplitude"
+  },
+  {
+    "q": "Termed the______ , the individual circles will be read only after the viewer sees the entire pattern presented here as a square.",
+    "a": "law of similarity"
+  },
+  {
+    "q": "The ______ is utilized in all areas of design as a structure upon which forms can be precisely placed, reflected, balanced or imbalanced.",
+    "a": "grid"
+  },
+  {
+    "q": "The greater the ______ the better the quality of the audio.",
+    "a": "sample size"
+  },
+  {
+    "q": "_____ is the space between the letters in a single word.",
+    "a": "Kerning"
+  },
+  {
+    "q": "The last step for digital audio is to be converted back to an _____________with a digital-to-analog converter (DAC).",
+    "a": "analog signal"
+  },
+  {
+    "q": "The scale of the headline often relates to the scale of an accompanying ______ or illustration (it may be the same width or half of the width, for example, as a photograph on the front page of a newspaper)",
+    "a": "photograph"
+  },
+  {
+    "q": "Formulating an ______ from simple lines and planes is a practice in translating visual cues into language-based meanings",
+    "a": "abstract concept"
+  },
+  {
+    "q": "The grid is the ______ underlying structure that sustains the relationships between all formal elements in print design, interactive design, industrial design, architecture, fashion, and more.",
+    "a": "invisible"
+  },
+  {
+    "q": "It is the goal of any visual communicator to learn to do this as both the reader of the message and the generator of _________",
+    "a": "visual content"
+  },
+  {
+    "q": "The standard measurement for frequency is called HERTZ",
+    "a": "Hz"
+  },
+  {
+    "q": "While the origin of the grid as an_____precedes the Bauhaus art movement and institution by more than 5,500 years, the Bauhaus movement perceived the grid as not only an organizational structure, but as a structure that could be easily multiplied and reproduced.",
+    "a": "Organizational structure"
+  },
+  {
+    "q": "Often audio provides the only effective way to convey an idea, elicit an emotion, or ________ point",
+    "a": "Dramatize"
+  },
+  {
+    "q": "The digitizing and storage of __________or music on a computer or compact disc",
+    "a": "sound"
+  },
+  {
+    "q": "Sound is important in multimedia to include _______: effective for training and educational application.",
+    "a": "narration"
+  },
+  {
+    "q": "Sound is important in multimedia to set the",
+    "a": "mood"
+  },
+  {
+    "q": "________ is important to visual creators because it provides a theory for the way humans perceive groups of shapes in a composition",
+    "a": "Gestalt psychology"
+  },
+  {
+    "q": "Identify the type of sound.",
+    "a": "Identify the type of sound."
+  },
+  {
+    "q": "is the best way to attract attention.",
+    "a": "sound"
+  },
+  {
+    "q": "Sound is important in multimedia to reinforce message or",
+    "a": "theme"
+  },
+  {
+    "q": "The two most common sample sizes are 8 bit and ____________ bit.",
+    "a": "16"
+  },
+  {
+    "q": "Attention grabber",
+    "a": "Music"
+  },
+  {
+    "q": "After being sampled with the ADC, the digital signal may then be altered in a process which is called",
+    "a": "digital signal process"
+  },
+  {
+    "q": "Sound is important in multimedia to alert the",
+    "a": "audience"
+  },
+  {
+    "q": "In order for a computer to work with audio waves, they must be converted from analog to _________ form.",
+    "a": "digital"
+  },
+  {
+    "q": "_________ (the fonts that are installed on all computers, such as Arial, Chicago, Times, New York, and so on) are usually reserved for the body copy on web pages; and they are not typically used as headlines",
+    "a": "System fonts"
+  },
+  {
+    "q": "________ (ornamental fonts, such as those that are free to download on (http://chank.com/freefonts.php) are not legible enough to be used for body copy, but are often selected for headlines as they tend to be more ornate.",
+    "a": "Display fonts"
+  },
+  {
+    "q": "is measured from one wave peak to another",
+    "a": "cycle"
+  },
+  {
+    "q": "is the number of times the sample is taken",
+    "a": "sample rate"
+  },
+  {
+    "q": "The ultra-bold font style creates a weighty headline, and the regular variation of the _____ is very easy to read as body copy.",
+    "a": "typeface"
+  },
+  {
+    "q": "The digital audio signal may then be stored or",
+    "a": "transmitted"
+  }
+]
