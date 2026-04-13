@@ -1056,18 +1056,26 @@ export function installExtractorContentScript() {
       if (!isElementVisible(node) || looksLikeQuestionNavigation(node)) return false;
 
       // Skip Moodle "description" type .que blocks — they have no answerable content
-      // Description blocks have class "description" and contain only informational text
       if (node.classList.contains('description')) return false;
 
-      // A real question must have EITHER:
-      // 1. A question number element (.no, .questionnumber)
-      // 2. OR interactive inputs (radio, checkbox, text input, select)
-      const hasQuestionNumber = !!node.querySelector('.info .no, .info .questionnumber, .questionnumber');
-      const hasInteractiveInputs = node.querySelectorAll(
-        'input[type="radio"], input[type="checkbox"], input[type="text"], input:not([type]), textarea, select'
-      ).length > 0;
+      // ── STRICT FILTER: Require a Moodle question number ──────────────
+      // Every REAL Moodle question has a question number element like:
+      //   <span class="no">Question 1</span>
+      //   <span class="questionnumber">1</span>  
+      //   <h3 class="no">Question 1</h3>
+      // Ghost/description .que blocks do NOT have this.
+      // This is the most reliable way to distinguish real questions from
+      // informational blocks that also use the .que class.
+      const questionNumberEl = node.querySelector(
+        '.info .no, .info .questionnumber, .info h3.no, .questionnumber, [class*="qno"]'
+      );
+      if (!questionNumberEl) return false;
 
-      return hasQuestionNumber || hasInteractiveInputs;
+      // Verify the question number text looks like an actual number
+      const numText = (questionNumberEl.textContent ?? '').replace(/\D/g, '');
+      if (!numText) return false;
+
+      return true;
     });
 
     if (moodleQueContainers.length >= 2) {
