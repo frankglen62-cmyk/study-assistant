@@ -31,6 +31,7 @@ export const pageSignalsSchema = z.object({
         prompt: z.string(),
         options: z.array(z.string()),
         contextLabel: z.string().nullable(),
+        questionType: z.string().nullable().optional(),
       }),
     )
     .default([]),

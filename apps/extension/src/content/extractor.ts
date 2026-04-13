@@ -17,7 +17,7 @@ export function installExtractorContentScript() {
 
   const courseCodePattern = /\b[A-Z]{2,10}(?:-[A-Z]{2,10})?\s*-?\s*\d{3,5}[A-Z]?\b/g;
   // Enhanced pattern for Moodle shortnames like UGRD-IT6206-2522S, UGRD-ITE6220-2522S
-  const moodleShortnamePattern = /\b(UGRD|GRAD|GEN|BSCS|BSIT|BSIS|IT|CS|IS|ITE?|NSCI|FILI|ECE|EE|ME|CE|CPE|COE)[\s-]?([A-Z]{0,4}\d{3,5}[A-Z]?)(?:-\d{3,4}[A-Z]?)?\b/gi;
+  const moodleShortnamePattern = /\b(UGRD|GRAD|GEN|BSCS|BSIT|BSIS|IT|CS|IS|ITE?|NSCI|FILI|ECE|EE|ME|CE|CPE|COE)[\s-]?([A-Z]{0,4}\d{3,5}[A-Z]?)(?:-\d{3,4}[A-Z]?)?\b/i;
   const MAX_VISIBLE_CONTEXT_ITEMS = 300;
   const MAX_EXTRACTED_OPTIONS = 50;
   const MAX_QUESTION_CANDIDATES = 5000;
@@ -1494,7 +1494,7 @@ export function installExtractorContentScript() {
         courseShortname = text;
         // Extract course code from shortname like "UGRD-IT6206-2522S" → "IT6206"
         const codeMatch = text.match(moodleShortnamePattern);
-        if (codeMatch) {
+        if (codeMatch && codeMatch[1] && codeMatch[2]) {
           courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
         }
         break;
@@ -1527,7 +1527,7 @@ export function installExtractorContentScript() {
           if (text && text.length > 2) {
             courseShortname = text;
             const codeMatch = text.match(moodleShortnamePattern);
-            if (codeMatch) {
+            if (codeMatch && codeMatch[1] && codeMatch[2]) {
               courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
             }
             break;
@@ -1542,7 +1542,7 @@ export function installExtractorContentScript() {
       if (courseHeading && isElementVisible(courseHeading)) {
         const text = normalizeText(courseHeading.textContent ?? '');
         const codeMatch = text.match(moodleShortnamePattern);
-        if (codeMatch) {
+        if (codeMatch && codeMatch[1] && codeMatch[2]) {
           courseShortname = text;
           courseCode = (codeMatch[1] + codeMatch[2]).replace(/[\s-]/g, '').toUpperCase();
         }
@@ -1553,7 +1553,7 @@ export function installExtractorContentScript() {
     // Some Moodle URLs contain the course id or shortname directly
     if (!courseCode) {
       const urlMatch = window.location.href.match(moodleShortnamePattern);
-      if (urlMatch) {
+      if (urlMatch && urlMatch[1] && urlMatch[2]) {
         courseCode = (urlMatch[1] + urlMatch[2]).replace(/[\s-]/g, '').toUpperCase();
       }
     }
@@ -1562,7 +1562,7 @@ export function installExtractorContentScript() {
     // e.g., "Final Exam (page 1 of 50)" doesn't help, but "UGRD-IT6206: Final Exam" would
     if (!courseCode) {
       const titleMatch = document.title.match(moodleShortnamePattern);
-      if (titleMatch) {
+      if (titleMatch && titleMatch[1] && titleMatch[2]) {
         courseCode = (titleMatch[1] + titleMatch[2]).replace(/[\s-]/g, '').toUpperCase();
       }
     }
