@@ -16,6 +16,7 @@ import type {
 import { slugify } from '@study-assistant/shared-utils';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
 import { Plus, XCircle, GripVertical } from 'lucide-react';
+import { parseDropdownPairs, serializeDropdownPairs, DROPDOWN_PAIRS_HEADER, type DropdownPair } from '@/lib/ai/answering';
 
 import { useToast } from '@/components/providers/toast-provider';
 import type { FolderRecord, SourceFileRecord, SubjectQaPairRecord } from '@/lib/supabase/schemas';
@@ -1585,6 +1586,69 @@ export function AdminSourceManager({
                                             <Plus size={14} /> Add an option
                                           </Button>
                                         </div>
+                                      ) : inlineEditor.questionType === 'dropdown' ? (
+                                        <div className="space-y-3 mt-2 w-full pr-4 pb-4">
+                                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Sub-question / Answer Pairs</p>
+                                          {(() => {
+                                            const pairs = parseDropdownPairs(inlineEditor.answerText) ?? [{ subPrompt: '', answer: '' }];
+                                            return (
+                                              <>
+                                                {pairs.map((dp, i) => (
+                                                  <div key={i} className="flex gap-2 items-start">
+                                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[10px] font-bold text-accent mt-1">{i + 1}</span>
+                                                    <div className="flex-1 space-y-1.5">
+                                                      <Input
+                                                        type="text"
+                                                        value={dp.subPrompt}
+                                                        placeholder={`Sub-question ${i + 1} (e.g. "A device that converts analog to digital")`}
+                                                        className="h-8 text-sm"
+                                                        onChange={(e) => {
+                                                          const nextPairs = [...pairs];
+                                                          nextPairs[i] = { ...nextPairs[i]!, subPrompt: e.target.value };
+                                                          setInlineEditor((current) => (current ? { ...current, answerText: serializeDropdownPairs(nextPairs) } : current));
+                                                        }}
+                                                      />
+                                                      <Input
+                                                        type="text"
+                                                        value={dp.answer}
+                                                        placeholder={`Answer ${i + 1} (e.g. "Modem")`}
+                                                        className="h-8 text-sm border-success/30 focus-visible:ring-success/50"
+                                                        onChange={(e) => {
+                                                          const nextPairs = [...pairs];
+                                                          nextPairs[i] = { ...nextPairs[i]!, answer: e.target.value };
+                                                          setInlineEditor((current) => (current ? { ...current, answerText: serializeDropdownPairs(nextPairs) } : current));
+                                                        }}
+                                                      />
+                                                    </div>
+                                                    <button
+                                                      type="button"
+                                                      title="Remove this pair"
+                                                      className="text-muted-foreground hover:text-danger p-1 rounded-md mt-1"
+                                                      onClick={() => {
+                                                        const nextPairs = pairs.filter((_, idx) => idx !== i);
+                                                        setInlineEditor((current) => (current ? { ...current, answerText: nextPairs.length > 0 ? serializeDropdownPairs(nextPairs) : '' } : current));
+                                                      }}
+                                                    >
+                                                      <XCircle size={16} />
+                                                    </button>
+                                                  </div>
+                                                ))}
+                                                <Button
+                                                  type="button"
+                                                  variant="secondary"
+                                                  size="sm"
+                                                  onClick={() => {
+                                                    const nextPairs = [...pairs, { subPrompt: '', answer: '' }];
+                                                    setInlineEditor((current) => (current ? { ...current, answerText: serializeDropdownPairs(nextPairs) } : current));
+                                                  }}
+                                                  className="h-8 mt-2 w-full border-dashed border-2 flex items-center justify-center gap-1 text-muted-foreground"
+                                                >
+                                                  <Plus size={14} /> Add sub-question pair
+                                                </Button>
+                                              </>
+                                            );
+                                          })()}
+                                        </div>
                                       ) : (
                                       <Textarea
                                         value={inlineEditor.answerText}
@@ -1673,6 +1737,18 @@ export function AdminSourceManager({
                                             </li>
                                           ))}
                                         </ul>
+                                      ) : pair.question_type === 'dropdown' && pair.answer_text.startsWith(DROPDOWN_PAIRS_HEADER) ? (
+                                        <div className="pl-8 space-y-1.5 mt-1">
+                                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">Dropdown Sub-Pairs ({(parseDropdownPairs(pair.answer_text) ?? []).length})</p>
+                                          {(parseDropdownPairs(pair.answer_text) ?? []).map((dp, i) => (
+                                            <div key={i} className="flex items-center gap-2 text-sm">
+                                              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[9px] font-bold text-accent">{i + 1}</span>
+                                              <span className="text-foreground/70 min-w-0 truncate max-w-[180px]" title={dp.subPrompt}>{dp.subPrompt}</span>
+                                              <span className="text-muted-foreground/50">→</span>
+                                              <span className="font-medium text-foreground truncate min-w-0" title={dp.answer}>{dp.answer}</span>
+                                            </div>
+                                          ))}
+                                        </div>
                                       ) : (
                                         <p className="whitespace-pre-wrap text-[15px] cursor-text selection:bg-accent/30 leading-relaxed text-foreground font-medium pl-8">
                                           {pair.answer_text}
@@ -1864,6 +1940,73 @@ export function AdminSourceManager({
                                   >
                                     <Plus size={14} /> Add checkbox option
                                   </Button>
+                                </div>
+                              ) : pair.questionType === 'dropdown' ? (
+                                <div className="space-y-3">
+                                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Sub-question / Answer Pairs</p>
+                                  {(() => {
+                                    const dpPairs = parseDropdownPairs(pair.answerText) ?? [{ subPrompt: '', answer: '' }];
+                                    return (
+                                      <>
+                                        {dpPairs.map((dp, dpIdx) => (
+                                          <div key={dpIdx} className="flex gap-2 items-start">
+                                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[10px] font-bold text-accent mt-1">{dpIdx + 1}</span>
+                                            <div className="flex-1 space-y-1.5">
+                                              <Input
+                                                type="text"
+                                                value={dp.subPrompt}
+                                                placeholder={`Sub-question ${dpIdx + 1} (e.g. "A device that converts analog to digital")`}
+                                                className="h-8 text-sm"
+                                                disabled={!selectedRootFolder}
+                                                onChange={(e) => {
+                                                  const nextPairs = [...dpPairs];
+                                                  nextPairs[dpIdx] = { ...nextPairs[dpIdx]!, subPrompt: e.target.value };
+                                                  setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: serializeDropdownPairs(nextPairs) } : p));
+                                                }}
+                                              />
+                                              <Input
+                                                type="text"
+                                                value={dp.answer}
+                                                placeholder={`Answer ${dpIdx + 1} (e.g. "Modem")`}
+                                                className="h-8 text-sm border-success/30 focus-visible:ring-success/50"
+                                                disabled={!selectedRootFolder}
+                                                onChange={(e) => {
+                                                  const nextPairs = [...dpPairs];
+                                                  nextPairs[dpIdx] = { ...nextPairs[dpIdx]!, answer: e.target.value };
+                                                  setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: serializeDropdownPairs(nextPairs) } : p));
+                                                }}
+                                              />
+                                            </div>
+                                            {dpPairs.length > 1 && (
+                                              <button
+                                                type="button"
+                                                className="p-1 text-muted-foreground hover:text-danger rounded-md mt-1"
+                                                onClick={() => {
+                                                  const nextPairs = dpPairs.filter((_, idx) => idx !== dpIdx);
+                                                  setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: nextPairs.length > 0 ? serializeDropdownPairs(nextPairs) : '' } : p));
+                                                }}
+                                              >
+                                                <XCircle size={16} />
+                                              </button>
+                                            )}
+                                          </div>
+                                        ))}
+                                        <Button
+                                          type="button"
+                                          variant="secondary"
+                                          size="sm"
+                                          disabled={!selectedRootFolder}
+                                          onClick={() => {
+                                            const nextPairs = [...dpPairs, { subPrompt: '', answer: '' }];
+                                            setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: serializeDropdownPairs(nextPairs) } : p));
+                                          }}
+                                          className="w-full border-dashed border-2 flex items-center justify-center gap-1 text-muted-foreground"
+                                        >
+                                          <Plus size={14} /> Add sub-question pair
+                                        </Button>
+                                      </>
+                                    );
+                                  })()}
                                 </div>
                               ) : (
                                 <Textarea

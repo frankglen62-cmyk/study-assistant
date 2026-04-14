@@ -1,11 +1,150 @@
 import { clamp } from '@study-assistant/shared-utils';
 
 import { buildFallbackAnswerSuggestion } from '@/lib/ai/fallback';
-import { resolveSuggestedOption } from '@/lib/ai/choice-matching';
+import { resolveSuggestedOption, normalizeComparableText } from '@/lib/ai/choice-matching';
 import { env } from '@/lib/env/server';
 import { createStructuredResponse, isOpenAIUnavailableError } from '@/lib/ai/openai';
 import { answerJsonSchema, answerSuggestionSchema } from '@/lib/ai/schemas';
 import { retrievalChunkSchema, retrievalQaPairSchema } from '@/lib/supabase/schemas';
+
+/* ────────────────────────────────────────────────────────────────────
+ *  Dropdown Pairs — Parsing & Matching
+ *
+ *  When a Q&A pair has question_type='dropdown', the answer_text field
+ *  uses a structured format to store multiple sub-question / answer pairs:
+ *
+ *    ##DROPDOWN_PAIRS##
+ *    sub_prompt_1 ||| answer_1
+ *    sub_prompt_2 ||| answer_2
+ *    ...
+ *
+ *  This is human-readable and machine-parseable.
+ * ──────────────────────────────────────────────────────────────────── */
+
+export const DROPDOWN_PAIRS_HEADER = '##DROPDOWN_PAIRS##';
+
+export interface DropdownPair {
+  subPrompt: string;
+  answer: string;
+}
+
+/**
+ * Parse dropdown sub-question/answer pairs from the answer_text field.
+ * Returns null if the text doesn't use the dropdown pairs format.
+ */
+export function parseDropdownPairs(answerText: string): DropdownPair[] | null {
+  const trimmed = answerText.trim();
+  if (!trimmed.startsWith(DROPDOWN_PAIRS_HEADER)) {
+    return null;
+  }
+
+  const lines = trimmed
+    .slice(DROPDOWN_PAIRS_HEADER.length)
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0 && line.includes('|||'));
+
+  if (lines.length === 0) {
+    return null;
+  }
+
+  return lines.map((line) => {
+    const separatorIndex = line.indexOf('|||');
+    return {
+      subPrompt: line.slice(0, separatorIndex).trim(),
+      answer: line.slice(separatorIndex + 3).trim(),
+    };
+  }).filter((pair) => pair.subPrompt.length > 0 && pair.answer.length > 0);
+}
+
+/**
+ * Serialize dropdown pairs back into the answer_text format.
+ */
+export function serializeDropdownPairs(pairs: DropdownPair[]): string {
+  if (pairs.length === 0) {
+    return '';
+  }
+
+  const lines = pairs
+    .filter((p) => p.subPrompt.trim() && p.answer.trim())
+    .map((p) => `${p.subPrompt.trim()} ||| ${p.answer.trim()}`);
+
+  return `${DROPDOWN_PAIRS_HEADER}\n${lines.join('\n')}`;
+}
+
+/**
+ * Match extracted dropdown sub-questions against stored dropdown pairs.
+ * Returns a map of dropdownId → best matching answer.
+ */
+export function matchDropdownSubQuestions(
+  subQuestions: Array<{ subId: string; prompt: string; options: string[]; dropdownId: string }>,
+  storedPairs: DropdownPair[],
+): Map<string, { suggestedOption: string | null; answerText: string; confidence: number }> {
+  const results = new Map<string, { suggestedOption: string | null; answerText: string; confidence: number }>();
+
+  for (const sub of subQuestions) {
+    const normalizedSubPrompt = normalizeComparableText(sub.prompt);
+    if (!normalizedSubPrompt) continue;
+
+    let bestPair: DropdownPair | null = null;
+    let bestScore = 0;
+
+    for (const pair of storedPairs) {
+      const normalizedStoredPrompt = normalizeComparableText(pair.subPrompt);
+      if (!normalizedStoredPrompt) continue;
+
+      // Exact match
+      if (normalizedSubPrompt === normalizedStoredPrompt) {
+        bestPair = pair;
+        bestScore = 1.0;
+        break;
+      }
+
+      // Containment match with high ratio
+      const shorter = Math.min(normalizedSubPrompt.length, normalizedStoredPrompt.length);
+      const longer = Math.max(normalizedSubPrompt.length, normalizedStoredPrompt.length);
+      const ratio = longer > 0 ? shorter / longer : 0;
+
+      if (ratio >= 0.6 && (normalizedSubPrompt.includes(normalizedStoredPrompt) || normalizedStoredPrompt.includes(normalizedSubPrompt))) {
+        const score = 0.85 + ratio * 0.1;
+        if (score > bestScore) {
+          bestPair = pair;
+          bestScore = score;
+        }
+      }
+
+      // Word overlap for fuzzy matching
+      const subWords = normalizedSubPrompt.split(/\s+/).filter((w) => w.length > 2);
+      const storedWords = new Set(normalizedStoredPrompt.split(/\s+/));
+      if (subWords.length > 0) {
+        const matchCount = subWords.filter((w) => storedWords.has(w)).length;
+        const wordScore = matchCount / subWords.length;
+        if (wordScore > bestScore && wordScore >= 0.7) {
+          bestPair = pair;
+          bestScore = wordScore;
+        }
+      }
+    }
+
+    if (bestPair) {
+      // Try to match the stored answer against the dropdown's options
+      const suggestedOption = resolveSuggestedOption(
+        sub.options,
+        bestPair.answer,
+        sub.prompt,
+        'dropdown',
+      );
+
+      results.set(sub.dropdownId, {
+        suggestedOption,
+        answerText: bestPair.answer,
+        confidence: bestScore * 0.95,
+      });
+    }
+  }
+
+  return results;
+}
 
 export function buildQaPairAnswerSuggestion(params: {
   pair: ReturnType<typeof retrievalQaPairSchema.parse>;

@@ -8,7 +8,7 @@ import type {
   ExtensionSourceScope,
 } from '@study-assistant/shared-types';
 
-import { buildQaPairAnswerSuggestion } from '@/lib/ai/answering';
+import { buildQaPairAnswerSuggestion, parseDropdownPairs, matchDropdownSubQuestions } from '@/lib/ai/answering';
 import { isQuestionTextEquivalent, normalizeComparableText, overlapScore, contentOverlapScore, splitMultiAnswerSegments, splitMultiAnswerByChoices } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
@@ -541,34 +541,74 @@ async function buildQuestionSuggestions(params: {
         confidence: number | null;
       }> = [];
 
-      for (const sub of subQuestions) {
-        // Create a virtual candidate for this sub-question
-        const subCandidate: ExtensionQuestionCandidate = {
-          id: sub.subId,
-          prompt: sub.prompt,
-          options: sub.options,
-          contextLabel: candidate.contextLabel,
-          questionType: 'dropdown',
-        };
+      // ── Strategy 1: Match against stored ##DROPDOWN_PAIRS## entries ──
+      // Scan all preloaded Q&A pairs for ones that use the dropdown pairs format.
+      // This is the most reliable path: the admin has explicitly mapped each
+      // sub-prompt to its correct answer.
+      let usedDropdownPairsMatch = false;
+      for (const row of preloadedRows) {
+        if ((row as any).question_type !== 'dropdown') continue;
+        const storedPairs = parseDropdownPairs(row.answer_text);
+        if (!storedPairs || storedPairs.length === 0) continue;
 
-        const subSuggestion = resolveQuestionSuggestionFromPreloaded({
-          candidate: subCandidate,
-          searchScope: params.searchScope,
-          subjectName: params.subjectName,
-          categoryName: params.categoryName,
-          detectionConfidence: params.detectionConfidence,
-          subject: params.subject,
-          category: params.category,
-          preloadedRows,
-          globalOptions: sub.options,
-        });
+        // Check if the parent question text is a reasonable match
+        const parentMatch = isReliableQaPairMatch(
+          { ...candidate, options: [] } as ExtensionQuestionCandidate,
+          { question_text: row.question_text, answer_text: row.answer_text },
+        );
+        // For dropdown pairs, also accept if the parent prompt is very short
+        // (matching questions sometimes just say "Matching Type")
+        const isShortParent = candidate.prompt.length <= 60;
+        if (!parentMatch && !isShortParent) continue;
 
-        dropdownAnswers.push({
-          dropdownId: sub.dropdownId,
-          suggestedOption: subSuggestion.suggestedOption,
-          answerText: subSuggestion.answerText,
-          confidence: subSuggestion.confidence,
-        });
+        const matchResults = matchDropdownSubQuestions(subQuestions, storedPairs);
+        if (matchResults.size > 0) {
+          usedDropdownPairsMatch = true;
+          // Fill in all sub-questions from the match results
+          for (const sub of subQuestions) {
+            const match = matchResults.get(sub.dropdownId);
+            dropdownAnswers.push({
+              dropdownId: sub.dropdownId,
+              suggestedOption: match?.suggestedOption ?? null,
+              answerText: match?.answerText ?? null,
+              confidence: match?.confidence ?? null,
+            });
+          }
+          break; // Found a matching dropdown pairs entry
+        }
+      }
+
+      // ── Strategy 2: Fallback — resolve each sub-question individually ──
+      if (!usedDropdownPairsMatch) {
+        for (const sub of subQuestions) {
+          // Create a virtual candidate for this sub-question
+          const subCandidate: ExtensionQuestionCandidate = {
+            id: sub.subId,
+            prompt: sub.prompt,
+            options: sub.options,
+            contextLabel: candidate.contextLabel,
+            questionType: 'dropdown',
+          };
+
+          const subSuggestion = resolveQuestionSuggestionFromPreloaded({
+            candidate: subCandidate,
+            searchScope: params.searchScope,
+            subjectName: params.subjectName,
+            categoryName: params.categoryName,
+            detectionConfidence: params.detectionConfidence,
+            subject: params.subject,
+            category: params.category,
+            preloadedRows,
+            globalOptions: sub.options,
+          });
+
+          dropdownAnswers.push({
+            dropdownId: sub.dropdownId,
+            suggestedOption: subSuggestion.suggestedOption,
+            answerText: subSuggestion.answerText,
+            confidence: subSuggestion.confidence,
+          });
+        }
       }
 
       // Override the parent suggestion with dropdown-specific data
