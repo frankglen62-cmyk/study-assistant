@@ -3046,6 +3046,24 @@ export function installExtractorContentScript() {
             // ignore label click errors
           }
         }
+
+        // ── Trigger Moodle auto-save ──
+        // When questions have broken HTML (e.g. unescaped angle brackets in code options),
+        // Moodle's native change detection may fail. Force a save by dispatching events
+        // on the question's form and triggering Moodle's auto-save timer.
+        try {
+          const form = bestMatch.input.closest('form');
+          if (form) {
+            form.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          // Try to trigger Moodle's auto-save via the global M.mod_quiz.autosave
+          const w = window as any;
+          if (w.M?.mod_quiz?.autosave?.save_changes) {
+            w.M.mod_quiz.autosave.save_changes();
+          }
+        } catch {
+          // auto-save trigger failed — non-critical
+        }
       } else if (!bestMatch.input) {
         bestMatch.element.click();
       }
