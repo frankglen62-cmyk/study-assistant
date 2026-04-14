@@ -1157,8 +1157,7 @@ export function installExtractorContentScript() {
         // candidate array index matches the Moodle question number (1:1).
         // For multi-dropdown questions, we embed sub-question metadata on the
         // parent candidate so the backend can match each sub-question individually.
-        const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'))
-          .filter(sel => isElementVisible(sel) && !sel.disabled);
+        const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'));
 
         // Extract sub-question metadata for multi-dropdown questions
         let dropdownSubQuestions: Array<{
