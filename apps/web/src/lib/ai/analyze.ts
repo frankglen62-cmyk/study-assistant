@@ -534,6 +534,12 @@ async function buildQuestionSuggestions(params: {
     }> | null;
 
     if (subQuestions && subQuestions.length > 0) {
+      console.log('[DEBUG dropdown] Candidate has', subQuestions.length, 'subQuestions');
+      console.log('[DEBUG dropdown] Candidate prompt (first 100):', candidate.prompt.slice(0, 100));
+      console.log('[DEBUG dropdown] Candidate questionType:', candidate.questionType);
+      console.log('[DEBUG dropdown] Total preloaded rows:', preloadedRows.length);
+      console.log('[DEBUG dropdown] Dropdown-type rows:', preloadedRows.filter(r => (r as any).question_type === 'dropdown').length);
+
       const dropdownAnswers: Array<{
         dropdownId: string;
         suggestedOption: string | null;
@@ -551,15 +557,54 @@ async function buildQuestionSuggestions(params: {
         const storedPairs = parseDropdownPairs(row.answer_text);
         if (!storedPairs || storedPairs.length === 0) continue;
 
-        // Check if the parent question text is a reasonable match
-        const parentMatch = isReliableQaPairMatch(
-          { ...candidate, options: [] } as ExtensionQuestionCandidate,
-          { question_text: row.question_text, answer_text: row.answer_text },
-        );
-        // For dropdown pairs, also accept if the parent prompt is very short
-        // (matching questions sometimes just say "Matching Type")
-        const isShortParent = candidate.prompt.length <= 60;
-        if (!parentMatch && !isShortParent) continue;
+        // Check if the parent question text is a reasonable match.
+        // For dropdown/matching questions, the candidate.prompt is the FULL text
+        // of the .que container (which includes all sub-question prompts and
+        // "Choose..." placeholder texts). The stored question_text is typically
+        // just the header like "Matching Type. Choose the correct answer from
+        // the selection." So we use a lenient matching approach:
+        const normalizedCandidatePrompt = normalizeComparableText(candidate.prompt);
+        const normalizedStoredQuestion = normalizeComparableText(row.question_text);
+
+        let parentTextMatches = false;
+
+        if (normalizedCandidatePrompt && normalizedStoredQuestion) {
+          // Direct match or equivalence
+          if (normalizedCandidatePrompt === normalizedStoredQuestion) {
+            parentTextMatches = true;
+          }
+          // The stored question text is contained within the (much longer) candidate prompt
+          else if (normalizedCandidatePrompt.includes(normalizedStoredQuestion) && normalizedStoredQuestion.length >= 10) {
+            parentTextMatches = true;
+          }
+          // The candidate prompt starts with or contains the stored question header
+          else if (isQuestionTextEquivalent(candidate.prompt, row.question_text)) {
+            parentTextMatches = true;
+          }
+          // Word overlap: at least 70% of the stored question's words appear in the candidate
+          else {
+            const storedWords = normalizedStoredQuestion.split(/\s+/).filter(w => w.length > 2);
+            const candidateWordsSet = new Set(normalizedCandidatePrompt.split(/\s+/));
+            if (storedWords.length > 0) {
+              const matchedCount = storedWords.filter(w => candidateWordsSet.has(w)).length;
+              if (matchedCount / storedWords.length >= 0.7) {
+                parentTextMatches = true;
+              }
+            }
+          }
+        }
+
+        // Also accept if there are many stored pairs matching many sub-questions
+        // (even without a parent text match, if the sub-question coverage is high)
+        if (!parentTextMatches && storedPairs.length >= 3) {
+          // Try matching sub-questions — if most of them match, the parent is likely correct
+          const testResults = matchDropdownSubQuestions(subQuestions, storedPairs);
+          if (testResults.size >= Math.min(subQuestions.length, storedPairs.length) * 0.5) {
+            parentTextMatches = true;
+          }
+        }
+
+        if (!parentTextMatches) continue;
 
         const matchResults = matchDropdownSubQuestions(subQuestions, storedPairs);
         if (matchResults.size > 0) {
@@ -578,8 +623,11 @@ async function buildQuestionSuggestions(params: {
         }
       }
 
+      console.log('[DEBUG dropdown] Strategy 1 (pairs match):', usedDropdownPairsMatch ? 'SUCCESS' : 'not matched');
+
       // ── Strategy 2: Fallback — resolve each sub-question individually ──
       if (!usedDropdownPairsMatch) {
+        console.log('[DEBUG dropdown] Falling back to Strategy 2 (per-sub-question)');
         for (const sub of subQuestions) {
           // Create a virtual candidate for this sub-question
           const subCandidate: ExtensionQuestionCandidate = {
