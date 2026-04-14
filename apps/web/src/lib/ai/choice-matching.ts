@@ -236,6 +236,47 @@ export function overlapScore(left: string, right: string) {
   return hits / leftTokens.size;
 }
 
+/**
+ * Compute a sequential (order-sensitive) similarity score between two texts
+ * using bigrams (pairs of consecutive tokens). This is critical for questions
+ * where all options contain the same words but in different orders — e.g.
+ * "Which is the correct order of..." questions. The bag-of-words overlapScore
+ * gives identical scores for all permutations, but bigram overlap correctly
+ * identifies which permutation matches the stored answer.
+ */
+export function sequentialSimilarity(left: string, right: string) {
+  const leftTokens = tokenize(left);
+  const rightTokens = tokenize(right);
+
+  if (leftTokens.length < 2 || rightTokens.length < 2) {
+    return 0;
+  }
+
+  const leftBigrams = new Set<string>();
+  for (let i = 0; i < leftTokens.length - 1; i++) {
+    leftBigrams.add(leftTokens[i] + '|' + leftTokens[i + 1]);
+  }
+
+  const rightBigrams = new Set<string>();
+  for (let i = 0; i < rightTokens.length - 1; i++) {
+    rightBigrams.add(rightTokens[i] + '|' + rightTokens[i + 1]);
+  }
+
+  if (leftBigrams.size === 0) {
+    return 0;
+  }
+
+  let hits = 0;
+  for (const bigram of leftBigrams) {
+    if (rightBigrams.has(bigram)) {
+      hits += 1;
+    }
+  }
+
+  // Use Dice coefficient for balanced scoring
+  return (2 * hits) / (leftBigrams.size + rightBigrams.size);
+}
+
 // Stop words that carry little meaning for question matching.
 // "windows" vs "browsers" differ by ONE word, but the 5 matching tokens
 // ("it", "is", "a", "based", "application") are mostly stop words.
@@ -353,7 +394,21 @@ export function scoreChoiceOption(params: {
   const questionPenalty =
     params.questionText && overlapScore(params.option.text, params.questionText) > answerOverlap + 0.35 ? 0.08 : 0;
 
-  return Math.max(answerOverlap - questionPenalty, 0);
+  let baseScore = Math.max(answerOverlap - questionPenalty, 0);
+
+  // ── Order-sensitive tiebreaker ──
+  // When the bag-of-words overlap is very high (≥ 0.90), all permutations of
+  // the same word list score identically. Use bigram sequential similarity
+  // to differentiate: the option whose word ORDER matches the stored answer
+  // gets a bonus. This is essential for "correct order" questions where every
+  // option contains the exact same words rearranged.
+  if (baseScore >= 0.90) {
+    const seqSim = sequentialSimilarity(params.option.text, params.answerText);
+    // Blend: 70% bag-of-words + 30% sequential order
+    baseScore = baseScore * 0.70 + seqSim * 0.30;
+  }
+
+  return baseScore;
 }
 
 export function resolveSuggestedOption(

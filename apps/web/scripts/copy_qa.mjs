@@ -30,17 +30,17 @@ const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE
 });
 
 async function run() {
-  const { data: bgData, error: bgErr } = await supabase.from('subjects').select('*').ilike('name', 'Information Management%');
+  const { data: bgData, error: bgErr } = await supabase.from('subjects').select('*').ilike('name', 'Load Testing%');
   if(bgErr) throw bgErr;
   
-  const { data: destData, error: destErr } = await supabase.from('subjects').select('*').ilike('name', 'Professional Ethics in IT%');
+  const { data: destData, error: destErr } = await supabase.from('subjects').select('*').ilike('name', 'Unified Functional Testing%');
   if(destErr) throw destErr;
 
   const sourceSubj = bgData[0];
   const targetSubj = destData[0];
 
-  if (!sourceSubj) throw new Error("Couldn't find source subject: Information Management");
-  if (!targetSubj) throw new Error("Couldn't find target subject: Professional Ethics in IT");
+  if (!sourceSubj) throw new Error("Couldn't find source subject: Load Testing");
+  if (!targetSubj) throw new Error("Couldn't find target subject: Unified Functional Testing");
 
   console.log(`Source subject: ${sourceSubj.name} (${sourceSubj.id})`);
   console.log(`Target subject: ${targetSubj.name} (${targetSubj.id})`);
