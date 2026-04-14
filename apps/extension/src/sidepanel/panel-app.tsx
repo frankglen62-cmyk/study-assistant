@@ -233,6 +233,13 @@ function QuestionResultCard({ suggestion, index, displayLabel }: {
             <p className="result-card__value">{suggestion.questionText}</p>
           </div>
 
+          {answer && (
+            <div className="result-card__field">
+              <span className="result-card__label">Full Answer</span>
+              <p className="result-card__value result-card__value--highlight" style={{ wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{answer}</p>
+            </div>
+          )}
+
           {suggestion.shortExplanation && (
             <div className="result-card__field">
               <span className="result-card__label">Explanation</span>
