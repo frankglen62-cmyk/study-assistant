@@ -34,7 +34,7 @@ export function parseDropdownPairs(answerText: string): DropdownPair[] | null {
     .slice(DROPDOWN_PAIRS_HEADER.length)
     .split('\n')
     .map((line) => line.trim())
-    .filter((line) => line.length > 0 && line.includes('|||'));
+    .filter((line) => line.includes('|||'));
 
   if (lines.length === 0) {
     return null;
@@ -46,7 +46,7 @@ export function parseDropdownPairs(answerText: string): DropdownPair[] | null {
       subPrompt: line.slice(0, separatorIndex).trim(),
       answer: line.slice(separatorIndex + 3).trim(),
     };
-  }).filter((pair) => pair.subPrompt.length > 0 && pair.answer.length > 0);
+  });
 }
 
 /**
@@ -57,9 +57,23 @@ export function serializeDropdownPairs(pairs: DropdownPair[]): string {
     return '';
   }
 
-  const lines = pairs
-    .filter((p) => p.subPrompt.trim() && p.answer.trim())
-    .map((p) => `${p.subPrompt.trim()} ||| ${p.answer.trim()}`);
+  // Keep ALL pairs (including incomplete ones) so the editor doesn't
+  // reset fields while the user is still typing.
+  const lines = pairs.map((p) => `${p.subPrompt} ||| ${p.answer}`);
 
+  return `${DROPDOWN_PAIRS_HEADER}\n${lines.join('\n')}`;
+}
+
+/**
+ * Like serializeDropdownPairs but strips empty/incomplete pairs.
+ * Use this when saving to the database.
+ */
+export function serializeDropdownPairsForSave(pairs: DropdownPair[]): string {
+  const validPairs = pairs.filter((p) => p.subPrompt.trim() && p.answer.trim());
+  if (validPairs.length === 0) {
+    return '';
+  }
+
+  const lines = validPairs.map((p) => `${p.subPrompt.trim()} ||| ${p.answer.trim()}`);
   return `${DROPDOWN_PAIRS_HEADER}\n${lines.join('\n')}`;
 }
