@@ -82,6 +82,19 @@ export const answerSuggestionSchema = z.object({
         clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
         clickedText: z.string().nullable().default(null),
         questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).nullable().default(null),
+        parentQuestionId: z.string().nullable().optional(),
+        dropdownSubIndex: z.number().nullable().optional(),
+        dropdownAnswers: z
+          .array(
+            z.object({
+              dropdownId: z.string(),
+              suggestedOption: z.string().nullable().default(null),
+              answerText: z.string().nullable().default(null),
+              confidence: z.number().nullable().default(null),
+            }),
+          )
+          .nullable()
+          .optional(),
       }),
     )
     .default([]),
@@ -233,6 +246,19 @@ export const analyzeResponseSchema = z.object({
         clickStatus: z.enum(['pending', 'clicked', 'suggested_only', 'no_match', 'skipped']).default('pending'),
         clickedText: z.string().nullable().default(null),
         questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture']).nullable().default(null),
+        parentQuestionId: z.string().nullable().optional(),
+        dropdownSubIndex: z.number().nullable().optional(),
+        dropdownAnswers: z
+          .array(
+            z.object({
+              dropdownId: z.string(),
+              suggestedOption: z.string().nullable().default(null),
+              answerText: z.string().nullable().default(null),
+              confidence: z.number().nullable().default(null),
+            }),
+          )
+          .nullable()
+          .optional(),
       }),
     )
     .default([]),

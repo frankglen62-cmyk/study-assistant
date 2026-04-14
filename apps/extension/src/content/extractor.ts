@@ -2133,7 +2133,12 @@ export function installExtractorContentScript() {
           );
         }
 
-        if (!select || !isElementVisible(select) || select.disabled) continue;
+        if (!select) continue;
+
+        // Re-enable the select if Moodle disabled it during feedback/review
+        if (select.disabled) {
+          select.disabled = false;
+        }
 
         // Match the answer against select options
         const normalizedAnswer = normalizeForMatch(answerText);

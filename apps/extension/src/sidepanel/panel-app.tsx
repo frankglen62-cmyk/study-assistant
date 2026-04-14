@@ -211,6 +211,21 @@ function QuestionResultCard({ suggestion, index, displayLabel }: {
         </div>
       </div>
 
+      {/* Render individual dropdown sub-answers */}
+      {(suggestion as any).dropdownAnswers && (suggestion as any).dropdownAnswers.length > 0 && (
+        <div style={{ padding: '6px 12px 8px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <span style={{ fontSize: 10, color: 'var(--sa-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 4, display: 'block' }}>Dropdown Answers</span>
+          {((suggestion as any).dropdownAnswers as Array<{ dropdownId: string; suggestedOption: string | null; answerText: string | null; confidence: number | null }>).map((da, di) => (
+            <div key={da.dropdownId} style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontSize: 11, padding: '2px 0', color: da.suggestedOption || da.answerText ? 'var(--sa-text)' : 'var(--sa-muted)' }}>
+              <span style={{ color: 'var(--sa-muted)', minWidth: 20 }}>{di + 1}.</span>
+              <span style={{ color: da.suggestedOption ? 'var(--sa-green)' : da.answerText ? 'var(--sa-yellow)' : 'var(--sa-muted)', fontWeight: 500 }}>
+                {da.suggestedOption ?? da.answerText ?? '—'}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
       {expanded && (
         <div className="result-card__body">
           <div className="result-card__field">
