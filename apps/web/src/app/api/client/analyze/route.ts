@@ -30,6 +30,19 @@ const requestSchema = z.object({
             options: z.array(z.string()).optional().default([]),
             contextLabel: z.string().nullable().optional().default(null),
             questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture'] as const).nullable().optional(),
+            parentQuestionId: z.string().nullable().optional(),
+            dropdownSubIndex: z.number().nullable().optional(),
+            dropdownSubQuestions: z
+              .array(
+                z.object({
+                  subId: z.string(),
+                  prompt: z.string(),
+                  options: z.array(z.string()),
+                  dropdownId: z.string(),
+                }),
+              )
+              .nullable()
+              .optional(),
           }),
         )
         .optional()
