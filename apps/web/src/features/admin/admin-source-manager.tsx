@@ -16,7 +16,7 @@ import type {
 import { slugify } from '@study-assistant/shared-utils';
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input, Textarea } from '@study-assistant/ui';
 import { Plus, XCircle, GripVertical } from 'lucide-react';
-import { parseDropdownPairs, serializeDropdownPairs, DROPDOWN_PAIRS_HEADER, type DropdownPair } from '@/lib/ai/answering';
+import { parseDropdownPairs, serializeDropdownPairs, DROPDOWN_PAIRS_HEADER, type DropdownPair } from '@/lib/ai/dropdown-pairs';
 
 import { useToast } from '@/components/providers/toast-provider';
 import type { FolderRecord, SourceFileRecord, SubjectQaPairRecord } from '@/lib/supabase/schemas';
