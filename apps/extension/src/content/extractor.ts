@@ -3022,6 +3022,71 @@ export function installExtractorContentScript() {
 
     const { bestMatch, matchMethod } = findBestClickableForText(targetText);
     if (!bestMatch) {
+      // ── Fallback A: Multi-line answer → collapse newlines to spaces ──
+      // When the library answer is stored with newlines (one step per line)
+      // but the quiz renders it as a continuous single-line option, try collapsing.
+      const collapsedTarget = targetText.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+      if (collapsedTarget !== targetText.trim()) {
+        const { bestMatch: collapsedMatch, matchMethod: collapsedMethod } = findBestClickableForText(collapsedTarget);
+        if (collapsedMatch) {
+          try {
+            if (collapsedMatch.input && !collapsedMatch.input.checked) {
+              collapsedMatch.input.focus();
+              collapsedMatch.input.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+              collapsedMatch.input.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+              collapsedMatch.input.click();
+              collapsedMatch.input.checked = true;
+              collapsedMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+              collapsedMatch.input.dispatchEvent(new Event('input', { bubbles: true }));
+
+              if (collapsedMatch.input.id) {
+                try {
+                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(collapsedMatch.input.id)}"]`);
+                  if (label) label.click();
+                } catch { /* ignore */ }
+              }
+
+              // Trigger Moodle auto-save
+              try { (window as any).M?.mod_quiz?.autosave?.save_changes?.(); } catch { /* ignore */ }
+            }
+            return { clicked: true, clickedText: collapsedMatch.text, matchMethod: `collapsed_${collapsedMethod}` };
+          } catch {
+            return { clicked: false, clickedText: collapsedMatch.text, matchMethod: 'collapsed_click_error' };
+          }
+        }
+      }
+
+      // ── Fallback B: If suggestedOption was used but failed, retry with answerText ──
+      if (payload.suggestedOption && payload.answerText && payload.answerText !== payload.suggestedOption) {
+        const answerCollapsed = payload.answerText.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+        const { bestMatch: answerMatch, matchMethod: answerMethod } = findBestClickableForText(answerCollapsed);
+        if (answerMatch) {
+          try {
+            if (answerMatch.input && !answerMatch.input.checked) {
+              answerMatch.input.focus();
+              answerMatch.input.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+              answerMatch.input.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+              answerMatch.input.click();
+              answerMatch.input.checked = true;
+              answerMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+              answerMatch.input.dispatchEvent(new Event('input', { bubbles: true }));
+
+              if (answerMatch.input.id) {
+                try {
+                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(answerMatch.input.id)}"]`);
+                  if (label) label.click();
+                } catch { /* ignore */ }
+              }
+
+              try { (window as any).M?.mod_quiz?.autosave?.save_changes?.(); } catch { /* ignore */ }
+            }
+            return { clicked: true, clickedText: answerMatch.text, matchMethod: `answerText_${answerMethod}` };
+          } catch {
+            return { clicked: false, clickedText: answerMatch.text, matchMethod: 'answerText_click_error' };
+          }
+        }
+      }
+
       return { clicked: false, clickedText: null, matchMethod: 'no_match' };
     }
 
