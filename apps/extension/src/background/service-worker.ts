@@ -2018,6 +2018,8 @@ async function performAutoClickAll(state: ExtensionState) {
         sourceScope: suggestion.sourceScope ?? 'no_match',
         clickStatus: 'no_match' as const,
         clickedText: null,
+        parentQuestionId: suggestion.parentQuestionId ?? null,
+        dropdownSubIndex: suggestion.dropdownSubIndex ?? null,
       });
       failedCount++;
       continue;
@@ -2043,6 +2045,8 @@ async function performAutoClickAll(state: ExtensionState) {
           sourceScope: suggestion.sourceScope ?? 'no_match',
           clickStatus: 'clicked' as const,
           clickedText: response.data.clickedText,
+          parentQuestionId: suggestion.parentQuestionId ?? null,
+          dropdownSubIndex: suggestion.dropdownSubIndex ?? null,
         });
         clickedCount++;
       } else {
@@ -2059,6 +2063,8 @@ async function performAutoClickAll(state: ExtensionState) {
           sourceScope: suggestion.sourceScope ?? 'no_match',
           clickStatus: 'suggested_only' as const,
           clickedText: null,
+          parentQuestionId: suggestion.parentQuestionId ?? null,
+          dropdownSubIndex: suggestion.dropdownSubIndex ?? null,
         });
         failedCount++;
       }
@@ -2076,6 +2082,8 @@ async function performAutoClickAll(state: ExtensionState) {
         sourceScope: suggestion.sourceScope ?? 'no_match',
         clickStatus: 'skipped' as const,
         clickedText: null,
+        parentQuestionId: suggestion.parentQuestionId ?? null,
+        dropdownSubIndex: suggestion.dropdownSubIndex ?? null,
       });
       failedCount++;
     }

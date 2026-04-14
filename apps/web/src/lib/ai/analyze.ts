@@ -180,6 +180,8 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
         options: candidate.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
         contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
       questionType: candidate.questionType ?? null,
+        parentQuestionId: (candidate as any).parentQuestionId ?? null,
+        dropdownSubIndex: (candidate as any).dropdownSubIndex ?? null,
       };
     })
     // Allow short prompts (e.g. "what", "who", "when") when they have dropdown options (2+)
@@ -263,6 +265,8 @@ function buildNoMatchQuestionSuggestion(params: {
     clickStatus: 'pending' as const,
     clickedText: null,
     questionType: null,
+    parentQuestionId: (params.candidate as any).parentQuestionId ?? null,
+    dropdownSubIndex: (params.candidate as any).dropdownSubIndex ?? null,
   } satisfies ExtensionQuestionSuggestion;
 }
 
@@ -313,6 +317,8 @@ function resolveQuestionSuggestionFromPreloaded(params: {
       clickStatus: 'pending' as const,
       clickedText: null,
       questionType: (pair).question_type ?? null,
+      parentQuestionId: (params.candidate as any).parentQuestionId ?? null,
+      dropdownSubIndex: (params.candidate as any).dropdownSubIndex ?? null,
     } satisfies ExtensionQuestionSuggestion;
   };
 
@@ -794,6 +800,8 @@ async function persistNoMatch(params: {
       clickStatus: 'pending' as const,
       clickedText: null,
       questionType: null,
+      parentQuestionId: (candidate as any).parentQuestionId ?? null,
+      dropdownSubIndex: (candidate as any).dropdownSubIndex ?? null,
     }));
 
   const response: AnalyzeResponsePayload = {

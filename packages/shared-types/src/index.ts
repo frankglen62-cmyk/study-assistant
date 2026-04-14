@@ -52,6 +52,10 @@ export interface ExtensionQuestionCandidate {
   options: string[];
   contextLabel: string | null;
   questionType: QuestionType | null;
+  /** For dropdown sub-candidates: the parent .que container's candidate ID */
+  parentQuestionId?: string | null;
+  /** For dropdown sub-candidates: 0-based index within the parent question's dropdowns */
+  dropdownSubIndex?: number | null;
 }
 
 export interface ExtensionExtractionDiagnostics {
@@ -81,6 +85,10 @@ export interface ExtensionQuestionSuggestion {
   clickStatus: AutoClickStatus;
   clickedText: string | null;
   questionType: QuestionType | null;
+  /** For dropdown sub-items: the parent question's candidate ID */
+  parentQuestionId?: string | null;
+  /** For dropdown sub-items: 0-based index within the parent question's dropdowns */
+  dropdownSubIndex?: number | null;
 }
 
 export interface ExtensionCapturedSection {

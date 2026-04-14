@@ -403,12 +403,45 @@ export function installExtractorContentScript() {
     }
 
     // ─── Priority 5: Last resort — parent element text ───
+    // When multiple radio/checkbox inputs share a parent (e.g. Moodle cramps
+    // choices C and D onto the same line), we must only grab text that belongs
+    // to THIS specific input, not sibling inputs' text.
     if (parent && isElementVisible(parent)) {
-      const clone = parent.cloneNode(true) as HTMLElement;
-      clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
-      clone.querySelectorAll('input').forEach(el => el.remove());
-      const text = normalizeText(clone.textContent ?? '');
-      if (text) return text;
+      const siblingInputs = parent.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+      if (siblingInputs.length > 1) {
+        // Multiple inputs share this parent — extract only text nodes between
+        // the current input and the next sibling input.
+        const walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+        let foundCurrent = false;
+        const textParts: string[] = [];
+        let node: Node | null = walker.nextNode();
+        while (node) {
+          if (node === input) {
+            foundCurrent = true;
+            node = walker.nextNode();
+            continue;
+          }
+          if (foundCurrent) {
+            // Stop at the next radio/checkbox input
+            if (node instanceof HTMLElement && (node.matches('input[type="radio"], input[type="checkbox"]') || node.querySelector?.('input[type="radio"], input[type="checkbox"]'))) {
+              break;
+            }
+            if (node.nodeType === Node.TEXT_NODE) {
+              textParts.push(node.textContent ?? '');
+            }
+          }
+          node = walker.nextNode();
+        }
+        const text = normalizeText(textParts.join(''));
+        if (text) return text;
+      } else {
+        // Single input in parent — safe to use full parent text
+        const clone = parent.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
+        clone.querySelectorAll('input').forEach(el => el.remove());
+        const text = normalizeText(clone.textContent ?? '');
+        if (text) return text;
+      }
     }
 
     return '';
@@ -997,6 +1030,8 @@ export function installExtractorContentScript() {
       options: string[];
       contextLabel: string | null;
       questionType: string | null;
+      parentQuestionId?: string | null;
+      dropdownSubIndex?: number | null;
       node: Element;
     }> = [];
     const seenIds = new Set<string>();
@@ -1018,6 +1053,8 @@ export function installExtractorContentScript() {
       options: string[];
       contextLabel: string | null;
       questionType: string | null;
+      parentQuestionId?: string | null;
+      dropdownSubIndex?: number | null;
     } | null, node: Element, bypassDedupe: boolean = false) {
       if (!candidate) return;
 
@@ -1172,13 +1209,15 @@ export function installExtractorContentScript() {
                 : deriveQuestionLabel(que);
 
             pushCandidate(
-              createQuestionCandidate({
+              {
                 id: subId,
                 prompt: subPrompt,
                 options: selectOptions,
                 contextLabel: subContextLabel,
                 questionType: 'dropdown',
-              }),
+                parentQuestionId: queId,
+                dropdownSubIndex: si,
+              },
               sel
             );
             addedAnySubCandidate = true;
@@ -1214,6 +1253,8 @@ export function installExtractorContentScript() {
         options: rest.options,
         contextLabel: rest.contextLabel,
         questionType: rest.questionType as any,
+        parentQuestionId: rest.parentQuestionId ?? null,
+        dropdownSubIndex: rest.dropdownSubIndex ?? null,
       }));
 
       return {
@@ -2475,14 +2516,23 @@ export function installExtractorContentScript() {
       }
     }
 
+    // Deduplication: Use a composite key that includes the input's unique value
+    // so that two radio buttons with identical label text (e.g. options A and D
+    // both showing "$this->load->database();") are kept as separate entries.
     const filteredClickables = Array.from(
       new Map(
         clickables
           .filter((clickable) => !isIgnoredClickableText(clickable.text))
           .map((clickable) => {
-            const inputKey = clickable.input
-              ? clickable.input.id || clickable.input.name || clickable.input.value || clickable.normalized
-              : clickable.normalized;
+            const inputId = clickable.input?.id || '';
+            const inputName = clickable.input?.name || '';
+            const inputValue = clickable.input?.value || '';
+            // Build a truly unique key per input element
+            const inputKey = inputId
+              ? `id:${inputId}`
+              : (inputName && inputValue)
+                ? `nv:${inputName}:${inputValue}`
+                : clickable.normalized;
             return [`${inputKey}::${clickable.normalized}`, clickable] as const;
           }),
       ).values(),

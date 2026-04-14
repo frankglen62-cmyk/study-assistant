@@ -168,14 +168,16 @@ function AnalyzeProgressBar() {
   );
 }
 
-function QuestionResultCard({ suggestion, index }: {
+function QuestionResultCard({ suggestion, index, displayLabel }: {
   suggestion: ExtensionQuestionSuggestion;
   index: number;
+  displayLabel?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const level = confidenceToLevel(suggestion.confidence);
   const hasAnswer = suggestion.suggestedOption || suggestion.answerText;
   const answer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match — skipped';
+  const label = displayLabel ?? `Q${index + 1}`;
 
   return (
     <article className={`result-card result-card--${hasAnswer ? level : 'skipped'}`} style={{ animationDelay: `${index * 20}ms` }}>
@@ -185,7 +187,7 @@ function QuestionResultCard({ suggestion, index }: {
         type="button"
       >
         <div className="result-card__header-left">
-          <span className="result-card__number">Q{index + 1}</span>
+          <span className="result-card__number">{label}</span>
           <span className="result-card__prompt-preview">
             {suggestion.questionText.length > 55
               ? suggestion.questionText.slice(0, 55) + '…'
@@ -1452,7 +1454,7 @@ export function SidePanelApp() {
           subtitle={
             isAnalyzing ? 'Searching sources…'
               : suggestions.length > 0
-                ? `${suggestions.length} answer${suggestions.length > 1 ? 's' : ''} found`
+                ? `${detectedQuestionCount || suggestions.length} question${(detectedQuestionCount || suggestions.length) > 1 ? 's' : ''} — ${suggestions.filter(s => s.suggestedOption || s.answerText).length} answered`
                 : hasSuggestion
                   ? `${sourceSubject}`
                   : 'Click Find All Answers to get started'
@@ -1514,13 +1516,39 @@ export function SidePanelApp() {
           {/* Multi-question results */}
           {!isAnalyzing && suggestions.length > 0 && (
             <div className="results-list">
-              {suggestions.map((suggestion, index) => (
-                <QuestionResultCard
-                  key={suggestion.questionId}
-                  suggestion={suggestion}
-                  index={index}
-                />
-              ))}
+              {(() => {
+                // Compute display labels: non-dropdown items get sequential Q1, Q2...
+                // Dropdown sub-items get Q39a, Q39b, Q39c... under their parent
+                let questionNumber = 0;
+                const labels: string[] = [];
+                const subLetters = 'abcdefghijklmnopqrstuvwxyz';
+
+                for (let i = 0; i < suggestions.length; i++) {
+                  const s = suggestions[i]!;
+                  if (s.parentQuestionId && typeof s.dropdownSubIndex === 'number') {
+                    // This is a dropdown sub-item.
+                    // If the previous item was NOT from the same parent, increment the question number
+                    const prevS = i > 0 ? suggestions[i - 1] : null;
+                    if (!prevS || prevS.parentQuestionId !== s.parentQuestionId) {
+                      questionNumber++;
+                    }
+                    const letter = subLetters[s.dropdownSubIndex] ?? String(s.dropdownSubIndex + 1);
+                    labels.push(`Q${questionNumber}${letter}`);
+                  } else {
+                    questionNumber++;
+                    labels.push(`Q${questionNumber}`);
+                  }
+                }
+
+                return suggestions.map((suggestion, index) => (
+                  <QuestionResultCard
+                    key={suggestion.questionId}
+                    suggestion={suggestion}
+                    index={index}
+                    displayLabel={labels[index]}
+                  />
+                ));
+              })()}
             </div>
           )}
 
