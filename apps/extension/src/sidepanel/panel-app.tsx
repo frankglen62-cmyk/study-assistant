@@ -176,7 +176,12 @@ function QuestionResultCard({ suggestion, index, displayLabel }: {
   const [expanded, setExpanded] = useState(false);
   const level = confidenceToLevel(suggestion.confidence);
   const hasAnswer = suggestion.suggestedOption || suggestion.answerText;
-  const answer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match — skipped';
+  // Use the longest available text for display — suggestedOption may be truncated
+  // compared to the full answerText, so prefer whichever is more complete.
+  const rawAnswer = suggestion.suggestedOption ?? suggestion.answerText ?? 'No match — skipped';
+  const answer = suggestion.answerText && suggestion.answerText.length > rawAnswer.length
+    ? suggestion.answerText
+    : rawAnswer;
   const label = displayLabel ?? `Q${index + 1}`;
 
   return (

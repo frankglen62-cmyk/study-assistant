@@ -177,7 +177,7 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
       return {
         id: sanitizeText(candidate.id || `question-${index + 1}`, 80) || `question-${index + 1}`,
         prompt: enrichedPrompt,
-        options: candidate.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
+        options: candidate.options.map((option) => sanitizeText(option, 800)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
         contextLabel: candidate.contextLabel ? sanitizeText(candidate.contextLabel, 120) : null,
       questionType: candidate.questionType ?? null,
         parentQuestionId: (candidate as any).parentQuestionId ?? null,
@@ -201,7 +201,7 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
     visibleLabels: payload.visibleLabels.map((label) => sanitizeText(label, 120)).filter(Boolean).slice(0, 12),
     visibleTextExcerpt,
     questionText,
-    options: payload.options.map((option) => sanitizeText(option, 200)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
+    options: payload.options.map((option) => sanitizeText(option, 800)).filter(Boolean).slice(0, MAX_OPTIONS_PER_QUESTION),
     questionCandidates: sanitizedQuestionCandidates,
     diagnostics: {
       explicitQuestionBlockCount: payload.diagnostics?.explicitQuestionBlockCount ?? 0,
