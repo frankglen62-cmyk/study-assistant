@@ -484,7 +484,7 @@ export function installExtractorContentScript() {
         clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return cleanOptionLabel(clone.textContent ?? '');
       })
-      .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
+      .filter((text) => text.length > 2 && text.length < 800 && !isBoilerplateOption(text));
 
     const fromAnswerRows = Array.from(
       container.querySelectorAll('.answer label, .answer .r0, .answer .r1, .answer .r2, .answer .r3, .answer .flex-fill'),
@@ -495,12 +495,12 @@ export function installExtractorContentScript() {
         clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return cleanOptionLabel(clone.textContent ?? '');
       })
-      .filter((text) => text.length > 2 && text.length < 180 && !isBoilerplateOption(text));
+      .filter((text) => text.length > 2 && text.length < 800 && !isBoilerplateOption(text));
 
     const fromListItems = Array.from(container.querySelectorAll('li'))
       .filter((node) => isElementVisible(node))
       .map((node) => cleanOptionLabel(node.textContent ?? ''))
-      .filter((text) => /^[([]?[a-z0-9ivx]{1,5}[)\].:\s-]/i.test(text) || text.length < 180)
+      .filter((text) => /^[([]?[a-z0-9ivx]{1,5}[)\].:\s-]/i.test(text) || text.length < 800)
       .filter((text) => text.length > 2 && !isBoilerplateOption(text));
 
     // Also extract options from <select> dropdown elements
