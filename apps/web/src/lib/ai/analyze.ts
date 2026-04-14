@@ -286,6 +286,15 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   const optionText = params.candidate.options.length > 0 ? params.candidate.options : params.globalOptions;
   const hasOptions = optionText.length > 0;
 
+  // ── DEBUG: log per-question option extraction for long-option diagnosis ──
+  const queryPreview = queryText.slice(0, 80);
+  const maxOptLen = optionText.reduce((max, o) => Math.max(max, o.length), 0);
+  console.log(`[DEBUG analyze] Question: "${queryPreview}" | candidateOpts: ${params.candidate.options.length} | globalOpts: ${params.globalOptions.length} | usedOpts: ${optionText.length} | maxOptLen: ${maxOptLen}`);
+  if (queryPreview.includes('correct order')) {
+    console.log('[DEBUG analyze]   FULL OPTIONS for correct-order question:');
+    optionText.forEach((o, i) => console.log(`[DEBUG analyze]   opt[${i}] (${o.length} chars): ${o.slice(0, 200)}${o.length > 200 ? '...' : ''}`));
+  }
+
   const buildQaSuggestion = (pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number], retrievalStatus: string, sourceScope: ExtensionSourceScope) => {
     if (!isReliableQaPairMatch(params.candidate, pair)) {
       return null;
