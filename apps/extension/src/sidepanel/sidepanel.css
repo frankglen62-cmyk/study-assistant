@@ -855,7 +855,6 @@ button, input, select, textarea { font: inherit; }
   border-radius: var(--sa-radius);
   border: 1px solid var(--sa-border);
   background: var(--sa-surface-2);
-  overflow: hidden;
   transition: border-color var(--sa-transition), box-shadow var(--sa-transition);
   animation: cardSlideIn 200ms ease-out both;
 }
