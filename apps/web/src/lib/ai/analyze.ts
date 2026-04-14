@@ -182,6 +182,7 @@ function sanitizeSignals(payload: AnalyzeRequestPayload['pageSignals']) {
       questionType: candidate.questionType ?? null,
         parentQuestionId: (candidate as any).parentQuestionId ?? null,
         dropdownSubIndex: (candidate as any).dropdownSubIndex ?? null,
+        dropdownSubQuestions: (candidate as any).dropdownSubQuestions ?? null,
       };
     })
     // Allow short prompts (e.g. "what", "who", "when") when they have dropdown options (2+)
@@ -508,8 +509,8 @@ async function buildQuestionSuggestions(params: {
   });
 
   // Now resolve each question locally — no more per-question DB calls
-  return params.questionCandidates.map((candidate) =>
-    resolveQuestionSuggestionFromPreloaded({
+  return params.questionCandidates.map((candidate) => {
+    const suggestion = resolveQuestionSuggestionFromPreloaded({
       candidate,
       searchScope: params.searchScope,
       subjectName: params.subjectName,
@@ -519,8 +520,73 @@ async function buildQuestionSuggestions(params: {
       category: params.category,
       preloadedRows,
       globalOptions: params.globalOptions,
-    }),
-  );
+    });
+
+    // ── Process multi-dropdown sub-questions ──────────────────────────
+    // If this candidate has embedded sub-questions (from a matching/dropdown
+    // .que container), resolve each sub-question against Q&A pairs individually
+    // and attach the results as dropdownAnswers.
+    const subQuestions = (candidate as any).dropdownSubQuestions as Array<{
+      subId: string;
+      prompt: string;
+      options: string[];
+      dropdownId: string;
+    }> | null;
+
+    if (subQuestions && subQuestions.length > 0) {
+      const dropdownAnswers: Array<{
+        dropdownId: string;
+        suggestedOption: string | null;
+        answerText: string | null;
+        confidence: number | null;
+      }> = [];
+
+      for (const sub of subQuestions) {
+        // Create a virtual candidate for this sub-question
+        const subCandidate: ExtensionQuestionCandidate = {
+          id: sub.subId,
+          prompt: sub.prompt,
+          options: sub.options,
+          contextLabel: candidate.contextLabel,
+          questionType: 'dropdown',
+        };
+
+        const subSuggestion = resolveQuestionSuggestionFromPreloaded({
+          candidate: subCandidate,
+          searchScope: params.searchScope,
+          subjectName: params.subjectName,
+          categoryName: params.categoryName,
+          detectionConfidence: params.detectionConfidence,
+          subject: params.subject,
+          category: params.category,
+          preloadedRows,
+          globalOptions: sub.options,
+        });
+
+        dropdownAnswers.push({
+          dropdownId: sub.dropdownId,
+          suggestedOption: subSuggestion.suggestedOption,
+          answerText: subSuggestion.answerText,
+          confidence: subSuggestion.confidence,
+        });
+      }
+
+      // Override the parent suggestion with dropdown-specific data
+      const answeredCount = dropdownAnswers.filter(a => a.suggestedOption || a.answerText).length;
+      const avgConfidence = dropdownAnswers.reduce((sum, a) => sum + (a.confidence ?? 0), 0) / dropdownAnswers.length;
+
+      return {
+        ...suggestion,
+        answerText: `${answeredCount}/${dropdownAnswers.length} sub-answers matched`,
+        suggestedOption: null,
+        confidence: avgConfidence > 0 ? avgConfidence : suggestion.confidence,
+        sourceScope: answeredCount > 0 ? suggestion.sourceScope : 'no_match' as const,
+        dropdownAnswers,
+      };
+    }
+
+    return suggestion;
+  });
 }
 
 function selectPrimarySuggestion(questionSuggestions: ExtensionQuestionSuggestion[]) {

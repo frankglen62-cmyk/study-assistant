@@ -2005,21 +2005,64 @@ async function performAutoClickAll(state: ExtensionState) {
     const suggestion = suggestions[i]!;
     const answer = suggestion.suggestedOption ?? suggestion.answerText;
 
+    // ── Handle multi-dropdown questions ──────────────────────────────
+    // If this suggestion has dropdownAnswers (from a matching/dropdown question),
+    // send each answer to the content script to select the individual dropdowns.
+    if (suggestion.dropdownAnswers && suggestion.dropdownAnswers.length > 0) {
+      const answeredDropdowns = suggestion.dropdownAnswers.filter(a => a.suggestedOption || a.answerText);
+      if (answeredDropdowns.length === 0) {
+        updatedSuggestions.push({
+          ...suggestion,
+          clickStatus: 'no_match' as const,
+          clickedText: null,
+        });
+        failedCount++;
+        continue;
+      }
+
+      try {
+        const response = await chrome.tabs.sendMessage(tabId, {
+          type: 'EXTENSION/AUTO_CLICK_DROPDOWN_ANSWERS',
+          payload: {
+            questionId: suggestion.questionId,
+            dropdownAnswers: suggestion.dropdownAnswers,
+          },
+        });
+
+        if (response?.ok && response.data?.clicked) {
+          usedTextEntry = true;
+          updatedSuggestions.push({
+            ...suggestion,
+            clickStatus: 'clicked' as const,
+            clickedText: response.data.clickedText ?? `${answeredDropdowns.length} dropdowns filled`,
+          });
+          clickedCount++;
+        } else {
+          updatedSuggestions.push({
+            ...suggestion,
+            clickStatus: 'suggested_only' as const,
+            clickedText: null,
+          });
+          failedCount++;
+        }
+      } catch {
+        updatedSuggestions.push({
+          ...suggestion,
+          clickStatus: 'skipped' as const,
+          clickedText: null,
+        });
+        failedCount++;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      continue;
+    }
+
     if (!answer || suggestion.sourceScope === 'no_match') {
       updatedSuggestions.push({
         ...suggestion,
-        answerText: suggestion.answerText ?? null,
-        suggestedOption: suggestion.suggestedOption ?? null,
-        shortExplanation: suggestion.shortExplanation ?? null,
-        confidence: suggestion.confidence ?? null,
-        warning: suggestion.warning ?? null,
-        matchedSubject: suggestion.matchedSubject ?? null,
-        matchedCategory: suggestion.matchedCategory ?? null,
-        sourceScope: suggestion.sourceScope ?? 'no_match',
         clickStatus: 'no_match' as const,
         clickedText: null,
-        parentQuestionId: suggestion.parentQuestionId ?? null,
-        dropdownSubIndex: suggestion.dropdownSubIndex ?? null,
       });
       failedCount++;
       continue;

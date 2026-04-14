@@ -1155,26 +1155,96 @@ export function installExtractorContentScript() {
         // IMPORTANT: We do NOT expand multi-dropdown questions into separate
         // candidates. Each .que = exactly 1 candidate. This guarantees the
         // candidate array index matches the Moodle question number (1:1).
-        // Expanding dropdowns previously caused index shifting where Q12 in
-        // the panel showed a different question than Q12 on the page.
+        // For multi-dropdown questions, we embed sub-question metadata on the
+        // parent candidate so the backend can match each sub-question individually.
         const inlineSelects = Array.from(que.querySelectorAll<HTMLSelectElement>('select'))
           .filter(sel => isElementVisible(sel) && !sel.disabled);
 
-        for (let si = 0; si < inlineSelects.length; si++) {
-          const sel = inlineSelects[si]!;
-          const dropdownId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
-          sel.dataset.studyAssistantId = queId;
-          sel.dataset.studyAssistantDropdownId = dropdownId;
+        // Extract sub-question metadata for multi-dropdown questions
+        let dropdownSubQuestions: Array<{
+          subId: string;
+          prompt: string;
+          options: string[];
+          dropdownId: string;
+        }> | null = null;
+
+        if (inlineSelects.length > 1) {
+          const subs: Array<{ subId: string; prompt: string; options: string[]; dropdownId: string }> = [];
+
+          for (let si = 0; si < inlineSelects.length; si++) {
+            const sel = inlineSelects[si]!;
+            const dropdownId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
+            sel.dataset.studyAssistantId = queId;
+            sel.dataset.studyAssistantDropdownId = dropdownId;
+
+            // Extract sub-prompt from the table row or label
+            let subPrompt: string | null = null;
+            const parentTd = sel.closest('td');
+            if (parentTd) {
+              const row = parentTd.closest('tr');
+              if (row) {
+                const cells = Array.from(row.querySelectorAll('td'));
+                const textParts: string[] = [];
+                for (const cell of cells) {
+                  if (cell === parentTd || cell.contains(sel)) continue;
+                  const cellText = normalizeText(cell.textContent ?? '');
+                  if (cellText.length >= 1) textParts.push(cellText);
+                }
+                const rowText = textParts.join(' ').trim();
+                if (rowText.length >= 1) subPrompt = rowText;
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) {
+              if (sel.id) {
+                try {
+                  const label = document.querySelector<HTMLElement>(`label[for="${CSS.escape(sel.id)}"]`);
+                  if (label) subPrompt = normalizeText(label.textContent ?? '');
+                } catch {
+                  // ignore
+                }
+              }
+            }
+
+            if (!subPrompt || subPrompt.length < 1) continue;
+
+            const selectOptions = Array.from(sel.querySelectorAll<HTMLOptionElement>('option'))
+              .map(opt => normalizeText(opt.textContent ?? ''))
+              .filter(text => text.length > 0 && text.toLowerCase() !== 'choose...' && text.toLowerCase() !== 'choose');
+
+            subs.push({
+              subId: `${queId}-sub-${si + 1}`,
+              prompt: subPrompt,
+              options: selectOptions,
+              dropdownId,
+            });
+          }
+
+          if (subs.length > 0) {
+            dropdownSubQuestions = subs;
+          }
+        } else {
+          // Single or no selects — just tag them
+          for (let si = 0; si < inlineSelects.length; si++) {
+            const sel = inlineSelects[si]!;
+            const dropdownId = sel.name || sel.id || `${queId}-dropdown-${si + 1}`;
+            sel.dataset.studyAssistantId = queId;
+            sel.dataset.studyAssistantDropdownId = dropdownId;
+          }
         }
 
+        const candidateData = createQuestionCandidate({
+          id: queId,
+          prompt,
+          options,
+          contextLabel: que.dataset.questionLabel ?? deriveQuestionLabel(que),
+          questionType,
+        });
+
         pushCandidate(
-          createQuestionCandidate({
-            id: queId,
-            prompt,
-            options,
-            contextLabel: que.dataset.questionLabel ?? deriveQuestionLabel(que),
-            questionType,
-          }),
+          dropdownSubQuestions
+            ? { ...candidateData, dropdownSubQuestions } as any
+            : candidateData,
           que
         );
       }
@@ -1189,6 +1259,7 @@ export function installExtractorContentScript() {
         questionType: rest.questionType as any,
         parentQuestionId: rest.parentQuestionId ?? null,
         dropdownSubIndex: rest.dropdownSubIndex ?? null,
+        dropdownSubQuestions: (rest as any).dropdownSubQuestions ?? null,
       }));
 
       return {
@@ -2033,6 +2104,102 @@ export function installExtractorContentScript() {
       return;
     }
 
+    if (message?.type === 'EXTENSION/AUTO_CLICK_DROPDOWN_ANSWERS') {
+      const payload = message.payload as {
+        questionId: string;
+        dropdownAnswers: Array<{
+          dropdownId: string;
+          suggestedOption: string | null;
+          answerText: string | null;
+          confidence: number | null;
+        }>;
+      };
+
+      let filledCount = 0;
+      const filledTexts: string[] = [];
+
+      for (const answer of payload.dropdownAnswers) {
+        const answerText = answer.suggestedOption ?? answer.answerText;
+        if (!answerText) continue;
+
+        // Find the specific select by dropdown ID
+        let select: HTMLSelectElement | null = document.querySelector<HTMLSelectElement>(
+          `select[data-study-assistant-dropdown-id="${escapeSelectorValue(answer.dropdownId)}"]`
+        );
+
+        // Fallback: find by name or id
+        if (!select) {
+          select = document.querySelector<HTMLSelectElement>(
+            `select[name="${escapeSelectorValue(answer.dropdownId)}"], select[id="${escapeSelectorValue(answer.dropdownId)}"]`
+          );
+        }
+
+        if (!select || !isElementVisible(select) || select.disabled) continue;
+
+        // Match the answer against select options
+        const normalizedAnswer = normalizeForMatch(answerText);
+        const options = Array.from(select.querySelectorAll<HTMLOptionElement>('option'));
+        let bestOption: HTMLOptionElement | null = null;
+        let bestScore = 0;
+
+        for (const opt of options) {
+          const optText = normalizeText(opt.textContent ?? '');
+          if (!optText || opt.value === '' || optText.toLowerCase() === 'choose...' || optText.toLowerCase() === 'choose') continue;
+          const normalizedOpt = normalizeForMatch(optText);
+
+          // Exact match
+          if (normalizedOpt === normalizedAnswer) {
+            bestOption = opt;
+            bestScore = 1;
+            break;
+          }
+
+          // Contains match with strong ratio
+          if (normalizedOpt.includes(normalizedAnswer) || normalizedAnswer.includes(normalizedOpt)) {
+            const shorter = Math.min(normalizedOpt.length, normalizedAnswer.length);
+            const longer = Math.max(normalizedOpt.length, normalizedAnswer.length);
+            const ratio = longer > 0 ? shorter / longer : 0;
+            if (ratio >= 0.7 && ratio > bestScore) {
+              bestOption = opt;
+              bestScore = ratio;
+            }
+          }
+
+          // Word fuzzy match
+          const targetWords = normalizedAnswer.split(/\s+/).filter(w => w.length > 2);
+          if (targetWords.length > 0) {
+            const optWords = new Set(normalizedOpt.split(/\s+/));
+            const matchCount = targetWords.filter(w => optWords.has(w)).length;
+            const score = matchCount / targetWords.length;
+            if (score > bestScore && score >= 0.7) {
+              bestOption = opt;
+              bestScore = score;
+            }
+          }
+        }
+
+        if (bestOption) {
+          select.value = bestOption.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          select.dispatchEvent(new Event('input', { bubbles: true }));
+          filledCount++;
+          filledTexts.push(normalizeText(bestOption.textContent ?? ''));
+        }
+      }
+
+      sendResponse({
+        ok: true,
+        data: {
+          clicked: filledCount > 0,
+          clickedText: filledTexts.join(', '),
+          matchMethod: 'dropdown_multi_fill',
+          filledCount,
+          totalDropdowns: payload.dropdownAnswers.length,
+        },
+      });
+      return;
+    }
+
     if (message?.type === 'EXTENSION/AUTO_CLICK_NEXT_PAGE') {
       const result = autoClickNextPage();
       sendResponse({ ok: true, data: result });
@@ -2394,32 +2561,103 @@ export function installExtractorContentScript() {
     for (const input of inputs) {
       if (!isElementVisible(input)) continue;
 
-      // Find associated label
+      // Find associated label — multiple strategies for cramped layouts
       let label: HTMLElement | null = null;
-      if (input.id) {
-        label = document.querySelector<HTMLElement>(`label[for="${escapeSelectorValue(input.id)}"]`);
+      let labelText = '';
+
+      // Priority 1: aria-labelledby (Moodle uses this for radio buttons)
+      const ariaLabelledBy = input.getAttribute('aria-labelledby');
+      if (ariaLabelledBy) {
+        const labelEl = document.getElementById(ariaLabelledBy);
+        if (labelEl) {
+          labelText = normalizeText(labelEl.textContent ?? '');
+          label = labelEl;
+        }
       }
-      if (!label) {
-        label = input.closest('label');
+
+      // Priority 2: label[for="id"]
+      if (!labelText && input.id) {
+        const forLabel = document.querySelector<HTMLElement>(`label[for="${escapeSelectorValue(input.id)}"]`);
+        if (forLabel) {
+          labelText = normalizeText(forLabel.textContent ?? '');
+          label = forLabel;
+        }
       }
-      if (!label) {
-        // Check next sibling text or parent
+
+      // Priority 3: closest label
+      if (!labelText) {
+        const closestLabel = input.closest('label');
+        if (closestLabel) {
+          labelText = normalizeText(closestLabel.textContent ?? '');
+          label = closestLabel;
+        }
+      }
+
+      // Priority 4: Moodle answer-row div (.r0, .r1 etc.) — isolate this option's container
+      if (!labelText) {
+        const answerRow = input.closest('div[class*="r"], div.option, div.answer-option, .flex-fill');
+        if (answerRow && answerRow !== searchRoot) {
+          labelText = normalizeText(answerRow.textContent ?? '');
+          label = answerRow as HTMLElement;
+        }
+      }
+
+      // Priority 5: TreeWalker — isolate text between THIS input and the NEXT input
+      // This handles cramped layouts where two options share the same parent element
+      if (!labelText) {
         const parent = input.parentElement;
         if (parent) {
-          const text = normalizeText(parent.textContent ?? '');
-          if (text.length > 0 && text.length < 500) {
-            clickables.push({
-              element: parent,
-              text,
-              normalized: normalizeForMatch(text),
-              input,
-            });
-            continue;
+          const walker = document.createTreeWalker(parent, NodeFilter.SHOW_TEXT, null);
+          let foundInput = false;
+          const textParts: string[] = [];
+          let node: Node | null;
+
+          // Walk through all text nodes, collecting text after this input until the next input
+          while ((node = walker.nextNode())) {
+            // Check if we've passed this input
+            if (!foundInput) {
+              if (node.compareDocumentPosition(input) & Node.DOCUMENT_POSITION_FOLLOWING) continue;
+              foundInput = true;
+            }
+
+            // Check if we've reached the next radio/checkbox input
+            const nextInput = parent.querySelector<HTMLInputElement>(
+              `input[type="radio"], input[type="checkbox"]`
+            );
+            if (nextInput && nextInput !== input) {
+              // Check if the text node is AFTER the next input
+              const siblings = Array.from(parent.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
+              const myIdx = siblings.indexOf(input);
+              const nextSibling = siblings[myIdx + 1];
+              if (nextSibling && !(node.compareDocumentPosition(nextSibling) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+                break;
+              }
+            }
+
+            const t = (node.textContent ?? '').trim();
+            if (t.length > 0) textParts.push(t);
+          }
+
+          const isolatedText = textParts.join(' ').trim();
+          if (isolatedText.length > 0 && isolatedText.length < 500) {
+            labelText = normalizeText(isolatedText);
+            label = parent;
           }
         }
       }
 
-      const labelText = normalizeText(label?.textContent ?? '');
+      // Priority 6: Last resort — parent text (may be merged for cramped layouts)
+      if (!labelText) {
+        const parent = input.parentElement;
+        if (parent) {
+          const text = normalizeText(parent.textContent ?? '');
+          if (text.length > 0 && text.length < 500) {
+            labelText = text;
+            label = parent;
+          }
+        }
+      }
+
       if (labelText.length > 0) {
         clickables.push({
           element: label ?? input,

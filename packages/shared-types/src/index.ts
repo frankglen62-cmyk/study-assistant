@@ -56,6 +56,13 @@ export interface ExtensionQuestionCandidate {
   parentQuestionId?: string | null;
   /** For dropdown sub-candidates: 0-based index within the parent question's dropdowns */
   dropdownSubIndex?: number | null;
+  /** For multi-dropdown questions: individual sub-questions embedded as metadata */
+  dropdownSubQuestions?: Array<{
+    subId: string;
+    prompt: string;
+    options: string[];
+    dropdownId: string;
+  }> | null;
 }
 
 export interface ExtensionExtractionDiagnostics {
@@ -89,6 +96,13 @@ export interface ExtensionQuestionSuggestion {
   parentQuestionId?: string | null;
   /** For dropdown sub-items: 0-based index within the parent question's dropdowns */
   dropdownSubIndex?: number | null;
+  /** For multi-dropdown questions: individual answers for each dropdown */
+  dropdownAnswers?: Array<{
+    dropdownId: string;
+    suggestedOption: string | null;
+    answerText: string | null;
+    confidence: number | null;
+  }> | null;
 }
 
 export interface ExtensionCapturedSection {
