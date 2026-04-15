@@ -172,14 +172,21 @@ export function installExtractorContentScript() {
 
     // ─── Image context preservation ───
     // If the question text contains images (e.g. diagram-based questions),
-    // replace each <img> with an [IMG:filename] text node so the image
-    // identity is preserved in the extracted prompt text for Q&A matching.
+    // replace each <img> with an [IMG_HASH:hex] or [IMG:filename] text node
+    // so the image identity is preserved in the extracted prompt text for Q&A matching.
     clone.querySelectorAll('img').forEach(img => {
-      const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
-      if (filename && filename.length > 1) {
-        img.replaceWith(document.createTextNode(` [IMG:${filename}] `));
+      // Prefer perceptual hash (stable across attempts/students)
+      const hash = computeImagePerceptualHash(img as HTMLImageElement);
+      if (hash && hash.length >= 8) {
+        img.replaceWith(document.createTextNode(` [IMG_HASH:${hash}] `));
       } else {
-        img.remove();
+        // Fallback to filename
+        const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
+        if (filename && filename.length > 1) {
+          img.replaceWith(document.createTextNode(` [IMG:${filename}] `));
+        } else {
+          img.remove();
+        }
       }
     });
 
