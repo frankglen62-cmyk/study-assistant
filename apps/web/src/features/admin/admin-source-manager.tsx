@@ -2001,11 +2001,53 @@ export function AdminSourceManager({
                                 {pair.questionType === 'picture' ? 'Correct Answer Choice' : 'Answer'}
                               </label>
                               {pair.questionType === 'picture' ? (
-                                <div className="space-y-3">
-                                  {/* Choice letter selector */}
-                                  <div className="space-y-2">
-                                    <p className="text-[11px] text-muted-foreground font-medium">Select the correct choice letter from the quiz:</p>
-                                    <div className="flex gap-2">
+                                <div className="space-y-4">
+                                  {/* Method 1: Paste hash from Study Results (RECOMMENDED) */}
+                                  <div className="space-y-2 border border-success/30 rounded-xl p-3 bg-success/5">
+                                    <p className="text-xs font-semibold text-success flex items-center gap-1.5">
+                                      <span>🔍</span> Method 1: Paste Image Hash (Recommended — works with shuffled choices)
+                                    </p>
+                                    <div className="flex gap-2 items-center">
+                                      <Input
+                                        value={
+                                          pair.answerText.startsWith('[IMG_HASH:') && pair.answerText.endsWith(']')
+                                            ? pair.answerText.slice(10, -1)
+                                            : (pair.answerText.startsWith('[IMG_HASH:') ? pair.answerText : '')
+                                        }
+                                        onChange={(event) => {
+                                          const raw = event.target.value.trim().replace(/\[IMG_HASH:|\]/g, '');
+                                          const value = raw ? `[IMG_HASH:${raw}]` : '';
+                                          setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
+                                        }}
+                                        placeholder="Paste hash from Study Results, e.g. 3c7e7e3c18000000"
+                                        className="text-sm font-mono h-9 flex-1"
+                                        disabled={!selectedRootFolder}
+                                      />
+                                      {pair.answerText.startsWith('[IMG_HASH:') && (
+                                        <button type="button" className="p-1 text-muted-foreground hover:text-danger shrink-0" onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: '' } : p))}>
+                                          <XCircle size={16} />
+                                        </button>
+                                      )}
+                                    </div>
+                                    {pair.answerText.startsWith('[IMG_HASH:') && (
+                                      <p className="text-xs text-success font-medium">✓ Will match this image fingerprint on the quiz (shuffle-proof)</p>
+                                    )}
+                                    <div className="text-[10px] text-muted-foreground/70 leading-relaxed space-y-1">
+                                      <p><strong>Steps:</strong></p>
+                                      <p>1. Open quiz page → click <strong>Find Answers</strong> sa extension</p>
+                                      <p>2. Sa <strong>Study Results</strong>, hanapin ang question — makikita mo ang options na may <code className="bg-surface/60 px-1 rounded">[IMG_HASH:xxxx]</code></p>
+                                      <p>3. Tignan sa quiz kung aling image ang correct (e.g., choice c)</p>
+                                      <p>4. Sa Study Results, i-copy yung hash ng 3rd option (a=1st, b=2nd, c=3rd)</p>
+                                      <p>5. I-paste dito ⬆️</p>
+                                    </div>
+                                  </div>
+
+                                  {/* Method 2: Choice letter (for non-shuffled quizzes) */}
+                                  <div className="space-y-2 border border-border/30 rounded-xl p-3">
+                                    <p className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+                                      <span>🔤</span> Method 2: Choice Letter (kung hindi nag-shuffle ang choices)
+                                    </p>
+                                    <div className="flex gap-1.5">
                                       {['a', 'b', 'c', 'd', 'e', 'f'].map((letter) => {
                                         const choiceVal = `[IMG_CHOICE:${letter}]`;
                                         const isSelected = pair.answerText === choiceVal;
@@ -2013,9 +2055,9 @@ export function AdminSourceManager({
                                           <button
                                             key={letter}
                                             type="button"
-                                            className={`h-10 w-10 rounded-xl text-sm font-bold uppercase transition-all border-2 ${
+                                            className={`h-8 w-8 rounded-lg text-xs font-bold uppercase transition-all border ${
                                               isSelected
-                                                ? 'bg-success text-success-foreground border-success shadow-lg shadow-success/30 scale-110'
+                                                ? 'bg-success text-success-foreground border-success shadow-md scale-110'
                                                 : 'bg-surface border-border/40 text-muted-foreground hover:border-success/50 hover:text-success'
                                             }`}
                                             onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: choiceVal } : p))}
@@ -2027,27 +2069,10 @@ export function AdminSourceManager({
                                     </div>
                                     {pair.answerText.startsWith('[IMG_CHOICE:') && (
                                       <p className="text-xs text-success font-medium">
-                                        ✓ Will auto-select choice &quot;{pair.answerText.slice(12, -1).toUpperCase()}&quot; on the quiz
+                                        ✓ Will auto-select choice &quot;{pair.answerText.slice(12, -1).toUpperCase()}&quot; (fixed position only)
                                       </p>
                                     )}
                                   </div>
-
-                                  {/* Show uploaded reference image preview */}
-                                  {pair.answerText.startsWith('[IMG_URL:') && (
-                                    <div className="flex items-center gap-3 rounded-xl border border-success/30 bg-white p-2">
-                                      <img src={pair.answerText.slice(9, -1)} alt="Reference" className="h-14 w-auto rounded-lg object-contain" />
-                                      <div className="flex-1 min-w-0">
-                                        <p className="text-[10px] text-muted-foreground">Reference image (visual comparison)</p>
-                                      </div>
-                                      <button type="button" className="p-1 text-muted-foreground hover:text-danger" onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: '' } : p))}>
-                                        <XCircle size={16} />
-                                      </button>
-                                    </div>
-                                  )}
-
-                                  <p className="text-[11px] text-muted-foreground/70 leading-relaxed bg-surface/40 rounded-lg px-3 py-2">
-                                    💡 <strong>Recommended:</strong> Just select the correct choice letter (a, b, c, d) above. The extension will click that letter on the quiz. This is the most reliable method.
-                                  </p>
                                 </div>
                               ) : pair.questionType === 'checkbox' ? (
                                 <div className="space-y-2">
