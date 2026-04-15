@@ -1737,13 +1737,29 @@ export function AdminSourceManager({
                                             </li>
                                           ))}
                                         </ul>
-                                      ) : pair.question_type === 'picture' && pair.answer_text.startsWith('[IMG:') ? (
-                                        <div className="flex items-center gap-2 pl-8 mt-1">
-                                          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent/15 text-sm">🖼️</span>
-                                          <code className="text-sm font-mono bg-surface/60 px-2 py-1 rounded-lg text-foreground">
-                                            {pair.answer_text.slice(5, -1)}
-                                          </code>
-                                          <span className="text-[10px] text-muted-foreground/60">(image filename)</span>
+                                      ) : pair.question_type === 'picture' && (pair.answer_text.startsWith('[IMG:') || pair.answer_text.startsWith('[IMG_URL:')) ? (
+                                        <div className="flex items-center gap-3 pl-8 mt-1">
+                                          {pair.answer_text.startsWith('[IMG_URL:') ? (
+                                            <>
+                                              <img
+                                                src={pair.answer_text.slice(9, -1)}
+                                                alt="Answer"
+                                                className="h-16 w-auto rounded-lg border border-border/40 object-contain bg-white"
+                                              />
+                                              <div>
+                                                <p className="text-xs font-semibold text-success">✓ Uploaded image</p>
+                                                <p className="text-[10px] text-muted-foreground truncate max-w-[200px]">{pair.answer_text.slice(9, -1).split('/').pop()}</p>
+                                              </div>
+                                            </>
+                                          ) : (
+                                            <>
+                                              <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent/15 text-sm">🖼️</span>
+                                              <code className="text-sm font-mono bg-surface/60 px-2 py-1 rounded-lg text-foreground">
+                                                {pair.answer_text.slice(5, -1)}
+                                              </code>
+                                              <span className="text-[10px] text-muted-foreground/60">(image filename)</span>
+                                            </>
+                                          )}
                                         </div>
                                       ) : pair.question_type === 'dropdown' && pair.answer_text.startsWith(DROPDOWN_PAIRS_HEADER) ? (
                                         <div className="pl-8 space-y-1.5 mt-1">

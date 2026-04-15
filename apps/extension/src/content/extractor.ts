@@ -2563,71 +2563,124 @@ export function installExtractorContentScript() {
       }
 
       if (choicesWithImages.length > 0) {
-        // Compute perceptual hash for an image via canvas
-        function computeImageHash(imgEl: HTMLImageElement): number[] {
-          const SIZE = 16;
-          const canvas = document.createElement('canvas');
-          canvas.width = SIZE;
-          canvas.height = SIZE;
-          const ctx = canvas.getContext('2d');
-          if (!ctx) return [];
-          ctx.drawImage(imgEl, 0, 0, SIZE, SIZE);
-          const data = ctx.getImageData(0, 0, SIZE, SIZE).data;
-          const hash: number[] = [];
-          for (let i = 0; i < data.length; i += 4) {
-            // Convert to grayscale
-            hash.push(Math.round(0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!));
+        // ── Canvas-based image comparison helpers ──
+        const HASH_SIZE = 32; // 32x32 = 1024 pixels — much better resolution for comparison
+
+        function computeImageHash(imgEl: HTMLImageElement | HTMLCanvasElement): number[] {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = HASH_SIZE;
+            canvas.height = HASH_SIZE;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return [];
+            ctx.drawImage(imgEl, 0, 0, HASH_SIZE, HASH_SIZE);
+            const data = ctx.getImageData(0, 0, HASH_SIZE, HASH_SIZE).data;
+            const hash: number[] = [];
+            for (let i = 0; i < data.length; i += 4) {
+              // Convert to grayscale (check for all-zero which means CORS tainted)
+              const r = data[i]!, g = data[i + 1]!, b = data[i + 2]!;
+              hash.push(Math.round(0.299 * r + 0.587 * g + 0.114 * b));
+            }
+            // Check if canvas was tainted (all zeros)
+            const nonZero = hash.filter(v => v > 0).length;
+            if (nonZero < hash.length * 0.01) return []; // Less than 1% non-zero = tainted
+            return hash;
+          } catch {
+            return []; // Canvas tainted by CORS
           }
-          return hash;
         }
 
         function hashSimilarity(a: number[], b: number[]): number {
           if (a.length === 0 || b.length === 0 || a.length !== b.length) return 0;
-          let sumDiff = 0;
+          // Normalized cross-correlation (more robust than simple diff)
+          let sumA = 0, sumB = 0;
+          for (let i = 0; i < a.length; i++) { sumA += a[i]!; sumB += b[i]!; }
+          const meanA = sumA / a.length;
+          const meanB = sumB / b.length;
+
+          let numerator = 0, denomA = 0, denomB = 0;
           for (let i = 0; i < a.length; i++) {
-            sumDiff += Math.abs(a[i]! - b[i]!);
+            const da = a[i]! - meanA;
+            const db = b[i]! - meanB;
+            numerator += da * db;
+            denomA += da * da;
+            denomB += db * db;
           }
-          // Max possible diff per pixel is 255, total pixels = a.length
-          return 1 - (sumDiff / (a.length * 255));
+          const denom = Math.sqrt(denomA * denomB);
+          if (denom === 0) return 0;
+          return Math.max(0, numerator / denom); // 0 to 1, where 1 = identical
         }
 
-        // Load reference image from URL and compare with each choice
-        try {
-          const refImg = new Image();
-          refImg.crossOrigin = 'anonymous';
-          
-          const refLoaded = await new Promise<boolean>((resolve) => {
-            refImg.onload = () => resolve(true);
-            refImg.onerror = () => resolve(false);
-            refImg.src = referenceUrl;
-            // Timeout after 5 seconds
-            setTimeout(() => resolve(false), 5000);
-          });
+        // Load reference image — use fetch + blob URL to bypass CORS issues
+        async function loadImageForCanvas(url: string): Promise<HTMLImageElement | null> {
+          try {
+            // Method 1: fetch as blob (bypasses CORS tainted canvas)
+            const response = await fetch(url, { mode: 'cors' });
+            if (!response.ok) throw new Error('fetch failed');
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
 
-          if (refLoaded) {
-            const refHash = computeImageHash(refImg);
-            
-            let bestMatch: { input: HTMLInputElement; similarity: number } | null = null;
-
-            for (const choice of choicesWithImages) {
-              // Choice images are same-origin (on the Moodle page), so canvas works directly
-              const choiceHash = computeImageHash(choice.img);
-              const similarity = hashSimilarity(refHash, choiceHash);
-              
-              if (!bestMatch || similarity > bestMatch.similarity) {
-                bestMatch = { input: choice.input, similarity };
-              }
-            }
-
-            // Click if similarity is above threshold (0.60 = 60% similar)
-            if (bestMatch && bestMatch.similarity >= 0.60) {
-              bestMatch.input.click();
-              bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
-              return {
-                clicked: true,
-                clickedText: `[IMG_URL visual match: ${Math.round(bestMatch.similarity * 100)}%]`,
-                matchMethod: 'image_visual',
+            const img = new Image();
+            return new Promise<HTMLImageElement | null>((resolve) => {
+              img.onload = () => {
+                URL.revokeObjectURL(blobUrl);
+                resolve(img);
               };
+              img.onerror = () => {
+                URL.revokeObjectURL(blobUrl);
+                resolve(null);
+              };
+              img.src = blobUrl;
+              setTimeout(() => resolve(null), 8000);
+            });
+          } catch {
+            // Method 2: try direct with crossOrigin
+            try {
+              const img = new Image();
+              img.crossOrigin = 'anonymous';
+              return new Promise<HTMLImageElement | null>((resolve) => {
+                img.onload = () => resolve(img);
+                img.onerror = () => resolve(null);
+                img.src = url;
+                setTimeout(() => resolve(null), 8000);
+              });
+            } catch {
+              return null;
+            }
+          }
+        }
+
+        try {
+          const refImg = await loadImageForCanvas(referenceUrl);
+
+          if (refImg) {
+            const refHash = computeImageHash(refImg);
+
+            if (refHash.length > 0) {
+              let bestMatch: { input: HTMLInputElement; similarity: number; idx: number } | null = null;
+
+              for (let ci = 0; ci < choicesWithImages.length; ci++) {
+                const choice = choicesWithImages[ci]!;
+                const choiceHash = computeImageHash(choice.img);
+                if (choiceHash.length === 0) continue;
+
+                const similarity = hashSimilarity(refHash, choiceHash);
+                
+                if (!bestMatch || similarity > bestMatch.similarity) {
+                  bestMatch = { input: choice.input, similarity, idx: ci };
+                }
+              }
+
+              // Click if similarity is above threshold (0.70 = 70% correlated)
+              if (bestMatch && bestMatch.similarity >= 0.70) {
+                bestMatch.input.click();
+                bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+                return {
+                  clicked: true,
+                  clickedText: `[IMG_URL visual match: ${Math.round(bestMatch.similarity * 100)}% choice:${bestMatch.idx}]`,
+                  matchMethod: 'image_visual',
+                };
+              }
             }
           }
         } catch {
