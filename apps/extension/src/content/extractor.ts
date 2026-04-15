@@ -43,6 +43,42 @@ export function installExtractorContentScript() {
     return value.replace(/\s+/g, ' ').trim();
   }
 
+  /**
+   * Extract a human-readable filename from a URL (typically Moodle pluginfile URLs).
+   * e.g. "https://lms.example.com/.../Month.PNG" → "Month.PNG"
+   *      "https://lms.example.com/.../multivalu%20att.PNG" → "multivalu att.PNG"
+   */
+  function extractFilenameFromUrl(url: string): string {
+    if (!url) return '';
+    try {
+      const pathname = new URL(url, window.location.origin).pathname;
+      const lastSegment = pathname.split('/').filter(Boolean).pop() ?? '';
+      return decodeURIComponent(lastSegment);
+    } catch {
+      // Fallback: just grab the last path segment
+      const parts = url.split('/').filter(Boolean);
+      const last = parts.pop() ?? '';
+      try { return decodeURIComponent(last); } catch { return last; }
+    }
+  }
+
+  /**
+   * Detect images inside a DOM node and return [IMG:filename] identifiers.
+   * Used to preserve image context in question/option text.
+   */
+  function extractImageIdentifiers(node: Element | HTMLElement): string[] {
+    const imgs = Array.from(node.querySelectorAll('img'));
+    const ids: string[] = [];
+    for (const img of imgs) {
+      if (!isElementVisible(img)) continue;
+      const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
+      if (filename && filename.length > 1) {
+        ids.push(`[IMG:${filename}]`);
+      }
+    }
+    return ids;
+  }
+
   function extractCleanedPromptText(node: Element): string {
     const clone = node.cloneNode(true) as HTMLElement;
     
@@ -54,6 +90,19 @@ export function installExtractorContentScript() {
 
     // Also strip out screen-reader only elements that inject "Answer"
     clone.querySelectorAll('.accesshide, .sr-only').forEach(el => el.remove());
+
+    // ─── Image context preservation ───
+    // If the question text contains images (e.g. diagram-based questions),
+    // replace each <img> with an [IMG:filename] text node so the image
+    // identity is preserved in the extracted prompt text for Q&A matching.
+    clone.querySelectorAll('img').forEach(img => {
+      const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
+      if (filename && filename.length > 1) {
+        img.replaceWith(document.createTextNode(` [IMG:${filename}] `));
+      } else {
+        img.remove();
+      }
+    });
 
     // Use extractTextWithSpacing instead of .textContent to preserve
     // word boundaries between block-level elements (p, div, br, li, etc.)
@@ -340,6 +389,34 @@ export function installExtractorContentScript() {
   function extractOptionLabel(input: Element): string {
     const id = input.getAttribute('id');
 
+    /**
+     * Check a label/container element for image-based content.
+     * If it contains an <img> with no meaningful text, return [IMG:filename].
+     * This handles Moodle picture-choice questions where the option IS an image.
+     */
+    function checkForImageLabel(el: Element): string | null {
+      const imgs = el.querySelectorAll('img');
+      if (imgs.length === 0) return null;
+      // Check if the element has meaningful text BESIDES the image
+      const clone = el.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(n => n.remove());
+      clone.querySelectorAll('.answernumber').forEach(n => n.remove());
+      clone.querySelectorAll('img').forEach(n => n.remove());
+      const textWithoutImages = normalizeText(clone.textContent ?? '');
+      // If there's meaningful text alongside the image, don't use [IMG:] format
+      if (textWithoutImages.length >= 3) return null;
+      // Extract image filename identifiers
+      const imgIds: string[] = [];
+      for (const img of Array.from(imgs)) {
+        if (!isElementVisible(img)) continue;
+        const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
+        if (filename && filename.length > 1) {
+          imgIds.push(`[IMG:${filename}]`);
+        }
+      }
+      return imgIds.length > 0 ? imgIds.join(' ') : null;
+    }
+
     // ─── Priority 1: Moodle's aria-labelledby → [data-region="answer-label"] ───
     // Moodle multichoice/checkbox questions use aria-labelledby pointing to a
     // sibling div with data-region="answer-label" that wraps the visible option text.
@@ -354,6 +431,9 @@ export function installExtractorContentScript() {
           // Ignore
         }
         if (labelEl && isElementVisible(labelEl)) {
+          // Check for image-based option first
+          const imgLabel = checkForImageLabel(labelEl);
+          if (imgLabel) return imgLabel;
           const clone = labelEl.cloneNode(true) as HTMLElement;
           clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
           // Also remove screen-reader-only answernumber spans that prefix "a. ", "b. "
@@ -373,6 +453,8 @@ export function installExtractorContentScript() {
         // Ignore invalid selectors
       }
       if (label && isElementVisible(label)) {
+        const imgLabel = checkForImageLabel(label);
+        if (imgLabel) return imgLabel;
         const clone = label.cloneNode(true) as HTMLElement;
         clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         return normalizeText(clone.textContent ?? '');
@@ -382,6 +464,8 @@ export function installExtractorContentScript() {
     // ─── Priority 3: Input wrapped inside a <label> ───
     const wrapped = input.closest('label');
     if (wrapped) {
+      const imgLabel = checkForImageLabel(wrapped);
+      if (imgLabel) return imgLabel;
       const clone = wrapped.cloneNode(true) as HTMLElement;
       clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
       return normalizeText(clone.textContent ?? '');
@@ -394,6 +478,8 @@ export function installExtractorContentScript() {
       const answerLabel = parent.querySelector('[data-region="answer-label"]') ??
         (parent.nextElementSibling?.matches('[data-region="answer-label"]') ? parent.nextElementSibling : null);
       if (answerLabel && isElementVisible(answerLabel)) {
+        const imgLabel = checkForImageLabel(answerLabel);
+        if (imgLabel) return imgLabel;
         const clone = answerLabel.cloneNode(true) as HTMLElement;
         clone.querySelectorAll(REVIEW_ARTIFACT_SELECTORS).forEach(el => el.remove());
         clone.querySelectorAll('.answernumber').forEach(el => el.remove());
@@ -442,6 +528,13 @@ export function installExtractorContentScript() {
         const text = normalizeText(clone.textContent ?? '');
         if (text) return text;
       }
+    }
+
+    // ─── Priority 6: Image-based option (fallback) ───
+    // If all text extraction failed, check if there's an image near this input
+    if (parent) {
+      const imgLabel = checkForImageLabel(parent);
+      if (imgLabel) return imgLabel;
     }
 
     return '';
@@ -1015,9 +1108,17 @@ export function installExtractorContentScript() {
     // Check for dropdowns
     if (hasSelect) return 'dropdown';
 
-    // Check for picture question (image in the question text area)
+    // Check for picture question — images in the question text area OR in answer choices
     const qtext = container.querySelector('.qtext, .questiontext, .question-text');
     if (qtext && qtext.querySelector('img')) return 'picture';
+
+    // Check if answer choices contain images (picture-choice questions)
+    const answerLabels = container.querySelectorAll('[data-region="answer-label"], .answer label, .answer .flex-fill');
+    let imgChoiceCount = 0;
+    for (const label of Array.from(answerLabels)) {
+      if (label.querySelector('img')) imgChoiceCount++;
+    }
+    if (imgChoiceCount >= 2) return 'picture';
 
     // Default: multiple choice (radio buttons or generic)
     return 'multiple_choice';
@@ -2333,6 +2434,86 @@ export function installExtractorContentScript() {
     // Scope to the specific question container if available
     const scopedContainer = document.querySelector(`[data-study-assistant-id="${escapeSelectorValue(payload.questionId)}"]`);
     const searchRoot = scopedContainer ?? document;
+
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy 0: Image-based answer matching
+    // When the answer is [IMG:filename], find the radio/checkbox whose
+    // associated label contains an <img> with matching filename
+    // ═══════════════════════════════════════════════════════════════
+    const imgMatch = targetText.match(/^\[IMG:(.+)\]$/);
+    if (imgMatch) {
+      const targetFilename = imgMatch[1]!.trim();
+      const targetFilenameLower = targetFilename.toLowerCase();
+      // Strip extension for fuzzy matching
+      const targetBasename = targetFilenameLower.replace(/\.\w{2,5}$/, '').trim();
+
+      const imgInputs = Array.from(
+        searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]')
+      ).filter(el => isElementVisible(el));
+
+      for (const imgInput of imgInputs) {
+        // Find the label or answer-label div associated with this input
+        let labelContainer: Element | null = null;
+        const ariaLabelledBy = imgInput.getAttribute('aria-labelledby');
+        if (ariaLabelledBy) {
+          const labelIds = ariaLabelledBy.split(/\s+/).filter(Boolean);
+          for (const lid of labelIds) {
+            try { labelContainer = document.getElementById(lid); } catch { /* ignore */ }
+            if (labelContainer) break;
+          }
+        }
+        if (!labelContainer && imgInput.id) {
+          try {
+            labelContainer = document.querySelector(`label[for="${CSS.escape(imgInput.id)}"]`);
+          } catch { /* ignore */ }
+        }
+        if (!labelContainer) {
+          labelContainer = imgInput.closest('label');
+        }
+        if (!labelContainer) {
+          labelContainer = imgInput.parentElement?.querySelector('[data-region="answer-label"]') ?? imgInput.parentElement;
+        }
+        if (!labelContainer) continue;
+
+        // Look for <img> inside the label
+        const imgs = labelContainer.querySelectorAll('img');
+        for (const img of Array.from(imgs)) {
+          const imgAlt = (img.alt ?? '').trim();
+          const imgFilename = extractFilenameFromUrl(img.src);
+          const candidates = [imgAlt, imgFilename].filter(Boolean);
+
+          for (const candidate of candidates) {
+            const candidateLower = candidate.toLowerCase();
+            const candidateBasename = candidateLower.replace(/\.\w{2,5}$/, '').trim();
+            // Exact match (case-insensitive)
+            if (candidateLower === targetFilenameLower) {
+              imgInput.click();
+              imgInput.dispatchEvent(new Event('change', { bubbles: true }));
+              return { clicked: true, clickedText: targetText, matchMethod: 'image_exact' };
+            }
+            // Basename match (without extension)
+            if (candidateBasename && targetBasename && candidateBasename === targetBasename) {
+              imgInput.click();
+              imgInput.dispatchEvent(new Event('change', { bubbles: true }));
+              return { clicked: true, clickedText: targetText, matchMethod: 'image_basename' };
+            }
+            // Contains match (one contains the other, ≥80% overlap)
+            if (candidateLower.includes(targetFilenameLower) || targetFilenameLower.includes(candidateLower)) {
+              const shorter = Math.min(candidateLower.length, targetFilenameLower.length);
+              const longer = Math.max(candidateLower.length, targetFilenameLower.length);
+              if (longer > 0 && shorter / longer >= 0.7) {
+                imgInput.click();
+                imgInput.dispatchEvent(new Event('change', { bubbles: true }));
+                return { clicked: true, clickedText: targetText, matchMethod: 'image_contains' };
+              }
+            }
+          }
+        }
+      }
+
+      // If we get here, image match failed — fall through to text strategies
+      // (the [IMG:...] text might still match via text comparison in Strategy C)
+    }
     
     // ═══════════════════════════════════════════════════════════════
     // Type-aware routing: use backend questionType to skip irrelevant strategies

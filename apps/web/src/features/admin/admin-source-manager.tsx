@@ -1737,6 +1737,14 @@ export function AdminSourceManager({
                                             </li>
                                           ))}
                                         </ul>
+                                      ) : pair.question_type === 'picture' && pair.answer_text.startsWith('[IMG:') ? (
+                                        <div className="flex items-center gap-2 pl-8 mt-1">
+                                          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent/15 text-sm">🖼️</span>
+                                          <code className="text-sm font-mono bg-surface/60 px-2 py-1 rounded-lg text-foreground">
+                                            {pair.answer_text.slice(5, -1)}
+                                          </code>
+                                          <span className="text-[10px] text-muted-foreground/60">(image filename)</span>
+                                        </div>
                                       ) : pair.question_type === 'dropdown' && pair.answer_text.startsWith(DROPDOWN_PAIRS_HEADER) ? (
                                         <div className="pl-8 space-y-1.5 mt-1">
                                           <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-2">Dropdown Sub-Pairs ({(parseDropdownPairs(pair.answer_text) ?? []).length})</p>
@@ -1893,12 +1901,46 @@ export function AdminSourceManager({
                                 className="min-h-[90px] text-sm resize-none"
                                 disabled={!selectedRootFolder}
                               />
+                              {pair.questionType === 'picture' && (
+                                <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+                                  💡 If the question itself contains an image, include <code className="bg-surface/60 px-1 py-0.5 rounded text-[10px] font-mono">[IMG:filename.png]</code> in the text above.
+                                  The extension will extract and match by filename.
+                                </p>
+                              )}
                             </div>
                             <div className="space-y-2">
                               <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">A</span> Answer
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">A</span>
+                                {pair.questionType === 'picture' ? 'Answer (image filename)' : 'Answer'}
                               </label>
-                              {pair.questionType === 'checkbox' ? (
+                              {pair.questionType === 'picture' ? (
+                                <div className="space-y-2">
+                                  <div className="flex gap-2 items-center">
+                                    <span className="text-xs text-muted-foreground font-mono shrink-0">[IMG:</span>
+                                    <Input
+                                      value={
+                                        // Strip [IMG:...] wrapper for editing
+                                        pair.answerText.startsWith('[IMG:') && pair.answerText.endsWith(']')
+                                          ? pair.answerText.slice(5, -1)
+                                          : pair.answerText
+                                      }
+                                      onChange={(event) => {
+                                        const raw = event.target.value.trim();
+                                        // Auto-wrap in [IMG:...] format
+                                        const value = raw ? `[IMG:${raw}]` : '';
+                                        setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
+                                      }}
+                                      placeholder="e.g. multivalu att.PNG"
+                                      className="text-sm font-mono"
+                                      disabled={!selectedRootFolder}
+                                    />
+                                    <span className="text-xs text-muted-foreground font-mono shrink-0">]</span>
+                                  </div>
+                                  <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+                                    🖼️ Enter the image <strong>filename</strong> from the LMS (found in the img alt attribute or URL). The extension will match this to the correct image choice on the quiz.
+                                  </p>
+                                </div>
+                              ) : pair.questionType === 'checkbox' ? (
                                 <div className="space-y-2">
                                   {(pair.answerText || '').split(' | ').map((ans, ansIdx, arr) => (
                                     <div key={ansIdx} className="flex gap-2 items-center">
