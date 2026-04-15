@@ -79,6 +79,85 @@ export function installExtractorContentScript() {
     return ids;
   }
 
+  /**
+   * Compute a perceptual hash of an image using canvas.
+   * This creates a stable 16-char hex fingerprint based on image content.
+   * The hash is position-independent (same image = same hash regardless of DOM order).
+   *
+   * Algorithm: Average Hash (aHash)
+   * 1. Draw image to 8x8 canvas
+   * 2. Convert to grayscale
+   * 3. Compute mean brightness
+   * 4. Each pixel above mean = 1, below = 0
+   * 5. Encode as hex string
+   *
+   * Returns empty string if canvas fails (e.g., image not loaded, CORS taint).
+   */
+  function computeImagePerceptualHash(img: HTMLImageElement): string {
+    try {
+      if (!img.complete || img.naturalWidth === 0) return '';
+      const SIZE = 8;
+      const canvas = document.createElement('canvas');
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return '';
+      ctx.drawImage(img, 0, 0, SIZE, SIZE);
+      const data = ctx.getImageData(0, 0, SIZE, SIZE).data;
+
+      // Convert to grayscale values
+      const gray: number[] = [];
+      for (let i = 0; i < data.length; i += 4) {
+        gray.push(Math.round(0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!));
+      }
+
+      // Check for tainted canvas (all zeros)
+      const nonZero = gray.filter(v => v > 0).length;
+      if (nonZero < 2) return '';
+
+      // Compute average
+      const mean = gray.reduce((sum, v) => sum + v, 0) / gray.length;
+
+      // Build 64-bit hash: each pixel above mean = 1, below = 0
+      let hashBits = '';
+      for (let i = 0; i < gray.length; i++) {
+        hashBits += gray[i]! >= mean ? '1' : '0';
+      }
+
+      // Convert to hex (64 bits = 16 hex chars)
+      let hex = '';
+      for (let i = 0; i < hashBits.length; i += 4) {
+        hex += parseInt(hashBits.substring(i, i + 4), 2).toString(16);
+      }
+
+      return hex;
+    } catch {
+      return '';
+    }
+  }
+
+  /**
+   * Compare two perceptual hash strings.
+   * Returns similarity from 0 to 1 (1 = identical).
+   * Uses Hamming distance on the hex string.
+   */
+  function comparePerceptualHashes(hash1: string, hash2: string): number {
+    if (!hash1 || !hash2 || hash1.length !== hash2.length) return 0;
+    // Convert hex to binary and compare bits
+    let totalBits = 0;
+    let matchBits = 0;
+    for (let i = 0; i < hash1.length; i++) {
+      const a = parseInt(hash1[i]!, 16);
+      const b = parseInt(hash2[i]!, 16);
+      const xor = a ^ b;
+      for (let bit = 0; bit < 4; bit++) {
+        totalBits++;
+        if (((xor >> bit) & 1) === 0) matchBits++;
+      }
+    }
+    return totalBits === 0 ? 0 : matchBits / totalBits;
+  }
+
   function extractCleanedPromptText(node: Element): string {
     const clone = node.cloneNode(true) as HTMLElement;
     
@@ -405,13 +484,20 @@ export function installExtractorContentScript() {
       const textWithoutImages = normalizeText(clone.textContent ?? '');
       // If there's meaningful text alongside the image, don't use [IMG:] format
       if (textWithoutImages.length >= 3) return null;
-      // Extract image filename identifiers
+      // Extract image identifiers — prefer perceptual hash, fallback to filename
       const imgIds: string[] = [];
       for (const img of Array.from(imgs)) {
         if (!isElementVisible(img)) continue;
-        const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
-        if (filename && filename.length > 1) {
-          imgIds.push(`[IMG:${filename}]`);
+        // Try perceptual hash first (content-based, position-independent)
+        const hash = computeImagePerceptualHash(img as HTMLImageElement);
+        if (hash && hash.length >= 8) {
+          imgIds.push(`[IMG_HASH:${hash}]`);
+        } else {
+          // Fallback to filename
+          const filename = img.alt?.trim() || extractFilenameFromUrl(img.src) || '';
+          if (filename && filename.length > 1) {
+            imgIds.push(`[IMG:${filename}]`);
+          }
         }
       }
       return imgIds.length > 0 ? imgIds.join(' ') : null;
@@ -2550,6 +2636,62 @@ export function installExtractorContentScript() {
     }
 
     // ═══════════════════════════════════════════════════════════════
+    // Strategy 0d: Perceptual hash matching for picture questions
+    // When the answer is [IMG_HASH:hexstring], compute the hash of
+    // each choice image and click the one that matches best.
+    // Both hashes are computed on the same page = NO CORS issues!
+    // ═══════════════════════════════════════════════════════════════
+    const imgHashMatch = targetText.match(/^\[IMG_HASH:([0-9a-f]+)\]$/i);
+    if (imgHashMatch) {
+      const targetHash = imgHashMatch[1]!.toLowerCase();
+
+      const hashInputs = Array.from(
+        searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]')
+      ).filter(el => isElementVisible(el));
+
+      let bestMatch: { input: HTMLInputElement; similarity: number; hash: string } | null = null;
+
+      for (const inp of hashInputs) {
+        // Find the label/container with the image
+        let container: Element | null = null;
+        const ariaBy = inp.getAttribute('aria-labelledby');
+        if (ariaBy) {
+          for (const lid of ariaBy.split(/\s+/).filter(Boolean)) {
+            try { container = document.getElementById(lid); } catch { /* ignore */ }
+            if (container) break;
+          }
+        }
+        if (!container && inp.id) {
+          try { container = document.querySelector(`label[for="${CSS.escape(inp.id)}"]`); } catch { /* ignore */ }
+        }
+        if (!container) container = inp.closest('label');
+        if (!container) container = inp.parentElement?.querySelector('[data-region="answer-label"]') ?? inp.parentElement;
+        if (!container) continue;
+
+        const img = container.querySelector('img') as HTMLImageElement | null;
+        if (!img || !isElementVisible(img)) continue;
+
+        const choiceHash = computeImagePerceptualHash(img);
+        if (!choiceHash) continue;
+
+        const similarity = comparePerceptualHashes(targetHash, choiceHash);
+        if (!bestMatch || similarity > bestMatch.similarity) {
+          bestMatch = { input: inp, similarity, hash: choiceHash };
+        }
+      }
+
+      // Click if similarity is above 85% (very high confidence)
+      if (bestMatch && bestMatch.similarity >= 0.85) {
+        bestMatch.input.click();
+        bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+        return {
+          clicked: true,
+          clickedText: `[IMG_HASH match: ${Math.round(bestMatch.similarity * 100)}%]`,
+          matchMethod: 'image_hash',
+        };
+      }
+    }
+
     // Strategy 0b: Visual image comparison (uploaded answer image)
     // When the answer is [IMG_URL:https://...], compare the stored
     // image visually against each choice image using canvas hashing

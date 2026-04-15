@@ -1737,9 +1737,17 @@ export function AdminSourceManager({
                                             </li>
                                           ))}
                                         </ul>
-                                      ) : pair.question_type === 'picture' && (pair.answer_text.startsWith('[IMG:') || pair.answer_text.startsWith('[IMG_URL:') || pair.answer_text.startsWith('[IMG_CHOICE:')) ? (
+                                      ) : pair.question_type === 'picture' && (pair.answer_text.startsWith('[IMG:') || pair.answer_text.startsWith('[IMG_URL:') || pair.answer_text.startsWith('[IMG_CHOICE:') || pair.answer_text.startsWith('[IMG_HASH:')) ? (
                                         <div className="flex items-center gap-3 pl-8 mt-1">
-                                          {pair.answer_text.startsWith('[IMG_CHOICE:') ? (
+                                          {pair.answer_text.startsWith('[IMG_HASH:') ? (
+                                            <>
+                                              <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent/15 text-sm">🔍</span>
+                                              <code className="text-[11px] font-mono bg-surface/60 px-2 py-1 rounded-lg text-foreground">
+                                                {pair.answer_text.slice(10, -1)}
+                                              </code>
+                                              <span className="text-[10px] text-muted-foreground/60">(image hash — shuffle-proof)</span>
+                                            </>
+                                          ) : pair.answer_text.startsWith('[IMG_CHOICE:') ? (
                                             <>
                                               <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-success text-sm font-bold text-success-foreground uppercase">
                                                 {pair.answer_text.slice(12, -1)}
