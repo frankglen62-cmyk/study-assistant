@@ -2199,9 +2199,17 @@ export function installExtractorContentScript() {
         questionType?: string | null;
       };
 
-      const result = autoClickAnswer(payload);
-      sendResponse({ ok: true, data: result });
-      return;
+      // autoClickAnswer is async (for image loading), so we use an IIFE
+      // and return true to keep the sendResponse channel open
+      (async () => {
+        try {
+          const result = await autoClickAnswer(payload);
+          sendResponse({ ok: true, data: result });
+        } catch (err) {
+          sendResponse({ ok: false, error: String(err) });
+        }
+      })();
+      return true; // keep channel open for async response
     }
 
     if (message?.type === 'EXTENSION/AUTO_CLICK_DROPDOWN_ANSWERS') {
@@ -2397,13 +2405,13 @@ export function installExtractorContentScript() {
     return value.replace(/["\\]/g, '\\$&');
   }
 
-  function autoClickAnswer(payload: {
+  async function autoClickAnswer(payload: {
     questionId: string;
     answerText: string;
     suggestedOption: string | null;
     options: string[];
     questionType?: string | null;
-  }): { clicked: boolean; clickedText: string | null; matchMethod: string } {
+  }): Promise<{ clicked: boolean; clickedText: string | null; matchMethod: string }> {
     function setControlValue(input: HTMLInputElement | HTMLTextAreaElement, value: string) {
       input.focus();
       input.dispatchEvent(new Event('focus', { bubbles: true }));
@@ -2513,6 +2521,119 @@ export function installExtractorContentScript() {
 
       // If we get here, image match failed — fall through to text strategies
       // (the [IMG:...] text might still match via text comparison in Strategy C)
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // Strategy 0b: Visual image comparison (uploaded answer image)
+    // When the answer is [IMG_URL:https://...], compare the stored
+    // image visually against each choice image using canvas hashing
+    // ═══════════════════════════════════════════════════════════════
+    const imgUrlMatch = targetText.match(/^\[IMG_URL:(.+)\]$/);
+    if (imgUrlMatch) {
+      const referenceUrl = imgUrlMatch[1]!.trim();
+      
+      // Collect all choice inputs and their associated images
+      const choiceInputs = Array.from(
+        searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]')
+      ).filter(el => isElementVisible(el));
+
+      type ChoiceWithImage = { input: HTMLInputElement; img: HTMLImageElement };
+      const choicesWithImages: ChoiceWithImage[] = [];
+
+      for (const inp of choiceInputs) {
+        let container: Element | null = null;
+        const ariaBy = inp.getAttribute('aria-labelledby');
+        if (ariaBy) {
+          for (const lid of ariaBy.split(/\s+/).filter(Boolean)) {
+            try { container = document.getElementById(lid); } catch { /* ignore */ }
+            if (container) break;
+          }
+        }
+        if (!container && inp.id) {
+          try { container = document.querySelector(`label[for="${CSS.escape(inp.id)}"]`); } catch { /* ignore */ }
+        }
+        if (!container) container = inp.closest('label');
+        if (!container) container = inp.parentElement?.querySelector('[data-region="answer-label"]') ?? inp.parentElement;
+        if (!container) continue;
+
+        const img = container.querySelector('img');
+        if (img && isElementVisible(img) && img.src) {
+          choicesWithImages.push({ input: inp, img });
+        }
+      }
+
+      if (choicesWithImages.length > 0) {
+        // Compute perceptual hash for an image via canvas
+        function computeImageHash(imgEl: HTMLImageElement): number[] {
+          const SIZE = 16;
+          const canvas = document.createElement('canvas');
+          canvas.width = SIZE;
+          canvas.height = SIZE;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return [];
+          ctx.drawImage(imgEl, 0, 0, SIZE, SIZE);
+          const data = ctx.getImageData(0, 0, SIZE, SIZE).data;
+          const hash: number[] = [];
+          for (let i = 0; i < data.length; i += 4) {
+            // Convert to grayscale
+            hash.push(Math.round(0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!));
+          }
+          return hash;
+        }
+
+        function hashSimilarity(a: number[], b: number[]): number {
+          if (a.length === 0 || b.length === 0 || a.length !== b.length) return 0;
+          let sumDiff = 0;
+          for (let i = 0; i < a.length; i++) {
+            sumDiff += Math.abs(a[i]! - b[i]!);
+          }
+          // Max possible diff per pixel is 255, total pixels = a.length
+          return 1 - (sumDiff / (a.length * 255));
+        }
+
+        // Load reference image from URL and compare with each choice
+        try {
+          const refImg = new Image();
+          refImg.crossOrigin = 'anonymous';
+          
+          const refLoaded = await new Promise<boolean>((resolve) => {
+            refImg.onload = () => resolve(true);
+            refImg.onerror = () => resolve(false);
+            refImg.src = referenceUrl;
+            // Timeout after 5 seconds
+            setTimeout(() => resolve(false), 5000);
+          });
+
+          if (refLoaded) {
+            const refHash = computeImageHash(refImg);
+            
+            let bestMatch: { input: HTMLInputElement; similarity: number } | null = null;
+
+            for (const choice of choicesWithImages) {
+              // Choice images are same-origin (on the Moodle page), so canvas works directly
+              const choiceHash = computeImageHash(choice.img);
+              const similarity = hashSimilarity(refHash, choiceHash);
+              
+              if (!bestMatch || similarity > bestMatch.similarity) {
+                bestMatch = { input: choice.input, similarity };
+              }
+            }
+
+            // Click if similarity is above threshold (0.60 = 60% similar)
+            if (bestMatch && bestMatch.similarity >= 0.60) {
+              bestMatch.input.click();
+              bestMatch.input.dispatchEvent(new Event('change', { bubbles: true }));
+              return {
+                clicked: true,
+                clickedText: `[IMG_URL visual match: ${Math.round(bestMatch.similarity * 100)}%]`,
+                matchMethod: 'image_visual',
+              };
+            }
+          }
+        } catch {
+          // Visual comparison failed — fall through to text strategies
+        }
+      }
     }
     
     // ═══════════════════════════════════════════════════════════════

@@ -1902,43 +1902,153 @@ export function AdminSourceManager({
                                 disabled={!selectedRootFolder}
                               />
                               {pair.questionType === 'picture' && (
-                                <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
-                                  💡 If the question itself contains an image, include <code className="bg-surface/60 px-1 py-0.5 rounded text-[10px] font-mono">[IMG:filename.png]</code> in the text above.
-                                  The extension will extract and match by filename.
-                                </p>
+                                <div className="space-y-2">
+                                  <label className="flex items-center gap-2 cursor-pointer group">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-accent/40 bg-accent/5 text-xs font-medium text-accent hover:bg-accent/10 transition-colors">
+                                      📷 Upload question image
+                                    </span>
+                                    <input
+                                      type="file"
+                                      accept="image/png,image/jpeg,image/webp,image/gif"
+                                      className="hidden"
+                                      disabled={!selectedRootFolder}
+                                      onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (!file) return;
+                                        const formData = new FormData();
+                                        formData.append('file', file);
+                                        try {
+                                          const res = await fetch('/api/admin/question-images', { method: 'POST', body: formData });
+                                          const data = await res.json() as { url?: string; error?: string };
+                                          if (!res.ok) throw new Error(data.error ?? 'Upload failed');
+                                          // Append [IMG_URL:...] to question text
+                                          setUnifiedPairs((current) => current.map((p, i) => i === index ? {
+                                            ...p,
+                                            questionText: (p.questionText ? p.questionText + '\n' : '') + `[IMG_URL:${data.url}]`,
+                                          } : p));
+                                          pushToast({ tone: 'success', title: 'Image uploaded', description: 'Question image added.' });
+                                        } catch (err) {
+                                          pushToast({ tone: 'danger', title: 'Upload failed', description: err instanceof Error ? err.message : 'Unknown error' });
+                                        }
+                                        e.target.value = '';
+                                      }}
+                                    />
+                                  </label>
+                                  {/* Show preview of uploaded question images */}
+                                  {pair.questionText.includes('[IMG_URL:') && (
+                                    <div className="flex flex-wrap gap-2">
+                                      {(pair.questionText.match(/\[IMG_URL:([^\]]+)\]/g) ?? []).map((match, imgIdx) => {
+                                        const url = match.slice(9, -1);
+                                        return (
+                                          <div key={imgIdx} className="relative group/img">
+                                            <img src={url} alt="Question" className="h-16 w-auto rounded-lg border border-border/40 object-contain bg-white" />
+                                            <button
+                                              type="button"
+                                              className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-danger text-white text-[10px] flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity"
+                                              onClick={() => {
+                                                setUnifiedPairs((current) => current.map((p, i) => i === index ? {
+                                                  ...p,
+                                                  questionText: p.questionText.replace(match, '').replace(/\n{2,}/g, '\n').trim(),
+                                                } : p));
+                                              }}
+                                            >✕</button>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  )}
+                                  <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+                                    💡 Upload an image if the <strong>question itself</strong> is a picture. You can also type <code className="bg-surface/60 px-1 py-0.5 rounded text-[10px] font-mono">[IMG:filename.png]</code> for filename-based matching.
+                                  </p>
+                                </div>
                               )}
                             </div>
                             <div className="space-y-2">
                               <label className="text-sm font-semibold text-foreground flex items-center gap-2">
                                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] text-success-foreground font-bold">A</span>
-                                {pair.questionType === 'picture' ? 'Answer (image filename)' : 'Answer'}
+                                {pair.questionType === 'picture' ? 'Answer (upload correct image)' : 'Answer'}
                               </label>
                               {pair.questionType === 'picture' ? (
-                                <div className="space-y-2">
-                                  <div className="flex gap-2 items-center">
-                                    <span className="text-xs text-muted-foreground font-mono shrink-0">[IMG:</span>
-                                    <Input
-                                      value={
-                                        // Strip [IMG:...] wrapper for editing
-                                        pair.answerText.startsWith('[IMG:') && pair.answerText.endsWith(']')
-                                          ? pair.answerText.slice(5, -1)
-                                          : pair.answerText
-                                      }
-                                      onChange={(event) => {
-                                        const raw = event.target.value.trim();
-                                        // Auto-wrap in [IMG:...] format
-                                        const value = raw ? `[IMG:${raw}]` : '';
-                                        setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
-                                      }}
-                                      placeholder="e.g. multivalu att.PNG"
-                                      className="text-sm font-mono"
-                                      disabled={!selectedRootFolder}
-                                    />
-                                    <span className="text-xs text-muted-foreground font-mono shrink-0">]</span>
-                                  </div>
-                                  <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
-                                    🖼️ Enter the image <strong>filename</strong> from the LMS (found in the img alt attribute or URL). The extension will match this to the correct image choice on the quiz.
-                                  </p>
+                                <div className="space-y-3">
+                                  {/* Image upload area */}
+                                  {pair.answerText && (pair.answerText.startsWith('[IMG_URL:') || pair.answerText.startsWith('http')) ? (
+                                    <div className="relative group/ans-img">
+                                      <div className="rounded-xl border-2 border-success/30 bg-white p-3 flex items-center gap-3">
+                                        <img
+                                          src={pair.answerText.startsWith('[IMG_URL:') ? pair.answerText.slice(9, -1) : pair.answerText}
+                                          alt="Answer"
+                                          className="h-20 w-auto rounded-lg object-contain"
+                                        />
+                                        <div className="flex-1 min-w-0">
+                                          <p className="text-xs font-semibold text-success">✓ Answer image uploaded</p>
+                                          <p className="text-[10px] text-muted-foreground truncate">{pair.answerText.startsWith('[IMG_URL:') ? pair.answerText.slice(9, -1).split('/').pop() : pair.answerText.split('/').pop()}</p>
+                                        </div>
+                                        <button
+                                          type="button"
+                                          className="p-1.5 text-muted-foreground hover:text-danger rounded-lg hover:bg-danger/10 transition-colors"
+                                          onClick={() => setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: '' } : p))}
+                                        >
+                                          <XCircle size={18} />
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <label className="flex flex-col items-center justify-center gap-2 cursor-pointer rounded-xl border-2 border-dashed border-success/30 bg-success/5 p-6 hover:bg-success/10 transition-colors">
+                                      <span className="text-3xl">📤</span>
+                                      <span className="text-sm font-medium text-success">Click to upload the correct answer image</span>
+                                      <span className="text-[11px] text-muted-foreground">PNG, JPEG, WebP • Max 5MB</span>
+                                      <input
+                                        type="file"
+                                        accept="image/png,image/jpeg,image/webp,image/gif"
+                                        className="hidden"
+                                        disabled={!selectedRootFolder}
+                                        onChange={async (e) => {
+                                          const file = e.target.files?.[0];
+                                          if (!file) return;
+                                          const formData = new FormData();
+                                          formData.append('file', file);
+                                          try {
+                                            const res = await fetch('/api/admin/question-images', { method: 'POST', body: formData });
+                                            const data = await res.json() as { url?: string; error?: string };
+                                            if (!res.ok) throw new Error(data.error ?? 'Upload failed');
+                                            setUnifiedPairs((current) => current.map((p, i) => i === index ? {
+                                              ...p,
+                                              answerText: `[IMG_URL:${data.url}]`,
+                                            } : p));
+                                            pushToast({ tone: 'success', title: 'Image uploaded', description: 'Answer image saved.' });
+                                          } catch (err) {
+                                            pushToast({ tone: 'danger', title: 'Upload failed', description: err instanceof Error ? err.message : 'Unknown error' });
+                                          }
+                                          e.target.value = '';
+                                        }}
+                                      />
+                                    </label>
+                                  )}
+                                  {/* Fallback: manual filename entry */}
+                                  {!pair.answerText.startsWith('[IMG_URL:') && !pair.answerText.startsWith('http') && (
+                                    <div className="space-y-1.5">
+                                      <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider font-semibold">Or enter image filename manually:</p>
+                                      <div className="flex gap-2 items-center">
+                                        <span className="text-xs text-muted-foreground font-mono shrink-0">[IMG:</span>
+                                        <Input
+                                          value={
+                                            pair.answerText.startsWith('[IMG:') && pair.answerText.endsWith(']')
+                                              ? pair.answerText.slice(5, -1)
+                                              : pair.answerText
+                                          }
+                                          onChange={(event) => {
+                                            const raw = event.target.value.trim();
+                                            const value = raw ? `[IMG:${raw}]` : '';
+                                            setUnifiedPairs((current) => current.map((p, i) => i === index ? { ...p, answerText: value } : p));
+                                          }}
+                                          placeholder="e.g. multivalu att.PNG"
+                                          className="text-sm font-mono h-8"
+                                          disabled={!selectedRootFolder}
+                                        />
+                                        <span className="text-xs text-muted-foreground font-mono shrink-0">]</span>
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               ) : pair.questionType === 'checkbox' ? (
                                 <div className="space-y-2">
