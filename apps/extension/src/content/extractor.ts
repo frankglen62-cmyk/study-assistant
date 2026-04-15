@@ -2524,6 +2524,32 @@ export function installExtractorContentScript() {
     }
 
     // ═══════════════════════════════════════════════════════════════
+    // Strategy 0c: Choice letter matching for picture questions
+    // When the answer is [IMG_CHOICE:b], find and click the nth
+    // radio/checkbox input (a=0, b=1, c=2, d=3, e=4, f=5)
+    // ═══════════════════════════════════════════════════════════════
+    const choiceLetterMatch = targetText.match(/^\[IMG_CHOICE:([a-f])\]$/i);
+    if (choiceLetterMatch) {
+      const letter = choiceLetterMatch[1]!.toLowerCase();
+      const letterIndex = letter.charCodeAt(0) - 'a'.charCodeAt(0); // a=0, b=1, c=2, d=3
+
+      const allInputs = Array.from(
+        searchRoot.querySelectorAll<HTMLInputElement>('input[type="radio"], input[type="checkbox"]')
+      ).filter(el => isElementVisible(el));
+
+      if (letterIndex < allInputs.length) {
+        const target = allInputs[letterIndex]!;
+        target.click();
+        target.dispatchEvent(new Event('change', { bubbles: true }));
+        return {
+          clicked: true,
+          clickedText: `[IMG_CHOICE:${letter}] → choice ${letterIndex + 1}`,
+          matchMethod: 'image_choice_letter',
+        };
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
     // Strategy 0b: Visual image comparison (uploaded answer image)
     // When the answer is [IMG_URL:https://...], compare the stored
     // image visually against each choice image using canvas hashing
