@@ -12,6 +12,8 @@ function buildContentSecurityPolicy() {
     }
   }
 
+  const isProduction = process.env.NODE_ENV === 'production';
+
   const directives = [
     "default-src 'self'",
     "base-uri 'self'",
@@ -23,18 +25,36 @@ function buildContentSecurityPolicy() {
     "manifest-src 'self'",
     "media-src 'self' blob: data:",
     "object-src 'none'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
+    // unsafe-eval is only needed in development for Next.js hot-reload / source maps.
+    // In production we drop it to strengthen XSS protection.
+    isProduction
+      ? "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com"
+      : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
     "style-src 'self' 'unsafe-inline'",
     `connect-src ${connectSources.join(' ')}`,
     "worker-src 'self' blob:",
   ];
 
-  if (process.env.NODE_ENV === 'production') {
+  if (isProduction) {
     directives.push('upgrade-insecure-requests');
   }
 
   return directives.join('; ');
 }
+
+function buildAllowedOrigin(): string {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  if (appUrl) {
+    try {
+      return new URL(appUrl).origin;
+    } catch {
+      // Fall through
+    }
+  }
+  return '';
+}
+
+const allowedOrigin = buildAllowedOrigin();
 
 const securityHeaders = [
   {
@@ -89,6 +109,25 @@ const securityHeaders = [
   },
 ];
 
+const corsHeaders = [
+  {
+    key: 'Access-Control-Allow-Origin',
+    value: allowedOrigin || 'null',
+  },
+  {
+    key: 'Access-Control-Allow-Methods',
+    value: 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+  },
+  {
+    key: 'Access-Control-Allow-Headers',
+    value: 'Content-Type, Authorization, X-Request-Id, X-Extension-Version',
+  },
+  {
+    key: 'Access-Control-Max-Age',
+    value: '86400',
+  },
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -99,6 +138,10 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         headers: securityHeaders,
+      },
+      {
+        source: '/api/:path*',
+        headers: corsHeaders,
       },
     ];
   },

@@ -2,13 +2,15 @@ import type { AdminUsersResponse } from '@study-assistant/shared-types';
 
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_READ } from '@/lib/security/rate-limit';
 import { getAdminUsersPageData } from '@/features/admin/server';
 
 export async function GET(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-users:${context.userId}`, RL_ADMIN_READ);
     const url = new URL(request.url);
     const result = await getAdminUsersPageData({
       q: url.searchParams.get('q') ?? undefined,

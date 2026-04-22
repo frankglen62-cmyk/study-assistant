@@ -6,6 +6,7 @@ import { adminSubjectQaPairCreateSchema } from '@/lib/admin/schemas';
 import { createSubjectQaPairFast } from '@/lib/admin/service';
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_MUTATE } from '@/lib/security/rate-limit';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
 
   try {
     const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-qa-batch:${context.userId}`, RL_ADMIN_MUTATE);
     const body = (await request.json()) as BatchCreateRequest;
 
     if (!body.pairs || !Array.isArray(body.pairs) || body.pairs.length === 0) {

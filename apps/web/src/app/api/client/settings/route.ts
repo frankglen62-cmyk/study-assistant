@@ -2,6 +2,7 @@ import type { ClientSettingsResponse, ClientSettingsUpdateRequest } from '@study
 
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { assertRateLimit, RL_CLIENT_READ, RL_CLIENT_MUTATE } from '@/lib/security/rate-limit';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { getClientSettingsByUserId, updateClientSettingsByUserId } from '@/lib/supabase/client-settings';
 import { clientSettingsSchema } from '@/features/client/settings';
@@ -11,6 +12,7 @@ export async function GET(request: Request) {
 
   try {
     const context = await requirePortalUser(request, ['client']);
+    assertRateLimit(`client-settings:${context.userId}`, RL_CLIENT_READ);
     const settings = await getClientSettingsByUserId(context.userId);
     const response: ClientSettingsResponse = {
       settings,
@@ -26,6 +28,7 @@ export async function PUT(request: Request) {
 
   try {
     const context = await requirePortalUser(request, ['client']);
+    assertRateLimit(`client-settings-update:${context.userId}`, RL_CLIENT_MUTATE);
     const body = await parseJsonBody<ClientSettingsUpdateRequest>(request, clientSettingsSchema);
     const previousSettings = await getClientSettingsByUserId(context.userId);
     const settings = await updateClientSettingsByUserId(context.userId, body);

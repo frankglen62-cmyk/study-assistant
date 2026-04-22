@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 import { verifyOtp } from '@/lib/security/otp-service';
+import { assertRateLimit, RL_AUTH_VERIFY } from '@/lib/security/rate-limit';
 import {
   EMAIL_CHANGE_REQUEST_COOKIE,
   EMAIL_LOGIN_SESSION_COOKIE,
@@ -36,9 +37,10 @@ function appendPendingEmail(path: string, pendingEmail: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const { requestId } = getRequestMeta(request);
+  const { requestId, ipAddress } = getRequestMeta(request);
 
   try {
+    assertRateLimit(`otp-verify:ip:${ipAddress ?? 'unknown'}`, RL_AUTH_VERIFY);
     const body = await parseJsonBody(request, requestSchema);
     const supabase = await getSupabaseServerSessionClient();
     const {

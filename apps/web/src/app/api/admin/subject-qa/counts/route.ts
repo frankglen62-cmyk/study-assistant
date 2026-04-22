@@ -2,6 +2,7 @@ import type { AdminSubjectQaCountResponse } from '@study-assistant/shared-types'
 
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_READ } from '@/lib/security/rate-limit';
 import { listAdminSubjects } from '@/lib/supabase/admin';
 import { countAdminSubjectQaPairsBySubjectIds } from '@/lib/supabase/subject-qa';
 
@@ -12,7 +13,8 @@ export async function GET(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-qa-counts:${context.userId}`, RL_ADMIN_READ);
 
     const subjects = await listAdminSubjects();
     const activeSubjects = subjects.filter((subject) => subject.is_active);

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
-import { assertRateLimit } from '@/lib/security/rate-limit';
+import { assertRateLimit, RL_ADMIN_READ } from '@/lib/security/rate-limit';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 
@@ -75,7 +75,8 @@ export async function GET(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-announcements:${context.userId}`, RL_ADMIN_READ);
     const supabase = getSupabaseAdmin();
 
     const { data, error } = await supabase

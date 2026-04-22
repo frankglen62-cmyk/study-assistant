@@ -11,6 +11,16 @@ interface RateLimitEntry {
   resetAt: number;
 }
 
+/**
+ * In-memory rate-limit store.
+ *
+ * SERVERLESS NOTE: On platforms like Vercel, each function instance keeps
+ * its own Map. This means rate limits are per-instance, not global.
+ * For a production-grade distributed rate limiter, replace this with
+ * Upstash Redis or Vercel KV. The per-instance approach still provides
+ * meaningful protection against sustained abuse from a single client
+ * hitting the same warm instance.
+ */
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
 let lastCleanup = Date.now();
@@ -54,3 +64,27 @@ export function assertRateLimit(key: string, rule: RateLimitRule) {
   });
 }
 
+/* ------------------------------------------------------------------ */
+/*  Standard presets used across routes                                */
+/* ------------------------------------------------------------------ */
+
+/** Admin read endpoints – 120 req / hour */
+export const RL_ADMIN_READ: RateLimitRule = { max: 120, windowMs: 60 * 60 * 1000 };
+
+/** Admin mutation endpoints – 60 req / hour */
+export const RL_ADMIN_MUTATE: RateLimitRule = { max: 60, windowMs: 60 * 60 * 1000 };
+
+/** Admin high-volume mutations (e.g. user management) – 120 req / hour */
+export const RL_ADMIN_HIGH: RateLimitRule = { max: 120, windowMs: 60 * 60 * 1000 };
+
+/** Client read endpoints – 120 req / hour */
+export const RL_CLIENT_READ: RateLimitRule = { max: 120, windowMs: 60 * 60 * 1000 };
+
+/** Client mutation endpoints – 30 req / hour */
+export const RL_CLIENT_MUTATE: RateLimitRule = { max: 30, windowMs: 60 * 60 * 1000 };
+
+/** Auth-sensitive endpoints (OTP, login) – 10 req / 10 min */
+export const RL_AUTH_SENSITIVE: RateLimitRule = { max: 10, windowMs: 10 * 60 * 1000 };
+
+/** Auth verification (OTP verify, code exchange) – 20 req / 10 min */
+export const RL_AUTH_VERIFY: RateLimitRule = { max: 20, windowMs: 10 * 60 * 1000 };

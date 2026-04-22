@@ -26,7 +26,7 @@ const serverEnvSchema = z.object({
   PAYMONGO_SECRET_KEY: z.string().min(20).optional(),
   PAYMONGO_WEBHOOK_SECRET: z.string().min(20).optional(),
   PAYMONGO_API_BASE_URL: z.string().url().optional(),
-  CRON_SECRET: z.string().min(20).optional(),
+  CRON_SECRET: z.string().min(20),
   EXTENSION_PAIRING_SECRET: z.string().min(20),
   AUTH_EMAIL_CHALLENGE_SECRET: z.string().min(20).optional(),
   SESSION_IDLE_SECONDS: z.string().optional(),

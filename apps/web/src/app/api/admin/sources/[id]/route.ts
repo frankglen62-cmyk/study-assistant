@@ -4,6 +4,7 @@ import { adminSourceMetadataSchema } from '@/lib/admin/schemas';
 import { updateSourceMetadata } from '@/lib/admin/service';
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_MUTATE } from '@/lib/security/rate-limit';
 
 export async function PATCH(
   request: Request,
@@ -13,6 +14,7 @@ export async function PATCH(
 
   try {
     const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-source:${context.userId}`, RL_ADMIN_MUTATE);
     const body = await parseJsonBody<AdminSourceMetadataRequest>(request, adminSourceMetadataSchema);
     const { id } = await params;
     const result = await updateSourceMetadata({

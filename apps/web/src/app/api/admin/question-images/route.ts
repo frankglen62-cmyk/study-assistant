@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { getRequestMeta, jsonError } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_MUTATE } from '@/lib/security/rate-limit';
 
 const BUCKET = 'question-images';
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -13,7 +14,8 @@ export async function POST(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-question-image:${context.userId}`, RL_ADMIN_MUTATE);
 
     const formData = await request.formData();
     const file = formData.get('file') as File | null;

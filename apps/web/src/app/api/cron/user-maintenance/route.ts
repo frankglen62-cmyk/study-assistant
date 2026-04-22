@@ -6,7 +6,12 @@ import { processExpiredWalletGrants, restoreElapsedSuspensions } from '@/lib/sup
 export const runtime = 'nodejs';
 
 function assertCronAuthorized(request: Request) {
-  const expectedSecret = env.CRON_SECRET ?? env.EXTENSION_PAIRING_SECRET;
+  const expectedSecret = env.CRON_SECRET;
+
+  if (!expectedSecret) {
+    throw new RouteError(500, 'cron_misconfigured', 'CRON_SECRET environment variable is not set.');
+  }
+
   const authorization = request.headers.get('authorization');
 
   if (authorization !== `Bearer ${expectedSecret}`) {

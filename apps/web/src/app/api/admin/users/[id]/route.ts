@@ -2,6 +2,7 @@ import type { AdminUserDetailResponse } from '@study-assistant/shared-types';
 
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_READ } from '@/lib/security/rate-limit';
 import { getAdminUserDetailData } from '@/features/admin/server';
 
 export async function GET(
@@ -11,7 +12,8 @@ export async function GET(
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-user-detail:${context.userId}`, RL_ADMIN_READ);
     const { id } = await params;
     const detail = await getAdminUserDetailData(id);
     const response: AdminUserDetailResponse = detail;

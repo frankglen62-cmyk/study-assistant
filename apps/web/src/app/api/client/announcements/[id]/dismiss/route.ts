@@ -1,5 +1,6 @@
 import { requireClientUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_CLIENT_MUTATE } from '@/lib/security/rate-limit';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 
 export async function POST(
@@ -10,6 +11,7 @@ export async function POST(
 
   try {
     const context = await requireClientUser(request);
+    assertRateLimit(`dismiss-announce:${context.userId}`, RL_CLIENT_MUTATE);
     const { id } = await params;
     const supabase = getSupabaseAdmin();
 

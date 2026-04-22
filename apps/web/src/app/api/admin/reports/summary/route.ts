@@ -1,5 +1,6 @@
 import { requirePortalUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
+import { assertRateLimit, RL_ADMIN_READ } from '@/lib/security/rate-limit';
 import { getSupabaseAdmin } from '@/lib/supabase/server';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 
@@ -7,7 +8,8 @@ export async function GET(request: Request) {
   const { requestId } = getRequestMeta(request);
 
   try {
-    await requirePortalUser(request, ['admin', 'super_admin']);
+    const context = await requirePortalUser(request, ['admin', 'super_admin']);
+    assertRateLimit(`admin-reports-summary:${context.userId}`, RL_ADMIN_READ);
     const supabase = getSupabaseAdmin();
 
     const [profiles, sessionsToday, creditsSold, failedAttempts] = await Promise.all([
