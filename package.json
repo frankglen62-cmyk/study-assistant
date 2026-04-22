@@ -21,5 +21,11 @@
   },
   "dependencies": {
     "puppeteer": "^24.39.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
