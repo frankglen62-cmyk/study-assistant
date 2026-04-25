@@ -20,6 +20,7 @@
     "vitest": "^3.0.8"
   },
   "dependencies": {
+    "archiver": "^7.0.1",
     "puppeteer": "^24.39.1"
   },
   "pnpm": {
