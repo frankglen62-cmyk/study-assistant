@@ -47,7 +47,7 @@ export const navItem: Variants = {
 
 export const heroContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0 } },
 };
 
 export const heroBadgeReveal: Variants = {
@@ -67,7 +67,7 @@ export const heroTextReveal: Variants = {
 
 export const heroCtaContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.6 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 };
 
 export const heroCtaPrimaryReveal: Variants = {
@@ -198,7 +198,10 @@ export const faqExpandMotion: Variants = {
   expanded: {
     height: 'auto',
     opacity: 1,
-    transition: { height: { duration: 0.25, ease: ease.out }, opacity: { duration: 0.2, delay: 0.05 } },
+    transition: {
+      height: { duration: 0.25, ease: ease.out },
+      opacity: { duration: 0.2, delay: 0.05 },
+    },
   },
 };
 

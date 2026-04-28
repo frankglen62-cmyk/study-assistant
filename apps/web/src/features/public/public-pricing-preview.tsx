@@ -6,7 +6,13 @@ import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import type { PaymentPackageDisplay } from '@/lib/payments/package-display';
-import { buttonHover, buttonTap, pricingCardHover, staggerContainer, staggerItem } from '@/lib/motion';
+import {
+  buttonHover,
+  buttonTap,
+  pricingCardHover,
+  staggerContainer,
+  staggerItem,
+} from '@/lib/motion';
 
 interface PublicPricingPreviewProps {
   packages: PaymentPackageDisplay[];
@@ -30,10 +36,17 @@ export function PublicPricingPreview({ packages }: PublicPricingPreviewProps) {
       viewport={{ once: true, amount: 0.15 }}
     >
       {packages.map((item) => (
-        <motion.div key={item.id} variants={staggerItem} whileHover={pricingCardHover} className="cursor-pointer">
+        <motion.div
+          key={item.id}
+          variants={staggerItem}
+          whileHover={pricingCardHover}
+          className="cursor-pointer"
+        >
           <div
             className={`group flex h-full flex-col rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover ${
-              item.featured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'
+              item.featured
+                ? 'border-accent/60 ring-2 ring-accent/30 shadow-card-hover md:scale-[1.02]'
+                : 'border-border/40'
             }`}
           >
             <div className="mb-4 flex min-h-[32px] items-center justify-between gap-2">
@@ -46,20 +59,30 @@ export function PublicPricingPreview({ packages }: PublicPricingPreviewProps) {
                 </span>
               ) : null}
             </div>
-            <p className="text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-              {item.name}
-            </p>
+            <h3 className="text-lg font-semibold text-foreground transition-colors group-hover:text-accent">
+              {item.durationLabel}
+            </h3>
+            {item.hasMarketingName ? (
+              <p className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {item.name}
+              </p>
+            ) : null}
             <p className="mt-2 font-display text-4xl text-foreground transition-colors duration-300 group-hover:text-accent">
               {item.price}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
             <div className="mt-6 space-y-2.5 flex-1">
-              {[item.durationSummary, 'Instant credit delivery', item.expirySummary].map((feature) => (
-                <div key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="h-4 w-4 text-accent transition-transform duration-300 group-hover:scale-125" />
-                  {feature}
-                </div>
-              ))}
+              {[item.durationSummary, 'Instant credit delivery', item.expirySummary].map(
+                (feature) => (
+                  <div
+                    key={feature}
+                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <Check className="h-4 w-4 text-accent transition-transform duration-300 group-hover:scale-125" />
+                    {feature}
+                  </div>
+                ),
+              )}
             </div>
             <motion.div whileHover={buttonHover} whileTap={buttonTap} className="mt-6 w-full">
               <Link

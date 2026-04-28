@@ -5,16 +5,16 @@
 @layer base {
   :root {
     /* ─── Premium Light Palette ─── */
-    --background: 40 20% 98%;         /* Warm off-white */
-    --foreground: 220 14% 10%;        /* Rich charcoal */
-    --surface: 40 14% 96%;            /* Warm surface */
+    --background: 40 20% 98%; /* Warm off-white */
+    --foreground: 220 14% 10%; /* Rich charcoal */
+    --surface: 40 14% 96%; /* Warm surface */
     --surface-foreground: 220 14% 10%;
-    --muted: 40 8% 91%;               /* Soft muted */
-    --muted-foreground: 220 6% 46%;   /* Balanced gray */
-    --border: 40 8% 89%;              /* Subtle warm border */
+    --muted: 40 8% 91%; /* Soft muted */
+    --muted-foreground: 220 8% 38%; /* Balanced gray, AA contrast on background */
+    --border: 40 8% 89%; /* Subtle warm border */
     --input: 40 8% 91%;
-    --ring: 152 44% 49%;              /* Sage green focus */
-    --accent: 152 44% 49%;            /* Sage green accent */
+    --ring: 152 44% 49%; /* Sage green focus */
+    --accent: 152 44% 49%; /* Sage green accent */
     --accent-foreground: 0 0% 100%;
     --success: 152 55% 48%;
     --success-foreground: 0 0% 100%;
@@ -35,16 +35,16 @@
   .dark {
     /* ─── Premium Dark Palette ─── */
     color-scheme: dark;
-    --background: 220 16% 8%;           /* Deep charcoal */
-    --foreground: 40 10% 92%;           /* Warm white */
-    --surface: 220 14% 11%;             /* Elevated surface */
+    --background: 220 16% 8%; /* Deep charcoal */
+    --foreground: 40 10% 92%; /* Warm white */
+    --surface: 220 14% 11%; /* Elevated surface */
     --surface-foreground: 40 10% 92%;
-    --muted: 220 12% 16%;              /* Dark muted */
-    --muted-foreground: 220 8% 56%;    /* Soft gray text */
-    --border: 220 12% 16%;             /* Subtle dark border */
+    --muted: 220 12% 16%; /* Dark muted */
+    --muted-foreground: 220 8% 56%; /* Soft gray text */
+    --border: 220 12% 16%; /* Subtle dark border */
     --input: 220 12% 14%;
-    --ring: 152 44% 49%;               /* Same sage green */
-    --accent: 152 44% 49%;             /* Same sage green */
+    --ring: 152 44% 49%; /* Same sage green */
+    --accent: 152 44% 49%; /* Same sage green */
     --accent-foreground: 0 0% 100%;
     --success: 152 55% 48%;
     --success-foreground: 0 0% 100%;
@@ -53,7 +53,6 @@
     --danger: 0 72% 55%;
     --danger-foreground: 0 0% 100%;
   }
-
 
   * {
     @apply border-border;
@@ -89,29 +88,53 @@
 
 /* ─── Premium Animations ─── */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes marquee-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .animate-float {

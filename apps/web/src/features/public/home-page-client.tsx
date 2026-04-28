@@ -46,7 +46,7 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 const heroCtaRow: Variants = {
   hidden: {},
   visible: {
-    transition: { delayChildren: 0.5, staggerChildren: 0.14 },
+    transition: { delayChildren: 0.18, staggerChildren: 0.08 },
   },
 };
 
@@ -94,8 +94,7 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
               variants={heroHeadlineReveal}
               className="font-display text-5xl leading-[1.1] text-foreground sm:text-6xl lg:text-7xl"
             >
-              Smarter reviewing,{' '}
-              <span className="text-accent">better results.</span>
+              Smarter reviewing, <span className="text-accent">better results.</span>
             </motion.h1>
 
             {/* Subtext */}
@@ -103,8 +102,8 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
               variants={heroTextReveal}
               className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
-              Your portal, extension, and subject-based review flow in one clean workspace.
-              Stay focused on what matters — studying.
+              Your portal, extension, and subject-based review flow in one clean workspace. Stay
+              focused on what matters — studying.
             </motion.p>
 
             {/* CTAs */}
@@ -112,7 +111,11 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
               variants={reduced ? undefined : heroCtaRow}
               className="mt-10 flex flex-wrap items-center justify-center gap-4"
             >
-              <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
+              <motion.div
+                variants={reduced ? undefined : heroCtaItem}
+                whileHover={buttonHover}
+                whileTap={buttonTap}
+              >
                 <Link
                   href="/register"
                   className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
@@ -121,22 +124,24 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>
-              <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
+              <motion.div
+                variants={reduced ? undefined : heroCtaItem}
+                whileHover={buttonHover}
+                whileTap={buttonTap}
+              >
                 <Link
                   href="/#how-it-works"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
                 >
-                  How it Works
+                  How it works
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>
             </motion.div>
           </div>
 
           {/* ─── Floating Feature Cards ─── */}
-          <motion.div
-            variants={trustStripReveal}
-            className="relative mx-auto mt-16 max-w-5xl"
-          >
+          <motion.div variants={trustStripReveal} className="relative mx-auto mt-16 max-w-5xl">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <motion.div
                 className="rounded-2xl border border-border/40 bg-white p-5 shadow-card cursor-pointer"
@@ -148,7 +153,9 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                   <BrainCircuit className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">Subject Detection</h3>
-                <p className="mt-1 text-xs text-muted-foreground">Auto-detects what you're studying</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Auto-detects what you're studying
+                </p>
               </motion.div>
 
               <motion.div
@@ -161,7 +168,9 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                   <MonitorSmartphone className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-foreground">Browser Extension</h3>
-                <p className="mt-1 text-xs text-muted-foreground">Clean side panel for fast review</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Clean side panel for fast review
+                </p>
               </motion.div>
 
               <motion.div
@@ -184,9 +193,12 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
             <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Built for content from leading platforms
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
               {['Coursera', 'Course Hero', 'Scribd', 'Studocu', 'Chegg'].map((name) => (
-                <span key={name} className="text-lg font-semibold text-muted-foreground/50 transition-colors hover:text-muted-foreground">
+                <span
+                  key={name}
+                  className="font-display text-xl font-semibold tracking-tight text-foreground/40 transition-colors hover:text-foreground/70"
+                >
                   {name}
                 </span>
               ))}
@@ -234,8 +246,8 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
             {featureCards.map((feature, idx) => {
               const Icon = iconMap[feature.icon] ?? Sparkles;
               return (
-                <motion.div 
-                  key={feature.title} 
+                <motion.div
+                  key={feature.title}
                   variants={staggerItem}
                   whileHover={cardHover}
                   whileTap={cardTap}
@@ -246,7 +258,9 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">{feature.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {feature.description}
+                    </p>
                   </div>
                 </motion.div>
               );
@@ -267,9 +281,7 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
             whileInView={reduced ? undefined : 'visible'}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
-              How it works
-            </h2>
+            <h2 className="font-display text-4xl text-foreground sm:text-5xl">How it works</h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               A smooth flow from setup to a cleaner, subject-based review session.
             </p>
@@ -283,8 +295,8 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
             viewport={{ once: true, amount: 0.15 }}
           >
             {howItWorks.map((item, idx) => (
-              <motion.div 
-                key={item.step} 
+              <motion.div
+                key={item.step}
                 variants={staggerItem}
                 whileHover={cardHover}
                 whileTap={cardTap}
@@ -295,7 +307,9 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                     {item.step}
                   </div>
                   <h3 className="mb-2 text-base font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -337,77 +351,85 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
       {/* ═══════════════════════════════════════
          TESTIMONIALS
          ═══════════════════════════════════════ */}
-      <section className="border-t border-border/40 bg-surface/50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            className="mb-16 text-center"
-            variants={sectionReveal}
-            initial={reduced ? undefined : 'hidden'}
-            whileInView={reduced ? undefined : 'visible'}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-medium text-amber-700 mb-6">
-              <Star className="h-4 w-4" />
-              Testimonials
-            </span>
-            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
-              What our users say
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Here&apos;s what students and administrators say about the platform.
-            </p>
-          </motion.div>
+      {testimonials.length > 0 ? (
+        <section className="border-t border-border/40 bg-surface/50 py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <motion.div
+              className="mb-16 text-center"
+              variants={sectionReveal}
+              initial={reduced ? undefined : 'hidden'}
+              whileInView={reduced ? undefined : 'visible'}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-medium text-amber-700 mb-6">
+                <Star className="h-4 w-4" />
+                Testimonials
+              </span>
+              <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+                What our users say
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+                Here&apos;s what students and administrators say about the platform.
+              </p>
+            </motion.div>
 
-          <motion.div
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            variants={staggerContainer}
-            initial={reduced ? undefined : 'hidden'}
-            whileInView={reduced ? undefined : 'visible'}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {testimonials.map((item) => (
-              <motion.div 
-                key={item.name} 
-                variants={staggerItem}
-                whileHover={cardHover}
-                className="cursor-pointer"
-              >
-                <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full">
-                  <div className="mb-4 flex items-center gap-2">
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <motion.div 
-                          key={index}
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1, duration: 0.3 }}
-                        >
-                          <Star className="h-4 w-4 fill-amber-400 text-amber-400 transition-transform group-hover:scale-125 duration-300" />
-                        </motion.div>
-                      ))}
+            <motion.div
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              variants={staggerContainer}
+              initial={reduced ? undefined : 'hidden'}
+              whileInView={reduced ? undefined : 'visible'}
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {testimonials.map((item) => (
+                <motion.div
+                  key={item.name}
+                  variants={staggerItem}
+                  whileHover={cardHover}
+                  className="cursor-pointer"
+                >
+                  <div className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover h-full">
+                    <div className="mb-4 flex items-center gap-2">
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1, duration: 0.3 }}
+                          >
+                            <Star className="h-4 w-4 fill-amber-400 text-amber-400 transition-transform group-hover:scale-125 duration-300" />
+                          </motion.div>
+                        ))}
+                      </div>
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {item.rating}
+                      </span>
                     </div>
-                    <span className="text-sm font-medium text-muted-foreground">{item.rating}</span>
+                    <p className="mb-6 text-sm leading-relaxed text-foreground/80">
+                      &quot;{item.quote}&quot;
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent transition-transform group-hover:scale-110 group-hover:bg-accent group-hover:text-white duration-300">
+                        {item.name
+                          .split(' ')
+                          .map((chunk) => chunk[0])
+                          .join('')}
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">
+                          {item.name}
+                        </div>
+                        <div className="text-xs text-muted-foreground">{item.role}</div>
+                      </div>
+                    </div>
                   </div>
-                  <p className="mb-6 text-sm leading-relaxed text-foreground/80">&quot;{item.quote}&quot;</p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent transition-transform group-hover:scale-110 group-hover:bg-accent group-hover:text-white duration-300">
-                      {item.name
-                        .split(' ')
-                        .map((chunk) => chunk[0])
-                        .join('')}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{item.name}</div>
-                      <div className="text-xs text-muted-foreground">{item.role}</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      ) : null}
 
       {/* ═══════════════════════════════════════
          FAQ
@@ -457,14 +479,21 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
           >
             Ready to study smarter?
           </motion.h2>
-          <motion.p variants={heroTextReveal} className="mx-auto mt-4 max-w-xl text-muted-foreground">
+          <motion.p
+            variants={heroTextReveal}
+            className="mx-auto mt-4 max-w-xl text-muted-foreground"
+          >
             Join learners using a cleaner, subject-focused review workspace.
           </motion.p>
           <motion.div
             variants={reduced ? undefined : heroCtaRow}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaItem}
+              whileHover={buttonHover}
+              whileTap={buttonTap}
+            >
               <Link
                 href="/register"
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-soft-md transition-all duration-200 hover:bg-foreground/90 hover:shadow-soft-lg"
@@ -473,7 +502,11 @@ export function HomePageClient({ pricingPackages }: HomePageClientProps) {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
-            <motion.div variants={reduced ? undefined : heroCtaItem} whileHover={buttonHover} whileTap={buttonTap}>
+            <motion.div
+              variants={reduced ? undefined : heroCtaItem}
+              whileHover={buttonHover}
+              whileTap={buttonTap}
+            >
               <Link
                 href="/#how-it-works"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-soft-sm transition-all duration-200 hover:shadow-soft-md"
