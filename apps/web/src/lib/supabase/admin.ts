@@ -91,7 +91,10 @@ const adminUserRollupSchema = z.object({
   last_session_at: z.string().nullable().optional(),
   current_package_name: z.string().nullable().optional(),
   current_package_code: z.string().nullable().optional(),
-  last_payment_status: z.enum(['pending', 'paid', 'failed', 'canceled', 'refunded']).nullable().optional(),
+  last_payment_status: z
+    .enum(['pending', 'paid', 'failed', 'canceled', 'refunded'])
+    .nullable()
+    .optional(),
   last_payment_at: z.string().nullable().optional(),
   next_credit_expiry_at: z.string().nullable().optional(),
   expiring_credit_seconds: z.number().int().nonnegative(),
@@ -220,7 +223,9 @@ export async function listAdminSubjects(): Promise<SubjectRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('subjects')
-    .select('id, name, slug, course_code, department, description, keywords, url_patterns, is_active')
+    .select(
+      'id, name, slug, course_code, department, description, keywords, url_patterns, is_active',
+    )
     .order('name', { ascending: true });
 
   assertSupabaseResult(error, 'Failed to load subjects.');
@@ -242,7 +247,9 @@ export async function listAdminFolders(): Promise<FolderRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('folders')
-    .select('id, parent_id, subject_id, folder_type, name, slug, sort_order, is_active, archived_at, deleted_at')
+    .select(
+      'id, parent_id, subject_id, folder_type, name, slug, sort_order, is_active, archived_at, deleted_at',
+    )
     .is('deleted_at', null)
     .order('sort_order', { ascending: true });
 
@@ -259,7 +266,8 @@ export async function listAdminSourceFiles(): Promise<SourceFileRecord[]> {
   while (true) {
     const { data, error } = await supabase
       .from('source_files')
-      .select(`
+      .select(
+        `
         id,
         folder_id,
         subject_id,
@@ -281,7 +289,8 @@ export async function listAdminSourceFiles(): Promise<SourceFileRecord[]> {
         categories:category_id (
           name
         )
-      `)
+      `,
+      )
       .is('deleted_at', null)
       .order('updated_at', { ascending: false })
       .range(offset, offset + pageSize - 1);
@@ -313,7 +322,9 @@ export async function listAdminUsers(options?: {
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from('profiles')
-    .select('id, email, full_name, role, account_status, email_2fa_enabled, status_reason, status_changed_at, status_changed_by, suspended_until, created_at');
+    .select(
+      'id, email, full_name, role, account_status, email_2fa_enabled, status_reason, status_changed_at, status_changed_by, suspended_until, created_at',
+    );
 
   if (options?.userIds && options.userIds.length > 0) {
     query = query.in('id', options.userIds);
@@ -416,7 +427,9 @@ function applyAdminUserRollupFilters(
 
   if (options?.q?.trim()) {
     const escaped = escapeIlikePattern(options.q.trim());
-    nextQuery = nextQuery.or(`full_name.ilike.%${escaped}%,email.ilike.%${escaped}%,flags_text.ilike.%${escaped}%`);
+    nextQuery = nextQuery.or(
+      `full_name.ilike.%${escaped}%,email.ilike.%${escaped}%,flags_text.ilike.%${escaped}%`,
+    );
   }
 
   return nextQuery;
@@ -433,9 +446,7 @@ export async function listAdminUserRollups(options?: {
 }): Promise<AdminUserRollupRecord[]> {
   const supabase = getSupabaseAdmin();
   let query = applyAdminUserRollupFilters(
-    supabase
-      .from('admin_user_rollups')
-      .select(`
+    supabase.from('admin_user_rollups').select(`
         user_id,
         full_name,
         email,
@@ -467,11 +478,17 @@ export async function listAdminUserRollups(options?: {
   if (options?.sort === 'name_az') {
     query = query.order('full_name', { ascending: true }).order('created_at', { ascending: false });
   } else if (options?.sort === 'credits_low') {
-    query = query.order('remaining_seconds', { ascending: true }).order('created_at', { ascending: false });
+    query = query
+      .order('remaining_seconds', { ascending: true })
+      .order('created_at', { ascending: false });
   } else if (options?.sort === 'credits_high') {
-    query = query.order('remaining_seconds', { ascending: false }).order('created_at', { ascending: false });
+    query = query
+      .order('remaining_seconds', { ascending: false })
+      .order('created_at', { ascending: false });
   } else if (options?.sort === 'activity_recent') {
-    query = query.order('last_active_at', { ascending: false, nullsFirst: false }).order('created_at', { ascending: false });
+    query = query
+      .order('last_active_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false });
   } else {
     query = query.order('created_at', { ascending: false });
   }
@@ -507,7 +524,9 @@ export async function listAdminWallets(options?: { userIds?: string[] }): Promis
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from('wallets')
-    .select('id, user_id, remaining_seconds, lifetime_seconds_purchased, lifetime_seconds_used, status')
+    .select(
+      'id, user_id, remaining_seconds, lifetime_seconds_purchased, lifetime_seconds_used, status',
+    )
     .order('updated_at', { ascending: false });
 
   if (options?.userIds && options.userIds.length > 0) {
@@ -532,11 +551,15 @@ export async function listAdminLowCreditUserIds(thresholdSeconds = 30 * 60) {
   return Array.from(new Set((data ?? []).map((row) => row.user_id as string)));
 }
 
-export async function listAdminWalletGrantsForUser(userId: string, limit = 12): Promise<WalletGrantRecord[]> {
+export async function listAdminWalletGrantsForUser(
+  userId: string,
+  limit = 12,
+): Promise<WalletGrantRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('wallet_grants')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       wallet_id,
@@ -552,7 +575,8 @@ export async function listAdminWalletGrantsForUser(userId: string, limit = 12): 
       updated_at,
       depleted_at,
       expired_at
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -573,7 +597,10 @@ export async function listAdminUserIdsByFlagSearch(search: string) {
   return Array.from(new Set((data ?? []).map((row) => row.user_id as string)));
 }
 
-export async function listAdminUserFlags(userId?: string, userIds?: string[]): Promise<UserFlagRecord[]> {
+export async function listAdminUserFlags(
+  userId?: string,
+  userIds?: string[],
+): Promise<UserFlagRecord[]> {
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from('user_flags')
@@ -594,10 +621,7 @@ export async function listAdminUserFlags(userId?: string, userIds?: string[]): P
 
 export async function listAdminActiveSessionUserIds(userIds?: string[]) {
   const supabase = getSupabaseAdmin();
-  let query = supabase
-    .from('sessions')
-    .select('user_id')
-    .eq('status', 'active');
+  let query = supabase.from('sessions').select('user_id').eq('status', 'active');
 
   if (userIds && userIds.length > 0) {
     query = query.in('user_id', userIds);
@@ -613,7 +637,8 @@ export async function listAdminPayments(): Promise<PaymentRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payments')
-    .select(`
+    .select(
+      `
       id,
       provider,
       provider_payment_id,
@@ -628,7 +653,8 @@ export async function listAdminPayments(): Promise<PaymentRecord[]> {
         code,
         name
       )
-    `)
+    `,
+    )
     .order('created_at', { ascending: false })
     .limit(50);
 
@@ -640,12 +666,18 @@ export async function listAdminPaymentPackages(): Promise<AdminPaymentPackageRec
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payment_packages')
-    .select('id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, sort_order, credit_expires_after_days')
+    .select(
+      'id, code, name, description, seconds_to_credit, amount_minor, currency, provider_price_reference, is_active, sort_order, credit_expires_after_days',
+    )
     .order('sort_order', { ascending: true })
     .order('created_at', { ascending: false });
 
   assertSupabaseResult(error, 'Failed to load payment packages.');
-  return parseArray(data ?? [], adminPaymentPackageSchema, 'Admin payment package rows are invalid.');
+  return parseArray(
+    data ?? [],
+    adminPaymentPackageSchema,
+    'Admin payment package rows are invalid.',
+  );
 }
 
 export async function listAdminPaymentSummaries(options?: {
@@ -658,7 +690,8 @@ export async function listAdminPaymentSummaries(options?: {
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from('payments')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       provider,
@@ -677,7 +710,8 @@ export async function listAdminPaymentSummaries(options?: {
         full_name,
         email
       )
-    `)
+    `,
+    )
     .order('created_at', { ascending: false });
 
   if (options?.status) {
@@ -734,11 +768,15 @@ export async function countAdminPaymentSummaries(options?: {
   return count ?? 0;
 }
 
-export async function listAdminPaymentSummariesForUser(userId: string, limit = 10): Promise<AdminPaymentSummaryRecord[]> {
+export async function listAdminPaymentSummariesForUser(
+  userId: string,
+  limit = 10,
+): Promise<AdminPaymentSummaryRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payments')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       provider,
@@ -757,7 +795,8 @@ export async function listAdminPaymentSummariesForUser(userId: string, limit = 1
         full_name,
         email
       )
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -770,7 +809,9 @@ export async function listAdminSessions(): Promise<SessionRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('sessions')
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, end_time')
+    .select(
+      'id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, end_time',
+    )
     .order('created_at', { ascending: false })
     .limit(50);
 
@@ -786,7 +827,8 @@ export async function listAdminSessionSummaries(options?: {
   const supabase = getSupabaseAdmin();
   let query = supabase
     .from('sessions')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       status,
@@ -810,7 +852,8 @@ export async function listAdminSessionSummaries(options?: {
       categories:current_category_id (
         name
       )
-    `)
+    `,
+    )
     .order('created_at', { ascending: false });
 
   if (options?.userId) {
@@ -831,7 +874,9 @@ export async function listAdminSessionSummaries(options?: {
   return parseArray(data ?? [], adminSessionSummarySchema, 'Admin session rows are invalid.');
 }
 
-export async function listAdminSessionAttemptSignals(sessionIds: string[]): Promise<AdminSessionAttemptSignalRecord[]> {
+export async function listAdminSessionAttemptSignals(
+  sessionIds: string[],
+): Promise<AdminSessionAttemptSignalRecord[]> {
   if (sessionIds.length === 0) {
     return [];
   }
@@ -839,7 +884,8 @@ export async function listAdminSessionAttemptSignals(sessionIds: string[]): Prom
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('question_attempts')
-    .select(`
+    .select(
+      `
       id,
       session_id,
       created_at,
@@ -852,19 +898,25 @@ export async function listAdminSessionAttemptSignals(sessionIds: string[]): Prom
       categories:detected_category_id (
         name
       )
-    `)
+    `,
+    )
     .in('session_id', sessionIds)
     .order('created_at', { ascending: false });
 
   assertSupabaseResult(error, 'Failed to load session attempt signals.');
-  return parseArray(data ?? [], adminSessionAttemptSignalSchema, 'Admin session attempt rows are invalid.');
+  return parseArray(
+    data ?? [],
+    adminSessionAttemptSignalSchema,
+    'Admin session attempt rows are invalid.',
+  );
 }
 
 export async function getAdminSessionDetail(sessionId: string): Promise<AdminSessionDetailRecord> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('sessions')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       status,
@@ -891,7 +943,8 @@ export async function getAdminSessionDetail(sessionId: string): Promise<AdminSes
       categories:current_category_id (
         name
       )
-    `)
+    `,
+    )
     .eq('id', sessionId)
     .maybeSingle();
 
@@ -904,11 +957,14 @@ export async function getAdminSessionDetail(sessionId: string): Promise<AdminSes
   return adminSessionDetailSchema.parse(data);
 }
 
-export async function listAdminQuestionAttemptsForSession(sessionId: string): Promise<QuestionAttemptSummaryRecord[]> {
+export async function listAdminQuestionAttemptsForSession(
+  sessionId: string,
+): Promise<QuestionAttemptSummaryRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('question_attempts')
-    .select(`
+    .select(
+      `
       id,
       created_at,
       page_url,
@@ -923,19 +979,27 @@ export async function listAdminQuestionAttemptsForSession(sessionId: string): Pr
       categories:detected_category_id (
         name
       )
-    `)
+    `,
+    )
     .eq('session_id', sessionId)
     .order('created_at', { ascending: true });
 
   assertSupabaseResult(error, 'Failed to load session question attempts.');
-  return parseArray(data ?? [], questionAttemptSummarySchema, 'Session question attempts are invalid.');
+  return parseArray(
+    data ?? [],
+    questionAttemptSummarySchema,
+    'Session question attempts are invalid.',
+  );
 }
 
-export async function listAdminCreditTransactionsForSession(sessionId: string): Promise<AdminCreditTransactionRecord[]> {
+export async function listAdminCreditTransactionsForSession(
+  sessionId: string,
+): Promise<AdminCreditTransactionRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('credit_transactions')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       wallet_id,
@@ -948,19 +1012,28 @@ export async function listAdminCreditTransactionsForSession(sessionId: string): 
       metadata,
       created_by,
       created_at
-    `)
+    `,
+    )
     .eq('related_session_id', sessionId)
     .order('created_at', { ascending: true });
 
   assertSupabaseResult(error, 'Failed to load session credit transactions.');
-  return parseArray(data ?? [], adminCreditTransactionSchema, 'Session credit transactions are invalid.');
+  return parseArray(
+    data ?? [],
+    adminCreditTransactionSchema,
+    'Session credit transactions are invalid.',
+  );
 }
 
-export async function listAdminCreditTransactionsForUser(userId: string, limit = 12): Promise<AdminCreditTransactionRecord[]> {
+export async function listAdminCreditTransactionsForUser(
+  userId: string,
+  limit = 12,
+): Promise<AdminCreditTransactionRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('credit_transactions')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       wallet_id,
@@ -973,20 +1046,27 @@ export async function listAdminCreditTransactionsForUser(userId: string, limit =
       metadata,
       created_by,
       created_at
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
 
   assertSupabaseResult(error, 'Failed to load credit transactions for the selected user.');
-  return parseArray(data ?? [], adminCreditTransactionSchema, 'User credit transactions are invalid.');
+  return parseArray(
+    data ?? [],
+    adminCreditTransactionSchema,
+    'User credit transactions are invalid.',
+  );
 }
 
 export async function listAdminUserDevices(userId: string): Promise<InstallationRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('extension_installations')
-    .select('id, user_id, installation_status, device_name, browser_name, extension_version, last_seen_at')
+    .select(
+      'id, user_id, installation_status, device_name, browser_name, extension_version, last_seen_at',
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false });
 
@@ -994,11 +1074,73 @@ export async function listAdminUserDevices(userId: string): Promise<Installation
   return parseArray(data ?? [], installationRecordSchema, 'Installation rows are invalid.');
 }
 
-export async function listAdminUserNotes(userId: string, limit = 20): Promise<UserAdminNoteRecord[]> {
+export interface AdminExtensionFleetRow {
+  id: string;
+  userId: string;
+  userEmail: string | null;
+  userFullName: string | null;
+  status: 'active' | 'pending' | 'revoked' | 'expired';
+  deviceName: string | null;
+  browserName: string | null;
+  extensionVersion: string | null;
+  lastSeenAt: string | null;
+}
+
+export async function listAllExtensionInstallations(options?: {
+  limit?: number;
+}): Promise<AdminExtensionFleetRow[]> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('extension_installations')
+    .select(
+      `
+      id,
+      user_id,
+      installation_status,
+      device_name,
+      browser_name,
+      extension_version,
+      last_seen_at,
+      profiles:user_id (
+        email,
+        full_name
+      )
+    `,
+    )
+    .order('last_seen_at', { ascending: false, nullsFirst: false })
+    .limit(options?.limit ?? 200);
+
+  assertSupabaseResult(error, 'Failed to load extension fleet.');
+
+  return (data ?? []).map((row) => {
+    const profileRaw = (row as { profiles?: unknown }).profiles;
+    const profile = Array.isArray(profileRaw)
+      ? (profileRaw[0] as { email?: string | null; full_name?: string | null } | undefined)
+      : (profileRaw as { email?: string | null; full_name?: string | null } | undefined);
+
+    return {
+      id: row.id,
+      userId: row.user_id,
+      userEmail: profile?.email ?? null,
+      userFullName: profile?.full_name ?? null,
+      status: row.installation_status as AdminExtensionFleetRow['status'],
+      deviceName: row.device_name,
+      browserName: row.browser_name,
+      extensionVersion: row.extension_version,
+      lastSeenAt: row.last_seen_at,
+    };
+  });
+}
+
+export async function listAdminUserNotes(
+  userId: string,
+  limit = 20,
+): Promise<UserAdminNoteRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('user_admin_notes')
-    .select(`
+    .select(
+      `
       id,
       user_id,
       note,
@@ -1008,7 +1150,8 @@ export async function listAdminUserNotes(userId: string, limit = 20): Promise<Us
         full_name,
         email
       )
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -1017,11 +1160,14 @@ export async function listAdminUserNotes(userId: string, limit = 20): Promise<Us
   return parseArray(data ?? [], userAdminNoteRecordSchema, 'User admin note rows are invalid.');
 }
 
-export async function getAdminUserAccessOverride(userId: string): Promise<UserAccessOverrideRecord | null> {
+export async function getAdminUserAccessOverride(
+  userId: string,
+): Promise<UserAccessOverrideRecord | null> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('user_access_overrides')
-    .select(`
+    .select(
+      `
       user_id,
       can_use_extension,
       can_buy_credits,
@@ -1032,7 +1178,8 @@ export async function getAdminUserAccessOverride(userId: string): Promise<UserAc
       updated_by,
       created_at,
       updated_at
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .maybeSingle();
 
@@ -1040,11 +1187,15 @@ export async function getAdminUserAccessOverride(userId: string): Promise<UserAc
   return data ? userAccessOverrideRecordSchema.parse(data) : null;
 }
 
-export async function listRecentQuestionAttempts(userId: string, limit = 10): Promise<QuestionAttemptSummaryRecord[]> {
+export async function listRecentQuestionAttempts(
+  userId: string,
+  limit = 10,
+): Promise<QuestionAttemptSummaryRecord[]> {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('question_attempts')
-    .select(`
+    .select(
+      `
       id,
       created_at,
       page_url,
@@ -1059,7 +1210,8 @@ export async function listRecentQuestionAttempts(userId: string, limit = 10): Pr
       categories:detected_category_id (
         name
       )
-    `)
+    `,
+    )
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -1072,7 +1224,8 @@ export async function listAdminAuditLogs(limit = 50): Promise<AdminAuditLogRecor
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('audit_logs')
-    .select(`
+    .select(
+      `
       id,
       actor_user_id,
       actor_role,
@@ -1085,7 +1238,8 @@ export async function listAdminAuditLogs(limit = 50): Promise<AdminAuditLogRecor
         full_name,
         email
       )
-    `)
+    `,
+    )
     .order('created_at', { ascending: false })
     .limit(limit);
 
@@ -1095,18 +1249,30 @@ export async function listAdminAuditLogs(limit = 50): Promise<AdminAuditLogRecor
 
 export async function getAdminDashboardSummary() {
   const supabase = getSupabaseAdmin();
-  const [profiles, sessionsToday, purchases, lowConfidence, sourceFailures, questionAttempts] = await Promise.all([
-    supabase.from('profiles').select('*', { head: true, count: 'exact' }),
-    supabase
-      .from('sessions')
-      .select('*', { head: true, count: 'exact' })
-      .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()),
-    supabase.from('credit_transactions').select('delta_seconds').eq('transaction_type', 'purchase'),
-    supabase.from('question_attempts').select('final_confidence').not('final_confidence', 'is', null),
-    supabase.from('source_files').select('*', { head: true, count: 'exact' }).eq('source_status', 'failed').is('deleted_at', null),
-    supabase
-      .from('question_attempts')
-      .select(`
+  const [profiles, sessionsToday, purchases, lowConfidence, sourceFailures, questionAttempts] =
+    await Promise.all([
+      supabase.from('profiles').select('*', { head: true, count: 'exact' }),
+      supabase
+        .from('sessions')
+        .select('*', { head: true, count: 'exact' })
+        .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()),
+      supabase
+        .from('credit_transactions')
+        .select('delta_seconds')
+        .eq('transaction_type', 'purchase'),
+      supabase
+        .from('question_attempts')
+        .select('final_confidence')
+        .not('final_confidence', 'is', null),
+      supabase
+        .from('source_files')
+        .select('*', { head: true, count: 'exact' })
+        .eq('source_status', 'failed')
+        .is('deleted_at', null),
+      supabase
+        .from('question_attempts')
+        .select(
+          `
         id,
         created_at,
         page_url,
@@ -1121,10 +1287,11 @@ export async function getAdminDashboardSummary() {
         categories:detected_category_id (
           name
         )
-      `)
-      .order('created_at', { ascending: false })
-      .limit(6),
-  ]);
+      `,
+        )
+        .order('created_at', { ascending: false })
+        .limit(6),
+    ]);
 
   assertSupabaseResult(profiles.error, 'Failed to count profiles.');
   assertSupabaseResult(sessionsToday.error, 'Failed to count sessions.');
@@ -1133,12 +1300,17 @@ export async function getAdminDashboardSummary() {
   assertSupabaseResult(sourceFailures.error, 'Failed to load source failure metrics.');
   assertSupabaseResult(questionAttempts.error, 'Failed to load question attempts.');
 
-  const creditsSoldSeconds = (purchases.data ?? []).reduce((sum, row) => sum + (row.delta_seconds ?? 0), 0);
+  const creditsSoldSeconds = (purchases.data ?? []).reduce(
+    (sum, row) => sum + (row.delta_seconds ?? 0),
+    0,
+  );
   const lowConfidenceRows = (lowConfidence.data ?? []).filter(
     (row) => typeof row.final_confidence === 'number' && row.final_confidence < 0.65,
   );
   const lowConfidenceRate =
-    (lowConfidence.data?.length ?? 0) > 0 ? lowConfidenceRows.length / (lowConfidence.data?.length ?? 1) : 0;
+    (lowConfidence.data?.length ?? 0) > 0
+      ? lowConfidenceRows.length / (lowConfidence.data?.length ?? 1)
+      : 0;
 
   const recentAttempts = parseArray(
     questionAttempts.data ?? [],

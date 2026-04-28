@@ -34,7 +34,9 @@ export async function getClientDashboardData(userId: string) {
       ? {
           name: `${latestActiveDevice.browser_name ?? 'Browser'} on ${latestActiveDevice.device_name ?? 'Unnamed device'}`,
           version: latestActiveDevice.extension_version ?? null,
-          lastSeen: latestActiveDevice.last_seen_at ? new Date(latestActiveDevice.last_seen_at).toLocaleString() : 'Never',
+          lastSeen: latestActiveDevice.last_seen_at
+            ? new Date(latestActiveDevice.last_seen_at).toLocaleString()
+            : 'Never',
         }
       : null,
     recentActions: [
@@ -47,10 +49,17 @@ export async function getClientDashboardData(userId: string) {
 }
 
 export async function getClientSessionsTableData(userId: string) {
-  const [sessions, attempts] = await Promise.all([listSessionsForUser(userId, 20), listRecentQuestionAttempts(userId, 40)]);
+  const [sessions, attempts] = await Promise.all([
+    listSessionsForUser(userId, 20),
+    listRecentQuestionAttempts(userId, 40),
+  ]);
 
   return sessions.map((session) => {
-    const matchedAttempt = attempts.find((attempt) => attempt.created_at >= session.start_time && (!session.end_time || attempt.created_at <= session.end_time));
+    const matchedAttempt = attempts.find(
+      (attempt) =>
+        attempt.created_at >= session.start_time &&
+        (!session.end_time || attempt.created_at <= session.end_time),
+    );
 
     return {
       id: session.id,
@@ -94,7 +103,8 @@ export async function getClientBillingData(userId: string) {
     paymentHistory: payments.map((payment) => ({
       id: payment.id,
       date: new Date(payment.created_at).toLocaleDateString(),
-      package: payment.payment_packages?.name ?? payment.payment_packages?.code ?? 'Package removed',
+      package:
+        payment.payment_packages?.name ?? payment.payment_packages?.code ?? 'Package removed',
       provider: payment.provider,
       amount: formatCurrency(payment.amount_minor, payment.currency),
       status: payment.status,
@@ -103,7 +113,10 @@ export async function getClientBillingData(userId: string) {
 }
 
 export async function getClientAccountData(userId: string) {
-  const [payments, devices] = await Promise.all([listPaymentsForUser(userId), listInstallationsForUser(userId)]);
+  const [payments, devices] = await Promise.all([
+    listPaymentsForUser(userId),
+    listInstallationsForUser(userId),
+  ]);
 
   return {
     devices: devices.map((device) => ({
@@ -111,12 +124,14 @@ export async function getClientAccountData(userId: string) {
       name: `${device.browser_name ?? 'Browser'} on ${device.device_name ?? 'Unnamed device'}`,
       version: device.extension_version ?? 'Unknown version',
       lastSeen: device.last_seen_at ? new Date(device.last_seen_at).toLocaleString() : 'Never',
+      lastSeenAt: device.last_seen_at ?? null,
       status: device.installation_status,
     })),
     paymentHistory: payments.map((payment) => ({
       id: payment.id,
       date: new Date(payment.created_at).toLocaleDateString(),
-      package: payment.payment_packages?.name ?? payment.payment_packages?.code ?? 'Package removed',
+      package:
+        payment.payment_packages?.name ?? payment.payment_packages?.code ?? 'Package removed',
       provider: payment.provider,
       amount: formatCurrency(payment.amount_minor, payment.currency),
       status: payment.status,
@@ -125,7 +140,10 @@ export async function getClientAccountData(userId: string) {
 }
 
 export async function getClientPortalOverview(userId: string) {
-  const [openSession, sessions] = await Promise.all([getOpenSessionForUser(userId), listSessionsForUser(userId, 10)]);
+  const [openSession, sessions] = await Promise.all([
+    getOpenSessionForUser(userId),
+    listSessionsForUser(userId, 10),
+  ]);
 
   return {
     openSession,
