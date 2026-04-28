@@ -22,7 +22,7 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
           <div className="absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-emerald-100/30 blur-3xl" />
         </div>
 
-        <ScrollReveal className="relative mx-auto max-w-7xl px-6 text-center">
+        <ScrollReveal eager className="relative mx-auto max-w-7xl px-6 text-center">
           <span className="mb-8 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-foreground shadow-soft-sm">
             <Sparkles className="h-4 w-4 text-accent" />
             Pricing
@@ -45,7 +45,9 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
                 <ScrollReveal key={pkg.id} delay={index * 0.06} className="h-full cursor-pointer">
                   <motion.div
                     className={`group flex h-full flex-col rounded-2xl border bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover ${
-                      pkg.featured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border/40'
+                      pkg.featured
+                        ? 'border-accent/60 ring-2 ring-accent/30 shadow-card-hover md:scale-[1.02]'
+                        : 'border-border/40'
                     }`}
                     whileHover={pricingCardHover}
                   >
@@ -58,29 +60,43 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.5 }}
-                          className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                          className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700"
                         >
-                          Most chosen
+                          Most Popular
                         </motion.span>
                       ) : null}
                     </div>
 
-                    <h3 className="mb-1 text-lg font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-                      {pkg.name}
+                    <h3 className="mb-1 text-xl font-semibold text-foreground transition-colors group-hover:text-accent">
+                      {pkg.durationLabel}
                     </h3>
+                    {pkg.hasMarketingName ? (
+                      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        {pkg.name}
+                      </p>
+                    ) : null}
 
-                    <div className="mb-4 flex items-baseline gap-2">
+                    <div className="mb-4 mt-2 flex items-baseline gap-2">
                       <span className="font-display text-4xl text-foreground transition-colors duration-300 group-hover:text-accent">
                         {pkg.price}
                       </span>
-                      <span className="text-sm text-muted-foreground">{pkg.durationLabel.toLowerCase()}</span>
+                      <span className="text-sm text-muted-foreground">
+                        / {pkg.durationLabel.toLowerCase()}
+                      </span>
                     </div>
 
-                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{pkg.description}</p>
+                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                      {pkg.description}
+                    </p>
 
                     <div className="mb-8 border-t border-border/40 pt-6">
                       <ul className="space-y-3">
-                        {[pkg.durationSummary, 'Instant credit delivery after payment', pkg.expirySummary, 'Works across the portal and extension'].map((feature) => (
+                        {[
+                          pkg.durationSummary,
+                          'Instant credit delivery after payment',
+                          pkg.expirySummary,
+                          'Works across the portal and extension',
+                        ].map((feature) => (
                           <li key={feature} className="flex items-start gap-3">
                             <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent transition-transform duration-300 group-hover:scale-125" />
                             <span className="text-sm text-muted-foreground">{feature}</span>
@@ -108,9 +124,12 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
           ) : (
             <ScrollReveal>
               <div className="rounded-2xl border border-dashed border-border/50 bg-white p-10 text-center shadow-card">
-                <h3 className="mb-2 font-display text-2xl text-foreground">No active packages yet</h3>
+                <h3 className="mb-2 font-display text-2xl text-foreground">
+                  No active packages yet
+                </h3>
                 <p className="mx-auto max-w-xl text-sm text-muted-foreground">
-                  Create or activate a payment package in the admin portal and it will appear here automatically.
+                  Create or activate a payment package in the admin portal and it will appear here
+                  automatically.
                 </p>
               </div>
             </ScrollReveal>
@@ -118,7 +137,9 @@ export function PricingPageClient({ packages }: PricingPageClientProps) {
 
           <ScrollReveal delay={0.1} className="mt-16">
             <div className="rounded-2xl border border-border/40 bg-white p-10 text-center shadow-card">
-              <h3 className="mb-2 font-display text-2xl text-foreground">Need a custom arrangement?</h3>
+              <h3 className="mb-2 font-display text-2xl text-foreground">
+                Need a custom arrangement?
+              </h3>
               <p className="mx-auto max-w-xl text-sm text-muted-foreground">
                 Contact us for school rollouts, bulk provisioning, or custom study-library support.
               </p>

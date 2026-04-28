@@ -14,7 +14,9 @@ describe('payment package display helpers', () => {
 
   it('formats mixed-hour durations into readable labels', () => {
     expect(formatPaymentPackageDurationLabel(90 * 60)).toBe('1 hour 30 minutes');
-    expect(formatPaymentPackageDurationSummary(90 * 60)).toBe('1 hour 30 minutes of active study time');
+    expect(formatPaymentPackageDurationSummary(90 * 60)).toBe(
+      '1 hour 30 minutes of active study time',
+    );
   });
 
   it('flags when the custom package name differs from the credited duration label', () => {
@@ -30,6 +32,7 @@ describe('payment package display helpers', () => {
 
     expect(display.durationLabel).toBe('3 hours');
     expect(display.hasDistinctName).toBe(true);
+    expect(display.hasMarketingName).toBe(true);
     expect(display.price).toBe('₱290.00');
   });
 
@@ -45,5 +48,22 @@ describe('payment package display helpers', () => {
     });
 
     expect(display.hasDistinctName).toBe(false);
+    expect(display.hasMarketingName).toBe(false);
+  });
+
+  it('does not surface a duration-style name when it disagrees with the credited duration', () => {
+    const display = buildPaymentPackageDisplay({
+      id: 'pkg_3',
+      code: 'mismatched',
+      name: '2 Hours',
+      description: 'Admin entered the wrong name',
+      secondsToCredit: 3 * 60 * 60,
+      amountMinor: 29000,
+      currency: 'PHP',
+    });
+
+    expect(display.durationLabel).toBe('3 hours');
+    expect(display.hasDistinctName).toBe(true);
+    expect(display.hasMarketingName).toBe(false);
   });
 });

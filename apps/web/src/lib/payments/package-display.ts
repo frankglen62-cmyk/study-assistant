@@ -24,17 +24,23 @@ export interface PaymentPackageDisplay {
   durationLabel: string;
   durationSummary: string;
   hasDistinctName: boolean;
+  hasMarketingName: boolean;
   featured: boolean;
   creditExpiresAfterDays: number | null;
   expirySummary: string;
 }
+
+const DURATION_TOKEN_PATTERN = /\b(hours?|hrs?|minutes?|mins?|seconds?|secs?)\b/;
 
 function pluralize(value: number, singular: string, plural = `${singular}s`) {
   return `${value} ${value === 1 ? singular : plural}`;
 }
 
 function normalizeLabel(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
 }
 
 export function formatPaymentPackageDurationLabel(secondsToCredit: number) {
@@ -64,6 +70,8 @@ export function buildPaymentPackageDisplay(
   const durationLabel = formatPaymentPackageDurationLabel(entry.secondsToCredit);
   const normalizedName = normalizeLabel(entry.name);
   const normalizedDuration = normalizeLabel(durationLabel);
+  const hasDistinctName = normalizedName !== normalizedDuration;
+  const nameLooksLikeDuration = DURATION_TOKEN_PATTERN.test(normalizedName);
   const creditExpiresAfterDays = entry.creditExpiresAfterDays ?? null;
 
   return {
@@ -78,7 +86,8 @@ export function buildPaymentPackageDisplay(
     price: formatCurrency(entry.amountMinor, entry.currency),
     durationLabel,
     durationSummary: formatPaymentPackageDurationSummary(entry.secondsToCredit),
-    hasDistinctName: normalizedName !== normalizedDuration,
+    hasDistinctName,
+    hasMarketingName: hasDistinctName && !nameLooksLikeDuration,
     featured: options?.featured ?? false,
     creditExpiresAfterDays,
     expirySummary:

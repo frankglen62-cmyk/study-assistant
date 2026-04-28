@@ -82,14 +82,13 @@ export default function FeaturesPage() {
           <div className="absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-emerald-100/30 blur-3xl" />
         </div>
 
-        <ScrollReveal className="relative mx-auto max-w-7xl px-6 text-center">
+        <ScrollReveal eager className="relative mx-auto max-w-7xl px-6 text-center">
           <span className="mb-8 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-foreground shadow-soft-sm">
             <Zap className="h-4 w-4 text-accent" />
             Features
           </span>
           <h1 className="mx-auto max-w-4xl font-display text-5xl leading-[1.1] text-foreground sm:text-6xl lg:text-7xl">
-            A controlled AI workflow with{' '}
-            <span className="text-accent">cleaner motion</span>
+            A controlled AI workflow with <span className="text-accent">cleaner motion</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Every major surface is designed around clarity, speed, and a more premium public
@@ -131,8 +130,8 @@ export default function FeaturesPage() {
                   Built for polished movement, cleaner focus, and safer study flows.
                 </h2>
                 <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                  The public experience leans into layered gradients, responsive hover depth,
-                  page transitions, and cleaner section pacing to feel more intentional on every tab.
+                  The public experience leans into layered gradients, responsive hover depth, page
+                  transitions, and cleaner section pacing to feel more intentional on every tab.
                 </p>
               </div>
             </ScrollReveal>
@@ -142,7 +141,7 @@ export default function FeaturesPage() {
                 const Icon = item.icon;
                 return (
                   <ScrollReveal key={item.title} delay={index * 0.08}>
-                    <motion.div 
+                    <motion.div
                       className="group rounded-2xl border border-border/40 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover cursor-pointer"
                       whileHover={cardHover}
                       whileTap={cardTap}
@@ -151,7 +150,9 @@ export default function FeaturesPage() {
                         <Icon className="h-6 w-6" />
                       </div>
                       <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
                     </motion.div>
                   </ScrollReveal>
                 );
@@ -161,9 +162,7 @@ export default function FeaturesPage() {
 
           {/* Feature Grid */}
           <ScrollReveal className="mb-6 text-center">
-            <h2 className="font-display text-3xl text-foreground sm:text-4xl">
-              Core capabilities
-            </h2>
+            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Core capabilities</h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Everything you need for a cleaner subject-based review workflow.
             </p>
@@ -174,7 +173,7 @@ export default function FeaturesPage() {
               const Icon = section.icon;
               return (
                 <ScrollReveal key={section.title} delay={(index % 3) * 0.06}>
-                  <motion.div 
+                  <motion.div
                     className="group h-full rounded-2xl border border-border/40 bg-white p-8 shadow-card transition-all duration-300 hover:shadow-card-hover cursor-pointer"
                     whileHover={cardHover}
                     whileTap={cardTap}
@@ -183,7 +182,9 @@ export default function FeaturesPage() {
                       <Icon className="h-7 w-7" />
                     </div>
                     <h3 className="mb-3 text-lg font-semibold text-foreground">{section.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{section.description}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {section.description}
+                    </p>
                   </motion.div>
                 </ScrollReveal>
               );
@@ -195,9 +196,7 @@ export default function FeaturesPage() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-gradient-to-t from-blue-50/50 via-background to-background py-24">
         <ScrollReveal className="relative mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-display text-4xl text-foreground sm:text-5xl">
-            Ready to explore?
-          </h2>
+          <h2 className="font-display text-4xl text-foreground sm:text-5xl">Ready to explore?</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             See how a cleaner subject-based workflow transforms your review experience.
           </p>
