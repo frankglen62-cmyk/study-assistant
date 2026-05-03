@@ -65,6 +65,47 @@ export async function assignPairingCodeInstallation(pairingCodeId: string, insta
   assertSupabaseResult(error, 'Failed to update pairing code installation.');
 }
 
+export async function findActiveInstallation(params: {
+  userId: string;
+  deviceName: string;
+  browserName: string;
+}): Promise<InstallationRecord | null> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('extension_installations')
+    .select('id, user_id, installation_status, device_name, browser_name, extension_version, last_seen_at')
+    .eq('user_id', params.userId)
+    .eq('device_name', params.deviceName)
+    .eq('browser_name', params.browserName)
+    .eq('installation_status', 'active')
+    .order('last_seen_at', { ascending: false })
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to search for existing installation.');
+
+  return data ? parseSingle(data, installationRecordSchema, 'Installation record is invalid.') : null;
+}
+
+export async function reactivateInstallation(params: {
+  installationId: string;
+  extensionVersion: string;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('extension_installations')
+    .update({
+      installation_status: 'active',
+      extension_version: params.extensionVersion,
+      last_seen_at: new Date().toISOString(),
+    })
+    .eq('id', params.installationId)
+    .select('id, user_id, installation_status, device_name, browser_name, extension_version, last_seen_at')
+    .single();
+
+  assertSupabaseResult(error, 'Failed to reactivate installation.');
+  return parseSingle(data, installationRecordSchema, 'Reactivated installation record is invalid.');
+}
+
 export async function createInstallation(params: {
   userId: string;
   deviceName: string;

@@ -12,7 +12,9 @@ import {
   assignPairingCodeInstallation,
   consumePairingCode,
   createInstallation,
+  findActiveInstallation,
   listInstallationsForUser,
+  reactivateInstallation,
   storeRefreshToken,
 } from '@/lib/supabase/extension';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
@@ -43,27 +45,45 @@ export async function POST(request: Request) {
       throw new RouteError(403, 'extension_access_disabled', 'Extension access is disabled for this account.');
     }
 
-    // Enforce active device limit.
-    // Default to 3 active devices if no explicit override is set.
-    const maxDevices = accessOverride?.max_active_devices ?? 3;
-    const activeInstallations = (await listInstallationsForUser(pairing.user_id)).filter(
-      (installation) => installation.installation_status === 'active',
-    );
-
-    if (activeInstallations.length >= maxDevices) {
-      throw new RouteError(
-        409,
-        'device_limit_reached',
-        `This account already reached its ${maxDevices} active device limit. Revoke an existing device first.`,
-      );
-    }
-
-    const installation = await createInstallation({
+    // ── Device deduplication ──────────────────────────────────────────
+    // Check if an active installation with the same device name + browser
+    // already exists. If so, reuse it instead of creating a duplicate.
+    const existingInstallation = await findActiveInstallation({
       userId: pairing.user_id,
       deviceName: body.deviceName,
       browserName: body.browserName,
-      extensionVersion: body.extensionVersion,
     });
+
+    let installation;
+
+    if (existingInstallation) {
+      // Same device re-pairing — reuse and update version
+      installation = await reactivateInstallation({
+        installationId: existingInstallation.id,
+        extensionVersion: body.extensionVersion,
+      });
+    } else {
+      // New device — enforce device limit before creating
+      const maxDevices = accessOverride?.max_active_devices ?? 3;
+      const activeInstallations = (await listInstallationsForUser(pairing.user_id)).filter(
+        (inst) => inst.installation_status === 'active',
+      );
+
+      if (activeInstallations.length >= maxDevices) {
+        throw new RouteError(
+          409,
+          'device_limit_reached',
+          `This account already reached its ${maxDevices} active device limit. Revoke an existing device first.`,
+        );
+      }
+
+      installation = await createInstallation({
+        userId: pairing.user_id,
+        deviceName: body.deviceName,
+        browserName: body.browserName,
+        extensionVersion: body.extensionVersion,
+      });
+    }
 
     await assignPairingCodeInstallation(pairing.id, installation.id);
 
