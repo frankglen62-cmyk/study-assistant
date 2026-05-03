@@ -937,6 +937,14 @@ export function SidePanelApp() {
               )}
             </div>
 
+            {/* Logged-in account email */}
+            {state.userEmail && (
+              <div className="panel-hero__email">
+                <BadgeCheck size={11} />
+                <span>{state.userEmail}</span>
+              </div>
+            )}
+
             {/* Metrics */}
             <div className="hero-metrics-row" style={{ alignItems: 'flex-start', marginTop: '4px' }}>
               <div className="hero-metric" style={{ fontSize: '18px', fontWeight: 600, color: 'var(--sa-text)', flex: 1 }}>

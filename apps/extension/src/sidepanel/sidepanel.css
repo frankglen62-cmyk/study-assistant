@@ -258,6 +258,23 @@ button, input, select, textarea { font: inherit; }
   margin-top: 10px;
 }
 
+.panel-hero__email {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--sa-accent);
+  opacity: 0.85;
+}
+
+.panel-hero__email span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
 .hero-metrics-row {
   display: flex;
   flex-wrap: wrap;

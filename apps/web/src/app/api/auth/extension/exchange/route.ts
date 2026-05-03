@@ -12,9 +12,7 @@ import {
   assignPairingCodeInstallation,
   consumePairingCode,
   createInstallation,
-  findActiveInstallation,
-  listInstallationsForUser,
-  reactivateInstallation,
+  revokeAllInstallationsForUser,
   storeRefreshToken,
 } from '@/lib/supabase/extension';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
@@ -45,45 +43,35 @@ export async function POST(request: Request) {
       throw new RouteError(403, 'extension_access_disabled', 'Extension access is disabled for this account.');
     }
 
-    // ── Device deduplication ──────────────────────────────────────────
-    // Check if an active installation with the same device name + browser
-    // already exists. If so, reuse it instead of creating a duplicate.
-    const existingInstallation = await findActiveInstallation({
+    // ── Session-based security ───────────────────────────────────────
+    // If the account owner has an active session that is bound to a
+    // different installation, block pairing — someone else might be
+    // trying to hijack the account while the owner is online.
+    const openSession = await getOpenSessionForUser(pairing.user_id);
+
+    if (
+      openSession &&
+      openSession.extension_installation_id &&
+      openSession.status === 'active'
+    ) {
+      throw new RouteError(
+        409,
+        'session_active_on_device',
+        'This account has an active session running on another device. End the session first before pairing a new device.',
+      );
+    }
+
+    // ── Clean slate pairing ──────────────────────────────────────────
+    // Revoke ALL previous installations so only 1 device is ever active.
+    // This prevents duplicate accumulation and ensures clean re-pairing.
+    await revokeAllInstallationsForUser(pairing.user_id);
+
+    const installation = await createInstallation({
       userId: pairing.user_id,
       deviceName: body.deviceName,
       browserName: body.browserName,
+      extensionVersion: body.extensionVersion,
     });
-
-    let installation;
-
-    if (existingInstallation) {
-      // Same device re-pairing — reuse and update version
-      installation = await reactivateInstallation({
-        installationId: existingInstallation.id,
-        extensionVersion: body.extensionVersion,
-      });
-    } else {
-      // New device — enforce device limit before creating
-      const maxDevices = accessOverride?.max_active_devices ?? 3;
-      const activeInstallations = (await listInstallationsForUser(pairing.user_id)).filter(
-        (inst) => inst.installation_status === 'active',
-      );
-
-      if (activeInstallations.length >= maxDevices) {
-        throw new RouteError(
-          409,
-          'device_limit_reached',
-          `This account already reached its ${maxDevices} active device limit. Revoke an existing device first.`,
-        );
-      }
-
-      installation = await createInstallation({
-        userId: pairing.user_id,
-        deviceName: body.deviceName,
-        browserName: body.browserName,
-        extensionVersion: body.extensionVersion,
-      });
-    }
 
     await assignPairingCodeInstallation(pairing.id, installation.id);
 
@@ -93,8 +81,6 @@ export async function POST(request: Request) {
       tokenHash: refreshToken.tokenHash,
       expiresAt: refreshToken.expiresAt,
     });
-
-    const openSession = await getOpenSessionForUser(pairing.user_id);
 
     await writeAuditLog({
       actorUserId: pairing.user_id,
@@ -121,6 +107,7 @@ export async function POST(request: Request) {
       refreshToken: refreshToken.token,
       remainingSeconds: account.wallet.remaining_seconds,
       sessionStatus: openSession ? toExtensionSessionStatus(openSession.status) : 'session_inactive',
+      userEmail: account.profile.email,
     };
 
     return jsonOk(response, requestId);

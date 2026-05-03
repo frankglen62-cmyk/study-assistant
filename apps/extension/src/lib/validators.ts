@@ -165,6 +165,7 @@ export const extensionStateSchema = z.object({
     'error',
   ]),
   installationId: z.string().nullable(),
+  userEmail: z.string().nullable().default(null),
   accessToken: z.string().nullable(),
   refreshToken: z.string().nullable(),
   deviceName: z.string(),
@@ -203,6 +204,7 @@ export const pairingExchangeResponseSchema = z.object({
   sessionStatus: z
     .enum(['session_inactive', 'session_active', 'session_paused', 'session_expired'])
     .default('session_inactive'),
+  userEmail: z.string().default(''),
 });
 
 export const refreshTokenResponseSchema = z.object({

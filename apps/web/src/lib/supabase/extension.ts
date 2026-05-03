@@ -243,3 +243,34 @@ export async function listInstallationsForUser(userId: string) {
 
   return (data ?? []).map((row) => parseSingle(row, installationRecordSchema, 'Installation row is invalid.'));
 }
+
+export async function revokeAllInstallationsForUser(userId: string): Promise<number> {
+  const supabase = getSupabaseAdmin();
+
+  // Revoke all active installations
+  const { data, error } = await supabase
+    .from('extension_installations')
+    .update({ installation_status: 'revoked' })
+    .eq('user_id', userId)
+    .eq('installation_status', 'active')
+    .select('id');
+
+  assertSupabaseResult(error, 'Failed to revoke all installations.');
+
+  const revokedIds = (data ?? []).map((row) => row.id);
+
+  // Also revoke all tokens for those installations
+  if (revokedIds.length > 0) {
+    for (const installId of revokedIds) {
+      const tokenResult = await supabase
+        .from('extension_tokens')
+        .update({ revoked_at: new Date().toISOString() })
+        .eq('installation_id', installId)
+        .is('revoked_at', null);
+
+      assertSupabaseResult(tokenResult.error, 'Failed to revoke installation tokens.');
+    }
+  }
+
+  return revokedIds.length;
+}

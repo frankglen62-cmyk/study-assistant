@@ -606,7 +606,7 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
       return error.message;
     }
 
-    if (error.status === 409 && error.code === 'device_limit_reached') {
+    if (error.status === 409 && (error.code === 'device_limit_reached' || error.code === 'session_active_on_device')) {
       await updateState(
         (current) =>
           appendNotice(
@@ -617,7 +617,9 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
             },
             {
               tone: 'warning',
-              title: 'Device limit reached',
+              title: error.code === 'session_active_on_device'
+                ? 'Session active on another device'
+                : 'Device limit reached',
               message: error.message,
             },
           ),
@@ -910,6 +912,7 @@ async function handlePairExtension(payload: PairExtensionPayload) {
             pairingStatus: 'paired',
             uiStatus: result.remainingSeconds > 0 ? 'ready' : 'no_credits',
             installationId: result.installationId,
+            userEmail: result.userEmail || null,
             accessToken: result.accessToken,
             refreshToken: result.refreshToken,
             creditsRemainingSeconds: result.remainingSeconds,

@@ -226,6 +226,7 @@ export interface ExtensionState {
   pairingStatus: ExtensionPairingStatus;
   uiStatus: ExtensionUiStatus;
   installationId: string | null;
+  userEmail: string | null;
   accessToken: string | null;
   refreshToken: string | null;
   deviceName: string;
@@ -291,6 +292,7 @@ export interface ExtensionPairingExchangeResponse {
   refreshToken: string | null;
   remainingSeconds: number;
   sessionStatus: ExtensionSessionStateStatus;
+  userEmail: string;
 }
 
 export interface ExtensionRefreshTokenResponse {

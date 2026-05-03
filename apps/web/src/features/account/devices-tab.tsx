@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import Link from 'next/link';
-import { Monitor, Clock, AlertTriangle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Monitor, Clock, AlertTriangle, Trash2 } from 'lucide-react';
 
 import { Badge, Button } from '@study-assistant/ui';
 
@@ -21,6 +22,8 @@ type FilterType = 'all' | 'active' | 'revoked';
 
 export function DevicesTab({ devices }: { devices: Device[] }) {
   const [filter, setFilter] = useState<FilterType>('all');
+  const [revokeAllPending, startRevokeAll] = useTransition();
+  const router = useRouter();
 
   const activeCount = devices.filter((d) => d.status === 'active').length;
   const revokedCount = devices.filter((d) => d.status === 'revoked').length;
@@ -38,15 +41,48 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
     { id: 'revoked', label: 'Revoked', count: revokedCount },
   ];
 
+  function handleRevokeAll() {
+    if (!confirm(`Revoke all ${activeCount} active devices? You will need to re-pair the extension.`)) return;
+
+    startRevokeAll(async () => {
+      try {
+        const res = await fetch('/api/client/devices/revoke-all', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+        });
+
+        if (!res.ok) throw new Error('Failed');
+        router.refresh();
+      } catch {
+        alert('Failed to revoke devices. Please try again.');
+      }
+    });
+  }
+
   return (
     <div className="space-y-6">
       {/* Summary card */}
       <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
-        <div className="flex items-center gap-2.5 mb-5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
-            <Monitor className="h-4 w-4 text-accent" />
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+              <Monitor className="h-4 w-4 text-accent" />
+            </div>
+            <h3 className="text-sm font-semibold text-foreground">Device Summary</h3>
           </div>
-          <h3 className="text-sm font-semibold text-foreground">Device Summary</h3>
+          {activeCount > 1 && (
+            <Button
+              type="button"
+              variant="danger"
+              size="sm"
+              disabled={revokeAllPending}
+              onClick={handleRevokeAll}
+            >
+              <Trash2 className="h-3.5 w-3.5" />
+              {revokeAllPending ? 'Revoking...' : `Revoke All (${activeCount})`}
+            </Button>
+          )}
         </div>
         <div className="grid gap-6 sm:grid-cols-3">
           <div>
