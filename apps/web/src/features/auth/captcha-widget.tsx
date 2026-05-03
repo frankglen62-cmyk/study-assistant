@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { env } from '@/lib/env/client';
 
@@ -13,11 +13,14 @@ declare global {
           sitekey: string;
           action?: string;
           theme?: 'light' | 'dark' | 'auto';
+          retry?: 'auto' | 'never';
+          'retry-interval'?: number;
           callback?: (token: string) => void;
           'expired-callback'?: () => void;
           'error-callback'?: () => void;
         },
       ) => string;
+      reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
     };
   }
@@ -75,8 +78,20 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
   const [isLoading, setIsLoading] = useState(Boolean(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY));
   const [loadError, setLoadError] = useState<string | null>(null);
 
+  // Keep the callback in a ref so the effect never re-runs because of it.
+  // This prevents the Turnstile iframe from being destroyed and re-created
+  // when the parent component re-renders (e.g. when the user types).
+  const onTokenChangeRef = useRef(onTokenChange);
   useEffect(() => {
-    onTokenChange(null);
+    onTokenChangeRef.current = onTokenChange;
+  }, [onTokenChange]);
+
+  const stableOnTokenChange = useCallback((token: string | null) => {
+    onTokenChangeRef.current(token);
+  }, []);
+
+  useEffect(() => {
+    stableOnTokenChange(null);
 
     if (!env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) {
       setIsLoading(false);
@@ -104,16 +119,17 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
           sitekey: env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
           action,
           theme: 'light',
+          retry: 'auto',
           callback: (token) => {
-            onTokenChange(token);
+            stableOnTokenChange(token);
             setIsLoading(false);
             setLoadError(null);
           },
           'expired-callback': () => {
-            onTokenChange(null);
+            stableOnTokenChange(null);
           },
           'error-callback': () => {
-            onTokenChange(null);
+            stableOnTokenChange(null);
             setLoadError('Security check could not load. Refresh and try again.');
             setIsLoading(false);
           },
@@ -125,7 +141,7 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
         if (cancelled) {
           return;
         }
-        onTokenChange(null);
+        stableOnTokenChange(null);
         setLoadError('Security check could not load. Refresh and try again.');
         setIsLoading(false);
       });
@@ -137,7 +153,7 @@ export function CaptchaWidget({ action, resetKey, error, onTokenChange }: Captch
         widgetIdRef.current = null;
       }
     };
-  }, [action, onTokenChange, resetKey]);
+  }, [action, stableOnTokenChange, resetKey]);
 
   if (!env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) {
     return null;
