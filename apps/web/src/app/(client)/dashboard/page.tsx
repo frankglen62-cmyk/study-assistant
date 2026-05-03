@@ -5,6 +5,7 @@ import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitl
 import { ArrowRight, CreditCard, Download, History, Laptop, Play, Settings, ShieldCheck, Zap } from 'lucide-react';
 
 import { PairExtensionCard } from '@/features/client/pair-extension-card';
+import { LiveDashboardStatus } from '@/features/client/live-dashboard-status';
 import { getClientDashboardData } from '@/features/client/server';
 import { requirePageUser } from '@/lib/auth/page-context';
 import { env } from '@/lib/env/server';
@@ -110,32 +111,17 @@ export default async function ClientDashboardPage() {
                 <Progress value={remainingPercent} className={cn('h-3', remainingPercent < 15 && '[&>div]:bg-danger')} />
               </div>
 
-              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
-                    <History className="h-5 w-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-muted-foreground">Session Status</p>
-                    <div className="mt-0.5 flex items-center gap-2">
-                      <span className="relative flex h-2.5 w-2.5">
-                        {dashboard.sessionStatus === 'active' && (
-                          <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
-                        )}
-                        <span className={cn('relative inline-flex h-full w-full rounded-full', dashboard.sessionStatus === 'active' ? 'bg-accent' : 'bg-muted-foreground/40')} />
-                      </span>
-                      <p className="text-sm font-medium text-foreground capitalize">{dashboard.sessionStatus.replace('_', ' ')}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Button asChild variant="secondary" size="sm" className="w-full">
-                    <Link href="/sessions">Manage Session</Link>
-                  </Button>
-                  <Button asChild variant="secondary" size="sm" className="w-full">
-                    <Link href="/usage-logs">View Logs</Link>
-                  </Button>
-                </div>
+              <LiveDashboardStatus
+                initialRemainingSeconds={context.wallet.remaining_seconds}
+                initialSessionStatus={dashboard.sessionStatus}
+              />
+              <div className="flex gap-3">
+                <Button asChild variant="secondary" size="sm" className="w-full">
+                  <Link href="/sessions">Manage Session</Link>
+                </Button>
+                <Button asChild variant="secondary" size="sm" className="w-full">
+                  <Link href="/usage-logs">View Logs</Link>
+                </Button>
               </div>
             </CardContent>
           </Card>

@@ -30,6 +30,7 @@ export default async function SessionsPage() {
                 status: overview.openSession.status,
                 startTime: overview.openSession.start_time,
                 detectionMode: overview.openSession.detection_mode,
+                usedSeconds: overview.openSession.used_seconds,
               }
             : null
         }
