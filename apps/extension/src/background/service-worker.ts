@@ -584,6 +584,50 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
       return error.message;
     }
 
+    if (error.status === 409 && error.code === 'session_device_conflict') {
+      await updateState(
+        (current) =>
+          appendNotice(
+            {
+              ...current,
+              uiStatus: 'error',
+              lastError: error.message,
+            },
+            {
+              tone: 'warning',
+              title: 'Another device is active',
+              message: error.message,
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      return error.message;
+    }
+
+    if (error.status === 409 && error.code === 'device_limit_reached') {
+      await updateState(
+        (current) =>
+          appendNotice(
+            {
+              ...current,
+              uiStatus: 'error',
+              lastError: error.message,
+            },
+            {
+              tone: 'warning',
+              title: 'Device limit reached',
+              message: error.message,
+            },
+          ),
+        browserName,
+        extensionVersion,
+      );
+
+      return error.message;
+    }
+
     if (error.status === 403 && error.code === 'wallet_locked') {
       const nextState = await updateState(
         (current) =>

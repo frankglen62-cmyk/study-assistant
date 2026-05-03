@@ -157,20 +157,19 @@ export function PairExtensionCard({
       </div>
 
       <div className="p-6 space-y-6">
-        {/* Status row */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
-            <p className="text-[11px] font-medium text-muted-foreground">Status</p>
-            <p className="mt-1.5 text-sm font-semibold text-foreground">{pairedDeviceCount > 0 ? 'Paired' : 'Ready'}</p>
-          </div>
-          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
-            <p className="text-[11px] font-medium text-muted-foreground">ZIP Build</p>
-            <p className="mt-1.5 text-sm font-semibold text-foreground">v{extensionVersion}</p>
-          </div>
-          <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5 text-center">
-            <p className="text-[11px] font-medium text-muted-foreground">Installed</p>
-            <p className="mt-1.5 text-sm font-semibold text-foreground truncate">{latestInstalledVersion ?? '—'}</p>
-          </div>
+        {/* Status row — compact inline badges */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${pairedDeviceCount > 0 ? 'bg-accent/10 text-accent' : 'bg-muted/50 text-muted-foreground'}`}>
+            {pairedDeviceCount > 0 ? 'Paired' : 'Ready'}
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+            ZIP v{extensionVersion}
+          </span>
+          {latestInstalledVersion && (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+              Installed v{latestInstalledVersion}
+            </span>
+          )}
         </div>
 
         {/* Highlighted Pairing Code Section */}
@@ -187,14 +186,14 @@ export function PairExtensionCard({
 
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className={`text-sm font-bold ${hasPairingCode && !isExpired ? 'text-accent' : 'text-foreground'}`}>1. Generate Pairing Code</p>
+              <p className={`text-sm font-bold ${hasPairingCode && !isExpired ? 'text-accent' : 'text-foreground'}`}>Generate Code</p>
               {countdownLabel ? (
                 <p className={`text-[11px] mt-0.5 flex items-center gap-1 font-medium ${isExpired ? 'text-red-500' : 'text-accent/80'}`}>
                   <Clock3 className="h-3.5 w-3.5" />
-                  {isExpired ? 'Expired — please regenerate.' : `Expires in ${countdownLabel}`}
+                  {isExpired ? 'Expired — regenerate below.' : `Expires in ${countdownLabel}`}
                 </p>
               ) : (
-                <p className="text-[11px] text-muted-foreground mt-0.5">Click generate specifically when the extension requires it.</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Click generate when the extension is ready.</p>
               )}
             </div>
             <Button type="button" size="sm" onClick={handleGenerateCode} disabled={pending}>
@@ -225,11 +224,11 @@ export function PairExtensionCard({
 
         {/* Setup Details */}
         {!simplified && (
-          <div className="grid gap-5 md:grid-cols-2 pt-2">
+          <div className="grid gap-4 md:grid-cols-2 pt-2">
             {/* App URL */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Link2 className="h-3.5 w-3.5 text-muted-foreground"/> 2. App URL</label>
+                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Link2 className="h-3.5 w-3.5 text-muted-foreground"/> App URL</label>
                 <button
                   type="button"
                   onClick={() => void copyValue(appBaseUrl, 'App URL')}
@@ -242,9 +241,9 @@ export function PairExtensionCard({
             </div>
 
             {/* Device name */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                 <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Laptop className="h-3.5 w-3.5 text-muted-foreground"/> 3. Device Name</label>
+                 <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Laptop className="h-3.5 w-3.5 text-muted-foreground"/> Device Name</label>
                  <button
                   type="button"
                   onClick={() => void copyValue(deviceName, 'Device Name')}
@@ -264,12 +263,12 @@ export function PairExtensionCard({
           </div>
         )}
         
-        {/* Master Action Row */}
-        <div className="pt-2 flex flex-col sm:flex-row gap-3 border-t border-border/30">
+        {/* Action Row */}
+        <div className="pt-2 flex flex-col sm:flex-row gap-2 border-t border-border/30">
            {!simplified && (
-             <Button type="button" variant="secondary" className="flex-1" disabled={!hasPairingCode} onClick={handleCopyAll}>
-               {hasPairingCode ? <CopyCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-               Copy All 3 Details
+             <Button type="button" variant="secondary" size="sm" className="flex-1" disabled={!hasPairingCode} onClick={handleCopyAll}>
+               {hasPairingCode ? <CopyCheck className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+               Copy All Details
              </Button>
            )}
           <Button asChild variant={simplified ? 'secondary' : 'ghost'} size="sm" className={simplified ? 'w-full' : 'flex-1'}>

@@ -111,6 +111,21 @@ export async function POST(request: Request) {
       requestSchema as z.ZodType<AnalyzeRequestPayload>,
     )) as AnalyzeRequestPayload;
     const activeSession = await requireActiveSession(context.userId, body.sessionId);
+
+    // Security: verify the requesting device owns this session.
+    // If both the session and the request carry an installation ID, they must match.
+    if (
+      'installationId' in context &&
+      activeSession.extension_installation_id &&
+      activeSession.extension_installation_id !== context.installationId
+    ) {
+      throw new RouteError(
+        409,
+        'session_device_conflict',
+        'This session belongs to a different device. End that session first, then start a new one on this device.',
+      );
+    }
+
     const settled = await settleActiveSessionUsage({
       userId: context.userId,
       sessionId: activeSession.id,

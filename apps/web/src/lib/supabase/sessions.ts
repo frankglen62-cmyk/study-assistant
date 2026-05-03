@@ -8,7 +8,7 @@ export async function getOpenSessionForUser(userId: string): Promise<SessionReco
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('sessions')
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .eq('user_id', userId)
     .in('status', ['active', 'paused'])
     .order('created_at', { ascending: false })
@@ -23,7 +23,7 @@ export async function listSessionsForUser(userId: string, limit = 20): Promise<S
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('sessions')
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -77,7 +77,7 @@ export async function createActiveSession(params: {
       page_domain: params.pageDomain ?? null,
       page_title: params.pageTitle ?? null,
     })
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .single();
 
   assertSupabaseResult(error, 'Failed to create session.');
@@ -88,7 +88,7 @@ export async function getSessionByIdForUser(sessionId: string, userId: string): 
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('sessions')
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .eq('id', sessionId)
     .eq('user_id', userId)
     .maybeSingle();
@@ -123,7 +123,7 @@ export async function updateSessionStatus(params: {
     .update(updates)
     .eq('id', params.sessionId)
     .eq('user_id', params.userId)
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to update session status.');
@@ -163,7 +163,7 @@ export async function syncSessionAfterAnalysis(params: {
     })
     .eq('id', params.sessionId)
     .eq('user_id', params.userId)
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to sync session after analysis.');
@@ -186,7 +186,7 @@ export async function syncSessionAfterAnalysis(params: {
     })
     .eq('id', params.sessionId)
     .eq('user_id', params.userId)
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .single();
 
   assertSupabaseResult(usageUpdate.error, 'Failed to increment session usage.');
@@ -220,7 +220,7 @@ export async function recordSessionUsage(params: {
     .update(updates)
     .eq('id', params.sessionId)
     .eq('user_id', params.userId)
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to record session usage.');
@@ -239,7 +239,7 @@ export async function updateOpenSessionsStatusForUser(params: {
   const supabase = getSupabaseAdmin();
   const { data: openSessions, error: loadError } = await supabase
     .from('sessions')
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time')
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .eq('user_id', params.userId)
     .in('status', ['active', 'paused'])
     .is('end_time', null);
@@ -266,7 +266,7 @@ export async function updateOpenSessionsStatusForUser(params: {
     .eq('user_id', params.userId)
     .in('status', ['active', 'paused'])
     .is('end_time', null)
-    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, used_seconds, start_time, last_activity_at, end_time');
+    .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time');
 
   assertSupabaseResult(error, 'Failed to close open sessions.');
 

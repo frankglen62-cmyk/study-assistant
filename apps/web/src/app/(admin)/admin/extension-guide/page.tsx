@@ -162,40 +162,39 @@ export default async function ExtensionGuidePage() {
       <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
         {/* Install Steps */}
         <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
-          <div className="border-b border-border/40 px-6 py-5">
-            <h3 className="text-base font-semibold text-foreground">Install or update in 3 simple steps</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              This is the only install flow that matters. Everything else is optional.
+          <div className="border-b border-border/40 px-5 py-4">
+            <h3 className="text-sm font-semibold text-foreground">Install or update in 3 steps</h3>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              The only install flow that matters.
             </p>
           </div>
-          <div className="p-6 space-y-4">
-            {setupSteps.map((step, index) => {
+          <div className="p-5 space-y-3">
+            {setupSteps.map((step) => {
               const Icon = step.icon;
 
               return (
-                <div key={step.label} className="flex items-start gap-4 rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-5 transition-all hover:shadow-soft-sm">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" />
+                <div key={step.label} className="flex items-start gap-3 rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-xs font-medium text-accent">{step.label}</p>
+                  <div className="space-y-0.5">
+                    <p className="text-[10px] font-semibold text-accent uppercase tracking-wider">{step.label}</p>
                     <p className="text-sm font-semibold text-foreground">{step.title}</p>
-                    <p className="text-sm text-muted-foreground">{step.description}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
                 </div>
               );
             })}
 
-            <div className="rounded-xl border border-amber-200/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10 p-5">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400">
-                  <AlertTriangle className="h-5 w-5" />
+            <div className="rounded-xl border border-amber-200/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10 p-4">
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400">
+                  <AlertTriangle className="h-4 w-4" />
                 </div>
-                <div className="space-y-1">
-                  <p className="text-sm font-semibold text-amber-800 dark:text-amber-400">Important folder reminder</p>
-                  <p className="text-sm text-amber-700 dark:text-amber-200/90">
-                    When Chrome asks for a folder, select the extracted folder where <span className="font-mono text-amber-900 dark:text-amber-300">{extensionManifestFileName}</span> is directly visible.
-                    Do not select the ZIP file itself or a parent folder above it.
+                <div className="space-y-0.5">
+                  <p className="text-xs font-semibold text-amber-800 dark:text-amber-400">Folder reminder</p>
+                  <p className="text-xs text-amber-700 dark:text-amber-200/90">
+                    Select the extracted folder where <span className="font-mono text-amber-900 dark:text-amber-300">{extensionManifestFileName}</span> is directly visible.
                   </p>
                 </div>
               </div>
@@ -205,77 +204,69 @@ export default async function ExtensionGuidePage() {
 
         {/* Extension Status */}
         <div className="rounded-2xl border border-border/40 bg-background shadow-card overflow-hidden">
-          <div className="border-b border-border/40 px-6 py-5">
-            <h3 className="text-base font-semibold text-foreground">Current extension status</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Live portal view of your latest ZIP build and paired browser state.
+          <div className="border-b border-border/40 px-5 py-4">
+            <h3 className="text-sm font-semibold text-foreground">Extension status</h3>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              Live view of your ZIP build and paired browser.
             </p>
           </div>
-          <div className="p-6 space-y-5">
-            <div className="flex flex-wrap gap-2">
+          <div className="p-5 space-y-4">
+            <div className="flex flex-wrap gap-1.5">
               <Badge tone={hasPairedDevice ? 'success' : 'warning'}>{pairingStatusLabel}</Badge>
-              <Badge tone="accent">{`Current ZIP v${extensionVersion}`}</Badge>
+              <Badge tone="accent">{`ZIP v${extensionVersion}`}</Badge>
               <Badge suppressHydrationWarning tone="neutral">{`Chrome ${extensionMinimumChromeVersion}+`}</Badge>
-              <Badge suppressHydrationWarning tone="neutral">{latestPackageDateLabel}</Badge>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
-                <p className="text-[11px] font-medium text-muted-foreground">Pairing status</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{pairingStatusLabel}</p>
-                <p className="mt-1.5 text-xs text-muted-foreground">
+            <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5">
+                <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Pairing</p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{pairingStatusLabel}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">
                   {hasPairedDevice
-                    ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser is' : 'browsers are'} connected.`
-                    : 'No browser is connected to your account yet.'}
+                    ? `${activeDevices.length} active ${activeDevices.length === 1 ? 'browser' : 'browsers'} connected.`
+                    : 'No browser connected yet.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
-                <p className="text-[11px] font-medium text-muted-foreground">Installed build</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
-                <p className="mt-1.5 text-xs text-muted-foreground">
-                  {isOutdatedInstalledVersion
-                    ? 'This browser is behind the latest ZIP.'
-                    : 'Matches the current ZIP build.'}
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5">
+                <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Installed build</p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{installedVersion ?? 'Not detected'}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">
+                  {isOutdatedInstalledVersion ? 'Behind the latest ZIP.' : 'Matches current ZIP.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-4">
-                <p className="text-[11px] font-medium text-muted-foreground">Latest active browser</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{latestDevice?.name ?? 'No browser yet'}</p>
-                <p className="mt-1.5 text-xs text-muted-foreground">
+              <div className="rounded-xl border border-border/40 bg-surface/50 dark:bg-surface p-3.5">
+                <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Active browser</p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{latestDevice?.name ?? 'None'}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">
                   {latestDevice ? `Last seen ${latestDevice.lastSeen}.` : 'Pair a browser first.'}
                 </p>
               </div>
-              <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
-                  <p className="text-[11px] font-medium text-accent">Next step</p>
+              <div className="rounded-xl border border-accent/20 bg-accent/5 p-3.5">
+                <div className="flex items-center gap-1">
+                  <CheckCircle2 className="h-3 w-3 text-accent" />
+                  <p className="text-[10px] font-medium text-accent uppercase tracking-wider">Next step</p>
                 </div>
-                <p className="mt-2 text-lg font-semibold text-foreground">{nextStepLabel}</p>
-                <p className="mt-1.5 text-xs text-muted-foreground">
-                  {hasOpenSession
-                    ? 'A session is already active, so the extension can continue immediately.'
-                    : 'If pairing is complete, open a session before using analysis.'}
-                </p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{nextStepLabel}</p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <Button asChild>
+              <Button asChild size="sm">
                 <a href={extensionDownloadPath} download={extensionDownloadFileName}>
-                  <Download className="h-4 w-4" />
-                  Download Latest ZIP
+                  <Download className="h-3.5 w-3.5" />
+                  Download ZIP
                 </a>
               </Button>
-              <Button asChild variant="secondary">
+              <Button asChild variant="secondary" size="sm">
                 <Link href="/admin/settings">
-                  <Monitor className="h-4 w-4" />
-                  Manage Devices
+                  <Monitor className="h-3.5 w-3.5" />
+                  Devices
                 </Link>
               </Button>
-              <Button asChild variant="secondary">
+              <Button asChild variant="secondary" size="sm">
                 <Link href="/admin/dashboard">
-                  <KeyRound className="h-4 w-4" />
-                  Open Sessions
+                  <KeyRound className="h-3.5 w-3.5" />
+                  Sessions
                 </Link>
               </Button>
             </div>
@@ -284,31 +275,31 @@ export default async function ExtensionGuidePage() {
       </div>
 
       {/* Help Section */}
-      <div className="rounded-2xl border border-border/40 bg-background p-6 shadow-card">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="rounded-2xl border border-border/40 bg-background p-5 shadow-card">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-base font-semibold text-foreground">Need help?</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Keep it simple: if install or pairing still fails, use one of these next actions.
+            <h3 className="text-sm font-semibold text-foreground">Need help?</h3>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              If install or pairing still fails, try one of these.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button asChild variant="secondary">
+            <Button asChild variant="secondary" size="sm">
               <Link href="/contact">
-                <ShieldCheck className="h-4 w-4" />
-                Contact Support
+                <ShieldCheck className="h-3.5 w-3.5" />
+                Support
               </Link>
             </Button>
-            <Button asChild variant="secondary">
+            <Button asChild variant="secondary" size="sm">
               <Link href="/admin/settings">
-                <Monitor className="h-4 w-4" />
-                Review Paired Browsers
+                <Monitor className="h-3.5 w-3.5" />
+                Devices
               </Link>
             </Button>
-            <Button asChild variant="secondary">
+            <Button asChild variant="secondary" size="sm">
               <a href="#pairing-mode">
-                Go To Pairing Mode
-                <ArrowRight className="h-4 w-4" />
+                Pairing Mode
+                <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </Button>
           </div>

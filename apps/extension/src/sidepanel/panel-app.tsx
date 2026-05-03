@@ -17,7 +17,7 @@ import {
   RefreshCw, XCircle, LayoutDashboard, Copy, Lock, Unlock, Globe,
   ChevronDown, ChevronRight, BookOpen, Search, Loader2, CheckCircle2, Info, Target, Play,
   RotateCcw, BotMessageSquare, ListChecks, AlertTriangle, Link2, ShieldCheck, BadgeCheck, Share2, ArrowLeft, Clock, Pause, Square,
-  Moon, Sun,
+  Moon, Sun, ClipboardPaste,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -309,6 +309,7 @@ export function SidePanelApp() {
   });
   const [pairingJustCompleted, setPairingJustCompleted] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [showPairingSettings, setShowPairingSettings] = useState(false);
 
   const isPaired = state?.pairingStatus === 'paired';
   const { access, checking: accessChecking, refresh: refreshAccess } = useSiteAccess(Boolean(isPaired));
@@ -1048,7 +1049,7 @@ export function SidePanelApp() {
       {!isPaired && (
         <SectionCard
           title="Pair This Browser"
-          subtitle="No extra onboarding tab is needed. Paste the short-lived code first, then approve the portal and pair here."
+          subtitle="Paste the short-lived code first, then approve the portal and pair here."
           icon={Link2}
           className="panel-card--primary"
           actions={(
@@ -1065,19 +1066,35 @@ export function SidePanelApp() {
           <div className="pairing-code-spotlight">
             <div className="pairing-code-spotlight__header">
               <div>
-                <span className="pairing-code-spotlight__eyebrow">Required action</span>
-                <strong>Enter Pairing Code</strong>
-                <p>Generate a 6-letter code from your web portal and paste it below.</p>
+                <span className="pairing-code-spotlight__eyebrow">Pairing Code</span>
+                <strong>Enter Code</strong>
+                <p>Generate a code from your web portal and paste it below.</p>
               </div>
             </div>
 
             <label className="pairing-field pairing-field--code">
-              <input
-                value={pairingCode}
-                onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
-                spellCheck={false}
-                placeholder="Ex. ABCDEF"
-              />
+              <div className="pairing-field--code__wrapper">
+                <input
+                  value={pairingCode}
+                  onChange={(event) => setPairingCode(event.target.value.toUpperCase())}
+                  spellCheck={false}
+                  placeholder="Ex. ABCDEFGH"
+                />
+                <button
+                  type="button"
+                  className="pairing-field--code__paste-btn"
+                  title="Paste from clipboard"
+                  onClick={async () => {
+                    try {
+                      const text = await navigator.clipboard.readText();
+                      if (text.trim()) setPairingCode(text.trim().toUpperCase());
+                    } catch { /* clipboard permission denied */ }
+                  }}
+                >
+                  <ClipboardPaste size={14} />
+                  Paste
+                </button>
+              </div>
             </label>
 
             <button
@@ -1091,40 +1108,46 @@ export function SidePanelApp() {
             </button>
           </div>
 
-          <div className="pairing-form-grid" style={{ marginTop: 12 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--sa-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Connection Settings</span>
+          {/* Collapsible Connection Settings */}
+          <button
+            type="button"
+            className="pairing-settings-toggle"
+            onClick={() => setShowPairingSettings(!showPairingSettings)}
+          >
+            {showPairingSettings ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+            Connection Settings
+          </button>
+
+          {showPairingSettings && (
+            <div className="pairing-form-grid">
+              <label className="pairing-field">
+                <span>Host URL</span>
+                <input
+                  value={appBaseUrl}
+                  onChange={(event) => setAppBaseUrl(event.target.value)}
+                  spellCheck={false}
+                />
+              </label>
+
+              <label className="pairing-field">
+                <span>Device Name</span>
+                <input
+                  value={deviceName}
+                  onChange={(event) => setDeviceName(event.target.value)}
+                  spellCheck={false}
+                />
+              </label>
+
+              <button
+                className="action-button action-button--sm"
+                onClick={() => void requestConnectionPermission()}
+                disabled={pendingAction !== null}
+              >
+                <ShieldCheck size={13} />
+                {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Approve Connection'}
+              </button>
             </div>
-            
-            <label className="pairing-field">
-              <span>Host URL</span>
-              <input
-                value={appBaseUrl}
-                onChange={(event) => setAppBaseUrl(event.target.value)}
-                spellCheck={false}
-              />
-            </label>
-
-            <label className="pairing-field">
-              <span>Device Name</span>
-              <input
-                value={deviceName}
-                onChange={(event) => setDeviceName(event.target.value)}
-                spellCheck={false}
-              />
-            </label>
-          </div>
-
-          <div className="pairing-button-row" style={{ marginTop: 16 }}>
-            <button
-              className="action-button"
-              onClick={() => void requestConnectionPermission()}
-              disabled={pendingAction !== null}
-            >
-              <ShieldCheck size={15} />
-              {pendingAction === 'pairing-permission' ? 'Requesting...' : 'Approve Connection Access'}
-            </button>
-          </div>
+          )}
 
           {pairingFeedback && (
             <div className={`notice notice--${pairingFeedback.tone}`}>

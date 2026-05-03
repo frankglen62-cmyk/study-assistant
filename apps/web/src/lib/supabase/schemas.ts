@@ -105,6 +105,7 @@ export const sessionRecordSchema = z.object({
   detection_mode: z.enum(['auto', 'manual']),
   current_subject_id: z.string().uuid().nullable(),
   current_category_id: z.string().uuid().nullable(),
+  extension_installation_id: z.string().uuid().nullable().optional(),
   used_seconds: z.number().int().nonnegative(),
   start_time: z.string(),
   last_activity_at: z.string().nullable().optional(),

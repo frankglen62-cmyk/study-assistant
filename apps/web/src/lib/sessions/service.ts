@@ -126,16 +126,35 @@ export async function startSession(params: {
   await assertUsageLimitsNotExceeded(params.userId);
 
   const existing = await getOpenSessionForUser(params.userId);
-  if (existing?.status === 'active') {
-    return existing;
-  }
 
-  if (existing?.status === 'paused') {
-    return updateSessionStatus({
-      sessionId: existing.id,
-      userId: params.userId,
-      status: 'active',
-    });
+  if (existing) {
+    // Security: enforce one device per active session.
+    // If the session was started by a different extension installation,
+    // block the new device from using or resuming it.
+    const sessionOwnedByDifferentDevice =
+      params.installationId &&
+      existing.extension_installation_id &&
+      existing.extension_installation_id !== params.installationId;
+
+    if (sessionOwnedByDifferentDevice) {
+      throw new RouteError(
+        409,
+        'session_device_conflict',
+        'A session is already running on another device. End that session first, then try again on this device.',
+      );
+    }
+
+    if (existing.status === 'active') {
+      return existing;
+    }
+
+    if (existing.status === 'paused') {
+      return updateSessionStatus({
+        sessionId: existing.id,
+        userId: params.userId,
+        status: 'active',
+      });
+    }
   }
 
   return createActiveSession({

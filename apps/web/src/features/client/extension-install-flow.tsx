@@ -7,7 +7,6 @@ import {
   Download,
   FolderOpen,
   Link2,
-  RefreshCw,
 } from 'lucide-react';
 
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from '@study-assistant/ui';
@@ -205,36 +204,25 @@ export function ExtensionInstallFlow({
         </div>
       </CardHeader>
       <CardContent className="space-y-5">
-        <div className="grid gap-3 xl:grid-cols-[1.4fr_1fr]">
-          <div className="rounded-[24px] border border-warning/20 bg-warning/10 p-4">
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-warning/15 text-warning">
-                <AlertTriangle className="h-4 w-4" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-semibold text-foreground">Select the right folder</p>
-                <p className="text-sm text-muted-foreground">
-                  When Chrome asks for a folder, choose the extracted folder that contains
-                  <span className="mx-1 font-mono text-foreground">{extensionManifestFileName}</span>
-                  directly inside it. Do not select the ZIP itself or a parent folder above it.
-                </p>
-              </div>
+        {/* Combined info row: folder warning + release info */}
+        <div className="rounded-2xl border border-border/60 bg-surface/30 p-4 space-y-3">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-warning/15 text-warning">
+              <AlertTriangle className="h-3.5 w-3.5" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-foreground">Select the right folder</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Choose the extracted folder containing
+                <span className="mx-1 font-mono text-foreground">{extensionManifestFileName}</span>
+                directly inside it. Don't select the ZIP or a parent folder.
+              </p>
             </div>
           </div>
-          <div className="rounded-[24px] border border-border/70 bg-background/50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent/12 text-accent">
-                <RefreshCw className="h-4 w-4" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-semibold text-foreground">Current release</p>
-                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                  <span className="rounded-full bg-muted px-2.5 py-1 font-mono text-foreground">v{extensionVersion}</span>
-                  <span className="rounded-full bg-muted px-2.5 py-1">Chrome {extensionMinimumChromeVersion}+</span>
-                  <span className="rounded-full bg-muted px-2.5 py-1">{new Date(extensionPackageUpdatedAt).toLocaleDateString()}</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground border-t border-border/40 pt-3">
+            <span className="rounded-full bg-muted px-2.5 py-1 font-mono text-foreground">v{extensionVersion}</span>
+            <span className="rounded-full bg-muted px-2.5 py-1">Chrome {extensionMinimumChromeVersion}+</span>
+            <span className="rounded-full bg-muted px-2.5 py-1">{new Date(extensionPackageUpdatedAt).toLocaleDateString()}</span>
           </div>
         </div>
 
@@ -245,29 +233,22 @@ export function ExtensionInstallFlow({
             return (
               <article
                 key={item.step}
-                className="group overflow-hidden rounded-[28px] border border-border/70 bg-background/50 transition hover:-translate-y-0.5 hover:border-accent/40 hover:bg-background/70"
+                className="group overflow-hidden rounded-2xl border border-border/60 bg-background/50 transition hover:-translate-y-0.5 hover:border-accent/40"
               >
-                <div className="border-b border-border/60 bg-gradient-to-br from-accent/10 via-surface/50 to-background/80 p-3">
+                <div className="border-b border-border/50 bg-gradient-to-br from-accent/8 via-surface/30 to-background/60 p-2.5">
                   {item.preview}
                 </div>
-                <div className="space-y-3 p-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-                      <Icon className="h-4 w-4" />
+                <div className="space-y-2.5 p-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      <Icon className="h-3.5 w-3.5" />
                     </div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">{item.step}</p>
-                      <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{item.step}</p>
+                      <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
                     </div>
                   </div>
-                  <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-muted/50 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                    {item.step === '01'
-                      ? 'Portal download'
-                      : item.step === '02'
-                        ? 'Chrome install'
-                        : 'Secure pairing'}
-                  </div>
+                  <p className="text-xs leading-5 text-muted-foreground">{item.description}</p>
                 </div>
               </article>
             );

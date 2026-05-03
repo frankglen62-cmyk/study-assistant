@@ -214,6 +214,7 @@ export async function exchangePairingCode(
   return fetchJson(state, '/api/auth/extension/exchange', (input) => pairingExchangeResponseSchema.parse(input), {
     method: 'POST',
     body: payload,
+    timeoutMs: 25_000, // Exchange makes 9+ sequential DB calls; Vercel cold starts need more time
   });
 }
 
@@ -228,6 +229,7 @@ export async function refreshExtensionToken(state: ExtensionState) {
       refreshToken: state.refreshToken,
       installationId: state.installationId,
     },
+    timeoutMs: 15_000, // Refresh also hits multiple DB calls; prevent false timeouts on cold starts
   });
 }
 
