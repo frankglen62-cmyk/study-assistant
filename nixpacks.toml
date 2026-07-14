@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = [
+  "npm install -g pnpm@10.8.0",
+  "pnpm install --frozen-lockfile"
+]
+paths = ["/root/.local/share/pnpm"]
+
+[phases.build]
+cmds = ["pnpm --filter @study-assistant/web build"]
+
+[start]
+cmd = "pnpm --filter @study-assistant/web start"
