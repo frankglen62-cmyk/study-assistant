@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import type { EmailOtpType } from '@supabase/supabase-js';
+import { env } from '@/lib/env/server';
 
 import {
   EMAIL_LOGIN_REQUEST_COOKIE,
@@ -18,13 +19,13 @@ import { getSupabaseServerSessionClient } from '@/lib/supabase/server-session';
 const supportedOtpTypes = new Set<EmailOtpType>(['signup', 'recovery', 'invite', 'magiclink', 'email_change', 'email']);
 
 function redirectWithError(origin: string, path: string, message: string) {
-  const target = new URL(path, origin);
+  const target = new URL(path, env.NEXT_PUBLIC_APP_URL);
   target.searchParams.set('error', message);
   return NextResponse.redirect(target);
 }
 
 function redirectToLoginWithNext(origin: string, nextPath: string, message: string) {
-  const target = new URL('/login', origin);
+  const target = new URL('/login', env.NEXT_PUBLIC_APP_URL);
   target.searchParams.set('next', nextPath);
   target.searchParams.set('message', message);
   return NextResponse.redirect(target);
@@ -39,7 +40,7 @@ export async function GET(request: NextRequest) {
   const type = url.searchParams.get('type') as EmailOtpType | null;
   const flow = url.searchParams.get('flow');
   const supabase = await getSupabaseServerSessionClient();
-  const nextUrl = new URL(nextPath, 'https://study-assistant.local');
+  const nextUrl = new URL(nextPath, env.NEXT_PUBLIC_APP_URL);
   const emailChangeStatus = nextUrl.searchParams.get('email-change');
 
   if (flow === 'email-change-complete') {
@@ -109,7 +110,7 @@ export async function GET(request: NextRequest) {
       return redirectWithError(url.origin, '/login', 'Your email was updated, but the profile mirror could not be synced.');
     }
 
-    const successUrl = new URL('/email-change-success', url.origin);
+    const successUrl = new URL('/email-change-success', env.NEXT_PUBLIC_APP_URL);
     successUrl.searchParams.set('email', approvalPayload.targetEmail);
     return NextResponse.redirect(successUrl);
   }
@@ -118,10 +119,10 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (error) {
-      return redirectWithError(url.origin, '/login', 'The sign-in link is invalid or has expired.');
+      return redirectWithError(env.NEXT_PUBLIC_APP_URL, '/login', 'The sign-in link is invalid or has expired.');
     }
 
-    return NextResponse.redirect(new URL(nextPath, url.origin));
+    return NextResponse.redirect(new URL(nextPath, env.NEXT_PUBLIC_APP_URL));
   }
 
   if (tokenHash && type && supportedOtpTypes.has(type)) {
@@ -146,12 +147,12 @@ export async function GET(request: NextRequest) {
       } = await supabase.auth.getUser();
 
       if (!approvalPayload || !user || approvalPayload.userId !== user.id || approvalPayload.email.toLowerCase() !== (user.email ?? '').toLowerCase()) {
-        const response = redirectWithError(url.origin, '/login', 'The email approval link is invalid or has expired.');
+        const response = redirectWithError(env.NEXT_PUBLIC_APP_URL, '/login', 'The email approval link is invalid or has expired.');
         response.cookies.set(EMAIL_LOGIN_REQUEST_COOKIE, '', buildExpiredEmailChallengeCookieOptions());
         return response;
       }
 
-      const response = NextResponse.redirect(new URL(approvalPayload.nextPath, url.origin));
+      const response = NextResponse.redirect(new URL(approvalPayload.nextPath, env.NEXT_PUBLIC_APP_URL));
       const sessionToken = await createSignedEmailLoginSessionToken({
         userId: user.id,
         signInAt: user.last_sign_in_at ?? '',
@@ -162,16 +163,16 @@ export async function GET(request: NextRequest) {
       return response;
     }
 
-    return NextResponse.redirect(new URL(type === 'recovery' ? '/reset-password' : nextPath, url.origin));
+    return NextResponse.redirect(new URL(type === 'recovery' ? '/reset-password' : nextPath, env.NEXT_PUBLIC_APP_URL));
   }
 
   if (emailChangeStatus === 'confirmed') {
     return redirectToLoginWithNext(
-      url.origin,
+      env.NEXT_PUBLIC_APP_URL,
       nextPath,
       'Email confirmed. Sign in with your new email to continue.',
     );
   }
 
-  return redirectWithError(url.origin, '/login', 'The authentication link is invalid or incomplete.');
+  return redirectWithError(env.NEXT_PUBLIC_APP_URL, '/login', 'The authentication link is invalid or incomplete.');
 }
