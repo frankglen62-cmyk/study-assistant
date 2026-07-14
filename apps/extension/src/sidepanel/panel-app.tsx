@@ -300,7 +300,7 @@ export function SidePanelApp() {
   const [workspaceView, setWorkspaceView] = useState<'controls' | 'answering'>('controls');
   const subjectsLoadingRef = useRef(false);
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
-  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
+  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistantweb-production.up.railway.app');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
   const [pairingFeedback, setPairingFeedback] = useState<{ tone: 'info' | 'success' | 'warning' | 'danger'; message: string } | null>({
@@ -711,7 +711,7 @@ export function SidePanelApp() {
   }
 
   async function requestPortalPermissionFromGesture() {
-    const normalizedUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistant-web.vercel.app');
+    const normalizedUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistantweb-production.up.railway.app');
     const originPattern = normalizeOriginPattern(normalizedUrl);
     const alreadyGranted = await chrome.permissions.contains({ origins: [originPattern] });
 
@@ -798,7 +798,7 @@ export function SidePanelApp() {
   }
 
   async function openPortalDraft() {
-    const targetUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistant-web.vercel.app');
+    const targetUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistantweb-production.up.railway.app');
     await chrome.tabs.create({ url: targetUrl });
   }
 

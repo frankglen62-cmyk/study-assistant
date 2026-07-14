@@ -104,7 +104,7 @@ function formatSummaryState(status: ExtensionState['pairingStatus'] | null | und
 export function OnboardingApp() {
   const state = useOnboardingState();
   const extensionVersion = useMemo(() => getExtensionVersion(), []);
-  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistant-web.vercel.app');
+  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistantweb-production.up.railway.app');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
   const [statusMessage, setStatusMessage] = useState('Ready to request permission and pair this browser securely.');
