@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import type { ReactNode } from 'react';
 import { PublicShell } from '@/components/layout/public-shell';
 import { publicNavItems } from '@/lib/navigation';
