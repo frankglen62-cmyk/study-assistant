@@ -26,9 +26,9 @@ const serverEnvSchema = z.object({
   PAYMONGO_SECRET_KEY: z.string().min(20).optional(),
   PAYMONGO_WEBHOOK_SECRET: z.string().min(20).optional(),
   PAYMONGO_API_BASE_URL: z.string().url().optional(),
-  CRON_SECRET: z.string().min(20),
-  EXTENSION_PAIRING_SECRET: z.string().min(20),
-  AUTH_EMAIL_CHALLENGE_SECRET: z.string().min(20).optional(),
+  CRON_SECRET: z.string().min(32),
+  EXTENSION_PAIRING_SECRET: z.string().min(32),
+  AUTH_EMAIL_CHALLENGE_SECRET: z.string().min(32).optional(),
   SESSION_IDLE_SECONDS: z.string().optional(),
   LOW_CREDIT_THRESHOLD_SECONDS: z.string().optional(),
   MAX_UPLOAD_SIZE_MB: z.string().optional(),
@@ -41,6 +41,12 @@ const serverEnvSchema = z.object({
 });
 
 const parsed = serverEnvSchema.parse(process.env);
+
+const appUrl = new URL(parsed.NEXT_PUBLIC_APP_URL);
+const appUrlIsLoopback = ['localhost', '127.0.0.1', '[::1]', '::1'].includes(appUrl.hostname.toLowerCase());
+if (process.env.NODE_ENV === 'production' && appUrl.protocol !== 'https:' && !appUrlIsLoopback) {
+  throw new Error('NEXT_PUBLIC_APP_URL must use HTTPS in production.');
+}
 
 if (parsed.STRIPE_SECRET_KEY && !parsed.STRIPE_WEBHOOK_SECRET) {
   throw new Error('STRIPE_WEBHOOK_SECRET is required when STRIPE_SECRET_KEY is configured.');

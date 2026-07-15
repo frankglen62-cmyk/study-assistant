@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Admin-Managed AI Study Assistant",
   "description": "Admin-controlled AI study assistance with secure pairing, side panel answers, and explicit active-tab analysis.",
-  "version": "0.1.99",
+  "version": "0.3.0",
   "minimum_chrome_version": "116",
   "action": {
     "default_title": "Open Study Assistant",
@@ -21,6 +21,9 @@
     "service_worker": "service-worker.js",
     "type": "module"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
   "permissions": [
     "activeTab",
     "alarms",
@@ -31,20 +34,11 @@
     "tabs"
   ],
   "optional_host_permissions": [
-    "http://*/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
     "https://*/*"
   ],
   "side_panel": {
     "default_path": "src/sidepanel/index.html"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "src/onboarding/index.html"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
-  ]
+  }
 }

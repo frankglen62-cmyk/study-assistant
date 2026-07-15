@@ -1,5 +1,8 @@
 import { RouteError } from '@/lib/http/route';
 import { logEvent } from '@/lib/observability/logger';
+import { sha256Hex } from '@/lib/security/hash';
+import { getSupabaseAdmin } from '@/lib/supabase/server';
+import { assertSupabaseResult } from '@/lib/supabase/utils';
 
 interface RateLimitRule {
   max: number;
@@ -11,16 +14,9 @@ interface RateLimitEntry {
   resetAt: number;
 }
 
-/**
- * In-memory rate-limit store.
- *
- * SERVERLESS NOTE: On platforms like Vercel, each function instance keeps
- * its own Map. This means rate limits are per-instance, not global.
- * For a production-grade distributed rate limiter, replace this with
- * Upstash Redis or Vercel KV. The per-instance approach still provides
- * meaningful protection against sustained abuse from a single client
- * hitting the same warm instance.
- */
+/** Fast per-instance rejection layer. Security-sensitive routes additionally
+ * call `assertDistributedRateLimit`, whose authoritative counter is updated
+ * atomically in Postgres and is shared by every serverless instance. */
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
 let lastCleanup = Date.now();
@@ -50,7 +46,7 @@ export function assertRateLimit(key: string, rule: RateLimitRule) {
 
   if (current.count >= rule.max) {
     logEvent('warn', 'rate_limit.rejected', {
-      key,
+      keyHashPrefix: sha256Hex(key).slice(0, 12),
       max: rule.max,
       windowMs: rule.windowMs,
       currentCount: current.count,
@@ -62,6 +58,35 @@ export function assertRateLimit(key: string, rule: RateLimitRule) {
     ...current,
     count: current.count + 1,
   });
+}
+
+export async function assertDistributedRateLimit(key: string, rule: RateLimitRule) {
+  assertRateLimit(key, rule);
+
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase.rpc('consume_security_rate_limit', {
+    p_key_hash: sha256Hex(key),
+    p_max_requests: rule.max,
+    p_window_ms: rule.windowMs,
+  });
+
+  assertSupabaseResult(error, 'Failed to enforce the security rate limit.');
+
+  const result = data as { allowed?: unknown; count?: unknown; resetAt?: unknown } | null;
+  if (!result || typeof result.allowed !== 'boolean') {
+    throw new RouteError(500, 'invalid_database_shape', 'Security rate limit returned an invalid result.');
+  }
+
+  if (!result.allowed) {
+    logEvent('warn', 'rate_limit.distributed_rejected', {
+      keyHashPrefix: sha256Hex(key).slice(0, 12),
+      max: rule.max,
+      windowMs: rule.windowMs,
+      currentCount: typeof result.count === 'number' ? result.count : null,
+      resetAt: typeof result.resetAt === 'string' ? result.resetAt : null,
+    });
+    throw new RouteError(429, 'rate_limited', 'Too many requests. Please try again shortly.');
+  }
 }
 
 /* ------------------------------------------------------------------ */

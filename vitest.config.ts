@@ -15,6 +15,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
+    setupFiles: ['./apps/web/tests/setup-env.ts'],
     include: ['apps/**/*.test.ts', 'packages/**/*.test.ts'],
     coverage: {
       enabled: false,

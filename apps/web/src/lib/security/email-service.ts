@@ -19,6 +19,13 @@ let brevoSenderCache:
     }
   | null = null;
 
+function maskEmail(value: string) {
+  const [local = '', domain = ''] = value.split('@');
+  if (!domain) return '[invalid-email]';
+  const visible = local.slice(0, Math.min(2, local.length));
+  return `${visible}${'*'.repeat(Math.max(1, local.length - visible.length))}@${domain}`;
+}
+
 function getResendClient(): Resend | null {
   if (!resendApiKey) {
     return null;
@@ -64,8 +71,7 @@ async function listBrevoSenders(): Promise<BrevoSender[]> {
   });
 
   if (!response.ok) {
-    const details = await response.text();
-    console.error('Failed to list Brevo senders:', details);
+    console.error('Failed to list Brevo senders.', { status: response.status });
     return [];
   }
 
@@ -109,7 +115,7 @@ async function resolveBrevoSender(): Promise<BrevoSender> {
 
   const fallbackSender = activeSenders[0]!;
   console.warn(
-    `Configured Brevo sender "${configuredSender.email}" is not active. Falling back to "${fallbackSender.email}".`,
+    'Configured Brevo sender is not active; using another verified sender.',
   );
 
   return {
@@ -136,10 +142,9 @@ async function sendBrevoMessage(input: {
   };
 
   console.log('[Brevo] Sending email:', {
-    sender: input.sender,
-    to: input.to,
+    sender: maskEmail(input.sender.email),
+    to: maskEmail(input.to),
     subject: input.subject,
-    apiKeyPrefix: brevoApiKey.substring(0, 12) + '...',
   });
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -152,26 +157,20 @@ async function sendBrevoMessage(input: {
     cache: 'no-store',
   });
 
-  const responseText = await response.text();
+  await response.text();
   console.log('[Brevo] Response:', {
     status: response.status,
     statusText: response.statusText,
-    body: responseText,
   });
 
-  return { ok: response.ok, status: response.status, text: responseText };
-}
-
-function isInvalidBrevoSender(details: string) {
-  const normalized = details.toLowerCase();
-  return normalized.includes('sender') && (normalized.includes('invalid') || normalized.includes('not valid'));
+  return { ok: response.ok, status: response.status };
 }
 
 async function sendWithBrevo(to: string, subject: string, html: string): Promise<void> {
   // Proactively resolve the verified active sender from Brevo instead of
   // relying on the configured BREVO_FROM_EMAIL which may not be verified.
   const sender = await resolveBrevoSender();
-  console.log('[Brevo] Starting email send to:', to, 'with verified sender:', sender);
+  console.log('[Brevo] Starting email send.', { to: maskEmail(to), sender: maskEmail(sender.email) });
 
   const result = await sendBrevoMessage({
     sender,
@@ -181,11 +180,11 @@ async function sendWithBrevo(to: string, subject: string, html: string): Promise
   });
 
   if (!result.ok) {
-    console.error('[Brevo] Failed to send email:', result.text);
+    console.error('[Brevo] Failed to send email.', { status: result.status });
     throw new Error('Unable to send verification email. Please try again.');
   }
 
-  console.log('[Brevo] Email sent successfully to:', to);
+  console.log('[Brevo] Email sent successfully.', { to: maskEmail(to) });
 }
 
 async function sendWithResend(to: string, subject: string, html: string): Promise<void> {
@@ -198,14 +197,18 @@ async function sendWithResend(to: string, subject: string, html: string): Promis
       );
     }
 
-    console.log('');
-    console.log('==========================================');
-    console.log(`  EMAIL FALLBACK for ${to}`);
-    console.log(`  Subject: ${subject}`);
-    console.log(html);
-    console.log('==========================================');
-    console.log('');
-    return;
+    if (process.env.ALLOW_INSECURE_DEV_EMAIL_PREVIEW === 'true') {
+      console.warn('Development email preview is enabled; never enable this setting in production.', {
+        to: maskEmail(to),
+        subject,
+        html,
+      });
+      return;
+    }
+
+    throw new Error(
+      'OTP email delivery is not configured. Configure Brevo/Resend or explicitly enable the insecure development preview.',
+    );
   }
 
   const { error } = await client.emails.send({

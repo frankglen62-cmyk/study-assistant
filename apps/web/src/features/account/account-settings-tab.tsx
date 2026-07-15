@@ -15,7 +15,7 @@ import {
   Loader2,
 } from 'lucide-react';
 
-import { Badge, Button } from '@study-assistant/ui';
+import { Badge, Button, Input } from '@study-assistant/ui';
 import { useToast } from '@/components/providers/toast-provider';
 import { ChangePasswordModal } from '@/features/account/change-password-modal';
 import { ChangeEmailModal } from '@/features/account/change-email-modal';
@@ -52,6 +52,8 @@ export function AccountSettingsTab({ profile, security, activeDevices }: Account
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [emailTwoFAEnabled, setEmailTwoFAEnabled] = useState(security.emailTwoFactorEnabled);
   const [isTogglingEmail2FA, setIsTogglingEmail2FA] = useState(false);
+  const [emailTwoFACode, setEmailTwoFACode] = useState('');
+  const [emailTwoFACodeRequired, setEmailTwoFACodeRequired] = useState(false);
 
   const initials = profile.fullName
     .split(' ')
@@ -60,18 +62,29 @@ export function AccountSettingsTab({ profile, security, activeDevices }: Account
     .slice(0, 2)
     .toUpperCase();
 
-  async function handleToggleEmail2FA() {
+  async function handleToggleEmail2FA(code?: string) {
     const nextValue = !emailTwoFAEnabled;
     setIsTogglingEmail2FA(true);
     try {
       const res = await fetch('/api/account/email-2fa', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ enabled: nextValue }),
+        body: JSON.stringify({ enabled: nextValue, ...(code ? { code } : {}) }),
       });
-      const payload = (await res.json().catch(() => null)) as { error?: string } | null;
+      const payload = (await res.json().catch(() => null)) as { error?: string; code?: string } | null;
+      if (res.status === 428 && payload?.code === 'otp_required') {
+        setEmailTwoFACodeRequired(true);
+        pushToast({
+          tone: 'info',
+          title: 'Verification required',
+          description: 'A 6-digit code was sent to your email.',
+        });
+        return;
+      }
       if (!res.ok) throw new Error(payload?.error ?? 'Unable to update.');
       setEmailTwoFAEnabled(nextValue);
+      setEmailTwoFACodeRequired(false);
+      setEmailTwoFACode('');
       pushToast({
         tone: 'success',
         title: nextValue ? 'Email 2FA enabled' : 'Email 2FA disabled',
@@ -166,7 +179,7 @@ export function AccountSettingsTab({ profile, security, activeDevices }: Account
               </div>
               <button
                 type="button"
-                onClick={handleToggleEmail2FA}
+                onClick={() => void handleToggleEmail2FA()}
                 disabled={isTogglingEmail2FA}
                 className="shrink-0 text-accent transition-transform hover:scale-110 disabled:opacity-50"
                 aria-label="Toggle email 2FA"
@@ -180,6 +193,43 @@ export function AccountSettingsTab({ profile, security, activeDevices }: Account
                 )}
               </button>
             </div>
+
+            {emailTwoFACodeRequired ? (
+              <div className="rounded-xl border border-accent/30 bg-accent/5 p-4">
+                <p className="text-sm font-medium text-foreground">Confirm disabling email 2FA</p>
+                <p className="mt-1 text-xs text-muted-foreground">Enter the code sent to {profile.email}.</p>
+                <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                  <Input
+                    value={emailTwoFACode}
+                    onChange={(event) => setEmailTwoFACode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    placeholder="6-digit code"
+                    className="sm:max-w-48"
+                  />
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={() => void handleToggleEmail2FA(emailTwoFACode)}
+                    disabled={isTogglingEmail2FA || emailTwoFACode.length !== 6}
+                  >
+                    Verify and disable
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => {
+                      setEmailTwoFACodeRequired(false);
+                      setEmailTwoFACode('');
+                    }}
+                    disabled={isTogglingEmail2FA}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            ) : null}
 
             {/* Password */}
             <div className="rounded-xl border border-border/40 bg-background p-5">

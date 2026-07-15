@@ -8,7 +8,7 @@ import { requirePortalUser } from '@/lib/auth/request-context';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
 import { createPairingCode } from '@/lib/supabase/extension';
-import { assertRateLimit } from '@/lib/security/rate-limit';
+import { assertDistributedRateLimit } from '@/lib/security/rate-limit';
 import { getUserAccessOverrideByUserId } from '@/lib/supabase/users';
 
 const requestSchema = z
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   try {
     const context = await requirePortalUser(request, ['client', 'admin', 'super_admin']);
-    assertRateLimit(`pair:${context.userId}`, { max: 10, windowMs: 10 * 60 * 1000 });
+    await assertDistributedRateLimit(`pair:${context.userId}`, { max: 10, windowMs: 10 * 60 * 1000 });
     const accessOverride = await getUserAccessOverrideByUserId(context.userId);
 
     if (accessOverride?.can_use_extension === false) {

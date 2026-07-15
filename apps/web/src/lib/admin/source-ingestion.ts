@@ -15,6 +15,13 @@ import { assertSupabaseResult } from '@/lib/supabase/utils';
 const SOURCE_BUCKET = 'private-sources';
 const MAX_CHUNK_CHARS = 1400;
 const CHUNK_OVERLAP_CHARS = 220;
+const MAX_ARCHIVE_ENTRIES = 512;
+const MAX_ARCHIVE_EXPANDED_BYTES = 64 * 1024 * 1024;
+const MAX_ARCHIVE_ENTRY_BYTES = 16 * 1024 * 1024;
+const MAX_COMPRESSION_RATIO = 100;
+const MAX_PDF_STREAMS = 2048;
+const MAX_EXTRACTED_TEXT_CHARS = 2_500_000;
+const MAX_SOURCE_CHUNKS = 2200;
 
 const allowedMimeTypes = new Set([
   'application/pdf',
@@ -142,7 +149,30 @@ function extractPrintableText(buffer: Buffer) {
   return normalizeWhitespace((printable ?? []).join('\n'));
 }
 
-function readZipEntries(buffer: Buffer) {
+function assertExtractedTextBudget(value: string) {
+  if (value.length > MAX_EXTRACTED_TEXT_CHARS) {
+    throw new RouteError(
+      422,
+      'source_expanded_too_large',
+      `Extracted source text exceeds the ${MAX_EXTRACTED_TEXT_CHARS.toLocaleString()}-character safety limit.`,
+    );
+  }
+
+  return value;
+}
+
+function assertCompressionBudget(params: { compressedBytes: number; expandedBytes: number }) {
+  if (params.expandedBytes > MAX_ARCHIVE_ENTRY_BYTES) {
+    throw new RouteError(422, 'archive_entry_too_large', 'A compressed document entry exceeds the expanded-size limit.');
+  }
+
+  const ratio = params.expandedBytes / Math.max(1, params.compressedBytes);
+  if (ratio > MAX_COMPRESSION_RATIO) {
+    throw new RouteError(422, 'archive_ratio_too_large', 'A compressed document entry exceeds the safe expansion ratio.');
+  }
+}
+
+function readZipEntries(buffer: Buffer, includeEntry: (filename: string) => boolean) {
   const entries = new Map<string, Buffer>();
   let eocdOffset = -1;
 
@@ -159,49 +189,90 @@ function readZipEntries(buffer: Buffer) {
 
   const entryCount = buffer.readUInt16LE(eocdOffset + 10);
   const centralDirectoryOffset = buffer.readUInt32LE(eocdOffset + 16);
+  if (entryCount > MAX_ARCHIVE_ENTRIES) {
+    throw new RouteError(422, 'archive_entry_limit', `Compressed documents may contain at most ${MAX_ARCHIVE_ENTRIES} entries.`);
+  }
+
+  if (centralDirectoryOffset < 0 || centralDirectoryOffset >= buffer.length) {
+    throw new RouteError(422, 'zip_parse_failed', 'The Office document central directory offset is invalid.');
+  }
+
   let pointer = centralDirectoryOffset;
+  let expandedBytes = 0;
 
   for (let index = 0; index < entryCount; index += 1) {
+    if (pointer < 0 || pointer + 46 > buffer.length) {
+      throw new RouteError(422, 'zip_parse_failed', 'The Office document central directory is truncated.');
+    }
+
     if (buffer.readUInt32LE(pointer) !== 0x02014b50) {
       throw new RouteError(422, 'zip_parse_failed', 'The Office document central directory is invalid.');
     }
 
     const compressionMethod = buffer.readUInt16LE(pointer + 10);
     const compressedSize = buffer.readUInt32LE(pointer + 20);
+    const declaredExpandedSize = buffer.readUInt32LE(pointer + 24);
     const fileNameLength = buffer.readUInt16LE(pointer + 28);
     const extraLength = buffer.readUInt16LE(pointer + 30);
     const commentLength = buffer.readUInt16LE(pointer + 32);
     const localHeaderOffset = buffer.readUInt32LE(pointer + 42);
+    const nextPointer = pointer + 46 + fileNameLength + extraLength + commentLength;
+    if (nextPointer > buffer.length) {
+      throw new RouteError(422, 'zip_parse_failed', 'The Office document entry metadata is truncated.');
+    }
     const filename = buffer.slice(pointer + 46, pointer + 46 + fileNameLength).toString('utf8');
 
-    if (buffer.readUInt32LE(localHeaderOffset) !== 0x04034b50) {
+    if (!includeEntry(filename)) {
+      pointer = nextPointer;
+      continue;
+    }
+
+    assertCompressionBudget({ compressedBytes: compressedSize, expandedBytes: declaredExpandedSize });
+    if (expandedBytes + declaredExpandedSize > MAX_ARCHIVE_EXPANDED_BYTES) {
+      throw new RouteError(422, 'archive_expanded_too_large', 'The compressed document exceeds the total expanded-size limit.');
+    }
+
+    if (localHeaderOffset < 0 || localHeaderOffset + 30 > buffer.length || buffer.readUInt32LE(localHeaderOffset) !== 0x04034b50) {
       throw new RouteError(422, 'zip_parse_failed', 'The Office document local entry header is invalid.');
     }
 
     const localNameLength = buffer.readUInt16LE(localHeaderOffset + 26);
     const localExtraLength = buffer.readUInt16LE(localHeaderOffset + 28);
     const dataStart = localHeaderOffset + 30 + localNameLength + localExtraLength;
+    if (dataStart < 0 || dataStart + compressedSize > buffer.length) {
+      throw new RouteError(422, 'zip_parse_failed', 'The Office document entry data is truncated.');
+    }
     const compressedData = buffer.slice(dataStart, dataStart + compressedSize);
 
     let data: Buffer;
     if (compressionMethod === 0) {
       data = compressedData;
     } else if (compressionMethod === 8) {
-      data = inflateRawSync(compressedData);
+      data = inflateRawSync(compressedData, { maxOutputLength: MAX_ARCHIVE_ENTRY_BYTES });
     } else {
-      pointer += 46 + fileNameLength + extraLength + commentLength;
+      pointer = nextPointer;
       continue;
     }
 
+    assertCompressionBudget({ compressedBytes: compressedSize, expandedBytes: data.length });
+    expandedBytes += data.length;
+    if (expandedBytes > MAX_ARCHIVE_EXPANDED_BYTES) {
+      throw new RouteError(422, 'archive_expanded_too_large', 'The compressed document exceeds the total expanded-size limit.');
+    }
+
     entries.set(filename, data);
-    pointer += 46 + fileNameLength + extraLength + commentLength;
+    pointer = nextPointer;
   }
 
   return entries;
 }
 
 function extractOfficeDocumentText(buffer: Buffer, kind: 'docx' | 'pptx') {
-  const entries = readZipEntries(buffer);
+  const includeEntry =
+    kind === 'docx'
+      ? (name: string) => /^word\/(document|header\d+|footer\d+|footnotes|endnotes)\.xml$/i.test(name)
+      : (name: string) => /^ppt\/slides\/slide\d+\.xml$/i.test(name);
+  const entries = readZipEntries(buffer, includeEntry);
   const relevantPaths =
     kind === 'docx'
       ? [...entries.keys()]
@@ -214,7 +285,7 @@ function extractOfficeDocumentText(buffer: Buffer, kind: 'docx' | 'pptx') {
     .map(stripXml)
     .join('\n\n');
 
-  return normalizeWhitespace(content);
+  return assertExtractedTextBudget(normalizeWhitespace(content));
 }
 
 function decodePdfLiteralString(input: string) {
@@ -230,12 +301,20 @@ function decodePdfLiteralString(input: string) {
 function extractPdfText(buffer: Buffer) {
   const binary = buffer.toString('latin1');
   const collected: string[] = [];
+  let collectedChars = 0;
   let cursor = 0;
+  let streamCount = 0;
+  let totalExpandedBytes = 0;
 
   while (cursor < binary.length) {
     const streamIndex = binary.indexOf('stream', cursor);
     if (streamIndex < 0) {
       break;
+    }
+
+    streamCount += 1;
+    if (streamCount > MAX_PDF_STREAMS) {
+      throw new RouteError(422, 'pdf_stream_limit', `PDF sources may contain at most ${MAX_PDF_STREAMS} streams.`);
     }
 
     const lineBreakLength = binary[streamIndex + 6] === '\r' && binary[streamIndex + 7] === '\n' ? 2 : 1;
@@ -248,20 +327,26 @@ function extractPdfText(buffer: Buffer) {
 
     const headerSlice = binary.slice(Math.max(0, streamIndex - 250), streamIndex);
     const streamBuffer = buffer.slice(dataStart, endStreamIndex);
-    let decodedStream = '';
+    let decodedStream: string;
 
-    try {
-      if (/FlateDecode/.test(headerSlice)) {
+    if (/FlateDecode/.test(headerSlice)) {
+      try {
+        decodedStream = inflateSync(streamBuffer, { maxOutputLength: MAX_ARCHIVE_ENTRY_BYTES }).toString('latin1');
+      } catch {
         try {
-          decodedStream = inflateSync(streamBuffer).toString('latin1');
+          decodedStream = inflateRawSync(streamBuffer, { maxOutputLength: MAX_ARCHIVE_ENTRY_BYTES }).toString('latin1');
         } catch {
-          decodedStream = inflateRawSync(streamBuffer).toString('latin1');
+          throw new RouteError(422, 'pdf_stream_decode_failed', 'A compressed PDF stream could not be decoded safely.');
         }
-      } else {
-        decodedStream = streamBuffer.toString('latin1');
       }
-    } catch {
+    } else {
       decodedStream = streamBuffer.toString('latin1');
+    }
+
+    assertCompressionBudget({ compressedBytes: streamBuffer.length, expandedBytes: decodedStream.length });
+    totalExpandedBytes += decodedStream.length;
+    if (totalExpandedBytes > MAX_ARCHIVE_EXPANDED_BYTES) {
+      throw new RouteError(422, 'pdf_expanded_too_large', 'The PDF exceeds the total expanded-stream limit.');
     }
 
     const literalMatches = decodedStream.match(/\((?:\\.|[^\\)])+\)/g) ?? [];
@@ -269,18 +354,22 @@ function extractPdfText(buffer: Buffer) {
       const decoded = decodePdfLiteralString(literal.slice(1, -1)).trim();
       if (decoded.length >= 2) {
         collected.push(decoded);
+        collectedChars += decoded.length;
+        if (collectedChars > MAX_EXTRACTED_TEXT_CHARS) {
+          throw new RouteError(422, 'source_expanded_too_large', 'The PDF exceeds the extracted-text safety limit.');
+        }
       }
     }
 
     cursor = endStreamIndex + 'endstream'.length;
   }
 
-  const extracted = normalizeWhitespace(collected.join('\n'));
+  const extracted = assertExtractedTextBudget(normalizeWhitespace(collected.join('\n')));
   if (extracted.length >= 40) {
     return extracted;
   }
 
-  return extractPrintableText(buffer);
+  return assertExtractedTextBudget(extractPrintableText(buffer));
 }
 
 async function extractSourceText(params: {
@@ -292,15 +381,15 @@ async function extractSourceText(params: {
   const mimeType = params.mimeType || 'application/octet-stream';
 
   if (mimeType.startsWith('text/') || ['txt', 'md', 'csv'].includes(extension)) {
-    return normalizeWhitespace(params.buffer.toString('utf8'));
+    return assertExtractedTextBudget(normalizeWhitespace(params.buffer.toString('utf8')));
   }
 
   if (mimeType.startsWith('image/') || ['jpg', 'jpeg', 'png', 'webp'].includes(extension)) {
-    return normalizeWhitespace(
+    return assertExtractedTextBudget(normalizeWhitespace(
       await extractTextFromImageDataUrl({
         imageDataUrl: toDataUrl(mimeType.startsWith('image/') ? mimeType : `image/${extension === 'jpg' ? 'jpeg' : extension}`, params.buffer),
       }),
-    );
+    ));
   }
 
   if (mimeType === 'application/pdf' || extension === 'pdf') {
@@ -329,7 +418,7 @@ function estimateTokenCount(input: string) {
 }
 
 function buildChunks(text: string) {
-  const normalized = normalizeWhitespace(text);
+  const normalized = assertExtractedTextBudget(normalizeWhitespace(text));
   if (!normalized) {
     return [];
   }
@@ -358,6 +447,9 @@ function buildChunks(text: string) {
         text: chunkText,
         heading: firstLine.length >= 6 ? firstLine.slice(0, 140) : null,
       });
+      if (chunks.length > MAX_SOURCE_CHUNKS) {
+        throw new RouteError(422, 'source_chunk_limit', `A source may produce at most ${MAX_SOURCE_CHUNKS} chunks.`);
+      }
     }
 
     if (end >= normalized.length) {
@@ -437,6 +529,9 @@ async function insertChunks(params: {
   source: SourceRecord;
   chunks: Array<{ text: string; heading: string | null }>;
 }) {
+  if (params.chunks.length > MAX_SOURCE_CHUNKS) {
+    throw new RouteError(422, 'source_chunk_limit', `A source may contain at most ${MAX_SOURCE_CHUNKS} chunks.`);
+  }
   const supabase = getSupabaseAdmin();
   const rows = [];
 

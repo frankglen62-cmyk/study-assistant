@@ -4,7 +4,7 @@ import type { PaymentCheckoutResponse, PaymentHistoryResponse, PaymentProvider }
 
 import { normalizeAppUrl } from '@study-assistant/shared-utils';
 
-import { applyPaymentCreditOnce } from '@/lib/billing/wallet';
+import { applyPaymentCreditOnce, reversePaymentCreditOnce } from '@/lib/billing/wallet';
 import { env } from '@/lib/env/server';
 import { RouteError } from '@/lib/http/route';
 import { writeAuditLog } from '@/lib/observability/audit';
@@ -16,6 +16,7 @@ import {
   getActivePaymentPackage,
   getPaymentByCheckoutSessionId,
   getPaymentById,
+  getPaymentByProviderPaymentId,
   getPaymentCustomerForUser,
   getPaymentPackageById,
   listPaymentsForUser,
@@ -94,13 +95,49 @@ async function finalizeSuccessfulPayment(params: {
   checkoutSessionId?: string | null;
   rawPayload: Record<string, unknown>;
   eventType?: string;
+  metadata?: Record<string, string>;
+  paymentStatus?: string | null;
+  amountMinor?: number | null;
+  currency?: string | null;
 }) {
-  if (params.payment.status === 'paid') {
+  if (params.payment.status === 'paid' || params.payment.status === 'refunded') {
     return { handled: true, ignored: false, duplicate: true };
   }
 
   if (!params.payment.package_id) {
     throw new RouteError(500, 'payment_package_missing', 'Paid payment record does not reference a package.');
+  }
+
+  if (params.payment.provider !== params.provider) {
+    throw new RouteError(400, 'payment_provider_mismatch', 'Webhook provider does not match the payment record.');
+  }
+
+  if (params.metadata?.paymentId && params.metadata.paymentId !== params.payment.id) {
+    throw new RouteError(400, 'payment_metadata_mismatch', 'Webhook payment metadata does not match the payment record.');
+  }
+
+  if (params.metadata?.userId && params.metadata.userId !== params.payment.user_id) {
+    throw new RouteError(400, 'payment_metadata_mismatch', 'Webhook user metadata does not match the payment record.');
+  }
+
+  if (params.metadata?.packageId && params.metadata.packageId !== params.payment.package_id) {
+    throw new RouteError(400, 'payment_metadata_mismatch', 'Webhook package metadata does not match the payment record.');
+  }
+
+  if (params.amountMinor !== null && params.amountMinor !== undefined && params.amountMinor !== params.payment.amount_minor) {
+    throw new RouteError(400, 'payment_amount_mismatch', 'Webhook amount does not match the pending payment.');
+  }
+
+  if (params.currency && params.currency.toUpperCase() !== params.payment.currency.toUpperCase()) {
+    throw new RouteError(400, 'payment_currency_mismatch', 'Webhook currency does not match the pending payment.');
+  }
+
+  if (params.provider === 'stripe' && params.paymentStatus !== 'paid') {
+    throw new RouteError(400, 'payment_not_paid', 'Stripe checkout has not reached a paid state.');
+  }
+
+  if (!params.payment.entitlement_seconds || params.payment.entitlement_seconds <= 0) {
+    throw new RouteError(500, 'payment_entitlement_missing', 'Payment does not contain a valid entitlement snapshot.');
   }
 
   const paymentPackage = await getPaymentPackageById(params.payment.package_id);
@@ -111,7 +148,8 @@ async function finalizeSuccessfulPayment(params: {
     description: `${params.provider === 'paymongo' ? 'PayMongo' : 'Stripe'} top-up for ${paymentPackage.name}`,
     metadata: {
       checkoutSessionId: params.checkoutSessionId ?? params.payment.provider_checkout_session_id ?? '',
-      packageCode: paymentPackage.code,
+      packageCode: params.payment.entitlement_package_code ?? paymentPackage.code,
+      entitlementSeconds: params.payment.entitlement_seconds,
       provider: params.provider,
       ...(params.eventType ? { eventType: params.eventType } : {}),
     },
@@ -128,18 +166,72 @@ async function finalizeSuccessfulPayment(params: {
     eventType: 'payment.credited',
     entityType: 'payments',
     entityId: params.payment.id,
-    eventSummary: `Provisioned ${paymentPackage.seconds_to_credit} seconds from ${params.provider} payment ${params.payment.id}.`,
+    eventSummary: `Provisioned ${params.payment.entitlement_seconds} seconds from ${params.provider} payment ${params.payment.id}.`,
   });
 
   logEvent('info', 'payment.webhook.credited', {
     paymentId: params.payment.id,
     userId: params.payment.user_id,
-    seconds: paymentPackage.seconds_to_credit,
+    seconds: params.payment.entitlement_seconds,
     remainingSeconds: walletResult.remaining_seconds,
     provider: params.provider,
   });
 
   return { handled: true, ignored: false };
+}
+
+async function finalizePaymentReversal(params: {
+  payment: Awaited<ReturnType<typeof getPaymentById>>;
+  provider: PaymentProvider;
+  refundedAmountMinor: number;
+  eventType: string;
+  rawPayload: Record<string, unknown>;
+  currency?: string | null;
+}) {
+  if (params.payment.provider !== params.provider) {
+    throw new RouteError(400, 'payment_provider_mismatch', 'Webhook provider does not match the payment record.');
+  }
+
+  if (params.currency && params.currency.toUpperCase() !== params.payment.currency.toUpperCase()) {
+    throw new RouteError(400, 'payment_currency_mismatch', 'Reversal currency does not match the payment record.');
+  }
+
+  if (!Number.isInteger(params.refundedAmountMinor) || params.refundedAmountMinor <= 0) {
+    throw new RouteError(400, 'payment_reversal_invalid', 'Webhook reversal amount is invalid.');
+  }
+
+  const result = await reversePaymentCreditOnce({
+    paymentId: params.payment.id,
+    refundedAmountMinor: params.refundedAmountMinor,
+    reason: `${params.provider} ${params.eventType} entitlement reversal`,
+    rawPayload: params.rawPayload,
+  });
+
+  await writeAuditLog({
+    actorUserId: params.payment.user_id,
+    actorRole: 'client',
+    eventType: 'payment.entitlement_reversed',
+    entityType: 'payments',
+    entityId: params.payment.id,
+    eventSummary: `Reversed ${result.reversedSeconds} seconds after ${params.provider} ${params.eventType}.`,
+    newValues: {
+      refundedAmountMinor: params.refundedAmountMinor,
+      reversedSeconds: result.reversedSeconds,
+      totalReversedSeconds: result.totalReversedSeconds,
+      shortfallSeconds: result.shortfallSeconds,
+      walletLocked: result.walletLocked,
+    },
+  });
+
+  logEvent(result.walletLocked ? 'warn' : 'info', 'payment.webhook.reversed', {
+    paymentId: params.payment.id,
+    userId: params.payment.user_id,
+    provider: params.provider,
+    eventType: params.eventType,
+    ...result,
+  });
+
+  return { handled: true, ignored: false, duplicate: result.reversedSeconds === 0 };
 }
 
 export async function createTopupCheckout(params: {
@@ -188,6 +280,9 @@ export async function createTopupCheckout(params: {
     providerPaymentId: `${params.provider}_pending_${randomUUID()}`,
     amountMinor: paymentPackage.amount_minor,
     currency: paymentPackage.currency,
+    entitlementSeconds: paymentPackage.seconds_to_credit,
+    entitlementExpiresAfterDays: paymentPackage.credit_expires_after_days ?? null,
+    entitlementPackageCode: paymentPackage.code,
     rawPayload: {
       phase: 'pending_checkout',
       provider: params.provider,
@@ -268,9 +363,30 @@ export async function handleStripeWebhook(rawBody: string, signature: string) {
   if (
     event.type !== 'checkout.session.completed' &&
     event.type !== 'checkout.session.async_payment_succeeded' &&
-    event.type !== 'checkout.session.expired'
+    event.type !== 'checkout.session.expired' &&
+    event.type !== 'charge.refunded' &&
+    event.type !== 'charge.dispute.created'
   ) {
     return { handled: true, ignored: true };
+  }
+
+  if (event.type === 'charge.refunded' || event.type === 'charge.dispute.created') {
+    if (!event.providerPaymentId || !event.reversalAmountMinor) {
+      throw new RouteError(400, 'invalid_stripe_event', 'Stripe reversal event did not contain a payment id and amount.');
+    }
+
+    const payment = await getPaymentByProviderPaymentId({
+      provider: 'stripe',
+      providerPaymentId: event.providerPaymentId,
+    });
+    return finalizePaymentReversal({
+      payment,
+      provider: 'stripe',
+      refundedAmountMinor: event.reversalAmountMinor,
+      eventType: event.type,
+      rawPayload: event.rawPayload,
+      currency: event.currency,
+    });
   }
 
   if (!event.checkoutSessionId) {
@@ -300,11 +416,31 @@ export async function handleStripeWebhook(rawBody: string, signature: string) {
     checkoutSessionId: event.checkoutSessionId,
     rawPayload: event.rawPayload,
     eventType: event.type,
+    metadata: event.metadata,
+    paymentStatus: event.paymentStatus,
+    amountMinor: event.amountMinor,
+    currency: event.currency,
   });
 }
 
 export async function handlePaymongoWebhook(rawBody: string, signature: string) {
   const event = paymongoProvider.verifyWebhook(rawBody, signature);
+
+  if (/(refund|refunded|dispute)/i.test(event.type)) {
+    const payment = await resolveWebhookPayment({
+      paymentId: event.metadata.paymentId ?? null,
+      checkoutSessionId: event.checkoutSessionId,
+    });
+
+    return finalizePaymentReversal({
+      payment,
+      provider: 'paymongo',
+      refundedAmountMinor: event.reversalAmountMinor ?? payment.amount_minor,
+      eventType: event.type,
+      rawPayload: event.rawPayload,
+      currency: event.currency,
+    });
+  }
 
   if (/(failed)$/i.test(event.type)) {
     const payment = await resolveWebhookPayment({
@@ -359,5 +495,9 @@ export async function handlePaymongoWebhook(rawBody: string, signature: string) 
     checkoutSessionId: event.checkoutSessionId,
     rawPayload: event.rawPayload,
     eventType: event.type,
+    metadata: event.metadata,
+    paymentStatus: event.paymentStatus,
+    amountMinor: event.amountMinor,
+    currency: event.currency,
   });
 }

@@ -1,3 +1,5 @@
+import { randomUUID } from 'node:crypto';
+
 import { z } from 'zod';
 
 import type { AnalyzeRequestPayload } from '@study-assistant/shared-types';
@@ -7,44 +9,56 @@ import { analyzeStudyPage } from '@/lib/ai/analyze';
 import { assertWalletSpendable } from '@/lib/billing/wallet';
 import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { requireActiveSession, settleActiveSessionUsage } from '@/lib/sessions/service';
-import { assertRateLimit } from '@/lib/security/rate-limit';
+import { assertDistributedRateLimit } from '@/lib/security/rate-limit';
+import { acquireSessionAnalysisLease, releaseSessionAnalysisLease } from '@/lib/supabase/sessions';
+
+const MAX_ANALYZE_BODY_BYTES = 5 * 1024 * 1024;
+const MAX_QUESTION_CANDIDATES = 100;
+const MAX_OPTIONS = 50;
+const MAX_CONTEXT_ITEMS = 50;
+const MAX_SCREENSHOT_DATA_URL_LENGTH = 4_000_000;
+
+const boundedText = (max: number) => z.string().max(max);
+const boundedTextArray = (itemMax: number, arrayMax: number) => z.array(boundedText(itemMax)).max(arrayMax);
 
 const requestSchema = z.object({
   mode: z.enum(['analyze', 'detect', 'suggest']),
   pageSignals: z
     .object({
-      pageUrl: z.string().url(),
-      pageDomain: z.string().optional().default(''),
-      pageTitle: z.string().optional().default(''),
-      headings: z.array(z.string()).optional().default([]),
-      breadcrumbs: z.array(z.string()).optional().default([]),
-      visibleLabels: z.array(z.string()).optional().default([]),
-      visibleTextExcerpt: z.string().optional().default(''),
-      questionText: z.string().nullable().optional().default(null),
-      options: z.array(z.string()).optional().default([]),
+      pageUrl: z.string().max(2048).url(),
+      pageDomain: boundedText(255).optional().default(''),
+      pageTitle: boundedText(240).optional().default(''),
+      headings: boundedTextArray(180, MAX_CONTEXT_ITEMS).optional().default([]),
+      breadcrumbs: boundedTextArray(120, MAX_CONTEXT_ITEMS).optional().default([]),
+      visibleLabels: boundedTextArray(120, MAX_CONTEXT_ITEMS).optional().default([]),
+      visibleTextExcerpt: boundedText(12_000).optional().default(''),
+      questionText: boundedText(2_000).nullable().optional().default(null),
+      options: boundedTextArray(800, MAX_OPTIONS).optional().default([]),
       questionCandidates: z
         .array(
           z.object({
-            id: z.string(),
-            prompt: z.string(),
-            options: z.array(z.string()).optional().default([]),
-            contextLabel: z.string().nullable().optional().default(null),
+            id: boundedText(160),
+            prompt: boundedText(2_000),
+            options: boundedTextArray(800, MAX_OPTIONS).optional().default([]),
+            contextLabel: boundedText(240).nullable().optional().default(null),
             questionType: z.enum(['multiple_choice', 'fill_in_blank', 'checkbox', 'dropdown', 'picture'] as const).nullable().optional(),
-            parentQuestionId: z.string().nullable().optional(),
-            dropdownSubIndex: z.number().nullable().optional(),
+            parentQuestionId: boundedText(160).nullable().optional(),
+            dropdownSubIndex: z.number().int().min(0).max(1_000).nullable().optional(),
             dropdownSubQuestions: z
               .array(
                 z.object({
-                  subId: z.string(),
-                  prompt: z.string(),
-                  options: z.array(z.string()),
-                  dropdownId: z.string(),
+                  subId: boundedText(160),
+                  prompt: boundedText(2_000),
+                  options: boundedTextArray(800, MAX_OPTIONS),
+                  dropdownId: boundedText(160),
                 }),
               )
+              .max(50)
               .nullable()
               .optional(),
           }),
         )
+        .max(MAX_QUESTION_CANDIDATES)
         .optional()
         .default([]),
       diagnostics: z
@@ -67,11 +81,11 @@ const requestSchema = z.object({
           visibleOptionCount: 0,
           courseCodeCount: 0,
         }),
-      courseCodes: z.array(z.string()).optional().default([]),
-      quizTitle: z.string().nullable().optional().default(null),
-      quizNumber: z.string().nullable().optional().default(null),
+      courseCodes: boundedTextArray(80, 20).optional().default([]),
+      quizTitle: boundedText(240).nullable().optional().default(null),
+      quizNumber: boundedText(80).nullable().optional().default(null),
       totalQuestionsDetected: z.number().int().nonnegative().optional().default(0),
-      extractedAt: z.string().optional().default(''),
+      extractedAt: boundedText(64).optional().default(''),
     })
     .transform((payload) => {
       const derivedUrl = new URL(payload.pageUrl);
@@ -83,9 +97,18 @@ const requestSchema = z.object({
         extractedAt: payload.extractedAt || new Date().toISOString(),
       };
     }),
-  screenshotDataUrl: z.string().nullable().optional().default(null),
-  manualSubject: z.string().optional().default(''),
-  manualCategory: z.string().optional().default(''),
+  screenshotDataUrl: z
+    .string()
+    .max(MAX_SCREENSHOT_DATA_URL_LENGTH)
+    .refine(
+      (value) => /^data:image\/(?:png|jpeg|webp);base64,[a-z0-9+/=\s]+$/i.test(value),
+      'Screenshot must be a PNG, JPEG, or WebP data URL.',
+    )
+    .nullable()
+    .optional()
+    .default(null),
+  manualSubject: boundedText(120).optional().default(''),
+  manualCategory: boundedText(120).optional().default(''),
   searchScope: z.enum(['subject_first', 'all_subjects']).optional().default('subject_first'),
   sessionId: z.string().uuid().nullable().optional().default(null),
   liveAssist: z.boolean().optional().default(false),
@@ -94,6 +117,7 @@ const requestSchema = z.object({
 
 export async function POST(request: Request) {
   const { requestId } = getRequestMeta(request);
+  let analysisLease: { userId: string; sessionId: string; leaseToken: string } | null = null;
 
   try {
     const context = await requireClientUser(request);
@@ -101,7 +125,7 @@ export async function POST(request: Request) {
       ? `analyze:${context.installationId}`
       : `analyze:${context.userId}`;
       
-    assertRateLimit(limiterKey, {
+    await assertDistributedRateLimit(limiterKey, {
       max: 600,
       windowMs: 60 * 60 * 1000,
     });
@@ -109,6 +133,7 @@ export async function POST(request: Request) {
     const body = (await parseJsonBody(
       request,
       requestSchema as z.ZodType<AnalyzeRequestPayload>,
+      { maxBytes: MAX_ANALYZE_BODY_BYTES },
     )) as AnalyzeRequestPayload;
     const activeSession = await requireActiveSession(context.userId, body.sessionId);
 
@@ -126,9 +151,19 @@ export async function POST(request: Request) {
       );
     }
 
+    const leaseToken = randomUUID();
+    await acquireSessionAnalysisLease({
+      userId: context.userId,
+      sessionId: activeSession.id,
+      leaseToken,
+      leaseSeconds: 90,
+    });
+    analysisLease = { userId: context.userId, sessionId: activeSession.id, leaseToken };
+
     const settled = await settleActiveSessionUsage({
       userId: context.userId,
       sessionId: activeSession.id,
+      minimumSeconds: 1,
     });
 
     if (settled.usageLimitReached) {
@@ -142,7 +177,7 @@ export async function POST(request: Request) {
     }
 
     assertWalletSpendable({
-      walletStatus: context.wallet.status,
+      walletStatus: settled.wallet.status,
       remainingSeconds: settled.wallet.remaining_seconds,
       requiredSeconds: 1,
       lockedMessage: 'Wallet access is locked. Contact support or an administrator.',
@@ -170,5 +205,9 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     return jsonError(error, requestId);
+  } finally {
+    if (analysisLease) {
+      await releaseSessionAnalysisLease(analysisLease).catch(() => undefined);
+    }
   }
 }

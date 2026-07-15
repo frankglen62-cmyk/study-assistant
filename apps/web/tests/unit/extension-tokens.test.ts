@@ -20,4 +20,23 @@ describe('extension token helpers', () => {
     expect(payload.userId).toBe('eaab7d3f-3066-4521-ac7d-49e5d7f90a11');
     expect(payload.type).toBe('extension_access');
   });
+
+  it('generates pairing codes from the unambiguous alphabet', async () => {
+    const { issuePairingCode } = await import('@/lib/auth/extension-tokens');
+    const codes = Array.from({ length: 50 }, () => issuePairingCode());
+
+    expect(codes.every((code) => /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/.test(code))).toBe(true);
+    expect(new Set(codes).size).toBe(codes.length);
+  });
+
+  it('rejects access tokens with extra unverified segments', async () => {
+    const { createExtensionAccessToken, verifyExtensionAccessToken } = await import('@/lib/auth/extension-tokens');
+    const token = createExtensionAccessToken({
+      installationId: '0c8b8ff0-1ff1-4bb3-96da-50529fc88a01',
+      userId: 'eaab7d3f-3066-4521-ac7d-49e5d7f90a11',
+      ttlSeconds: 300,
+    });
+
+    expect(() => verifyExtensionAccessToken(`${token}.ignored`)).toThrow('Extension token is invalid.');
+  });
 });

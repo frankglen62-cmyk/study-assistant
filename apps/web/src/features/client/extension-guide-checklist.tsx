@@ -27,32 +27,32 @@ const manualStepLabels: Array<{
   title: string;
   description: string;
 }> = [
-  {
-    key: 'downloadedZip',
-    title: 'Downloaded the extension ZIP',
-    description: 'You already saved the latest package from the portal.',
-  },
-  {
-    key: 'extractedZip',
-    title: 'Extracted the ZIP',
-    description: 'The package was extracted into a normal folder before opening Chrome extensions.',
-  },
-  {
-    key: 'openedExtensionsPage',
-    title: 'Opened chrome://extensions',
-    description: 'Developer mode is on and the extensions management page is open.',
-  },
-  {
-    key: 'loadedUnpacked',
-    title: 'Loaded the unpacked folder',
-    description: 'Chrome accepted the extracted folder and the extension now appears in the list.',
-  },
-  {
-    key: 'pinnedExtension',
-    title: 'Pinned the extension',
-    description: 'The extension icon is visible in the browser toolbar for quick access.',
-  },
-];
+    {
+      key: 'downloadedZip',
+      title: 'Downloaded the extension ZIP',
+      description: 'You already saved the latest package from the portal.',
+    },
+    {
+      key: 'extractedZip',
+      title: 'Extracted the ZIP',
+      description: 'The package was extracted into a normal folder before opening Chrome extensions.',
+    },
+    {
+      key: 'openedExtensionsPage',
+      title: 'Opened chrome://extensions',
+      description: 'Developer mode is on and the extensions management page is open.',
+    },
+    {
+      key: 'loadedUnpacked',
+      title: 'Loaded the unpacked folder',
+      description: 'Chrome accepted the extracted folder and the extension now appears in the list.',
+    },
+    {
+      key: 'pinnedExtension',
+      title: 'Pinned the extension',
+      description: 'The extension icon is visible in the browser toolbar for quick access.',
+    },
+  ];
 
 export function ExtensionGuideChecklist({
   userId,

@@ -362,7 +362,7 @@ export function parseChoiceOption(option: string): ParsedChoiceOption {
     text,
     normalizedRaw: normalizeComparableText(collapsed),
     normalizedText: normalizeComparableText(text),
-    display: text,
+    display: collapsed,
   };
 }
 
@@ -474,9 +474,27 @@ export function resolveSuggestedOption(
   // Splitting "service-oriented, elastic, cost-efficient" on commas would
   // incorrectly match segments against different options and produce
   // pipe-separated garbage.
-  const isMultiAnswerQuestion = !questionType || questionType === 'checkbox';
+  const isMultiAnswerQuestion = questionType === 'checkbox';
 
   const multiAnswerSegments = splitMultiAnswerSegments(answerText);
+  if (!isMultiAnswerQuestion && multiAnswerSegments.length >= 2) {
+    const independentlyMatchedOptions = multiAnswerSegments
+      .map((segment) =>
+        parsedOptions
+          .map((option) => ({
+            display: option.display,
+            score: scoreChoiceOption({ option, answerText: segment, questionText }),
+          }))
+          .sort((left, right) => right.score - left.score)[0],
+      )
+      .filter((match) => match && match.score >= 0.7)
+      .map((match) => match!.display);
+
+    if (new Set(independentlyMatchedOptions).size >= 2) {
+      return null;
+    }
+  }
+
   if (isMultiAnswerQuestion && multiAnswerSegments.length >= 2) {
     const matchedSegments = multiAnswerSegments
       .map((segment) => {

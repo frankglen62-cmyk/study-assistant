@@ -1,15 +1,14 @@
 import { assertWalletSpendable } from '@/lib/billing/wallet';
 import { RouteError } from '@/lib/http/route';
-import { applyWalletSeconds } from '@/lib/billing/wallet';
 import {
   createActiveSession,
   getOpenSessionForUser,
   getSessionByIdForUser,
-  recordSessionUsage,
+  settleSessionUsageAtomic,
   sumUsageDebitsForUserSince,
   updateSessionStatus,
 } from '@/lib/supabase/sessions';
-import { getUserAccessOverrideByUserId, getWalletByUserId } from '@/lib/supabase/users';
+import { getUserAccessOverrideByUserId } from '@/lib/supabase/users';
 import type { SessionRecord } from '@/lib/supabase/schemas';
 
 const MINIMUM_SESSION_SECONDS = 1;
@@ -230,104 +229,14 @@ export async function requireActiveSession(userId: string, sessionId?: string | 
 export async function settleActiveSessionUsage(params: {
   userId: string;
   sessionId?: string | null;
+  minimumSeconds?: number;
 }) {
   const session = await requireMutableSession(params.userId, params.sessionId);
-  const wallet = await getWalletByUserId(params.userId);
-  const now = new Date();
-  const usageLimits = await getUsageLimitState(params.userId, now);
-
-  if (session.status !== 'active') {
-    return {
-      session,
-      wallet,
-      consumedSeconds: 0,
-      usageLimitReached: null,
-    };
-  }
-
-  if (usageLimits.blockingLimit) {
-    const nextSession = await recordSessionUsage({
-      sessionId: session.id,
-      userId: params.userId,
-      usedSeconds: session.used_seconds,
-      lastActivityAt: now.toISOString(),
-      status: 'timed_out',
-    });
-
-    return {
-      session: nextSession,
-      wallet,
-      consumedSeconds: 0,
-      usageLimitReached: usageLimits.blockingLimit,
-    };
-  }
-
-  const checkpoint = session.last_activity_at ?? session.start_time;
-  const elapsedSeconds = Math.max(0, Math.floor((now.getTime() - new Date(checkpoint).getTime()) / 1000));
-
-  if (elapsedSeconds <= 0) {
-    return {
-      session,
-      wallet,
-      consumedSeconds: 0,
-      usageLimitReached: null,
-    };
-  }
-
-  const usageAllowance =
-    usageLimits.remainingAllowanceSeconds === null
-      ? Number.POSITIVE_INFINITY
-      : usageLimits.remainingAllowanceSeconds;
-  const consumableSeconds = Math.min(elapsedSeconds, wallet.remaining_seconds, usageAllowance);
-  const reachedWalletLimit = wallet.remaining_seconds <= consumableSeconds;
-  const reachedUsageLimit =
-    usageLimits.remainingAllowanceSeconds !== null &&
-    usageLimits.allowanceLimit !== null &&
-    usageLimits.remainingAllowanceSeconds <= consumableSeconds;
-
-  const nextStatus: SessionRecord['status'] = reachedUsageLimit
-    ? 'timed_out'
-    : consumableSeconds < elapsedSeconds || reachedWalletLimit
-      ? 'no_credit'
-      : 'active';
-
-  let nextWallet = wallet;
-  if (consumableSeconds > 0) {
-    const updatedWalletInfo = await applyWalletSeconds({
-      userId: params.userId,
-      deltaSeconds: consumableSeconds * -1,
-      transactionType: 'usage_debit',
-      description: 'Live study session time usage',
-      relatedSessionId: session.id,
-      metadata: {
-        source: 'session_usage',
-        elapsedSeconds,
-        consumedSeconds: consumableSeconds,
-      },
-    });
-    
-    nextWallet = {
-      ...wallet,
-      remaining_seconds: updatedWalletInfo.remaining_seconds,
-      lifetime_seconds_purchased: updatedWalletInfo.lifetime_seconds_purchased,
-      lifetime_seconds_used: updatedWalletInfo.lifetime_seconds_used,
-    };
-  }
-
-  const nextSession = await recordSessionUsage({
-    sessionId: session.id,
+  return settleSessionUsageAtomic({
     userId: params.userId,
-    usedSeconds: session.used_seconds + consumableSeconds,
-    lastActivityAt: now.toISOString(),
-    status: nextStatus,
+    sessionId: session.id,
+    minimumSeconds: params.minimumSeconds ?? 0,
   });
-
-  return {
-    session: nextSession,
-    wallet: nextWallet,
-    consumedSeconds: consumableSeconds,
-    usageLimitReached: reachedUsageLimit ? usageLimits.allowanceLimit : null,
-  };
 }
 
 async function requireMutableSession(userId: string, sessionId?: string | null): Promise<SessionRecord> {

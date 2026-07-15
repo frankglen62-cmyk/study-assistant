@@ -48,6 +48,8 @@ export function EmailSecurityCard({
   const [enabled, setEnabled] = useState(emailTwoFactorEnabled);
   const [workingMode, setWorkingMode] = useState<'toggle' | 'change' | null>(null);
   const [targetEmail, setTargetEmail] = useState('');
+  const [disableCode, setDisableCode] = useState('');
+  const [disableCodeRequired, setDisableCodeRequired] = useState(false);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Poll for email change completion when status is 'requested'
@@ -98,21 +100,32 @@ export function EmailSecurityCard({
     };
   }, [emailChangeStatus, normalizedCurrentEmail]);
 
-  const handleToggle = async (nextValue: boolean) => {
+  const handleToggle = async (nextValue: boolean, code?: string) => {
     setWorkingMode('toggle');
     try {
       const response = await fetch('/api/account/email-2fa', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ enabled: nextValue }),
+        body: JSON.stringify({ enabled: nextValue, ...(code ? { code } : {}) }),
       });
 
-      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      const payload = (await response.json().catch(() => null)) as { error?: string; code?: string } | null;
+      if (response.status === 428 && payload?.code === 'otp_required') {
+        setDisableCodeRequired(true);
+        pushToast({
+          tone: 'info',
+          title: 'Verification required',
+          description: 'A 6-digit code was sent to your email.',
+        });
+        return;
+      }
       if (!response.ok) {
         throw new Error(payload?.error ?? 'Unable to update email sign-in approval.');
       }
 
       setEnabled(nextValue);
+      setDisableCodeRequired(false);
+      setDisableCode('');
       pushToast({
         tone: 'success',
         title: nextValue ? 'Email 2FA enabled' : 'Email 2FA disabled',
@@ -187,6 +200,43 @@ export function EmailSecurityCard({
           </Button>
         }
       />
+
+      {disableCodeRequired ? (
+        <div className="rounded-2xl border border-accent/30 bg-accent/5 p-4">
+          <p className="text-sm font-medium text-foreground">Confirm disabling email 2FA</p>
+          <p className="mt-1 text-xs text-muted-foreground">Enter the 6-digit code sent to {currentEmail}.</p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+            <Input
+              value={disableCode}
+              onChange={(event) => setDisableCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              placeholder="6-digit code"
+              className="sm:max-w-48"
+            />
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => void handleToggle(false, disableCode)}
+              disabled={workingMode === 'toggle' || disableCode.length !== 6}
+            >
+              Verify and disable
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                setDisableCodeRequired(false);
+                setDisableCode('');
+              }}
+              disabled={workingMode === 'toggle'}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ) : null}
 
       <SettingRow
         icon={<Mail className="h-4 w-4 text-accent" />}

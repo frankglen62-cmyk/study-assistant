@@ -17,6 +17,8 @@ const extractionMocks = vi.hoisted(() => ({
 }));
 
 const retrievalMocks = vi.hoisted(() => ({
+  preloadSubjectQaPairs: vi.fn(),
+  rankQaPairRowsLocal: vi.fn(),
   retrieveRelevantChunks: vi.fn(),
   retrieveRelevantQaPairs: vi.fn(),
   retrieveRelevantQaPairsAcrossSubjects: vi.fn(),
@@ -48,6 +50,14 @@ vi.mock('@/lib/observability/logger', () => ({ logEvent: vi.fn() }));
 describe('analyze service', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    retrievalMocks.preloadSubjectQaPairs.mockResolvedValue([]);
+    retrievalMocks.rankQaPairRowsLocal.mockImplementation(
+      ({ rows, queryText }: { rows: Array<{ question_text: string }>; queryText: string }) =>
+        [...rows].sort(
+          (left, right) =>
+            Number(right.question_text === queryText) - Number(left.question_text === queryText),
+        ),
+    );
   });
 
   it('returns suggestion-only output and does not expose raw chunk text', async () => {
@@ -138,7 +148,7 @@ describe('analyze service', () => {
     expect(result.fallbackApplied).toBe(true);
     expect(JSON.stringify(result)).not.toContain('Force equals mass times acceleration.');
     expect(answerMocks.generateAnswerSuggestion).not.toHaveBeenCalled();
-    expect(walletMocks.applyWalletSeconds).toHaveBeenCalledOnce();
+    expect(walletMocks.applyWalletSeconds).not.toHaveBeenCalled();
   });
 
   it('prefers stored subject Q&A pairs before chunk retrieval', async () => {
@@ -176,6 +186,21 @@ describe('analyze service', () => {
       retrievalConfidence: 0.94,
       retrievalStatus: 'Matched 1 stored answer pair in Physics / Quiz.',
     });
+    retrievalMocks.preloadSubjectQaPairs.mockResolvedValue([
+      {
+        id: 'qa-1',
+        subject_id: 'subject-1',
+        category_id: 'category-1',
+        question_text: 'Volts is the unit for current.',
+        answer_text: 'False',
+        short_explanation: 'Current is measured in amperes, while volts measure electric potential difference.',
+        keywords: ['volts', 'current', 'amperes'],
+        sort_order: 0,
+        similarity: 0.94,
+        subject_name: 'Physics',
+        category_name: 'Quiz',
+      },
+    ]);
     retrievalMocks.retrieveRelevantQaPairsAcrossSubjects.mockResolvedValue({
       pairs: [],
       retrievalConfidence: null,
@@ -468,6 +493,21 @@ describe('analyze service', () => {
       retrievalConfidence: 0.99,
       retrievalStatus: 'Matched 1 stored answer pair in Pagsasaling Pampanitikan / Quiz.',
     }));
+    retrievalMocks.preloadSubjectQaPairs.mockResolvedValue(
+      questionCandidates.map((candidate) => ({
+        id: `qa-${candidate.prompt}`,
+        subject_id: 'subject-1',
+        category_id: 'category-1',
+        question_text: candidate.prompt,
+        answer_text: 'TRUE',
+        short_explanation: 'Matched exact question text.',
+        keywords: [],
+        sort_order: 0,
+        similarity: 0.99,
+        subject_name: 'Pagsasaling Pampanitikan',
+        category_name: 'Quiz',
+      })),
+    );
     retrievalMocks.retrieveRelevantQaPairsAcrossSubjects.mockResolvedValue({
       pairs: [],
       retrievalConfidence: null,
@@ -553,6 +593,21 @@ describe('analyze service', () => {
       retrievalConfidence: 0.99,
       retrievalStatus: 'Matched 1 stored answer pair in Pagsasaling Pampanitikan / Quiz.',
     });
+    retrievalMocks.preloadSubjectQaPairs.mockResolvedValue([
+      {
+        id: 'qa-true-1',
+        subject_id: 'subject-1',
+        category_id: 'category-1',
+        question_text: 'Ipinakilala ni theodoro ang tatlong uri ng mambabasa',
+        answer_text: 'TRUE',
+        short_explanation: 'Exact match from stored subject Q&A.',
+        keywords: ['theodoro', 'mambabasa'],
+        sort_order: 0,
+        similarity: 0.99,
+        subject_name: 'Pagsasaling Pampanitikan',
+        category_name: 'Quiz',
+      },
+    ]);
     retrievalMocks.retrieveRelevantQaPairsAcrossSubjects.mockResolvedValue({
       pairs: [],
       retrievalConfidence: null,
@@ -647,6 +702,21 @@ describe('analyze service', () => {
       retrievalConfidence: 0.74,
       retrievalStatus: 'Matched 1 stored answer pair in Pagsasaling Pampanitikan / Quiz.',
     });
+    retrievalMocks.preloadSubjectQaPairs.mockResolvedValue([
+      {
+        id: 'qa-wrong-1',
+        subject_id: 'subject-1',
+        category_id: 'category-1',
+        question_text: 'Kilala bilang isa sa haligi ng Translation Studies noong ika-20 siglo',
+        answer_text: 'FALSE',
+        short_explanation: null,
+        keywords: ['translation', 'studies'],
+        sort_order: 0,
+        similarity: 0.74,
+        subject_name: 'Pagsasaling Pampanitikan',
+        category_name: 'Quiz',
+      },
+    ]);
     retrievalMocks.retrieveRelevantQaPairsAcrossSubjects.mockResolvedValue({
       pairs: [],
       retrievalConfidence: null,

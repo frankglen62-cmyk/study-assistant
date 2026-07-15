@@ -4,6 +4,9 @@ export function installExtractorContentScript() {
     __studyAssistantLiveObserver?: MutationObserver | null;
     __studyAssistantLiveTimer?: number | null;
     __studyAssistantLastDigest?: string;
+    __studyAssistantLiveWindowStartedAt?: number;
+    __studyAssistantLiveWorkCount?: number;
+    __studyAssistantLastLiveWorkAt?: number;
   };
 
   if (globalState.__studyAssistantExtractorInstalled) {
@@ -14,13 +17,20 @@ export function installExtractorContentScript() {
   globalState.__studyAssistantLiveObserver = null;
   globalState.__studyAssistantLiveTimer = null;
   globalState.__studyAssistantLastDigest = '';
+  globalState.__studyAssistantLiveWindowStartedAt = Date.now();
+  globalState.__studyAssistantLiveWorkCount = 0;
+  globalState.__studyAssistantLastLiveWorkAt = 0;
 
   const courseCodePattern = /\b[A-Z]{2,10}(?:-[A-Z]{2,10})?\s*-?\s*\d{3,5}[A-Z]?\b/g;
   // Enhanced pattern for Moodle shortnames like UGRD-IT6206-2522S, UGRD-ITE6220-2522S
   const moodleShortnamePattern = /\b(UGRD|GRAD|GEN|BSCS|BSIT|BSIS|IT|CS|IS|ITE?|NSCI|FILI|ECE|EE|ME|CE|CPE|COE)[\s-]?([A-Z]{0,4}\d{3,5}[A-Z]?)(?:-\d{3,4}[A-Z]?)?\b/i;
   const MAX_VISIBLE_CONTEXT_ITEMS = 300;
   const MAX_EXTRACTED_OPTIONS = 50;
-  const MAX_QUESTION_CANDIDATES = 5000;
+  const MAX_QUESTION_CANDIDATES = 100;
+  const LIVE_ASSIST_WORK_WINDOW_MS = 60_000;
+  const MAX_LIVE_ASSIST_FULL_SCANS_PER_WINDOW = 12;
+  const MIN_LIVE_ASSIST_FULL_SCAN_INTERVAL_MS = 3_000;
+  const MAX_MUTATION_RECORDS_TO_INSPECT = 100;
 
   function isElementVisible(element: Element | null): boolean {
     if (!(element instanceof HTMLElement)) {
@@ -1318,11 +1328,17 @@ export function installExtractorContentScript() {
       // This is a Moodle page with multiple questions — use the fast path
       for (let qi = 0; qi < moodleQueContainers.length; qi++) {
         const que = moodleQueContainers[qi] as HTMLElement;
-        const queId = que.id || `moodle-que-${qi + 1}`;
+        const firstAnswerControl = que.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
+          'input[type="radio"], input[type="checkbox"], input[type="text"], input:not([type]), textarea, select',
+        );
+        const queId = normalizeText(
+          que.id || firstAnswerControl?.getAttribute('name') || firstAnswerControl?.id || `moodle-que-${qi + 1}`,
+        ).slice(0, 160);
         que.dataset.studyAssistantId = queId;
         structuredContainers.add(queId);
 
         // Extract the question prompt from .qtext or .formulation
+        const questionType = detectQuestionType(que);
         let prompt: string | null = null;
         const qtextEl = que.querySelector('.qtext, .questiontext, .question-text');
         if (qtextEl && isElementVisible(qtextEl)) {
@@ -1331,12 +1347,17 @@ export function installExtractorContentScript() {
         if (!prompt || prompt.length < 3) {
           prompt = derivePromptFromContainer(que);
         }
+        if (questionType === 'fill_in_blank') {
+          const enrichedPrompt = derivePromptFromPrunedContainer(que);
+          if (enrichedPrompt && enrichedPrompt.length > (prompt?.length ?? 0)) {
+            prompt = enrichedPrompt;
+          }
+        }
         if (!prompt || prompt.length < 3) {
           continue; // Skip questions with no extractable text
         }
 
         // Detect question type and extract options
-        const questionType = detectQuestionType(que);
         const options = extractOptionsFromContainer(que);
 
         // Tag all inputs inside this question
@@ -1460,7 +1481,9 @@ export function installExtractorContentScript() {
         diagnostics: {
           explicitQuestionBlockCount: 0,
           structuredQuestionBlockCount: moodleQueContainers.length,
-          groupedInputCount: 0,
+          groupedInputCount: moodleQueContainers.filter((container) =>
+            container.querySelector('input[type="radio"], input[type="checkbox"], input[type="text"], input:not([type]), textarea, select'),
+          ).length,
           promptCandidateCount: moodleQueContainers.length,
           questionCandidateCount: questionCandidates.length,
           visibleOptionCount: Array.from(
@@ -2209,7 +2232,44 @@ export function installExtractorContentScript() {
     };
   }
 
+  function consumeLiveAssistWorkBudget(now = Date.now()) {
+    const windowStartedAt = globalState.__studyAssistantLiveWindowStartedAt ?? now;
+    if (now - windowStartedAt >= LIVE_ASSIST_WORK_WINDOW_MS) {
+      globalState.__studyAssistantLiveWindowStartedAt = now;
+      globalState.__studyAssistantLiveWorkCount = 0;
+    }
+
+    const workCount = globalState.__studyAssistantLiveWorkCount ?? 0;
+    if (workCount >= MAX_LIVE_ASSIST_FULL_SCANS_PER_WINDOW) {
+      return false;
+    }
+
+    globalState.__studyAssistantLiveWorkCount = workCount + 1;
+    globalState.__studyAssistantLastLiveWorkAt = now;
+    return true;
+  }
+
+  function hasRelevantLiveMutation(records: MutationRecord[]) {
+    const relevantSelector = '.que, [id^="question-"], [data-region="question"], form#responseform, form[action*="/mod/quiz/attempt"], main, #region-main';
+
+    return records.slice(0, MAX_MUTATION_RECORDS_TO_INSPECT).some((record) => {
+      const target = record.target instanceof Element ? record.target : record.target.parentElement;
+      if (target?.closest(relevantSelector)) {
+        return true;
+      }
+
+      return Array.from(record.addedNodes).slice(0, 20).some((node) => {
+        if (!(node instanceof Element)) return false;
+        return node.matches(relevantSelector) || Boolean(node.querySelector(relevantSelector));
+      });
+    });
+  }
+
   function sendLiveDigest() {
+    if (!consumeLiveAssistWorkBudget()) {
+      return;
+    }
+
     const snapshot = buildSignals();
     const digest = normalizeText(
       [snapshot.pageTitle, snapshot.questionText ?? '', snapshot.visibleTextExcerpt.slice(0, 220)].join(' | '),
@@ -2234,14 +2294,22 @@ export function installExtractorContentScript() {
       return;
     }
 
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((records) => {
+      if (!hasRelevantLiveMutation(records)) {
+        return;
+      }
+
       if (globalState.__studyAssistantLiveTimer) {
         window.clearTimeout(globalState.__studyAssistantLiveTimer);
       }
 
+      const now = Date.now();
+      const earliestNextWorkAt =
+        (globalState.__studyAssistantLastLiveWorkAt ?? 0) + MIN_LIVE_ASSIST_FULL_SCAN_INTERVAL_MS;
+      const delay = Math.max(1200, earliestNextWorkAt - now);
       globalState.__studyAssistantLiveTimer = window.setTimeout(() => {
         sendLiveDigest();
-      }, 1200);
+      }, delay);
     });
 
     observer.observe(document.body, {
@@ -2337,10 +2405,9 @@ export function installExtractorContentScript() {
 
         if (!select) continue;
 
-        // Re-enable the select if Moodle disabled it during feedback/review
-        if (select.disabled) {
-          select.disabled = false;
-        }
+        // Disabled controls are page-owned state (often review/feedback mode).
+        // Never override them from the extension.
+        if (select.disabled) continue;
 
         // Match the answer against select options
         const normalizedAnswer = normalizeForMatch(answerText);
@@ -2414,18 +2481,32 @@ export function installExtractorContentScript() {
   });
 
   function autoClickNextPage(): { clicked: boolean; isLastPage?: boolean } {
-    const candidates = Array.from(document.querySelectorAll<HTMLElement>('button, input[type="submit"], input[type="button"], a.btn, a[href*="summary"]'));
+    const quizRoot =
+      document.querySelector<HTMLElement>('form#responseform, form[action*="/mod/quiz/attempt"], .quizattempt, [data-region="quiz"]') ??
+      document.querySelector<HTMLElement>('#region-main');
+
+    if (!quizRoot || !quizRoot.querySelector('.que, [id^="question-"], [data-region="question"]')) {
+      return { clicked: false };
+    }
+
+    const candidates = Array.from(
+      quizRoot.querySelectorAll<HTMLElement>('button, input[type="submit"], input[type="button"], a.btn, a[href*="summary"]'),
+    );
+    const isActionable = (element: HTMLElement) => {
+      const control = element as HTMLButtonElement | HTMLInputElement;
+      return isElementVisible(element) && !control.disabled && element.getAttribute('aria-disabled') !== 'true';
+    };
     
     // Moodle specific IDs and classes first (Next button)
     const moodleNext = candidates.find(el => el.id === 'mod_quiz-next-nav' || el.getAttribute('name') === 'next');
-    if (moodleNext && isElementVisible(moodleNext)) {
+    if (moodleNext && isActionable(moodleNext)) {
       moodleNext.click();
       return { clicked: true, isLastPage: false };
     }
 
     // Try finding "next page" by text priority
     for (const el of candidates) {
-      if (!isElementVisible(el)) continue;
+      if (!isActionable(el)) continue;
 
       const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
       if (text === 'next' || text === 'next page' || text === 'forward' || text.includes('next page')) {
@@ -2436,7 +2517,7 @@ export function installExtractorContentScript() {
 
     // If no Next button found, look for "finish attempt" to mark the end of the quiz
     for (const el of candidates) {
-      if (!isElementVisible(el)) continue;
+      if (!isActionable(el)) continue;
 
       const text = normalizeText((el as HTMLInputElement).value || el.textContent || '').toLowerCase();
       if (text === 'finish attempt' || text === 'finish attempt ...' || text.includes('finish attempt')) {
@@ -2789,10 +2870,25 @@ export function installExtractorContentScript() {
         // Load reference image — use fetch + blob URL to bypass CORS issues
         async function loadImageForCanvas(url: string): Promise<HTMLImageElement | null> {
           try {
-            // Method 1: fetch as blob (bypasses CORS tainted canvas)
-            const response = await fetch(url, { mode: 'cors' });
+            const parsed = new URL(url, window.location.href);
+            const isLoopback = ['localhost', '127.0.0.1', '[::1]', '::1'].includes(parsed.hostname.toLowerCase());
+            if (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && isLoopback)) return null;
+
+            const response = await fetch(parsed.toString(), {
+              mode: 'cors',
+              credentials: 'omit',
+              referrerPolicy: 'no-referrer',
+              signal: AbortSignal.timeout(8000),
+            });
             if (!response.ok) throw new Error('fetch failed');
+            const finalUrl = new URL(response.url);
+            const finalIsLoopback = ['localhost', '127.0.0.1', '[::1]', '::1'].includes(finalUrl.hostname.toLowerCase());
+            if (finalUrl.protocol !== 'https:' && !(finalUrl.protocol === 'http:' && finalIsLoopback)) return null;
+            if (!(response.headers.get('content-type') ?? '').toLowerCase().startsWith('image/')) return null;
+            const declaredSize = Number(response.headers.get('content-length'));
+            if (Number.isFinite(declaredSize) && declaredSize > 5 * 1024 * 1024) return null;
             const blob = await response.blob();
+            if (blob.size > 5 * 1024 * 1024) return null;
             const blobUrl = URL.createObjectURL(blob);
 
             const img = new Image();
@@ -2809,19 +2905,7 @@ export function installExtractorContentScript() {
               setTimeout(() => resolve(null), 8000);
             });
           } catch {
-            // Method 2: try direct with crossOrigin
-            try {
-              const img = new Image();
-              img.crossOrigin = 'anonymous';
-              return new Promise<HTMLImageElement | null>((resolve) => {
-                img.onload = () => resolve(img);
-                img.onerror = () => resolve(null);
-                img.src = url;
-                setTimeout(() => resolve(null), 8000);
-              });
-            } catch {
-              return null;
-            }
+            return null;
           }
         }
 

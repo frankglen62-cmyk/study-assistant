@@ -52,7 +52,7 @@ describe('user maintenance cron route', () => {
     const response = await GET(
       new Request('http://localhost:3000/api/cron/user-maintenance', {
         headers: {
-          authorization: `Bearer ${process.env.EXTENSION_PAIRING_SECRET}`,
+          authorization: `Bearer ${process.env.CRON_SECRET}`,
         },
       }),
     );

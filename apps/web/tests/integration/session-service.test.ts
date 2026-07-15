@@ -8,6 +8,7 @@ const sessionMocks = vi.hoisted(() => ({
   createActiveSession: vi.fn(),
   getOpenSessionForUser: vi.fn(),
   getSessionByIdForUser: vi.fn(),
+  settleSessionUsageAtomic: vi.fn(),
   recordSessionUsage: vi.fn(),
   sumUsageDebitsForUserSince: vi.fn(),
   updateSessionStatus: vi.fn(),
@@ -220,31 +221,29 @@ describe('session service', () => {
       last_activity_at: new Date('2026-04-06T10:09:20.000Z').toISOString(),
       end_time: null,
     });
-    userMocks.getWalletByUserId.mockResolvedValue({
-      id: 'wallet-1',
-      user_id: 'user-1',
-      remaining_seconds: 600,
-      lifetime_seconds_purchased: 1200,
-      lifetime_seconds_used: 600,
-      status: 'active',
-    });
-    walletMocks.applyWalletSeconds.mockResolvedValue({
-      wallet_id: 'wallet-1',
-      remaining_seconds: 560,
-      lifetime_seconds_purchased: 1200,
-      lifetime_seconds_used: 640,
-    });
-    sessionMocks.recordSessionUsage.mockResolvedValue({
-      id: 'session-5',
-      user_id: 'user-1',
-      status: 'active',
-      detection_mode: 'manual',
-      current_subject_id: null,
-      current_category_id: null,
-      used_seconds: 160,
-      start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
-      last_activity_at: now.toISOString(),
-      end_time: null,
+    sessionMocks.settleSessionUsageAtomic.mockResolvedValue({
+      consumedSeconds: 40,
+      usageLimitReached: null,
+      session: {
+        id: 'session-5',
+        user_id: 'user-1',
+        status: 'active',
+        detection_mode: 'manual',
+        current_subject_id: null,
+        current_category_id: null,
+        used_seconds: 160,
+        start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
+        last_activity_at: now.toISOString(),
+        end_time: null,
+      },
+      wallet: {
+        id: 'wallet-1',
+        user_id: 'user-1',
+        remaining_seconds: 560,
+        lifetime_seconds_purchased: 1200,
+        lifetime_seconds_used: 640,
+        status: 'active',
+      },
     });
 
     const { settleActiveSessionUsage } = await import('@/lib/sessions/service');
@@ -254,19 +253,10 @@ describe('session service', () => {
     });
 
     expect(result.consumedSeconds).toBe(40);
-    expect(walletMocks.applyWalletSeconds).toHaveBeenCalledWith(
+    expect(sessionMocks.settleSessionUsageAtomic).toHaveBeenCalledWith(
       expect.objectContaining({
         userId: 'user-1',
-        deltaSeconds: -40,
-        relatedSessionId: 'session-5',
-      }),
-    );
-    expect(sessionMocks.recordSessionUsage).toHaveBeenCalledWith(
-      expect.objectContaining({
         sessionId: 'session-5',
-        userId: 'user-1',
-        usedSeconds: 160,
-        status: 'active',
       }),
     );
 
@@ -290,14 +280,6 @@ describe('session service', () => {
       last_activity_at: new Date('2026-04-06T10:09:20.000Z').toISOString(),
       end_time: null,
     });
-    userMocks.getWalletByUserId.mockResolvedValue({
-      id: 'wallet-1',
-      user_id: 'user-1',
-      remaining_seconds: 600,
-      lifetime_seconds_purchased: 1200,
-      lifetime_seconds_used: 600,
-      status: 'active',
-    });
     userMocks.getUserAccessOverrideByUserId.mockResolvedValue({
       user_id: 'user-1',
       can_use_extension: true,
@@ -308,23 +290,29 @@ describe('session service', () => {
       feature_flags: {},
     });
     sessionMocks.sumUsageDebitsForUserSince.mockResolvedValue(120);
-    walletMocks.applyWalletSeconds.mockResolvedValue({
-      wallet_id: 'wallet-1',
-      remaining_seconds: 570,
-      lifetime_seconds_purchased: 1200,
-      lifetime_seconds_used: 630,
-    });
-    sessionMocks.recordSessionUsage.mockResolvedValue({
-      id: 'session-6',
-      user_id: 'user-1',
-      status: 'timed_out',
-      detection_mode: 'manual',
-      current_subject_id: null,
-      current_category_id: null,
-      used_seconds: 150,
-      start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
-      last_activity_at: now.toISOString(),
-      end_time: now.toISOString(),
+    sessionMocks.settleSessionUsageAtomic.mockResolvedValue({
+      consumedSeconds: 30,
+      usageLimitReached: 'monthly',
+      session: {
+        id: 'session-6',
+        user_id: 'user-1',
+        status: 'timed_out',
+        detection_mode: 'manual',
+        current_subject_id: null,
+        current_category_id: null,
+        used_seconds: 150,
+        start_time: new Date('2026-04-06T10:00:00.000Z').toISOString(),
+        last_activity_at: now.toISOString(),
+        end_time: now.toISOString(),
+      },
+      wallet: {
+        id: 'wallet-1',
+        user_id: 'user-1',
+        remaining_seconds: 570,
+        lifetime_seconds_purchased: 1200,
+        lifetime_seconds_used: 630,
+        status: 'active',
+      },
     });
 
     const { settleActiveSessionUsage } = await import('@/lib/sessions/service');
@@ -335,11 +323,10 @@ describe('session service', () => {
 
     expect(result.consumedSeconds).toBe(30);
     expect(result.usageLimitReached).toBe('monthly');
-    expect(sessionMocks.recordSessionUsage).toHaveBeenCalledWith(
+    expect(sessionMocks.settleSessionUsageAtomic).toHaveBeenCalledWith(
       expect.objectContaining({
         sessionId: 'session-6',
-        status: 'timed_out',
-        usedSeconds: 150,
+        userId: 'user-1',
       }),
     );
 

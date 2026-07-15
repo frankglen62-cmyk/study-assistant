@@ -19,7 +19,6 @@ import {
   splitMultiAnswerSegments,
   splitMultiAnswerByChoices,
 } from '@/lib/ai/choice-matching';
-import { logEvent } from '@/lib/observability/logger';
 import { RouteError } from '@/lib/http/route';
 
 export interface RetrievalResult {
@@ -72,6 +71,8 @@ export type PreloadedQaPairRow = QaPairRow;
 const QA_PRELOAD_CACHE_TTL_MS = 1_000;
 const preloadedQaPairCache = new Map<string, { rows: QaPairRow[]; expiresAt: number }>();
 const preloadedQaPairPromises = new Map<string, Promise<QaPairRow[]>>();
+const acrossSubjectQaPairCache = new Map<string, { rows: QaPairRow[]; expiresAt: number }>();
+const acrossSubjectQaPairPromises = new Map<string, Promise<QaPairRow[]>>();
 
 function getPreloadedQaPairCacheKey(params: { subject: SubjectRecord; category: CategoryRecord | null }) {
   return `${params.subject.id}:${params.category?.id ?? 'all'}`;
@@ -81,6 +82,8 @@ export function invalidatePreloadedQaPairCache(subjectId?: string | null) {
   if (!subjectId) {
     preloadedQaPairCache.clear();
     preloadedQaPairPromises.clear();
+    acrossSubjectQaPairCache.clear();
+    acrossSubjectQaPairPromises.clear();
     return;
   }
 
@@ -95,6 +98,10 @@ export function invalidatePreloadedQaPairCache(subjectId?: string | null) {
       preloadedQaPairPromises.delete(key);
     }
   }
+
+  // Any subject mutation can affect all-subject ranking results.
+  acrossSubjectQaPairCache.clear();
+  acrossSubjectQaPairPromises.clear();
 }
 
 export async function preloadSubjectQaPairs(params: {
@@ -240,25 +247,6 @@ function rankQaPairRows(params: {
     // punctuation (e.g. "an awareness" vs 'an awareness').
     rawDistance: rawCharacterDistance(params.queryText, row.question_text),
   }));
-
-  // Diagnostic: log when duplicate questions are found with different choice scores
-  if (exactMatchScores.length >= 2 && hasChoices) {
-    const distinctAnswers = new Set(exactMatchScores.map((e) => normalizeComparableText(e.row.answer_text)));
-    if (distinctAnswers.size >= 2) {
-      logEvent('info', 'ai.retrieval.duplicate_question_disambiguation', {
-        queryText: params.queryText.slice(0, 120),
-        candidateCount: exactMatchScores.length,
-        scores: exactMatchScores.map((e) => ({
-          answerId: e.row.id,
-          answer: e.row.answer_text.slice(0, 80),
-          choiceScore: e.choiceScore,
-          blankAlignment: e.blankAlignment,
-          rawDistance: e.rawDistance,
-        })),
-        options: opts.slice(0, 8).map((o) => o.slice(0, 80)),
-      });
-    }
-  }
 
   // Sort exact matches: choice alignment is the PRIMARY criterion when choices exist.
   // This ensures that when question #8 has choices [A,B,C,D] and question #30 has
@@ -844,72 +832,83 @@ export async function retrieveRelevantQaPairs(params: {
   } satisfies QaPairRetrievalResult;
 }
 
+async function preloadQaPairsAcrossSubjects(excludeSubjectId?: string | null) {
+  const cacheKey = excludeSubjectId ?? 'all';
+  const cached = acrossSubjectQaPairCache.get(cacheKey);
+  if (cached && cached.expiresAt > Date.now()) return cached.rows;
+
+  const inFlight = acrossSubjectQaPairPromises.get(cacheKey);
+  if (inFlight) return inFlight;
+
+  const loadRows = (async () => {
+    const supabase = getSupabaseAdmin();
+    const pageSize = 1000;
+    const rows: QaPairRow[] = [];
+    let offset = 0;
+
+    while (true) {
+      let query = supabase
+        .from('subject_qa_pairs')
+        .select(`
+          id,
+          subject_id,
+          category_id,
+          question_text,
+          answer_text,
+          short_explanation,
+          keywords,
+          sort_order,
+          question_type,
+          question_image_url,
+          updated_at,
+          subjects:subject_id (
+            name
+          ),
+          categories:category_id (
+            name
+          )
+        `)
+        .eq('is_active', true)
+        .is('deleted_at', null)
+        .order('sort_order', { ascending: true })
+        .range(offset, offset + pageSize - 1);
+
+      if (excludeSubjectId) query = query.neq('subject_id', excludeSubjectId);
+
+      const { data, error } = await query;
+      if (error) {
+        const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
+        if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
+          return [];
+        }
+        throw new RouteError(500, 'qa_retrieval_failed', 'Cross-subject Q&A fallback failed.', error.message);
+      }
+
+      const batch = (data ?? []) as QaPairRow[];
+      rows.push(...batch);
+      if (batch.length < pageSize || rows.length >= 5000) break;
+      offset += pageSize;
+    }
+
+    acrossSubjectQaPairCache.set(cacheKey, {
+      rows,
+      expiresAt: Date.now() + QA_PRELOAD_CACHE_TTL_MS,
+    });
+    return rows;
+  })().finally(() => {
+    acrossSubjectQaPairPromises.delete(cacheKey);
+  });
+
+  acrossSubjectQaPairPromises.set(cacheKey, loadRows);
+  return loadRows;
+}
+
 export async function retrieveRelevantQaPairsAcrossSubjects(params: {
   queryText: string;
   options?: string[];
   excludeSubjectId?: string | null;
 }) {
-  const supabase = getSupabaseAdmin();
-  const pageSize = 1000;
-  const rows: QaPairRow[] = [];
-  let offset = 0;
-
-  while (true) {
-    let query = supabase
-      .from('subject_qa_pairs')
-      .select(`
-        id,
-        subject_id,
-        category_id,
-        question_text,
-        answer_text,
-        short_explanation,
-        keywords,
-        sort_order,
-        question_type,
-        question_image_url,
-        updated_at,
-        subjects:subject_id (
-          name
-        ),
-        categories:category_id (
-          name
-        )
-      `)
-      .eq('is_active', true)
-      .is('deleted_at', null)
-      .order('sort_order', { ascending: true })
-      .range(offset, offset + pageSize - 1);
-
-    if (params.excludeSubjectId) {
-      query = query.neq('subject_id', params.excludeSubjectId);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-      const rawMessage = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
-      if (rawMessage.includes('subject_qa_pairs') && (rawMessage.includes('does not exist') || rawMessage.includes('schema cache'))) {
-        return {
-          pairs: [],
-          retrievalConfidence: null,
-          retrievalStatus:
-            'Subject answer storage is not available yet for this project. Cross-subject fallback is unavailable.',
-        } satisfies QaPairRetrievalResult;
-      }
-
-      throw new RouteError(500, 'qa_retrieval_failed', 'Cross-subject Q&A fallback failed.', error.message);
-    }
-
-    const batch = (data ?? []) as QaPairRow[];
-    rows.push(...batch);
-
-    if (batch.length < pageSize || rows.length >= 5000) {
-      break;
-    }
-
-    offset += pageSize;
-  }
+  const rows = await preloadQaPairsAcrossSubjects(params.excludeSubjectId);
 
   const rankedRows = rankQaPairRows({
     rows,

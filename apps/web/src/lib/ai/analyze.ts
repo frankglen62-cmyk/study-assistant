@@ -9,10 +9,11 @@ import type {
 } from '@study-assistant/shared-types';
 
 import { buildQaPairAnswerSuggestion, parseDropdownPairs, matchDropdownSubQuestions } from '@/lib/ai/answering';
+import { buildFallbackAnswerSuggestion } from '@/lib/ai/fallback';
 import { isQuestionTextEquivalent, normalizeComparableText, overlapScore, contentOverlapScore, splitMultiAnswerSegments, splitMultiAnswerByChoices } from '@/lib/ai/choice-matching';
 import { detectSubjectCategory } from '@/lib/ai/detection';
 import { extractQuestionContext } from '@/lib/ai/extraction';
-import { retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
+import { retrieveRelevantChunks, retrieveRelevantQaPairs, retrieveRelevantQaPairsAcrossSubjects, preloadSubjectQaPairs, type PreloadedQaPairRow } from '@/lib/ai/retrieval';
 import { rankQaPairRowsLocal } from '@/lib/ai/retrieval';
 import { env } from '@/lib/env/server';
 import { logEvent } from '@/lib/observability/logger';
@@ -20,10 +21,12 @@ import { getActiveCatalog } from '@/lib/supabase/catalog';
 import { createQuestionAttempt, syncSessionAfterAnalysis } from '@/lib/supabase/sessions';
 import type { CategoryRecord, SubjectRecord } from '@/lib/supabase/schemas';
 
-const MAX_QUESTION_CANDIDATES = 5000;
+const MAX_QUESTION_CANDIDATES = 100;
 const MAX_CONTEXT_ITEMS = 300;
 const MAX_OPTIONS_PER_QUESTION = 50;
 const BATCH_SIZE = 50;
+const MAX_EXPENSIVE_FALLBACK_CANDIDATES = 10;
+const FALLBACK_CONCURRENCY = 3;
 
 function isBooleanQuestionOptions(options: string[]) {
   if (options.length < 2) {
@@ -287,14 +290,6 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   const hasOptions = optionText.length > 0;
 
   // ── DEBUG: log per-question option extraction for long-option diagnosis ──
-  const queryPreview = queryText.slice(0, 80);
-  const maxOptLen = optionText.reduce((max, o) => Math.max(max, o.length), 0);
-  console.log(`[DEBUG analyze] Question: "${queryPreview}" | candidateOpts: ${params.candidate.options.length} | globalOpts: ${params.globalOptions.length} | usedOpts: ${optionText.length} | maxOptLen: ${maxOptLen}`);
-  if (queryPreview.includes('correct order')) {
-    console.log('[DEBUG analyze]   FULL OPTIONS for correct-order question:');
-    optionText.forEach((o, i) => console.log(`[DEBUG analyze]   opt[${i}] (${o.length} chars): ${o.slice(0, 200)}${o.length > 200 ? '...' : ''}`));
-  }
-
   const buildQaSuggestion = (pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number], retrievalStatus: string, sourceScope: ExtensionSourceScope) => {
     if (!isReliableQaPairMatch(params.candidate, pair)) {
       return null;
@@ -501,6 +496,124 @@ function resolveQuestionSuggestionFromPreloaded(params: {
   });
 }
 
+async function resolveQuestionFallback(params: {
+  candidate: ExtensionQuestionCandidate;
+  searchScope: AnalyzeSearchScope;
+  subjectName: string;
+  categoryName: string | null;
+  detectionConfidence: number | null;
+  subject: SubjectRecord;
+  category: CategoryRecord | null;
+  globalOptions: string[];
+}): Promise<ExtensionQuestionSuggestion> {
+  const queryText = params.candidate.prompt;
+  const optionText = params.candidate.options.length > 0 ? params.candidate.options : params.globalOptions;
+
+  const buildQaSuggestion = (
+    pair: Awaited<ReturnType<typeof retrieveRelevantQaPairs>>['pairs'][number],
+    retrievalStatus: string,
+    sourceScope: ExtensionSourceScope,
+  ) => {
+    if (!isReliableQaPairMatch(params.candidate, pair)) return null;
+
+    const answer = buildQaPairAnswerSuggestion({
+      pair,
+      options: optionText,
+      subjectName: pair.subject_name ?? params.subjectName,
+      categoryName: pair.category_name ?? params.categoryName,
+      questionType: params.candidate.questionType ?? pair.question_type ?? null,
+    });
+
+    return {
+      questionId: params.candidate.id,
+      questionText: params.candidate.prompt,
+      answerText: answer.answerText,
+      suggestedOption: answer.suggestedOption,
+      shortExplanation: answer.shortExplanation,
+      confidence: clamp(((params.detectionConfidence ?? 0.5) + pair.similarity + answer.confidence) / 3, 0, 1),
+      warning: answer.warning,
+      retrievalStatus,
+      matchedSubject: pair.subject_name ?? params.subjectName,
+      matchedCategory: pair.category_name ?? params.categoryName,
+      sourceScope,
+      clickStatus: 'pending' as const,
+      clickedText: null,
+      questionType: pair.question_type ?? params.candidate.questionType ?? null,
+      parentQuestionId: params.candidate.parentQuestionId ?? null,
+      dropdownSubIndex: params.candidate.dropdownSubIndex ?? null,
+    } satisfies ExtensionQuestionSuggestion;
+  };
+
+  const allSubjectQa = await retrieveRelevantQaPairsAcrossSubjects({
+    queryText,
+    options: optionText,
+    excludeSubjectId: params.searchScope === 'subject_first' ? params.subject.id : null,
+  });
+
+  let firstReliableSuggestion: ExtensionQuestionSuggestion | null = null;
+  for (const pair of allSubjectQa.pairs.slice(0, 12)) {
+    const sourceScope: ExtensionSourceScope =
+      pair.subject_id === params.subject.id ? 'subject_folder' : 'all_subject_folders';
+    const suggestion = buildQaSuggestion(pair, allSubjectQa.retrievalStatus, sourceScope);
+    if (!suggestion) continue;
+    firstReliableSuggestion ??= suggestion;
+    if (suggestion.suggestedOption) return suggestion;
+  }
+
+  if (firstReliableSuggestion) return firstReliableSuggestion;
+
+  const retrieval = await retrieveRelevantChunks({
+    subject: params.subject,
+    category: params.category,
+    queryText: [queryText, ...optionText].join('\n'),
+  });
+
+  if (retrieval.chunks.length > 0) {
+    const fallback = buildFallbackAnswerSuggestion({
+      questionText: queryText,
+      options: optionText,
+      subjectName: params.subjectName,
+      categoryName: params.categoryName,
+      chunks: retrieval.chunks,
+    });
+
+    if (fallback.answerText || fallback.suggestedOption) {
+      return {
+        questionId: params.candidate.id,
+        questionText: params.candidate.prompt,
+        answerText: fallback.answerText,
+        suggestedOption: fallback.suggestedOption,
+        shortExplanation: fallback.shortExplanation,
+        confidence: clamp(
+          ((params.detectionConfidence ?? 0.5) + (retrieval.retrievalConfidence ?? 0.45) + fallback.confidence) / 3,
+          0,
+          1,
+        ),
+        warning: fallback.warning,
+        retrievalStatus: retrieval.retrievalStatus,
+        matchedSubject: params.subjectName,
+        matchedCategory: params.categoryName,
+        sourceScope: 'file_sources',
+        clickStatus: 'pending',
+        clickedText: null,
+        questionType: params.candidate.questionType ?? null,
+        parentQuestionId: params.candidate.parentQuestionId ?? null,
+        dropdownSubIndex: params.candidate.dropdownSubIndex ?? null,
+      } satisfies ExtensionQuestionSuggestion;
+    }
+  }
+
+  return buildNoMatchQuestionSuggestion({
+    candidate: params.candidate,
+    subjectName: params.subjectName,
+    categoryName: params.categoryName,
+    detectionConfidence: params.detectionConfidence,
+    warning: 'No matching source material was found in the selected search scope.',
+    retrievalStatus: `${allSubjectQa.retrievalStatus} ${retrieval.retrievalStatus}`,
+    searchScope: params.searchScope,
+  });
+}
+
 async function buildQuestionSuggestions(params: {
   questionCandidates: ExtensionQuestionCandidate[];
   searchScope: AnalyzeSearchScope;
@@ -512,13 +625,16 @@ async function buildQuestionSuggestions(params: {
   globalOptions: string[];
 }): Promise<ExtensionQuestionSuggestion[]> {
   // Pre-load ALL QA pairs for this subject in ONE database call
-  const preloadedRows = await preloadSubjectQaPairs({
-    subject: params.subject,
-    category: params.category,
-  });
+  const preloadedRows =
+    params.searchScope === 'subject_first'
+      ? await preloadSubjectQaPairs({
+          subject: params.subject,
+          category: params.category,
+        })
+      : [];
 
   // Now resolve each question locally — no more per-question DB calls
-  return params.questionCandidates.map((candidate) => {
+  const suggestions: ExtensionQuestionSuggestion[] = params.questionCandidates.map((candidate) => {
     const suggestion = resolveQuestionSuggestionFromPreloaded({
       candidate,
       searchScope: params.searchScope,
@@ -543,12 +659,6 @@ async function buildQuestionSuggestions(params: {
     }> | null;
 
     if (subQuestions && subQuestions.length > 0) {
-      console.log('[DEBUG dropdown] Candidate has', subQuestions.length, 'subQuestions');
-      console.log('[DEBUG dropdown] Candidate prompt (first 100):', candidate.prompt.slice(0, 100));
-      console.log('[DEBUG dropdown] Candidate questionType:', candidate.questionType);
-      console.log('[DEBUG dropdown] Total preloaded rows:', preloadedRows.length);
-      console.log('[DEBUG dropdown] Dropdown-type rows:', preloadedRows.filter(r => (r as any).question_type === 'dropdown').length);
-
       const dropdownAnswers: Array<{
         dropdownId: string;
         suggestedOption: string | null;
@@ -632,11 +742,8 @@ async function buildQuestionSuggestions(params: {
         }
       }
 
-      console.log('[DEBUG dropdown] Strategy 1 (pairs match):', usedDropdownPairsMatch ? 'SUCCESS' : 'not matched');
-
       // ── Strategy 2: Fallback — resolve each sub-question individually ──
       if (!usedDropdownPairsMatch) {
-        console.log('[DEBUG dropdown] Falling back to Strategy 2 (per-sub-question)');
         for (const sub of subQuestions) {
           // Create a virtual candidate for this sub-question
           const subCandidate: ExtensionQuestionCandidate = {
@@ -684,6 +791,39 @@ async function buildQuestionSuggestions(params: {
 
     return suggestion;
   });
+
+  const fallbackIndexes = suggestions
+    .map((suggestion, index) => {
+      const candidate = params.questionCandidates[index];
+      const isCompoundDropdown = Boolean(candidate?.dropdownSubQuestions?.length);
+      return suggestion.sourceScope === 'no_match' && !isCompoundDropdown ? index : null;
+    })
+    .filter((index): index is number => index !== null)
+    .slice(0, MAX_EXPENSIVE_FALLBACK_CANDIDATES);
+
+  for (let offset = 0; offset < fallbackIndexes.length; offset += FALLBACK_CONCURRENCY) {
+    const batch = fallbackIndexes.slice(offset, offset + FALLBACK_CONCURRENCY);
+    const resolved = await Promise.all(
+      batch.map((index) =>
+        resolveQuestionFallback({
+          candidate: params.questionCandidates[index]!,
+          searchScope: params.searchScope,
+          subjectName: params.subjectName,
+          categoryName: params.categoryName,
+          detectionConfidence: params.detectionConfidence,
+          subject: params.subject,
+          category: params.category,
+          globalOptions: params.globalOptions,
+        }),
+      ),
+    );
+
+    batch.forEach((index, resultIndex) => {
+      suggestions[index] = resolved[resultIndex]!;
+    });
+  }
+
+  return suggestions;
 }
 
 function selectPrimarySuggestion(questionSuggestions: ExtensionQuestionSuggestion[]) {
