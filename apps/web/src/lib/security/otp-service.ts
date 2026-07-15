@@ -12,7 +12,7 @@ function hashCode(code: string): string {
 }
 
 function generateCode(): string {
-  return crypto.randomInt(100000, 999999).toString();
+  return crypto.randomInt(100000, 1_000_000).toString();
 }
 
 export type OtpPurpose =
@@ -160,33 +160,32 @@ export async function verifyOtp(
 ): Promise<{ verified: true }> {
   const admin = getSupabaseAdmin();
 
-  const { data: otpRecord, error: findError } = await admin
-    .from('otp_codes')
-    .select('*')
-    .eq('user_id', userId)
-    .eq('purpose', purpose)
-    .is('used_at', null)
-    .gt('expires_at', new Date().toISOString())
-    .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+  const { data, error } = await admin.rpc('verify_otp_code_atomic', {
+    p_user_id: userId,
+    p_purpose: purpose,
+    p_code_hash: hashCode(code),
+  });
 
-  if (findError || !otpRecord) {
+  if (error) {
+    console.error('Failed to verify OTP atomically:', error.message);
+    throw new Error('Unable to verify the code. Please try again.');
+  }
+
+  const result = data as { status?: unknown; remainingAttempts?: unknown } | null;
+  if (!result || typeof result.status !== 'string') {
+    throw new Error('Unable to verify the code. Please try again.');
+  }
+
+  if (result.status === 'not_found') {
     throw new Error('No valid verification code found. Please request a new one.');
   }
 
-  if (otpRecord.attempts >= otpRecord.max_attempts) {
-    await admin.from('otp_codes').delete().eq('id', otpRecord.id);
+  if (result.status === 'locked') {
     throw new Error('Too many failed attempts. Please request a new code.');
   }
 
-  await admin
-    .from('otp_codes')
-    .update({ attempts: otpRecord.attempts + 1 })
-    .eq('id', otpRecord.id);
-
-  if (otpRecord.code_hash !== hashCode(code)) {
-    const remaining = otpRecord.max_attempts - (otpRecord.attempts + 1);
+  if (result.status === 'invalid') {
+    const remaining = typeof result.remainingAttempts === 'number' ? result.remainingAttempts : 0;
 
     throw new Error(
       remaining > 0
@@ -195,10 +194,9 @@ export async function verifyOtp(
     );
   }
 
-  await admin
-    .from('otp_codes')
-    .update({ used_at: new Date().toISOString() })
-    .eq('id', otpRecord.id);
+  if (result.status !== 'verified') {
+    throw new Error('Unable to verify the code. Please try again.');
+  }
 
   return { verified: true };
 }

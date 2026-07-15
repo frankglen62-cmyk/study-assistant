@@ -3,11 +3,11 @@ import { z } from 'zod';
 import type { ExtensionRefreshTokenResponse } from '@study-assistant/shared-types';
 
 import { createExtensionAccessToken, hashOpaqueToken, issueRefreshToken } from '@/lib/auth/extension-tokens';
-import { RouteError, getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
+import { getRequestMeta, jsonError, jsonOk, parseJsonBody } from '@/lib/http/route';
 import { assertMaintenanceAccess } from '@/lib/platform/system-settings';
-import { getInstallationById, getRefreshTokenRecord, revokeRefreshToken, storeRefreshToken } from '@/lib/supabase/extension';
+import { getInstallationById, rotateExtensionRefreshToken } from '@/lib/supabase/extension';
 import { getProfileByUserId } from '@/lib/supabase/users';
-import { assertRateLimit } from '@/lib/security/rate-limit';
+import { assertDistributedRateLimit } from '@/lib/security/rate-limit';
 
 const requestSchema = z.object({
   installationId: z.string().uuid(),
@@ -18,9 +18,8 @@ export async function POST(request: Request) {
   const { requestId, ipAddress } = getRequestMeta(request);
 
   try {
-    assertRateLimit(`refresh:${ipAddress ?? 'unknown'}`, { max: 30, windowMs: 10 * 60 * 1000 });
+    await assertDistributedRateLimit(`refresh:${ipAddress ?? 'unknown'}`, { max: 30, windowMs: 10 * 60 * 1000 });
     const body = await parseJsonBody(request, requestSchema);
-    const tokenRecord = await getRefreshTokenRecord(body.installationId, hashOpaqueToken(body.refreshToken));
     const installation = await getInstallationById(body.installationId);
     const profile = await getProfileByUserId(installation.user_id);
     await assertMaintenanceAccess({
@@ -28,23 +27,18 @@ export async function POST(request: Request) {
       target: 'extension',
     });
 
-    if (installation.installation_status !== 'active') {
-      await revokeRefreshToken(tokenRecord.id);
-      throw new RouteError(401, 'installation_revoked', 'This extension installation has been revoked.');
-    }
-
     const nextRefreshToken = issueRefreshToken();
-    await storeRefreshToken({
+    const rotatedUserId = await rotateExtensionRefreshToken({
       installationId: installation.id,
-      tokenHash: nextRefreshToken.tokenHash,
-      expiresAt: nextRefreshToken.expiresAt,
+      currentTokenHash: hashOpaqueToken(body.refreshToken),
+      nextTokenHash: nextRefreshToken.tokenHash,
+      nextExpiresAt: nextRefreshToken.expiresAt,
     });
-    await revokeRefreshToken(tokenRecord.id);
 
     const response: ExtensionRefreshTokenResponse = {
       accessToken: createExtensionAccessToken({
         installationId: installation.id,
-        userId: installation.user_id,
+        userId: rotatedUserId,
       }),
       refreshToken: nextRefreshToken.token,
     };

@@ -3,6 +3,7 @@ import type { ClientSessionMutationResponse, SessionStatus } from '@study-assist
 import { requireClientUser } from '@/lib/auth/request-context';
 import { getRequestMeta, jsonError, jsonOk } from '@/lib/http/route';
 import { assertRateLimit } from '@/lib/security/rate-limit';
+import { settleActiveSessionUsage } from '@/lib/sessions/service';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
 import { getOpenSessionForUser } from '@/lib/supabase/sessions';
 import { getWalletByUserId } from '@/lib/supabase/users';
@@ -26,23 +27,29 @@ export async function GET(request: Request) {
     // Generous rate limit for polling — 120 requests per 60s = 2/s max
     assertRateLimit(`session-status:${context.userId}`, { max: 120, windowMs: 60 * 1000 });
 
-    const [openSession, wallet] = await Promise.all([
-      getOpenSessionForUser(context.userId),
-      getWalletByUserId(context.userId),
-    ]);
+    const openSession = await getOpenSessionForUser(context.userId);
+    const settled =
+      openSession?.status === 'active'
+        ? await settleActiveSessionUsage({ userId: context.userId, sessionId: openSession.id })
+        : null;
+    const session = settled?.session ?? openSession;
+    const wallet = settled?.wallet ?? (await getWalletByUserId(context.userId));
+    const asOf = new Date().toISOString();
 
     return jsonOk(
       {
-        session: openSession
+        session: session
           ? {
-              id: openSession.id,
-              status: openSession.status as SessionStatus,
-              startTime: openSession.start_time,
-              detectionMode: openSession.detection_mode,
-              usedSeconds: openSession.used_seconds,
+              id: session.id,
+              status: session.status as SessionStatus,
+              startTime: session.start_time,
+              detectionMode: session.detection_mode,
+              usedSeconds: session.used_seconds,
             }
           : null,
         remainingSeconds: wallet.remaining_seconds,
+        asOf,
+        serverNow: asOf,
       },
       requestId,
     );

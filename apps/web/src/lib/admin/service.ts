@@ -32,7 +32,7 @@ import { updateOpenSessionsStatusForUser } from '@/lib/supabase/sessions';
 import { invalidateActiveCatalogCache } from '@/lib/supabase/catalog';
 import { assertSupabaseResult } from '@/lib/supabase/utils';
 import { getProfileWithWalletByUserId, setUserAccountStatusAtomic } from '@/lib/supabase/users';
-import { listInstallationsForUser, revokeInstallation } from '@/lib/supabase/extension';
+import { listInstallationsForUser, revokeAllInstallationsForUser, revokeInstallation } from '@/lib/supabase/extension';
 
 import { retrySourceProcessing, uploadAndProcessSource } from './source-ingestion';
 
@@ -547,6 +547,11 @@ export async function upsertAdminUserAccessOverrides(
 
   if (!data) {
     throw new RouteError(500, 'user_access_override_failed', 'Access overrides could not be saved.');
+  }
+
+  if (!input.canUseExtension) {
+    await revokeAllInstallationsForUser(input.userId);
+    await updateOpenSessionsStatusForUser({ userId: input.userId, status: 'ended' });
   }
 
   await writeAuditLog({

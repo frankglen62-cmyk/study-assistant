@@ -27,6 +27,10 @@ export interface VerifiedWebhookEvent {
   checkoutSessionId: string | null;
   providerPaymentId: string | null;
   paidAt: string | null;
+  paymentStatus: string | null;
+  amountMinor: number | null;
+  currency: string | null;
+  reversalAmountMinor: number | null;
   metadata: Record<string, string>;
   rawPayload: Record<string, unknown>;
 }

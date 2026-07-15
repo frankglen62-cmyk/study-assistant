@@ -94,6 +94,9 @@ export async function createPendingPayment(params: {
   providerPaymentId: string;
   amountMinor: number;
   currency: string;
+  entitlementSeconds: number;
+  entitlementExpiresAfterDays: number | null;
+  entitlementPackageCode: string;
   rawPayload: Record<string, unknown>;
 }) {
   const supabase = getSupabaseAdmin();
@@ -106,6 +109,9 @@ export async function createPendingPayment(params: {
       provider_payment_id: params.providerPaymentId,
       amount_minor: params.amountMinor,
       currency: params.currency,
+      entitlement_seconds: params.entitlementSeconds,
+      entitlement_expires_after_days: params.entitlementExpiresAfterDays,
+      entitlement_package_code: params.entitlementPackageCode,
       status: 'pending',
       payment_type: 'topup',
       raw_payload: params.rawPayload,
@@ -141,7 +147,7 @@ export async function getPaymentByCheckoutSessionId(checkoutSessionId: string) {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payments')
-    .select('id, user_id, package_id, provider, status, amount_minor, currency, provider_payment_id, provider_checkout_session_id')
+    .select('id, user_id, package_id, provider, status, amount_minor, currency, provider_payment_id, provider_checkout_session_id, entitlement_seconds, entitlement_expires_after_days, entitlement_package_code')
     .eq('provider_checkout_session_id', checkoutSessionId)
     .maybeSingle();
 
@@ -158,11 +164,32 @@ export async function getPaymentById(paymentId: string) {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('payments')
-    .select('id, user_id, package_id, provider, status, amount_minor, currency, provider_payment_id, provider_checkout_session_id')
+    .select('id, user_id, package_id, provider, status, amount_minor, currency, provider_payment_id, provider_checkout_session_id, entitlement_seconds, entitlement_expires_after_days, entitlement_package_code')
     .eq('id', paymentId)
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to load payment.');
+
+  if (!data) {
+    throw new RouteError(404, 'payment_not_found', 'Payment record not found.');
+  }
+
+  return data;
+}
+
+export async function getPaymentByProviderPaymentId(params: {
+  provider: 'stripe' | 'paymongo';
+  providerPaymentId: string;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase
+    .from('payments')
+    .select('id, user_id, package_id, provider, status, amount_minor, currency, provider_payment_id, provider_checkout_session_id, entitlement_seconds, entitlement_expires_after_days, entitlement_package_code')
+    .eq('provider', params.provider)
+    .eq('provider_payment_id', params.providerPaymentId)
+    .maybeSingle();
+
+  assertSupabaseResult(error, 'Failed to load payment by provider payment id.');
 
   if (!data) {
     throw new RouteError(404, 'payment_not_found', 'Payment record not found.');

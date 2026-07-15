@@ -206,6 +206,53 @@ export async function getRefreshTokenRecord(installationId: string, tokenHash: s
   return parseSingle(data, refreshTokenRecordSchema, 'Refresh token record is invalid.');
 }
 
+export async function rotateExtensionRefreshToken(params: {
+  installationId: string;
+  currentTokenHash: string;
+  nextTokenHash: string;
+  nextExpiresAt: string;
+}): Promise<string> {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase.rpc('rotate_extension_refresh_token', {
+    p_installation_id: params.installationId,
+    p_current_token_hash: params.currentTokenHash,
+    p_next_token_hash: params.nextTokenHash,
+    p_next_expires_at: params.nextExpiresAt,
+  });
+
+  if (error) {
+    const message = error.message.toLowerCase();
+
+    if (message.includes('access is disabled')) {
+      throw new RouteError(403, 'extension_access_disabled', 'Extension access is disabled for this account.');
+    }
+
+    if (message.includes('installation is not active')) {
+      throw new RouteError(401, 'installation_revoked', 'This extension installation has been revoked.');
+    }
+
+    if (message.includes('refresh token is invalid')) {
+      throw new RouteError(401, 'refresh_token_invalid', 'Refresh token is invalid, expired, or already used.');
+    }
+
+    assertSupabaseResult(error, 'Failed to rotate extension refresh token.');
+  }
+
+  if (data === null) {
+    throw new RouteError(
+      401,
+      'refresh_token_reuse',
+      'Refresh token reuse was detected. This paired installation has been revoked.',
+    );
+  }
+
+  if (typeof data !== 'string') {
+    throw new RouteError(500, 'invalid_database_shape', 'Refresh token rotation returned an invalid user id.');
+  }
+
+  return data;
+}
+
 export async function revokeInstallation(installationId: string, userId: string) {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase

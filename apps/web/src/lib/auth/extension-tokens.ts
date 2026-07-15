@@ -1,3 +1,5 @@
+import { randomInt } from 'node:crypto';
+
 import { env } from '@/lib/env/server';
 import { RouteError } from '@/lib/http/route';
 import { hmacSha256Base64Url, randomToken, safeEqual, sha256Hex } from '@/lib/security/hash';
@@ -55,9 +57,10 @@ export function createExtensionAccessToken(input: {
 }
 
 export function verifyExtensionAccessToken(token: string) {
-  const [payloadPart, signaturePart] = token.split('.');
+  const tokenParts = token.split('.');
+  const [payloadPart, signaturePart] = tokenParts;
 
-  if (!payloadPart || !signaturePart) {
+  if (tokenParts.length !== 2 || !payloadPart || !signaturePart) {
     throw new RouteError(401, 'invalid_extension_token', 'Extension token is invalid.');
   }
 
@@ -89,12 +92,10 @@ export function hashOpaqueToken(value: string) {
 
 export function issuePairingCode(length = 8) {
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  const entropy = randomToken(length);
   let code = '';
 
   for (let index = 0; index < length; index += 1) {
-    const char = entropy[index % entropy.length] ?? 'A';
-    code += alphabet[char.charCodeAt(0) % alphabet.length];
+    code += alphabet[randomInt(0, alphabet.length)];
   }
 
   return code;

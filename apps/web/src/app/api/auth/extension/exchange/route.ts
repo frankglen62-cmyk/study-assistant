@@ -16,7 +16,7 @@ import {
   storeRefreshToken,
 } from '@/lib/supabase/extension';
 import { toExtensionSessionStatus } from '@/lib/sessions/mapping';
-import { assertRateLimit } from '@/lib/security/rate-limit';
+import { assertDistributedRateLimit } from '@/lib/security/rate-limit';
 
 const requestSchema = z.object({
   pairingCode: z.string().min(6).max(16),
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   const { requestId, ipAddress, userAgent } = getRequestMeta(request);
 
   try {
-    assertRateLimit(`exchange:${ipAddress ?? 'unknown'}`, { max: 20, windowMs: 10 * 60 * 1000 });
+    await assertDistributedRateLimit(`exchange:${ipAddress ?? 'unknown'}`, { max: 20, windowMs: 10 * 60 * 1000 });
     const body = await parseJsonBody(request, requestSchema);
     const pairing = await consumePairingCode(hashOpaqueToken(body.pairingCode.trim().toUpperCase()));
     const account = await getProfileWithWalletByUserId(pairing.user_id);

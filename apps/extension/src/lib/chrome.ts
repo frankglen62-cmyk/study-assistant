@@ -1,4 +1,6 @@
-import { normalizeAppUrl, normalizeOriginPattern } from '@study-assistant/shared-utils';
+import { normalizeOriginPattern } from '@study-assistant/shared-utils';
+
+import { normalizeSecureAppUrl } from './secure-url';
 
 export type SiteAccessStatus = 'granted' | 'not_granted' | 'unsupported_page' | 'no_tab';
 
@@ -78,7 +80,7 @@ export async function requestSitePermission(tabUrl: string): Promise<{ granted: 
 }
 
 export async function requestHostPermission(appBaseUrl: string): Promise<{ granted: boolean; origin: string }> {
-  const normalizedBaseUrl = normalizeAppUrl(appBaseUrl);
+  const normalizedBaseUrl = normalizeSecureAppUrl(appBaseUrl);
   const originPattern = normalizeOriginPattern(normalizedBaseUrl);
   const alreadyGranted = await chrome.permissions.contains({ origins: [originPattern] });
 
@@ -125,7 +127,7 @@ export class PermissionError extends Error {
 }
 
 export async function openDashboard(baseUrl: string, path = '/dashboard'): Promise<void> {
-  const target = baseUrl ? `${normalizeAppUrl(baseUrl)}${path}` : chrome.runtime.getURL('src/onboarding/index.html');
+  const target = baseUrl ? `${normalizeSecureAppUrl(baseUrl)}${path}` : chrome.runtime.getURL('src/onboarding/index.html');
   await chrome.tabs.create({ url: target });
 }
 

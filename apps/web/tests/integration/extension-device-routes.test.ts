@@ -24,6 +24,7 @@ const auditMocks = vi.hoisted(() => ({
 
 const securityMocks = vi.hoisted(() => ({
   assertRateLimit: vi.fn(),
+  assertDistributedRateLimit: vi.fn(),
 }));
 
 const tokenMocks = vi.hoisted(() => ({

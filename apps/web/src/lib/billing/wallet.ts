@@ -79,6 +79,33 @@ export async function applyPaymentCreditOnce(params: {
   return paymentWalletMutationSchema.parse(data);
 }
 
+export async function reversePaymentCreditOnce(params: {
+  paymentId: string;
+  refundedAmountMinor: number;
+  reason: string;
+  rawPayload?: Record<string, unknown>;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase.rpc('reverse_payment_credit_once', {
+    p_payment_id: params.paymentId,
+    p_refunded_amount_minor: params.refundedAmountMinor,
+    p_reason: params.reason,
+    p_raw_payload: params.rawPayload ?? {},
+  });
+
+  assertSupabaseResult(error, 'Failed to reverse payment wallet credit.');
+  return z
+    .object({
+      paymentStatus: z.enum(['paid', 'refunded']),
+      reversedSeconds: z.number().int().nonnegative(),
+      totalReversedSeconds: z.number().int().nonnegative(),
+      shortfallSeconds: z.number().int().nonnegative(),
+      remainingSeconds: z.number().int().nonnegative(),
+      walletLocked: z.boolean(),
+    })
+    .parse(data);
+}
+
 export function assertWalletSpendable(params: {
   walletStatus: WalletStatus;
   remainingSeconds: number;

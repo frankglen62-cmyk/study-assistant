@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    emptyOutDir: false,
+    emptyOutDir: true,
+    minify: 'esbuild',
+    sourcemap: false,
     rollupOptions: {
       input: {
         onboarding: resolve(__dirname, 'src/onboarding/index.html'),

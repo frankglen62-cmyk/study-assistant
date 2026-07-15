@@ -8,6 +8,7 @@ import type {
 } from '@study-assistant/shared-types';
 
 import { detectBrowserName, getExtensionVersion, requirePairing } from '../lib/auth';
+import { normalizeSecureAppUrl } from '../lib/secure-url';
 import {
   ApiError,
   analyzePage,
@@ -522,6 +523,7 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
       (error.code === 'installation_revoked' ||
         error.code === 'installation_not_found' ||
         error.code === 'refresh_token_invalid' ||
+        error.code === 'refresh_token_reuse' ||
         error.code === 'invalid_extension_token' ||
         error.code === 'extension_token_expired')
     ) {
@@ -531,16 +533,22 @@ async function handleExtensionFailure(error: unknown): Promise<string> {
             {
               ...clearAuthState({
                 ...current,
-                pairingStatus: error.code === 'installation_revoked' ? 'revoked' : current.pairingStatus,
+                pairingStatus:
+                  error.code === 'installation_revoked' || error.code === 'refresh_token_reuse'
+                    ? 'revoked'
+                    : current.pairingStatus,
               }),
               uiStatus: 'not_connected',
               lastError: error.message,
             },
             {
               tone: 'warning',
-              title: error.code === 'installation_revoked' ? 'Device revoked' : 'Session expired',
+              title:
+                error.code === 'installation_revoked' || error.code === 'refresh_token_reuse'
+                  ? 'Device revoked'
+                  : 'Session expired',
               message:
-                error.code === 'installation_revoked'
+                error.code === 'installation_revoked' || error.code === 'refresh_token_reuse'
                   ? 'This paired device was revoked from the portal. Pair it again before continuing.'
                   : 'The extension token expired. Pair the extension again if refresh does not recover.',
             },
@@ -799,7 +807,7 @@ async function handleRequestPermission(payload: RequestPermissionPayload) {
       appendNotice(
         {
           ...current,
-          appBaseUrl: normalizeAppUrl(payload.appBaseUrl),
+          appBaseUrl: normalizeSecureAppUrl(payload.appBaseUrl),
           permissionOrigin: origin,
         },
         granted
@@ -880,7 +888,7 @@ async function handlePairExtension(payload: PairExtensionPayload) {
       appendNotice(
         {
           ...current,
-          appBaseUrl: normalizeAppUrl(payload.appBaseUrl),
+          appBaseUrl: normalizeSecureAppUrl(payload.appBaseUrl),
           permissionOrigin: permission.origin,
           deviceName: payload.deviceName,
           lastError: null,

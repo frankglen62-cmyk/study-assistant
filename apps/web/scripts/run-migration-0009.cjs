@@ -1,8 +1,15 @@
 // Run migration 0009_question_type.sql via pg module
 const fs = require('fs');
 const path = require('path');
+const { loadEnvFile } = require('node:process');
 
-const DB_URL = 'postgresql://postgres.aciihkqecsehqxaikoir:MAHALkita1122%40@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres';
+const envPath = path.resolve(__dirname, '..', '.env.local');
+if (fs.existsSync(envPath)) loadEnvFile(envPath);
+
+const DB_URL = process.env.DATABASE_URL;
+if (!DB_URL) {
+  throw new Error('DATABASE_URL is required in apps/web/.env.local.');
+}
 
 async function runMigration() {
   // Try to find pg from various locations

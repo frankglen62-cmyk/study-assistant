@@ -188,6 +188,26 @@ export class PaymongoBillingProvider implements BillingProvider {
         (typeof resourceAttributes.paid_at === 'string' ? resourceAttributes.paid_at : null) ??
         (typeof resourceAttributes.updated_at === 'string' ? resourceAttributes.updated_at : null) ??
         null,
+      paymentStatus:
+        (typeof firstPaymentAttributes.status === 'string' ? firstPaymentAttributes.status : null) ??
+        (typeof resourceAttributes.payment_status === 'string' ? resourceAttributes.payment_status : null),
+      amountMinor:
+        typeof firstPaymentAttributes.amount === 'number'
+          ? firstPaymentAttributes.amount
+          : typeof resourceAttributes.amount === 'number'
+            ? resourceAttributes.amount
+            : null,
+      currency:
+        (typeof firstPaymentAttributes.currency === 'string'
+          ? firstPaymentAttributes.currency.toUpperCase()
+          : null) ??
+        (typeof resourceAttributes.currency === 'string' ? resourceAttributes.currency.toUpperCase() : null),
+      reversalAmountMinor:
+        typeof resourceAttributes.amount_refunded === 'number'
+          ? resourceAttributes.amount_refunded
+          : typeof resourceAttributes.amount === 'number'
+            ? resourceAttributes.amount
+            : null,
       metadata,
       rawPayload: payload,
     };

@@ -82,6 +82,9 @@ export class StripeBillingProvider implements BillingProvider {
       allow_promotion_codes: false,
       payment_method_collection: 'always',
       metadata: input.metadata,
+      payment_intent_data: {
+        metadata: input.metadata,
+      },
     });
 
     if (!session.url) {
@@ -106,15 +109,68 @@ export class StripeBillingProvider implements BillingProvider {
     }
 
     const event = stripe.webhooks.constructEvent(rawBody, signature, env.STRIPE_WEBHOOK_SECRET);
-    const session = event.data.object as Stripe.Checkout.Session;
+    const eventTimestamp = new Date(event.created * 1000).toISOString();
+    const rawPayload = event as unknown as Record<string, unknown>;
+
+    if (event.data.object.object === 'checkout.session') {
+      const session = event.data.object as Stripe.Checkout.Session;
+      return {
+        type: event.type,
+        checkoutSessionId: session.id ?? null,
+        providerPaymentId: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+        paidAt: eventTimestamp,
+        paymentStatus: session.payment_status ?? null,
+        amountMinor: session.amount_total ?? null,
+        currency: session.currency?.toUpperCase() ?? null,
+        reversalAmountMinor: null,
+        metadata: Object.fromEntries(Object.entries(session.metadata ?? {}).map(([key, value]) => [key, value ?? ''])),
+        rawPayload,
+      };
+    }
+
+    if (event.data.object.object === 'charge') {
+      const charge = event.data.object as Stripe.Charge;
+      return {
+        type: event.type,
+        checkoutSessionId: null,
+        providerPaymentId: typeof charge.payment_intent === 'string' ? charge.payment_intent : null,
+        paidAt: eventTimestamp,
+        paymentStatus: charge.paid ? 'paid' : 'unpaid',
+        amountMinor: charge.amount,
+        currency: charge.currency.toUpperCase(),
+        reversalAmountMinor: charge.amount_refunded,
+        metadata: Object.fromEntries(Object.entries(charge.metadata ?? {}).map(([key, value]) => [key, value ?? ''])),
+        rawPayload,
+      };
+    }
+
+    if (event.data.object.object === 'dispute') {
+      const dispute = event.data.object as Stripe.Dispute;
+      return {
+        type: event.type,
+        checkoutSessionId: null,
+        providerPaymentId: typeof dispute.payment_intent === 'string' ? dispute.payment_intent : null,
+        paidAt: eventTimestamp,
+        paymentStatus: dispute.status,
+        amountMinor: null,
+        currency: dispute.currency.toUpperCase(),
+        reversalAmountMinor: dispute.amount,
+        metadata: Object.fromEntries(Object.entries(dispute.metadata ?? {}).map(([key, value]) => [key, value ?? ''])),
+        rawPayload,
+      };
+    }
 
     return {
       type: event.type,
-      checkoutSessionId: session.id ?? null,
-      providerPaymentId: typeof session.payment_intent === 'string' ? session.payment_intent : null,
-      paidAt: new Date().toISOString(),
-      metadata: Object.fromEntries(Object.entries(session.metadata ?? {}).map(([key, value]) => [key, value ?? ''])),
-      rawPayload: event as unknown as Record<string, unknown>,
+      checkoutSessionId: null,
+      providerPaymentId: null,
+      paidAt: eventTimestamp,
+      paymentStatus: null,
+      amountMinor: null,
+      currency: null,
+      reversalAmountMinor: null,
+      metadata: {},
+      rawPayload,
     };
   }
 }

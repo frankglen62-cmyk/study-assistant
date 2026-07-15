@@ -27,12 +27,12 @@ function getBrowserName() {
   if (ua.includes("Edg/")) browser = "Edge";
   else if (ua.includes("Brave/")) browser = "Brave";
   else if (ua.includes("OPR/") || ua.includes("Opera/")) browser = "Opera";
-  
+
   let os = "Device";
   if (ua.includes("Windows")) os = "Windows";
   else if (ua.includes("Mac")) os = "Mac";
   else if (ua.includes("Linux")) os = "Linux";
-  
+
   return `Operations ${browser} (${os})`;
 }
 
@@ -174,14 +174,14 @@ export function PairExtensionCard({
 
         {/* Highlighted Pairing Code Section */}
         <div className={`relative rounded-xl border p-5 transition-colors overflow-hidden ${hasPairingCode ? (isExpired ? 'border-red-200 bg-red-50/30 dark:border-red-500/30' : 'border-accent/40 bg-accent/5') : 'border-border/40 bg-surface/50 dark:bg-surface'}`}>
-          
+
           {hasPairingCode && !isExpired && (
-             <div className="absolute top-0 left-0 h-1 bg-accent/20 w-full overflow-hidden">
-                <div 
-                  className="h-full bg-accent transition-all duration-1000 ease-linear" 
-                  style={{ width: `${Math.max(0, (secondsRemaining ?? 0) / 300 * 100)}%` }}
-                />
-             </div>
+            <div className="absolute top-0 left-0 h-1 bg-accent/20 w-full overflow-hidden">
+              <div
+                className="h-full bg-accent transition-all duration-1000 ease-linear"
+                style={{ width: `${Math.max(0, (secondsRemaining ?? 0) / 300 * 100)}%` }}
+              />
+            </div>
           )}
 
           <div className="flex items-center justify-between mb-4">
@@ -228,7 +228,7 @@ export function PairExtensionCard({
             {/* App URL */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Link2 className="h-3.5 w-3.5 text-muted-foreground"/> App URL</label>
+                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Link2 className="h-3.5 w-3.5 text-muted-foreground" /> App URL</label>
                 <button
                   type="button"
                   onClick={() => void copyValue(appBaseUrl, 'App URL')}
@@ -243,8 +243,8 @@ export function PairExtensionCard({
             {/* Device name */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                 <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Laptop className="h-3.5 w-3.5 text-muted-foreground"/> Device Name</label>
-                 <button
+                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5"><Laptop className="h-3.5 w-3.5 text-muted-foreground" /> Device Name</label>
+                <button
                   type="button"
                   onClick={() => void copyValue(deviceName, 'Device Name')}
                   className="flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -252,7 +252,7 @@ export function PairExtensionCard({
                   <Copy className="h-3 w-3" /> Copy
                 </button>
               </div>
-              
+
               <Input
                 value={deviceName}
                 onChange={(e) => setDeviceName(e.target.value)}
@@ -262,15 +262,15 @@ export function PairExtensionCard({
             </div>
           </div>
         )}
-        
+
         {/* Action Row */}
         <div className="pt-2 flex flex-col sm:flex-row gap-2 border-t border-border/30">
-           {!simplified && (
-             <Button type="button" variant="secondary" size="sm" className="flex-1" disabled={!hasPairingCode} onClick={handleCopyAll}>
-               {hasPairingCode ? <CopyCheck className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-               Copy All Details
-             </Button>
-           )}
+          {!simplified && (
+            <Button type="button" variant="secondary" size="sm" className="flex-1" disabled={!hasPairingCode} onClick={handleCopyAll}>
+              {hasPairingCode ? <CopyCheck className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+              Copy All Details
+            </Button>
+          )}
           <Button asChild variant={simplified ? 'secondary' : 'ghost'} size="sm" className={simplified ? 'w-full' : 'flex-1'}>
             <a href={extensionDownloadPath} download={extensionDownloadFileName}>
               <Download className="h-4 w-4" />

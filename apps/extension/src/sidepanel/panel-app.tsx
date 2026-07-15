@@ -5,6 +5,7 @@ import type { ExtensionState, ExtensionQuestionSuggestion } from '@study-assista
 
 import type { AnalyzeCurrentPagePayload, ManualOverridePayload, PairExtensionPayload } from '../lib/messages';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
+import { normalizeSecureAppUrl } from '../lib/secure-url';
 import { SectionCard } from './components/section-card';
 import { SessionStatusPill, UiStatusPill } from './components/status-pill';
 import {
@@ -300,7 +301,7 @@ export function SidePanelApp() {
   const [workspaceView, setWorkspaceView] = useState<'controls' | 'answering'>('controls');
   const subjectsLoadingRef = useRef(false);
   const [displayRemainingSeconds, setDisplayRemainingSeconds] = useState(0);
-  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistantweb-production.up.railway.app');
+  const [appBaseUrl, setAppBaseUrl] = useState('http://localhost:3001');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
   const [pairingFeedback, setPairingFeedback] = useState<{ tone: 'info' | 'success' | 'warning' | 'danger'; message: string } | null>({
@@ -711,7 +712,7 @@ export function SidePanelApp() {
   }
 
   async function requestPortalPermissionFromGesture() {
-    const normalizedUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistantweb-production.up.railway.app');
+    const normalizedUrl = normalizeSecureAppUrl(appBaseUrl || 'http://localhost:3001');
     const originPattern = normalizeOriginPattern(normalizedUrl);
     const alreadyGranted = await chrome.permissions.contains({ origins: [originPattern] });
 
@@ -798,7 +799,7 @@ export function SidePanelApp() {
   }
 
   async function openPortalDraft() {
-    const targetUrl = normalizeAppUrl(appBaseUrl || 'https://study-assistantweb-production.up.railway.app');
+    const targetUrl = normalizeSecureAppUrl(appBaseUrl || 'http://localhost:3001');
     await chrome.tabs.create({ url: targetUrl });
   }
 

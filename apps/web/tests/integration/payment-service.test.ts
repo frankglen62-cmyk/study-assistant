@@ -4,6 +4,11 @@ import { setTestEnv } from '../test-env';
 
 setTestEnv();
 
+const providerMocks = vi.hoisted(() => ({
+  stripeVerifyWebhook: vi.fn(),
+  paymongoVerifyWebhook: vi.fn(),
+}));
+
 vi.mock('@/lib/payments/stripe', () => ({
   StripeBillingProvider: class {
     provider = 'stripe' as const;
@@ -22,16 +27,7 @@ vi.mock('@/lib/payments/stripe', () => ({
     }
 
     verifyWebhook() {
-      return {
-        type: 'checkout.session.completed',
-        checkoutSessionId: 'cs_test_123',
-        providerPaymentId: 'pi_test_123',
-        paidAt: '2026-03-14T00:00:00.000Z',
-        metadata: {
-          paymentId: 'pay_1',
-        },
-        rawPayload: { id: 'evt_stripe_1' },
-      };
+      return providerMocks.stripeVerifyWebhook();
     }
   },
 }));
@@ -50,16 +46,7 @@ vi.mock('@/lib/payments/paymongo', () => ({
     }
 
     verifyWebhook() {
-      return {
-        type: 'checkout_session.payment.paid',
-        checkoutSessionId: 'paymongo_cs_test_123',
-        providerPaymentId: 'paymongo_pi_test_123',
-        paidAt: '2026-03-14T00:00:00.000Z',
-        metadata: {
-          paymentId: 'pay_2',
-        },
-        rawPayload: { id: 'evt_paymongo_1' },
-      };
+      return providerMocks.paymongoVerifyWebhook();
     }
   },
 }));
@@ -73,6 +60,7 @@ const paymentMocks = vi.hoisted(() => ({
   attachCheckoutSession: vi.fn(),
   getPaymentById: vi.fn(),
   getPaymentByCheckoutSessionId: vi.fn(),
+  getPaymentByProviderPaymentId: vi.fn(),
   listPaymentsForUser: vi.fn(),
   markPaymentStatus: vi.fn(),
 }));
@@ -81,6 +69,7 @@ vi.mock('@/lib/supabase/payments', () => paymentMocks);
 
 const walletMocks = vi.hoisted(() => ({
   applyPaymentCreditOnce: vi.fn(),
+  reversePaymentCreditOnce: vi.fn(),
 }));
 
 vi.mock('@/lib/billing/wallet', () => walletMocks);
@@ -90,6 +79,30 @@ vi.mock('@/lib/observability/logger', () => ({ logEvent: vi.fn() }));
 describe('payment service', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    providerMocks.stripeVerifyWebhook.mockReturnValue({
+      type: 'checkout.session.completed',
+      checkoutSessionId: 'cs_test_123',
+      providerPaymentId: 'pi_test_123',
+      paidAt: '2026-03-14T00:00:00.000Z',
+      paymentStatus: 'paid',
+      amountMinor: 1000,
+      currency: 'USD',
+      reversalAmountMinor: null,
+      metadata: { paymentId: 'pay_1' },
+      rawPayload: { id: 'evt_stripe_1' },
+    });
+    providerMocks.paymongoVerifyWebhook.mockReturnValue({
+      type: 'checkout_session.payment.paid',
+      checkoutSessionId: 'paymongo_cs_test_123',
+      providerPaymentId: 'paymongo_pi_test_123',
+      paidAt: '2026-03-14T00:00:00.000Z',
+      paymentStatus: 'paid',
+      amountMinor: 1299,
+      currency: 'PHP',
+      reversalAmountMinor: null,
+      metadata: { paymentId: 'pay_2' },
+      rawPayload: { id: 'evt_paymongo_1' },
+    });
   });
 
   it('creates a checkout session and persists the Stripe checkout linkage', async () => {
@@ -204,6 +217,9 @@ describe('payment service', () => {
       currency: 'usd',
       provider_payment_id: 'pi_test_123',
       provider_checkout_session_id: 'cs_test_123',
+      entitlement_seconds: 3600,
+      entitlement_expires_after_days: null,
+      entitlement_package_code: 'one-hour',
     });
     paymentMocks.getPaymentPackageById.mockResolvedValue({
       id: 'pkg-1',
@@ -236,6 +252,9 @@ describe('payment service', () => {
       currency: 'PHP',
       provider_payment_id: 'paymongo_pi_test_123',
       provider_checkout_session_id: 'paymongo_cs_test_123',
+      entitlement_seconds: 10800,
+      entitlement_expires_after_days: null,
+      entitlement_package_code: 'three-hours',
     });
     paymentMocks.getPaymentPackageById.mockResolvedValue({
       id: 'pkg-2',
@@ -255,5 +274,98 @@ describe('payment service', () => {
 
     expect(result.handled).toBe(true);
     expect(walletMocks.applyPaymentCreditOnce).toHaveBeenCalledOnce();
+  });
+
+  it('rejects a completed Stripe checkout that is not paid', async () => {
+    providerMocks.stripeVerifyWebhook.mockReturnValue({
+      ...providerMocks.stripeVerifyWebhook(),
+      paymentStatus: 'unpaid',
+    });
+    paymentMocks.getPaymentByCheckoutSessionId.mockResolvedValue({
+      id: 'pay_1',
+      user_id: 'user-1',
+      package_id: 'pkg-1',
+      provider: 'stripe',
+      status: 'pending',
+      amount_minor: 1000,
+      currency: 'USD',
+      provider_payment_id: 'pi_test_123',
+      provider_checkout_session_id: 'cs_test_123',
+      entitlement_seconds: 3600,
+      entitlement_expires_after_days: null,
+      entitlement_package_code: 'one-hour',
+    });
+
+    const { handleStripeWebhook } = await import('@/lib/payments/service');
+    await expect(handleStripeWebhook('payload', 'signature')).rejects.toMatchObject({ code: 'payment_not_paid' });
+    expect(walletMocks.applyPaymentCreditOnce).not.toHaveBeenCalled();
+  });
+
+  it('does not restore a fully refunded payment when a success webhook is replayed', async () => {
+    paymentMocks.getPaymentByCheckoutSessionId.mockResolvedValue({
+      id: 'pay_1',
+      user_id: 'user-1',
+      package_id: 'pkg-1',
+      provider: 'stripe',
+      status: 'refunded',
+      amount_minor: 1000,
+      currency: 'USD',
+      provider_payment_id: 'pi_test_123',
+      provider_checkout_session_id: 'cs_test_123',
+      entitlement_seconds: 3600,
+      entitlement_expires_after_days: null,
+      entitlement_package_code: 'one-hour',
+    });
+
+    const { handleStripeWebhook } = await import('@/lib/payments/service');
+    const result = await handleStripeWebhook('payload', 'signature');
+
+    expect(result).toMatchObject({ handled: true, duplicate: true });
+    expect(walletMocks.applyPaymentCreditOnce).not.toHaveBeenCalled();
+  });
+
+  it('reverses credits idempotently when Stripe reports a refund', async () => {
+    providerMocks.stripeVerifyWebhook.mockReturnValue({
+      type: 'charge.refunded',
+      checkoutSessionId: null,
+      providerPaymentId: 'pi_test_123',
+      paidAt: '2026-03-15T00:00:00.000Z',
+      paymentStatus: 'paid',
+      amountMinor: 1000,
+      currency: 'USD',
+      reversalAmountMinor: 1000,
+      metadata: { paymentId: 'pay_1' },
+      rawPayload: { id: 'evt_refund_1' },
+    });
+    paymentMocks.getPaymentByProviderPaymentId.mockResolvedValue({
+      id: 'pay_1',
+      user_id: 'user-1',
+      package_id: 'pkg-1',
+      provider: 'stripe',
+      status: 'paid',
+      amount_minor: 1000,
+      currency: 'USD',
+      provider_payment_id: 'pi_test_123',
+      provider_checkout_session_id: 'cs_test_123',
+      entitlement_seconds: 3600,
+      entitlement_expires_after_days: null,
+      entitlement_package_code: 'one-hour',
+    });
+    walletMocks.reversePaymentCreditOnce.mockResolvedValue({
+      paymentStatus: 'refunded',
+      reversedSeconds: 3600,
+      totalReversedSeconds: 3600,
+      shortfallSeconds: 0,
+      remainingSeconds: 0,
+      walletLocked: false,
+    });
+
+    const { handleStripeWebhook } = await import('@/lib/payments/service');
+    const result = await handleStripeWebhook('payload', 'signature');
+
+    expect(result.handled).toBe(true);
+    expect(walletMocks.reversePaymentCreditOnce).toHaveBeenCalledWith(
+      expect.objectContaining({ paymentId: 'pay_1', refundedAmountMinor: 1000 }),
+    );
   });
 });

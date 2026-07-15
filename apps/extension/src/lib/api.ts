@@ -1,5 +1,4 @@
 import type { ExtensionPageSignals, ExtensionState } from '@study-assistant/shared-types';
-import { normalizeAppUrl } from '@study-assistant/shared-utils';
 
 import {
   analyzeResponseSchema,
@@ -10,6 +9,7 @@ import {
   sessionResponseSchema,
   walletResponseSchema,
 } from './validators';
+import { normalizeSecureAppUrl } from './secure-url';
 
 const ANALYZE_REQUEST_TIMEOUT_MS = 60_000;
 
@@ -162,7 +162,7 @@ async function fetchJson<T>(
   let response: Response;
 
   try {
-    response = await fetch(`${normalizeAppUrl(state.appBaseUrl)}${path}`, init);
+    response = await fetch(`${normalizeSecureAppUrl(state.appBaseUrl)}${path}`, init);
   } catch (error) {
     if ((error as Error).name === 'TimeoutError' || (error as Error).name === 'AbortError') {
       throw new ApiError(
@@ -173,7 +173,7 @@ async function fetchJson<T>(
     }
     throw new ApiError(
       0,
-      `Could not reach ${normalizeAppUrl(
+      `Could not reach ${normalizeSecureAppUrl(
         state.appBaseUrl,
       )}. Allow the app connection permission and make sure the web app is running on that exact URL.`,
       'network_error',

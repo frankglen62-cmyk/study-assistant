@@ -1,9 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
+import { existsSync } from 'node:fs';
+import { loadEnvFile } from 'node:process';
 
-const SUPABASE_URL = 'https://aciihkqecsehqxaikoir.supabase.co';
-const SUPABASE_SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjaWloa3FlY3NlaHF4YWlrb2lyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzMxMzUxNSwiZXhwIjoyMDg4ODg5NTE1fQ.cl06KpZQ770RhDOmXGOe0OP1aKyBIWhuwoIi3UXZ0fE';
+const envPath = new URL('../.env.local', import.meta.url);
+if (existsSync(envPath)) loadEnvFile(envPath);
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!supabaseUrl || !serviceRoleKey) {
+  throw new Error('NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required.');
+}
+
+const supabase = createClient(supabaseUrl, serviceRoleKey);
 
 const FULL_ANSWER = `Evaluating the database server hardware
 Installing the Oracle software

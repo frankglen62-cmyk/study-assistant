@@ -21,6 +21,7 @@ import {
 import type { PairExtensionPayload } from '../lib/messages';
 import { getStoredExtensionState, sendExtensionMessage, subscribeToExtensionState } from '../lib/runtime';
 import { getExtensionVersion } from '../lib/auth';
+import { normalizeSecureAppUrl } from '../lib/secure-url';
 
 const onboardingSteps: Array<{ title: string; description: string }> = [
   {
@@ -104,7 +105,7 @@ function formatSummaryState(status: ExtensionState['pairingStatus'] | null | und
 export function OnboardingApp() {
   const state = useOnboardingState();
   const extensionVersion = useMemo(() => getExtensionVersion(), []);
-  const [appBaseUrl, setAppBaseUrl] = useState('https://study-assistantweb-production.up.railway.app');
+  const [appBaseUrl, setAppBaseUrl] = useState('http://localhost:3001');
   const [pairingCode, setPairingCode] = useState('');
   const [deviceName, setDeviceName] = useState('My Study Device');
   const [statusMessage, setStatusMessage] = useState('Ready to request permission and pair this browser securely.');
@@ -139,7 +140,8 @@ export function OnboardingApp() {
 
   async function allowOrigin() {
     await runAction('permission', async () => {
-      const origin = normalizeOriginPattern(appBaseUrl);
+      const secureAppUrl = normalizeSecureAppUrl(appBaseUrl);
+      const origin = normalizeOriginPattern(secureAppUrl);
       const granted = await chrome.permissions.request({ origins: [origin] });
 
       if (!granted) {
@@ -149,21 +151,22 @@ export function OnboardingApp() {
 
       const response = await sendExtensionMessage({
         type: 'EXTENSION/REQUEST_HOST_PERMISSION',
-        payload: { appBaseUrl },
+        payload: { appBaseUrl: secureAppUrl },
       });
       setStatusMessage(response.ok ? 'Connection permission granted.' : response.error ?? 'Permission request failed.');
     });
   }
 
   async function pairExtension() {
+    const secureAppUrl = normalizeSecureAppUrl(appBaseUrl);
     const payload: PairExtensionPayload = {
-      appBaseUrl,
+      appBaseUrl: secureAppUrl,
       pairingCode,
       deviceName,
     };
 
     await runAction('pair', async () => {
-      const origin = normalizeOriginPattern(appBaseUrl);
+      const origin = normalizeOriginPattern(secureAppUrl);
       const alreadyGranted = await chrome.permissions.contains({ origins: [origin] });
 
       if (!alreadyGranted) {
@@ -175,7 +178,7 @@ export function OnboardingApp() {
 
         await sendExtensionMessage({
           type: 'EXTENSION/REQUEST_HOST_PERMISSION',
-          payload: { appBaseUrl },
+          payload: { appBaseUrl: secureAppUrl },
         });
       }
 

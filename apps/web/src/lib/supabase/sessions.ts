@@ -1,6 +1,8 @@
+import { z } from 'zod';
+
 import { RouteError } from '@/lib/http/route';
 
-import { sessionRecordSchema, type SessionRecord } from './schemas';
+import { sessionRecordSchema, walletRecordSchema, type SessionRecord } from './schemas';
 import { getSupabaseAdmin } from './server';
 import { assertSupabaseResult, parseArray, parseSingle } from './utils';
 
@@ -11,12 +13,72 @@ export async function getOpenSessionForUser(userId: string): Promise<SessionReco
     .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .eq('user_id', userId)
     .in('status', ['active', 'paused'])
+    .is('end_time', null)
     .order('created_at', { ascending: false })
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to load open session.');
 
   return data ? parseSingle(data, sessionRecordSchema, 'Session row is invalid.') : null;
+}
+
+const settledSessionUsageSchema = z.object({
+  session: sessionRecordSchema,
+  wallet: walletRecordSchema,
+  consumedSeconds: z.number().int().nonnegative(),
+  usageLimitReached: z.enum(['daily', 'monthly']).nullable(),
+});
+
+export async function settleSessionUsageAtomic(params: {
+  userId: string;
+  sessionId: string;
+  minimumSeconds?: number;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { data, error } = await supabase.rpc('settle_active_session_usage', {
+    p_user_id: params.userId,
+    p_session_id: params.sessionId,
+    p_minimum_seconds: params.minimumSeconds ?? 0,
+  });
+
+  assertSupabaseResult(error, 'Failed to settle session usage atomically.');
+  return parseSingle(data, settledSessionUsageSchema, 'Settled session usage is invalid.');
+}
+
+export async function acquireSessionAnalysisLease(params: {
+  userId: string;
+  sessionId: string;
+  leaseToken: string;
+  leaseSeconds?: number;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.rpc('acquire_session_analysis_lease', {
+    p_user_id: params.userId,
+    p_session_id: params.sessionId,
+    p_lease_token: params.leaseToken,
+    p_lease_seconds: params.leaseSeconds ?? 90,
+  });
+
+  if (error?.message.toLowerCase().includes('analysis already in progress')) {
+    throw new RouteError(409, 'analysis_in_progress', 'An analysis is already running for this session.');
+  }
+
+  assertSupabaseResult(error, 'Failed to reserve this session for analysis.');
+}
+
+export async function releaseSessionAnalysisLease(params: {
+  userId: string;
+  sessionId: string;
+  leaseToken: string;
+}) {
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase.rpc('release_session_analysis_lease', {
+    p_user_id: params.userId,
+    p_session_id: params.sessionId,
+    p_lease_token: params.leaseToken,
+  });
+
+  assertSupabaseResult(error, 'Failed to release the session analysis reservation.');
 }
 
 export async function listSessionsForUser(userId: string, limit = 20): Promise<SessionRecord[]> {
@@ -163,13 +225,19 @@ export async function syncSessionAfterAnalysis(params: {
     })
     .eq('id', params.sessionId)
     .eq('user_id', params.userId)
+    .eq('status', 'active')
+    .is('end_time', null)
     .select('id, user_id, status, detection_mode, current_subject_id, current_category_id, extension_installation_id, used_seconds, start_time, last_activity_at, end_time')
     .maybeSingle();
 
   assertSupabaseResult(error, 'Failed to sync session after analysis.');
 
   if (!data) {
-    throw new RouteError(404, 'session_not_found', 'Session not found.');
+    throw new RouteError(
+      409,
+      'session_state_changed',
+      'The session changed while analysis was running. The completed analysis was not allowed to reactivate it.',
+    );
   }
 
   const parsed = parseSingle(data, sessionRecordSchema, 'Synced session is invalid.');

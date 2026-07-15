@@ -21,12 +21,6 @@
   },
   "dependencies": {
     "archiver": "^7.0.1",
-    "puppeteer": "^24.39.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
+    "puppeteer": "^24.43.1"
   }
 }

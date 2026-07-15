@@ -26,6 +26,20 @@ function createChromeMock() {
   };
 }
 
+function dispatchChromeMessage(
+  listener: ((message: MockChromeMessage, sender: unknown, sendResponse: (value: unknown) => void) => void) | undefined,
+  message: MockChromeMessage,
+) {
+  return new Promise<any>((resolve) => {
+    if (!listener) {
+      resolve(null);
+      return;
+    }
+
+    listener(message, null, resolve);
+  });
+}
+
 function buildTrueFalseQuestionHtml(index: number) {
   return `
     <div class="que truefalse">
@@ -544,7 +558,7 @@ describe('extension extractor', () => {
     expect(response?.data?.questionCandidates?.[2]?.prompt).toContain('Salary: $139,000');
   });
 
-  it('auto-fills the correct blank for each short-answer question on a multi-question page', () => {
+  it('auto-fills the correct blank for each short-answer question on a multi-question page', async () => {
     const chromeMock = createChromeMock();
     vi.stubGlobal('chrome', chromeMock);
 
@@ -615,7 +629,8 @@ describe('extension extractor', () => {
     ]);
 
     for (const question of questions) {
-      listener?.(
+      await dispatchChromeMessage(
+        listener,
         {
           type: 'EXTENSION/AUTO_CLICK_ANSWER',
           payload: {
@@ -625,8 +640,6 @@ describe('extension extractor', () => {
             options: [],
           },
         },
-        null,
-        () => {},
       );
     }
 
@@ -635,7 +648,7 @@ describe('extension extractor', () => {
     expect((document.getElementById('q3-answer') as HTMLInputElement).value).toBe('Information Security Analyst');
   });
 
-  it('auto-fills short-answer inputs and overwrites stale values', () => {
+  it('auto-fills short-answer inputs and overwrites stale values', async () => {
     const chromeMock = createChromeMock();
     vi.stubGlobal('chrome', chromeMock);
 
@@ -683,8 +696,8 @@ describe('extension extractor', () => {
     const questionId = extractResponse?.data?.questionCandidates?.[0]?.id;
     expect(questionId).toBeTruthy();
 
-    let autoClickResponse: any = null;
-    listener?.(
+    const autoClickResponse = await dispatchChromeMessage(
+      listener,
       {
         type: 'EXTENSION/AUTO_CLICK_ANSWER',
         payload: {
@@ -694,10 +707,6 @@ describe('extension extractor', () => {
           options: [],
         },
       },
-      null,
-      (value) => {
-        autoClickResponse = value;
-      },
     );
 
     expect(autoClickResponse?.ok).toBe(true);
@@ -706,7 +715,7 @@ describe('extension extractor', () => {
     expect((document.getElementById('q28-answer') as HTMLInputElement).value).toBe('Computer Network Architects');
   });
 
-  it('auto-selects all matching checkbox answers and ignores clear-my-choice controls', () => {
+  it('auto-selects all matching checkbox answers and ignores clear-my-choice controls', async () => {
     const chromeMock = createChromeMock();
     vi.stubGlobal('chrome', chromeMock);
 
@@ -751,8 +760,8 @@ describe('extension extractor', () => {
     installExtractorContentScript();
 
     const listener = chromeMock.__listeners[0];
-    let autoClickResponse: any = null;
-    listener?.(
+    const autoClickResponse = await dispatchChromeMessage(
+      listener,
       {
         type: 'EXTENSION/AUTO_CLICK_ANSWER',
         payload: {
@@ -761,10 +770,6 @@ describe('extension extractor', () => {
           suggestedOption: null,
           options: ['Positive', 'Negative', 'Clear my choice'],
         },
-      },
-      null,
-      (value) => {
-        autoClickResponse = value;
       },
     );
 

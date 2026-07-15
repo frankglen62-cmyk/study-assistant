@@ -109,11 +109,10 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
             key={f.id}
             type="button"
             onClick={() => setFilter(f.id)}
-            className={`flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
-              filter === f.id
+            className={`flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${filter === f.id
                 ? 'bg-background text-foreground shadow-soft-sm'
                 : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
-            }`}
+              }`}
           >
             {f.label}
             {f.count !== undefined ? (
@@ -129,13 +128,12 @@ export function DevicesTab({ devices }: { devices: Device[] }) {
           filteredDevices.map((device, index) => (
             <div
               key={device.id}
-              className={`flex flex-col gap-3 rounded-xl border p-5 sm:flex-row sm:items-center sm:justify-between transition-all ${
-                index === 0 && filter === 'all'
+              className={`flex flex-col gap-3 rounded-xl border p-5 sm:flex-row sm:items-center sm:justify-between transition-all ${index === 0 && filter === 'all'
                   ? 'border-accent/30 bg-accent/5 ring-1 ring-accent/10'
                   : device.status === 'revoked'
                     ? 'border-border/30 bg-surface/30 opacity-60'
                     : 'border-border/40 bg-background shadow-card'
-              }`}
+                }`}
             >
               <div className="flex items-start gap-4 min-w-0">
                 <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
